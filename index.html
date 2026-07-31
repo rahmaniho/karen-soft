@@ -583,6 +583,148 @@
             accent-color: #8B5CF6;
             cursor: pointer;
         }
+
+        /* consult modal */
+        .consult-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 300;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(6px);
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+        .consult-modal.show {
+            display: flex;
+        }
+        .consult-modal .modal-box {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            background: white;
+            border-radius: 1.5rem;
+            padding: 2rem;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+            text-align: center;
+        }
+        .dark .consult-modal .modal-box {
+            background: #0B1220;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .consult-modal .close-btn-consult {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            width: 36px;
+            height: 36px;
+            border-radius: 999px;
+            background: rgba(0, 0, 0, 0.1);
+            border: none;
+            font-size: 1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s ease;
+        }
+        .dark .consult-modal .close-btn-consult {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+        .consult-modal .close-btn-consult:hover {
+            background: rgba(255, 0, 0, 0.3);
+        }
+        .consult-modal .consult-icon {
+            font-size: 3rem;
+            color: #D4AF37;
+            margin-bottom: 1rem;
+        }
+        .consult-modal .consult-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #0B1220;
+            margin-bottom: 0.5rem;
+        }
+        .dark .consult-modal .consult-title {
+            color: white;
+        }
+        .consult-modal .consult-desc {
+            color: #64748b;
+            font-size: 0.95rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+        .dark .consult-modal .consult-desc {
+            color: #94a3b8;
+        }
+        .consult-modal .consult-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+        .consult-modal .consult-actions .btn-consult {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            padding: 0.9rem;
+            border-radius: 1rem;
+            font-weight: 700;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            border: none;
+            cursor: pointer;
+        }
+        .consult-modal .consult-actions .btn-consult:hover {
+            transform: translateY(-2px);
+        }
+        .consult-modal .consult-actions .btn-call {
+            background: linear-gradient(135deg, #10B981, #059669);
+            color: white;
+            box-shadow: 0 8px 24px rgba(16, 185, 129, 0.3);
+        }
+        .consult-modal .consult-actions .btn-whatsapp {
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            color: white;
+            box-shadow: 0 8px 24px rgba(37, 211, 102, 0.3);
+        }
+        .consult-modal .consult-actions .btn-call:hover {
+            box-shadow: 0 12px 32px rgba(16, 185, 129, 0.4);
+        }
+        .consult-modal .consult-actions .btn-whatsapp:hover {
+            box-shadow: 0 12px 32px rgba(37, 211, 102, 0.4);
+        }
+        .consult-modal .consult-divider {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: #94a3b8;
+            font-size: 0.8rem;
+            margin: 0.25rem 0;
+        }
+        .consult-modal .consult-divider::before,
+        .consult-modal .consult-divider::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: #e2e8f0;
+        }
+        .dark .consult-modal .consult-divider::before,
+        .dark .consult-modal .consult-divider::after {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        .consult-modal .consult-phone {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #059669;
+            direction: ltr;
+        }
+        .dark .consult-modal .consult-phone {
+            color: #34D399;
+        }
     </style>
 </head>
 <body>
@@ -604,8 +746,8 @@
                     <a href="#contact" class="hover:text-gold-500 transition">تماس</a>
                 </div>
                 <div class="flex items-center gap-2">
-                    <a href="tel:09152521166" class="btn-phone text-xs sm:text-sm px-2 sm:px-4 py-1.5 sm:py-2">
-                        <i class="fas fa-phone"></i> <span class="hidden sm:inline">۰۹۱۵۲۵۲۱۱۶۶</span>
+                    <a href="https://wa.me/989152521166?text=%D8%B3%D9%84%D8%A7%D9%85%D8%8C%20%D8%A8%D8%B1%D8%A7%DB%8C%20%D9%85%D8%B4%D8%A7%D9%88%D8%B1%D9%87%20%D8%AF%D8%B1%20%D9%85%D9%88%D8%B1%D8%AF%20%D9%86%D8%B1%D9%85%E2%80%8C%D8%A7%D9%81%D8%B2%D8%A7%D8%B1%20%D9%85%D8%AF%DB%8C%D8%B1%DB%8C%D8%AA%20%D8%AF%D9%81%D8%AA%D8%B1%20%D9%88%DA%A9%D8%A7%D9%84%D8%AA%20%D9%88%D9%82%D8%AA%20%DA%AF%D8%B1%D9%81%D8%AA%D9%85" target="_blank" class="btn-phone text-xs sm:text-sm px-2 sm:px-4 py-1.5 sm:py-2">
+                        <i class="fab fa-whatsapp"></i> <span class="hidden sm:inline">۰۹۱۵۲۵۲۱۱۶۶</span>
                     </a>
                     <button id="themeToggle" class="theme-toggle w-10 h-10 rounded-xl border border-slate-200 dark:border-white/10 bg-white dark:bg-ink-800 text-slate-600 dark:text-slate-300 flex items-center justify-center hover:border-gold-400 transition">
                         <i id="themeIcon" class="fas fa-moon"></i>
@@ -613,9 +755,9 @@
                     <button id="demoBtn" class="btn-demo text-sm px-3 sm:px-4 py-2">
                         <i class="fas fa-flask"></i> <span class="hidden sm:inline">دموی رایگان</span>
                     </button>
-                    <a href="#" class="hidden lg:inline-flex btn-glow text-sm py-2 px-4">
-                        <i class="fas fa-arrow-left"></i> شروع کنید
-                    </a>
+                    <button id="consultBtnNav" class="hidden lg:inline-flex btn-glow text-sm py-2 px-4">
+                        <i class="fas fa-phone"></i> مشاوره رایگان
+                    </button>
                     <button id="mobileMenuBtn" class="md:hidden w-10 h-10 rounded-xl border border-slate-200 dark:border-white/10 bg-white dark:bg-ink-800 text-slate-600 dark:text-slate-300 flex items-center justify-center">
                         <i class="fas fa-bars"></i>
                     </button>
@@ -628,8 +770,8 @@
                 <a href="#pricing" class="block hover:text-gold-500 transition">قیمت‌ها</a>
                 <a href="#testimonials" class="block hover:text-gold-500 transition">نظرات</a>
                 <a href="#contact" class="block hover:text-gold-500 transition">تماس</a>
-                <a href="tel:09152521166" class="block text-emerald-600 font-bold"><i class="fas fa-phone"></i> ۰۹۱۵۲۵۲۱۱۶۶</a>
-                <a href="#" class="inline-flex btn-glow text-sm py-2 px-5 w-full justify-center"><i class="fas fa-arrow-left"></i> شروع کنید</a>
+                <a href="https://wa.me/989152521166?text=%D8%B3%D9%84%D8%A7%D9%85%D8%8C%20%D8%A8%D8%B1%D8%A7%DB%8C%20%D9%85%D8%B4%D8%A7%D9%88%D8%B1%D9%87%20%D8%AF%D8%B1%20%D9%85%D9%88%D8%B1%D8%AF%20%D9%86%D8%B1%D9%85%E2%80%8C%D8%A7%D9%81%D8%B2%D8%A7%D8%B1%20%D9%85%D8%AF%DB%8C%D8%B1%DB%8C%D8%AA%20%D8%AF%D9%81%D8%AA%D8%B1%20%D9%88%DA%A9%D8%A7%D9%84%D8%AA%20%D9%88%D9%82%D8%AA%20%DA%AF%D8%B1%D9%81%D8%AA%D9%85" target="_blank" class="block text-emerald-600 font-bold"><i class="fab fa-whatsapp"></i> ۰۹۱۵۲۵۲۱۱۶۶</a>
+                <button id="consultBtnMobileNav" class="inline-flex btn-glow text-sm py-2 px-5 w-full justify-center"><i class="fas fa-phone"></i> مشاوره رایگان</button>
             </div>
         </div>
     </nav>
@@ -658,7 +800,7 @@
                     <div class="mt-8 flex flex-wrap gap-4">
                         <button id="demoBtnHero" class="btn-demo text-base px-6 py-3"><i class="fas fa-flask"></i> دموی رایگان</button>
                         <a href="#pricing" class="btn-glow text-base px-8 py-3"><i class="fas fa-arrow-left"></i> مشاهده قیمت‌ها</a>
-                        <a href="tel:09152521166" class="btn-phone text-base px-5 py-3"><i class="fas fa-phone"></i> مشاوره رایگان</a>
+                        <button id="consultBtnHero" class="btn-phone text-base px-5 py-3"><i class="fas fa-phone"></i> مشاوره رایگان</button>
                     </div>
                     <div class="mt-8 flex items-center gap-6 text-sm text-slate-500 dark:text-slate-400">
                         <span class="flex items-center gap-1.5"><i class="fas fa-check-circle text-emerald-500"></i> پشتیبانی ۲۴ ساعته</span>
@@ -748,18 +890,17 @@
             </div>
             <div class="text-center mb-8">
                 <div class="one-time-note">
-                    <i class="fas fa-check-circle"></i>
-                    با یکبار پرداخت، برای همیشه صاحب برنامه می‌شوید و هیچ اشتراکی نیاز به تهیه نیست
-                </div>
-                <div class="one-time-note mt-2" style="border-color:#8B5CF6; background:rgba(139,92,246,0.08); color:#5b21b6;">
-                    <i class="fas fa-mobile-alt"></i>
-                    در صورت نیاز به نسخه اندرویدی، هزینه ۱,۹۹۹,۰۰۰ تومان به هر پلن اضافه می‌شود (با تیک‌زدن گزینه زیر سفارش دهید)
+                    <i class="fas fa-gift"></i>
+                    تخفیف ویژه به مناسبت تولد کارن سافت
                 </div>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
                 <div class="pricing-card fade-section delay-1">
                     <h3 class="text-lg font-bold text-ink-900 dark:text-white">پلن وکلا</h3>
-                    <div class="mt-2 flex items-baseline gap-1"><span class="text-3xl font-black text-ink-900 dark:text-white">۴,۹۹۹,۰۰۰</span><span class="text-sm text-slate-500">تومان</span></div>
+                    <div class="mt-2">
+                        <span class="text-sm text-slate-400 line-through">۱۲,۰۰۰,۰۰۰</span>
+                        <div class="flex items-baseline gap-1"><span class="text-3xl font-black text-gold-600">۵,۸۰۰,۰۰۰</span><span class="text-sm text-slate-500">تومان</span></div>
+                    </div>
                     <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">یک‌بار پرداخت — مناسب وکلا و دفاتر فردی</p>
                     <ul class="mt-4 space-y-2 text-sm text-slate-600 dark:text-slate-300">
                         <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-500 text-xs"></i> پرونده نامحدود</li>
@@ -771,12 +912,15 @@
                     <div class="android-addon">
                         <input type="checkbox" id="android1" /> <label for="android1" class="cursor-pointer">افزودن نسخه اندرویدی (+۱,۹۹۹,۰۰۰ تومان)</label>
                     </div>
-                    <a href="tel:09152521166" class="mt-6 w-full inline-flex justify-center btn-glow text-sm py-2.5"><i class="fas fa-phone"></i> مشاوره و خرید</a>
+                    <button id="consultBtnPricing1" class="mt-6 w-full inline-flex justify-center btn-glow text-sm py-2.5"><i class="fas fa-phone"></i> مشاوره و خرید</button>
                 </div>
                 <div class="pricing-card popular fade-section delay-2">
                     <span class="badge-popular">محبوب</span>
                     <h3 class="text-lg font-bold text-ink-900 dark:text-white">پلن موسسات</h3>
-                    <div class="mt-2 flex items-baseline gap-1"><span class="text-3xl font-black text-gold-600">۷,۹۹۹,۰۰۰</span><span class="text-sm text-slate-500">تومان</span></div>
+                    <div class="mt-2">
+                        <span class="text-sm text-slate-400 line-through">۲۵,۰۰۰,۰۰۰</span>
+                        <div class="flex items-baseline gap-1"><span class="text-3xl font-black text-gold-600">۱۳,۳۰۰,۰۰۰</span><span class="text-sm text-slate-500">تومان</span></div>
+                    </div>
                     <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">یک‌بار پرداخت — مناسب مؤسسات حقوقی و دفاتر بزرگ</p>
                     <ul class="mt-4 space-y-2 text-sm text-slate-600 dark:text-slate-300">
                         <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-500 text-xs"></i> همه امکانات پلن وکلا</li>
@@ -788,13 +932,16 @@
                     <div class="android-addon">
                         <input type="checkbox" id="android2" /> <label for="android2" class="cursor-pointer">افزودن نسخه اندرویدی (+۱,۹۹۹,۰۰۰ تومان)</label>
                     </div>
-                    <a href="tel:09152521166" class="mt-6 w-full inline-flex justify-center btn-glow text-sm py-2.5"><i class="fas fa-phone"></i> مشاوره و خرید</a>
+                    <button id="consultBtnPricing2" class="mt-6 w-full inline-flex justify-center btn-glow text-sm py-2.5"><i class="fas fa-phone"></i> مشاوره و خرید</button>
                 </div>
                 <div class="pricing-card ai-card fade-section delay-3">
                     <span class="badge-ai"><i class="fas fa-robot"></i> هوش مصنوعی</span>
                     <h3 class="text-lg font-bold text-ink-900 dark:text-white">پلن حرفه‌ای + AI</h3>
-                    <div class="mt-2 flex items-baseline gap-1"><span class="text-3xl font-black text-purple-600 dark:text-purple-400">تماس</span><span class="text-sm text-slate-500">با ما</span></div>
-                    <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">همراه با دستیار هوش مصنوعی اختصاصی</p>
+                    <div class="mt-2">
+                        <span class="text-sm text-slate-400 line-through">۲۸,۰۰۰,۰۰۰</span>
+                        <div class="flex items-baseline gap-1"><span class="text-3xl font-black text-purple-600 dark:text-purple-400">۱۵,۰۰۰,۰۰۰</span><span class="text-sm text-slate-500">تومان</span></div>
+                    </div>
+                    <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">به‌ازای هر کاربر اضافه <span class="font-bold text-purple-600">۵,۰۰۰,۰۰۰</span> تومان</p>
                     <ul class="mt-4 space-y-2 text-sm text-slate-600 dark:text-slate-300">
                         <li class="flex items-center gap-2"><i class="fas fa-robot text-purple-500 text-xs"></i> <span class="font-bold text-purple-600 dark:text-purple-400">دستیار هوش مصنوعی</span> — پاسخ‌دهی خودکار به سوالات حقوقی روزمره</li>
                         <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-500 text-xs"></i> همه امکانات پلن موسسات</li>
@@ -806,9 +953,9 @@
                     <div class="android-addon">
                         <input type="checkbox" id="android3" /> <label for="android3" class="cursor-pointer">افزودن نسخه اندرویدی (+۱,۹۹۹,۰۰۰ تومان)</label>
                     </div>
-                    <a href="tel:09152521166" class="mt-6 w-full inline-flex justify-center rounded-xl border-2 border-purple-500 bg-purple-50 dark:bg-purple-900/20 px-4 py-2.5 text-sm font-bold text-purple-700 dark:text-purple-300 hover:bg-purple-100 dark:hover:bg-purple-900/40 transition">
-                        <i class="fas fa-arrow-left"></i> دریافت مشاوره رایگان
-                    </a>
+                    <button id="consultBtnPricing3" class="mt-6 w-full inline-flex justify-center rounded-xl border-2 border-purple-500 bg-purple-50 dark:bg-purple-900/20 px-4 py-2.5 text-sm font-bold text-purple-700 dark:text-purple-300 hover:bg-purple-100 dark:hover:bg-purple-900/40 transition">
+                        <i class="fas fa-phone"></i> دریافت مشاوره رایگان
+                    </button>
                 </div>
             </div>
             <p class="text-center text-xs text-slate-400 dark:text-slate-500 mt-8">تمامی قیمت‌ها به صورت یک‌بار پرداخت است و شامل به‌روزرسانی‌های دائمی می‌باشد. نسخه اندرویدی در صورت تیک‌زدن به سفارش اضافه می‌شود.</p>
@@ -853,7 +1000,7 @@
                 <div class="faq-item open"><div class="faq-question"><span>دستیار هوش مصنوعی دقیقاً چه کاری انجام می‌دهد؟</span><i class="fas fa-chevron-down"></i></div><div class="faq-answer">دستیار هوش مصنوعی کارن سافت می‌تواند به سوالات حقوقی روزمره پاسخ دهد، پیش‌نویس قرارداد و لایحه تهیه کند، پرونده‌ها را تحلیل کرده و استراتژی پیشنهاد دهد.</div></div>
                 <div class="faq-item"><div class="faq-question"><span>آیا نرم‌افزار آفلاین هم کار می‌کند؟</span><i class="fas fa-chevron-down"></i></div><div class="faq-answer">بله، با استفاده از ذخیره‌سازی محلی (localStorage) داده‌ها در مرورگر شما نگهداری می‌شود و حتی بدون اینترنت قابل استفاده است.</div></div>
                 <div class="faq-item"><div class="faq-question"><span>پشتیبانی از چه سیستمی دارد؟</span><i class="fas fa-chevron-down"></i></div><div class="faq-answer">کارن سافت یک وب‌اپلیکیشن است و روی تمام مرورگرهای مدرن (کروم، فایرفاکس، اج، سافاری) کار می‌کند.</div></div>
-                <div class="faq-item"><div class="faq-question"><span>چطور می‌توانم مشاوره بگیرم؟</span><i class="fas fa-chevron-down"></i></div><div class="faq-answer">با شماره‌های <b class="text-emerald-600">۰۹۱۵۲۵۲۱۱۶۶</b> یا <b class="text-emerald-600">۰۹۱۰۰۹۲۹۴۶۶</b> تماس بگیرید یا از فرم زیر استفاده کنید. تیم کارن سافت آماده پاسخگویی است.</div></div>
+                <div class="faq-item"><div class="faq-question"><span>چطور می‌توانم مشاوره بگیرم؟</span><i class="fas fa-chevron-down"></i></div><div class="faq-answer">با شماره <b class="text-emerald-600">۰۹۱۵۲۵۲۱۱۶۶</b> تماس بگیرید یا از طریق واتساپ پیام دهید. تیم کارن سافت آماده پاسخگویی است.</div></div>
             </div>
         </div>
     </section>
@@ -868,14 +1015,45 @@
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
                 <div class="fade-section">
                     <form id="contactForm" class="space-y-4">
-                        <div><label class="text-xs font-bold text-slate-600 dark:text-slate-300 block mb-1.5">نام و نام خانوادگی</label><input type="text" class="contact-input" placeholder="نام خود را وارد کنید" required /></div>
-                        <div><label class="text-xs font-bold text-slate-600 dark:text-slate-300 block mb-1.5">ایمیل</label><input type="email" class="contact-input" placeholder="example@email.com" required /></div>
-                        <div><label class="text-xs font-bold text-slate-600 dark:text-slate-300 block mb-1.5">شماره تماس</label><input type="tel" class="contact-input" placeholder="۰۹۱۲ XXX XXXX" /></div>
-                        <div><label class="text-xs font-bold text-slate-600 dark:text-slate-300 block mb-1.5">پیام شما</label><textarea rows="4" class="contact-input" placeholder="سوال یا درخواست خود را بنویسید..."></textarea></div>
+                        <div>
+                            <label class="text-xs font-bold text-slate-600 dark:text-slate-300 block mb-1.5">نام و نام خانوادگی</label>
+                            <input type="text" class="contact-input" placeholder="نام خود را وارد کنید" required />
+                        </div>
+                        <div>
+                            <label class="text-xs font-bold text-slate-600 dark:text-slate-300 block mb-1.5">ایمیل</label>
+                            <input type="email" class="contact-input" placeholder="example@email.com" required />
+                        </div>
+                        <div>
+                            <label class="text-xs font-bold text-slate-600 dark:text-slate-300 block mb-1.5">شماره تماس</label>
+                            <input type="tel" class="contact-input" placeholder="۰۹۱۲ XXX XXXX" />
+                        </div>
+                        <div>
+                            <label class="text-xs font-bold text-slate-600 dark:text-slate-300 block mb-1.5">موضوع پیام</label>
+                            <select class="contact-input" required>
+                                <option value="">انتخاب کنید...</option>
+                                <option value="مشاوره">درخواست مشاوره</option>
+                                <option value="خرید">درخواست خرید نرم‌افزار</option>
+                                <option value="نصب">درخواست نصب و راه‌اندازی در دفتر</option>
+                                <option value="آموزش">درخواست آموزش حضوری</option>
+                                <option value="پشتیبانی">نیاز به پشتیبانی</option>
+                                <option value="سایر">سایر موارد</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="text-xs font-bold text-slate-600 dark:text-slate-300 block mb-1.5">پیام شما</label>
+                            <textarea rows="4" class="contact-input" placeholder="سوال یا درخواست خود را بنویسید..."></textarea>
+                        </div>
                         <button type="submit" class="btn-glow w-full justify-center py-3"><i class="fas fa-paper-plane"></i> ارسال پیام</button>
                     </form>
                 </div>
                 <div class="fade-section delay-2 flex flex-col justify-center space-y-6">
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-500 flex items-center justify-center flex-shrink-0"><i class="fab fa-whatsapp text-xl"></i></div>
+                        <div><div class="text-sm font-bold text-ink-900 dark:text-white">واتساپ</div>
+                            <a href="https://wa.me/989152521166?text=%D8%B3%D9%84%D8%A7%D9%85%D8%8C%20%D8%A8%D8%B1%D8%A7%DB%8C%20%D9%85%D8%B4%D8%A7%D9%88%D8%B1%D9%87%20%D8%AF%D8%B1%20%D9%85%D9%88%D8%B1%D8%AF%20%D9%86%D8%B1%D9%85%E2%80%8C%D8%A7%D9%81%D8%B2%D8%A7%D8%B1%20%D9%85%D8%AF%DB%8C%D8%B1%DB%8C%D8%AA%20%D8%AF%D9%81%D8%AA%D8%B1%20%D9%88%DA%A9%D8%A7%D9%84%D8%AA%20%D9%88%D9%82%D8%AA%20%DA%AF%D8%B1%D9%81%D8%AA%D9%85" target="_blank" class="text-lg font-black text-emerald-600 dark:text-emerald-400 hover:underline" dir="ltr">۰۹۱۵۲۵۲۱۱۶۶</a>
+                            <div class="text-xs text-slate-400">پاسخگویی ۲۴ ساعته</div>
+                        </div>
+                    </div>
                     <div class="flex items-start gap-4">
                         <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-500 flex items-center justify-center flex-shrink-0"><i class="fas fa-phone-volume text-xl"></i></div>
                         <div><div class="text-sm font-bold text-ink-900 dark:text-white">تماس مستقیم</div>
@@ -884,15 +1062,8 @@
                         </div>
                     </div>
                     <div class="flex items-start gap-4">
-                        <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-500 flex items-center justify-center flex-shrink-0"><i class="fas fa-phone-volume text-xl"></i></div>
-                        <div><div class="text-sm font-bold text-ink-900 dark:text-white">پشتیبانی دوم</div>
-                            <a href="tel:09100929466" class="text-lg font-black text-emerald-600 dark:text-emerald-400 hover:underline" dir="ltr">۰۹۱۰۰۹۲۹۴۶۶</a>
-                            <div class="text-xs text-slate-400">پاسخگویی ۲۴ ساعته</div>
-                        </div>
-                    </div>
-                    <div class="flex items-start gap-4">
                         <div class="w-12 h-12 rounded-xl bg-gold-500/10 text-gold-500 flex items-center justify-center flex-shrink-0"><i class="fas fa-envelope text-xl"></i></div>
-                        <div><div class="text-sm font-bold text-ink-900 dark:text-white">ایمیل</div><div class="text-sm text-slate-500 dark:text-slate-400">info@karnsoft.ir</div></div>
+                        <div><div class="text-sm font-bold text-ink-900 dark:text-white">ایمیل</div><div class="text-sm text-slate-500 dark:text-slate-400">Karensoft2026@gmail.com</div></div>
                     </div>
                     <div class="flex items-start gap-4">
                         <div class="w-12 h-12 rounded-xl bg-blue-500/10 text-blue-500 flex items-center justify-center flex-shrink-0"><i class="fas fa-map-marker-alt text-xl"></i></div>
@@ -914,7 +1085,7 @@
                 <div class="flex flex-wrap items-center gap-4 text-xs text-slate-500 dark:text-slate-400">
                     <a href="#" class="hover:text-gold-500 transition">حریم خصوصی</a>
                     <a href="#contact" class="hover:text-gold-500 transition">پشتیبانی</a>
-                    <a href="tel:09152521166" class="hover:text-emerald-500 transition font-bold text-emerald-600" dir="ltr"><i class="fas fa-phone"></i> ۰۹۱۵۲۵۲۱۱۶۶</a>
+                    <a href="https://wa.me/989152521166?text=%D8%B3%D9%84%D8%A7%D9%85%D8%8C%20%D8%A8%D8%B1%D8%A7%DB%8C%20%D9%85%D8%B4%D8%A7%D9%88%D8%B1%D9%87%20%D8%AF%D8%B1%20%D9%85%D9%88%D8%B1%D8%AF%20%D9%86%D8%B1%D9%85%E2%80%8C%D8%A7%D9%81%D8%B2%D8%A7%D8%B1%20%D9%85%D8%AF%DB%8C%D8%B1%DB%8C%D8%AA%20%D8%AF%D9%81%D8%AA%D8%B1%20%D9%88%DA%A9%D8%A7%D9%84%D8%AA%20%D9%88%D9%82%D8%AA%20%DA%AF%D8%B1%D9%81%D8%AA%D9%85" target="_blank" class="hover:text-emerald-500 transition font-bold text-emerald-600" dir="ltr"><i class="fab fa-whatsapp"></i> ۰۹۱۵۲۵۲۱۱۶۶</a>
                     <span class="text-slate-300 dark:text-slate-600">|</span>
                     <span>تولید شده توسط <span class="text-ink-900 dark:text-white font-semibold">کارن سافت</span></span>
                 </div>
@@ -922,6 +1093,27 @@
             </div>
         </div>
     </footer>
+
+    <!-- ===== CONSULT MODAL ===== -->
+    <div id="consultModal" class="consult-modal">
+        <div class="modal-box">
+            <button class="close-btn-consult" id="closeConsult"><i class="fas fa-times"></i></button>
+            <div class="consult-icon"><i class="fas fa-headset"></i></div>
+            <div class="consult-title">تماس و پیام</div>
+            <div class="consult-desc">
+                برای مشاوره رایگان، می‌توانید با شماره <span class="consult-phone">۰۹۱۵۲۵۲۱۱۶۶</span> تماس بگیرید یا از طریق واتساپ پیام دهید.
+            </div>
+            <div class="consult-actions">
+                <a href="tel:09152521166" class="btn-consult btn-call">
+                    <i class="fas fa-phone"></i> تماس تلفنی مستقیم
+                </a>
+                <div class="consult-divider">یا</div>
+                <a href="https://wa.me/989152521166?text=%D8%B3%D9%84%D8%A7%D9%85%D8%8C%20%D8%A8%D8%B1%D8%A7%DB%8C%20%D9%85%D8%B4%D8%A7%D9%88%D8%B1%D9%87%20%D8%AF%D8%B1%20%D9%85%D9%88%D8%B1%D8%AF%20%D9%86%D8%B1%D9%85%E2%80%8C%D8%A7%D9%81%D8%B2%D8%A7%D8%B1%20%D9%85%D8%AF%DB%8C%D8%B1%DB%8C%D8%AA%20%D8%AF%D9%81%D8%AA%D8%B1%20%D9%88%DA%A9%D8%A7%D9%84%D8%AA%20%D9%88%D9%82%D8%AA%20%DA%AF%D8%B1%D9%81%D8%AA%D9%85" target="_blank" class="btn-consult btn-whatsapp">
+                    <i class="fab fa-whatsapp"></i> ارسال پیام در واتساپ
+                </a>
+            </div>
+        </div>
+    </div>
 
     <!-- ===== DEMO MODAL ===== -->
     <div id="demoModal">
@@ -932,7 +1124,7 @@
     </div>
 
     <script>
-        // ===== DEMO CODE (نسخه جدید دمو) =====
+        // ===== DEMO CODE =====
         const DEMO_HTML = `<!DOCTYPE html>
         <html lang="fa" dir="rtl" class="h-full">
         <head>
@@ -2189,14 +2381,43 @@
                 navbar.classList.toggle('navbar-scrolled', window.scrollY > 20);
             });
 
-            // ===== DEMO MODAL with BLOB =====
+            // ===== CONSULT MODAL =====
+            const consultModal = document.getElementById('consultModal');
+            const consultBtns = document.querySelectorAll('#consultBtnNav, #consultBtnMobileNav, #consultBtnHero, #consultBtnPricing1, #consultBtnPricing2, #consultBtnPricing3');
+            const closeConsult = document.getElementById('closeConsult');
+
+            function openConsult() {
+                consultModal.classList.add('show');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeConsultFn() {
+                consultModal.classList.remove('show');
+                document.body.style.overflow = '';
+            }
+
+            consultBtns.forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    openConsult();
+                });
+            });
+
+            closeConsult.addEventListener('click', closeConsultFn);
+            consultModal.addEventListener('click', function(e) {
+                if (e.target === this) closeConsultFn();
+            });
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && consultModal.classList.contains('show')) closeConsultFn();
+            });
+
+            // ===== DEMO MODAL =====
             const demoModal = document.getElementById('demoModal');
             const demoBtn = document.getElementById('demoBtn');
             const demoBtnHero = document.getElementById('demoBtnHero');
             const closeDemo = document.getElementById('closeDemo');
             const demoFrame = document.getElementById('demoFrame');
 
-            // Create blob URL for demo
             const demoBlob = new Blob([DEMO_HTML], { type: 'text/html;charset=utf-8' });
             const demoURL = URL.createObjectURL(demoBlob);
 
