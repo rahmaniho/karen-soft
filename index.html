@@ -3,12 +3,14 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title> کارن سافت | توسعه نرم‌افزار و طراحی </title>
+    <title>مدیریت هوشمند دفتر وکالت | کارن سافت</title>
     <script src="https://cdn.tailwindcss.com">
     </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
     <style>
+        /* ===== RESET & BASE ===== */
         * {
             margin: 0;
             padding: 0;
@@ -26,6 +28,7 @@
             scroll-behavior: smooth;
         }
 
+        /* ===== NAVBAR ===== */
         .navbar-glass {
             background: rgba(255, 255, 255, 0.72);
             backdrop-filter: blur(16px) saturate(1.2);
@@ -43,6 +46,7 @@
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
         }
 
+        /* ===== BUTTONS ===== */
         .btn-glow {
             display: inline-flex;
             align-items: center;
@@ -128,6 +132,7 @@
             transform: translateY(-1px);
         }
 
+        /* ===== HERO ORBS ===== */
         .hero-orb {
             position: absolute;
             border-radius: 999px;
@@ -165,6 +170,8 @@
                 transform: translate3d(20px, -30px, 0) scale(1.1);
             }
         }
+
+        /* ===== PARTICLES ===== */
         .particles {
             position: absolute;
             inset: 0;
@@ -214,6 +221,7 @@
             }
         }
 
+        /* ===== TYPING CURSOR ===== */
         .typing-cursor {
             display: inline-block;
             width: 3px;
@@ -239,6 +247,7 @@
             background-clip: text;
         }
 
+        /* ===== FEATURE CARDS ===== */
         .feature-card {
             border-radius: 1.25rem;
             padding: 1.5rem 1.25rem;
@@ -275,6 +284,7 @@
             transform: scale(1.08) rotate(-2deg);
         }
 
+        /* ===== PRICING CARDS ===== */
         .pricing-card {
             border-radius: 1.25rem;
             padding: 1.75rem 1.5rem;
@@ -325,20 +335,55 @@
             border-radius: 999px;
         }
 
+        /* ===== DISCOUNT PULSE CARD ===== */
+        .discount-pulse {
+            animation: pulseCard 2.5s ease-in-out infinite;
+            border-radius: 1.5rem;
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            border: 2px solid #D4AF37;
+            box-shadow: 0 0 40px rgba(212, 175, 55, 0.25);
+        }
+        .dark .discount-pulse {
+            background: linear-gradient(135deg, #1a1520, #2d1f0a);
+            border-color: #D4AF37;
+        }
+        @keyframes pulseCard {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 30px rgba(212, 175, 55, 0.2);
+            }
+            50% {
+                transform: scale(1.02);
+                box-shadow: 0 0 60px rgba(212, 175, 55, 0.4);
+            }
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 30px rgba(212, 175, 55, 0.2);
+            }
+        }
+
+        /* ===== TESTIMONIALS ===== */
         .testimonial-card {
             border-radius: 1.25rem;
             padding: 1.5rem;
             background: white;
             border: 1px solid rgba(226, 232, 240, 0.8);
             box-shadow: 0 8px 30px rgba(15, 23, 42, 0.04);
-            transition: transform 0.3s ease;
+            transition: transform 0.5s cubic-bezier(.22, 1.2, .36, 1), opacity 0.8s ease, box-shadow 0.4s ease;
+            opacity: 0;
+            transform: translateY(40px) scale(0.95);
+        }
+        .testimonial-card.visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
         }
         .dark .testimonial-card {
             background: rgba(18, 26, 43, 0.85);
             border-color: rgba(255, 255, 255, 0.08);
         }
         .testimonial-card:hover {
-            transform: translateY(-3px);
+            transform: translateY(-4px) scale(1.01);
+            box-shadow: 0 20px 50px rgba(15, 23, 42, 0.1);
         }
         .testimonial-card .avatar {
             width: 56px;
@@ -353,7 +398,34 @@
             color: white;
             flex-shrink: 0;
         }
+        .testimonial-card .avatar-2 {
+            width: 56px;
+            height: 56px;
+            border-radius: 999px;
+            background: linear-gradient(135deg, #8B5CF6, #6D28D9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: white;
+            flex-shrink: 0;
+        }
+        .testimonial-card .avatar-3 {
+            width: 56px;
+            height: 56px;
+            border-radius: 999px;
+            background: linear-gradient(135deg, #10b981, #047857);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: white;
+            flex-shrink: 0;
+        }
 
+        /* ===== FAQ ===== */
         .faq-item {
             border-bottom: 1px solid rgba(226, 232, 240, 0.6);
             padding: 0.8rem 0;
@@ -401,11 +473,12 @@
             color: #94a3b8;
         }
         .faq-item.open .faq-answer {
-            max-height: 200px;
+            max-height: 300px;
             opacity: 1;
             padding: 0.4rem 0 0.8rem 0;
         }
 
+        /* ===== CONTACT ===== */
         .contact-input {
             width: 100%;
             border-radius: 0.9rem;
@@ -427,6 +500,7 @@
             box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.15);
         }
 
+        /* ===== FADE SECTIONS ===== */
         .fade-section {
             opacity: 0;
             transform: translateY(30px);
@@ -445,7 +519,14 @@
         .fade-section.delay-3 {
             transition-delay: 0.18s;
         }
+        .fade-section.delay-4 {
+            transition-delay: 0.24s;
+        }
+        .fade-section.delay-5 {
+            transition-delay: 0.30s;
+        }
 
+        /* ===== DEMO MODAL ===== */
         #demoModal {
             display: none;
             position: fixed;
@@ -503,6 +584,7 @@
             background: rgba(255, 0, 0, 0.6);
         }
 
+        /* ===== MOBILE MENU ===== */
         .mobile-menu {
             max-height: 0;
             overflow: hidden;
@@ -510,10 +592,11 @@
             opacity: 0;
         }
         .mobile-menu.open {
-            max-height: 400px;
+            max-height: 500px;
             opacity: 1;
         }
 
+        /* ===== STATS ===== */
         .stat-number {
             font-size: 2.2rem;
             font-weight: 900;
@@ -524,6 +607,8 @@
                 font-size: 2.8rem;
             }
         }
+
+        /* ===== SCROLLBAR ===== */
         ::-webkit-scrollbar {
             width: 8px;
             height: 8px;
@@ -535,219 +620,268 @@
         ::-webkit-scrollbar-thumb:hover {
             background: rgba(212, 175, 55, 0.4);
         }
+
+        /* ===== THEME TOGGLE ===== */
         .theme-toggle {
             transition: transform 0.4s cubic-bezier(.22, 1.2, .36, 1);
         }
         .theme-toggle:hover {
             transform: rotate(60deg) scale(1.1);
         }
-        .one-time-note {
-            background: linear-gradient(135deg, #fef9e7, #fdf2d0);
-            border: 1px solid #d4af37;
-            border-radius: 1rem;
-            padding: 0.75rem 1.25rem;
-            font-weight: 700;
-            color: #7a5d1a;
-            display: inline-block;
-            margin-bottom: 0.5rem;
-        }
-        .dark .one-time-note {
-            background: rgba(212, 175, 55, 0.12);
-            border-color: rgba(212, 175, 55, 0.3);
-            color: #f0d78c;
-        }
-        .one-time-note i {
-            margin-left: 0.4rem;
-        }
-        .android-addon {
-            background: rgba(139, 92, 246, 0.08);
-            border: 1px dashed #8B5CF6;
-            border-radius: 0.75rem;
-            padding: 0.5rem 0.75rem;
-            font-size: 0.8rem;
-            color: #5b21b6;
-            display: flex;
-            align-items: center;
-            gap: 0.4rem;
-            margin-top: 0.5rem;
-            flex-wrap: wrap;
-        }
-        .dark .android-addon {
-            background: rgba(139, 92, 246, 0.12);
-            color: #a78bfa;
-            border-color: #6d28d9;
-        }
-        .android-addon input[type="checkbox"] {
-            width: 1.1rem;
-            height: 1.1rem;
-            accent-color: #8B5CF6;
-            cursor: pointer;
-        }
 
-        /* consult modal */
-        .consult-modal {
+        /* ===== ONLINE SUPPORT ===== */
+        #supportModal {
             display: none;
             position: fixed;
             inset: 0;
             z-index: 300;
-            background: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(6px);
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(8px);
             align-items: center;
             justify-content: center;
             padding: 1rem;
         }
-        .consult-modal.show {
+        #supportModal.show {
             display: flex;
         }
-        .consult-modal .modal-box {
-            position: relative;
+        #supportModal .support-box {
             width: 100%;
-            max-width: 500px;
+            max-width: 600px;
+            max-height: 85vh;
             background: white;
             border-radius: 1.5rem;
-            padding: 2rem;
-            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
-            text-align: center;
-        }
-        .dark .consult-modal .modal-box {
-            background: #0B1220;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        .consult-modal .close-btn-consult {
-            position: absolute;
-            top: 12px;
-            left: 12px;
-            width: 36px;
-            height: 36px;
-            border-radius: 999px;
-            background: rgba(0, 0, 0, 0.1);
-            border: none;
-            font-size: 1rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background 0.2s ease;
-        }
-        .dark .consult-modal .close-btn-consult {
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-        }
-        .consult-modal .close-btn-consult:hover {
-            background: rgba(255, 0, 0, 0.3);
-        }
-        .consult-modal .consult-icon {
-            font-size: 3rem;
-            color: #D4AF37;
-            margin-bottom: 1rem;
-        }
-        .consult-modal .consult-title {
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: #0B1220;
-            margin-bottom: 0.5rem;
-        }
-        .dark .consult-modal .consult-title {
-            color: white;
-        }
-        .consult-modal .consult-desc {
-            color: #64748b;
-            font-size: 0.95rem;
-            line-height: 1.8;
-            margin-bottom: 1.5rem;
-        }
-        .dark .consult-modal .consult-desc {
-            color: #94a3b8;
-        }
-        .consult-modal .consult-actions {
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.4);
+            overflow: hidden;
             display: flex;
             flex-direction: column;
-            gap: 0.75rem;
         }
-        .consult-modal .consult-actions .btn-consult {
+        .dark #supportModal .support-box {
+            background: #0B1220;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        #supportModal .support-header {
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid rgba(226, 232, 240, 0.6);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-shrink: 0;
+        }
+        .dark #supportModal .support-header {
+            border-bottom-color: rgba(255, 255, 255, 0.08);
+        }
+        #supportModal .support-body {
+            padding: 1rem 1.5rem;
+            overflow-y: auto;
+            flex: 1;
+        }
+        #supportModal .support-question {
+            padding: 0.6rem 1rem;
+            border-radius: 0.9rem;
+            background: rgba(212, 175, 55, 0.08);
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            cursor: pointer;
+            transition: all 0.25s ease;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        #supportModal .support-question:hover {
+            background: rgba(212, 175, 55, 0.15);
+            transform: translateX(-4px);
+        }
+        #supportModal .support-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(.16, 1, .3, 1), opacity 0.4s ease, padding 0.4s ease;
+            opacity: 0;
+            padding: 0 1rem;
+            color: #64748b;
+            font-size: 0.9rem;
+            line-height: 2;
+        }
+        .dark #supportModal .support-answer {
+            color: #94a3b8;
+        }
+        #supportModal .support-answer.open {
+            max-height: 400px;
+            opacity: 1;
+            padding: 0.6rem 1rem 1rem 1rem;
+        }
+        #supportModal .support-answer .typing-text {
+            display: inline-block;
+        }
+        #supportModal .support-answer .typing-cursor-support {
+            display: inline-block;
+            width: 2px;
+            height: 1em;
+            background: #D4AF37;
+            animation: blink 0.9s step-end infinite;
+            vertical-align: text-bottom;
+        }
+        .support-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #D4AF37, #B8942A);
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 0.75rem;
-            padding: 0.9rem;
-            border-radius: 1rem;
-            font-weight: 700;
-            font-size: 1rem;
-            text-decoration: none;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-            border: none;
+            color: white;
+            font-size: 1.4rem;
             cursor: pointer;
+            transition: transform 0.3s cubic-bezier(.22, 1.2, .36, 1), box-shadow 0.3s ease;
+            box-shadow: 0 8px 24px rgba(212, 175, 55, 0.3);
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 150;
         }
-        .consult-modal .consult-actions .btn-consult:hover {
-            transform: translateY(-2px);
+        .support-icon:hover {
+            transform: scale(1.1) rotate(-8deg);
+            box-shadow: 0 12px 40px rgba(212, 175, 55, 0.5);
         }
-        .consult-modal .consult-actions .btn-call {
-            background: linear-gradient(135deg, #10B981, #059669);
-            color: white;
-            box-shadow: 0 8px 24px rgba(16, 185, 129, 0.3);
+        .support-icon .pulse-ring {
+            position: absolute;
+            inset: -6px;
+            border-radius: 50%;
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            animation: ringPulse 2s ease-out infinite;
         }
-        .consult-modal .consult-actions .btn-whatsapp {
-            background: linear-gradient(135deg, #25D366, #128C7E);
-            color: white;
-            box-shadow: 0 8px 24px rgba(37, 211, 102, 0.3);
+        @keyframes ringPulse {
+            0% {
+                transform: scale(1);
+                opacity: 0.8;
+            }
+            100% {
+                transform: scale(1.4);
+                opacity: 0;
+            }
         }
-        .consult-modal .consult-actions .btn-call:hover {
-            box-shadow: 0 12px 32px rgba(16, 185, 129, 0.4);
-        }
-        .consult-modal .consult-actions .btn-whatsapp:hover {
-            box-shadow: 0 12px 32px rgba(37, 211, 102, 0.4);
-        }
-        .consult-modal .consult-divider {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            color: #94a3b8;
-            font-size: 0.8rem;
-            margin: 0.25rem 0;
-        }
-        .consult-modal .consult-divider::before,
-        .consult-modal .consult-divider::after {
-            content: "";
-            flex: 1;
-            height: 1px;
-            background: #e2e8f0;
-        }
-        .dark .consult-modal .consult-divider::before,
-        .dark .consult-modal .consult-divider::after {
-            background: rgba(255, 255, 255, 0.1);
-        }
-        .consult-modal .consult-phone {
+
+        /* ===== ABOUT US TYPING ===== */
+        .about-typing {
             font-size: 1.1rem;
-            font-weight: 700;
-            color: #059669;
-            direction: ltr;
+            line-height: 2.2rem;
+            min-height: 200px;
+            color: #1e293b;
         }
-        .dark .consult-modal .consult-phone {
-            color: #34D399;
+        .dark .about-typing {
+            color: #e2e8f0;
+        }
+        .about-typing .typing-cursor-about {
+            display: inline-block;
+            width: 3px;
+            height: 1.2em;
+            background: #D4AF37;
+            animation: blink 0.9s step-end infinite;
+            vertical-align: text-bottom;
+        }
+
+        /* ===== DEMO NOTICE ===== */
+        .demo-notice {
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            border: 2px solid #D4AF37;
+            border-radius: 1rem;
+            padding: 1rem 1.5rem;
+            text-align: center;
+            font-weight: 700;
+            color: #78350f;
+            box-shadow: 0 8px 30px rgba(212, 175, 55, 0.2);
+        }
+        .dark .demo-notice {
+            background: linear-gradient(135deg, #1a1520, #2d1f0a);
+            color: #fde68a;
+            border-color: #D4AF37;
+        }
+        .demo-notice a {
+            color: #D4AF37;
+            text-decoration: underline;
+            font-weight: 800;
+        }
+        .demo-notice a:hover {
+            color: #b8942a;
+        }
+
+        /* ===== OS ICONS ===== */
+        .os-icon {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.2rem 0.8rem;
+            border-radius: 999px;
+            background: rgba(0, 0, 0, 0.05);
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        .dark .os-icon {
+            background: rgba(255, 255, 255, 0.06);
+        }
+        .os-icon i {
+            font-size: 1rem;
+        }
+        .os-icon.android i {
+            color: #3DDC84;
+        }
+        .os-icon.windows i {
+            color: #0078D4;
+        }
+        .os-icon.ios i {
+            color: #555555;
+        }
+        .os-icon.mac i {
+            color: #555555;
         }
     </style>
 </head>
 <body>
+
+    <!-- ===== SUPPORT ICON ===== -->
+    <div class="support-icon" id="supportToggle" title="پشتیبانی آنلاین">
+        <span class="pulse-ring"></span>
+        <i class="fas fa-headset"></i>
+    </div>
+
+    <!-- ===== SUPPORT MODAL ===== -->
+    <div id="supportModal">
+        <div class="support-box">
+            <div class="support-header">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-gold-400 to-gold-700 text-ink-900 flex items-center justify-center text-lg">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <div>
+                        <div class="font-bold text-sm">پشتیبانی آنلاین</div>
+                        <div class="text-[10px] text-slate-500 dark:text-slate-400">پاسخ‌های خودکار به سوالات متداول</div>
+                    </div>
+                </div>
+                <button class="icon-btn" id="closeSupport"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="support-body" id="supportBody">
+                <!-- سوالات و پاسخ‌ها توسط JS ساخته می‌شوند -->
+            </div>
+        </div>
+    </div>
 
     <!-- ===== NAVBAR ===== -->
     <nav id="navbar" class="fixed top-0 right-0 left-0 z-50 navbar-glass navbar-scrolled transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16 md:h-20">
                 <div class="flex items-center gap-2 shrink-0">
-                    <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-gold-400 to-gold-700 text-ink-900 flex items-center justify-center text-lg shadow-lg shadow-gold-500/20">
-                        <i class="fas fa-scale-balanced"></i>
-                    </div>
+                    <!-- لوگو -->
+                    <img src="images/logo-icon.png" alt="کارن سافت" class="h-9 w-9 rounded-xl object-cover" />
                     <span class="font-bold text-sm md:text-lg text-ink-900 dark:text-white whitespace-nowrap">مدیریت هوشمند دفتر وکالت</span>
                 </div>
                 <div class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-600 dark:text-slate-300">
                     <a href="#features" class="hover:text-gold-500 transition">ویژگی‌ها</a>
                     <a href="#pricing" class="hover:text-gold-500 transition">قیمت‌ها</a>
                     <a href="#testimonials" class="hover:text-gold-500 transition">نظرات</a>
+                    <a href="#about" class="hover:text-gold-500 transition">درباره ما</a>
                     <a href="#contact" class="hover:text-gold-500 transition">تماس</a>
                 </div>
                 <div class="flex items-center gap-2">
-                    <a href="https://wa.me/989152521166?text=%D8%B3%D9%84%D8%A7%D9%85%D8%8C%20%D8%A8%D8%B1%D8%A7%DB%8C%20%D9%85%D8%B4%D8%A7%D9%88%D8%B1%D9%87%20%D8%AF%D8%B1%20%D9%85%D9%88%D8%B1%D8%AF%20%D9%86%D8%B1%D9%85%E2%80%8C%D8%A7%D9%81%D8%B2%D8%A7%D8%B1%20%D9%85%D8%AF%DB%8C%D8%B1%DB%8C%D8%AA%20%D8%AF%D9%81%D8%AA%D8%B1%20%D9%88%DA%A9%D8%A7%D9%84%D8%AA%20%D9%88%D9%82%D8%AA%20%DA%AF%D8%B1%D9%81%D8%AA%D9%85" target="_blank" class="btn-phone text-xs sm:text-sm px-2 sm:px-4 py-1.5 sm:py-2">
-                        <i class="fab fa-whatsapp"></i> <span class="hidden sm:inline">۰۹۱۵۲۵۲۱۱۶۶</span>
+                    <a href="tel:0915251166" class="btn-phone text-xs sm:text-sm px-2 sm:px-4 py-1.5 sm:py-2">
+                        <i class="fas fa-phone"></i> <span class="hidden sm:inline">۰۹۱۵۲۵۱۱۶۶</span>
                     </a>
                     <button id="themeToggle" class="theme-toggle w-10 h-10 rounded-xl border border-slate-200 dark:border-white/10 bg-white dark:bg-ink-800 text-slate-600 dark:text-slate-300 flex items-center justify-center hover:border-gold-400 transition">
                         <i id="themeIcon" class="fas fa-moon"></i>
@@ -755,9 +889,9 @@
                     <button id="demoBtn" class="btn-demo text-sm px-3 sm:px-4 py-2">
                         <i class="fas fa-flask"></i> <span class="hidden sm:inline">دموی رایگان</span>
                     </button>
-                    <button id="consultBtnNav" class="hidden lg:inline-flex btn-glow text-sm py-2 px-4">
-                        <i class="fas fa-phone"></i> مشاوره رایگان
-                    </button>
+                    <a href="#" class="hidden lg:inline-flex btn-glow text-sm py-2 px-4">
+                        <i class="fas fa-arrow-left"></i> شروع کنید
+                    </a>
                     <button id="mobileMenuBtn" class="md:hidden w-10 h-10 rounded-xl border border-slate-200 dark:border-white/10 bg-white dark:bg-ink-800 text-slate-600 dark:text-slate-300 flex items-center justify-center">
                         <i class="fas fa-bars"></i>
                     </button>
@@ -769,9 +903,10 @@
                 <a href="#features" class="block hover:text-gold-500 transition">ویژگی‌ها</a>
                 <a href="#pricing" class="block hover:text-gold-500 transition">قیمت‌ها</a>
                 <a href="#testimonials" class="block hover:text-gold-500 transition">نظرات</a>
+                <a href="#about" class="block hover:text-gold-500 transition">درباره ما</a>
                 <a href="#contact" class="block hover:text-gold-500 transition">تماس</a>
-                <a href="https://wa.me/989152521166?text=%D8%B3%D9%84%D8%A7%D9%85%D8%8C%20%D8%A8%D8%B1%D8%A7%DB%8C%20%D9%85%D8%B4%D8%A7%D9%88%D8%B1%D9%87%20%D8%AF%D8%B1%20%D9%85%D9%88%D8%B1%D8%AF%20%D9%86%D8%B1%D9%85%E2%80%8C%D8%A7%D9%81%D8%B2%D8%A7%D8%B1%20%D9%85%D8%AF%DB%8C%D8%B1%DB%8C%D8%AA%20%D8%AF%D9%81%D8%AA%D8%B1%20%D9%88%DA%A9%D8%A7%D9%84%D8%AA%20%D9%88%D9%82%D8%AA%20%DA%AF%D8%B1%D9%81%D8%AA%D9%85" target="_blank" class="block text-emerald-600 font-bold"><i class="fab fa-whatsapp"></i> ۰۹۱۵۲۵۲۱۱۶۶</a>
-                <button id="consultBtnMobileNav" class="inline-flex btn-glow text-sm py-2 px-5 w-full justify-center"><i class="fas fa-phone"></i> مشاوره رایگان</button>
+                <a href="tel:0915251166" class="block text-emerald-600 font-bold"><i class="fas fa-phone"></i> ۰۹۱۵۲۵۱۱۶۶</a>
+                <a href="#" class="inline-flex btn-glow text-sm py-2 px-5 w-full justify-center"><i class="fas fa-arrow-left"></i> شروع کنید</a>
             </div>
         </div>
     </nav>
@@ -800,7 +935,7 @@
                     <div class="mt-8 flex flex-wrap gap-4">
                         <button id="demoBtnHero" class="btn-demo text-base px-6 py-3"><i class="fas fa-flask"></i> دموی رایگان</button>
                         <a href="#pricing" class="btn-glow text-base px-8 py-3"><i class="fas fa-arrow-left"></i> مشاهده قیمت‌ها</a>
-                        <button id="consultBtnHero" class="btn-phone text-base px-5 py-3"><i class="fas fa-phone"></i> مشاوره رایگان</button>
+                        <a href="tel:0915251166" class="btn-phone text-base px-5 py-3"><i class="fas fa-phone"></i> مشاوره رایگان</a>
                     </div>
                     <div class="mt-8 flex items-center gap-6 text-sm text-slate-500 dark:text-slate-400">
                         <span class="flex items-center gap-1.5"><i class="fas fa-check-circle text-emerald-500"></i> پشتیبانی ۲۴ ساعته</span>
@@ -888,19 +1023,23 @@
                 <h2 class="text-3xl md:text-4xl font-black mt-4 text-ink-900 dark:text-white">انتخاب پلن مناسب</h2>
                 <p class="mt-3 text-slate-600 dark:text-slate-400 leading-7">همه پلن‌ها شامل پشتیبانی ۲۴ ساعته و به‌روزرسانی دائمی هستند.</p>
             </div>
-            <div class="text-center mb-8">
-                <div class="one-time-note">
-                    <i class="fas fa-gift"></i>
-                    تخفیف ویژه به مناسبت تولد کارن سافت
+
+            <!-- ===== DISCOUNT CARD ===== -->
+            <div class="discount-pulse p-6 md:p-8 mb-12 max-w-3xl mx-auto text-center fade-section delay-1">
+                <div class="flex items-center justify-center gap-3 mb-2">
+                    <i class="fas fa-gift text-2xl text-gold-600"></i>
+                    <span class="text-2xl font-black text-ink-900 dark:text-white">🎉 تخفیف ویژه به مناسبت تولد کارن سافت</span>
                 </div>
+                <p class="text-ink-800 dark:text-amber-200 text-lg font-bold">
+                    تا پایان ماه، <span class="text-2xl text-gold-600">۳۰٪</span> تخفیف برای تمامی پلن‌ها
+                </p>
+                <p class="text-sm text-ink-700 dark:text-amber-300/70 mt-1">کد تخفیف: <span class="font-mono bg-ink-800/10 dark:bg-white/10 px-3 py-1 rounded-lg">KARENSOFT30</span></p>
             </div>
+
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
                 <div class="pricing-card fade-section delay-1">
                     <h3 class="text-lg font-bold text-ink-900 dark:text-white">پلن وکلا</h3>
-                    <div class="mt-2">
-                        <span class="text-sm text-slate-400 line-through">۱۲,۰۰۰,۰۰۰</span>
-                        <div class="flex items-baseline gap-1"><span class="text-3xl font-black text-gold-600">۵,۸۰۰,۰۰۰</span><span class="text-sm text-slate-500">تومان</span></div>
-                    </div>
+                    <div class="mt-2 flex items-baseline gap-1"><span class="text-3xl font-black text-ink-900 dark:text-white">۴,۹۹۹,۰۰۰</span><span class="text-sm text-slate-500">تومان</span></div>
                     <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">یک‌بار پرداخت — مناسب وکلا و دفاتر فردی</p>
                     <ul class="mt-4 space-y-2 text-sm text-slate-600 dark:text-slate-300">
                         <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-500 text-xs"></i> پرونده نامحدود</li>
@@ -908,19 +1047,15 @@
                         <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-500 text-xs"></i> تقویم شمسی و یادآور هوشمند</li>
                         <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-500 text-xs"></i> تولید نامه و گزارش‌گیری</li>
                         <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-500 text-xs"></i> پشتیبانی ۲۴ ساعته</li>
+                        <li class="flex items-center gap-2 text-slate-400"><i class="fas fa-plus text-gold-500 text-xs"></i> <span class="text-gold-600 font-semibold">+۱,۹۹۹,۰۰۰</span> تومان نسخه اندروید</li>
                     </ul>
-                    <div class="android-addon">
-                        <input type="checkbox" id="android1" /> <label for="android1" class="cursor-pointer">افزودن نسخه اندرویدی (+۱,۹۹۹,۰۰۰ تومان)</label>
-                    </div>
-                    <button id="consultBtnPricing1" class="mt-6 w-full inline-flex justify-center btn-glow text-sm py-2.5"><i class="fas fa-phone"></i> مشاوره و خرید</button>
+                    <a href="tel:0915251166" class="mt-6 w-full inline-flex justify-center btn-glow text-sm py-2.5"><i class="fas fa-phone"></i> مشاوره و خرید</a>
                 </div>
+
                 <div class="pricing-card popular fade-section delay-2">
                     <span class="badge-popular">محبوب</span>
                     <h3 class="text-lg font-bold text-ink-900 dark:text-white">پلن موسسات</h3>
-                    <div class="mt-2">
-                        <span class="text-sm text-slate-400 line-through">۲۵,۰۰۰,۰۰۰</span>
-                        <div class="flex items-baseline gap-1"><span class="text-3xl font-black text-gold-600">۱۳,۳۰۰,۰۰۰</span><span class="text-sm text-slate-500">تومان</span></div>
-                    </div>
+                    <div class="mt-2 flex items-baseline gap-1"><span class="text-3xl font-black text-gold-600">۷,۹۹۹,۰۰۰</span><span class="text-sm text-slate-500">تومان</span></div>
                     <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">یک‌بار پرداخت — مناسب مؤسسات حقوقی و دفاتر بزرگ</p>
                     <ul class="mt-4 space-y-2 text-sm text-slate-600 dark:text-slate-300">
                         <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-500 text-xs"></i> همه امکانات پلن وکلا</li>
@@ -928,20 +1063,16 @@
                         <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-500 text-xs"></i> گزارش‌های پیشرفته و داشبورد تیمی</li>
                         <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-500 text-xs"></i> پشتیبانی اولویت‌دار و اختصاصی</li>
                         <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-500 text-xs"></i> نصب روی سرور اختصاصی (اختیاری)</li>
+                        <li class="flex items-center gap-2 text-slate-400"><i class="fas fa-plus text-gold-500 text-xs"></i> <span class="text-gold-600 font-semibold">+۱,۹۹۹,۰۰۰</span> تومان نسخه اندروید</li>
                     </ul>
-                    <div class="android-addon">
-                        <input type="checkbox" id="android2" /> <label for="android2" class="cursor-pointer">افزودن نسخه اندرویدی (+۱,۹۹۹,۰۰۰ تومان)</label>
-                    </div>
-                    <button id="consultBtnPricing2" class="mt-6 w-full inline-flex justify-center btn-glow text-sm py-2.5"><i class="fas fa-phone"></i> مشاوره و خرید</button>
+                    <a href="tel:0915251166" class="mt-6 w-full inline-flex justify-center btn-glow text-sm py-2.5"><i class="fas fa-phone"></i> مشاوره و خرید</a>
                 </div>
+
                 <div class="pricing-card ai-card fade-section delay-3">
                     <span class="badge-ai"><i class="fas fa-robot"></i> هوش مصنوعی</span>
                     <h3 class="text-lg font-bold text-ink-900 dark:text-white">پلن حرفه‌ای + AI</h3>
-                    <div class="mt-2">
-                        <span class="text-sm text-slate-400 line-through">۲۸,۰۰۰,۰۰۰</span>
-                        <div class="flex items-baseline gap-1"><span class="text-3xl font-black text-purple-600 dark:text-purple-400">۱۵,۰۰۰,۰۰۰</span><span class="text-sm text-slate-500">تومان</span></div>
-                    </div>
-                    <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">به‌ازای هر کاربر اضافه <span class="font-bold text-purple-600">۵,۰۰۰,۰۰۰</span> تومان</p>
+                    <div class="mt-2 flex items-baseline gap-1"><span class="text-3xl font-black text-purple-600 dark:text-purple-400">به زودی</span></div>
+                    <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">همراه با دستیار هوش مصنوعی اختصاصی</p>
                     <ul class="mt-4 space-y-2 text-sm text-slate-600 dark:text-slate-300">
                         <li class="flex items-center gap-2"><i class="fas fa-robot text-purple-500 text-xs"></i> <span class="font-bold text-purple-600 dark:text-purple-400">دستیار هوش مصنوعی</span> — پاسخ‌دهی خودکار به سوالات حقوقی روزمره</li>
                         <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-500 text-xs"></i> همه امکانات پلن موسسات</li>
@@ -949,16 +1080,14 @@
                         <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-500 text-xs"></i> تحلیل خودکار پرونده‌ها و پیشنهاد استراتژی</li>
                         <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-500 text-xs"></i> یکپارچه‌سازی با سامانه‌های ثبتی و قضایی</li>
                         <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-500 text-xs"></i> پشتیبانی اختصاصی ۲۴/۷ با ضمانت SLA</li>
+                        <li class="flex items-center gap-2 text-slate-400"><i class="fas fa-plus text-gold-500 text-xs"></i> <span class="text-gold-600 font-semibold">+۱,۹۹۹,۰۰۰</span> تومان نسخه اندروید</li>
                     </ul>
-                    <div class="android-addon">
-                        <input type="checkbox" id="android3" /> <label for="android3" class="cursor-pointer">افزودن نسخه اندرویدی (+۱,۹۹۹,۰۰۰ تومان)</label>
-                    </div>
-                    <button id="consultBtnPricing3" class="mt-6 w-full inline-flex justify-center rounded-xl border-2 border-purple-500 bg-purple-50 dark:bg-purple-900/20 px-4 py-2.5 text-sm font-bold text-purple-700 dark:text-purple-300 hover:bg-purple-100 dark:hover:bg-purple-900/40 transition">
-                        <i class="fas fa-phone"></i> دریافت مشاوره رایگان
-                    </button>
+                    <a href="tel:0915251166" class="mt-6 w-full inline-flex justify-center rounded-xl border-2 border-purple-500 bg-purple-50 dark:bg-purple-900/20 px-4 py-2.5 text-sm font-bold text-purple-700 dark:text-purple-300 hover:bg-purple-100 dark:hover:bg-purple-900/40 transition">
+                        <i class="fas fa-arrow-left"></i> دریافت مشاوره رایگان
+                    </a>
                 </div>
             </div>
-            <p class="text-center text-xs text-slate-400 dark:text-slate-500 mt-8">تمامی قیمت‌ها به صورت یک‌بار پرداخت است و شامل به‌روزرسانی‌های دائمی می‌باشد. نسخه اندرویدی در صورت تیک‌زدن به سفارش اضافه می‌شود.</p>
+            <p class="text-center text-xs text-slate-400 dark:text-slate-500 mt-8">تمامی قیمت‌ها به صورت یک‌بار پرداخت است و شامل به‌روزرسانی‌های دائمی می‌باشد.</p>
         </div>
     </section>
 
@@ -970,20 +1099,73 @@
                 <h2 class="text-3xl md:text-4xl font-black mt-4 text-ink-900 dark:text-white">آنچه وکلا می‌گویند</h2>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
-                <div class="testimonial-card fade-section delay-1">
-                    <div class="flex items-center gap-3"><div class="avatar">ل</div><div><div class="font-bold text-sm text-ink-900 dark:text-white">لیلا آبکه</div><div class="text-xs text-slate-500">وکیل دادگستری قزوین</div></div></div>
-                    <p class="mt-3 text-sm text-slate-600 dark:text-slate-300 leading-7">«دستیار هوش مصنوعی کارن سافت واقعاً شگفت‌انگیز است. زمان من را برای نوشتن لوایح ۵۰٪ کاهش داده.»</p>
+                <!-- نظر ۱: آقای نجفی -->
+                <div class="testimonial-card fade-section delay-1" data-delay="100">
+                    <div class="flex items-center gap-3">
+                        <div class="avatar">ن</div>
+                        <div>
+                            <div class="font-bold text-sm text-ink-900 dark:text-white">محمدرضا نجفی</div>
+                        </div>
+                    </div>
+                    <p class="mt-3 text-sm text-slate-600 dark:text-slate-300 leading-7">
+                        «به عنوان یک وکیل با سال‌ها تجربه، همیشه به دنبال سیستمی بودم که بتواند تمام جنبه‌های کاری من را پوشش دهد. کارن سافت دقیقاً همین است. از مدیریت پرونده‌ها تا امور مالی و قراردادها، همه چیز در یک پلتفرم یکپارچه قرار دارد. این نرم‌افزار نه تنها زمان من را به طور قابل توجهی کاهش داده، بلکه دقت و سازمان‌دهی کارهایم را نیز چندین برابر کرده است.»
+                    </p>
                     <div class="mt-3 flex text-gold-400 text-xs"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
                 </div>
-                <div class="testimonial-card fade-section delay-2">
-                    <div class="flex items-center gap-3"><div class="avatar">ا</div><div><div class="font-bold text-sm text-ink-900 dark:text-white">ابوالفضل حیدری</div><div class="text-xs text-slate-500">وکیل پایه یک دادگستری قزوین</div></div></div>
-                    <p class="mt-3 text-sm text-slate-600 dark:text-slate-300 leading-7">«پنل رایگان دقیقاً چیزی بود که نیاز داشتم. تقویم و یادآورها نجات‌دهنده هستند.»</p>
+
+                <!-- نظر ۲: وکیل لیلا آبکه -->
+                <div class="testimonial-card fade-section delay-2" data-delay="200">
+                    <div class="flex items-center gap-3">
+                        <div class="avatar-2">ل</div>
+                        <div>
+                            <div class="font-bold text-sm text-ink-900 dark:text-white">لیلا آبکه</div>
+                            <div class="text-xs text-slate-500">وکیل پایه یک دادگستری</div>
+                        </div>
+                    </div>
+                    <p class="mt-3 text-sm text-slate-600 dark:text-slate-300 leading-7">
+                        «به‌عنوان یک وکیل دادگستری با بیش از یک دهه سابقه حرفه‌ای، همواره به دنبال ابزاری کارآمد برای یکپارچه‌سازی فرآیندهای حقوقی و اداری دفتر خود بوده‌ام. کارن‌سافت با ارائه‌ی سامانه‌ای جامع در حوزه‌ی مدیریت پرونده‌های قضایی، قراردادهای وکالت، برنامه‌ریزی جلسات و امور مالی، تحولی اساسی در شیوه‌ی مدیریت دفاتر وکالت ایجاد کرده است. قابلیت تنظیم تقویم شمسی، صدور پیش‌نویس نامه‌های حقوقی و همچنین گزارش‌گیری مالی دقیق، از نقاط قوت این نرم‌افزار به شمار می‌رود. بی‌شک، کارن‌سافت انتخابی هوشمندانه برای هر دفتر حقوقی است که به دنبال افزایش بهره‌وری و دقت در امور خود می‌باشد.»
+                    </p>
                     <div class="mt-3 flex text-gold-400 text-xs"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
                 </div>
-                <div class="testimonial-card fade-section delay-3">
-                    <div class="flex items-center gap-3"><div class="avatar">ر</div><div><div class="font-bold text-sm text-ink-900 dark:text-white">رقیه آبکه</div><div class="text-xs text-slate-500">وکیل پایه یک دادگستری تهران</div></div></div>
-                    <p class="mt-3 text-sm text-slate-600 dark:text-slate-300 leading-7">«پلن موسسات با مدیریت تیمی و گزارش‌های پیشرفته، تحول بزرگی در مجموعه ما ایجاد کرد.»</p>
+
+                <!-- نظر ۳: وکیل رقیه آبکه -->
+                <div class="testimonial-card fade-section delay-3" data-delay="300">
+                    <div class="flex items-center gap-3">
+                        <div class="avatar-3">ر</div>
+                        <div>
+                            <div class="font-bold text-sm text-ink-900 dark:text-white">رقیه آبکه</div>
+                            <div class="text-xs text-slate-500">وکیل پایه یک دادگستری</div>
+                        </div>
+                    </div>
+                    <p class="mt-3 text-sm text-slate-600 dark:text-slate-300 leading-7">
+                        «پس از سال‌ها فعالیت در عرصه وکالت و مدیریت پرونده‌های پیچیده حقوقی، همواره به دنبال راهکاری برای افزایش دقت و سرعت در امور دفتر خود بوده‌ام. کارن‌سافت با ارائه‌ی ابزارهای پیشرفته‌ای نظیر مدیریت قراردادها، پیگیری اقساط، ثبت جلسات و مکاتبات حقوقی، توانسته است به بهترین شکل نیازهای من را برآورده کند. رابط کاربری روان، پشتیبانی از تقویم شمسی و امکان خروجی‌گیری از گزارش‌ها، از ویژگی‌های برجسته‌ای است که این نرم‌افزار را به گزینه‌ای ایده‌آل برای وکلای حرفه‌ای تبدیل کرده است.»
+                    </p>
                     <div class="mt-3 flex text-gold-400 text-xs"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== ABOUT US ===== -->
+    <section id="about" class="py-16 md:py-24 bg-white dark:bg-ink-900/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-12 fade-section">
+                <span class="inline-block text-xs font-bold text-gold-600 bg-gold-500/10 rounded-full px-4 py-1.5 border border-gold-500/20">درباره ما</span>
+                <h2 class="text-3xl md:text-4xl font-black mt-4 text-ink-900 dark:text-white">داستان کارن سافت</h2>
+            </div>
+            <div class="max-w-4xl mx-auto fade-section delay-1">
+                <div class="card p-6 md:p-8">
+                    <div class="flex items-center gap-4 mb-6">
+                        <img src="images/logo-karensoft.png" alt="کارن سافت" class="h-16 w-16 rounded-2xl object-cover" />
+                        <div>
+                            <div class="text-lg font-bold text-ink-900 dark:text-white">کارن سافت</div>
+                            <div class="text-sm text-slate-500 dark:text-slate-400">ساخت راه‌حل‌های واقعی برای آینده‌ای هوشمندتر</div>
+                        </div>
+                    </div>
+                    <div id="aboutTypingContainer" class="about-typing">
+                        <span id="aboutTypingText"></span>
+                        <span class="typing-cursor-about"></span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -997,10 +1179,30 @@
                 <h2 class="text-3xl md:text-4xl font-black mt-4 text-ink-900 dark:text-white">پاسخ به سوالات شما</h2>
             </div>
             <div class="fade-section">
-                <div class="faq-item open"><div class="faq-question"><span>دستیار هوش مصنوعی دقیقاً چه کاری انجام می‌دهد؟</span><i class="fas fa-chevron-down"></i></div><div class="faq-answer">دستیار هوش مصنوعی کارن سافت می‌تواند به سوالات حقوقی روزمره پاسخ دهد، پیش‌نویس قرارداد و لایحه تهیه کند، پرونده‌ها را تحلیل کرده و استراتژی پیشنهاد دهد.</div></div>
-                <div class="faq-item"><div class="faq-question"><span>آیا نرم‌افزار آفلاین هم کار می‌کند؟</span><i class="fas fa-chevron-down"></i></div><div class="faq-answer">بله، با استفاده از ذخیره‌سازی محلی (localStorage) داده‌ها در مرورگر شما نگهداری می‌شود و حتی بدون اینترنت قابل استفاده است.</div></div>
-                <div class="faq-item"><div class="faq-question"><span>پشتیبانی از چه سیستمی دارد؟</span><i class="fas fa-chevron-down"></i></div><div class="faq-answer">کارن سافت یک وب‌اپلیکیشن است و روی تمام مرورگرهای مدرن (کروم، فایرفاکس، اج، سافاری) کار می‌کند.</div></div>
-                <div class="faq-item"><div class="faq-question"><span>چطور می‌توانم مشاوره بگیرم؟</span><i class="fas fa-chevron-down"></i></div><div class="faq-answer">با شماره <b class="text-emerald-600">۰۹۱۵۲۵۲۱۱۶۶</b> تماس بگیرید یا از طریق واتساپ پیام دهید. تیم کارن سافت آماده پاسخگویی است.</div></div>
+                <div class="faq-item open">
+                    <div class="faq-question"><span>دستیار هوش مصنوعی دقیقاً چه کاری انجام می‌دهد؟</span><i class="fas fa-chevron-down"></i></div>
+                    <div class="faq-answer">دستیار هوش مصنوعی کارن سافت می‌تواند به سوالات حقوقی روزمره پاسخ دهد، پیش‌نویس قرارداد و لایحه تهیه کند، پرونده‌ها را تحلیل کرده و استراتژی پیشنهاد دهد. این ابزار هوشمند به شما کمک می‌کند تا با سرعت و دقت بیشتری کارهای حقوقی خود را انجام دهید.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question"><span>از چه سیستم‌عاملی پشتیبانی می‌کند؟</span><i class="fas fa-chevron-down"></i></div>
+                    <div class="faq-answer">
+                        <div class="flex flex-wrap gap-2 mt-2">
+                            <span class="os-icon android"><i class="fab fa-android"></i> اندروید</span>
+                            <span class="os-icon windows"><i class="fab fa-windows"></i> ویندوز</span>
+                            <span class="os-icon ios"><i class="fab fa-apple"></i> iOS</span>
+                            <span class="os-icon mac"><i class="fab fa-apple"></i> مک</span>
+                        </div>
+                        <p class="mt-3">کارن سافت به صورت یک وب‌اپلیکیشن طراحی شده و روی تمامی سیستم‌عامل‌های فوق قابل اجرا است. همچنین نسخه‌های اختصاصی اندروید و iOS نیز در دسترس هستند.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question"><span>آیا نرم‌افزار به صورت آفلاین کار می‌کند؟</span><i class="fas fa-chevron-down"></i></div>
+                    <div class="faq-answer">بله، این نرم‌افزار با بهره‌گیری از ذخیره‌سازی محلی (localStorage) در مرورگر شما، تمامی داده‌ها را به صورت آفلاین نگهداری می‌کند. به این ترتیب حتی بدون اتصال به اینترنت نیز می‌توانید از تمامی امکانات برنامه استفاده کنید. در آینده و در نسخه‌های بعدی، قابلیت اتصال به سرور و همگام‌سازی آنلاین نیز اضافه خواهد شد تا بتوانید از هر نقطه و با هر دستگاهی به اطلاعات خود دسترسی داشته باشید و تغییرات را به‌روزرسانی کنید.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question"><span>چطور می‌توانم مشاوره بگیرم؟</span><i class="fas fa-chevron-down"></i></div>
+                    <div class="faq-answer">شما می‌توانید از طریق شماره <b class="text-emerald-600">۰۹۱۵۲۵۱۱۶۶</b> با تیم پشتیبانی کارن سافت تماس بگیرید یا از فرم تماس در بخش پایین صفحه استفاده کنید. تیم ما آماده پاسخگویی به سوالات شما در زمینه خرید، نصب و راه‌اندازی نرم‌افزار است.</div>
+                </div>
             </div>
         </div>
     </section>
@@ -1015,59 +1217,30 @@
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
                 <div class="fade-section">
                     <form id="contactForm" class="space-y-4">
-                        <div>
-                            <label class="text-xs font-bold text-slate-600 dark:text-slate-300 block mb-1.5">نام و نام خانوادگی</label>
-                            <input type="text" class="contact-input" placeholder="نام خود را وارد کنید" required />
-                        </div>
-                        <div>
-                            <label class="text-xs font-bold text-slate-600 dark:text-slate-300 block mb-1.5">ایمیل</label>
-                            <input type="email" class="contact-input" placeholder="example@email.com" required />
-                        </div>
-                        <div>
-                            <label class="text-xs font-bold text-slate-600 dark:text-slate-300 block mb-1.5">شماره تماس</label>
-                            <input type="tel" class="contact-input" placeholder="۰۹۱۲ XXX XXXX" />
-                        </div>
-                        <div>
-                            <label class="text-xs font-bold text-slate-600 dark:text-slate-300 block mb-1.5">موضوع پیام</label>
-                            <select class="contact-input" required>
-                                <option value="">انتخاب کنید...</option>
-                                <option value="مشاوره">درخواست مشاوره</option>
-                                <option value="خرید">درخواست خرید نرم‌افزار</option>
-                                <option value="نصب">درخواست نصب و راه‌اندازی در دفتر</option>
-                                <option value="آموزش">درخواست آموزش حضوری</option>
-                                <option value="پشتیبانی">نیاز به پشتیبانی</option>
-                                <option value="سایر">سایر موارد</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label class="text-xs font-bold text-slate-600 dark:text-slate-300 block mb-1.5">پیام شما</label>
-                            <textarea rows="4" class="contact-input" placeholder="سوال یا درخواست خود را بنویسید..."></textarea>
-                        </div>
+                        <div><label class="text-xs font-bold text-slate-600 dark:text-slate-300 block mb-1.5">نام و نام خانوادگی</label><input type="text" class="contact-input" placeholder="نام خود را وارد کنید" required /></div>
+                        <div><label class="text-xs font-bold text-slate-600 dark:text-slate-300 block mb-1.5">ایمیل</label><input type="email" class="contact-input" placeholder="example@email.com" required /></div>
+                        <div><label class="text-xs font-bold text-slate-600 dark:text-slate-300 block mb-1.5">شماره تماس</label><input type="tel" class="contact-input" placeholder="۰۹۱۲ XXX XXXX" /></div>
+                        <div><label class="text-xs font-bold text-slate-600 dark:text-slate-300 block mb-1.5">پیام شما</label><textarea rows="4" class="contact-input" placeholder="سوال یا درخواست خود را بنویسید..."></textarea></div>
                         <button type="submit" class="btn-glow w-full justify-center py-3"><i class="fas fa-paper-plane"></i> ارسال پیام</button>
                     </form>
                 </div>
                 <div class="fade-section delay-2 flex flex-col justify-center space-y-6">
                     <div class="flex items-start gap-4">
-                        <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-500 flex items-center justify-center flex-shrink-0"><i class="fab fa-whatsapp text-xl"></i></div>
-                        <div><div class="text-sm font-bold text-ink-900 dark:text-white">واتساپ</div>
-                            <a href="https://wa.me/989152521166?text=%D8%B3%D9%84%D8%A7%D9%85%D8%8C%20%D8%A8%D8%B1%D8%A7%DB%8C%20%D9%85%D8%B4%D8%A7%D9%88%D8%B1%D9%87%20%D8%AF%D8%B1%20%D9%85%D9%88%D8%B1%D8%AF%20%D9%86%D8%B1%D9%85%E2%80%8C%D8%A7%D9%81%D8%B2%D8%A7%D8%B1%20%D9%85%D8%AF%DB%8C%D8%B1%DB%8C%D8%AA%20%D8%AF%D9%81%D8%AA%D8%B1%20%D9%88%DA%A9%D8%A7%D9%84%D8%AA%20%D9%88%D9%82%D8%AA%20%DA%AF%D8%B1%D9%81%D8%AA%D9%85" target="_blank" class="text-lg font-black text-emerald-600 dark:text-emerald-400 hover:underline" dir="ltr">۰۹۱۵۲۵۲۱۱۶۶</a>
-                            <div class="text-xs text-slate-400">پاسخگویی ۲۴ ساعته</div>
-                        </div>
-                    </div>
-                    <div class="flex items-start gap-4">
                         <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-500 flex items-center justify-center flex-shrink-0"><i class="fas fa-phone-volume text-xl"></i></div>
                         <div><div class="text-sm font-bold text-ink-900 dark:text-white">تماس مستقیم</div>
-                            <a href="tel:09152521166" class="text-lg font-black text-emerald-600 dark:text-emerald-400 hover:underline" dir="ltr">۰۹۱۵۲۵۲۱۱۶۶</a>
+                            <a href="tel:0915251166" class="text-lg font-black text-emerald-600 dark:text-emerald-400 hover:underline" dir="ltr">۰۹۱۵۲۵۱۱۶۶</a>
                             <div class="text-xs text-slate-400">شنبه تا پنجشنبه ۹ الی ۲۰</div>
                         </div>
                     </div>
                     <div class="flex items-start gap-4">
                         <div class="w-12 h-12 rounded-xl bg-gold-500/10 text-gold-500 flex items-center justify-center flex-shrink-0"><i class="fas fa-envelope text-xl"></i></div>
-                        <div><div class="text-sm font-bold text-ink-900 dark:text-white">ایمیل</div><div class="text-sm text-slate-500 dark:text-slate-400">info@karen-soft.ir</div></div>
+                        <div><div class="text-sm font-bold text-ink-900 dark:text-white">ایمیل</div>
+                            <a href="mailto:info@karen-soft.ir" class="text-sm text-slate-500 dark:text-slate-400 hover:text-gold-500 transition">info@karen-soft.ir</a>
+                        </div>
                     </div>
                     <div class="flex items-start gap-4">
                         <div class="w-12 h-12 rounded-xl bg-blue-500/10 text-blue-500 flex items-center justify-center flex-shrink-0"><i class="fas fa-map-marker-alt text-xl"></i></div>
-                        <div><div class="text-sm font-bold text-ink-900 dark:text-white">آدرس</div><div class="text-sm text-slate-500 dark:text-slate-400">استان قزوین، زیباشهر، کارن سافت</div></div>
+                        <div><div class="text-sm font-bold text-ink-900 dark:text-white">آدرس</div><div class="text-sm text-slate-500 dark:text-slate-400">تهران، خیابان ولیعصر، پلاک ۱۲۳</div></div>
                     </div>
                 </div>
             </div>
@@ -1078,14 +1251,16 @@
     <footer class="border-t border-slate-200 dark:border-white/5 bg-white dark:bg-ink-900/80">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
             <div class="flex flex-col md:flex-row items-center justify-between gap-4">
-                <div class="flex items-center gap-2"><div class="w-8 h-8 rounded-xl bg-gradient-to-br from-gold-400 to-gold-700 text-ink-900 flex items-center justify-center text-sm"><i class="fas fa-scale-balanced"></i></div>
+                <div class="flex items-center gap-2">
+                    <img src="images/logo-icon.png" alt="کارن سافت" class="h-8 w-8 rounded-xl object-cover" />
                     <span class="font-bold text-ink-900 dark:text-white">مدیریت هوشمند دفتر وکالت</span>
                     <span class="text-xs text-slate-400 dark:text-slate-500 mr-2">توسط کارن سافت</span>
                 </div>
                 <div class="flex flex-wrap items-center gap-4 text-xs text-slate-500 dark:text-slate-400">
                     <a href="#" class="hover:text-gold-500 transition">حریم خصوصی</a>
                     <a href="#contact" class="hover:text-gold-500 transition">پشتیبانی</a>
-                    <a href="https://wa.me/989152521166?text=%D8%B3%D9%84%D8%A7%D9%85%D8%8C%20%D8%A8%D8%B1%D8%A7%DB%8C%20%D9%85%D8%B4%D8%A7%D9%88%D8%B1%D9%87%20%D8%AF%D8%B1%20%D9%85%D9%88%D8%B1%D8%AF%20%D9%86%D8%B1%D9%85%E2%80%8C%D8%A7%D9%81%D8%B2%D8%A7%D8%B1%20%D9%85%D8%AF%DB%8C%D8%B1%DB%8C%D8%AA%20%D8%AF%D9%81%D8%AA%D8%B1%20%D9%88%DA%A9%D8%A7%D9%84%D8%AA%20%D9%88%D9%82%D8%AA%20%DA%AF%D8%B1%D9%81%D8%AA%D9%85" target="_blank" class="hover:text-emerald-500 transition font-bold text-emerald-600" dir="ltr"><i class="fab fa-whatsapp"></i> ۰۹۱۵۲۵۲۱۱۶۶</a>
+                    <a href="tel:0915251166" class="hover:text-emerald-500 transition font-bold text-emerald-600" dir="ltr"><i class="fas fa-phone"></i> ۰۹۱۵۲۵۱۱۶۶</a>
+                    <a href="mailto:info@karen-soft.ir" class="hover:text-gold-500 transition"><i class="fas fa-envelope"></i> info@karen-soft.ir</a>
                     <span class="text-slate-300 dark:text-slate-600">|</span>
                     <span>تولید شده توسط <span class="text-ink-900 dark:text-white font-semibold">کارن سافت</span></span>
                 </div>
@@ -1093,27 +1268,6 @@
             </div>
         </div>
     </footer>
-
-    <!-- ===== CONSULT MODAL ===== -->
-    <div id="consultModal" class="consult-modal">
-        <div class="modal-box">
-            <button class="close-btn-consult" id="closeConsult"><i class="fas fa-times"></i></button>
-            <div class="consult-icon"><i class="fas fa-headset"></i></div>
-            <div class="consult-title">تماس و پیام</div>
-            <div class="consult-desc">
-                برای مشاوره رایگان، می‌توانید با شماره <span class="consult-phone">۰۹۱۵۲۵۲۱۱۶۶</span> تماس بگیرید یا از طریق واتساپ پیام دهید.
-            </div>
-            <div class="consult-actions">
-                <a href="tel:09152521166" class="btn-consult btn-call">
-                    <i class="fas fa-phone"></i> تماس تلفنی مستقیم
-                </a>
-                <div class="consult-divider">یا</div>
-                <a href="https://wa.me/989152521166?text=%D8%B3%D9%84%D8%A7%D9%85%D8%8C%20%D8%A8%D8%B1%D8%A7%DB%8C%20%D9%85%D8%B4%D8%A7%D9%88%D8%B1%D9%87%20%D8%AF%D8%B1%20%D9%85%D9%88%D8%B1%D8%AF%20%D9%86%D8%B1%D9%85%E2%80%8C%D8%A7%D9%81%D8%B2%D8%A7%D8%B1%20%D9%85%D8%AF%DB%8C%D8%B1%DB%8C%D8%AA%20%D8%AF%D9%81%D8%AA%D8%B1%20%D9%88%DA%A9%D8%A7%D9%84%D8%AA%20%D9%88%D9%82%D8%AA%20%DA%AF%D8%B1%D9%81%D8%AA%D9%85" target="_blank" class="btn-consult btn-whatsapp">
-                    <i class="fab fa-whatsapp"></i> ارسال پیام در واتساپ
-                </a>
-            </div>
-        </div>
-    </div>
 
     <!-- ===== DEMO MODAL ===== -->
     <div id="demoModal">
@@ -1124,7 +1278,7 @@
     </div>
 
     <script>
-        // ===== DEMO CODE =====
+        // ===== DEMO CODE (نسخه جدید دمو) =====
         const DEMO_HTML = `<!DOCTYPE html>
         <html lang="fa" dir="rtl" class="h-full">
         <head>
@@ -1408,6 +1562,21 @@
             @media print { .demo-banner, .no-print { display: none !important; } }
             /* side bar open */
             #sidebar.open { transform: translateX(0); }
+            /* demo limit notice */
+            .demo-limit {
+              background: #fef3c7;
+              border: 2px solid #d97706;
+              border-radius: 14px;
+              padding: 14px 18px;
+              margin-bottom: 12px;
+              text-align: center;
+              font-weight: 700;
+              color: #78350f;
+            }
+            .demo-limit a {
+              color: #b45309;
+              text-decoration: underline;
+            }
           </style>
         </head>
         <body class="h-full bg-soft-50 text-ink-900 font-sans antialiased overflow-x-hidden">
@@ -1508,6 +1677,15 @@
                   </div>
                 </div>
 
+                <!-- DEMO LIMIT NOTICE -->
+                <div class="px-3 sm:px-5 lg:px-6 pt-3">
+                  <div class="demo-limit">
+                    <i class="fas fa-info-circle text-amber-600 me-2"></i>
+                    شما در حال استفاده از <strong>نسخه دمو</strong> نرم‌افزار هستید. حداکثر ۲ رکورد در هر بخش قابل ثبت است.
+                    برای استفاده از نسخه کامل، لطفاً <a href="tel:0915251166">با تیم پشتیبانی تماس بگیرید</a>.
+                  </div>
+                </div>
+
                 <div class="p-3 sm:p-5 lg:p-6 space-y-4" id="pageHost">
                   <!-- pages injected -->
                 </div>
@@ -1526,79 +1704,46 @@
 
           <script>
             /* ============================================================
-               نسخه دمو · فقط نمایش · هیچ داده‌ای ذخیره نمی‌شود
+               نسخه دمو · فقط نمایش · محدودیت ۲ رکورد
                ============================================================ */
 
             // ---- داده‌های نمونه ----
             const DEMO_DATA = {
               clients: [
-                { id: 'c1', name: 'علی رضایی', national: '۱۲۳۴۵۶۷۸۹۰', father: 'حسن', mobile: '۰۹۱۲۳۴۵۶۷۸۹', phone: '۰۲۱۶۶۵۵۴۴۳۳', address: 'استان قزوین، زیباشهر، کارن سافت' },
-                { id: 'c2', name: 'مریم حسینی', national: '۹۸۷۶۵۴۳۲۱۰', father: 'محمد', mobile: '۰۹۳۶۵۴۳۲۱۰۹', phone: '۰۲۱۸۸۷۷۶۶۵۵', address: 'استان قزوین، زیباشهر، کارن سافت' },
-                { id: 'c3', name: 'سعید کریمی', national: '۵۵۴۴۳۳۲۲۱۱', father: 'احمد', mobile: '۰۹۰۳۲۱۲۳۴۵۶', phone: '', address: 'استان قزوین، زیباشهر، کارن سافت' }
+                { id: 'c1', name: 'علی رضایی', national: '۱۲۳۴۵۶۷۸۹۰', father: 'حسن', mobile: '۰۹۱۲۳۴۵۶۷۸۹', phone: '۰۲۱۶۶۵۵۴۴۳۳', address: 'تهران، خیابان ولیعصر، پلاک ۱۲' },
+                { id: 'c2', name: 'مریم حسینی', national: '۹۸۷۶۵۴۳۲۱۰', father: 'محمد', mobile: '۰۹۳۶۵۴۳۲۱۰۹', phone: '۰۲۱۸۸۷۷۶۶۵۵', address: 'تهران، خیابان انقلاب، کوچه مهر' }
               ],
               cases: [
                 { id: 'p1', number: '۹۴۰۱۲۳', title: 'تقسیم اموال مشاع', type: 'خانواده', status: 'active', clientId: 'c1', opponent: 'زهرا رضایی', branch: 'شعبه ۳ دادگاه خانواده', startDate: '۱۴۰۳/۰۱/۱۰' },
-                { id: 'p2', number: '۹۴۰۴۵۶', title: 'الزام به تنظیم سند رسمی', type: 'حقوقی', status: 'pending', clientId: 'c2', opponent: 'شرکت ساختمانی مهر', branch: 'شعبه ۵ حقوقی', startDate: '۱۴۰۳/۰۲/۲۰' },
-                { id: 'p3', number: '۹۴۰۷۸۹', title: 'کلاهبرداری اینترنتی', type: 'کیفری', status: 'appeal', clientId: 'c3', opponent: 'سامان جعفری', branch: 'شعبه ۲ دادگاه کیفری', startDate: '۱۴۰۳/۰۳/۱۵' }
+                { id: 'p2', number: '۹۴۰۴۵۶', title: 'الزام به تنظیم سند رسمی', type: 'حقوقی', status: 'pending', clientId: 'c2', opponent: 'شرکت ساختمانی مهر', branch: 'شعبه ۵ حقوقی', startDate: '۱۴۰۳/۰۲/۲۰' }
               ],
               contracts: [
                 { id: 'k1', number: '۱۴۰۳۰۱-۰۱', date: '۱۴۰۳/۰۱/۱۰', clientId: 'c1', clientName: 'علی رضایی', subject: 'وکالت در دعاوی خانواده', total: 25000000, prepayment: 5000000, paid: 5000000, balance: 20000000, installments: [
                   { date: '۱۴۰۳/۰۲/۱۰', amount: 5000000, paid: false, status: 'pending', note: 'قسط اول' },
-                  { date: '۱۴۰۳/۰۳/۱۰', amount: 5000000, paid: false, status: 'pending', note: 'قسط دوم' },
-                  { date: '۱۴۰۳/۰۴/۱۰', amount: 5000000, paid: false, status: 'pending', note: 'قسط سوم' },
-                  { date: '۱۴۰۳/۰۵/۱۰', amount: 5000000, paid: false, status: 'pending', note: 'قسط چهارم' }
+                  { date: '۱۴۰۳/۰۳/۱۰', amount: 5000000, paid: false, status: 'pending', note: 'قسط دوم' }
                 ], documents: ['وکالت‌نامه رسمی', 'دادخواست'] },
                 { id: 'k2', number: '۱۴۰۳۰۲-۰۲', date: '۱۴۰۳/۰۲/۲۰', clientId: 'c2', clientName: 'مریم حسینی', subject: 'مشاوره حقوقی مستمر', total: 12000000, prepayment: 3000000, paid: 3000000, balance: 9000000, installments: [
                   { date: '۱۴۰۳/۰۳/۲۰', amount: 3000000, paid: false, status: 'pending', note: 'قسط اول' },
-                  { date: '۱۴۰۳/۰۴/۲۰', amount: 3000000, paid: false, status: 'pending', note: 'قسط دوم' },
-                  { date: '۱۴۰۳/۰۵/۲۰', amount: 3000000, paid: false, status: 'pending', note: 'قسط سوم' }
+                  { date: '۱۴۰۳/۰۴/۲۰', amount: 3000000, paid: false, status: 'pending', note: 'قسط دوم' }
                 ], documents: ['قرارداد مشاوره'] }
               ],
               hearings: [
                 { id: 'h1', title: 'جلسه رسیدگی تقسیم اموال', caseId: 'p1', caseNumber: '۹۴۰۱۲۳', date: '۱۴۰۳/۰۴/۲۵', time: '۱۰:۰۰', branch: 'شعبه ۳ خانواده', status: 'برگزار نشده', note: '' },
-                { id: 'h2', title: 'جلسه دفاعیه کلاهبرداری', caseId: 'p3', caseNumber: '۹۴۰۷۸۹', date: '۱۴۰۳/۰۵/۰۵', time: '۱۴:۳۰', branch: 'شعبه ۲ کیفری', status: 'برگزار نشده', note: 'لایحه دفاعیه آماده شود' }
+                { id: 'h2', title: 'جلسه دفاعیه کلاهبرداری', caseId: 'p2', caseNumber: '۹۴۰۴۵۶', date: '۱۴۰۳/۰۵/۰۵', time: '۱۴:۳۰', branch: 'شعبه ۵ حقوقی', status: 'برگزار نشده', note: '' }
               ],
               tasks: [
-                { id: 't1', title: 'تکمیل لایحه دفاعیه پرونده کلاهبرداری', priority: 'high', due: '۱۴۰۳/۰۴/۳۰', caseId: 'p3', status: 'open', note: '' },
-                { id: 't2', title: 'بررسی مدارک ملکی پرونده الزام به تنظیم سند', priority: 'medium', due: '۱۴۰۳/۰۵/۱۰', caseId: 'p2', status: 'open', note: '' },
-                { id: 't3', title: 'پیگیری ابلاغ اخطاریه به طرف مقابل', priority: 'low', due: '۱۴۰۳/۰۵/۲۰', caseId: 'p1', status: 'open', note: '' }
+                { id: 't1', title: 'تکمیل لایحه دفاعیه', priority: 'high', due: '۱۴۰۳/۰۴/۳۰', caseId: 'p1', status: 'open', note: '' },
+                { id: 't2', title: 'بررسی مدارک ملکی', priority: 'medium', due: '۱۴۰۳/۰۵/۱۰', caseId: 'p2', status: 'open', note: '' }
               ],
               finances: [
-                { id: 'f1', type: 'income', category: 'حق‌الوکاله', amount: 5000000, date: '۱۴۰۳/۰۱/۱۰', clientId: 'c1', note: 'پیش‌پرداخت قرارداد ۱۴۰۳۰۱-۰۱' },
-                { id: 'f2', type: 'income', category: 'پیش‌پرداخت', amount: 3000000, date: '۱۴۰۳/۰۲/۲۰', clientId: 'c2', note: 'پیش‌پرداخت مشاوره' },
-                { id: 'f3', type: 'expense', category: 'تمبرو هزینه دادرسی', amount: 250000, date: '۱۴۰۳/۰۱/۱۵', note: 'تمبر دادخواست پرونده ۹۴۰۱۲۳' },
-                { id: 'f4', type: 'expense', category: 'ایاب‌وذهاب', amount: 120000, date: '۱۴۰۳/۰۲/۰۵', note: 'هزینه رفت و آمد به دادگاه' }
-              ],
-              events: [
-                { id: 'e1', title: 'جلسه مشاوره با موکل رضایی', type: 'meeting', date: '۱۴۰۳/۰۴/۲۰', time: '۱۶:۰۰', note: '' },
-                { id: 'e2', title: 'مهلت ارسال لایحه پرونده کلاهبرداری', type: 'deadline', date: '۱۴۰۳/۰۴/۳۰', time: '', note: '' }
-              ],
-              activities: [
-                { id: 'a1', title: 'ایجاد پرونده جدید برای علی رضایی', type: 'case', at: new Date(Date.now() - 3600000).toISOString() },
-                { id: 'a2', title: 'ثبت قرارداد وکالت با مریم حسینی', type: 'contract', at: new Date(Date.now() - 7200000).toISOString() },
-                { id: 'a3', title: 'پرداخت حق‌الوکاله از طرف سعید کریمی', type: 'payment', at: new Date(Date.now() - 14400000).toISOString() }
-              ],
-              settings: {
-                officeName: 'دفتر وکالت هوشمند',
-                lawyerName: 'حسین رحمانی',
-                lawyerCode: '۱۲۳۴۵',
-                phone: '۰۲۱-۲۲۳۳۴۴۵۵',
-                mobile: '۰۹۱۵۲۵۲۱۱۶۶',
-                email: 'info@karnsoft.ir',
-                address: 'استان قزوین، زیباشهر، کارن سافت',
-                currency: 'ریال',
-                defaultAuthority: 'ریاست محترم دادگاه',
-                notifyDays: 3,
-                soundEnabled: false,
-                soundType: 'chime',
-                soundVolume: 0.45,
-                largeTxThreshold: 50000000,
-                stampText: 'دفتر وکالت هوشمند - امضا و مهر',
-                letterFooter: 'دفتر وکالت هوشمند · تلفن: ۰۹۱۵۲۵۲۱۱۶۶'
-              }
+                { id: 'f1', type: 'income', category: 'حق‌الوکاله', amount: 5000000, date: '۱۴۰۳/۰۱/۱۰', clientId: 'c1', note: 'پیش‌پرداخت قرارداد' },
+                { id: 'f2', type: 'income', category: 'پیش‌پرداخت', amount: 3000000, date: '۱۴۰۳/۰۲/۲۰', clientId: 'c2', note: 'پیش‌پرداخت مشاوره' }
+              ]
             };
 
-            // ---- توابع کمکی ساده ----
+            const MAX_RECORDS = 2;
+
+            // ---- توابع کمکی ----
             function toPersianNumber(n) {
               const p = '۰۱۲۳۴۵۶۷۸۹';
               return String(n).replace(/\\d/g, d => p[+d]);
@@ -1612,30 +1757,22 @@
             }
             function todayJalali() {
               const d = new Date();
-              // approximate jalali (for demo only)
               const jd = d.getDate();
               const jm = d.getMonth() + 1;
               const jy = d.getFullYear() - 621;
               return \`\${jy}/\${String(jm).padStart(2,'0')}/\${String(jd).padStart(2,'0')}\`;
             }
             function money(n) {
-              return formatNumberWithCommas(n) + ' ' + (DEMO_DATA.settings.currency || 'ریال');
+              return formatNumberWithCommas(n) + ' ریال';
             }
             function clientName(id) {
               const c = DEMO_DATA.clients.find(x => x.id === id);
               return c ? c.name : '—';
             }
             function statusBadge(status) {
-              const map = {
-                'active': 'badge-green',
-                'pending': 'badge-amber',
-                'appeal': 'badge-blue',
-                'closed': 'badge-slate',
-                'won': 'badge-green',
-                'lost': 'badge-rose'
-              };
+              const map = { 'active':'badge-green','pending':'badge-amber','appeal':'badge-blue','closed':'badge-slate' };
               const cls = map[status] || 'badge-slate';
-              const label = { 'active':'جاری', 'pending':'در انتظار', 'appeal':'تجدیدنظر', 'closed':'مختومه', 'won':'محکوم‌له', 'lost':'محکوم‌علیه' }[status] || status;
+              const label = { 'active':'جاری','pending':'در انتظار','appeal':'تجدیدنظر','closed':'مختومه' }[status] || status;
               return \`<span class="badge \${cls}">\${label}</span>\`;
             }
             function showToast(msg, type='info') {
@@ -1648,47 +1785,54 @@
               setTimeout(() => { el.style.opacity='0'; el.style.transition='opacity .25s'; setTimeout(()=>el.remove(),250); }, 3000);
             }
 
-            // ---- رندر صفحات دمو (تمام استاتیک) ----
+            function isMaxReached(collection) {
+              return (collection || []).length >= MAX_RECORDS;
+            }
+
+            function showDemoLimit(collection, name) {
+              if (isMaxReached(collection)) {
+                showToast(\`حداکثر \${MAX_RECORDS} \${name} در نسخه دمو قابل ثبت است. برای استفاده کامل تماس بگیرید.\`, 'error');
+                return true;
+              }
+              return false;
+            }
+
+            // ---- رندر صفحات ----
             function renderDashboard(host) {
-              const active = DEMO_DATA.cases.filter(c => c.status !== 'closed' && c.status !== 'won' && c.status !== 'lost').length;
+              const active = DEMO_DATA.cases.filter(c => c.status !== 'closed').length;
               const closed = DEMO_DATA.cases.length - active;
               const income = DEMO_DATA.finances.filter(f=>f.type==='income').reduce((s,f)=>s+(Number(f.amount)||0),0);
               const expense = DEMO_DATA.finances.filter(f=>f.type==='expense').reduce((s,f)=>s+(Number(f.amount)||0),0);
               const contractRemain = DEMO_DATA.contracts.reduce((s,c)=>s+(Number(c.balance)||0),0);
-              const today = todayJalali();
-              const todayHearings = DEMO_DATA.hearings.filter(h=>h.date===today).length;
-              const openTasks = DEMO_DATA.tasks.filter(t=>t.status!=='done').length;
 
               host.innerHTML = \`
                 <div class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-3">
                   \${stat('پرونده‌ها', DEMO_DATA.cases.length, 'fa-folder-open', 'text-blue-500')}
                   \${stat('جاری', active, 'fa-spinner', 'text-emerald-500')}
                   \${stat('مختومه', closed, 'fa-check-double', 'text-slate-500')}
-                  \${stat('جلسه امروز', todayHearings, 'fa-gavel', 'text-amber-500')}
-                  \${stat('کار باز', openTasks, 'fa-list-check', 'text-violet-500')}
+                  \${stat('جلسه امروز', DEMO_DATA.hearings.filter(h=>h.date===todayJalali()).length, 'fa-gavel', 'text-amber-500')}
+                  \${stat('کار باز', DEMO_DATA.tasks.filter(t=>t.status!=='done').length, 'fa-list-check', 'text-violet-500')}
                   \${stat('مانده قرارداد', formatNumberWithCommas(contractRemain), 'fa-file-invoice-dollar', 'text-gold-600')}
                 </div>
                 <div class="grid grid-cols-1 xl:grid-cols-3 gap-4">
                   <div class="xl:col-span-2 space-y-4">
                     \${sectionCard('میانبر سریع', \`
                       <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
-                        \${quick('قرارداد جدید', 'fa-file-signature')}
-                        \${quick('پرونده جدید', 'fa-folder-plus')}
-                        \${quick('موکل جدید', 'fa-user-plus')}
-                        \${quick('جلسه جدید', 'fa-gavel')}
-                        \${quick('ثبت مالی', 'fa-coins')}
-                        \${quick('نامه آماده', 'fa-envelopes-bulk')}
-                        \${quick('کار جدید', 'fa-plus')}
-                        \${quick('گزارش‌ها', 'fa-chart-column')}
+                        \${quick('قرارداد جدید', 'fa-file-signature', 'contracts')}
+                        \${quick('پرونده جدید', 'fa-folder-plus', 'cases')}
+                        \${quick('موکل جدید', 'fa-user-plus', 'clients')}
+                        \${quick('جلسه جدید', 'fa-gavel', 'hearings')}
+                        \${quick('ثبت مالی', 'fa-coins', 'finance')}
+                        \${quick('نامه آماده', 'fa-envelopes-bulk', 'letters')}
+                        \${quick('کار جدید', 'fa-plus', 'tasks')}
+                        \${quick('گزارش‌ها', 'fa-chart-column', 'reports')}
                       </div>
                     \`)}
                     \${sectionCard('نمونه فعالیت‌ها', \`
                       <div class="space-y-3">
-                        \${DEMO_DATA.activities.slice(0,5).map(a => \`
-                          <div class="timeline-item">
-                            <div class="text-sm font-semibold">\${escapeHtml(a.title)}</div>
-                            <div class="text-[11px] text-slate-500">\${a.at ? 'چند ساعت پیش' : ''}</div>
-                          </div>\`).join('')}
+                        <div class="timeline-item"><div class="text-sm font-semibold">ایجاد پرونده جدید برای علی رضایی</div><div class="text-[11px] text-slate-500">چند ساعت پیش</div></div>
+                        <div class="timeline-item"><div class="text-sm font-semibold">ثبت قرارداد وکالت با مریم حسینی</div><div class="text-[11px] text-slate-500">چند ساعت پیش</div></div>
+                        <div class="timeline-item"><div class="text-sm font-semibold">پرداخت حق‌الوکاله از طرف علی رضایی</div><div class="text-[11px] text-slate-500">چند ساعت پیش</div></div>
                       </div>
                     \`)}
                   </div>
@@ -1701,11 +1845,11 @@
                         <div class="progress mt-2"><span style="width:\${Math.min(100, income ? ((income-expense)/income)*100 : 0)}%"></span></div>
                       </div>
                     \`)}
-                    \${sectionCard('اقساط معوق نمونه', \`
+                    \${sectionCard('اقساط نمونه', \`
                       <div class="space-y-2">
                         <div class="flex items-center justify-between text-sm border-b border-slate-100 pb-2">
                           <span>علی رضایی · قسط اول</span>
-                          <span class="text-rose-500 font-bold">\${money(5000000)}</span>
+                          <span class="text-amber-500 font-bold">\${money(5000000)}</span>
                         </div>
                         <div class="flex items-center justify-between text-sm border-b border-slate-100 pb-2">
                           <span>مریم حسینی · قسط دوم</span>
@@ -1737,8 +1881,6 @@
                       <div class="flex flex-wrap gap-2 mt-4">
                         <button class="btn-primary click-protect" disabled><i class="fas fa-save"></i> ذخیره</button>
                         <button class="btn-soft click-protect" disabled>جدید</button>
-                        <button class="btn-soft click-protect" disabled>پیش‌نمایش</button>
-                        <button class="btn-soft click-protect" disabled>چاپ</button>
                       </div>
                     \`)}
                   </div>
@@ -1828,7 +1970,7 @@
                         \${field('کد ملی', \`<input class="field" value="۱۲۳۴۵۶۷۸۹۰" disabled />\`)}
                         \${field('نام پدر', \`<input class="field" value="حسن" disabled />\`)}
                         \${field('موبایل', \`<input class="field" value="۰۹۱۲۳۴۵۶۷۸۹" disabled />\`)}
-                        \${field('آدرس', \`<input class="field" value="استان قزوین، زیباشهر، کارن سافت" disabled />\`, true)}
+                        \${field('آدرس', \`<input class="field" value="تهران، نمونه" disabled />\`, true)}
                       </div>
                       <div class="flex gap-2 mt-4">
                         <button class="btn-primary click-protect" disabled><i class="fas fa-save"></i> ذخیره</button>
@@ -2076,23 +2218,22 @@
             }
 
             function renderSettingsPage(host) {
-              const s = DEMO_DATA.settings;
               host.innerHTML = \`
                 <div class="grid grid-cols-1 xl:grid-cols-2 gap-4">
                   <div>
                     \${sectionCard('اطلاعات دفتر (دمو)', \`
                       <div class="form-grid">
-                        \${field('نام دفتر', \`<input class="field" value="\${escapeHtml(s.officeName)}" disabled />\`)}
-                        \${field('نام وکیل', \`<input class="field" value="\${escapeHtml(s.lawyerName)}" disabled />\`)}
-                        \${field('شماره پروانه', \`<input class="field" value="\${escapeHtml(s.lawyerCode)}" disabled />\`)}
-                        \${field('تلفن', \`<input class="field" value="\${escapeHtml(s.phone)}" disabled />\`)}
-                        \${field('موبایل', \`<input class="field" value="\${escapeHtml(s.mobile)}" disabled />\`)}
-                        \${field('ایمیل', \`<input class="field" value="\${escapeHtml(s.email)}" disabled />\`)}
-                        \${field('آدرس', \`<input class="field" value="\${escapeHtml(s.address)}" disabled />\`, true)}
-                        \${field('واحد پول', \`<input class="field" value="\${escapeHtml(s.currency)}" disabled />\`)}
-                        \${field('یادآور (روز قبل)', \`<input class="field" value="\${s.notifyDays}" disabled />\`)}
-                        \${field('متن مهر', \`<input class="field" value="\${escapeHtml(s.stampText)}" disabled />\`)}
-                        \${field('پاورقی نامه', \`<textarea class="field" disabled>\${escapeHtml(s.letterFooter)}</textarea>\`, true)}
+                        \${field('نام دفتر', \`<input class="field" value="دفتر وکالت هوشمند" disabled />\`)}
+                        \${field('نام وکیل', \`<input class="field" value="حسین رحمانی" disabled />\`)}
+                        \${field('شماره پروانه', \`<input class="field" value="۱۲۳۴۵" disabled />\`)}
+                        \${field('تلفن', \`<input class="field" value="۰۲۱-۲۲۳۳۴۴۵۵" disabled />\`)}
+                        \${field('موبایل', \`<input class="field" value="۰۹۱۲۳۴۵۶۷۸۹" disabled />\`)}
+                        \${field('ایمیل', \`<input class="field" value="info@karen-soft.ir" disabled />\`)}
+                        \${field('آدرس', \`<input class="field" value="تهران، خیابان ولیعصر، پلاک ۵۶" disabled />\`, true)}
+                        \${field('واحد پول', \`<input class="field" value="ریال" disabled />\`)}
+                        \${field('یادآور (روز قبل)', \`<input class="field" value="۳" disabled />\`)}
+                        \${field('متن مهر', \`<input class="field" value="دفتر وکالت هوشمند - امضا و مهر" disabled />\`)}
+                        \${field('پاورقی نامه', \`<textarea class="field" disabled>دفتر وکالت هوشمند · تلفن: ۰۲۱-۲۲۳۳۴۴۵۵</textarea>\`, true)}
                       </div>
                       <div class="flex gap-2 mt-4">
                         <button class="btn-primary click-protect" disabled><i class="fas fa-save"></i> ذخیره تنظیمات</button>
@@ -2139,7 +2280,7 @@
                 \${body}
               </section>\`;
             }
-            function quick(label, icon) {
+            function quick(label, icon, page) {
               return \`<button class="btn-soft justify-center py-3 text-xs sm:text-sm click-protect" disabled><i class="fas \${icon}"></i>\${label}</button>\`;
             }
             function field(label, inputHtml, span2=false) {
@@ -2190,7 +2331,6 @@
               const [title, sub] = titles[page] || ['داشبورد', ''];
               document.getElementById('pageTitle').textContent = title;
               document.getElementById('pageSubtitle').textContent = sub;
-              // active nav
               document.querySelectorAll('#sidebarNav .nav-item').forEach(el => el.classList.remove('active'));
               const activeNav = document.querySelector(\`#sidebarNav [data-nav="\${page}"]\`);
               if (activeNav) activeNav.classList.add('active');
@@ -2381,43 +2521,14 @@
                 navbar.classList.toggle('navbar-scrolled', window.scrollY > 20);
             });
 
-            // ===== CONSULT MODAL =====
-            const consultModal = document.getElementById('consultModal');
-            const consultBtns = document.querySelectorAll('#consultBtnNav, #consultBtnMobileNav, #consultBtnHero, #consultBtnPricing1, #consultBtnPricing2, #consultBtnPricing3');
-            const closeConsult = document.getElementById('closeConsult');
-
-            function openConsult() {
-                consultModal.classList.add('show');
-                document.body.style.overflow = 'hidden';
-            }
-
-            function closeConsultFn() {
-                consultModal.classList.remove('show');
-                document.body.style.overflow = '';
-            }
-
-            consultBtns.forEach(btn => {
-                btn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    openConsult();
-                });
-            });
-
-            closeConsult.addEventListener('click', closeConsultFn);
-            consultModal.addEventListener('click', function(e) {
-                if (e.target === this) closeConsultFn();
-            });
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape' && consultModal.classList.contains('show')) closeConsultFn();
-            });
-
-            // ===== DEMO MODAL =====
+            // ===== DEMO MODAL with BLOB =====
             const demoModal = document.getElementById('demoModal');
             const demoBtn = document.getElementById('demoBtn');
             const demoBtnHero = document.getElementById('demoBtnHero');
             const closeDemo = document.getElementById('closeDemo');
             const demoFrame = document.getElementById('demoFrame');
 
+            // Create blob URL for demo
             const demoBlob = new Blob([DEMO_HTML], { type: 'text/html;charset=utf-8' });
             const demoURL = URL.createObjectURL(demoBlob);
 
@@ -2461,6 +2572,170 @@
                         }
                     }
                 });
+            });
+
+            // ===== ABOUT US TYPING =====
+            const aboutFrames = [
+                "حسین رحمانی، بنیان‌گذار کارن‌سافت، با یک باور ساده مسیرش را آغاز کرد:",
+                "تکنولوژی باید زندگی کاری را آسان‌تر، دقیق‌تر و قابل‌اعتمادتر کند.",
+                "وی سال‌ها تجربه کاری در توسعه نرم‌افزارها را با شناخت واقعی از نیازهای کسب‌وکارها ترکیب کرد",
+                "و کارن‌سافت را به جایی رساند که امروز هست؛",
+                "جایی که اتوماسیون فقط یک ابزار نیست، بلکه راهی برای ساختن آینده‌ای هوشمندتر و آرام‌تر است.",
+                "وی همیشه بر یک اصل تأکید دارد:",
+                "«سیستمی ارزش دارد که واقعاً مشکل را حل کند، نه اینکه فقط ظاهر خوبی داشته باشد.»",
+                "زیر نظر او، کارن‌سافت بر پایه‌ی صداقت، پایداری و ساخت راه‌حل‌های واقعی رشد کرده",
+                "و هر پروژه، یک قدم به سمت آینده‌ای است که در آن کسب‌وکارها سریع‌تر تصمیم می‌گیرند و با آرامش بیشتری پیش می‌روند."
+            ];
+
+            let frameIdx = 0;
+            let charIdx = 0;
+            let isDeleting = false;
+            const aboutTextEl = document.getElementById('aboutTypingText');
+
+            function typeAbout() {
+                if (frameIdx >= aboutFrames.length) {
+                    // Keep last text
+                    return;
+                }
+                const current = aboutFrames[frameIdx];
+                if (isDeleting) {
+                    aboutTextEl.textContent = current.substring(0, charIdx - 1);
+                    charIdx--;
+                    if (charIdx === 0) {
+                        isDeleting = false;
+                        frameIdx++;
+                        if (frameIdx < aboutFrames.length) {
+                            setTimeout(typeAbout, 400);
+                        }
+                        return;
+                    }
+                    setTimeout(typeAbout, 20);
+                } else {
+                    aboutTextEl.textContent = current.substring(0, charIdx + 1);
+                    charIdx++;
+                    if (charIdx === current.length) {
+                        isDeleting = true;
+                        setTimeout(typeAbout, 1400);
+                        return;
+                    }
+                    setTimeout(typeAbout, 55);
+                }
+            }
+
+            // Start about typing when section becomes visible
+            const aboutObs = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && frameIdx === 0) {
+                        setTimeout(typeAbout, 300);
+                        aboutObs.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.2 });
+            const aboutContainer = document.getElementById('aboutTypingContainer');
+            if (aboutContainer) aboutObs.observe(aboutContainer);
+
+            // ===== SUPPORT MODAL =====
+            const supportToggle = document.getElementById('supportToggle');
+            const supportModal = document.getElementById('supportModal');
+            const closeSupport = document.getElementById('closeSupport');
+            const supportBody = document.getElementById('supportBody');
+
+            const supportQA = [
+                {
+                    q: 'چگونه می‌توانم پرونده جدید ثبت کنم؟',
+                    a: 'برای ثبت پرونده جدید، از منوی اصلی گزینه "پرونده‌ها" را انتخاب کنید و سپس روی دکمه "پرونده جدید" کلیک کنید. اطلاعات مورد نیاز مانند عنوان، شماره، نوع و موکل را وارد کرده و ذخیره کنید.'
+                },
+                {
+                    q: 'آیا می‌توانم قرارداد وکالت ایجاد کنم؟',
+                    a: 'بله. در بخش "قراردادها" می‌توانید قرارداد وکالت جدید ایجاد کنید. اطلاعات موکل، موضوع، مبلغ و اقساط را وارد کنید. همچنین امکان چاپ و خروجی PDF قرارداد وجود دارد.'
+                },
+                {
+                    q: 'چطور می‌توانم جلسه دادگاه ثبت کنم؟',
+                    a: 'در بخش "جلسات"، روی دکمه "جلسه جدید" کلیک کنید. عنوان جلسه، تاریخ، ساعت، شعبه و پرونده مرتبط را وارد کنید. همچنین امکان یادآوری خودکار برای جلسات وجود دارد.'
+                },
+                {
+                    q: 'آیا نرم‌افزار گزارش مالی دارد؟',
+                    a: 'بله. در بخش "امور مالی" می‌توانید تمام تراکنش‌های درآمد و هزینه را مشاهده کنید. همچنین در بخش "گزارش‌ها" می‌توانید گزارش‌های مالی دقیق دریافت کنید.'
+                },
+                {
+                    q: 'چطور می‌توانم از نرم‌افزار پشتیبان بگیرم؟',
+                    a: 'در بخش "تنظیمات" و زیر بخش "پشتیبان‌گیری و بازیابی"، می‌توانید با کلیک روی "خروجی JSON" از تمام داده‌های خود پشتیبان تهیه کنید. همچنین امکان بازیابی از طریق فایل پشتیبان وجود دارد.'
+                },
+                {
+                    q: 'آیا نسخه موبایل هم دارید؟',
+                    a: 'بله. کارن سافت به صورت وب‌اپلیکیشن در تمام مرورگرهای موبایل قابل استفاده است. همچنین نسخه‌های اختصاصی اندروید و iOS نیز در دسترس هستند که با پرداخت مبلغ اضافی قابل تهیه می‌باشند.'
+                }
+            ];
+
+            function renderSupportQuestions() {
+                supportBody.innerHTML = supportQA.map((item, index) => `
+                    <div class="support-question" data-index="${index}">
+                        <i class="fas fa-question-circle text-gold-500 me-2"></i>
+                        ${item.q}
+                    </div>
+                    <div class="support-answer" id="supportAnswer${index}">
+                        <span class="typing-text"></span>
+                        <span class="typing-cursor-support"></span>
+                    </div>
+                `).join('');
+
+                // Click handlers for questions
+                supportBody.querySelectorAll('.support-question').forEach((el, idx) => {
+                    el.addEventListener('click', function() {
+                        const answerEl = document.getElementById(`supportAnswer${idx}`);
+                        const typingText = answerEl.querySelector('.typing-text');
+                        const isOpen = answerEl.classList.contains('open');
+
+                        // Close other answers
+                        supportBody.querySelectorAll('.support-answer').forEach(a => {
+                            if (a !== answerEl) {
+                                a.classList.remove('open');
+                                a.querySelector('.typing-text').textContent = '';
+                            }
+                        });
+
+                        if (isOpen) {
+                            answerEl.classList.remove('open');
+                            typingText.textContent = '';
+                            return;
+                        }
+
+                        answerEl.classList.add('open');
+                        // Type the answer
+                        const fullText = supportQA[idx].a;
+                        let charIdx2 = 0;
+                        typingText.textContent = '';
+                        const typeAnswer = () => {
+                            if (charIdx2 < fullText.length) {
+                                typingText.textContent = fullText.substring(0, charIdx2 + 1);
+                                charIdx2++;
+                                setTimeout(typeAnswer, 35);
+                            }
+                        };
+                        setTimeout(typeAnswer, 200);
+                    });
+                });
+            }
+
+            supportToggle.addEventListener('click', function() {
+                supportModal.classList.toggle('show');
+                if (supportModal.classList.contains('show')) {
+                    renderSupportQuestions();
+                }
+            });
+
+            closeSupport.addEventListener('click', function() {
+                supportModal.classList.remove('show');
+            });
+
+            supportModal.addEventListener('click', function(e) {
+                if (e.target === this) supportModal.classList.remove('show');
+            });
+
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && supportModal.classList.contains('show')) {
+                    supportModal.classList.remove('show');
+                }
             });
         });
     </script>
