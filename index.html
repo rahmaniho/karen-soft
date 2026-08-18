@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>مدیریت هوشمند دفتر وکالت | کارن سافت</title>
+    <title>اتوماسیون هوشمند اداری|کارن سافت</title>
     <script src="https://cdn.tailwindcss.com">
     </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
@@ -333,6 +333,23 @@
             font-weight: 800;
             padding: 0.2rem 0.9rem;
             border-radius: 999px;
+        }
+        /* ===== PRICE STRIKE ===== */
+        .price-strike {
+            text-decoration: line-through;
+            color: #94a3b8;
+            font-size: 0.9rem;
+            margin-right: 0.5rem;
+        }
+        .discount-badge {
+            display: inline-block;
+            background: #ef4444;
+            color: white;
+            font-size: 0.7rem;
+            font-weight: 800;
+            padding: 0.15rem 0.6rem;
+            border-radius: 999px;
+            margin-right: 0.5rem;
         }
 
         /* ===== DISCOUNT PULSE CARD ===== */
@@ -880,8 +897,8 @@
                     <a href="#contact" class="hover:text-gold-500 transition">تماس</a>
                 </div>
                 <div class="flex items-center gap-2">
-                    <a href="tel:0915251166" class="btn-phone text-xs sm:text-sm px-2 sm:px-4 py-1.5 sm:py-2">
-                        <i class="fas fa-phone"></i> <span class="hidden sm:inline">۰۹۱۵۲۵۱۱۶۶</span>
+                    <a href="tel:09152521166" class="btn-phone text-xs sm:text-sm px-2 sm:px-4 py-1.5 sm:py-2">
+                        <i class="fas fa-phone"></i> <span class="hidden sm:inline">۰۹۱۵۲۵۲۱۱۶۶</span>
                     </a>
                     <button id="themeToggle" class="theme-toggle w-10 h-10 rounded-xl border border-slate-200 dark:border-white/10 bg-white dark:bg-ink-800 text-slate-600 dark:text-slate-300 flex items-center justify-center hover:border-gold-400 transition">
                         <i id="themeIcon" class="fas fa-moon"></i>
@@ -905,7 +922,7 @@
                 <a href="#testimonials" class="block hover:text-gold-500 transition">نظرات</a>
                 <a href="#about" class="block hover:text-gold-500 transition">درباره ما</a>
                 <a href="#contact" class="block hover:text-gold-500 transition">تماس</a>
-                <a href="tel:0915251166" class="block text-emerald-600 font-bold"><i class="fas fa-phone"></i> ۰۹۱۵۲۵۱۱۶۶</a>
+                <a href="tel:09152521166" class="block text-emerald-600 font-bold"><i class="fas fa-phone"></i> ۰۹۱۵۲۵۲۱۱۶۶</a>
                 <a href="#" class="inline-flex btn-glow text-sm py-2 px-5 w-full justify-center"><i class="fas fa-arrow-left"></i> شروع کنید</a>
             </div>
         </div>
@@ -935,7 +952,7 @@
                     <div class="mt-8 flex flex-wrap gap-4">
                         <button id="demoBtnHero" class="btn-demo text-base px-6 py-3"><i class="fas fa-flask"></i> دموی رایگان</button>
                         <a href="#pricing" class="btn-glow text-base px-8 py-3"><i class="fas fa-arrow-left"></i> مشاهده قیمت‌ها</a>
-                        <a href="tel:0915251166" class="btn-phone text-base px-5 py-3"><i class="fas fa-phone"></i> مشاوره رایگان</a>
+                        <a href="tel:09152521166" class="btn-phone text-base px-5 py-3"><i class="fas fa-phone"></i> مشاوره رایگان</a>
                     </div>
                     <div class="mt-8 flex items-center gap-6 text-sm text-slate-500 dark:text-slate-400">
                         <span class="flex items-center gap-1.5"><i class="fas fa-check-circle text-emerald-500"></i> پشتیبانی ۲۴ ساعته</span>
@@ -1037,9 +1054,15 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+                <!-- پلن وکلا -->
                 <div class="pricing-card fade-section delay-1">
                     <h3 class="text-lg font-bold text-ink-900 dark:text-white">پلن وکلا</h3>
-                    <div class="mt-2 flex items-baseline gap-1"><span class="text-3xl font-black text-ink-900 dark:text-white">۴,۹۹۹,۰۰۰</span><span class="text-sm text-slate-500">تومان</span></div>
+                    <div class="mt-2 flex items-baseline gap-1 flex-wrap">
+                        <span class="text-3xl font-black text-emerald-600 dark:text-emerald-400">۶,۵۰۰,۰۰۰</span>
+                        <span class="text-sm text-slate-500">تومان</span>
+                        <span class="price-strike">۹,۲۹۰,۰۰۰</span>
+                        <span class="discount-badge">-۳۰٪</span>
+                    </div>
                     <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">یک‌بار پرداخت — مناسب وکلا و دفاتر فردی</p>
                     <ul class="mt-4 space-y-2 text-sm text-slate-600 dark:text-slate-300">
                         <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-500 text-xs"></i> پرونده نامحدود</li>
@@ -1047,15 +1070,21 @@
                         <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-500 text-xs"></i> تقویم شمسی و یادآور هوشمند</li>
                         <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-500 text-xs"></i> تولید نامه و گزارش‌گیری</li>
                         <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-500 text-xs"></i> پشتیبانی ۲۴ ساعته</li>
-                        <li class="flex items-center gap-2 text-slate-400"><i class="fas fa-plus text-gold-500 text-xs"></i> <span class="text-gold-600 font-semibold">+۱,۹۹۹,۰۰۰</span> تومان نسخه اندروید</li>
+                        <li class="flex items-center gap-2 text-slate-400"><i class="fas fa-plus text-gold-500 text-xs"></i> <span class="text-gold-600 font-semibold">+۲,۶۰۰,۰۰۰</span> تومان نسخه اندروید</li>
                     </ul>
-                    <a href="tel:0915251166" class="mt-6 w-full inline-flex justify-center btn-glow text-sm py-2.5"><i class="fas fa-phone"></i> مشاوره و خرید</a>
+                    <a href="tel:09152521166" class="mt-6 w-full inline-flex justify-center btn-glow text-sm py-2.5"><i class="fas fa-phone"></i> مشاوره و خرید</a>
                 </div>
 
+                <!-- پلن موسسات (محبوب) -->
                 <div class="pricing-card popular fade-section delay-2">
                     <span class="badge-popular">محبوب</span>
                     <h3 class="text-lg font-bold text-ink-900 dark:text-white">پلن موسسات</h3>
-                    <div class="mt-2 flex items-baseline gap-1"><span class="text-3xl font-black text-gold-600">۷,۹۹۹,۰۰۰</span><span class="text-sm text-slate-500">تومان</span></div>
+                    <div class="mt-2 flex items-baseline gap-1 flex-wrap">
+                        <span class="text-3xl font-black text-emerald-600 dark:text-emerald-400">۱۰,۴۰۰,۰۰۰</span>
+                        <span class="text-sm text-slate-500">تومان</span>
+                        <span class="price-strike">۱۴,۸۶۰,۰۰۰</span>
+                        <span class="discount-badge">-۳۰٪</span>
+                    </div>
                     <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">یک‌بار پرداخت — مناسب مؤسسات حقوقی و دفاتر بزرگ</p>
                     <ul class="mt-4 space-y-2 text-sm text-slate-600 dark:text-slate-300">
                         <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-500 text-xs"></i> همه امکانات پلن وکلا</li>
@@ -1063,15 +1092,18 @@
                         <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-500 text-xs"></i> گزارش‌های پیشرفته و داشبورد تیمی</li>
                         <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-500 text-xs"></i> پشتیبانی اولویت‌دار و اختصاصی</li>
                         <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-500 text-xs"></i> نصب روی سرور اختصاصی (اختیاری)</li>
-                        <li class="flex items-center gap-2 text-slate-400"><i class="fas fa-plus text-gold-500 text-xs"></i> <span class="text-gold-600 font-semibold">+۱,۹۹۹,۰۰۰</span> تومان نسخه اندروید</li>
+                        <li class="flex items-center gap-2 text-slate-400"><i class="fas fa-plus text-gold-500 text-xs"></i> <span class="text-gold-600 font-semibold">+۲,۶۰۰,۰۰۰</span> تومان نسخه اندروید</li>
                     </ul>
-                    <a href="tel:0915251166" class="mt-6 w-full inline-flex justify-center btn-glow text-sm py-2.5"><i class="fas fa-phone"></i> مشاوره و خرید</a>
+                    <a href="tel:09152521166" class="mt-6 w-full inline-flex justify-center btn-glow text-sm py-2.5"><i class="fas fa-phone"></i> مشاوره و خرید</a>
                 </div>
 
+                <!-- پلن حرفه‌ای + AI -->
                 <div class="pricing-card ai-card fade-section delay-3">
                     <span class="badge-ai"><i class="fas fa-robot"></i> هوش مصنوعی</span>
                     <h3 class="text-lg font-bold text-ink-900 dark:text-white">پلن حرفه‌ای + AI</h3>
-                    <div class="mt-2 flex items-baseline gap-1"><span class="text-3xl font-black text-purple-600 dark:text-purple-400">به زودی</span></div>
+                    <div class="mt-2 flex items-baseline gap-1 flex-wrap">
+                        <span class="text-3xl font-black text-purple-600 dark:text-purple-400">به زودی</span>
+                    </div>
                     <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">همراه با دستیار هوش مصنوعی اختصاصی</p>
                     <ul class="mt-4 space-y-2 text-sm text-slate-600 dark:text-slate-300">
                         <li class="flex items-center gap-2"><i class="fas fa-robot text-purple-500 text-xs"></i> <span class="font-bold text-purple-600 dark:text-purple-400">دستیار هوش مصنوعی</span> — پاسخ‌دهی خودکار به سوالات حقوقی روزمره</li>
@@ -1080,9 +1112,9 @@
                         <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-500 text-xs"></i> تحلیل خودکار پرونده‌ها و پیشنهاد استراتژی</li>
                         <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-500 text-xs"></i> یکپارچه‌سازی با سامانه‌های ثبتی و قضایی</li>
                         <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-500 text-xs"></i> پشتیبانی اختصاصی ۲۴/۷ با ضمانت SLA</li>
-                        <li class="flex items-center gap-2 text-slate-400"><i class="fas fa-plus text-gold-500 text-xs"></i> <span class="text-gold-600 font-semibold">+۱,۹۹۹,۰۰۰</span> تومان نسخه اندروید</li>
+                        <li class="flex items-center gap-2 text-slate-400"><i class="fas fa-plus text-gold-500 text-xs"></i> <span class="text-gold-600 font-semibold">+۲,۶۰۰,۰۰۰</span> تومان نسخه اندروید</li>
                     </ul>
-                    <a href="tel:0915251166" class="mt-6 w-full inline-flex justify-center rounded-xl border-2 border-purple-500 bg-purple-50 dark:bg-purple-900/20 px-4 py-2.5 text-sm font-bold text-purple-700 dark:text-purple-300 hover:bg-purple-100 dark:hover:bg-purple-900/40 transition">
+                    <a href="tel:09152521166" class="mt-6 w-full inline-flex justify-center rounded-xl border-2 border-purple-500 bg-purple-50 dark:bg-purple-900/20 px-4 py-2.5 text-sm font-bold text-purple-700 dark:text-purple-300 hover:bg-purple-100 dark:hover:bg-purple-900/40 transition">
                         <i class="fas fa-arrow-left"></i> دریافت مشاوره رایگان
                     </a>
                 </div>
@@ -1201,13 +1233,13 @@
                 </div>
                 <div class="faq-item">
                     <div class="faq-question"><span>چطور می‌توانم مشاوره بگیرم؟</span><i class="fas fa-chevron-down"></i></div>
-                    <div class="faq-answer">شما می‌توانید از طریق شماره <b class="text-emerald-600">۰۹۱۵۲۵۱۱۶۶</b> با تیم پشتیبانی کارن سافت تماس بگیرید یا از فرم تماس در بخش پایین صفحه استفاده کنید. تیم ما آماده پاسخگویی به سوالات شما در زمینه خرید، نصب و راه‌اندازی نرم‌افزار است.</div>
+                    <div class="faq-answer">شما می‌توانید از طریق شماره <b class="text-emerald-600">۰۹۱۵۲۵۲۱۱۶۶</b> با تیم پشتیبانی کارن سافت تماس بگیرید یا از فرم تماس در بخش پایین صفحه استفاده کنید. تیم ما آماده پاسخگویی به سوالات شما در زمینه خرید، نصب و راه‌اندازی نرم‌افزار است.</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ===== CONTACT ===== (تغییرات اصلی در این بخش اعمال شده است) -->
+    <!-- ===== CONTACT ===== -->
     <section id="contact" class="py-16 md:py-24">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-2xl mx-auto mb-10 fade-section">
@@ -1234,14 +1266,14 @@
                             <textarea rows="4" id="message" name="message" class="contact-input" placeholder="سوال یا درخواست خود را بنویسید..."></textarea>
                         </div>
                         <button type="submit" class="btn-glow w-full justify-center py-3"><i class="fas fa-paper-plane"></i> ارسال پیام</button>
-                        <div id="formStatus" class="text-sm text-center font-bold mt-2"></div> <!-- برای نمایش وضعیت ارسال -->
+                        <div id="formStatus" class="text-sm text-center font-bold mt-2"></div>
                     </form>
                 </div>
                 <div class="fade-section delay-2 flex flex-col justify-center space-y-6">
                     <div class="flex items-start gap-4">
                         <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-500 flex items-center justify-center flex-shrink-0"><i class="fas fa-phone-volume text-xl"></i></div>
                         <div><div class="text-sm font-bold text-ink-900 dark:text-white">تماس مستقیم</div>
-                            <a href="tel:0915251166" class="text-lg font-black text-emerald-600 dark:text-emerald-400 hover:underline" dir="ltr">۰۹۱۵۲۵۱۱۶۶</a>
+                            <a href="tel:09152521166" class="text-lg font-black text-emerald-600 dark:text-emerald-400 hover:underline" dir="ltr">۰۹۱۵۲۵۲۱۱۶۶</a>
                             <div class="text-xs text-slate-400">شنبه تا پنجشنبه ۹ الی ۲۰</div>
                         </div>
                     </div>
@@ -1253,7 +1285,7 @@
                     </div>
                     <div class="flex items-start gap-4">
                         <div class="w-12 h-12 rounded-xl bg-blue-500/10 text-blue-500 flex items-center justify-center flex-shrink-0"><i class="fas fa-map-marker-alt text-xl"></i></div>
-                        <div><div class="text-sm font-bold text-ink-900 dark:text-white">آدرس</div><div class="text-sm text-slate-500 dark:text-slate-400">تهران، خیابان ولیعصر، پلاک ۱۲۳</div></div>
+                        <div><div class="text-sm font-bold text-ink-900 dark:text-white">آدرس</div><div class="text-sm text-slate-500 dark:text-slate-400">قزوین، زیباشهر کارن سافت </div></div>
                     </div>
                 </div>
             </div>
@@ -1272,7 +1304,7 @@
                 <div class="flex flex-wrap items-center gap-4 text-xs text-slate-500 dark:text-slate-400">
                     <a href="#" class="hover:text-gold-500 transition">حریم خصوصی</a>
                     <a href="#contact" class="hover:text-gold-500 transition">پشتیبانی</a>
-                    <a href="tel:0915251166" class="hover:text-emerald-500 transition font-bold text-emerald-600" dir="ltr"><i class="fas fa-phone"></i> ۰۹۱۵۲۵۱۱۶۶</a>
+                    <a href="tel:09152521166" class="hover:text-emerald-500 transition font-bold text-emerald-600" dir="ltr"><i class="fas fa-phone"></i> ۰۹۱۵۲۵۲۱۱۶۶</a>
                     <a href="mailto:info@karen-soft.ir" class="hover:text-gold-500 transition"><i class="fas fa-envelope"></i> info@karen-soft.ir</a>
                     <span class="text-slate-300 dark:text-slate-600">|</span>
                     <span>تولید شده توسط <span class="text-ink-900 dark:text-white font-semibold">کارن سافت</span></span>
@@ -1291,7 +1323,7 @@
     </div>
 
     <script>
-        // ===== DEMO CODE (نسخه جدید دمو) =====
+        // ===== DEMO CODE =====
         const DEMO_HTML = `<!DOCTYPE html>
         <html lang="fa" dir="rtl" class="h-full">
         <head>
@@ -1695,7 +1727,7 @@
                   <div class="demo-limit">
                     <i class="fas fa-info-circle text-amber-600 me-2"></i>
                     شما در حال استفاده از <strong>نسخه دمو</strong> نرم‌افزار هستید. حداکثر ۲ رکورد در هر بخش قابل ثبت است.
-                    برای استفاده از نسخه کامل، لطفاً <a href="tel:0915251166">با تیم پشتیبانی تماس بگیرید</a>.
+                    برای استفاده از نسخه کامل، لطفاً <a href="tel:09152521166">با تیم پشتیبانی تماس بگیرید</a>.
                   </div>
                 </div>
 
@@ -2509,9 +2541,7 @@
                 });
             });
 
-            // ========================================================
-            // ✅ CONTACT FORM (اصلاح شده با fetch واقعی)
-            // ========================================================
+            // Contact form
             document.getElementById('contactForm').addEventListener('submit', async function(e) {
                 e.preventDefault();
                 const btn = this.querySelector('button[type="submit"]');
@@ -2526,7 +2556,6 @@
                 const formData = new FormData(this);
 
                 try {
-                    // ارسال درخواست به Cloudflare Worker (آدرس خود دامنه: /api/contact)
                     const response = await fetch('/api/contact', {
                         method: 'POST',
                         body: formData
@@ -2555,7 +2584,6 @@
                     btn.disabled = false;
                 }
             });
-            // ========================================================
 
             // Navbar scroll
             const navbar = document.getElementById('navbar');
@@ -2570,7 +2598,6 @@
             const closeDemo = document.getElementById('closeDemo');
             const demoFrame = document.getElementById('demoFrame');
 
-            // Create blob URL for demo
             const demoBlob = new Blob([DEMO_HTML], { type: 'text/html;charset=utf-8' });
             const demoURL = URL.createObjectURL(demoBlob);
 
@@ -2636,7 +2663,6 @@
 
             function typeAbout() {
                 if (frameIdx >= aboutFrames.length) {
-                    // Keep last text
                     return;
                 }
                 const current = aboutFrames[frameIdx];
@@ -2664,7 +2690,6 @@
                 }
             }
 
-            // Start about typing when section becomes visible
             const aboutObs = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting && frameIdx === 0) {
@@ -2721,14 +2746,12 @@
                     </div>
                 `).join('');
 
-                // Click handlers for questions
                 supportBody.querySelectorAll('.support-question').forEach((el, idx) => {
                     el.addEventListener('click', function() {
                         const answerEl = document.getElementById(`supportAnswer${idx}`);
                         const typingText = answerEl.querySelector('.typing-text');
                         const isOpen = answerEl.classList.contains('open');
 
-                        // Close other answers
                         supportBody.querySelectorAll('.support-answer').forEach(a => {
                             if (a !== answerEl) {
                                 a.classList.remove('open');
@@ -2743,7 +2766,6 @@
                         }
 
                         answerEl.classList.add('open');
-                        // Type the answer
                         const fullText = supportQA[idx].a;
                         let charIdx2 = 0;
                         typingText.textContent = '';
