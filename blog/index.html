@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>وبلاگ کارن سافت | مقالات آموزشی</title>
+    <title>وبلاگ کارن سافت | مقالات آموزشی مدیریت و فناوری</title>
     <meta name="description" content="مجموعه مقالات آموزشی کارن سافت در زمینه اتوماسیون اداری، مدیریت کسب‌وکار، فروشگاه آنلاین و امنیت اطلاعات" />
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
@@ -11,6 +11,7 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Vazirmatn', Tahoma, sans-serif; background: #070B14; color: #e2e8f0; }
+        
         .blog-card {
             border-radius: 1.25rem;
             overflow: hidden;
@@ -19,6 +20,9 @@
             border: 1px solid rgba(255,255,255,0.06);
             transition: all 0.5s cubic-bezier(.22, 1.2, .36, 1);
             cursor: pointer;
+            text-decoration: none;
+            display: block;
+            color: inherit;
         }
         .blog-card:hover {
             transform: translateY(-8px) scale(1.02);
@@ -28,15 +32,64 @@
         .blog-card .blog-img {
             width: 100%;
             height: 200px;
-            object-fit: cover;
-            background: linear-gradient(135deg, rgba(212,175,55,0.15), rgba(212,175,55,0.03));
+            background-size: cover;
+            background-position: center;
+            background-color: rgba(212,175,55,0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: rgba(255,255,255,0.2);
+            position: relative;
+        }
+        .blog-card .blog-img::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 50%, rgba(0,0,0,0.4));
+        }
+        .blog-card .blog-img i {
+            position: relative;
+            z-index: 1;
         }
         .blog-card .blog-content { padding: 1.5rem; }
-        .badge { display: inline-block; padding: 0.2rem 0.7rem; border-radius: 999px; font-size: 0.7rem; font-weight: 700; }
+        .blog-card .blog-content h2 {
+            color: #fff;
+            font-size: 1.1rem;
+            font-weight: 700;
+            line-height: 1.6;
+        }
+        .blog-card .blog-content p {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.9rem;
+            line-height: 1.8;
+            margin-top: 0.5rem;
+        }
+        .blog-card .blog-content .read-more {
+            color: #D4AF37;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-top: 0.75rem;
+            display: inline-block;
+            transition: color 0.3s;
+        }
+        .blog-card .blog-content .read-more:hover {
+            color: #E4C56A;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 0.2rem 0.7rem;
+            border-radius: 999px;
+            font-size: 0.65rem;
+            font-weight: 700;
+        }
         .badge-blue { background: rgba(59,130,246,0.15); color: #93c5fd; }
         .badge-amber { background: rgba(245,158,11,0.15); color: #fbbf24; }
         .badge-green { background: rgba(16,185,129,0.15); color: #34d399; }
         .badge-rose { background: rgba(244,63,94,0.15); color: #fb7185; }
+        .badge-purple { background: rgba(139,92,246,0.15); color: #a78bfa; }
+        
         .btn-glow {
             display: inline-flex;
             align-items: center;
@@ -53,18 +106,32 @@
             cursor: pointer;
         }
         .btn-glow:hover { transform: translateY(-2px); box-shadow: 0 16px 40px rgba(212,175,55,0.45); }
+        
+        .navbar {
+            background: rgba(11,18,32,0.8);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            padding: 0.75rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
     </style>
 </head>
 <body>
 
-    <!-- هدر سایت -->
-    <header class="border-b border-white/5 bg-ink-900/80 py-4">
+    <!-- نوار ناوبری -->
+    <header class="navbar">
         <div class="max-w-7xl mx-auto px-4 flex items-center justify-between">
             <a href="/" class="flex items-center gap-2">
                 <img src="/images/logo-karensoft.png" alt="کارن سافت" class="h-8 w-8 rounded-xl object-cover" />
-                <span class="font-bold text-white">کارن سافت</span>
+                <span class="font-bold text-white text-lg">کارن سافت</span>
             </a>
-            <a href="/" class="text-slate-400 hover:text-gold-400 transition text-sm">بازگشت به صفحه اصلی</a>
+            <div class="flex items-center gap-4">
+                <a href="/" class="text-slate-400 hover:text-gold-400 transition text-sm">خانه</a>
+                <a href="/products" class="text-slate-400 hover:text-gold-400 transition text-sm">محصولات</a>
+                <a href="/contact" class="text-slate-400 hover:text-gold-400 transition text-sm">تماس با ما</a>
+            </div>
         </div>
     </header>
 
@@ -80,87 +147,99 @@
         <!-- لیست مقالات -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
-            <!-- مقاله ۱ -->
-            <a href="/blog/automation.html" class="blog-card no-underline">
-                <div class="blog-img" style="background-image:url('/images/blog/automation.jpg');background-size:cover;background-position:center;"></div>
+            <!-- مقاله ۱: اتوماسیون اداری -->
+            <a href="/blog/automation.html" class="blog-card">
+                <div class="blog-img" style="background-image:url('/images/blog/automation.jpg');">
+                    <i class="fas fa-robot"></i>
+                </div>
                 <div class="blog-content">
                     <div class="flex items-center gap-3 text-xs text-slate-400 mb-2">
                         <span><i class="far fa-calendar-alt"></i> ۱۴۰۴/۰۱/۲۵</span>
                         <span class="badge badge-blue">اتوماسیون</span>
                     </div>
-                    <h2 class="font-bold text-lg text-white">چگونه اتوماسیون اداری بهره‌وری را ۲ برابر می‌کند؟</h2>
-                    <p class="text-sm mt-2 text-slate-400 leading-7">اتوماسیون اداری یکی از مهم‌ترین ابزارهای افزایش بهره‌وری در سازمان‌های امروزی است...</p>
-                    <span class="inline-block mt-4 text-sm font-bold text-gold-400">ادامه مطلب ←</span>
+                    <h2>چگونه اتوماسیون اداری بهره‌وری را ۲ برابر می‌کند؟</h2>
+                    <p>اتوماسیون اداری یکی از مهم‌ترین ابزارهای افزایش بهره‌وری در سازمان‌های امروزی است...</p>
+                    <span class="read-more">ادامه مطلب ←</span>
                 </div>
             </a>
 
-            <!-- مقاله ۲ -->
-            <a href="/blog/law-management.html" class="blog-card no-underline">
-                <div class="blog-img" style="background-image:url('/images/blog/law.jpg');background-size:cover;background-position:center;"></div>
+            <!-- مقاله ۲: مدیریت پرونده‌های حقوقی -->
+            <a href="/blog/law-management.html" class="blog-card">
+                <div class="blog-img" style="background-image:url('/images/blog/law.jpg');">
+                    <i class="fas fa-scale-balanced"></i>
+                </div>
                 <div class="blog-content">
                     <div class="flex items-center gap-3 text-xs text-slate-400 mb-2">
                         <span><i class="far fa-calendar-alt"></i> ۱۴۰۴/۰۱/۱۸</span>
                         <span class="badge badge-amber">حقوقی</span>
                     </div>
-                    <h2 class="font-bold text-lg text-white">مدیریت هوشمند پرونده‌های حقوقی با نرم‌افزار</h2>
-                    <p class="text-sm mt-2 text-slate-400 leading-7">مدیریت دستی پرونده‌های حقوقی زمان‌بر و پرخطاست...</p>
-                    <span class="inline-block mt-4 text-sm font-bold text-gold-400">ادامه مطلب ←</span>
+                    <h2>مدیریت هوشمند پرونده‌های حقوقی با نرم‌افزار</h2>
+                    <p>مدیریت دستی پرونده‌های حقوقی زمان‌بر و پرخطاست. در این مقاله با مزایای استفاده از نرم‌افزارهای تخصصی مدیریت پرونده آشنا می‌شوید...</p>
+                    <span class="read-more">ادامه مطلب ←</span>
                 </div>
             </a>
 
-            <!-- مقاله ۳ -->
-            <a href="/blog/online-store.html" class="blog-card no-underline">
-                <div class="blog-img" style="background-image:url('/images/blog/online-store.jpg');background-size:cover;background-position:center;"></div>
+            <!-- مقاله ۳: فروشگاه آنلاین -->
+            <a href="/blog/online-store.html" class="blog-card">
+                <div class="blog-img" style="background-image:url('/images/blog/online-store.jpg');">
+                    <i class="fas fa-store"></i>
+                </div>
                 <div class="blog-content">
                     <div class="flex items-center gap-3 text-xs text-slate-400 mb-2">
                         <span><i class="far fa-calendar-alt"></i> ۱۴۰۴/۰۱/۱۰</span>
                         <span class="badge badge-green">فروشگاه</span>
                     </div>
-                    <h2 class="font-bold text-lg text-white">۱۰ ویژگی ضروری برای یک فروشگاه آنلاین موفق</h2>
-                    <p class="text-sm mt-2 text-slate-400 leading-7">راه‌اندازی فروشگاه آنلاین نیازمند رعایت اصولی است...</p>
-                    <span class="inline-block mt-4 text-sm font-bold text-gold-400">ادامه مطلب ←</span>
+                    <h2>۱۰ ویژگی ضروری برای یک فروشگاه آنلاین موفق</h2>
+                    <p>راه‌اندازی فروشگاه آنلاین نیازمند رعایت اصولی است که در این مقاله به ۱۰ ویژگی کلیدی برای موفقیت در فروش آنلاین اشاره می‌کنیم...</p>
+                    <span class="read-more">ادامه مطلب ←</span>
                 </div>
             </a>
 
-            <!-- مقاله ۴ -->
-            <a href="/blog/security.html" class="blog-card no-underline">
-                <div class="blog-img" style="background-image:url('/images/blog/security.jpg');background-size:cover;background-position:center;"></div>
+            <!-- مقاله ۴: امنیت اطلاعات -->
+            <a href="/blog/security.html" class="blog-card">
+                <div class="blog-img" style="background-image:url('/images/blog/security.jpg');">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
                 <div class="blog-content">
                     <div class="flex items-center gap-3 text-xs text-slate-400 mb-2">
                         <span><i class="far fa-calendar-alt"></i> ۱۴۰۳/۱۲/۲۸</span>
                         <span class="badge badge-rose">امنیت</span>
                     </div>
-                    <h2 class="font-bold text-lg text-white">امنیت اطلاعات در نرم‌افزارهای مدیریت کسب‌وکار</h2>
-                    <p class="text-sm mt-2 text-slate-400 leading-7">امنیت داده‌ها یکی از دغدغه‌های اصلی کسب‌وکارهاست...</p>
-                    <span class="inline-block mt-4 text-sm font-bold text-gold-400">ادامه مطلب ←</span>
+                    <h2>امنیت اطلاعات در نرم‌افزارهای مدیریت کسب‌وکار</h2>
+                    <p>امنیت داده‌ها یکی از دغدغه‌های اصلی کسب‌وکارهاست. در این مقاله به بررسی روش‌های تأمین امنیت اطلاعات در نرم‌افزارهای مدیریتی می‌پردازیم...</p>
+                    <span class="read-more">ادامه مطلب ←</span>
                 </div>
             </a>
 
-            <!-- مقاله ۵ -->
-            <a href="/blog/growth-strategies.html" class="blog-card no-underline">
-                <div class="blog-img" style="background-image:url('/images/blog/growth.jpg');background-size:cover;background-position:center;"></div>
+            <!-- مقاله ۵: استراتژی‌های رشد -->
+            <a href="/blog/growth-strategies.html" class="blog-card">
+                <div class="blog-img" style="background-image:url('/images/blog/growth.jpg');">
+                    <i class="fas fa-chart-line"></i>
+                </div>
                 <div class="blog-content">
                     <div class="flex items-center gap-3 text-xs text-slate-400 mb-2">
                         <span><i class="far fa-calendar-alt"></i> ۱۴۰۳/۱۲/۲۰</span>
-                        <span class="badge badge-amber">مدیریت</span>
+                        <span class="badge badge-purple">مدیریت</span>
                     </div>
-                    <h2 class="font-bold text-lg text-white">۵ استراتژی برای رشد کسب‌وکار با کمک فناوری</h2>
-                    <p class="text-sm mt-2 text-slate-400 leading-7">فناوری اطلاعات می‌تواند به عنوان یک اهرم قدرتمند برای رشد کسب‌وکار عمل کند...</p>
-                    <span class="inline-block mt-4 text-sm font-bold text-gold-400">ادامه مطلب ←</span>
+                    <h2>۵ استراتژی برای رشد کسب‌وکار با کمک فناوری</h2>
+                    <p>فناوری اطلاعات می‌تواند به عنوان یک اهرم قدرتمند برای رشد کسب‌وکار عمل کند. در این مقاله با ۵ استراتژی کلیدی آشنا می‌شوید...</p>
+                    <span class="read-more">ادامه مطلب ←</span>
                 </div>
             </a>
 
-            <!-- مقاله ۶ -->
-            <a href="/blog/remote-teams.html" class="blog-card no-underline">
-                <div class="blog-img" style="background-image:url('/images/blog/remote.jpg');background-size:cover;background-position:center;"></div>
+            <!-- مقاله ۶: مدیریت تیم‌های دورکار -->
+            <a href="/blog/remote-teams.html" class="blog-card">
+                <div class="blog-img" style="background-image:url('/images/blog/remote.jpg');">
+                    <i class="fas fa-users"></i>
+                </div>
                 <div class="blog-content">
                     <div class="flex items-center gap-3 text-xs text-slate-400 mb-2">
                         <span><i class="far fa-calendar-alt"></i> ۱۴۰۳/۱۲/۱۵</span>
                         <span class="badge badge-blue">مدیریت</span>
                     </div>
-                    <h2 class="font-bold text-lg text-white">مدیریت تیم‌های دورکار: چالش‌ها و راه‌حل‌ها</h2>
-                    <p class="text-sm mt-2 text-slate-400 leading-7">با افزایش کارهای دورکار، مدیریت تیم‌های از راه دور به یکی از چالش‌های اصلی مدیران تبدیل شده است...</p>
-                    <span class="inline-block mt-4 text-sm font-bold text-gold-400">ادامه مطلب ←</span>
+                    <h2>مدیریت تیم‌های دورکار: چالش‌ها و راه‌حل‌ها</h2>
+                    <p>با افزایش کارهای دورکار، مدیریت تیم‌های از راه دور به یکی از چالش‌های اصلی مدیران تبدیل شده است. در این مقاله راه‌حل‌های عملی ارائه می‌شود...</p>
+                    <span class="read-more">ادامه مطلب ←</span>
                 </div>
             </a>
 
