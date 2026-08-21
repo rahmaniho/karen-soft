@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>تماس با ما | کارن سافت</title>
+    <meta name="description" content="با کارن سافت تماس بگیرید. مشاوره رایگان، پشتیبانی ۲۴ ساعته و اطلاعات تماس." />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" />
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Vazirmatn', Tahoma, sans-serif; background: #f7f8fb; }
+        .dark body { background: #070B14; }
+        .navbar-glass {
+            background: rgba(255, 255, 255, 0.72);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(226, 232, 240, 0.5);
+        }
+        .dark .navbar-glass {
+            background: rgba(11, 18, 32, 0.78);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .btn-glow {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            border-radius: 0.9rem;
+            background: linear-gradient(135deg, #E4C56A, #D4AF37 45%, #B8942A);
+            color: #0B1220;
+            font-weight: 700;
+            padding: 0.75rem 1.5rem;
+            box-shadow: 0 8px 24px rgba(212, 175, 55, 0.35);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+        }
+        .btn-glow:hover { transform: translateY(-2px); box-shadow: 0 16px 40px rgba(212, 175, 55, 0.45); }
+        .contact-input {
+            width: 100%;
+            border-radius: 0.9rem;
+            border: 1px solid rgb(226 232 240);
+            background: white;
+            padding: 0.75rem 1rem;
+            font-size: 0.9rem;
+            outline: none;
+            transition: border-color 0.25s ease, box-shadow 0.25s ease;
+            font-family: inherit;
+        }
+        .dark .contact-input {
+            background: rgba(18, 26, 43, 0.85);
+            border-color: rgba(255, 255, 255, 0.12);
+            color: #f8fafc;
+        }
+        .contact-input:focus {
+            border-color: rgba(212, 175, 55, 0.6);
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.15);
+        }
+        .card {
+            border-radius: 1.25rem;
+            background: white;
+            border: 1px solid rgba(226, 232, 240, 0.8);
+            box-shadow: 0 8px 30px rgba(15, 23, 42, 0.04);
+            padding: 1.5rem;
+        }
+        .dark .card {
+            background: rgba(18, 26, 43, 0.85);
+            border-color: rgba(255, 255, 255, 0.08);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- نوار ناوبری -->
+    <nav class="navbar-glass fixed top-0 right-0 left-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16 md:h-20">
+                <div class="flex items-center gap-2">
+                    <img src="images/logo-karensoft.png" alt="کارن سافت" class="h-9 w-9 rounded-xl object-cover" />
+                    <span class="font-bold text-sm md:text-lg text-ink-900 dark:text-white">کارن سافت</span>
+                </div>
+                <div class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-600 dark:text-slate-300">
+                    <a href="/" class="hover:text-gold-500 transition">خانه</a>
+                    <a href="/#products" class="hover:text-gold-500 transition">محصولات</a>
+                    <a href="/blog/" class="hover:text-gold-500 transition">وبلاگ</a>
+                    <a href="/contact" class="text-emerald-600 dark:text-emerald-400 font-bold">تماس با ما</a>
+                </div>
+                <div class="flex items-center gap-2">
+                    <a href="tel:09152521166" class="btn-phone text-xs sm:text-sm px-2 sm:px-4 py-1.5 sm:py-2 border border-emerald-500/30 bg-emerald-500/10 text-emerald-600 rounded-xl flex items-center gap-1 hover:bg-emerald-500/20 transition">
+                        <i class="fas fa-phone"></i> <span class="hidden sm:inline">۰۹۱۵۲۵۲۱۱۶۶</span>
+                    </a>
+                    <button id="mobileMenuBtn" class="md:hidden w-10 h-10 rounded-xl border border-slate-200 dark:border-white/10 bg-white dark:bg-ink-800 text-slate-600 dark:text-slate-300 flex items-center justify-center">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- فضای خالی برای نوار -->
+    <div class="h-20"></div>
+
+    <!-- صفحه تماس -->
+    <section class="py-16 md:py-24">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <span class="inline-block text-xs font-bold text-gold-600 bg-gold-500/10 rounded-full px-4 py-1.5 border border-gold-500/20">تماس با ما</span>
+                <h1 class="text-3xl md:text-4xl font-black mt-4 text-ink-900 dark:text-white">سوالی دارید؟ با ما در میان بگذارید</h1>
+                <p class="mt-3 text-slate-600 dark:text-slate-400 leading-7">ما در کارن سافت آماده پاسخگویی به سوالات شما هستیم. از مشاوره رایگان تا پشتیبانی فنی.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+
+                <!-- فرم تماس -->
+                <div class="card">
+                    <form id="contactForm" class="space-y-4">
+                        <div>
+                            <label class="text-xs font-bold text-slate-600 dark:text-slate-300 block mb-1.5">نام و نام خانوادگی</label>
+                            <input type="text" id="name" name="name" class="contact-input" placeholder="نام خود را وارد کنید" required />
+                        </div>
+                        <div>
+                            <label class="text-xs font-bold text-slate-600 dark:text-slate-300 block mb-1.5">ایمیل</label>
+                            <input type="email" id="email" name="email" class="contact-input" placeholder="example@email.com" required />
+                        </div>
+                        <div>
+                            <label class="text-xs font-bold text-slate-600 dark:text-slate-300 block mb-1.5">شماره تماس</label>
+                            <input type="tel" id="phone" name="phone" class="contact-input" placeholder="۰۹۱۲ XXX XXXX" />
+                        </div>
+                        <div>
+                            <label class="text-xs font-bold text-slate-600 dark:text-slate-300 block mb-1.5">موضوع</label>
+                            <select id="subject" name="subject" class="contact-input">
+                                <option value="درخواست مشاوره و خرید">درخواست مشاوره و خرید</option>
+                                <option value="نظرات و پیشنهادات">نظرات و پیشنهادات</option>
+                                <option value="درخواست پشتیبانی">درخواست پشتیبانی</option>
+                                <option value="درخواست نسخه تستی">درخواست نسخه تستی</option>
+                                <option value="سایر">سایر</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="text-xs font-bold text-slate-600 dark:text-slate-300 block mb-1.5">پیام شما</label>
+                            <textarea rows="4" id="message" name="message" class="contact-input" placeholder="سوال یا درخواست خود را بنویسید..."></textarea>
+                        </div>
+                        <button type="submit" class="btn-glow w-full justify-center py-3"><i class="fas fa-paper-plane"></i> ارسال پیام</button>
+                        <div id="formStatus" class="text-sm text-center font-bold mt-2"></div>
+                    </form>
+                </div>
+
+                <!-- اطلاعات تماس -->
+                <div class="space-y-6">
+
+                    <div class="card">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-500 flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-phone-volume text-xl"></i>
+                            </div>
+                            <div>
+                                <div class="text-sm font-bold text-ink-900 dark:text-white">تماس مستقیم</div>
+                                <a href="tel:09152521166" class="text-lg font-black text-emerald-600 dark:text-emerald-400 hover:underline" dir="ltr">۰۹۱۵۲۵۲۱۱۶۶</a>
+                                <div class="text-xs text-slate-400">شنبه تا پنجشنبه ۹ الی ۲۰</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-gold-500/10 text-gold-500 flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-envelope text-xl"></i>
+                            </div>
+                            <div>
+                                <div class="text-sm font-bold text-ink-900 dark:text-white">ایمیل</div>
+                                <a href="mailto:info@karen-soft.ir" class="text-sm text-slate-500 dark:text-slate-400 hover:text-gold-500 transition">info@karen-soft.ir</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-blue-500/10 text-blue-500 flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-map-marker-alt text-xl"></i>
+                            </div>
+                            <div>
+                                <div class="text-sm font-bold text-ink-900 dark:text-white">آدرس</div>
+                                <div class="text-sm text-slate-500 dark:text-slate-400">قزوین، زیباشهر کارن سافت</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-teal-500/10 text-teal-500 flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-clock text-xl"></i>
+                            </div>
+                            <div>
+                                <div class="text-sm font-bold text-ink-900 dark:text-white">ساعات کاری</div>
+                                <div class="text-sm text-slate-500 dark:text-slate-400">شنبه تا چهارشنبه ۹ تا ۱۸</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-purple-500/10 text-purple-500 flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-headset text-xl"></i>
+                            </div>
+                            <div>
+                                <div class="text-sm font-bold text-ink-900 dark:text-white">پشتیبانی آنلاین</div>
+                                <div class="text-sm text-slate-500 dark:text-slate-400">پاسخگویی سریع در پیام‌رسان‌ها</div>
+                                <div class="flex gap-2 mt-2">
+                                    <a href="https://t.me/KarenSoftOfficial" target="_blank" class="text-blue-400 hover:text-blue-300"><i class="fab fa-telegram text-xl"></i></a>
+                                    <a href="https://wa.me/989152521166" target="_blank" class="text-green-400 hover:text-green-300"><i class="fab fa-whatsapp text-xl"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- فوتر -->
+    <footer class="border-t border-slate-200 dark:border-white/5 bg-white dark:bg-ink-900/80 py-6">
+        <div class="max-w-7xl mx-auto px-4 text-center text-sm text-slate-500 dark:text-slate-400">
+            <p>تولید شده توسط <span class="text-ink-900 dark:text-white font-semibold">کارن سافت</span></p>
+            <p class="text-xs mt-1"><i class="fas fa-copyright"></i> ۱۴۰۴ تمامی حقوق محفوظ است</p>
+        </div>
+    </footer>
+
+    <script>
+        // فرم تماس
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            var btn = this.querySelector('button[type="submit"]');
+            var statusDiv = document.getElementById('formStatus');
+            var orig = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> در حال ارسال...';
+            btn.disabled = true;
+            statusDiv.textContent = '';
+            
+            var formData = new FormData(this);
+            var subject = document.getElementById('subject').value;
+            var message = document.getElementById('message').value;
+            formData.set('message', 'موضوع: ' + subject + '\n\n' + message);
+            
+            fetch('/api/contact', { method: 'POST', body: formData })
+                .then(function(response) { return response.text(); })
+                .then(function(result) {
+                    statusDiv.innerHTML = '✅ پیام شما با موفقیت ارسال شد! به زودی پاسخ می‌دهیم.';
+                    statusDiv.style.color = 'green';
+                    btn.innerHTML = '<i class="fas fa-check-circle"></i> ارسال شد!';
+                    btn.className = 'btn-glow w-full justify-center py-3 bg-emerald-500 hover:bg-emerald-600';
+                    document.getElementById('contactForm').reset();
+                })
+                .catch(function(error) {
+                    statusDiv.textContent = '❌ خطا در ارسال';
+                    statusDiv.style.color = 'red';
+                    btn.innerHTML = orig;
+                    btn.className = 'btn-glow w-full justify-center py-3';
+                })
+                .finally(function() {
+                    btn.disabled = false;
+                });
+        });
+    </script>
+
+</body>
+</html>
