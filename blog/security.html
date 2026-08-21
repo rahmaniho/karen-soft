@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>امنیت اطلاعات در نرم‌افزارهای مدیریت کسب‌وکار | کارن سافت</title>
+    <meta name="description" content="امنیت داده‌ها یکی از دغدغه‌های اصلی کسب‌وکارهاست. در این مقاله به بررسی روش‌های تأمین امنیت اطلاعات در نرم‌افزارهای مدیریتی می‌پردازیم." />
+    <meta name="keywords" content="امنیت اطلاعات, امنیت نرم‌افزار, حفاظت از داده‌ها, امنیت سایبری" />
+    <link rel="canonical" href="https://karen-soft.ir/blog/security.html" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" />
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Vazirmatn', Tahoma, sans-serif; background: #070B14; color: #e2e8f0; }
+        .blog-content-card {
+            border-radius: 1.25rem;
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255,255,255,0.06);
+            padding: 2rem;
+        }
+        .badge { display: inline-block; padding: 0.2rem 0.7rem; border-radius: 999px; font-size: 0.7rem; font-weight: 700; }
+        .badge-rose { background: rgba(244,63,94,0.15); color: #fb7185; }
+        .badge-slate { background: rgba(100,116,139,0.14); color: #94a3b8; }
+        .btn-glow {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            border-radius: 0.9rem;
+            background: linear-gradient(135deg, #E4C56A, #D4AF37 45%, #B8942A);
+            color: #0B1220;
+            font-weight: 700;
+            padding: 0.75rem 1.5rem;
+            box-shadow: 0 8px 24px rgba(212,175,55,0.35);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+        }
+        .btn-glow:hover { transform: translateY(-2px); box-shadow: 0 16px 40px rgba(212,175,55,0.45); }
+        .btn-trial {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            border-radius: 0.9rem;
+            border: 1px solid rgba(16,185,129,0.4);
+            background: rgba(16,185,129,0.08);
+            color: #059669;
+            font-weight: 700;
+            padding: 0.65rem 1.2rem;
+            transition: all 0.25s ease;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .btn-trial:hover { background: rgba(16,185,129,0.18); transform: translateY(-1px); }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #94a3b8;
+            transition: color 0.2s;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .back-link:hover { color: #D4AF37; }
+        .text-gold-400 { color: #D4AF37; }
+        .security-tip {
+            background: rgba(255,255,255,0.03);
+            border-right: 3px solid #D4AF37;
+            padding: 0.75rem 1rem;
+            margin-bottom: 0.75rem;
+            border-radius: 0 0.5rem 0.5rem 0;
+        }
+        .security-tip i { color: #D4AF37; margin-left: 0.5rem; }
+    </style>
+</head>
+<body>
+
+    <header class="border-b border-white/5 bg-ink-900/80 py-4 sticky top-0 z-50 backdrop-blur-xl">
+        <div class="max-w-7xl mx-auto px-4 flex items-center justify-between flex-wrap gap-2">
+            <a href="/" class="flex items-center gap-2">
+                <img src="/images/logo-karensoft.png" alt="کارن سافت" class="h-8 w-8 rounded-xl object-cover" />
+                <span class="font-bold text-white">کارن سافت</span>
+            </a>
+            <div class="flex items-center gap-3">
+                <a href="/blog/" class="text-slate-400 hover:text-gold-400 transition text-sm"><i class="fas fa-arrow-right"></i> بازگشت به وبلاگ</a>
+                <a href="/" class="text-slate-400 hover:text-gold-400 transition text-sm">خانه</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-4xl mx-auto px-4 py-8 md:py-16">
+
+        <div class="blog-content-card">
+
+            <div class="mb-6">
+                <a href="/blog/" class="back-link">
+                    <i class="fas fa-arrow-right"></i> بازگشت به لیست مقالات
+                </a>
+            </div>
+
+            <div class="flex flex-wrap items-center gap-3 text-xs text-slate-400 mb-4">
+                <span><i class="far fa-calendar-alt"></i> ۱۴۰۳/۱۲/۲۸</span>
+                <span class="badge badge-rose">امنیت</span>
+                <span class="badge badge-slate"><i class="far fa-clock"></i> زمان مطالعه: ۸ دقیقه</span>
+                <span class="badge badge-slate"><i class="far fa-eye"></i> ۱,۱۰۰ بازدید</span>
+            </div>
+
+            <h1 class="text-2xl md:text-4xl font-bold text-white mb-4">امنیت اطلاعات در نرم‌افزارهای مدیریت کسب‌وکار</h1>
+
+            <div class="flex items-center gap-3 mb-6 pb-6 border-b border-white/5">
+                <div class="w-10 h-10 rounded-full bg-gold-500/20 flex items-center justify-center text-gold-400 font-bold">ر</div>
+                <div>
+                    <div class="text-sm font-bold text-white">رضا محمدی</div>
+                    <div class="text-xs text-slate-400">کارشناس امنیت اطلاعات</div>
+                </div>
+            </div>
+
+            <div class="w-full h-64 md:h-96 rounded-xl overflow-hidden mb-6 bg-ink-800/50 relative">
+                <img src="/images/blog/security.jpg" alt="امنیت اطلاعات" class="w-full h-full object-cover" />
+                <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-ink-900/80 to-transparent p-4">
+                    <span class="text-xs text-slate-300">تصویر شاخص مقاله</span>
+                </div>
+            </div>
+
+            <div class="text-slate-300 leading-8 space-y-4">
+
+                <p class="text-lg font-medium text-white">امنیت داده‌ها یکی از دغدغه‌های اصلی کسب‌وکارهاست. در این مقاله به بررسی روش‌های تأمین امنیت اطلاعات در نرم‌افزارهای مدیریتی می‌پردازیم و نکات کاربردی برای حفاظت از داده‌های سازمانی ارائه می‌دهیم.</p>
+
+                <div class="bg-ink-800/30 p-4 rounded-xl border-r-4 border-rose-500/50 my-6">
+                    <p class="text-sm text-slate-300 italic">«امنیت اطلاعات یک مقصد نیست، یک سفر مداوم است.»</p>
+                </div>
+
+                <h2 class="text-xl font-bold text-white mt-8">چرا امنیت اطلاعات اهمیت دارد؟</h2>
+                <p>اطلاعات کسب‌وکارها شامل داده‌های حساسی مانند اطلاعات مشتریان، امور مالی، اسناد محرمانه و غیره است. نفوذ به این اطلاعات می‌تواند خسارت‌های جبران‌ناپذیری به کسب‌وکار وارد کند. بر اساس آمار، بیش از ۶۰٪ از کسب‌وکارهای کوچک و متوسط پس از یک حمله سایبری جدی، کسب‌وکار خود را تعطیل می‌کنند.</p>
+
+                <h2 class="text-xl font-bold text-white mt-8">تهدیدهای امنیتی رایج</h2>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3 my-4">
+                    <div class="security-tip"><i class="fas fa-bug"></i> حملات سایبری و هک</div>
+                    <div class="security-tip"><i class="fas fa-virus"></i> بدافزارها و ویروس‌ها</div>
+                    <div class="security-tip"><i class="fas fa-user-slash"></i> خطاهای انسانی</div>
+                    <div class="security-tip"><i class="fas fa-lock-open"></i> دسترسی غیرمجاز به اطلاعات</div>
+                    <div class="security-tip"><i class="fas fa-database"></i> خرابی سخت‌افزار و از دست رفتن داده‌ها</div>
+                    <div class="security-tip"><i class="fas fa-phishing"></i> حملات فیشینگ</div>
+                </div>
+
+                <h2 class="text-xl font-bold text-white mt-8">راه‌های تأمین امنیت اطلاعات</h2>
+
+                <h3 class="text-lg font-bold text-gold-400 mt-6">۱. رمزنگاری داده‌ها (Encryption)</h3>
+                <p>استفاده از الگوریتم‌های رمزنگاری قوی برای محافظت از اطلاعات در برابر دسترسی غیرمجاز. تمام داده‌های حساس باید چه در حالت ذخیره‌سازی (At Rest) و چه در حالت انتقال (In Transit) رمزنگاری شوند.</p>
+
+                <h3 class="text-lg font-bold text-gold-400 mt-6">۲. احراز هویت دو مرحله‌ای (2FA)</h3>
+                <p>افزایش امنیت حساب‌های کاربری با استفاده از احراز هویت دو مرحله‌ای. این روش نیاز به تأیید از طریق دستگاه دوم (مانند پیامک یا اپلیکیشن احراز هویت) دارد و امنیت را به طور قابل توجهی افزایش می‌دهد.</p>
+
+                <h3 class="text-lg font-bold text-gold-400 mt-6">۳. پشتیبان‌گیری منظم (Backup)</h3>
+                <p>تهیه نسخه پشتیبان از اطلاعات به صورت منظم و ذخیره آن در مکان امن. توصیه می‌شود از قانون ۳-۲-۱ استفاده کنید: ۳ کپی از داده، ۲ نوع رسانه مختلف، ۱ کپی در مکان خارج از سازمان.</p>
+
+                <h3 class="text-lg font-bold text-gold-400 mt-6">۴. آموزش کارکنان</h3>
+                <p>آموزش کارکنان در مورد اصول امنیت اطلاعات و تشخیص تهدیدات سایبری. طبق آمار، بیش از ۹۰٪ از حملات سایبری با خطای انسانی آغاز می‌شوند، بنابراین آموزش کارکنان حیاتی است.</p>
+
+                <h3 class="text-lg font-bold text-gold-400 mt-6">۵. به‌روزرسانی مداوم نرم‌افزارها</h3>
+                <p>به‌روزرسانی مداوم سیستم‌ها و نرم‌افزارها برای رفع آسیب‌پذیری‌های امنیتی. تأخیر در به‌روزرسانی‌ها یکی از شایع‌ترین دلایل نفوذ سایبری است.</p>
+
+                <h3 class="text-lg font-bold text-gold-400 mt-6">۶. مدیریت دسترسی (Access Control)</h3>
+                <p>اعمال سیاست‌های مدیریت دسترسی و تعیین سطح دسترسی کاربران بر اساس نقش آنها در سازمان. اصل "حداقل دسترسی" (Principle of Least Privilege) باید رعایت شود.</p>
+
+                <div class="bg-ink-800/50 p-5 rounded-xl border border-gold-500/20 mt-8">
+                    <h4 class="font-bold text-gold-400 text-lg">🔑 نکات کلیدی امنیتی</h4>
+                    <ul class="list-disc list-inside space-y-2 mt-3 text-slate-300">
+                        <li>استفاده از رمزهای عبور قوی و منحصر‌به‌فرد</li>
+                        <li>انجام ممیزی امنیتی دوره‌ای</li>
+                        <li>استفاده از گواهی‌های SSL/TLS برای ارتباطات امن</li>
+                        <li>رعایت قوانین حریم خصوصی و حفاظت از داده‌ها</li>
+                        <li>نظارت و لاگ‌گیری مداوم فعالیت‌ها</li>
+                    </ul>
+                </div>
+
+                <h2 class="text-xl font-bold text-white mt-8">نکات عملی برای کسب‌وکارهای کوچک</h2>
+
+                <ul class="list-disc list-inside space-y-2 text-slate-300">
+                    <li>از مدیر رمز عبور (Password Manager) استفاده کنید</li>
+                    <li>فایروال و آنتی‌ویروس معتبر نصب کنید</li>
+                    <li>از VPN برای ارتباطات خارج از سازمان استفاده کنید</li>
+                    <li>سیاست BYOD (Bring Your Own Device) را مدیریت کنید</li>
+                    <li>برنامه واکنش به حادثه (Incident Response) داشته باشید</li>
+                </ul>
+
+                <h2 class="text-xl font-bold text-white mt-8">جمع‌بندی</h2>
+                <p>امنیت اطلاعات یک سرمایه‌گذاری ضروری برای هر کسب‌وکار است. با پیاده‌سازی اصول امنیتی و آموزش کارکنان، می‌توانید از اطلاعات حیاتی خود محافظت کنید. کارن سافت با رعایت بالاترین استانداردهای امنیتی در نرم‌افزارهای خود، امنیت اطلاعات شما را تضمین می‌کند.</p>
+
+                <div class="flex flex-wrap gap-4 mt-8 pt-6 border-t border-slate-700">
+                    <a href="/products" class="btn-glow text-sm"><i class="fas fa-arrow-left"></i> مشاهده محصولات امن</a>
+                    <a href="/contact" class="btn-trial text-sm"><i class="fas fa-flask"></i> مشاوره امنیت اطلاعات</a>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="mt-12">
+            <h3 class="text-xl font-bold text-white mb-6">📚 مقالات مرتبط</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <a href="/blog/automation.html" class="related-card">
+                    <div class="text-sm font-bold text-white">اتوماسیون اداری</div>
+                    <div class="text-xs text-slate-400 mt-1">خواندن ۵ دقیقه</div>
+                </a>
+                <a href="/blog/law-management.html" class="related-card">
+                    <div class="text-sm font-bold text-white">مدیریت پرونده‌های حقوقی</div>
+                    <div class="text-xs text-slate-400 mt-1">خواندن ۷ دقیقه</div>
+                </a>
+                <a href="/blog/remote-teams.html" class="related-card">
+                    <div class="text-sm font-bold text-white">مدیریت تیم‌های دورکار</div>
+                    <div class="text-xs text-slate-400 mt-1">خواندن ۶ دقیقه</div>
+                </a>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="border-t border-white/5 bg-ink-900/80 py-6 mt-12">
+        <div class="max-w-7xl mx-auto px-4 text-center text-sm text-slate-400">
+            <p>تولید شده توسط <span class="text-white font-semibold">کارن سافت</span></p>
+            <p class="text-xs mt-1"><i class="fas fa-copyright"></i> ۱۴۰۴ تمامی حقوق محفوظ است</p>
+        </div>
+    </footer>
+
+</body>
+</html>
