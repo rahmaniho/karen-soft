@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>محصولات کارن سافت | نرم‌افزارهای مدیریت هوشمند</title>
+    <meta name="description" content="مجموعه نرم‌افزارهای تخصصی کارن سافت برای مدیریت هوشمند کسب‌وکار: دفتر وکالت، فروشگاه، املاک، رستوران و..." />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" />
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Vazirmatn', Tahoma, sans-serif; background: #070B14; color: #e2e8f0; }
+        .navbar-glass {
+            background: rgba(11, 18, 32, 0.78);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .products-section {
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #0B1220, #1a1520, #0B1220);
+            background-size: 400% 400%;
+            animation: gradientMove 15s ease infinite;
+            min-height: 100vh;
+            padding-top: 80px;
+        }
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .product-card-glow {
+            border-radius: 1.25rem;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            transition: all 0.5s cubic-bezier(.22, 1.2, .36, 1);
+            cursor: pointer;
+            color: #e2e8f0;
+        }
+        .product-card-glow:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 0 40px rgba(212, 175, 55, 0.1);
+            border-color: rgba(212, 175, 55, 0.3);
+        }
+        .product-card-glow .product-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(212, 175, 55, 0.05));
+            color: #D4AF37;
+            flex-shrink: 0;
+            overflow: hidden;
+            border: 1px solid rgba(212, 175, 55, 0.1);
+        }
+        .product-card-glow .product-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .product-card-glow .product-badge-dev {
+            display: inline-block;
+            font-size: 0.65rem;
+            font-weight: 700;
+            color: #fbbf24;
+            background: rgba(245, 158, 11, 0.15);
+            padding: 0.2rem 0.7rem;
+            border-radius: 999px;
+            border: 1px solid rgba(245, 158, 11, 0.2);
+        }
+        .product-card-glow .product-badge-active {
+            display: inline-block;
+            font-size: 0.65rem;
+            font-weight: 700;
+            color: #34d399;
+            background: rgba(16, 185, 129, 0.15);
+            padding: 0.2rem 0.7rem;
+            border-radius: 999px;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+        }
+        .product-card-glow .badge-slate {
+            color: rgba(255, 255, 255, 0.6);
+            background: rgba(255, 255, 255, 0.06);
+            padding: 0.2rem 0.7rem;
+            border-radius: 999px;
+            font-size: 0.65rem;
+            font-weight: 700;
+        }
+        .product-card-glow .badge-blue {
+            color: #93c5fd;
+            background: rgba(59, 130, 246, 0.15);
+            padding: 0.2rem 0.7rem;
+            border-radius: 999px;
+            font-size: 0.65rem;
+            font-weight: 700;
+        }
+        .product-card-glow .btn-trial {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            border-radius: 0.9rem;
+            border: 1px solid rgba(16, 185, 129, 0.4);
+            background: rgba(16, 185, 129, 0.08);
+            color: #059669;
+            font-weight: 700;
+            padding: 0.5rem 1rem;
+            font-size: 0.85rem;
+            transition: all 0.25s ease;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .product-card-glow .btn-trial:hover {
+            background: rgba(16, 185, 129, 0.18);
+            transform: translateY(-1px);
+        }
+        .product-card-glow .btn-demo {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            border-radius: 0.9rem;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(139, 92, 246, 0.05));
+            color: #a78bfa;
+            font-weight: 700;
+            padding: 0.5rem 1rem;
+            font-size: 0.85rem;
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            transition: all 0.25s ease;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .product-card-glow .btn-demo:hover {
+            background: rgba(139, 92, 246, 0.25);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(139, 92, 246, 0.2);
+        }
+        .btn-glow {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            border-radius: 0.9rem;
+            background: linear-gradient(135deg, #E4C56A, #D4AF37 45%, #B8942A);
+            color: #0B1220;
+            font-weight: 700;
+            padding: 0.75rem 1.5rem;
+            box-shadow: 0 8px 24px rgba(212, 175, 55, 0.35);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+        }
+        .btn-glow:hover { transform: translateY(-2px); box-shadow: 0 16px 40px rgba(212, 175, 55, 0.45); }
+    </style>
+</head>
+<body>
+
+    <!-- نوار ناوبری -->
+    <nav class="navbar-glass fixed top-0 right-0 left-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16 md:h-20">
+                <div class="flex items-center gap-2">
+                    <img src="images/logo-karensoft.png" alt="کارن سافت" class="h-9 w-9 rounded-xl object-cover" />
+                    <span class="font-bold text-sm md:text-lg text-white">کارن سافت</span>
+                </div>
+                <div class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-300">
+                    <a href="/" class="hover:text-gold-500 transition">خانه</a>
+                    <a href="/products" class="text-gold-400 font-bold">محصولات</a>
+                    <a href="/blog/" class="hover:text-gold-500 transition">وبلاگ</a>
+                    <a href="/contact" class="hover:text-emerald-500 transition text-emerald-400">تماس با ما</a>
+                </div>
+                <div class="flex items-center gap-2">
+                    <a href="tel:09152521166" class="btn-phone text-xs sm:text-sm px-2 sm:px-4 py-1.5 sm:py-2 border border-emerald-500/30 bg-emerald-500/10 text-emerald-400 rounded-xl flex items-center gap-1 hover:bg-emerald-500/20 transition no-underline">
+                        <i class="fas fa-phone"></i> <span class="hidden sm:inline">۰۹۱۵۲۵۲۱۱۶۶</span>
+                    </a>
+                    <button id="mobileMenuBtn" class="md:hidden w-10 h-10 rounded-xl border border-white/10 bg-ink-800 text-slate-300 flex items-center justify-center">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- محتوای اصلی -->
+    <section class="products-section">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span class="inline-block text-xs font-bold text-gold-400 bg-gold-500/10 rounded-full px-4 py-1.5 border border-gold-500/20">محصولات</span>
+                <h1 class="text-3xl md:text-4xl font-black mt-4 text-white">راه‌حل‌های نرم‌افزاری کارن سافت</h1>
+                <p class="mt-3 text-slate-300 leading-7">مجموعه‌ای از نرم‌افزارهای تخصصی برای مدیریت هوشمند کسب‌وکارهای مختلف</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                <!-- 1. مدیریت دفتر وکالت هوشمند -->
+                <div class="product-card-glow group">
+                    <div class="flex items-start gap-4">
+                        <div class="product-icon">
+                            <img src="images/app-icon-law-office.jpg" alt="برنامه دفتر وکالت هوشمند" />
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="font-bold text-base">مدیریت دفتر وکالت هوشمند</h3>
+                            <p class="text-sm mt-1">مدیریت پرونده‌ها، قراردادها، جلسات، مالی و مکاتبات حقوقی</p>
+                            <div class="flex flex-wrap gap-2 mt-3">
+                                <span class="product-badge-active"><i class="fas fa-check"></i> فعال</span>
+                                <span class="badge-blue"><i class="fas fa-flask"></i> نسخه تستی</span>
+                            </div>
+                            <div class="mt-4 flex flex-wrap gap-2">
+                                <a href="/#product-detail" class="btn-trial text-sm px-4 py-2">جزئیات بیشتر</a>
+                                <a href="/contact" class="btn-demo text-sm px-4 py-2"><i class="fas fa-play"></i> درخواست دمو</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. سایت خدمات دیجیتال کارن نت -->
+                <div class="product-card-glow group">
+                    <div class="flex items-start gap-4">
+                        <div class="product-icon">
+                            <img src="images/logo-karennet.png" alt="کارن نت" />
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="font-bold text-base">سایت خدمات دیجیتال کارن نت</h3>
+                            <p class="text-sm mt-1">پلتفرم جامع خدمات دیجیتال و طراحی وب</p>
+                            <div class="flex flex-wrap gap-2 mt-3">
+                                <span class="product-badge-dev"><i class="fas fa-code"></i> در حال توسعه</span>
+                                <span class="badge-slate">به زودی</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. مدیریت ساختمان هوشمند -->
+                <div class="product-card-glow group">
+                    <div class="flex items-start gap-4">
+                        <div class="product-icon"><i class="fas fa-building"></i></div>
+                        <div class="flex-1">
+                            <h3 class="font-bold text-base">مدیریت ساختمان هوشمند</h3>
+                            <p class="text-sm mt-1">مدیریت واحدها، شارژ، نگهداری و ارتباط با ساکنین</p>
+                            <div class="flex flex-wrap gap-2 mt-3">
+                                <span class="product-badge-dev"><i class="fas fa-code"></i> در حال توسعه</span>
+                                <span class="badge-slate">به زودی</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4. مدیریت املاک -->
+                <div class="product-card-glow group">
+                    <div class="flex items-start gap-4">
+                        <div class="product-icon"><i class="fas fa-home"></i></div>
+                        <div class="flex-1">
+                            <h3 class="font-bold text-base">مدیریت املاک</h3>
+                            <p class="text-sm mt-1">سیستم جامع مدیریت املاک، موجرین و مستاجرین</p>
+                            <div class="flex flex-wrap gap-2 mt-3">
+                                <span class="product-badge-dev"><i class="fas fa-code"></i> در حال توسعه</span>
+                                <span class="badge-slate">به زودی</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 5. مدیریت رستوران -->
+                <div class="product-card-glow group">
+                    <div class="flex items-start gap-4">
+                        <div class="product-icon"><i class="fas fa-utensils"></i></div>
+                        <div class="flex-1">
+                            <h3 class="font-bold text-base">مدیریت رستوران</h3>
+                            <p class="text-sm mt-1">مدیریت سفارشات، میزها، انبار و صورت‌حساب‌ها</p>
+                            <div class="flex flex-wrap gap-2 mt-3">
+                                <span class="product-badge-dev"><i class="fas fa-code"></i> در حال توسعه</span>
+                                <span class="badge-slate">به زودی</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 6. مدیریت لوازم یدکی -->
+                <div class="product-card-glow group">
+                    <div class="flex items-start gap-4">
+                        <div class="product-icon"><i class="fas fa-car"></i></div>
+                        <div class="flex-1">
+                            <h3 class="font-bold text-base">مدیریت لوازم یدکی</h3>
+                            <p class="text-sm mt-1">مدیریت انبار، فروش، فاکتور و مشتریان لوازم یدکی</p>
+                            <div class="flex flex-wrap gap-2 mt-3">
+                                <span class="product-badge-dev"><i class="fas fa-code"></i> در حال توسعه</span>
+                                <span class="badge-slate">به زودی</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 7. مدیریت تولید و کنترل کیفی چاپ روتوگراور -->
+                <div class="product-card-glow group">
+                    <div class="flex items-start gap-4">
+                        <div class="product-icon"><i class="fas fa-print"></i></div>
+                        <div class="flex-1">
+                            <h3 class="font-bold text-base">مدیریت تولید و کنترل کیفی چاپ روتوگراور</h3>
+                            <p class="text-sm mt-1">سیستم تخصصی مدیریت تولید و کنترل کیفیت در صنعت چاپ</p>
+                            <div class="flex flex-wrap gap-2 mt-3">
+                                <span class="product-badge-dev"><i class="fas fa-code"></i> در حال توسعه</span>
+                                <span class="badge-slate">به زودی</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 8. مدیریت آژانس -->
+                <div class="product-card-glow group">
+                    <div class="flex items-start gap-4">
+                        <div class="product-icon"><i class="fas fa-plane"></i></div>
+                        <div class="flex-1">
+                            <h3 class="font-bold text-base">مدیریت آژانس</h3>
+                            <p class="text-sm mt-1">مدیریت سفرها، رزرواسیون، مشتریان و هزینه‌ها</p>
+                            <div class="flex flex-wrap gap-2 mt-3">
+                                <span class="product-badge-dev"><i class="fas fa-code"></i> در حال توسعه</span>
+                                <span class="badge-slate">به زودی</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 9. مدیریت باشگاه ورزشی -->
+                <div class="product-card-glow group">
+                    <div class="flex items-start gap-4">
+                        <div class="product-icon"><i class="fas fa-dumbbell"></i></div>
+                        <div class="flex-1">
+                            <h3 class="font-bold text-base">مدیریت باشگاه ورزشی</h3>
+                            <p class="text-sm mt-1">مدیریت اعضا، اشتراک‌ها، کلاس‌ها و حضور و غیاب</p>
+                            <div class="flex flex-wrap gap-2 mt-3">
+                                <span class="product-badge-dev"><i class="fas fa-code"></i> در حال توسعه</span>
+                                <span class="badge-slate">به زودی</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 10. مدیریت فروشگاه -->
+                <div class="product-card-glow group">
+                    <div class="flex items-start gap-4">
+                        <div class="product-icon"><i class="fas fa-cash-register"></i></div>
+                        <div class="flex-1">
+                            <h3 class="font-bold text-base">مدیریت فروشگاه</h3>
+                            <p class="text-sm mt-1">سیستم جامع مدیریت فروش، انبار، مشتریان و گزارشات</p>
+                            <div class="flex flex-wrap gap-2 mt-3">
+                                <span class="product-badge-dev"><i class="fas fa-code"></i> در حال توسعه</span>
+                                <span class="badge-slate">به زودی</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <p class="text-center text-sm text-slate-400 mt-10">
+                تمامی محصولات کارن سافت با آخرین تکنولوژی‌های روز طراحی و پیاده‌سازی می‌شوند.<br />
+                برای دریافت مشاوره و اطلاعات بیشتر با ما تماس بگیرید.
+            </p>
+
+            <div class="text-center mt-8">
+                <a href="/contact" class="btn-glow"><i class="fas fa-phone"></i> دریافت مشاوره رایگان</a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- فوتر -->
+    <footer class="border-t border-white/5 bg-ink-900/80 py-6">
+        <div class="max-w-7xl mx-auto px-4 text-center text-sm text-slate-400">
+            <p>تولید شده توسط <span class="text-white font-semibold">کارن سافت</span></p>
+            <p class="text-xs mt-1"><i class="fas fa-copyright"></i> ۱۴۰۴ تمامی حقوق محفوظ است</p>
+        </div>
+    </footer>
+
+    <script>
+        // منوی موبایل
+        document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+            alert('منوی موبایل - لطفاً برای مشاهده محصولات از نسخه دسکتاپ استفاده کنید یا به صفحه اصلی بروید.');
+        });
+    </script>
+
+</body>
+</html>
