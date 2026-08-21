@@ -20,25 +20,25 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 }
 
 // تنظیمات ایمیل
-$to = "info@karen-soft.ir";  // ایمیل مقصد
+$to = "info@karen-soft.ir";  // ایمیل مقصد (ایمیل خودتان را وارد کنید)
 $from = "noreply@karen-soft.ir";  // ایمیل فرستنده
 
 // موضوع ایمیل
 $email_subject = "پیام جدید از فرم تماس کارن سافت - " . $subject;
 
-// محتوای ایمیل
+// محتوای ایمیل (با نمایش شماره تماس)
 $email_body = "==========================================\n";
-$email_body .= "پیام جدید از فرم تماس کارن سافت\n";
+$email_body .= "📩 پیام جدید از فرم تماس کارن سافت\n";
 $email_body .= "==========================================\n\n";
-$email_body .= "نام و نام خانوادگی: $name\n";
-$email_body .= "ایمیل: $email\n";
-$email_body .= "شماره تماس: $phone\n";
-$email_body .= "موضوع: $subject\n";
+$email_body .= "👤 نام و نام خانوادگی: $name\n";
+$email_body .= "📧 ایمیل: $email\n";
+$email_body .= "📱 شماره تماس: $phone\n";  // ✅ شماره تماس اینجا نمایش داده می‌شود
+$email_body .= "📌 موضوع: $subject\n";
 $email_body .= "------------------------------------------\n";
-$email_body .= "پیام:\n$message\n";
+$email_body .= "💬 پیام:\n$message\n";
 $email_body .= "------------------------------------------\n";
-$email_body .= "تاریخ ارسال: " . date('Y/m/d H:i:s') . "\n";
-$email_body .= "IP کاربر: " . $_SERVER['REMOTE_ADDR'] . "\n";
+$email_body .= "📅 تاریخ ارسال: " . date('Y/m/d H:i:s') . "\n";
+$email_body .= "🌐 IP کاربر: " . $_SERVER['REMOTE_ADDR'] . "\n";
 $email_body .= "==========================================\n";
 
 // هدرهای ایمیل
