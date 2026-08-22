@@ -1,16 +1,579 @@
+>
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-    <!-- ===== کپی کامل از head index.html ===== -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>محصولات کارن سافت · نرم‌افزار مدیریت هوشمند</title>
+    <meta name="description" content="مجموعه نرم‌افزارهای تخصصی کارن سافت برای مدیریت هوشمند دفتر وکالت، فروشگاه، املاک، رستوران و کسب‌وکارهای مختلف." />
+    <link rel="canonical" href="https://karen-soft.ir/products.html" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
+    <style>
+        /* ===== تمام استایل‌های مشابه index.html ===== */
+        /* ... (کپی کامل استایل‌ها از index.html) ... */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Vazirmatn', Tahoma, sans-serif; background: #f7f8fb; overflow-x: hidden; }
+        .dark body { background: #070B14; }
+        html { scroll-behavior: smooth; }
+        .navbar-glass {
+            background: rgba(255, 255, 255, 0.72);
+            backdrop-filter: blur(16px) saturate(1.2);
+            border-bottom: 1px solid rgba(226, 232, 240, 0.5);
+            transition: all 0.3s ease;
+        }
+        .dark .navbar-glass {
+            background: rgba(11, 18, 32, 0.78);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .navbar-scrolled { box-shadow: 0 10px 40px rgba(15, 23, 42, 0.12); }
+        .btn-glow {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            border-radius: 0.9rem;
+            background: linear-gradient(135deg, #E4C56A, #D4AF37 45%, #B8942A);
+            color: #0B1220; font-weight: 700; padding: 0.75rem 1.5rem;
+            box-shadow: 0 8px 24px rgba(212, 175, 55, 0.35);
+            transition: all 0.25s ease; position: relative; overflow: hidden;
+            text-decoration: none; border: none; cursor: pointer;
+        }
+        .btn-glow:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 16px 40px rgba(212, 175, 55, 0.45); }
+        .btn-phone {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            border-radius: 0.9rem; border: 1px solid rgba(16, 185, 129, 0.3);
+            background: rgba(16, 185, 129, 0.08); color: #059669;
+            font-weight: 700; padding: 0.55rem 1.2rem;
+            transition: all 0.25s ease; text-decoration: none; font-size: 0.9rem; direction: ltr;
+        }
+        .btn-phone:hover { background: rgba(16, 185, 129, 0.15); transform: translateY(-1px); }
+        .btn-trial {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            border-radius: 0.9rem; border: 1px solid rgba(16, 185, 129, 0.4);
+            background: rgba(16, 185, 129, 0.08); color: #059669;
+            font-weight: 700; padding: 0.65rem 1.2rem;
+            transition: all 0.25s ease; text-decoration: none; cursor: pointer;
+        }
+        .btn-trial:hover { background: rgba(16, 185, 129, 0.18); transform: translateY(-1px); }
+        .btn-demo {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            border-radius: 0.9rem; background: linear-gradient(135deg, #8B5CF6, #6D28D9);
+            color: #fff; font-weight: 700; padding: 0.65rem 1.2rem;
+            box-shadow: 0 8px 24px rgba(139, 92, 246, 0.35);
+            transition: all 0.25s ease; border: none; cursor: pointer; text-decoration: none;
+        }
+        .btn-demo:hover { transform: translateY(-2px); box-shadow: 0 16px 40px rgba(139, 92, 246, 0.45); }
+        .product-card {
+            border-radius: 1.25rem; padding: 1.5rem;
+            background: white; border: 1px solid rgba(226, 232, 240, 0.8);
+            box-shadow: 0 8px 30px rgba(15, 23, 42, 0.04);
+            transition: all 0.3s ease; cursor: pointer; position: relative; overflow: hidden;
+        }
+        .dark .product-card { background: rgba(18, 26, 43, 0.85); border-color: rgba(255, 255, 255, 0.08); }
+        .product-card:hover { transform: translateY(-4px); box-shadow: 0 20px 50px rgba(15, 23, 42, 0.1), 0 0 0 1px rgba(212, 175, 55, 0.15); }
+        .product-card .product-icon {
+            width: 56px; height: 56px; border-radius: 14px;
+            display: flex; align-items: center; justify-content: center; font-size: 1.5rem;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(212, 175, 55, 0.05));
+            color: #D4AF37; flex-shrink: 0; overflow: hidden;
+        }
+        .product-card .product-icon img { width: 100%; height: 100%; object-fit: cover; }
+        .product-card .product-badge-dev {
+            display: inline-block; font-size: 0.65rem; font-weight: 700;
+            color: #f59e0b; background: rgba(245, 158, 11, 0.12);
+            padding: 0.2rem 0.7rem; border-radius: 999px; border: 1px solid rgba(245, 158, 11, 0.2);
+        }
+        .product-card .product-badge-active {
+            display: inline-block; font-size: 0.65rem; font-weight: 700;
+            color: #059669; background: rgba(16, 185, 129, 0.12);
+            padding: 0.2rem 0.7rem; border-radius: 999px; border: 1px solid rgba(16, 185, 129, 0.2);
+        }
+        .badge {
+            display: inline-flex; align-items: center; gap: .2rem;
+            border-radius: 999px; padding: .1rem .5rem; font-size: .65rem; font-weight: 700;
+        }
+        .badge-green { background: rgba(16, 185, 129, .12); color: #059669; }
+        .badge-blue { background: rgba(59, 130, 246, .12); color: #2563eb; }
+        .badge-slate { background: rgba(100, 116, 139, .14); color: #475569; }
+        .dark .badge-green { color: #34d399; }
+        .dark .badge-blue { color: #60a5fa; }
+        .dark .badge-slate { color: #94a3b8; }
+        .theme-toggle { transition: transform 0.4s ease; }
+        .theme-toggle:hover { transform: rotate(60deg) scale(1.1); }
+        .mobile-menu { max-height: 0; overflow: hidden; transition: all 0.4s ease; opacity: 0; }
+        .mobile-menu.open { max-height: 500px; opacity: 1; }
+        .fade-section { opacity: 0; transform: translateY(30px); transition: all 0.7s ease; }
+        .fade-section.visible { opacity: 1; transform: translateY(0); }
+        .support-icon {
+            width: 48px; height: 48px; border-radius: 50%;
+            background: linear-gradient(135deg, #D4AF37, #B8942A);
+            display: flex; align-items: center; justify-content: center;
+            color: white; font-size: 1.4rem; cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 24px rgba(212, 175, 55, 0.3);
+            position: fixed; bottom: 24px; right: 24px; z-index: 150;
+        }
+        .support-icon:hover { transform: scale(1.1) rotate(-8deg); box-shadow: 0 12px 40px rgba(212, 175, 55, 0.5); }
+        .support-icon .pulse-ring {
+            position: absolute; inset: -6px; border-radius: 50%;
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            animation: ringPulse 2s ease-out infinite;
+        }
+        @keyframes ringPulse {
+            0% { transform: scale(1); opacity: 0.8; }
+            100% { transform: scale(1.4); opacity: 0; }
+        }
+        #supportModal {
+            display: none; position: fixed; inset: 0; z-index: 300;
+            background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(8px);
+            align-items: center; justify-content: center; padding: 1rem;
+        }
+        #supportModal.show { display: flex; }
+        #supportModal .support-box {
+            width: 100%; max-width: 600px; max-height: 85vh;
+            background: white; border-radius: 1.5rem;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.4);
+            overflow: hidden; display: flex; flex-direction: column;
+        }
+        .dark #supportModal .support-box { background: #0B1220; border: 1px solid rgba(255, 255, 255, 0.08); }
+        #supportModal .support-header {
+            padding: 1rem 1.5rem; border-bottom: 1px solid rgba(226, 232, 240, 0.6);
+            display: flex; justify-content: space-between; align-items: center; flex-shrink: 0;
+        }
+        .dark #supportModal .support-header { border-bottom-color: rgba(255, 255, 255, 0.08); }
+        #supportModal .support-body { padding: 1rem 1.5rem; overflow-y: auto; flex: 1; }
+        #supportModal .support-question {
+            padding: 0.6rem 1rem; border-radius: 0.9rem;
+            background: rgba(212, 175, 55, 0.08); border: 1px solid rgba(212, 175, 55, 0.15);
+            cursor: pointer; transition: all 0.25s ease; margin-bottom: 0.5rem;
+            font-weight: 600; font-size: 0.9rem;
+        }
+        #supportModal .support-question:hover { background: rgba(212, 175, 55, 0.15); transform: translateX(-4px); }
+        #supportModal .support-answer {
+            max-height: 0; overflow: hidden;
+            transition: max-height 0.5s ease, opacity 0.4s ease, padding 0.4s ease;
+            opacity: 0; padding: 0 1rem; color: #64748b; font-size: 0.9rem; line-height: 2;
+        }
+        .dark #supportModal .support-answer { color: #94a3b8; }
+        #supportModal .support-answer.open { max-height: 400px; opacity: 1; padding: 0.6rem 1rem 1rem 1rem; }
+        #supportModal .support-answer .typing-cursor-support {
+            display: inline-block; width: 2px; height: 1em;
+            background: #D4AF37; animation: blink 0.9s step-end infinite; vertical-align: text-bottom;
+        }
+        @keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0; } }
+        .icon-btn { background: none; border: none; cursor: pointer; font-size: 1.2rem; color: #64748b; padding: 0.3rem; }
+        .icon-btn:hover { color: #D4AF37; }
+        .social-link {
+            display: inline-flex; align-items: center; justify-content: center;
+            width: 36px; height: 36px; border-radius: 999px;
+            border: 1px solid rgba(212, 175, 55, 0.3); color: #D4AF37;
+            transition: all 0.3s ease; text-decoration: none;
+        }
+        .social-link:hover { background: #D4AF37; color: #0B1220; transform: translateY(-2px); border-color: #D4AF37; box-shadow: 0 8px 24px rgba(212, 175, 55, 0.3); }
+        .dark .social-link { border-color: rgba(255, 255, 255, 0.15); color: #94a3b8; }
+        .dark .social-link:hover { background: #D4AF37; color: #0B1220; border-color: #D4AF37; }
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-thumb { background: rgba(148, 163, 184, 0.4); border-radius: 999px; }
+        ::-webkit-scrollbar-thumb:hover { background: rgba(212, 175, 55, 0.4); }
+        .products-section {
+            position: relative; overflow: hidden;
+            background: linear-gradient(135deg, #0B1220, #1a1520, #0B1220);
+            background-size: 400% 400%; animation: gradientMove 15s ease infinite;
+        }
+        .dark .products-section {
+            background: linear-gradient(135deg, #070B14, #1a1520, #070B14);
+            background-size: 400% 400%; animation: gradientMove 15s ease infinite;
+        }
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .products-section::before {
+            content: ''; position: absolute; inset: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(212, 175, 55, 0.05), transparent 60%),
+                radial-gradient(circle at 80% 50%, rgba(139, 92, 246, 0.05), transparent 60%);
+            pointer-events: none; z-index: 0;
+        }
+        .products-section .products-particles {
+            position: absolute; inset: 0; overflow: hidden; z-index: 0; pointer-events: none;
+        }
+        .products-section .products-particles span {
+            position: absolute; border-radius: 50%; background: rgba(212, 175, 55, 0.15);
+            animation: floatParticle2 20s ease-in-out infinite alternate;
+            width: 80px; height: 80px;
+        }
+        .products-section .products-particles span:nth-child(1) { top: 10%; left: 5%; animation-delay: -2s; background: rgba(212, 175, 55, 0.1); width: 120px; height: 120px; }
+        .products-section .products-particles span:nth-child(2) { bottom: 15%; right: 5%; animation-delay: -5s; background: rgba(139, 92, 246, 0.08); width: 150px; height: 150px; }
+        .products-section .products-particles span:nth-child(3) { top: 40%; left: 40%; animation-delay: -8s; background: rgba(212, 175, 55, 0.06); width: 200px; height: 200px; }
+        .products-section .products-particles span:nth-child(4) { bottom: 30%; left: 20%; animation-delay: -11s; background: rgba(16, 185, 129, 0.05); width: 100px; height: 100px; }
+        .products-section .products-particles span:nth-child(5) { top: 20%; right: 30%; animation-delay: -14s; background: rgba(245, 158, 11, 0.06); width: 90px; height: 90px; }
+        @keyframes floatParticle2 {
+            0% { transform: translate3d(0, 0, 0) scale(1); opacity: 0.3; }
+            100% { transform: translate3d(60px, -80px, 0) scale(1.5); opacity: 0.6; }
+        }
+        .products-section .section-content { position: relative; z-index: 1; }
+        .product-card-glow {
+            border-radius: 1.25rem; padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.06); backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            transition: all 0.5s ease; cursor: pointer; position: relative; overflow: hidden;
+            color: #e2e8f0;
+        }
+        .dark .product-card-glow { background: rgba(255, 255, 255, 0.04); border-color: rgba(255, 255, 255, 0.06); }
+        .product-card-glow::before {
+            content: ''; position: absolute; inset: 0; border-radius: 1.25rem; padding: 2px;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.3), rgba(139, 92, 246, 0.3), rgba(16, 185, 129, 0.3));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor; mask-composite: exclude;
+            pointer-events: none; opacity: 0; transition: opacity 0.5s ease;
+        }
+        .product-card-glow:hover::before { opacity: 1; }
+        .product-card-glow:hover { transform: translateY(-8px) scale(1.02); box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 0 40px rgba(212, 175, 55, 0.1); border-color: rgba(212, 175, 55, 0.3); }
+        .product-card-glow .product-icon {
+            width: 56px; height: 56px; border-radius: 14px;
+            display: flex; align-items: center; justify-content: center; font-size: 1.5rem;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(212, 175, 55, 0.05));
+            color: #D4AF37; flex-shrink: 0; overflow: hidden; border: 1px solid rgba(212, 175, 55, 0.1);
+        }
+        .product-card-glow .product-icon img { width: 100%; height: 100%; object-fit: cover; }
+        .product-card-glow .product-badge-dev {
+            display: inline-block; font-size: 0.65rem; font-weight: 700;
+            color: #fbbf24; background: rgba(245, 158, 11, 0.15);
+            padding: 0.2rem 0.7rem; border-radius: 999px; border: 1px solid rgba(245, 158, 11, 0.2);
+        }
+        .product-card-glow .product-badge-active {
+            display: inline-block; font-size: 0.65rem; font-weight: 700;
+            color: #34d399; background: rgba(16, 185, 129, 0.15);
+            padding: 0.2rem 0.7rem; border-radius: 999px; border: 1px solid rgba(16, 185, 129, 0.2);
+        }
+        .product-card-glow h3 { color: #fff; }
+        .product-card-glow p { color: rgba(255, 255, 255, 0.7); }
+        .product-card-glow .btn-trial { border-color: rgba(16, 185, 129, 0.3); color: #34d399; background: rgba(16, 185, 129, 0.08); }
+        .product-card-glow .btn-trial:hover { background: rgba(16, 185, 129, 0.18); }
+        .product-card-glow .btn-demo { background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(139, 92, 246, 0.05)); color: #a78bfa; border: 1px solid rgba(139, 92, 246, 0.2); }
+        .product-card-glow .btn-demo:hover { background: rgba(139, 92, 246, 0.25); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(139, 92, 246, 0.2); }
+        .product-card-glow .badge-slate { color: rgba(255, 255, 255, 0.6); background: rgba(255, 255, 255, 0.06); }
+        .product-card-glow .badge-blue { color: #93c5fd; background: rgba(59, 130, 246, 0.15); }
+    </style>
 </head>
 <body>
-    <!-- ===== کپی کامل از Navbar index.html ===== -->
-    
-    <!-- ===== فقط محتوای محصولات ===== -->
-    <section id="products">
-        <!-- محتوای محصولات (همون چیزی که توی page-products هست) -->
+
+    <!-- ===== SUPPORT ICON ===== -->
+    <div class="support-icon" id="supportToggle" title="پشتیبانی آنلاین">
+        <span class="pulse-ring"></span>
+        <i class="fas fa-headset"></i>
+    </div>
+
+    <!-- ===== SUPPORT MODAL ===== -->
+    <div id="supportModal">
+        <div class="support-box">
+            <div class="support-header">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-gold-400 to-gold-700 text-ink-900 flex items-center justify-center text-lg">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <div>
+                        <div class="font-bold text-sm">پشتیبانی آنلاین</div>
+                        <div class="text-[10px] text-slate-500 dark:text-slate-400">پاسخ‌های خودکار</div>
+                    </div>
+                </div>
+                <button class="icon-btn" id="closeSupport"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="support-body" id="supportBody"></div>
+        </div>
+    </div>
+
+    <!-- ===== NAVBAR ===== -->
+    <nav id="navbar" class="fixed top-0 right-0 left-0 z-50 navbar-glass navbar-scrolled transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16 md:h-20">
+                <div class="flex items-center gap-2 shrink-0">
+                    <img src="images/logo-karensoft.png" alt="کارن سافت" class="h-9 w-9 rounded-xl object-cover" />
+                    <span class="font-bold text-sm md:text-lg text-ink-900 dark:text-white whitespace-nowrap">کارن سافت</span>
+                </div>
+                <div class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-600 dark:text-slate-300">
+                    <a href="index.html" class="hover:text-gold-500 transition">خانه</a>
+                    <a href="products.html" class="hover:text-gold-500 transition">محصولات</a>
+                    <a href="blog.html" class="hover:text-gold-500 transition">وبلاگ</a>
+                    <a href="contact.html" class="hover:text-emerald-500 transition" style="color:#059669;">تماس با ما</a>
+                </div>
+                <div class="flex items-center gap-2">
+                    <a href="tel:09152521166" class="btn-phone text-xs sm:text-sm px-2 sm:px-4 py-1.5 sm:py-2">
+                        <i class="fas fa-phone"></i> <span class="hidden sm:inline">۰۹۱۵۲۵۲۱۱۶۶</span>
+                    </a>
+                    <button id="themeToggle" class="theme-toggle w-10 h-10 rounded-xl border border-slate-200 dark:border-white/10 bg-white dark:bg-ink-800 text-slate-600 dark:text-slate-300 flex items-center justify-center hover:border-gold-400 transition">
+                        <i id="themeIcon" class="fas fa-moon"></i>
+                    </button>
+                    <button id="mobileMenuBtn" class="md:hidden w-10 h-10 rounded-xl border border-slate-200 dark:border-white/10 bg-white dark:bg-ink-800 text-slate-600 dark:text-slate-300 flex items-center justify-center">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="mobileMenu" class="mobile-menu md:hidden bg-white/95 dark:bg-ink-900/95 backdrop-blur-xl border-t border-slate-200 dark:border-white/10">
+            <div class="px-4 py-4 space-y-3 text-sm font-medium text-slate-600 dark:text-slate-300">
+                <a href="index.html" class="block hover:text-gold-500 transition">خانه</a>
+                <a href="products.html" class="block hover:text-gold-500 transition">محصولات</a>
+                <a href="blog.html" class="block hover:text-gold-500 transition">وبلاگ</a>
+                <a href="contact.html" class="block hover:text-emerald-500 transition" style="color:#059669;">تماس با ما</a>
+                <a href="tel:09152521166" class="block text-emerald-600 font-bold"><i class="fas fa-phone"></i> ۰۹۱۵۲۵۲۱۱۶۶</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ===== صفحه محصولات ===== -->
+    <section class="products-section">
+        <div class="products-particles">
+            <span></span><span></span><span></span><span></span><span></span>
+        </div>
+        <div class="section-content max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32">
+
+            <div class="text-center max-w-3xl mx-auto mb-12" data-aos="fade-up">
+                <span class="inline-block text-xs font-bold text-gold-400 bg-gold-500/10 rounded-full px-4 py-1.5 border border-gold-500/20">محصولات</span>
+                <h2 class="text-3xl md:text-4xl font-black mt-4 text-white">راه‌حل‌های نرم‌افزاری کارن سافت</h2>
+                <p class="mt-3 text-slate-300 leading-7">مجموعه‌ای از نرم‌افزارهای تخصصی برای مدیریت هوشمند کسب‌وکارهای مختلف</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                <!-- 1. مدیریت دفتر وکالت هوشمند -->
+                <div class="product-card-glow group" data-aos="fade-up" data-aos-delay="100">
+                    <div class="flex items-start gap-4">
+                        <div class="product-icon">
+                            <img src="images/app-icon-law-office.jpg" alt="برنامه دفتر وکالت هوشمند" />
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="font-bold text-base">مدیریت دفتر وکالت هوشمند</h3>
+                            <p class="text-sm mt-1">مدیریت پرونده‌ها، قراردادها، جلسات، مالی و مکاتبات حقوقی</p>
+                            <div class="flex flex-wrap gap-2 mt-3">
+                                <span class="product-badge-active"><i class="fas fa-check"></i> فعال</span>
+                                <span class="badge badge-blue"><i class="fas fa-flask"></i> نسخه تستی</span>
+                            </div>
+                            <div class="mt-4 flex flex-wrap gap-2">
+                                <a href="law-office.html" class="btn-trial text-sm px-4 py-2">جزئیات بیشتر</a>
+                                <a href="contact.html" class="btn-demo text-sm px-4 py-2"><i class="fas fa-play"></i> درخواست دمو</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. سایت خدمات دیجیتال کارن نت -->
+                <div class="product-card-glow group" data-aos="fade-up" data-aos-delay="200">
+                    <div class="flex items-start gap-4">
+                        <div class="product-icon">
+                            <img src="images/logo-karennet.png" alt="کارن نت" />
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="font-bold text-base">سایت خدمات دیجیتال کارن نت</h3>
+                            <p class="text-sm mt-1">پلتفرم جامع خدمات دیجیتال و طراحی وب</p>
+                            <div class="flex flex-wrap gap-2 mt-3">
+                                <span class="product-badge-dev"><i class="fas fa-code"></i> در حال توسعه</span>
+                                <span class="badge-slate badge">به زودی</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. مدیریت ساختمان هوشمند -->
+                <div class="product-card-glow group" data-aos="fade-up" data-aos-delay="300">
+                    <div class="flex items-start gap-4">
+                        <div class="product-icon"><i class="fas fa-building"></i></div>
+                        <div class="flex-1">
+                            <h3 class="font-bold text-base">مدیریت ساختمان هوشمند</h3>
+                            <p class="text-sm mt-1">مدیریت واحدها، شارژ، نگهداری و ارتباط با ساکنین</p>
+                            <div class="flex flex-wrap gap-2 mt-3">
+                                <span class="product-badge-dev"><i class="fas fa-code"></i> در حال توسعه</span>
+                                <span class="badge-slate badge">به زودی</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4. مدیریت املاک -->
+                <div class="product-card-glow group" data-aos="fade-up" data-aos-delay="100">
+                    <div class="flex items-start gap-4">
+                        <div class="product-icon"><i class="fas fa-home"></i></div>
+                        <div class="flex-1">
+                            <h3 class="font-bold text-base">مدیریت املاک</h3>
+                            <p class="text-sm mt-1">سیستم جامع مدیریت املاک، موجرین و مستاجرین</p>
+                            <div class="flex flex-wrap gap-2 mt-3">
+                                <span class="product-badge-dev"><i class="fas fa-code"></i> در حال توسعه</span>
+                                <span class="badge-slate badge">به زودی</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 5. مدیریت رستوران -->
+                <div class="product-card-glow group" data-aos="fade-up" data-aos-delay="200">
+                    <div class="flex items-start gap-4">
+                        <div class="product-icon"><i class="fas fa-utensils"></i></div>
+                        <div class="flex-1">
+                            <h3 class="font-bold text-base">مدیریت رستوران</h3>
+                            <p class="text-sm mt-1">مدیریت سفارشات، میزها، انبار و صورت‌حساب‌ها</p>
+                            <div class="flex flex-wrap gap-2 mt-3">
+                                <span class="product-badge-dev"><i class="fas fa-code"></i> در حال توسعه</span>
+                                <span class="badge-slate badge">به زودی</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 6. مدیریت لوازم یدکی -->
+                <div class="product-card-glow group" data-aos="fade-up" data-aos-delay="300">
+                    <div class="flex items-start gap-4">
+                        <div class="product-icon"><i class="fas fa-car"></i></div>
+                        <div class="flex-1">
+                            <h3 class="font-bold text-base">مدیریت لوازم یدکی</h3>
+                            <p class="text-sm mt-1">مدیریت انبار، فروش، فاکتور و مشتریان لوازم یدکی</p>
+                            <div class="flex flex-wrap gap-2 mt-3">
+                                <span class="product-badge-dev"><i class="fas fa-code"></i> در حال توسعه</span>
+                                <span class="badge-slate badge">به زودی</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 7. مدیریت تولید و کنترل کیفی چاپ روتوگراور -->
+                <div class="product-card-glow group" data-aos="fade-up" data-aos-delay="100">
+                    <div class="flex items-start gap-4">
+                        <div class="product-icon"><i class="fas fa-print"></i></div>
+                        <div class="flex-1">
+                            <h3 class="font-bold text-base">مدیریت تولید و کنترل کیفی چاپ روتوگراور</h3>
+                            <p class="text-sm mt-1">سیستم تخصصی مدیریت تولید و کنترل کیفیت در صنعت چاپ</p>
+                            <div class="flex flex-wrap gap-2 mt-3">
+                                <span class="product-badge-dev"><i class="fas fa-code"></i> در حال توسعه</span>
+                                <span class="badge-slate badge">به زودی</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 8. مدیریت آژانس -->
+                <div class="product-card-glow group" data-aos="fade-up" data-aos-delay="200">
+                    <div class="flex items-start gap-4">
+                        <div class="product-icon"><i class="fas fa-plane"></i></div>
+                        <div class="flex-1">
+                            <h3 class="font-bold text-base">مدیریت آژانس</h3>
+                            <p class="text-sm mt-1">مدیریت سفرها، رزرواسیون، مشتریان و هزینه‌ها</p>
+                            <div class="flex flex-wrap gap-2 mt-3">
+                                <span class="product-badge-dev"><i class="fas fa-code"></i> در حال توسعه</span>
+                                <span class="badge-slate badge">به زودی</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 9. مدیریت باشگاه ورزشی -->
+                <div class="product-card-glow group" data-aos="fade-up" data-aos-delay="300">
+                    <div class="flex items-start gap-4">
+                        <div class="product-icon"><i class="fas fa-dumbbell"></i></div>
+                        <div class="flex-1">
+                            <h3 class="font-bold text-base">مدیریت باشگاه ورزشی</h3>
+                            <p class="text-sm mt-1">مدیریت اعضا، اشتراک‌ها، کلاس‌ها و حضور و غیاب</p>
+                            <div class="flex flex-wrap gap-2 mt-3">
+                                <span class="product-badge-dev"><i class="fas fa-code"></i> در حال توسعه</span>
+                                <span class="badge-slate badge">به زودی</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 10. مدیریت فروشگاه -->
+                <div class="product-card-glow group" data-aos="fade-up" data-aos-delay="100">
+                    <div class="flex items-start gap-4">
+                        <div class="product-icon"><i class="fas fa-cash-register"></i></div>
+                        <div class="flex-1">
+                            <h3 class="font-bold text-base">مدیریت فروشگاه</h3>
+                            <p class="text-sm mt-1">سیستم جامع مدیریت فروش، انبار، مشتریان و گزارشات</p>
+                            <div class="flex flex-wrap gap-2 mt-3">
+                                <span class="product-badge-dev"><i class="fas fa-code"></i> در حال توسعه</span>
+                                <span class="badge-slate badge">به زودی</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <p class="text-center text-sm text-slate-400 mt-10">
+                تمامی محصولات کارن سافت با آخرین تکنولوژی‌های روز طراحی و پیاده‌سازی می‌شوند.<br />
+                برای دریافت مشاوره و اطلاعات بیشتر با ما تماس بگیرید.
+            </p>
+
+        </div>
     </section>
 
-    <!-- ===== کپی کامل از Footer index.html ===== -->
-</body>
-</html>
+    <!-- ===== FOOTER ===== -->
+    <footer class="border-t border-slate-200 dark:border-white/5 bg-white dark:bg-ink-900/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+                <div class="flex items-center gap-2">
+                    <img src="images/logo-karensoft.png" alt="کارن سافت" class="h-8 w-8 rounded-xl object-cover" />
+                    <span class="font-bold text-ink-900 dark:text-white">کارن سافت</span>
+                    <span class="text-xs text-slate-400 dark:text-slate-500 mr-2">راه‌حل‌های نرم‌افزاری هوشمند</span>
+                </div>
+                <div class="flex flex-wrap items-center gap-4 text-xs text-slate-500 dark:text-slate-400">
+                    <a href="index.html" class="hover:text-gold-500 transition">خانه</a>
+                    <a href="products.html" class="hover:text-gold-500 transition">محصولات</a>
+                    <a href="blog.html" class="hover:text-gold-500 transition">وبلاگ</a>
+                    <a href="contact.html" class="hover:text-gold-500 transition">تماس</a>
+                    <a href="tel:09152521166" class="hover:text-emerald-500 transition font-bold text-emerald-600" dir="ltr"><i class="fas fa-phone"></i> ۰۹۱۵۲۵۲۱۱۶۶</a>
+                    <a href="mailto:info@karen-soft.ir" class="hover:text-gold-500 transition"><i class="fas fa-envelope"></i> info@karen-soft.ir</a>
+                    <span class="text-slate-300 dark:text-slate-600">|</span>
+                    <span>تولید شده توسط <span class="text-ink-900 dark:text-white font-semibold">کارن سافت</span></span>
+                </div>
+                <div class="text-[10px] text-slate-400 dark:text-slate-500"><i class="fas fa-copyright"></i> ۱۴۰۴ تمامی حقوق محفوظ است</div>
+            </div>
+            <div class="flex flex-wrap items-center justify-center gap-3 mt-4 pt-4 border-t border-slate-200 dark:border-white/5">
+                <span class="text-xs text-slate-500 dark:text-slate-400">ما را دنبال کنید:</span>
+                <a href="https://t.me/KarenSoftOfficial" target="_blank" class="social-link" title="کانال تلگرام"><i class="fab fa-telegram-plane"></i></a>
+                <a href="https://www.instagram.com/karen_soft.ir" target="_blank" class="social-link" title="اینستاگرام"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.youtube.com/@KarenSoftOfficial" target="_blank" class="social-link" title="یوتیوب"><i class="fab fa-youtube"></i></a>
+                <a href="https://www.linkedin.com/company/karensoft" target="_blank" class="social-link" title="لینکدین"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://twitter.com/KarenSoft_ir" target="_blank" class="social-link" title="توییتر"><i class="fab fa-x-twitter"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // ===== اسکریپت‌های مشابه index.html =====
+        document.addEventListener('DOMContentLoaded', function() {
+            AOS.init({ duration: 600, once: true, offset: 50 });
+
+            var themeToggle = document.getElementById('themeToggle');
+            var themeIcon = document.getElementById('themeIcon');
+            var root = document.documentElement;
+            var saved = localStorage.getItem('theme');
+            if (saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                root.classList.add('dark');
+                themeIcon.className = 'fas fa-sun';
+            } else {
+                themeIcon.className = 'fas fa-moon';
+            }
+            themeToggle.addEventListener('click', function() {
+                var dark = root.classList.toggle('dark');
+                localStorage.setItem('theme', dark ? 'dark' : 'light');
+                themeIcon.className = dark ? 'fas fa-sun' : 'fas fa-moon';
+                AOS.refresh();
+            });
+
+            var mobileBtn = document.getElementById('mobileMenuBtn');
+            var mobileMenu = document.getElementById('mobileMenu');
+            mobileBtn.addEventListener('click', function() {
+                mobileMenu.classList.toggle('open');
+                this.innerHTML = mobileMenu.classList.contains('open') ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+            });
+
+            var fadeObs = new IntersectionObserver(function(entries) {
+                entries.forEach(function(e) { if (e.isIntersecting) e.target.classList.add('visible'); });
+            }, { threshold: 0.1 });
+            document.querySelectorAll('.fade-section').forEach(function(el) { fadeObs.observe(el); });
+
+            var navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', function() {
+                navbar.classList
