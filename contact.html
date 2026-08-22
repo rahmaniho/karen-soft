@@ -3,268 +3,438 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>تماس با ما | کارن سافت</title>
-    <meta name="description" content="با کارن سافت تماس بگیرید. مشاوره رایگان، پشتیبانی ۲۴ ساعته و اطلاعات تماس." />
+    <title>تماس با کارن سافت · مشاوره رایگان و پشتیبانی ۲۴ ساعته</title>
+    <meta name="description" content="با کارن سافت تماس بگیرید. مشاوره رایگان، پشتیبانی ۲۴ ساعته، درخواست نسخه تستی و خرید نرم‌افزار مدیریت هوشمند دفتر وکالت." />
+    <meta name="keywords" content="تماس با کارن سافت, مشاوره رایگان, پشتیبانی ۲۴ ساعته, درخواست نسخه تستی, خرید نرم‌افزار وکالت, ارتباط با کارن سافت" />
+    <link rel="canonical" href="https://karen-soft.ir/contact.html" />
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
     <style>
+        /* ===== استایل‌های پایه ===== */
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Vazirmatn', Tahoma, sans-serif; background: #f7f8fb; }
+        body { font-family: 'Vazirmatn', Tahoma, sans-serif; background: #f7f8fb; overflow-x: hidden; }
         .dark body { background: #070B14; }
-        .navbar-glass {
-            background: rgba(255, 255, 255, 0.72);
-            backdrop-filter: blur(16px);
-            border-bottom: 1px solid rgba(226, 232, 240, 0.5);
-        }
-        .dark .navbar-glass {
-            background: rgba(11, 18, 32, 0.78);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-        }
-        .btn-glow {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            border-radius: 0.9rem;
-            background: linear-gradient(135deg, #E4C56A, #D4AF37 45%, #B8942A);
-            color: #0B1220;
-            font-weight: 700;
-            padding: 0.75rem 1.5rem;
-            box-shadow: 0 8px 24px rgba(212, 175, 55, 0.35);
-            transition: transform 0.25s ease, box-shadow 0.25s ease;
-            text-decoration: none;
-            border: none;
-            cursor: pointer;
-        }
-        .btn-glow:hover { transform: translateY(-2px); box-shadow: 0 16px 40px rgba(212, 175, 55, 0.45); }
-        .contact-input {
-            width: 100%;
-            border-radius: 0.9rem;
-            border: 1px solid rgb(226 232 240);
-            background: white;
-            padding: 0.75rem 1rem;
-            font-size: 0.9rem;
-            outline: none;
-            transition: border-color 0.25s ease, box-shadow 0.25s ease;
-            font-family: inherit;
-        }
-        .dark .contact-input {
-            background: rgba(18, 26, 43, 0.85);
-            border-color: rgba(255, 255, 255, 0.12);
-            color: #f8fafc;
-        }
-        .contact-input:focus {
-            border-color: rgba(212, 175, 55, 0.6);
-            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.15);
-        }
-        .card {
-            border-radius: 1.25rem;
-            background: white;
-            border: 1px solid rgba(226, 232, 240, 0.8);
-            box-shadow: 0 8px 30px rgba(15, 23, 42, 0.04);
-            padding: 1.5rem;
-        }
-        .dark .card {
-            background: rgba(18, 26, 43, 0.85);
-            border-color: rgba(255, 255, 255, 0.08);
-        }
+        .navbar-glass { background: rgba(255,255,255,0.72); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(226,232,240,0.5); transition: all 0.3s; }
+        .dark .navbar-glass { background: rgba(11,18,32,0.78); border-bottom: 1px solid rgba(255,255,255,0.08); }
+        .navbar-scrolled { box-shadow: 0 10px 40px rgba(15,23,42,0.12); }
+        .btn-glow { display: inline-flex; align-items: center; gap: 0.5rem; border-radius: 0.9rem; background: linear-gradient(135deg,#E4C56A,#D4AF37 45%,#B8942A); color: #0B1220; font-weight: 700; padding: 0.75rem 1.5rem; box-shadow: 0 8px 24px rgba(212,175,55,0.35); transition: all 0.25s; text-decoration: none; border: none; cursor: pointer; }
+        .btn-glow:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 16px 40px rgba(212,175,55,0.45); }
+        .btn-phone { display: inline-flex; align-items: center; gap: 0.5rem; border-radius: 0.9rem; border: 1px solid rgba(16,185,129,0.3); background: rgba(16,185,129,0.08); color: #059669; font-weight: 700; padding: 0.55rem 1.2rem; transition: all 0.25s; text-decoration: none; font-size: 0.9rem; direction: ltr; }
+        .btn-phone:hover { background: rgba(16,185,129,0.15); transform: translateY(-1px); }
+        .theme-toggle { transition: transform 0.4s; }
+        .theme-toggle:hover { transform: rotate(60deg) scale(1.1); }
+        .mobile-menu { max-height: 0; overflow: hidden; transition: all 0.4s; opacity: 0; }
+        .mobile-menu.open { max-height: 500px; opacity: 1; }
+        .contact-input { width: 100%; border-radius: 0.9rem; border: 1px solid rgb(226 232 240); background: white; padding: 0.75rem 1rem; font-size: 0.9rem; outline: none; transition: all 0.25s; font-family: inherit; }
+        .dark .contact-input { background: rgba(18,26,43,0.85); border-color: rgba(255,255,255,0.12); color: #f8fafc; }
+        .contact-input:focus { border-color: rgba(212,175,55,0.6); box-shadow: 0 0 0 3px rgba(212,175,55,0.15); }
+        .contact-info-card { border-radius: 1.25rem; padding: 1.25rem 1.5rem; background: white; border: 1px solid rgba(226,232,240,0.8); box-shadow: 0 8px 30px rgba(15,23,42,0.04); transition: all 0.4s; cursor: default; display: flex; align-items: center; gap: 1rem; }
+        .dark .contact-info-card { background: rgba(18,26,43,0.85); border-color: rgba(255,255,255,0.08); }
+        .contact-info-card:hover { transform: translateY(-4px) scale(1.01); box-shadow: 0 20px 50px rgba(15,23,42,0.1), 0 0 0 1px rgba(212,175,55,0.2); }
+        .contact-info-card .ci-icon { width: 54px; height: 54px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; flex-shrink: 0; background: linear-gradient(135deg,rgba(212,175,55,0.15),rgba(212,175,55,0.05)); color: #D4AF37; transition: transform 0.3s; }
+        .contact-info-card:hover .ci-icon { transform: scale(1.08) rotate(-3deg); }
+        .contact-info-card .ci-icon.green { background: linear-gradient(135deg,rgba(16,185,129,0.15),rgba(16,185,129,0.05)); color: #059669; }
+        .contact-info-card .ci-icon.blue { background: linear-gradient(135deg,rgba(59,130,246,0.15),rgba(59,130,246,0.05)); color: #2563eb; }
+        .contact-info-card .ci-icon.purple { background: linear-gradient(135deg,rgba(139,92,246,0.15),rgba(139,92,246,0.05)); color: #8B5CF6; }
+        .contact-info-card .ci-icon.teal { background: linear-gradient(135deg,rgba(20,184,166,0.15),rgba(20,184,166,0.05)); color: #14b8a6; }
+        .fade-section { opacity: 0; transform: translateY(30px); transition: all 0.7s; }
+        .fade-section.visible { opacity: 1; transform: translateY(0); }
+        .support-icon { width:48px; height:48px; border-radius:50%; background:linear-gradient(135deg,#D4AF37,#B8942A); display:flex; align-items:center; justify-content:center; color:white; font-size:1.4rem; cursor:pointer; transition:all 0.3s; box-shadow:0 8px 24px rgba(212,175,55,0.3); position:fixed; bottom:24px; right:24px; z-index:150; }
+        .support-icon:hover { transform:scale(1.1) rotate(-8deg); box-shadow:0 12px 40px rgba(212,175,55,0.5); }
+        .support-icon .pulse-ring { position:absolute; inset:-6px; border-radius:50%; border:2px solid rgba(212,175,55,0.3); animation:ringPulse 2s ease-out infinite; }
+        @keyframes ringPulse { 0% { transform:scale(1); opacity:0.8; } 100% { transform:scale(1.4); opacity:0; } }
+        #supportModal { display:none; position:fixed; inset:0; z-index:300; background:rgba(0,0,0,0.6); backdrop-filter:blur(8px); align-items:center; justify-content:center; padding:1rem; }
+        #supportModal.show { display:flex; }
+        #supportModal .support-box { width:100%; max-width:600px; max-height:85vh; background:white; border-radius:1.5rem; box-shadow:0 30px 80px rgba(0,0,0,0.4); overflow:hidden; display:flex; flex-direction:column; }
+        .dark #supportModal .support-box { background:#0B1220; border:1px solid rgba(255,255,255,0.08); }
+        #supportModal .support-header { padding:1rem 1.5rem; border-bottom:1px solid rgba(226,232,240,0.6); display:flex; justify-content:space-between; align-items:center; flex-shrink:0; }
+        .dark #supportModal .support-header { border-bottom-color:rgba(255,255,255,0.08); }
+        #supportModal .support-body { padding:1rem 1.5rem; overflow-y:auto; flex:1; }
+        #supportModal .support-question { padding:0.6rem 1rem; border-radius:0.9rem; background:rgba(212,175,55,0.08); border:1px solid rgba(212,175,55,0.15); cursor:pointer; transition:all 0.25s; margin-bottom:0.5rem; font-weight:600; font-size:0.9rem; }
+        #supportModal .support-question:hover { background:rgba(212,175,55,0.15); transform:translateX(-4px); }
+        #supportModal .support-answer { max-height:0; overflow:hidden; transition:max-height 0.5s, opacity 0.4s, padding 0.4s; opacity:0; padding:0 1rem; color:#64748b; font-size:0.9rem; line-height:2; }
+        .dark #supportModal .support-answer { color:#94a3b8; }
+        #supportModal .support-answer.open { max-height:400px; opacity:1; padding:0.6rem 1rem 1rem 1rem; }
+        #supportModal .support-answer .typing-cursor-support { display:inline-block; width:2px; height:1em; background:#D4AF37; animation:blink 0.9s step-end infinite; vertical-align:text-bottom; }
+        @keyframes blink { 0%,100% { opacity:1; } 50% { opacity:0; } }
+        .icon-btn { background:none; border:none; cursor:pointer; font-size:1.2rem; color:#64748b; padding:0.3rem; }
+        .icon-btn:hover { color:#D4AF37; }
+        .social-link { display:inline-flex; align-items:center; justify-content:center; width:36px; height:36px; border-radius:999px; border:1px solid rgba(212,175,55,0.3); color:#D4AF37; transition:all 0.3s; text-decoration:none; }
+        .social-link:hover { background:#D4AF37; color:#0B1220; transform:translateY(-2px); border-color:#D4AF37; box-shadow:0 8px 24px rgba(212,175,55,0.3); }
+        .dark .social-link { border-color:rgba(255,255,255,0.15); color:#94a3b8; }
+        .dark .social-link:hover { background:#D4AF37; color:#0B1220; border-color:#D4AF37; }
+        ::-webkit-scrollbar { width:8px; height:8px; }
+        ::-webkit-scrollbar-thumb { background:rgba(148,163,184,0.4); border-radius:999px; }
+        ::-webkit-scrollbar-thumb:hover { background:rgba(212,175,55,0.4); }
+        .contact-section { background: linear-gradient(135deg, #f7f8fb, #eef2f7); }
+        .dark .contact-section { background: linear-gradient(135deg, #070B14, #0B1220); }
     </style>
 </head>
 <body>
 
-    <!-- نوار ناوبری -->
-    <nav class="navbar-glass fixed top-0 right-0 left-0 z-50">
+    <!-- ===== SUPPORT ICON & MODAL ===== -->
+    <div class="support-icon" id="supportToggle" title="پشتیبانی آنلاین">
+        <span class="pulse-ring"></span>
+        <i class="fas fa-headset"></i>
+    </div>
+    <div id="supportModal">
+        <div class="support-box">
+            <div class="support-header">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-gold-400 to-gold-700 text-ink-900 flex items-center justify-center text-lg">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <div>
+                        <div class="font-bold text-sm">پشتیبانی آنلاین</div>
+                        <div class="text-[10px] text-slate-500 dark:text-slate-400">پاسخ‌های خودکار</div>
+                    </div>
+                </div>
+                <button class="icon-btn" id="closeSupport"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="support-body" id="supportBody">
+                <!-- سوالات توسط JS ساخته می‌شوند -->
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== NAVBAR ===== -->
+    <nav id="navbar" class="fixed top-0 right-0 left-0 z-50 navbar-glass navbar-scrolled transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16 md:h-20">
-                <div class="flex items-center gap-2">
+                <div class="flex items-center gap-2 shrink-0">
                     <img src="images/logo-karensoft.png" alt="کارن سافت" class="h-9 w-9 rounded-xl object-cover" />
-                    <span class="font-bold text-sm md:text-lg text-ink-900 dark:text-white">کارن سافت</span>
+                    <span class="font-bold text-sm md:text-lg text-ink-900 dark:text-white whitespace-nowrap">کارن سافت</span>
                 </div>
                 <div class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-600 dark:text-slate-300">
-                    <a href="/" class="hover:text-gold-500 transition">خانه</a>
-                    <a href="/#products" class="hover:text-gold-500 transition">محصولات</a>
-                    <a href="/blog/" class="hover:text-gold-500 transition">وبلاگ</a>
-                    <a href="/contact" class="text-emerald-600 dark:text-emerald-400 font-bold">تماس با ما</a>
+                    <a href="index.html" class="hover:text-gold-500 transition">خانه</a>
+                    <a href="products.html" class="hover:text-gold-500 transition">محصولات</a>
+                    <a href="blog.html" class="hover:text-gold-500 transition">وبلاگ</a>
+                    <a href="contact.html" class="hover:text-emerald-500 transition" style="color:#059669;">تماس با ما</a>
                 </div>
                 <div class="flex items-center gap-2">
-                    <a href="tel:09152521166" class="btn-phone text-xs sm:text-sm px-2 sm:px-4 py-1.5 sm:py-2 border border-emerald-500/30 bg-emerald-500/10 text-emerald-600 rounded-xl flex items-center gap-1 hover:bg-emerald-500/20 transition">
+                    <a href="tel:09152521166" class="btn-phone text-xs sm:text-sm px-2 sm:px-4 py-1.5 sm:py-2">
                         <i class="fas fa-phone"></i> <span class="hidden sm:inline">۰۹۱۵۲۵۲۱۱۶۶</span>
                     </a>
+                    <button id="themeToggle" class="theme-toggle w-10 h-10 rounded-xl border border-slate-200 dark:border-white/10 bg-white dark:bg-ink-800 text-slate-600 dark:text-slate-300 flex items-center justify-center hover:border-gold-400 transition">
+                        <i id="themeIcon" class="fas fa-moon"></i>
+                    </button>
                     <button id="mobileMenuBtn" class="md:hidden w-10 h-10 rounded-xl border border-slate-200 dark:border-white/10 bg-white dark:bg-ink-800 text-slate-600 dark:text-slate-300 flex items-center justify-center">
                         <i class="fas fa-bars"></i>
                     </button>
                 </div>
             </div>
         </div>
+        <div id="mobileMenu" class="mobile-menu md:hidden bg-white/95 dark:bg-ink-900/95 backdrop-blur-xl border-t border-slate-200 dark:border-white/10">
+            <div class="px-4 py-4 space-y-3 text-sm font-medium text-slate-600 dark:text-slate-300">
+                <a href="index.html" class="block hover:text-gold-500 transition">خانه</a>
+                <a href="products.html" class="block hover:text-gold-500 transition">محصولات</a>
+                <a href="blog.html" class="block hover:text-gold-500 transition">وبلاگ</a>
+                <a href="contact.html" class="block hover:text-emerald-500 transition" style="color:#059669;">تماس با ما</a>
+                <a href="tel:09152521166" class="block text-emerald-600 font-bold"><i class="fas fa-phone"></i> ۰۹۱۵۲۵۲۱۱۶۶</a>
+            </div>
+        </div>
     </nav>
 
-    <!-- فضای خالی برای نوار -->
-    <div class="h-20"></div>
-
-    <!-- صفحه تماس -->
-    <section class="py-16 md:py-24">
+    <!-- ===== صفحه تماس ===== -->
+    <section class="contact-section py-16 md:py-24 pt-24 md:pt-32">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
-            <div class="text-center max-w-2xl mx-auto mb-12">
+            <div class="text-center max-w-2xl mx-auto mb-12 fade-section" data-aos="fade-up">
                 <span class="inline-block text-xs font-bold text-gold-600 bg-gold-500/10 rounded-full px-4 py-1.5 border border-gold-500/20">تماس با ما</span>
-                <h1 class="text-3xl md:text-4xl font-black mt-4 text-ink-900 dark:text-white">سوالی دارید؟ با ما در میان بگذارید</h1>
-                <p class="mt-3 text-slate-600 dark:text-slate-400 leading-7">ما در کارن سافت آماده پاسخگویی به سوالات شما هستیم. از مشاوره رایگان تا پشتیبانی فنی.</p>
+                <h2 class="text-3xl md:text-4xl font-black mt-4 text-ink-900 dark:text-white">در ارتباط باشید</h2>
+                <p class="mt-3 text-slate-600 dark:text-slate-400 leading-7">ما در کارن سافت همواره آماده شنیدن نظرات، سوالات و درخواست‌های شما هستیم.</p>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
-
-                <!-- فرم تماس -->
-                <div class="card">
-                    <form id="contactForm" class="space-y-4">
-                        <div>
-                            <label class="text-xs font-bold text-slate-600 dark:text-slate-300 block mb-1.5">نام و نام خانوادگی</label>
-                            <input type="text" id="name" name="name" class="contact-input" placeholder="نام خود را وارد کنید" required />
-                        </div>
-                        <div>
-                            <label class="text-xs font-bold text-slate-600 dark:text-slate-300 block mb-1.5">ایمیل</label>
-                            <input type="email" id="email" name="email" class="contact-input" placeholder="example@email.com" required />
-                        </div>
-                        <div>
-                            <label class="text-xs font-bold text-slate-600 dark:text-slate-300 block mb-1.5">شماره تماس</label>
-                            <input type="tel" id="phone" name="phone" class="contact-input" placeholder="۰۹۱۲ XXX XXXX" />
-                        </div>
-                        <div>
-                            <label class="text-xs font-bold text-slate-600 dark:text-slate-300 block mb-1.5">موضوع</label>
-                            <select id="subject" name="subject" class="contact-input">
-                                <option value="درخواست مشاوره و خرید">درخواست مشاوره و خرید</option>
-                                <option value="نظرات و پیشنهادات">نظرات و پیشنهادات</option>
-                                <option value="درخواست پشتیبانی">درخواست پشتیبانی</option>
-                                <option value="درخواست نسخه تستی">درخواست نسخه تستی</option>
-                                <option value="سایر">سایر</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label class="text-xs font-bold text-slate-600 dark:text-slate-300 block mb-1.5">پیام شما</label>
-                            <textarea rows="4" id="message" name="message" class="contact-input" placeholder="سوال یا درخواست خود را بنویسید..."></textarea>
-                        </div>
-                        <button type="submit" class="btn-glow w-full justify-center py-3"><i class="fas fa-paper-plane"></i> ارسال پیام</button>
-                        <div id="formStatus" class="text-sm text-center font-bold mt-2"></div>
-                    </form>
+            <!-- ===== کارت‌های اطلاعات تماس ===== -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                <!-- تلفن -->
+                <div class="contact-info-card fade-section delay-1" data-aos="fade-up" data-aos-delay="100">
+                    <div class="ci-icon green"><i class="fas fa-phone-volume"></i></div>
+                    <div>
+                        <div class="text-sm font-bold text-ink-900 dark:text-white">تماس تلفنی</div>
+                        <a href="tel:09152521166" class="text-lg font-black text-emerald-600 dark:text-emerald-400 hover:underline" dir="ltr">۰۹۱۵۲۵۲۱۱۶۶</a>
+                        <div class="text-xs text-slate-400 mt-0.5">شنبه تا پنجشنبه ۹ الی ۲۰</div>
+                    </div>
                 </div>
 
-                <!-- اطلاعات تماس -->
-                <div class="space-y-6">
-
-                    <div class="card">
-                        <div class="flex items-start gap-4">
-                            <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-500 flex items-center justify-center flex-shrink-0">
-                                <i class="fas fa-phone-volume text-xl"></i>
-                            </div>
-                            <div>
-                                <div class="text-sm font-bold text-ink-900 dark:text-white">تماس مستقیم</div>
-                                <a href="tel:09152521166" class="text-lg font-black text-emerald-600 dark:text-emerald-400 hover:underline" dir="ltr">۰۹۱۵۲۵۲۱۱۶۶</a>
-                                <div class="text-xs text-slate-400">شنبه تا پنجشنبه ۹ الی ۲۰</div>
-                            </div>
-                        </div>
+                <!-- ایمیل -->
+                <div class="contact-info-card fade-section delay-2" data-aos="fade-up" data-aos-delay="200">
+                    <div class="ci-icon"><i class="fas fa-envelope"></i></div>
+                    <div>
+                        <div class="text-sm font-bold text-ink-900 dark:text-white">ایمیل</div>
+                        <a href="mailto:info@karen-soft.ir" class="text-sm font-semibold text-slate-700 dark:text-slate-300 hover:text-gold-500 transition">info@karen-soft.ir</a>
+                        <div class="text-xs text-slate-400 mt-0.5">پاسخگویی ۲۴ ساعته</div>
                     </div>
+                </div>
 
-                    <div class="card">
-                        <div class="flex items-start gap-4">
-                            <div class="w-12 h-12 rounded-xl bg-gold-500/10 text-gold-500 flex items-center justify-center flex-shrink-0">
-                                <i class="fas fa-envelope text-xl"></i>
-                            </div>
-                            <div>
-                                <div class="text-sm font-bold text-ink-900 dark:text-white">ایمیل</div>
-                                <a href="mailto:info@karen-soft.ir" class="text-sm text-slate-500 dark:text-slate-400 hover:text-gold-500 transition">info@karen-soft.ir</a>
-                            </div>
-                        </div>
+                <!-- آدرس -->
+                <div class="contact-info-card fade-section delay-3" data-aos="fade-up" data-aos-delay="300">
+                    <div class="ci-icon blue"><i class="fas fa-map-marker-alt"></i></div>
+                    <div>
+                        <div class="text-sm font-bold text-ink-900 dark:text-white">آدرس دفتر</div>
+                        <div class="text-sm text-slate-600 dark:text-slate-400">قزوین، زیباشهر، کارن سافت</div>
+                        <div class="text-xs text-slate-400 mt-0.5">ساعت کاری ۹ تا ۱۸</div>
                     </div>
+                </div>
+            </div>
 
-                    <div class="card">
-                        <div class="flex items-start gap-4">
-                            <div class="w-12 h-12 rounded-xl bg-blue-500/10 text-blue-500 flex items-center justify-center flex-shrink-0">
-                                <i class="fas fa-map-marker-alt text-xl"></i>
-                            </div>
-                            <div>
-                                <div class="text-sm font-bold text-ink-900 dark:text-white">آدرس</div>
-                                <div class="text-sm text-slate-500 dark:text-slate-400">قزوین، زیباشهر کارن سافت</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card">
-                        <div class="flex items-start gap-4">
-                            <div class="w-12 h-12 rounded-xl bg-teal-500/10 text-teal-500 flex items-center justify-center flex-shrink-0">
-                                <i class="fas fa-clock text-xl"></i>
-                            </div>
-                            <div>
-                                <div class="text-sm font-bold text-ink-900 dark:text-white">ساعات کاری</div>
-                                <div class="text-sm text-slate-500 dark:text-slate-400">شنبه تا چهارشنبه ۹ تا ۱۸</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card">
-                        <div class="flex items-start gap-4">
-                            <div class="w-12 h-12 rounded-xl bg-purple-500/10 text-purple-500 flex items-center justify-center flex-shrink-0">
-                                <i class="fas fa-headset text-xl"></i>
-                            </div>
-                            <div>
-                                <div class="text-sm font-bold text-ink-900 dark:text-white">پشتیبانی آنلاین</div>
-                                <div class="text-sm text-slate-500 dark:text-slate-400">پاسخگویی سریع در پیام‌رسان‌ها</div>
-                                <div class="flex gap-2 mt-2">
-                                    <a href="https://t.me/KarenSoftOfficial" target="_blank" class="text-blue-400 hover:text-blue-300"><i class="fab fa-telegram text-xl"></i></a>
-                                    <a href="https://wa.me/989152521166" target="_blank" class="text-green-400 hover:text-green-300"><i class="fab fa-whatsapp text-xl"></i></a>
+            <!-- ===== فرم تماس و اطلاعات جانبی ===== -->
+            <div class="grid grid-cols-1 lg:grid-cols-5 gap-8">
+                <!-- فرم -->
+                <div class="lg:col-span-3 fade-section delay-2" data-aos="fade-up" data-aos-delay="400">
+                    <div class="rounded-2xl bg-white dark:bg-ink-800/80 border border-slate-200 dark:border-white/10 p-6 md:p-8 shadow-xl">
+                        <h3 class="text-xl font-bold text-ink-900 dark:text-white mb-6 flex items-center gap-2">
+                            <i class="fas fa-paper-plane text-gold-500"></i>
+                            ارسال پیام
+                        </h3>
+                        <form id="contactForm" class="space-y-5">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="text-xs font-bold text-slate-600 dark:text-slate-300 block mb-1.5">نام و نام خانوادگی</label>
+                                    <input type="text" id="name" name="name" class="contact-input" placeholder="نام خود را وارد کنید" required />
+                                </div>
+                                <div>
+                                    <label class="text-xs font-bold text-slate-600 dark:text-slate-300 block mb-1.5">ایمیل</label>
+                                    <input type="email" id="email" name="email" class="contact-input" placeholder="example@email.com" required />
                                 </div>
                             </div>
+                            <div>
+                                <label class="text-xs font-bold text-slate-600 dark:text-slate-300 block mb-1.5">شماره تماس</label>
+                                <input type="tel" id="phone" name="phone" class="contact-input" placeholder="۰۹۱۲ XXX XXXX" />
+                            </div>
+                            <div>
+                                <label class="text-xs font-bold text-slate-600 dark:text-slate-300 block mb-1.5">موضوع</label>
+                                <select id="subject" name="subject" class="contact-input">
+                                    <option value="درخواست مشاوره و خرید">درخواست مشاوره و خرید</option>
+                                    <option value="نظرات و پیشنهادات">نظرات و پیشنهادات</option>
+                                    <option value="درخواست پشتیبانی">درخواست پشتیبانی</option>
+                                    <option value="درخواست نسخه تستی">درخواست نسخه تستی</option>
+                                    <option value="سایر">سایر</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="text-xs font-bold text-slate-600 dark:text-slate-300 block mb-1.5">پیام شما</label>
+                                <textarea rows="4" id="message" name="message" class="contact-input" placeholder="سوال یا درخواست خود را بنویسید..."></textarea>
+                            </div>
+                            <button type="submit" class="btn-glow w-full justify-center py-3 text-base">
+                                <i class="fas fa-paper-plane"></i> ارسال پیام
+                            </button>
+                            <div id="formStatus" class="text-sm text-center font-bold mt-2"></div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- اطلاعات جانبی -->
+                <div class="lg:col-span-2 fade-section delay-3" data-aos="fade-up" data-aos-delay="500">
+                    <div class="rounded-2xl bg-white dark:bg-ink-800/80 border border-slate-200 dark:border-white/10 p-6 shadow-xl mb-6">
+                        <h4 class="font-bold text-ink-900 dark:text-white flex items-center gap-2 mb-4">
+                            <i class="fas fa-clock text-gold-500"></i>
+                            ساعات کاری
+                        </h4>
+                        <div class="space-y-2 text-sm text-slate-600 dark:text-slate-400">
+                            <div class="flex justify-between border-b border-slate-100 dark:border-white/5 pb-2">
+                                <span>شنبه تا چهارشنبه</span>
+                                <span class="font-semibold">۹:۰۰ - ۱۸:۰۰</span>
+                            </div>
+                            <div class="flex justify-between border-b border-slate-100 dark:border-white/5 pb-2">
+                                <span>پنجشنبه</span>
+                                <span class="font-semibold">۹:۰۰ - ۱۳:۰۰</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>جمعه</span>
+                                <span class="text-slate-400">تعطیل</span>
+                            </div>
                         </div>
                     </div>
 
+                    <div class="rounded-2xl bg-gradient-to-br from-gold-50 to-amber-50 dark:from-ink-800/80 dark:to-amber-900/20 border border-gold-200 dark:border-gold-500/20 p-6 shadow-xl">
+                        <h4 class="font-bold text-ink-900 dark:text-white flex items-center gap-2 mb-3">
+                            <i class="fas fa-headset text-gold-500"></i>
+                            پشتیبانی ویژه
+                        </h4>
+                        <p class="text-sm text-slate-600 dark:text-slate-400 leading-7">
+                            تیم پشتیبانی کارن سافت آماده پاسخگویی به سوالات شما در زمینه
+                            <span class="font-bold text-gold-600 dark:text-gold-400">نصب، راه‌اندازی و سفارشی‌سازی</span>
+                            نرم‌افزار است.
+                        </p>
+                        <div class="mt-4 flex flex-wrap gap-3">
+                            <a href="tel:09152521166" class="inline-flex items-center gap-2 text-sm font-bold text-emerald-600 dark:text-emerald-400 hover:underline">
+                                <i class="fas fa-phone"></i> تماس فوری
+                            </a>
+                            <span class="text-slate-300 dark:text-slate-600">|</span>
+                            <a href="mailto:info@karen-soft.ir" class="inline-flex items-center gap-2 text-sm font-bold text-gold-600 hover:underline">
+                                <i class="fas fa-envelope"></i> ارسال ایمیل
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
 
         </div>
     </section>
 
-    <!-- فوتر -->
-    <footer class="border-t border-slate-200 dark:border-white/5 bg-white dark:bg-ink-900/80 py-6">
-        <div class="max-w-7xl mx-auto px-4 text-center text-sm text-slate-500 dark:text-slate-400">
-            <p>تولید شده توسط <span class="text-ink-900 dark:text-white font-semibold">کارن سافت</span></p>
-            <p class="text-xs mt-1"><i class="fas fa-copyright"></i> ۱۴۰۴ تمامی حقوق محفوظ است</p>
+    <!-- ===== FOOTER ===== -->
+    <footer class="border-t border-slate-200 dark:border-white/5 bg-white dark:bg-ink-900/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+                <div class="flex items-center gap-2">
+                    <img src="images/logo-karensoft.png" alt="کارن سافت" class="h-8 w-8 rounded-xl object-cover" />
+                    <span class="font-bold text-ink-900 dark:text-white">کارن سافت</span>
+                    <span class="text-xs text-slate-400 dark:text-slate-500 mr-2">راه‌حل‌های نرم‌افزاری هوشمند</span>
+                </div>
+                <div class="flex flex-wrap items-center gap-4 text-xs text-slate-500 dark:text-slate-400">
+                    <a href="index.html" class="hover:text-gold-500 transition">خانه</a>
+                    <a href="products.html" class="hover:text-gold-500 transition">محصولات</a>
+                    <a href="blog.html" class="hover:text-gold-500 transition">وبلاگ</a>
+                    <a href="contact.html" class="hover:text-gold-500 transition">تماس</a>
+                    <a href="tel:09152521166" class="hover:text-emerald-500 transition font-bold text-emerald-600" dir="ltr"><i class="fas fa-phone"></i> ۰۹۱۵۲۵۲۱۱۶۶</a>
+                    <a href="mailto:info@karen-soft.ir" class="hover:text-gold-500 transition"><i class="fas fa-envelope"></i> info@karen-soft.ir</a>
+                    <span class="text-slate-300 dark:text-slate-600">|</span>
+                    <span>تولید شده توسط <span class="text-ink-900 dark:text-white font-semibold">کارن سافت</span></span>
+                </div>
+                <div class="text-[10px] text-slate-400 dark:text-slate-500"><i class="fas fa-copyright"></i> ۱۴۰۴ تمامی حقوق محفوظ است</div>
+            </div>
+            <div class="flex flex-wrap items-center justify-center gap-3 mt-4 pt-4 border-t border-slate-200 dark:border-white/5">
+                <span class="text-xs text-slate-500 dark:text-slate-400">ما را دنبال کنید:</span>
+                <a href="https://t.me/KarenSoftOfficial" target="_blank" class="social-link" title="کانال تلگرام"><i class="fab fa-telegram-plane"></i></a>
+                <a href="https://www.instagram.com/karen_soft.ir" target="_blank" class="social-link" title="اینستاگرام"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.youtube.com/@KarenSoftOfficial" target="_blank" class="social-link" title="یوتیوب"><i class="fab fa-youtube"></i></a>
+                <a href="https://www.linkedin.com/company/karensoft" target="_blank" class="social-link" title="لینکدین"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://twitter.com/KarenSoft_ir" target="_blank" class="social-link" title="توییتر"><i class="fab fa-x-twitter"></i></a>
+            </div>
         </div>
     </footer>
 
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        // فرم تماس
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            var btn = this.querySelector('button[type="submit"]');
-            var statusDiv = document.getElementById('formStatus');
-            var orig = btn.innerHTML;
-            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> در حال ارسال...';
-            btn.disabled = true;
-            statusDiv.textContent = '';
-            
-            var formData = new FormData(this);
-            var subject = document.getElementById('subject').value;
-            var message = document.getElementById('message').value;
-            formData.set('message', 'موضوع: ' + subject + '\n\n' + message);
-            
-            fetch('/api/contact', { method: 'POST', body: formData })
-                .then(function(response) { return response.text(); })
-                .then(function(result) {
-                    statusDiv.innerHTML = '✅ پیام شما با موفقیت ارسال شد! به زودی پاسخ می‌دهیم.';
-                    statusDiv.style.color = 'green';
-                    btn.innerHTML = '<i class="fas fa-check-circle"></i> ارسال شد!';
-                    btn.className = 'btn-glow w-full justify-center py-3 bg-emerald-500 hover:bg-emerald-600';
-                    document.getElementById('contactForm').reset();
-                })
-                .catch(function(error) {
-                    statusDiv.textContent = '❌ خطا در ارسال';
-                    statusDiv.style.color = 'red';
-                    btn.innerHTML = orig;
-                    btn.className = 'btn-glow w-full justify-center py-3';
-                })
-                .finally(function() {
-                    btn.disabled = false;
+        // ===== اسکریپت‌ها =====
+        document.addEventListener('DOMContentLoaded', function() {
+            AOS.init({ duration: 600, once: true, offset: 50 });
+
+            // Theme
+            var themeToggle = document.getElementById('themeToggle');
+            var themeIcon = document.getElementById('themeIcon');
+            var root = document.documentElement;
+            var saved = localStorage.getItem('theme');
+            if (saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                root.classList.add('dark');
+                themeIcon.className = 'fas fa-sun';
+            } else {
+                themeIcon.className = 'fas fa-moon';
+            }
+            themeToggle.addEventListener('click', function() {
+                var dark = root.classList.toggle('dark');
+                localStorage.setItem('theme', dark ? 'dark' : 'light');
+                themeIcon.className = dark ? 'fas fa-sun' : 'fas fa-moon';
+                AOS.refresh();
+            });
+
+            // Mobile menu
+            var mobileBtn = document.getElementById('mobileMenuBtn');
+            var mobileMenu = document.getElementById('mobileMenu');
+            mobileBtn.addEventListener('click', function() {
+                mobileMenu.classList.toggle('open');
+                this.innerHTML = mobileMenu.classList.contains('open') ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+            });
+
+            // Fade sections
+            var fadeObs = new IntersectionObserver(function(entries) {
+                entries.forEach(function(e) { if (e.isIntersecting) e.target.classList.add('visible'); });
+            }, { threshold: 0.1 });
+            document.querySelectorAll('.fade-section').forEach(function(el) { fadeObs.observe(el); });
+
+            // Navbar scroll
+            var navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', function() {
+                navbar.classList.toggle('navbar-scrolled', window.scrollY > 20);
+            });
+
+            // ===== فرم تماس =====
+            document.getElementById('contactForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                var btn = this.querySelector('button[type="submit"]');
+                var statusDiv = document.getElementById('formStatus');
+                var orig = btn.innerHTML;
+                btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> در حال ارسال...';
+                btn.disabled = true;
+                statusDiv.textContent = '';
+                statusDiv.style.color = 'blue';
+
+                var formData = new FormData(this);
+                var subject = document.getElementById('subject').value;
+                var message = document.getElementById('message').value;
+                formData.set('message', 'موضوع: ' + subject + '\n\n' + message);
+
+                fetch('/api/contact', { method: 'POST', body: formData })
+                    .then(function(response) { return response.text(); })
+                    .then(function(result) {
+                        statusDiv.innerHTML = '✅ پیام شما با موفقیت ارسال شد! به زودی پاسخ می‌دهیم.';
+                        statusDiv.style.color = 'green';
+                        btn.innerHTML = '<i class="fas fa-check-circle"></i> ارسال شد!';
+                        btn.className = 'btn-glow w-full justify-center py-3 bg-emerald-500 hover:bg-emerald-600';
+                        document.getElementById('contactForm').reset();
+                    })['catch'](function(error) {
+                        statusDiv.textContent = '❌ خطا در ارسال';
+                        statusDiv.style.color = 'red';
+                        btn.innerHTML = orig;
+                        btn.className = 'btn-glow w-full justify-center py-3';
+                    })['finally'](function() { btn.disabled = false; });
+            });
+
+            // ===== Support Modal =====
+            var supportToggle = document.getElementById('supportToggle');
+            var supportModal = document.getElementById('supportModal');
+            var closeSupport = document.getElementById('closeSupport');
+            var supportBody = document.getElementById('supportBody');
+
+            var supportQA = [
+                { q: 'چگونه می‌توانم پرونده جدید ثبت کنم؟', a: 'برای ثبت پرونده جدید، از منوی اصلی گزینه "پرونده‌ها" را انتخاب کنید و سپس روی دکمه "پرونده جدید" کلیک کنید. اطلاعات مورد نیاز مانند عنوان، شماره، نوع و موکل را وارد کرده و ذخیره کنید.' },
+                { q: 'آیا می‌توانم قرارداد وکالت ایجاد کنم؟', a: 'بله. در بخش "قراردادها" می‌توانید قرارداد وکالت جدید ایجاد کنید. اطلاعات موکل، موضوع، مبلغ و اقساط را وارد کنید. همچنین امکان چاپ و خروجی PDF قرارداد وجود دارد.' },
+                { q: 'چطور می‌توانم جلسه دادگاه ثبت کنم؟', a: 'در بخش "جلسات"، روی دکمه "جلسه جدید" کلیک کنید. عنوان جلسه، تاریخ، ساعت، شعبه و پرونده مرتبط را وارد کنید. همچنین امکان یادآوری خودکار برای جلسات وجود دارد.' },
+                { q: 'آیا نرم‌افزار گزارش مالی دارد؟', a: 'بله. در بخش "امور مالی" می‌توانید تمام تراکنش‌های درآمد و هزینه را مشاهده کنید. همچنین در بخش "گزارش‌ها" می‌توانید گزارش‌های مالی دقیق دریافت کنید.' },
+                { q: 'چطور می‌توانم از نرم‌افزار پشتیبان بگیرم؟', a: 'در بخش "تنظیمات" و زیر بخش "پشتیبان‌گیری و بازیابی"، می‌توانید با کلیک روی "خروجی JSON" از تمام داده‌های خود پشتیبان تهیه کنید. همچنین امکان بازیابی از طریق فایل پشتیبان وجود دارد.' }
+            ];
+
+            function renderSupportQuestions() {
+                supportBody.innerHTML = supportQA.map(function(item, index) {
+                    return '<div class="support-question" data-index="' + index + '"><i class="fas fa-question-circle text-gold-500 me-2"></i>' + item.q + '</div><div class="support-answer" id="supportAnswer' + index + '"><span class="typing-text"></span><span class="typing-cursor-support"></span></div>';
+                }).join('');
+                supportBody.querySelectorAll('.support-question').forEach(function(el, idx) {
+                    el.addEventListener('click', function() {
+                        var answerEl = document.getElementById('supportAnswer' + idx);
+                        var typingText = answerEl.querySelector('.typing-text');
+                        var isOpen = answerEl.classList.contains('open');
+                        supportBody.querySelectorAll('.support-answer').forEach(function(a) {
+                            if (a !== answerEl) { a.classList.remove('open'); a.querySelector('.typing-text').textContent = ''; }
+                        });
+                        if (isOpen) { answerEl.classList.remove('open'); typingText.textContent = ''; return; }
+                        answerEl.classList.add('open');
+                        var fullText = supportQA[idx].a;
+                        var charIdx2 = 0;
+                        typingText.textContent = '';
+                        var typeAnswer = function() {
+                            if (charIdx2 < fullText.length) {
+                                typingText.textContent = fullText.substring(0, charIdx2 + 1);
+                                charIdx2++;
+                                setTimeout(typeAnswer, 35);
+                            }
+                        };
+                        setTimeout(typeAnswer, 200);
+                    });
                 });
+            }
+
+            supportToggle.addEventListener('click', function() {
+                supportModal.classList.toggle('show');
+                if (supportModal.classList.contains('show')) { renderSupportQuestions(); }
+            });
+            closeSupport.addEventListener('click', function() { supportModal.classList.remove('show'); });
+            supportModal.addEventListener('click', function(e) { if (e.target === this) supportModal.classList.remove('show'); });
+            document.addEventListener('keydown', function(e) { if (e.key === 'Escape' && supportModal.classList.contains('show')) { supportModal.classList.remove('show'); } });
         });
     </script>
-
 </body>
 </html>
