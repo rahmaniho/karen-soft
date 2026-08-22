@@ -3,37 +3,98 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>کارن سافت · اتوماسیون هوشمند</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>کارن سافت · مدیریت هوشمند دفتر وکالت</title>
+    <script src="https://cdn.tailwindcss.com">
+    </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" />
     <style>
         /* ===== RESET & BASE ===== */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Vazirmatn', Tahoma, sans-serif; background: #080A19; overflow-x: hidden; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Vazirmatn', Tahoma, sans-serif;
+            background: #080A19;
+            overflow-x: hidden;
+        }
+
+        /* ===== VIDEO BACKGROUND (FIXED) ===== */
+        #video-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+        }
+
+        /* ===== OVERLAY CONTENT ===== */
+        #content-overlay {
+            position: relative;
+            z-index: 1;
+            min-height: 100vh;
+            background: rgba(8, 10, 25, 0.7);
+            backdrop-filter: blur(2px);
+            padding-top: 80px;
+        }
 
         /* ===== KEYFRAMES ===== */
         @keyframes fade-up {
-            from { opacity: 0; transform: translateY(24px); }
-            to   { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(24px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
         @keyframes fade-down {
-            from { opacity: 0; transform: translateY(-16px); }
-            to   { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(-16px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
         @keyframes fade-scale {
-            from { opacity: 0; transform: scale(0.92); }
-            to   { opacity: 1; transform: scale(1); }
+            from {
+                opacity: 0;
+                transform: scale(0.92);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
         }
         @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
         }
 
-        .animate-fade-up    { animation: fade-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
-        .animate-fade-down  { animation: fade-down 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
-        .animate-fade-scale { animation: fade-scale 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
-        .animate-float { animation: float 4s ease-in-out infinite; }
+        .animate-fade-up {
+            animation: fade-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        .animate-fade-down {
+            animation: fade-down 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        .animate-fade-scale {
+            animation: fade-scale 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        .animate-float {
+            animation: float 4s ease-in-out infinite;
+        }
 
         /* ===== GLASSMORPHISM ===== */
         .glass-nav {
@@ -41,24 +102,316 @@
             backdrop-filter: blur(17px);
             -webkit-backdrop-filter: blur(17px);
         }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        /* ===== BUTTONS ===== */
+        .btn-glow {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            border-radius: 0.9rem;
+            background: linear-gradient(135deg, #E4C56A, #D4AF37 45%, #B8942A);
+            color: #0B1220;
+            font-weight: 700;
+            padding: 0.75rem 1.5rem;
+            box-shadow: 0 8px 24px rgba(212, 175, 55, 0.35);
+            transition: all 0.25s;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+        }
+        .btn-glow:hover {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 16px 40px rgba(212, 175, 55, 0.45);
+        }
+        .btn-phone {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            border-radius: 0.9rem;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            background: rgba(16, 185, 129, 0.08);
+            color: #059669;
+            font-weight: 700;
+            padding: 0.55rem 1.2rem;
+            transition: all 0.25s;
+            text-decoration: none;
+            font-size: 0.9rem;
+            direction: ltr;
+        }
+        .btn-phone:hover {
+            background: rgba(16, 185, 129, 0.15);
+            transform: translateY(-1px);
+        }
+        .btn-trial {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            border-radius: 0.9rem;
+            border: 1px solid rgba(16, 185, 129, 0.4);
+            background: rgba(16, 185, 129, 0.08);
+            color: #059669;
+            font-weight: 700;
+            padding: 0.65rem 1.2rem;
+            transition: all 0.25s;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .btn-trial:hover {
+            background: rgba(16, 185, 129, 0.18);
+            transform: translateY(-1px);
+        }
+
+        /* ===== BADGES ===== */
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: .2rem;
+            border-radius: 999px;
+            padding: .1rem .5rem;
+            font-size: .65rem;
+            font-weight: 700;
+        }
+        .badge-green {
+            background: rgba(16, 185, 129, .12);
+            color: #059669;
+        }
+        .badge-blue {
+            background: rgba(59, 130, 246, .12);
+            color: #2563eb;
+        }
+        .badge-amber {
+            background: rgba(245, 158, 11, .14);
+            color: #d97706;
+        }
+        .badge-rose {
+            background: rgba(244, 63, 94, .12);
+            color: #e11d48;
+        }
+        .badge-slate {
+            background: rgba(100, 116, 139, .14);
+            color: #475569;
+        }
+        .dark .badge-green {
+            color: #34d399;
+        }
+        .dark .badge-blue {
+            color: #60a5fa;
+        }
+        .dark .badge-amber {
+            color: #fbbf24;
+        }
+        .dark .badge-rose {
+            color: #fb7185;
+        }
+        .dark .badge-slate {
+            color: #94a3b8;
+        }
+
+        /* ===== CARDS ===== */
+        .detail-card {
+            border-radius: 1.25rem;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+            color: #e2e8f0;
+        }
+        .detail-card h3 {
+            color: #fff;
+        }
+        .detail-card p,
+        .detail-card li {
+            color: rgba(255, 255, 255, 0.85);
+        }
+        .detail-card .badge {
+            color: #fff;
+        }
+        .detail-card .badge-green {
+            background: rgba(16, 185, 129, .2);
+            color: #34d399;
+        }
+        .detail-card .badge-blue {
+            background: rgba(59, 130, 246, .2);
+            color: #60a5fa;
+        }
+        .detail-card .badge-amber {
+            background: rgba(245, 158, 11, .2);
+            color: #fbbf24;
+        }
+        .detail-card .badge-rose {
+            background: rgba(244, 63, 94, .2);
+            color: #fb7185;
+        }
+        .testimonial-card {
+            border-radius: 1.25rem;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            transition: transform 0.3s;
+            color: #e2e8f0;
+        }
+        .testimonial-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+        }
+        .testimonial-card .avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: white;
+            flex-shrink: 0;
+        }
+        .testimonial-card .avatar-1 {
+            background: linear-gradient(135deg, #D4AF37, #B8942A);
+        }
+        .testimonial-card .avatar-2 {
+            background: linear-gradient(135deg, #8B5CF6, #6D28D9);
+        }
+        .testimonial-card .avatar-3 {
+            background: linear-gradient(135deg, #10b981, #047857);
+        }
+        .testimonial-card .text-slate-600 {
+            color: rgba(255, 255, 255, 0.8);
+        }
+        .testimonial-card .text-ink-900 {
+            color: #fff;
+        }
+
+        /* ===== PRICING ===== */
+        .pricing-card {
+            border-radius: 1.25rem;
+            padding: 1.75rem 1.5rem;
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+            transition: transform 0.4s;
+            position: relative;
+            color: #e2e8f0;
+        }
+        .pricing-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+        }
+        .pricing-card h4 {
+            color: #fff;
+        }
+        .pricing-card ul li {
+            color: rgba(255, 255, 255, 0.85);
+        }
+        .pricing-card .text-slate-500 {
+            color: rgba(255, 255, 255, 0.6);
+        }
+        .pricing-card.popular {
+            border-color: #D4AF37;
+            box-shadow: 0 12px 40px rgba(212, 175, 55, 0.2);
+        }
+        .pricing-card .badge-popular {
+            position: absolute;
+            top: -10px;
+            right: 50%;
+            transform: translateX(50%);
+            background: linear-gradient(135deg, #D4AF37, #E4C56A);
+            color: #0B1220;
+            font-size: 0.7rem;
+            font-weight: 800;
+            padding: 0.2rem 0.9rem;
+            border-radius: 999px;
+        }
+        .pricing-card.ai-card {
+            border-color: #8B5CF6;
+            box-shadow: 0 12px 40px rgba(139, 92, 246, 0.15);
+        }
+        .pricing-card .badge-ai {
+            position: absolute;
+            top: -10px;
+            right: 50%;
+            transform: translateX(50%);
+            background: linear-gradient(135deg, #8B5CF6, #6D28D9);
+            color: white;
+            font-size: 0.7rem;
+            font-weight: 800;
+            padding: 0.2rem 0.9rem;
+            border-radius: 999px;
+        }
+        .price-strike {
+            text-decoration: line-through;
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 0.9rem;
+            margin-right: 0.5rem;
+        }
+        .discount-badge {
+            display: inline-block;
+            background: #ef4444;
+            color: white;
+            font-size: 0.7rem;
+            font-weight: 800;
+            padding: 0.15rem 0.6rem;
+            border-radius: 999px;
+            margin-right: 0.5rem;
+        }
+        .discount-pulse {
+            animation: pulseCard 2.5s ease-in-out infinite;
+            border-radius: 1.5rem;
+            background: linear-gradient(135deg, rgba(254, 243, 199, 0.15), rgba(253, 230, 138, 0.1));
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            box-shadow: 0 0 40px rgba(212, 175, 55, 0.1);
+            color: #e2e8f0;
+        }
+        .discount-pulse .text-ink-800 {
+            color: #fde68a;
+        }
+        .discount-pulse .text-ink-700 {
+            color: #fbbf24;
+        }
+        @keyframes pulseCard {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 30px rgba(212, 175, 55, 0.1);
+            }
+            50% {
+                transform: scale(1.02);
+                box-shadow: 0 0 60px rgba(212, 175, 55, 0.2);
+            }
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 30px rgba(212, 175, 55, 0.1);
+            }
+        }
 
         /* ===== SLIDER ===== */
         .slider-container {
             position: relative;
             border-radius: 1.25rem;
             overflow: hidden;
-            background: #0B1220;
-            border: 1px solid rgba(226, 232, 240, 0.08);
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.08);
             width: 100%;
             aspect-ratio: 16 / 9;
             min-height: 300px;
+            touch-action: pan-y;
+            user-select: none;
         }
         .slider-track {
             display: flex;
-            transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             will-change: transform;
             width: 100%;
             height: 100%;
+            touch-action: pan-y;
         }
         .slider-slide {
             flex: 0 0 100%;
@@ -70,13 +423,15 @@
             cursor: pointer;
             position: relative;
             overflow: hidden;
+            touch-action: pan-y;
         }
         .slider-slide img {
             width: 100%;
             height: 100%;
             object-fit: contain;
             object-position: center;
-            background-color: #0B1220;
+            background-color: rgba(0, 0, 0, 0.5);
+            pointer-events: none;
         }
         .slider-slide .slide-label {
             position: absolute;
@@ -91,6 +446,7 @@
             font-weight: 600;
             z-index: 2;
             border: 1px solid rgba(255, 255, 255, 0.1);
+            pointer-events: none;
         }
         .slider-btn {
             position: absolute;
@@ -115,8 +471,12 @@
             background: rgba(212, 175, 55, 0.8);
             transform: translateY(-50%) scale(1.1);
         }
-        .slider-btn.prev { right: 15px; }
-        .slider-btn.next { left: 15px; }
+        .slider-btn.prev {
+            right: 15px;
+        }
+        .slider-btn.next {
+            left: 15px;
+        }
         .slider-dots {
             position: absolute;
             bottom: 15px;
@@ -159,13 +519,16 @@
             padding: 2rem;
             cursor: zoom-out;
         }
-        .lightbox.show { display: flex; }
+        .lightbox.show {
+            display: flex;
+        }
         .lightbox img {
             max-width: 95vw;
             max-height: 90vh;
             object-fit: contain;
             border-radius: 0.75rem;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+            cursor: default;
         }
         .lightbox .close-lb {
             position: absolute;
@@ -174,7 +537,7 @@
             width: 44px;
             height: 44px;
             border-radius: 50%;
-            background: rgba(255,255,255,0.1);
+            background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(8px);
             color: white;
             border: none;
@@ -185,266 +548,292 @@
             align-items: center;
             justify-content: center;
         }
-        .lightbox .close-lb:hover { background: rgba(255,255,255,0.2); }
+        .lightbox .close-lb:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
         .lightbox .lb-counter {
             position: absolute;
             bottom: 24px;
             left: 50%;
             transform: translateX(-50%);
-            color: rgba(255,255,255,0.6);
+            color: rgba(255, 255, 255, 0.6);
             font-size: 0.85rem;
-            background: rgba(0,0,0,0.4);
+            background: rgba(0, 0, 0, 0.4);
             padding: 0.3rem 1rem;
             border-radius: 999px;
             backdrop-filter: blur(4px);
         }
-
-        /* ===== RESPONSIVE ===== */
-        @media (max-width: 768px) {
-            .slider-container { aspect-ratio: 4 / 3; min-height: 200px; border-radius: 0.75rem; }
-            .slider-btn { width: 36px; height: 36px; font-size: 0.9rem; }
-            .slider-btn.prev { right: 8px; }
-            .slider-btn.next { left: 8px; }
-            .slider-slide .slide-label { bottom: 12px; right: 12px; font-size: 0.65rem; padding: 0.2rem 0.8rem; }
-            .slider-dot { width: 8px; height: 8px; }
-            .lightbox { padding: 0.5rem; }
+        .lightbox .lb-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
         }
-
-        /* ===== SCROLLBAR ===== */
-        ::-webkit-scrollbar { width: 8px; height: 8px; }
-        ::-webkit-scrollbar-thumb { background: rgba(212,175,55,0.4); border-radius: 999px; }
-        ::-webkit-scrollbar-track { background: rgba(255,255,255,0.05); }
-
-        /* ===== BUTTONS ===== */
-        .btn-glow {
-            display: inline-flex; align-items: center; gap: 0.5rem;
-            border-radius: 0.9rem;
-            background: linear-gradient(135deg, #E4C56A, #D4AF37 45%, #B8942A);
-            color: #0B1220; font-weight: 700; padding: 0.75rem 1.5rem;
-            box-shadow: 0 8px 24px rgba(212, 175, 55, 0.35);
-            transition: all 0.25s; text-decoration: none; border: none; cursor: pointer;
+        .lightbox .lb-nav:hover {
+            background: rgba(212, 175, 55, 0.6);
         }
-        .btn-glow:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 16px 40px rgba(212, 175, 55, 0.45); }
-        .btn-phone {
-            display: inline-flex; align-items: center; gap: 0.5rem;
-            border-radius: 0.9rem; border: 1px solid rgba(16, 185, 129, 0.3);
-            background: rgba(16, 185, 129, 0.08); color: #059669;
-            font-weight: 700; padding: 0.55rem 1.2rem;
-            transition: all 0.25s; text-decoration: none; font-size: 0.9rem; direction: ltr;
+        .lightbox .lb-nav.prev {
+            right: 20px;
         }
-        .btn-phone:hover { background: rgba(16, 185, 129, 0.15); transform: translateY(-1px); }
-        .btn-trial {
-            display: inline-flex; align-items: center; gap: 0.5rem;
-            border-radius: 0.9rem; border: 1px solid rgba(16, 185, 129, 0.4);
-            background: rgba(16, 185, 129, 0.08); color: #059669;
-            font-weight: 700; padding: 0.65rem 1.2rem;
-            transition: all 0.25s; text-decoration: none; cursor: pointer;
-        }
-        .btn-trial:hover { background: rgba(16, 185, 129, 0.18); transform: translateY(-1px); }
-
-        /* ===== BADGES ===== */
-        .badge {
-            display: inline-flex; align-items: center; gap: .2rem;
-            border-radius: 999px; padding: .1rem .5rem; font-size: .65rem; font-weight: 700;
-        }
-        .badge-green { background: rgba(16,185,129,.12); color: #059669; }
-        .badge-blue { background: rgba(59,130,246,.12); color: #2563eb; }
-        .badge-amber { background: rgba(245,158,11,.14); color: #d97706; }
-        .badge-rose { background: rgba(244,63,94,.12); color: #e11d48; }
-        .badge-slate { background: rgba(100,116,139,.14); color: #475569; }
-        .dark .badge-green { color: #34d399; }
-        .dark .badge-blue { color: #60a5fa; }
-        .dark .badge-amber { color: #fbbf24; }
-        .dark .badge-rose { color: #fb7185; }
-        .dark .badge-slate { color: #94a3b8; }
-
-        /* ===== CARDS ===== */
-        .detail-card {
-            border-radius: 1.25rem; padding: 1.5rem;
-            background: white; border: 1px solid rgba(226,232,240,0.8);
-            box-shadow: 0 8px 30px rgba(15,23,42,0.04);
-        }
-        .dark .detail-card { background: rgba(18,26,43,0.85); border-color: rgba(255,255,255,0.08); }
-        .testimonial-card {
-            border-radius: 1.25rem; padding: 1.5rem;
-            background: white; border: 1px solid rgba(226,232,240,0.8);
-            box-shadow: 0 8px 30px rgba(15,23,42,0.04);
-            transition: transform 0.3s;
-        }
-        .testimonial-card:hover { transform: translateY(-4px); box-shadow: 0 20px 50px rgba(15,23,42,0.1); }
-        .dark .testimonial-card { background: rgba(18,26,43,0.85); border-color: rgba(255,255,255,0.08); }
-        .testimonial-card .avatar {
-            width: 48px; height: 48px; border-radius: 999px;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 1.2rem; font-weight: 700; color: white; flex-shrink: 0;
-        }
-        .testimonial-card .avatar-1 { background: linear-gradient(135deg,#D4AF37,#B8942A); }
-        .testimonial-card .avatar-2 { background: linear-gradient(135deg,#8B5CF6,#6D28D9); }
-        .testimonial-card .avatar-3 { background: linear-gradient(135deg,#10b981,#047857); }
-
-        /* ===== PRICING ===== */
-        .pricing-card {
-            border-radius: 1.25rem; padding: 1.75rem 1.5rem;
-            background: white; border: 1px solid rgba(226,232,240,0.8);
-            box-shadow: 0 8px 30px rgba(15,23,42,0.04);
-            transition: transform 0.4s; position: relative;
-        }
-        .dark .pricing-card { background: rgba(18,26,43,0.85); border-color: rgba(255,255,255,0.08); }
-        .pricing-card:hover { transform: translateY(-4px); box-shadow: 0 20px 50px rgba(15,23,42,0.08); }
-        .pricing-card.popular { border-color: #D4AF37; box-shadow: 0 12px 40px rgba(212,175,55,0.15); }
-        .pricing-card .badge-popular {
-            position: absolute; top: -10px; right: 50%; transform: translateX(50%);
-            background: linear-gradient(135deg,#D4AF37,#E4C56A); color: #0B1220;
-            font-size: 0.7rem; font-weight: 800; padding: 0.2rem 0.9rem; border-radius: 999px;
-        }
-        .pricing-card.ai-card { border-color: #8B5CF6; box-shadow: 0 12px 40px rgba(139,92,246,0.15); }
-        .pricing-card .badge-ai {
-            position: absolute; top: -10px; right: 50%; transform: translateX(50%);
-            background: linear-gradient(135deg,#8B5CF6,#6D28D9); color: white;
-            font-size: 0.7rem; font-weight: 800; padding: 0.2rem 0.9rem; border-radius: 999px;
-        }
-        .price-strike { text-decoration: line-through; color: #94a3b8; font-size: 0.9rem; margin-right: 0.5rem; }
-        .discount-badge {
-            display: inline-block; background: #ef4444; color: white;
-            font-size: 0.7rem; font-weight: 800; padding: 0.15rem 0.6rem; border-radius: 999px; margin-right: 0.5rem;
-        }
-        .discount-pulse {
-            animation: pulseCard 2.5s ease-in-out infinite;
-            border-radius: 1.5rem;
-            background: linear-gradient(135deg,#fef3c7,#fde68a);
-            border: 2px solid #D4AF37; box-shadow: 0 0 40px rgba(212,175,55,0.25);
-        }
-        .dark .discount-pulse { background: linear-gradient(135deg,#1a1520,#2d1f0a); border-color: #D4AF37; }
-        @keyframes pulseCard {
-            0% { transform: scale(1); box-shadow: 0 0 30px rgba(212,175,55,0.2); }
-            50% { transform: scale(1.02); box-shadow: 0 0 60px rgba(212,175,55,0.4); }
-            100% { transform: scale(1); box-shadow: 0 0 30px rgba(212,175,55,0.2); }
+        .lightbox .lb-nav.next {
+            left: 20px;
         }
 
         /* ===== SOCIAL ===== */
         .social-link {
-            display: inline-flex; align-items: center; justify-content: center;
-            width: 36px; height: 36px; border-radius: 999px;
-            border: 1px solid rgba(212,175,55,0.3); color: #D4AF37;
-            transition: all 0.3s; text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 999px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            color: #D4AF37;
+            transition: all 0.3s;
+            text-decoration: none;
         }
-        .social-link:hover { background: #D4AF37; color: #0B1220; transform: translateY(-2px); border-color: #D4AF37; box-shadow: 0 8px 24px rgba(212,175,55,0.3); }
-        .dark .social-link { border-color: rgba(255,255,255,0.15); color: #94a3b8; }
-        .dark .social-link:hover { background: #D4AF37; color: #0B1220; border-color: #D4AF37; }
+        .social-link:hover {
+            background: #D4AF37;
+            color: #0B1220;
+            transform: translateY(-2px);
+            border-color: #D4AF37;
+            box-shadow: 0 8px 24px rgba(212, 175, 55, 0.3);
+        }
 
         /* ===== BACK LINK ===== */
         .back-link {
-            display: inline-flex; align-items: center; gap: 0.5rem;
-            color: #94a3b8; transition: color 0.2s; cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: rgba(255, 255, 255, 0.6);
+            transition: color 0.2s;
+            cursor: pointer;
+            text-decoration: none;
         }
-        .back-link:hover { color: #D4AF37; }
-        .back-link i { font-size: 0.9rem; }
+        .back-link:hover {
+            color: #D4AF37;
+        }
+        .back-link i {
+            font-size: 0.9rem;
+        }
 
-        /* ===== MOBILE ===== */
-        .mobile-menu { max-height: 0; overflow: hidden; transition: all 0.4s; opacity: 0; }
-        .mobile-menu.open { max-height: 500px; opacity: 1; }
-        .theme-toggle { transition: transform 0.4s; }
-        .theme-toggle:hover { transform: rotate(60deg) scale(1.1); }
+        /* ===== NAV ===== */
+        .navbar-glass {
+            background: rgba(8, 10, 25, 0.8);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            transition: all 0.3s;
+        }
+        .navbar-scrolled {
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+        .theme-toggle {
+            transition: transform 0.4s;
+        }
+        .theme-toggle:hover {
+            transform: rotate(60deg) scale(1.1);
+        }
+        .mobile-menu {
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.4s;
+            opacity: 0;
+        }
+        .mobile-menu.open {
+            max-height: 500px;
+            opacity: 1;
+        }
+
+        /* ===== SCROLLBAR ===== */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(212, 175, 55, 0.4);
+            border-radius: 999px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        /* ===== TEXT COLORS ===== */
+        .text-ink-900 {
+            color: #fff;
+        }
+        .text-slate-400 {
+            color: rgba(255, 255, 255, 0.6);
+        }
+        .text-slate-500 {
+            color: rgba(255, 255, 255, 0.5);
+        }
+        .text-slate-600 {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        .text-emerald-400 {
+            color: #34d399;
+        }
+        .text-emerald-500 {
+            color: #34d399;
+        }
+        .text-emerald-600 {
+            color: #34d399;
+        }
+        .text-gold-500 {
+            color: #D4AF37;
+        }
+        .text-gold-600 {
+            color: #D4AF37;
+        }
+        .text-purple-400 {
+            color: #a78bfa;
+        }
+        .text-purple-500 {
+            color: #a78bfa;
+        }
+        .text-purple-600 {
+            color: #a78bfa;
+        }
+        .text-purple-700 {
+            color: #a78bfa;
+        }
+        .text-white\/80 {
+            color: rgba(255, 255, 255, 0.8);
+        }
+        .text-white\/70 {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            #content-overlay {
+                padding-top: 70px;
+            }
+            .slider-container {
+                aspect-ratio: 4 / 3;
+                min-height: 200px;
+                border-radius: 0.75rem;
+            }
+            .slider-btn {
+                width: 36px;
+                height: 36px;
+                font-size: 0.9rem;
+            }
+            .slider-btn.prev {
+                right: 8px;
+            }
+            .slider-btn.next {
+                left: 8px;
+            }
+            .slider-slide .slide-label {
+                bottom: 12px;
+                right: 12px;
+                font-size: 0.65rem;
+                padding: 0.2rem 0.8rem;
+            }
+            .slider-dot {
+                width: 8px;
+                height: 8px;
+            }
+            .lightbox {
+                padding: 0.5rem;
+            }
+            .lightbox .lb-nav {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+            .lightbox .lb-nav.prev {
+                right: 10px;
+            }
+            .lightbox .lb-nav.next {
+                left: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            #content-overlay {
+                padding-top: 60px;
+            }
+            .detail-card {
+                padding: 1rem;
+            }
+            .pricing-card {
+                padding: 1.25rem 1rem;
+            }
+            .discount-pulse {
+                padding: 1rem;
+            }
+        }
     </style>
 </head>
 <body>
 
-    <!-- ============================================================ -->
-    <!-- ===== HERO SECTION با ویدیوی تمام‌صفحه ===== -->
-    <!-- ============================================================ -->
-    <section class="relative w-full min-h-screen overflow-hidden bg-[#080A19]">
+    <!-- ===== VIDEO BACKGROUND (FIXED) ===== -->
+    <video id="video-background" autoplay loop muted playsinline>
+        <source src="images/video/law-back.mp4" type="video/mp4" />
+    </video>
 
-        <!-- ===== VIDEO BACKGROUND (تمام‌صفحه) ===== -->
-        <video
-            class="absolute inset-0 w-full h-full object-cover"
-            src="images/video/law-back.mp4"
-            autoplay
-            loop
-            muted
-            playsinline
-        ></video>
+    <!-- ===== CONTENT OVERLAY ===== -->
+    <div id="content-overlay">
 
-        <!-- ===== ORB DECORATIONS ===== -->
-        <div class="absolute top-20 right-20 w-64 h-64 rounded-full bg-purple-500/10 blur-3xl animate-float"></div>
-        <div class="absolute bottom-20 left-20 w-80 h-80 rounded-full bg-gold-500/5 blur-3xl animate-float" style="animation-delay:2s;"></div>
-
-        <!-- ===== CONTENT ===== -->
-        <div class="relative z-10 h-full flex flex-col">
-
-            <!-- ===== NAVBAR ===== -->
-            <nav class="w-full max-w-[1800px] mx-auto px-5 sm:px-8 md:px-[82px] pt-[20px] sm:pt-[30px] flex items-center justify-between relative z-50">
-                <!-- Logo با لوگوی برنامه -->
-                <div class="flex items-center gap-2.5 opacity-0 animate-fade-down" style="animation-delay:0ms;">
-                    <img src="images/app-icon-law-office.jpg" alt="کارن سافت" class="w-9 h-9 rounded-xl object-cover" />
-                    <span class="text-white text-[22px] sm:text-[26px] font-[450] leading-none tracking-[-0.02em]">کارن سافت</span>
-                </div>
-
-                <!-- Desktop Nav -->
-                <div class="hidden lg:flex items-center gap-6 opacity-0 animate-fade-down" style="animation-delay:100ms;">
-                    <div class="glass-nav h-[52px] px-6 flex items-center gap-[30px] rounded-[11px]">
-                        <button class="flex items-center gap-[5px] text-white/80 text-[14px] font-[450] leading-[14px] hover:text-white transition-colors">
-                            پلتفرم <i class="fas fa-chevron-down text-[10px] opacity-80"></i>
+        <!-- ===== NAVBAR ===== -->
+        <nav id="navbar" class="fixed top-0 right-0 left-0 z-50 navbar-glass navbar-scrolled transition-all duration-300">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex items-center justify-between h-16 md:h-20">
+                    <div class="flex items-center gap-2 shrink-0">
+                        <img src="images/app-icon-law-office.jpg" alt="کارن سافت" class="h-9 w-9 rounded-xl object-cover" />
+                        <span class="font-bold text-sm md:text-lg text-white whitespace-nowrap">کارن سافت</span>
+                    </div>
+                    <div class="hidden md:flex items-center gap-6 text-sm font-medium text-white/70">
+                        <a href="index.html" class="hover:text-gold-400 transition">خانه</a>
+                        <a href="products.html" class="hover:text-gold-400 transition">محصولات</a>
+                        <a href="blog.html" class="hover:text-gold-400 transition">وبلاگ</a>
+                        <a href="contact.html" class="hover:text-emerald-400 transition" style="color:#34d399;">تماس با ما</a>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <a href="tel:09152521166" class="btn-phone text-xs sm:text-sm px-2 sm:px-4 py-1.5 sm:py-2">
+                            <i class="fas fa-phone"></i> <span class="hidden sm:inline">۰۹۱۵۲۵۲۱۱۶۶</span>
+                        </a>
+                        <button id="themeToggle" class="theme-toggle w-10 h-10 rounded-xl border border-white/10 bg-white/5 text-white/70 flex items-center justify-center hover:border-gold-400 transition">
+                            <i id="themeIcon" class="fas fa-moon"></i>
                         </button>
-                        <span class="text-white/80 text-[14px] font-[450] leading-[14px] hover:text-white transition-colors cursor-pointer">قیمت‌ها</span>
-                        <span class="text-white/80 text-[14px] font-[450] leading-[14px] hover:text-white transition-colors cursor-pointer">منابع</span>
-                        <span class="text-white/80 text-[14px] font-[450] leading-[14px] hover:text-white transition-colors cursor-pointer">وبلاگ</span>
+                        <button id="mobileMenuBtn" class="md:hidden w-10 h-10 rounded-xl border border-white/10 bg-white/5 text-white/70 flex items-center justify-center">
+                            <i class="fas fa-bars"></i>
+                        </button>
                     </div>
-
-                    <div class="h-[52px] p-[3px] bg-[rgba(0,0,0,0.35)] rounded-[13px] backdrop-blur-[17px] flex items-center gap-[5px]">
-                        <button class="h-[46px] px-6 rounded-[11px] text-white text-[14px] font-[450] leading-[14px] hover:bg-white/5 transition-colors">ورود</button>
-                        <button class="h-[46px] px-6 bg-[#E9E9E9] rounded-[11px] text-[#0A0707] text-[14px] font-[450] leading-[14px] hover:bg-white transition-colors">رزرو دمو</button>
-                    </div>
-                </div>
-
-                <!-- Mobile Hamburger -->
-                <button id="menuToggle" class="lg:hidden w-[44px] h-[44px] flex items-center justify-center rounded-[11px] bg-[rgba(10,7,7,0.35)] backdrop-blur-[17px] transition-colors hover:bg-white/10 opacity-0 animate-fade-down" style="animation-delay:100ms;" aria-label="Toggle menu">
-                    <div class="relative w-5 h-5">
-                        <i id="menuIcon" class="fas fa-bars text-white text-xl absolute inset-0 transition-all duration-300 ease-out"></i>
-                        <i id="closeIcon" class="fas fa-times text-white text-xl absolute inset-0 transition-all duration-300 ease-out opacity-0 scale-75 -rotate-90"></i>
-                    </div>
-                </button>
-            </nav>
-
-            <!-- ===== HERO CONTENT (تیتر اصلی با تایپوگرافی زیبا) ===== -->
-            <div class="flex-1 flex items-center justify-center py-8">
-                <div class="w-full max-w-[1800px] mx-auto px-5 sm:px-8 md:px-[82px] text-center">
-
-                    <!-- تیتر اصلی -->
-                    <h1 class="text-white text-[36px] sm:text-[52px] md:text-[64px] lg:text-[80px] font-black leading-[0.95] mb-5 sm:mb-8 opacity-0 animate-fade-up" style="animation-delay:300ms;">
-                        <span class="text-gold-400">کارن سافت</span>
-                        <br class="hidden sm:block" />
-                        <span class="text-white">مدیریت هوشمند</span>
-                        <br class="hidden sm:block" />
-                        <span class="text-white">دفتر وکالت</span>
-                    </h1>
-
-                    <p class="text-white/70 text-[16px] sm:text-[18px] md:text-[22px] font-[450] leading-[1.6] max-w-[600px] mx-auto mb-7 sm:mb-10 opacity-0 animate-fade-up" style="animation-delay:500ms;">
-                        از ثبت پرونده تا مدیریت مالی، همه چیز در یک پلتفرم
-                    </p>
-
-                    <div class="flex flex-wrap justify-center gap-3 sm:gap-4 opacity-0 animate-fade-up" style="animation-delay:700ms;">
-                        <a href="products.html" class="btn-glow text-base px-8 py-3">
-                            <i class="fas fa-arrow-left"></i> مشاهده محصولات
-                        </a>
-                        <a href="tel:09152521166" class="btn-phone text-base px-5 py-3">
-                            <i class="fas fa-phone"></i> مشاوره رایگان
-                        </a>
-                    </div>
-
                 </div>
             </div>
-        </div>
-    </section>
+            <div id="mobileMenu" class="mobile-menu md:hidden bg-[#080A19]/95 backdrop-blur-xl border-t border-white/10">
+                <div class="px-4 py-4 space-y-3 text-sm font-medium text-white/70">
+                    <a href="index.html" class="block hover:text-gold-400 transition">خانه</a>
+                    <a href="products.html" class="block hover:text-gold-400 transition">محصولات</a>
+                    <a href="blog.html" class="block hover:text-gold-400 transition">وبلاگ</a>
+                    <a href="contact.html" class="block hover:text-emerald-400 transition" style="color:#34d399;">تماس با ما</a>
+                    <a href="tel:09152521166" class="block text-emerald-400 font-bold"><i class="fas fa-phone"></i> ۰۹۱۵۲۵۲۱۱۶۶</a>
+                </div>
+            </div>
+        </nav>
 
-    <!-- ============================================================ -->
-    <!-- ===== PRODUCT DETAIL SECTION ===== -->
-    <!-- ============================================================ -->
-    <section class="py-16 md:py-24 bg-white dark:bg-ink-900">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- ===== MAIN CONTENT ===== -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
 
             <!-- ===== BACK LINK ===== -->
             <div class="mb-8 opacity-0 animate-fade-up" style="animation-delay:100ms;">
-                <a href="products.html" class="inline-flex items-center gap-2 text-slate-400 hover:text-gold-500 transition-colors">
+                <a href="products.html" class="back-link">
                     <i class="fas fa-arrow-right"></i> بازگشت به محصولات
                 </a>
             </div>
@@ -455,39 +844,39 @@
                 <div>
                     <!-- Product Header -->
                     <div class="flex items-center gap-4 mb-6 opacity-0 animate-fade-up" style="animation-delay:200ms;">
-                        <div class="w-16 h-16 rounded-2xl bg-gold-500/10 text-gold-600 flex items-center justify-center text-2xl overflow-hidden">
+                        <div class="w-16 h-16 rounded-2xl bg-gold-500/20 text-gold-400 flex items-center justify-center text-2xl overflow-hidden border border-gold-500/20">
                             <img src="images/app-icon-law-office.jpg" alt="برنامه دفتر وکالت هوشمند" class="w-full h-full object-cover" />
                         </div>
                         <div>
-                            <h1 class="text-3xl font-black text-ink-900 dark:text-white">برنامه مدیریت دفتر وکالت هوشمند</h1>
-                            <p class="text-sm text-slate-500 dark:text-slate-400">نسخه ۴.۰ · محصول فعال</p>
+                            <h1 class="text-3xl font-black text-white">برنامه مدیریت دفتر وکالت هوشمند</h1>
+                            <p class="text-sm text-white/50">نسخه ۴.۰ · محصول فعال</p>
                         </div>
                     </div>
 
                     <!-- Description -->
                     <div class="detail-card mb-6 opacity-0 animate-fade-up" style="animation-delay:300ms;">
-                        <h3 class="font-bold text-lg mb-3 text-ink-900 dark:text-white">معرفی کامل نرم‌افزار مدیریت دفتر وکالت هوشمند</h3>
-                        <div class="text-slate-600 dark:text-slate-300 leading-8 space-y-4">
+                        <h3 class="font-bold text-lg mb-3">معرفی کامل نرم‌افزار مدیریت دفتر وکالت هوشمند</h3>
+                        <div class="leading-8 space-y-4 text-white/80">
                             <p>
-                                <strong>کارن سافت</strong> یک نرم‌افزار جامع و پیشرفته برای <strong>مدیریت هوشمند دفاتر وکالت و مؤسسات حقوقی</strong> است که با هدف <strong>افزایش بهره‌وری، دقت و سرعت</strong> در امور روزمره وکلا طراحی و پیاده‌سازی شده است. این سیستم با بهره‌گیری از <strong>جدیدترین فناوری‌های روز</strong>، تمامی نیازهای مدیریتی یک دفتر وکالت را از <strong>ثبت و پیگیری پرونده‌ها</strong> تا <strong>مدیریت مالی و مکاتبات حقوقی</strong> پوشش می‌دهد.
+                                <strong class="text-white">کارن سافت</strong> یک نرم‌افزار جامع و پیشرفته برای <strong class="text-white">مدیریت هوشمند دفاتر وکالت و مؤسسات حقوقی</strong> است که با هدف <strong class="text-white">افزایش بهره‌وری، دقت و سرعت</strong> در امور روزمره وکلا طراحی و پیاده‌سازی شده است. این سیستم با بهره‌گیری از <strong class="text-white">جدیدترین فناوری‌های روز</strong>، تمامی نیازهای مدیریتی یک دفتر وکالت را از <strong class="text-white">ثبت و پیگیری پرونده‌ها</strong> تا <strong class="text-white">مدیریت مالی و مکاتبات حقوقی</strong> پوشش می‌دهد.
                             </p>
                             <p>
-                                این نرم‌افزار با <strong>رابط کاربری ساده و روان</strong>، امکان <strong>مدیریت موکلین، ثبت پرونده‌های قضایی، تنظیم قراردادهای هوشمند، برنامه‌ریزی جلسات، پیگیری اقساط و انجام امور مالی</strong> را در یک بستر یکپارچه فراهم می‌کند. همچنین با قابلیت <strong>ذخیره‌سازی آفلاین</strong>، شما می‌توانید بدون نیاز به اتصال دائمی به اینترنت، به تمام داده‌های خود دسترسی داشته باشید.
+                                این نرم‌افزار با <strong class="text-white">رابط کاربری ساده و روان</strong>، امکان <strong class="text-white">مدیریت موکلین، ثبت پرونده‌های قضایی، تنظیم قراردادهای هوشمند، برنامه‌ریزی جلسات، پیگیری اقساط و انجام امور مالی</strong> را در یک بستر یکپارچه فراهم می‌کند. همچنین با قابلیت <strong class="text-white">ذخیره‌سازی آفلاین</strong>، شما می‌توانید بدون نیاز به اتصال دائمی به اینترنت، به تمام داده‌های خود دسترسی داشته باشید.
                             </p>
                             <p>
-                                یکی از ویژگی‌های منحصربه‌فرد این نرم‌افزار، <strong>دستیار هوش مصنوعی</strong> آن است که می‌تواند به سوالات حقوقی روزمره پاسخ دهد، <strong>پیش‌نویس قراردادها و لوایح</strong> را به صورت خودکار تهیه کند و حتی <strong>پرونده‌ها را تحلیل</strong> کرده و استراتژی‌های پیشنهادی ارائه دهد. این قابلیت، زمان صرف‌شده برای امور تکراری را به شدت کاهش داده و به وکلا امکان می‌دهد تا بر روی <strong>مسائل تخصصی‌تر و پیچیده‌تر</strong> تمرکز کنند.
+                                یکی از ویژگی‌های منحصربه‌فرد این نرم‌افزار، <strong class="text-white">دستیار هوش مصنوعی</strong> آن است که می‌تواند به سوالات حقوقی روزمره پاسخ دهد، <strong class="text-white">پیش‌نویس قراردادها و لوایح</strong> را به صورت خودکار تهیه کند و حتی <strong class="text-white">پرونده‌ها را تحلیل</strong> کرده و استراتژی‌های پیشنهادی ارائه دهد. این قابلیت، زمان صرف‌شده برای امور تکراری را به شدت کاهش داده و به وکلا امکان می‌دهد تا بر روی <strong class="text-white">مسائل تخصصی‌تر و پیچیده‌تر</strong> تمرکز کنند.
                             </p>
                             <p>
-                                <strong>مدیریت امور مالی</strong> در این نرم‌افزار به‌گونه‌ای طراحی شده که تمامی <strong>درآمدها، هزینه‌ها، فاکتورها و گزارش‌های مالی</strong> را به صورت دقیق و شفاف نمایش می‌دهد. همچنین سیستم <strong>گزارش‌گیری پیشرفته</strong>، امکان تحلیل عملکرد مالی دفتر را در بازه‌های زمانی مختلف فراهم می‌کند.
+                                <strong class="text-white">مدیریت امور مالی</strong> در این نرم‌افزار به‌گونه‌ای طراحی شده که تمامی <strong class="text-white">درآمدها، هزینه‌ها، فاکتورها و گزارش‌های مالی</strong> را به صورت دقیق و شفاف نمایش می‌دهد. همچنین سیستم <strong class="text-white">گزارش‌گیری پیشرفته</strong>، امکان تحلیل عملکرد مالی دفتر را در بازه‌های زمانی مختلف فراهم می‌کند.
                             </p>
                             <p>
-                                با استفاده از <strong>تقویم شمسی هوشمند</strong>، تمامی <strong>رویدادها، جلسات، مهلت‌های قانونی و یادآوری‌ها</strong> به صورت خودکار مدیریت و به شما اطلاع‌رسانی می‌شوند. همچنین امکان <strong>تولید نامه‌های حقوقی</strong> با قالب‌های آماده و <strong>چاپ و خروجی PDF</strong> از اسناد، از دیگر قابلیت‌های کاربردی این نرم‌افزار است.
+                                با استفاده از <strong class="text-white">تقویم شمسی هوشمند</strong>، تمامی <strong class="text-white">رویدادها، جلسات، مهلت‌های قانونی و یادآوری‌ها</strong> به صورت خودکار مدیریت و به شما اطلاع‌رسانی می‌شوند. همچنین امکان <strong class="text-white">تولید نامه‌های حقوقی</strong> با قالب‌های آماده و <strong class="text-white">چاپ و خروجی PDF</strong> از اسناد، از دیگر قابلیت‌های کاربردی این نرم‌افزار است.
                             </p>
                             <p>
-                                <strong>امنیت اطلاعات</strong> در کارن سافت با استفاده از <strong>رمزنگاری پیشرفته</strong> و <strong>ذخیره‌سازی محلی</strong> تضمین شده است. همچنین سیستم <strong>پشتیبان‌گیری و بازیابی</strong> خودکار، از اطلاعات شما در برابر هرگونه خطر محافظت می‌کند.
+                                <strong class="text-white">امنیت اطلاعات</strong> در کارن سافت با استفاده از <strong class="text-white">رمزنگاری پیشرفته</strong> و <strong class="text-white">ذخیره‌سازی محلی</strong> تضمین شده است. همچنین سیستم <strong class="text-white">پشتیبان‌گیری و بازیابی</strong> خودکار، از اطلاعات شما در برابر هرگونه خطر محافظت می‌کند.
                             </p>
                             <p>
-                                این نرم‌افزار در <strong>سه پلن مختلف</strong> (وکلا، موسسات و حرفه‌ای + AI) ارائه می‌شود تا هر دفتر وکالتی بتواند بر اساس <strong>نیازها و بودجه</strong> خود، بهترین گزینه را انتخاب کند. تمامی پلن‌ها شامل <strong>پشتیبانی ۲۴ ساعته</strong> و <strong>به‌روزرسانی‌های دائمی</strong> هستند.
+                                این نرم‌افزار در <strong class="text-white">سه پلن مختلف</strong> (وکلا، موسسات و حرفه‌ای + AI) ارائه می‌شود تا هر دفتر وکالتی بتواند بر اساس <strong class="text-white">نیازها و بودجه</strong> خود، بهترین گزینه را انتخاب کند. تمامی پلن‌ها شامل <strong class="text-white">پشتیبانی ۲۴ ساعته</strong> و <strong class="text-white">به‌روزرسانی‌های دائمی</strong> هستند.
                             </p>
                         </div>
                         <div class="flex flex-wrap gap-2 mt-4">
@@ -510,44 +899,81 @@
                                     <i class="fas fa-star"></i>
                                     <i class="fas fa-star"></i>
                                     <i class="fas fa-star"></i>
-                                    <span class="text-sm font-bold text-ink-900 dark:text-white mr-2">۴.۹ از ۵</span>
+                                    <span class="text-sm font-bold text-white mr-2">۴.۹ از ۵</span>
                                 </div>
-                                <p class="text-xs text-slate-500 dark:text-slate-400">بر اساس ۱۲۸ نظر</p>
+                                <p class="text-xs text-white/50">بر اساس ۱۲۸ نظر</p>
                             </div>
                             <div class="flex gap-6 text-center">
                                 <div>
-                                    <div class="text-xl font-black text-emerald-500">۱,۲۵۰+</div>
-                                    <div class="text-xs text-slate-500 dark:text-slate-400">نصب فعال</div>
+                                    <div class="text-xl font-black text-emerald-400">۱,۲۵۰+</div>
+                                    <div class="text-xs text-white/50">نصب فعال</div>
                                 </div>
                                 <div>
-                                    <div class="text-xl font-black text-gold-600">۹۸٪</div>
-                                    <div class="text-xs text-slate-500 dark:text-slate-400">رضایت کاربران</div>
+                                    <div class="text-xl font-black text-gold-500">۹۸٪</div>
+                                    <div class="text-xs text-white/50">رضایت کاربران</div>
                                 </div>
                                 <div>
-                                    <div class="text-xl font-black text-blue-500">۴.۹</div>
-                                    <div class="text-xs text-slate-500 dark:text-slate-400">میانگین امتیاز</div>
+                                    <div class="text-xl font-black text-blue-400">۴.۹</div>
+                                    <div class="text-xs text-white/50">میانگین امتیاز</div>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Testimonials -->
+                    <div class="detail-card mb-6 opacity-0 animate-fade-up" style="animation-delay:450ms;">
+                        <h3 class="font-bold text-lg mb-4">نظرات کاربران</h3>
+                        <div class="space-y-4">
+                            <div class="testimonial-card">
+                                <div class="flex items-center gap-3">
+                                    <div class="avatar avatar-1">ن</div>
+                                    <div>
+                                        <div class="font-bold text-sm text-white">محمدرضا نجفی</div>
+                                        <div class="flex text-gold-400 text-xs"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                                    </div>
+                                </div>
+                                <p class="mt-2 text-sm text-white/70 leading-7">«به عنوان یک وکیل با سال‌ها تجربه، همیشه به دنبال سیستمی بودم که بتواند تمام جنبه‌های کاری من را پوشش دهد. کارن سافت دقیقاً همین است.»</p>
+                            </div>
+                            <div class="testimonial-card">
+                                <div class="flex items-center gap-3">
+                                    <div class="avatar avatar-2">ل</div>
+                                    <div>
+                                        <div class="font-bold text-sm text-white">لیلا آبکه</div>
+                                        <div class="flex text-gold-400 text-xs"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                                    </div>
+                                </div>
+                                <p class="mt-2 text-sm text-white/70 leading-7">«کارن‌سافت با ارائه‌ی سامانه‌ای جامع در حوزه‌ی مدیریت پرونده‌های قضایی، قراردادهای وکالت، برنامه‌ریزی جلسات و امور مالی، تحولی اساسی در شیوه‌ی مدیریت دفاتر وکالت ایجاد کرده است.»</p>
+                            </div>
+                            <div class="testimonial-card">
+                                <div class="flex items-center gap-3">
+                                    <div class="avatar avatar-3">ر</div>
+                                    <div>
+                                        <div class="font-bold text-sm text-white">رقیه آبکه</div>
+                                        <div class="flex text-gold-400 text-xs"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                                    </div>
+                                </div>
+                                <p class="mt-2 text-sm text-white/70 leading-7">«کارن‌سافت با ارائه‌ی ابزارهای پیشرفته‌ای نظیر مدیریت قراردادها، پیگیری اقساط، ثبت جلسات و مکاتبات حقوقی، توانسته است به بهترین شکل نیازهای من را برآورده کند.»</p>
                             </div>
                         </div>
                     </div>
 
                     <!-- Features -->
                     <div class="detail-card mb-6 opacity-0 animate-fade-up" style="animation-delay:500ms;">
-                        <h3 class="font-bold text-lg mb-3 text-ink-900 dark:text-white">⚡ قابلیت‌های کلیدی و امکانات پیشرفته</h3>
+                        <h3 class="font-bold text-lg mb-3">⚡ قابلیت‌های کلیدی و امکانات پیشرفته</h3>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
-                            <ul class="space-y-2 text-sm text-slate-600 dark:text-slate-300">
-                                <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-500 text-xs"></i> مدیریت موکلین با اطلاعات کامل هویتی</li>
-                                <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-500 text-xs"></i> پرونده‌های قضایی با وضعیت‌بندی پیشرفته</li>
-                                <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-500 text-xs"></i> قراردادهای هوشمند با اقساط و پیگیری پرداخت</li>
-                                <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-500 text-xs"></i> تقویم شمسی با نمایش رویدادها و جلسات</li>
-                                <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-500 text-xs"></i> امور مالی کامل (درآمد، هزینه، گزارش‌گیری)</li>
+                            <ul class="space-y-2 text-sm text-white/80">
+                                <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-400 text-xs"></i> مدیریت موکلین با اطلاعات کامل هویتی</li>
+                                <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-400 text-xs"></i> پرونده‌های قضایی با وضعیت‌بندی پیشرفته</li>
+                                <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-400 text-xs"></i> قراردادهای هوشمند با اقساط و پیگیری پرداخت</li>
+                                <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-400 text-xs"></i> تقویم شمسی با نمایش رویدادها و جلسات</li>
+                                <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-400 text-xs"></i> امور مالی کامل (درآمد، هزینه، گزارش‌گیری)</li>
                             </ul>
-                            <ul class="space-y-2 text-sm text-slate-600 dark:text-slate-300">
-                                <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-500 text-xs"></i> تولید نامه‌های حقوقی با قالب‌های آماده</li>
-                                <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-500 text-xs"></i> چاپ و خروجی PDF با کیفیت بالا</li>
-                                <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-500 text-xs"></i> پشتیبان‌گیری و بازیابی خودکار</li>
-                                <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-500 text-xs"></i> دستیار هوش مصنوعی برای پیش‌نویس قرارداد</li>
-                                <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-500 text-xs"></i> تحلیل خودکار پرونده‌ها و پیشنهاد استراتژی</li>
+                            <ul class="space-y-2 text-sm text-white/80">
+                                <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-400 text-xs"></i> تولید نامه‌های حقوقی با قالب‌های آماده</li>
+                                <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-400 text-xs"></i> چاپ و خروجی PDF با کیفیت بالا</li>
+                                <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-400 text-xs"></i> پشتیبان‌گیری و بازیابی خودکار</li>
+                                <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-400 text-xs"></i> دستیار هوش مصنوعی برای پیش‌نویس قرارداد</li>
+                                <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-400 text-xs"></i> تحلیل خودکار پرونده‌ها و پیشنهاد استراتژی</li>
                             </ul>
                         </div>
                     </div>
@@ -561,36 +987,36 @@
 
                 <!-- ===== LEFT COLUMN: PRICING ===== -->
                 <div>
-                    <h3 class="font-bold text-lg mb-4 text-ink-900 dark:text-white opacity-0 animate-fade-up" style="animation-delay:200ms;">پلن‌های قیمت‌گذاری</h3>
+                    <h3 class="font-bold text-lg mb-4 text-white opacity-0 animate-fade-up" style="animation-delay:200ms;">پلن‌های قیمت‌گذاری</h3>
 
                     <div class="discount-pulse p-6 mb-6 text-center opacity-0 animate-fade-up" style="animation-delay:300ms;">
                         <div class="flex items-center justify-center gap-3 mb-2">
-                            <i class="fas fa-gift text-2xl text-gold-600"></i>
-                            <span class="text-xl font-black text-ink-900 dark:text-white">🎉 تخفیف ویژه</span>
+                            <i class="fas fa-gift text-2xl text-gold-500"></i>
+                            <span class="text-xl font-black text-white">🎉 تخفیف ویژه</span>
                         </div>
-                        <p class="text-ink-800 dark:text-amber-200 font-bold">
-                            تا پایان ماه، <span class="text-2xl text-gold-600">۳۰٪</span> تخفیف برای تمامی پلن‌ها
+                        <p class="font-bold">
+                            تا پایان ماه، <span class="text-2xl text-gold-500">۳۰٪</span> تخفیف برای تمامی پلن‌ها
                         </p>
-                        <p class="text-sm text-ink-700 dark:text-amber-300/70 mt-1">کد تخفیف: <span class="font-mono bg-ink-800/10 dark:bg-white/10 px-3 py-1 rounded-lg">KARENSOFT30</span></p>
+                        <p class="text-sm text-amber-300/70 mt-1">کد تخفیف: <span class="font-mono bg-white/10 px-3 py-1 rounded-lg">KARENSOFT30</span></p>
                     </div>
 
                     <div class="space-y-4">
                         <!-- Plan 1: Solo -->
                         <div class="pricing-card opacity-0 animate-fade-up" style="animation-delay:400ms;">
-                            <h4 class="text-lg font-bold text-ink-900 dark:text-white">پلن وکلا</h4>
+                            <h4 class="text-lg font-bold">پلن وکلا</h4>
                             <div class="mt-2 flex items-baseline gap-1 flex-wrap">
-                                <span class="text-3xl font-black text-emerald-600 dark:text-emerald-400">۶,۵۰۰,۰۰۰</span>
-                                <span class="text-sm text-slate-500">تومان</span>
+                                <span class="text-3xl font-black text-emerald-400">۶,۵۰۰,۰۰۰</span>
+                                <span class="text-sm text-white/50">تومان</span>
                                 <span class="price-strike">۹,۲۹۰,۰۰۰</span>
                                 <span class="discount-badge">-۳۰٪</span>
                             </div>
-                            <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">یک‌بار پرداخت — مناسب وکلا و دفاتر فردی</p>
-                            <ul class="mt-3 space-y-1 text-sm text-slate-600 dark:text-slate-300">
-                                <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-500 text-xs"></i> پرونده نامحدود</li>
-                                <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-500 text-xs"></i> مدیریت موکلین و قراردادها</li>
-                                <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-500 text-xs"></i> تقویم شمسی و یادآور هوشمند</li>
-                                <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-500 text-xs"></i> تولید نامه و گزارش‌گیری</li>
-                                <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-500 text-xs"></i> پشتیبانی ۲۴ ساعته</li>
+                            <p class="text-sm text-white/50 mt-1">یک‌بار پرداخت — مناسب وکلا و دفاتر فردی</p>
+                            <ul class="mt-3 space-y-1 text-sm text-white/80">
+                                <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-400 text-xs"></i> پرونده نامحدود</li>
+                                <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-400 text-xs"></i> مدیریت موکلین و قراردادها</li>
+                                <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-400 text-xs"></i> تقویم شمسی و یادآور هوشمند</li>
+                                <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-400 text-xs"></i> تولید نامه و گزارش‌گیری</li>
+                                <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-400 text-xs"></i> پشتیبانی ۲۴ ساعته</li>
                             </ul>
                             <a href="tel:09152521166" class="mt-4 w-full inline-flex justify-center btn-glow text-sm py-2.5"><i class="fas fa-phone"></i> مشاوره و خرید</a>
                         </div>
@@ -598,20 +1024,20 @@
                         <!-- Plan 2: Firms (Popular) -->
                         <div class="pricing-card popular opacity-0 animate-fade-up" style="animation-delay:500ms;">
                             <span class="badge-popular">محبوب</span>
-                            <h4 class="text-lg font-bold text-ink-900 dark:text-white">پلن موسسات</h4>
+                            <h4 class="text-lg font-bold">پلن موسسات</h4>
                             <div class="mt-2 flex items-baseline gap-1 flex-wrap">
-                                <span class="text-3xl font-black text-emerald-600 dark:text-emerald-400">۱۰,۴۰۰,۰۰۰</span>
-                                <span class="text-sm text-slate-500">تومان</span>
+                                <span class="text-3xl font-black text-emerald-400">۱۰,۴۰۰,۰۰۰</span>
+                                <span class="text-sm text-white/50">تومان</span>
                                 <span class="price-strike">۱۴,۸۶۰,۰۰۰</span>
                                 <span class="discount-badge">-۳۰٪</span>
                             </div>
-                            <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">یک‌بار پرداخت — مناسب مؤسسات حقوقی و دفاتر بزرگ</p>
-                            <ul class="mt-3 space-y-1 text-sm text-slate-600 dark:text-slate-300">
-                                <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-500 text-xs"></i> همه امکانات پلن وکلا</li>
-                                <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-500 text-xs"></i> مدیریت چند کاربره (تا ۱۰ کاربر)</li>
-                                <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-500 text-xs"></i> گزارش‌های پیشرفته و داشبورد تیمی</li>
-                                <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-500 text-xs"></i> پشتیبانی اولویت‌دار و اختصاصی</li>
-                                <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-500 text-xs"></i> نصب روی سرور اختصاصی (اختیاری)</li>
+                            <p class="text-sm text-white/50 mt-1">یک‌بار پرداخت — مناسب مؤسسات حقوقی و دفاتر بزرگ</p>
+                            <ul class="mt-3 space-y-1 text-sm text-white/80">
+                                <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-400 text-xs"></i> همه امکانات پلن وکلا</li>
+                                <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-400 text-xs"></i> مدیریت چند کاربره (تا ۱۰ کاربر)</li>
+                                <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-400 text-xs"></i> گزارش‌های پیشرفته و داشبورد تیمی</li>
+                                <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-400 text-xs"></i> پشتیبانی اولویت‌دار و اختصاصی</li>
+                                <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-400 text-xs"></i> نصب روی سرور اختصاصی (اختیاری)</li>
                             </ul>
                             <a href="tel:09152521166" class="mt-4 w-full inline-flex justify-center btn-glow text-sm py-2.5"><i class="fas fa-phone"></i> مشاوره و خرید</a>
                         </div>
@@ -619,118 +1045,127 @@
                         <!-- Plan 3: Pro + AI -->
                         <div class="pricing-card ai-card opacity-0 animate-fade-up" style="animation-delay:600ms;">
                             <span class="badge-ai"><i class="fas fa-robot"></i> هوش مصنوعی</span>
-                            <h4 class="text-lg font-bold text-ink-900 dark:text-white">پلن حرفه‌ای + AI</h4>
+                            <h4 class="text-lg font-bold">پلن حرفه‌ای + AI</h4>
                             <div class="mt-2 flex items-baseline gap-1 flex-wrap">
-                                <span class="text-3xl font-black text-purple-600 dark:text-purple-400">به زودی</span>
+                                <span class="text-3xl font-black text-purple-400">به زودی</span>
                             </div>
-                            <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">همراه با دستیار هوش مصنوعی اختصاصی</p>
-                            <ul class="mt-3 space-y-1 text-sm text-slate-600 dark:text-slate-300">
-                                <li class="flex items-center gap-2"><i class="fas fa-robot text-purple-500 text-xs"></i> <span class="font-bold text-purple-600 dark:text-purple-400">دستیار هوش مصنوعی</span> — پاسخ‌دهی خودکار</li>
-                                <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-500 text-xs"></i> همه امکانات پلن موسسات</li>
-                                <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-500 text-xs"></i> پیش‌نویس هوشمند قرارداد و لایحه</li>
-                                <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-500 text-xs"></i> تحلیل خودکار پرونده‌ها</li>
-                                <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-500 text-xs"></i> پشتیبانی اختصاصی ۲۴/۷ با ضمانت SLA</li>
+                            <p class="text-sm text-white/50 mt-1">همراه با دستیار هوش مصنوعی اختصاصی</p>
+                            <ul class="mt-3 space-y-1 text-sm text-white/80">
+                                <li class="flex items-center gap-2"><i class="fas fa-robot text-purple-400 text-xs"></i> <span class="font-bold text-purple-400">دستیار هوش مصنوعی</span> — پاسخ‌دهی خودکار</li>
+                                <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-400 text-xs"></i> همه امکانات پلن موسسات</li>
+                                <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-400 text-xs"></i> پیش‌نویس هوشمند قرارداد و لایحه</li>
+                                <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-400 text-xs"></i> تحلیل خودکار پرونده‌ها</li>
+                                <li class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-400 text-xs"></i> پشتیبانی اختصاصی ۲۴/۷ با ضمانت SLA</li>
                             </ul>
-                            <a href="tel:09152521166" class="mt-4 w-full inline-flex justify-center rounded-xl border-2 border-purple-500 bg-purple-50 dark:bg-purple-900/20 px-4 py-2.5 text-sm font-bold text-purple-700 dark:text-purple-300 hover:bg-purple-100 dark:hover:bg-purple-900/40 transition">
+                            <a href="tel:09152521166" class="mt-4 w-full inline-flex justify-center rounded-xl border-2 border-purple-500 bg-purple-500/10 px-4 py-2.5 text-sm font-bold text-purple-400 hover:bg-purple-500/20 transition">
                                 <i class="fas fa-arrow-left"></i> دریافت مشاوره رایگان
                             </a>
                         </div>
                     </div>
 
-                    <p class="text-center text-xs text-slate-400 dark:text-slate-500 mt-4 opacity-0 animate-fade-up" style="animation-delay:700ms;">
+                    <p class="text-center text-xs text-white/40 mt-4 opacity-0 animate-fade-up" style="animation-delay:700ms;">
                         تمامی قیمت‌ها به صورت یک‌بار پرداخت است و شامل به‌روزرسانی‌های دائمی می‌باشد.
                     </p>
                 </div>
 
             </div>
 
-            <!-- ===== SLIDER ===== -->
+            <!-- ===== SLIDER (تصاویر محیط برنامه) ===== -->
             <div class="mt-16 opacity-0 animate-fade-up" style="animation-delay:800ms;">
-                <h3 class="font-bold text-2xl mb-6 text-ink-900 dark:text-white text-center">
+                <h3 class="font-bold text-2xl mb-6 text-white text-center">
                     <i class="fas fa-images text-gold-500 ml-2"></i>
                     تصاویر محیط برنامه
                 </h3>
                 <div class="slider-container" id="appSlider">
                     <div class="slider-track" id="sliderTrack"></div>
-                    <button class="slider-btn prev" id="sliderPrev"><i class="fas fa-chevron-right"></i></button>
-                    <button class="slider-btn next" id="sliderNext"><i class="fas fa-chevron-left"></i></button>
+                    <button class="slider-btn prev" id="sliderPrev" aria-label="تصویر قبلی"><i class="fas fa-chevron-right"></i></button>
+                    <button class="slider-btn next" id="sliderNext" aria-label="تصویر بعدی"><i class="fas fa-chevron-left"></i></button>
                     <div class="slider-dots" id="sliderDots"></div>
                 </div>
-                <p class="text-center text-xs text-slate-400 dark:text-slate-500 mt-3">
-                    <i class="fas fa-info-circle"></i> برای مشاهده در اندازه بزرگ روی هر تصویر کلیک کنید
+                <p class="text-center text-xs text-white/40 mt-3">
+                    <i class="fas fa-info-circle"></i> برای مشاهده در اندازه بزرگ روی هر تصویر کلیک کنید | برای حرکت از صفحه‌کلید و لمس استفاده کنید
                 </p>
             </div>
 
         </div>
-    </section>
+
+        <!-- ===== FOOTER ===== -->
+        <footer class="border-t border-white/5 bg-[#080A19]/80 text-white/50 mt-12">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+                <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+                    <div class="flex items-center gap-2">
+                        <img src="images/app-icon-law-office.jpg" alt="کارن سافت" class="w-8 h-8 rounded-xl object-cover" />
+                        <span class="font-bold text-white">کارن سافت</span>
+                        <span class="text-xs text-white/40 mr-2">راه‌حل‌های نرم‌افزاری هوشمند</span>
+                    </div>
+                    <div class="flex flex-wrap items-center gap-4 text-xs text-white/40">
+                        <a href="index.html" class="hover:text-gold-400 transition">خانه</a>
+                        <a href="products.html" class="hover:text-gold-400 transition">محصولات</a>
+                        <a href="blog.html" class="hover:text-gold-400 transition">وبلاگ</a>
+                        <a href="contact.html" class="hover:text-gold-400 transition">تماس</a>
+                        <a href="tel:09152521166" class="hover:text-emerald-400 transition font-bold text-emerald-400" dir="ltr"><i class="fas fa-phone"></i> ۰۹۱۵۲۵۲۱۱۶۶</a>
+                        <a href="mailto:info@karen-soft.ir" class="hover:text-gold-400 transition"><i class="fas fa-envelope"></i> info@karen-soft.ir</a>
+                        <span>تولید شده توسط <span class="text-white font-semibold">کارن سافت</span></span>
+                    </div>
+                    <div class="text-[10px] text-white/30"><i class="fas fa-copyright"></i> ۱۴۰۴ تمامی حقوق محفوظ است</div>
+                </div>
+                <div class="flex flex-wrap items-center justify-center gap-3 mt-4 pt-4 border-t border-white/5">
+                    <span class="text-xs text-white/40">ما را دنبال کنید:</span>
+                    <a href="https://t.me/KarenSoftOfficial" target="_blank" class="social-link"><i class="fab fa-telegram-plane"></i></a>
+                    <a href="https://www.instagram.com/karen_soft.ir" target="_blank" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.youtube.com/@KarenSoftOfficial" target="_blank" class="social-link"><i class="fab fa-youtube"></i></a>
+                    <a href="https://www.linkedin.com/company/karensoft" target="_blank" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://twitter.com/KarenSoft_ir" target="_blank" class="social-link"><i class="fab fa-x-twitter"></i></a>
+                </div>
+            </div>
+        </footer>
+
+    </div>
 
     <!-- ===== LIGHTBOX ===== -->
     <div class="lightbox" id="lightbox">
-        <button class="close-lb" id="closeLightbox"><i class="fas fa-times"></i></button>
+        <button class="close-lb" id="closeLightbox" aria-label="بستن"><i class="fas fa-times"></i></button>
+        <button class="lb-nav prev" id="lbPrev" aria-label="تصویر قبلی"><i class="fas fa-chevron-right"></i></button>
+        <button class="lb-nav next" id="lbNext" aria-label="تصویر بعدی"><i class="fas fa-chevron-left"></i></button>
         <img id="lightboxImg" src="" alt="تصویر برنامه" />
         <div class="lb-counter" id="lbCounter"></div>
     </div>
 
-    <!-- ============================================================ -->
-    <!-- ===== FOOTER ===== -->
-    <!-- ============================================================ -->
-    <footer class="border-t border-white/5 bg-[#080A19] text-white/50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-            <div class="flex flex-col md:flex-row items-center justify-between gap-4">
-                <div class="flex items-center gap-2">
-                    <img src="images/app-icon-law-office.jpg" alt="کارن سافت" class="w-8 h-8 rounded-xl object-cover" />
-                    <span class="font-bold text-white">کارن سافت</span>
-                    <span class="text-xs text-white/40 mr-2">راه‌حل‌های نرم‌افزاری هوشمند</span>
-                </div>
-                <div class="flex flex-wrap items-center gap-4 text-xs text-white/40">
-                    <a href="index.html" class="hover:text-gold-400 transition">خانه</a>
-                    <a href="products.html" class="hover:text-gold-400 transition">محصولات</a>
-                    <a href="blog.html" class="hover:text-gold-400 transition">وبلاگ</a>
-                    <a href="contact.html" class="hover:text-gold-400 transition">تماس</a>
-                    <a href="tel:09152521166" class="hover:text-emerald-400 transition font-bold text-emerald-400" dir="ltr"><i class="fas fa-phone"></i> ۰۹۱۵۲۵۲۱۱۶۶</a>
-                    <a href="mailto:info@karen-soft.ir" class="hover:text-gold-400 transition"><i class="fas fa-envelope"></i> info@karen-soft.ir</a>
-                    <span>تولید شده توسط <span class="text-white font-semibold">کارن سافت</span></span>
-                </div>
-                <div class="text-[10px] text-white/30"><i class="fas fa-copyright"></i> ۱۴۰۴ تمامی حقوق محفوظ است</div>
-            </div>
-            <div class="flex flex-wrap items-center justify-center gap-3 mt-4 pt-4 border-t border-white/5">
-                <span class="text-xs text-white/40">ما را دنبال کنید:</span>
-                <a href="https://t.me/KarenSoftOfficial" target="_blank" class="social-link"><i class="fab fa-telegram-plane"></i></a>
-                <a href="https://www.instagram.com/karen_soft.ir" target="_blank" class="social-link"><i class="fab fa-instagram"></i></a>
-                <a href="https://www.youtube.com/@KarenSoftOfficial" target="_blank" class="social-link"><i class="fab fa-youtube"></i></a>
-                <a href="https://www.linkedin.com/company/karensoft" target="_blank" class="social-link"><i class="fab fa-linkedin-in"></i></a>
-                <a href="https://twitter.com/KarenSoft_ir" target="_blank" class="social-link"><i class="fab fa-x-twitter"></i></a>
-            </div>
-        </div>
-    </footer>
-
     <script>
         document.addEventListener('DOMContentLoaded', function() {
 
-            // ===== MOBILE MENU =====
-            const menuToggle = document.getElementById('menuToggle');
-            const menuIcon = document.getElementById('menuIcon');
-            const closeIcon = document.getElementById('closeIcon');
-            let isOpen = false;
-
-            if (menuToggle) {
-                menuToggle.addEventListener('click', function() {
-                    isOpen = !isOpen;
-                    if (isOpen) {
-                        menuIcon.classList.add('opacity-0', 'rotate-90', 'scale-75');
-                        menuIcon.classList.remove('opacity-100', 'rotate-0', 'scale-100');
-                        closeIcon.classList.remove('opacity-0', '-rotate-90', 'scale-75');
-                        closeIcon.classList.add('opacity-100', 'rotate-0', 'scale-100');
-                        document.body.style.overflow = 'hidden';
-                    } else {
-                        menuIcon.classList.remove('opacity-0', 'rotate-90', 'scale-75');
-                        menuIcon.classList.add('opacity-100', 'rotate-0', 'scale-100');
-                        closeIcon.classList.remove('opacity-100', 'rotate-0', 'scale-100');
-                        closeIcon.classList.add('opacity-0', '-rotate-90', 'scale-75');
-                        document.body.style.overflow = '';
-                    }
-                });
+            // ===== THEME =====
+            const themeToggle = document.getElementById('themeToggle');
+            const themeIcon = document.getElementById('themeIcon');
+            const root = document.documentElement;
+            const saved = localStorage.getItem('theme');
+            if (saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                root.classList.add('dark');
+                themeIcon.className = 'fas fa-sun';
+            } else {
+                themeIcon.className = 'fas fa-moon';
             }
+            themeToggle.addEventListener('click', function() {
+                const dark = root.classList.toggle('dark');
+                localStorage.setItem('theme', dark ? 'dark' : 'light');
+                themeIcon.className = dark ? 'fas fa-sun' : 'fas fa-moon';
+            });
+
+            // ===== MOBILE MENU =====
+            const mobileBtn = document.getElementById('mobileMenuBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileBtn.addEventListener('click', function() {
+                mobileMenu.classList.toggle('open');
+                this.innerHTML = mobileMenu.classList.contains('open') ?
+                    '<i class="fas fa-times"></i>' :
+                    '<i class="fas fa-bars"></i>';
+            });
+
+            // ===== NAVBAR SCROLL =====
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', function() {
+                navbar.classList.toggle('navbar-scrolled', window.scrollY > 20);
+            });
 
             // ===== SLIDER =====
             const sliderImages = [
@@ -762,148 +1197,278 @@
             const totalSlides = sliderImages.length;
             let currentSlide = 0;
             let sliderInterval = null;
+            let isDragging = false;
+            let startX = 0;
+            let currentX = 0;
 
-            if (track && dotsContainer) {
-                sliderImages.forEach((img, index) => {
-                    const slide = document.createElement('div');
-                    slide.className = 'slider-slide';
-                    slide.dataset.index = index;
+            // Build slides
+            sliderImages.forEach((img, index) => {
+                const slide = document.createElement('div');
+                slide.className = 'slider-slide';
+                slide.dataset.index = index;
 
-                    const image = document.createElement('img');
-                    image.src = img.src;
-                    image.alt = img.label;
-                    image.loading = 'lazy';
-                    image.onerror = function() {
-                        this.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="800" height="450" viewBox="0 0 800 450"%3E%3Crect width="800" height="450" fill="%231a2438"/%3E%3Ctext x="400" y="225" font-family="Vazirmatn" font-size="24" fill="%2394a3b8" text-anchor="middle"%3E' +
-                            encodeURIComponent(img.label) + '%3C/text%3E%3C/svg%3E';
-                    };
+                const image = document.createElement('img');
+                image.src = img.src;
+                image.alt = img.label;
+                image.loading = 'lazy';
+                image.draggable = false;
+                image.onerror = function() {
+                    this.src =
+                        'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="800" height="450" viewBox="0 0 800 450"%3E%3Crect width="800" height="450" fill="%231a2438"/%3E%3Ctext x="400" y="225" font-family="Vazirmatn" font-size="24" fill="%2394a3b8" text-anchor="middle"%3E' +
+                        encodeURIComponent(img.label) + '%3C/text%3E%3C/svg%3E';
+                };
 
-                    const label = document.createElement('span');
-                    label.className = 'slide-label';
-                    label.textContent = img.label;
+                const label = document.createElement('span');
+                label.className = 'slide-label';
+                label.textContent = img.label;
 
-                    slide.appendChild(image);
-                    slide.appendChild(label);
+                slide.appendChild(image);
+                slide.appendChild(label);
 
-                    slide.addEventListener('click', function() {
+                slide.addEventListener('click', function(e) {
+                    if (!isDragging) {
                         const imgSrc = this.querySelector('img').src;
                         openLightbox(imgSrc, parseInt(this.dataset.index));
-                    });
-
-                    track.appendChild(slide);
+                    }
                 });
 
-                for (let i = 0; i < totalSlides; i++) {
-                    const dot = document.createElement('button');
-                    dot.className = 'slider-dot' + (i === 0 ? ' active' : '');
-                    dot.dataset.index = i;
-                    dot.addEventListener('click', function() {
-                        goToSlide(parseInt(this.dataset.index));
-                        resetAutoPlay();
-                    });
-                    dotsContainer.appendChild(dot);
-                }
+                track.appendChild(slide);
+            });
 
-                function goToSlide(index) {
-                    if (index < 0) index = totalSlides - 1;
-                    if (index >= totalSlides) index = 0;
-                    currentSlide = index;
-                    track.style.transform = 'translateX(' + (-currentSlide * 100) + '%)';
-                    const dots = dotsContainer.querySelectorAll('.slider-dot');
-                    dots.forEach((d, i) => {
-                        d.classList.toggle('active', i === currentSlide);
-                    });
-                }
-
-                function nextSlide() { goToSlide(currentSlide + 1); }
-
-                function prevSlide() { goToSlide(currentSlide - 1); }
-
-                document.getElementById('sliderNext').addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    nextSlide();
+            // Dots
+            for (let i = 0; i < totalSlides; i++) {
+                const dot = document.createElement('button');
+                dot.className = 'slider-dot' + (i === 0 ? ' active' : '');
+                dot.dataset.index = i;
+                dot.setAttribute('aria-label', 'اسلاید ' + (i + 1));
+                dot.addEventListener('click', function() {
+                    goToSlide(parseInt(this.dataset.index));
                     resetAutoPlay();
                 });
+                dotsContainer.appendChild(dot);
+            }
 
-                document.getElementById('sliderPrev').addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    prevSlide();
-                    resetAutoPlay();
+            function goToSlide(index) {
+                if (index < 0) index = totalSlides - 1;
+                if (index >= totalSlides) index = 0;
+                currentSlide = index;
+                track.style.transform = 'translateX(' + (-currentSlide * 100) + '%)';
+                const dots = dotsContainer.querySelectorAll('.slider-dot');
+                dots.forEach((d, i) => {
+                    d.classList.toggle('active', i === currentSlide);
                 });
+            }
 
-                function startAutoPlay() {
-                    if (sliderInterval) clearInterval(sliderInterval);
-                    sliderInterval = setInterval(nextSlide, 3000);
-                }
+            function nextSlide() { goToSlide(currentSlide + 1); }
 
-                function resetAutoPlay() {
-                    if (sliderInterval) { clearInterval(sliderInterval);
-                        sliderInterval = null; }
-                    startAutoPlay();
-                }
+            function prevSlide() { goToSlide(currentSlide - 1); }
+
+            // Buttons
+            document.getElementById('sliderNext').addEventListener('click', function(e) {
+                e.stopPropagation();
+                nextSlide();
+                resetAutoPlay();
+            });
+            document.getElementById('sliderPrev').addEventListener('click', function(e) {
+                e.stopPropagation();
+                prevSlide();
+                resetAutoPlay();
+            });
+
+            // Auto-play
+            function startAutoPlay() {
+                if (sliderInterval) clearInterval(sliderInterval);
+                sliderInterval = setInterval(nextSlide, 4000);
+            }
+
+            function resetAutoPlay() {
+                if (sliderInterval) { clearInterval(sliderInterval);
+                    sliderInterval = null; }
                 startAutoPlay();
             }
+            startAutoPlay();
+
+            // ===== TOUCH & MOUSE DRAG =====
+            const sliderContainer = document.getElementById('appSlider');
+
+            sliderContainer.addEventListener('mousedown', function(e) {
+                isDragging = true;
+                startX = e.pageX - sliderContainer.getBoundingClientRect().left;
+                currentX = startX;
+                sliderContainer.style.cursor = 'grabbing';
+                resetAutoPlay();
+            });
+
+            document.addEventListener('mousemove', function(e) {
+                if (!isDragging) return;
+                const rect = sliderContainer.getBoundingClientRect();
+                currentX = e.pageX - rect.left;
+                const diff = ((currentX - startX) / rect.width) * 100;
+                track.style.transform = 'translateX(' + (-currentSlide * 100 + diff) + '%)';
+                track.style.transition = 'none';
+            });
+
+            document.addEventListener('mouseup', function(e) {
+                if (!isDragging) return;
+                isDragging = false;
+                sliderContainer.style.cursor = 'default';
+                track.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+                const rect = sliderContainer.getBoundingClientRect();
+                const diff = ((currentX - startX) / rect.width) * 100;
+                if (diff < -15) {
+                    nextSlide();
+                } else if (diff > 15) {
+                    prevSlide();
+                } else {
+                    goToSlide(currentSlide);
+                }
+                startAutoPlay();
+            });
+
+            // Touch events
+            let touchStartX = 0;
+            let touchCurrentX = 0;
+            let isTouching = false;
+
+            sliderContainer.addEventListener('touchstart', function(e) {
+                isTouching = true;
+                touchStartX = e.touches[0].clientX;
+                touchCurrentX = touchStartX;
+                resetAutoPlay();
+            }, { passive: true });
+
+            sliderContainer.addEventListener('touchmove', function(e) {
+                if (!isTouching) return;
+                touchCurrentX = e.touches[0].clientX;
+                const rect = sliderContainer.getBoundingClientRect();
+                const diff = ((touchCurrentX - touchStartX) / rect.width) * 100;
+                track.style.transform = 'translateX(' + (-currentSlide * 100 + diff) + '%)';
+                track.style.transition = 'none';
+            }, { passive: true });
+
+            sliderContainer.addEventListener('touchend', function(e) {
+                if (!isTouching) return;
+                isTouching = false;
+                track.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+                const rect = sliderContainer.getBoundingClientRect();
+                const diff = ((touchCurrentX - touchStartX) / rect.width) * 100;
+                if (diff < -15) {
+                    nextSlide();
+                } else if (diff > 15) {
+                    prevSlide();
+                } else {
+                    goToSlide(currentSlide);
+                }
+                startAutoPlay();
+            }, { passive: true });
 
             // ===== LIGHTBOX =====
             const lightbox = document.getElementById('lightbox');
             const lightboxImg = document.getElementById('lightboxImg');
             const closeLightbox = document.getElementById('closeLightbox');
             const lbCounter = document.getElementById('lbCounter');
+            const lbPrev = document.getElementById('lbPrev');
+            const lbNext = document.getElementById('lbNext');
+            let lightboxIndex = 0;
 
             function openLightbox(src, index) {
-                if (!lightbox || !lightboxImg) return;
+                lightboxIndex = index;
                 lightboxImg.src = src;
                 lightbox.classList.add('show');
-                if (lbCounter) {
-                    lbCounter.textContent = (index + 1) + ' از ' + sliderImages.length;
-                }
+                lbCounter.textContent = (index + 1) + ' از ' + sliderImages.length;
                 document.body.style.overflow = 'hidden';
             }
 
             function closeLightboxFn() {
-                if (!lightbox) return;
                 lightbox.classList.remove('show');
                 document.body.style.overflow = '';
             }
 
-            if (closeLightbox) {
-                closeLightbox.addEventListener('click', closeLightboxFn);
+            function lbGoTo(index) {
+                if (index < 0) index = sliderImages.length - 1;
+                if (index >= sliderImages.length) index = 0;
+                lightboxIndex = index;
+                lightboxImg.src = sliderImages[index].src;
+                lbCounter.textContent = (index + 1) + ' از ' + sliderImages.length;
             }
-            if (lightbox) {
-                lightbox.addEventListener('click', function(e) {
-                    if (e.target === this) closeLightboxFn();
-                });
-            }
+
+            closeLightbox.addEventListener('click', closeLightboxFn);
+            lightbox.addEventListener('click', function(e) {
+                if (e.target === this) closeLightboxFn();
+            });
+            lbPrev.addEventListener('click', function(e) {
+                e.stopPropagation();
+                lbGoTo(lightboxIndex - 1);
+            });
+            lbNext.addEventListener('click', function(e) {
+                e.stopPropagation();
+                lbGoTo(lightboxIndex + 1);
+            });
 
             document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape' && lightbox && lightbox.classList.contains('show')) {
+                if (e.key === 'Escape' && lightbox.classList.contains('show')) {
                     closeLightboxFn();
                 }
-                if (e.key === 'ArrowRight' && lightbox && lightbox.classList.contains('show')) {
-                    const currentIdx = parseInt(lbCounter.textContent.split(' ')[0]) - 1;
-                    const nextIdx = (currentIdx + 1) % sliderImages.length;
-                    lightboxImg.src = sliderImages[nextIdx].src;
-                    lbCounter.textContent = (nextIdx + 1) + ' از ' + sliderImages.length;
+                if (e.key === 'ArrowRight' && lightbox.classList.contains('show')) {
+                    lbGoTo(lightboxIndex + 1);
                 }
-                if (e.key === 'ArrowLeft' && lightbox && lightbox.classList.contains('show')) {
-                    const currentIdx = parseInt(lbCounter.textContent.split(' ')[0]) - 1;
-                    const prevIdx = (currentIdx - 1 + sliderImages.length) % sliderImages.length;
-                    lightboxImg.src = sliderImages[prevIdx].src;
-                    lbCounter.textContent = (prevIdx + 1) + ' از ' + sliderImages.length;
+                if (e.key === 'ArrowLeft' && lightbox.classList.contains('show')) {
+                    lbGoTo(lightboxIndex - 1);
                 }
             });
 
-            // ===== TESTIMONIALS HOVER EFFECT =====
-            document.querySelectorAll('.testimonial-card').forEach(card => {
-                card.addEventListener('mouseenter', function() {
-                    this.style.transform = 'translateY(-8px) scale(1.01)';
-                    this.style.boxShadow = '0 20px 60px rgba(0,0,0,0.15)';
-                });
-                card.addEventListener('mouseleave', function() {
-                    this.style.transform = 'translateY(0) scale(1)';
-                    this.style.boxShadow = '';
-                });
+            // Lightbox touch/mouse drag for mobile
+            let lbIsDragging = false;
+            let lbStartX = 0;
+            let lbCurrentX = 0;
+
+            lightbox.addEventListener('mousedown', function(e) {
+                if (e.target === this || e.target === lightboxImg) {
+                    lbIsDragging = true;
+                    lbStartX = e.clientX;
+                    lbCurrentX = lbStartX;
+                }
             });
+
+            document.addEventListener('mousemove', function(e) {
+                if (!lbIsDragging) return;
+                lbCurrentX = e.clientX;
+            });
+
+            document.addEventListener('mouseup', function(e) {
+                if (!lbIsDragging) return;
+                lbIsDragging = false;
+                const diff = lbCurrentX - lbStartX;
+                if (diff < -50) {
+                    lbGoTo(lightboxIndex + 1);
+                } else if (diff > 50) {
+                    lbGoTo(lightboxIndex - 1);
+                }
+            });
+
+            lightbox.addEventListener('touchstart', function(e) {
+                if (e.target === this || e.target === lightboxImg) {
+                    lbIsDragging = true;
+                    lbStartX = e.touches[0].clientX;
+                    lbCurrentX = lbStartX;
+                }
+            }, { passive: true });
+
+            lightbox.addEventListener('touchmove', function(e) {
+                if (!lbIsDragging) return;
+                lbCurrentX = e.touches[0].clientX;
+            }, { passive: true });
+
+            lightbox.addEventListener('touchend', function(e) {
+                if (!lbIsDragging) return;
+                lbIsDragging = false;
+                const diff = lbCurrentX - lbStartX;
+                if (diff < -50) {
+                    lbGoTo(lightboxIndex + 1);
+                } else if (diff > 50) {
+                    lbGoTo(lightboxIndex - 1);
+                }
+            }, { passive: true });
 
         });
     </script>
