@@ -10,6 +10,21 @@
     </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" />
+    
+    <!-- ===== CRISP CHAT (جایگزین پشتیبانی داخلی) ===== -->
+    <script type="text/javascript">
+        window.$crisp=[];
+        window.CRISP_WEBSITE_ID="ffafdfcf-e510-45d0-a026-4e964ad420ee";
+        (function(){
+            d=document;
+            s=d.createElement("script");
+            s.src="https://client.crisp.chat/l.js";
+            s.async=1;
+            d.getElementsByTagName("head")[0].appendChild(s);
+        })();
+    </script>
+    <!-- ===== پایان کد Crisp ===== -->
+    
     <style>
         /* ===== RESET & BASE ===== */
         * {
@@ -394,141 +409,8 @@
             color: #2dd4bf;
         }
 
-        /* ===== SUPPORT ===== */
-        .support-icon {
-            width: 52px;
-            height: 52px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #D4AF37, #B8942A);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #0B1220;
-            font-size: 1.5rem;
-            cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-            box-shadow: 0 8px 32px rgba(212, 175, 55, 0.3);
-            position: fixed;
-            bottom: 24px;
-            right: 24px;
-            z-index: 150;
-        }
-        .support-icon:hover {
-            transform: scale(1.1) rotate(-8deg);
-            box-shadow: 0 12px 48px rgba(212, 175, 55, 0.5);
-        }
-        .support-icon .pulse-ring {
-            position: absolute;
-            inset: -6px;
-            border-radius: 50%;
-            border: 2px solid rgba(212, 175, 55, 0.3);
-            animation: ringPulse 2s ease-out infinite;
-        }
-        @keyframes ringPulse {
-            0% {
-                transform: scale(1);
-                opacity: 0.8;
-            }
-            100% {
-                transform: scale(1.5);
-                opacity: 0;
-            }
-        }
-
-        #supportModal {
-            display: none;
-            position: fixed;
-            inset: 0;
-            z-index: 300;
-            background: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            align-items: center;
-            justify-content: center;
-            padding: 1rem;
-        }
-        #supportModal.show {
-            display: flex;
-        }
-        #supportModal .support-box {
-            width: 100%;
-            max-width: 600px;
-            max-height: 85vh;
-            background: #0B1220;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 1.5rem;
-            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-        }
-        #supportModal .support-header {
-            padding: 1rem 1.5rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-shrink: 0;
-        }
-        #supportModal .support-body {
-            padding: 1rem 1.5rem;
-            overflow-y: auto;
-            flex: 1;
-        }
-        #supportModal .support-question {
-            padding: 0.6rem 1rem;
-            border-radius: 0.9rem;
-            background: rgba(212, 175, 55, 0.08);
-            border: 1px solid rgba(212, 175, 55, 0.12);
-            cursor: pointer;
-            transition: all 0.25s ease;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-            font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.85);
-        }
-        #supportModal .support-question:hover {
-            background: rgba(212, 175, 55, 0.15);
-            transform: translateX(-4px);
-        }
-        #supportModal .support-answer {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease, padding 0.4s ease;
-            opacity: 0;
-            padding: 0 1rem;
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 0.9rem;
-            line-height: 2;
-        }
-        #supportModal .support-answer.open {
-            max-height: 400px;
-            opacity: 1;
-            padding: 0.6rem 1rem 1rem 1rem;
-        }
-        #supportModal .support-answer .typing-text {
-            display: inline-block;
-        }
-        #supportModal .support-answer .typing-cursor-support {
-            display: inline-block;
-            width: 2px;
-            height: 1em;
-            background: #D4AF37;
-            animation: blink 0.9s step-end infinite;
-            vertical-align: text-bottom;
-        }
-        .icon-btn {
-            background: none;
-            border: none;
-            cursor: pointer;
-            font-size: 1.2rem;
-            color: rgba(255, 255, 255, 0.6);
-            padding: 0.3rem;
-            transition: color 0.2s;
-        }
-        .icon-btn:hover {
-            color: #D4AF37;
-        }
+        /* ===== استایل‌های پشتیبانی داخلی کاملاً حذف شدند ===== */
+        /* دیگر خبری از support-icon, supportModal, pulse-ring و ... نیست */
     </style>
 </head>
 <body>
@@ -541,30 +423,8 @@
     <!-- ===== CONTENT OVERLAY ===== -->
     <div id="content-overlay">
 
-        <!-- ===== SUPPORT ICON ===== -->
-        <div class="support-icon" id="supportToggle" title="پشتیبانی آنلاین">
-            <span class="pulse-ring"></span>
-            <i class="fas fa-headset"></i>
-        </div>
-
-        <!-- ===== SUPPORT MODAL ===== -->
-        <div id="supportModal">
-            <div class="support-box">
-                <div class="support-header">
-                    <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-gold-400 to-gold-700 text-ink-900 flex items-center justify-center text-lg">
-                            <i class="fas fa-headset"></i>
-                        </div>
-                        <div>
-                            <div class="font-bold text-sm text-white">پشتیبانی آنلاین</div>
-                            <div class="text-[10px] text-white/40">پاسخ‌های خودکار</div>
-                        </div>
-                    </div>
-                    <button class="icon-btn" id="closeSupport"><i class="fas fa-times"></i></button>
-                </div>
-                <div class="support-body" id="supportBody"></div>
-            </div>
-        </div>
+        <!-- ===== دکمه پشتیبانی داخلی حذف شد ===== -->
+        <!-- چت Crisp به‌صورت خودکار در گوشه صفحه نمایش داده می‌شود -->
 
         <!-- ===== NAVBAR ===== -->
         <nav id="navbar" class="fixed top-0 right-0 left-0 z-50 navbar-glass transition-all duration-300">
@@ -887,9 +747,6 @@
                 navbar.classList.toggle('navbar-scrolled', window.scrollY > 20);
             });
 
-            // ===== TYPING EFFECT (Hero) =====
-            // (حذف شد چون تیتر ثابت است)
-
             // ===== COUNTERS =====
             const statNums = document.querySelectorAll('.stat-number');
             const statObserver = new IntersectionObserver(function(entries) {
@@ -994,71 +851,8 @@
                     })['finally'](function() { btn.disabled = false; });
             });
 
-            // ===== SUPPORT MODAL =====
-            const supportToggle = document.getElementById('supportToggle');
-            const supportModal = document.getElementById('supportModal');
-            const closeSupport = document.getElementById('closeSupport');
-            const supportBody = document.getElementById('supportBody');
-
-            const supportQA = [
-                { q: 'چگونه می‌توانم پرونده جدید ثبت کنم？', a: 'برای ثبت پرونده جدید، از منوی اصلی گزینه "پرونده‌ها" را انتخاب کنید و سپس روی دکمه "پرونده جدید" کلیک کنید. اطلاعات مورد نیاز مانند عنوان، شماره، نوع و موکل را وارد کرده و ذخیره کنید.' },
-                { q: 'آیا می‌توانم قرارداد وکالت ایجاد کنم؟', a: 'بله. در بخش "قراردادها" می‌توانید قرارداد وکالت جدید ایجاد کنید. اطلاعات موکل، موضوع، مبلغ و اقساط را وارد کنید. همچنین امکان چاپ و خروجی PDF قرارداد وجود دارد.' },
-                { q: 'چطور می‌توانم جلسه دادگاه ثبت کنم؟', a: 'در بخش "جلسات"، روی دکمه "جلسه جدید" کلیک کنید. عنوان جلسه، تاریخ، ساعت، شعبه و پرونده مرتبط را وارد کنید.' },
-                { q: 'آیا نرم‌افزار گزارش مالی دارد؟', a: 'بله. در بخش "امور مالی" می‌توانید تمام تراکنش‌های درآمد و هزینه را مشاهده کنید. همچنین در بخش "گزارش‌ها" می‌توانید گزارش‌های مالی دقیق دریافت کنید.' },
-                { q: 'چطور می‌توانم از نرم‌افزار پشتیبان بگیرم？', a: 'در بخش "تنظیمات" و زیر بخش "پشتیبان‌گیری و بازیابی"، می‌توانید با کلیک روی "خروجی JSON" از تمام داده‌های خود پشتیبان تهیه کنید.' }
-            ];
-
-            function renderSupportQuestions() {
-                supportBody.innerHTML = supportQA.map(function(item, index) {
-                    return '<div class="support-question" data-index="' + index + '"><i class="fas fa-question-circle text-gold-500 me-2"></i>' + item.q + '</div><div class="support-answer" id="supportAnswer' + index + '"><span class="typing-text"></span><span class="typing-cursor-support"></span></div>';
-                }).join('');
-                supportBody.querySelectorAll('.support-question').forEach(function(el, idx) {
-                    el.addEventListener('click', function() {
-                        const answerEl = document.getElementById('supportAnswer' + idx);
-                        const typingText = answerEl.querySelector('.typing-text');
-                        const isOpen = answerEl.classList.contains('open');
-                        supportBody.querySelectorAll('.support-answer').forEach(function(a) {
-                            if (a !== answerEl) {
-                                a.classList.remove('open');
-                                a.querySelector('.typing-text').textContent = '';
-                            }
-                        });
-                        if (isOpen) {
-                            answerEl.classList.remove('open');
-                            typingText.textContent = '';
-                            return;
-                        }
-                        answerEl.classList.add('open');
-                        const fullText = supportQA[idx].a;
-                        let charIdx2 = 0;
-                        typingText.textContent = '';
-                        const typeAnswer = function() {
-                            if (charIdx2 < fullText.length) {
-                                typingText.textContent = fullText.substring(0, charIdx2 + 1);
-                                charIdx2++;
-                                setTimeout(typeAnswer, 35);
-                            }
-                        };
-                        setTimeout(typeAnswer, 200);
-                    });
-                });
-            }
-
-            supportToggle.addEventListener('click', function() {
-                supportModal.classList.toggle('show');
-                if (supportModal.classList.contains('show')) {
-                    renderSupportQuestions();
-                }
-            });
-            closeSupport.addEventListener('click', function() { supportModal.classList.remove('show'); });
-            supportModal.addEventListener('click', function(e) {
-                if (e.target === this) supportModal.classList.remove('show');
-            });
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape' && supportModal.classList.contains('show')) {
-                    supportModal.classList.remove('show');
-                }
-            });
+            // ===== کدهای پشتیبانی داخلی کاملاً حذف شدند =====
+            // دیگر خبری از supportToggle, supportModal, supportQA و ... نیست
 
             // ===== SMOOTH SCROLL FOR ANCHOR LINKS =====
             document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
