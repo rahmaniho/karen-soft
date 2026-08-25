@@ -13,7 +13,7 @@
     <!-- ===== کلمات کلیدی ===== -->
     <meta name="keywords" content="وبلاگ کارن سافت, اتوماسیون اداری, مدیریت پرونده حقوقی, نرم افزار مدیریت پرونده وکلا, فروشگاه آنلاین, امنیت اطلاعات, رشد کسب‌وکار, مقالات آموزشی, سیستم مدیریت پرونده" />
 
-    <!-- ===== تگ Open Graph (برای شبکه‌های اجتماعی) ===== -->
+    <!-- ===== تگ Open Graph ===== -->
     <meta property="og:title" content="وبلاگ کارن سافت | مقالات آموزشی اتوماسیون و مدیریت هوشمند" />
     <meta property="og:description" content="جدیدترین مقالات آموزشی در حوزه اتوماسیون اداری، مدیریت پرونده‌های حقوقی و رشد کسب‌وکار." />
     <meta property="og:type" content="website" />
@@ -48,7 +48,7 @@
         })();
     </script>
 
-    <!-- ===== SCHEMA MARKUP (JSON-LD) برای سئوی پیشرفته ===== -->
+    <!-- ===== SCHEMA MARKUP (JSON-LD) ===== -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -406,17 +406,37 @@
                 <p class="mt-3 text-white/60 leading-7">جدیدترین مطالب در حوزه اتوماسیون اداری، مدیریت پرونده‌های حقوقی، فروشگاه آنلاین و رشد کسب‌وکار</p>
             </div>
 
+            <!-- ===== جستجو و دسته‌بندی ===== -->
+            <div style="max-width: 500px; margin: 0 auto 2.5rem;">
+                <div style="display: flex; align-items: center; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: 999px; padding: 0.2rem 0.2rem 0.2rem 1.2rem; transition: all 0.3s;">
+                    <i class="fas fa-search" style="color: rgba(255,255,255,0.3);"></i>
+                    <input type="text" id="searchBlog" placeholder="جستجوی مقالات..." style="flex: 1; background: transparent; border: none; padding: 0.7rem 0.8rem; color: #fff; font-family: inherit; outline: none; font-size: 0.9rem;" />
+                    <button id="searchClearBtn" style="background: none; border: none; color: rgba(255,255,255,0.3); cursor: pointer; display: none; padding: 0 0.5rem;">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center; margin-bottom: 2rem;">
+                <button class="category-btn active" data-category="all" style="padding: 0.3rem 1.2rem; border-radius: 999px; background: #D4AF37; color: #0B1220; font-size: 0.75rem; font-weight: 700; border: none; cursor: pointer; transition: all 0.3s;">همه</button>
+                <button class="category-btn" data-category="حقوقی" style="padding: 0.3rem 1.2rem; border-radius: 999px; background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.7); font-size: 0.75rem; font-weight: 500; border: none; cursor: pointer; transition: all 0.3s;">حقوقی</button>
+                <button class="category-btn" data-category="اتوماسیون" style="padding: 0.3rem 1.2rem; border-radius: 999px; background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.7); font-size: 0.75rem; font-weight: 500; border: none; cursor: pointer; transition: all 0.3s;">اتوماسیون</button>
+                <button class="category-btn" data-category="فروشگاه" style="padding: 0.3rem 1.2rem; border-radius: 999px; background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.7); font-size: 0.75rem; font-weight: 500; border: none; cursor: pointer; transition: all 0.3s;">فروشگاه</button>
+                <button class="category-btn" data-category="امنیت" style="padding: 0.3rem 1.2rem; border-radius: 999px; background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.7); font-size: 0.75rem; font-weight: 500; border: none; cursor: pointer; transition: all 0.3s;">امنیت</button>
+                <button class="category-btn" data-category="مدیریت" style="padding: 0.3rem 1.2rem; border-radius: 999px; background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.7); font-size: 0.75rem; font-weight: 500; border: none; cursor: pointer; transition: all 0.3s;">مدیریت</button>
+            </div>
+
             <!-- ===== ARTICLES GRID ===== -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="articlesGrid">
 
                 <!-- مقاله ۱: اتوماسیون اداری -->
-                <article class="blog-card-glow" data-aos="fade-up" data-aos-delay="100">
+                <article class="blog-card-glow" data-aos="fade-up" data-aos-delay="100" data-category="اتوماسیون">
                     <div class="blog-img">
                         <img src="images/blog/automation.jpg" alt="اتوماسیون اداری و افزایش بهره‌وری" loading="lazy" />
                     </div>
                     <div class="blog-content">
                         <div class="flex items-center gap-3 text-xs text-white/40 mb-2">
-                            <span><i class="far fa-calendar-alt"></i> ۱۴۰۵/۰۵/۰۱</span>
+                            <span><i class="far fa-calendar-alt"></i> ۱۴۰۵/۰۶/۰۴</span>
                             <span class="badge badge-blue">اتوماسیون</span>
                         </div>
                         <h3 class="font-bold text-lg"><a href="blog/automation.html">چگونه اتوماسیون اداری بهره‌وری را ۲ برابر می‌کند؟</a></h3>
@@ -425,14 +445,14 @@
                     </div>
                 </article>
 
-                <!-- مقاله ۲: مدیریت پرونده حقوقی (لینک اصلاح‌شده) -->
-                <article class="blog-card-glow" data-aos="fade-up" data-aos-delay="200">
+                <!-- مقاله ۲: مدیریت پرونده حقوقی -->
+                <article class="blog-card-glow" data-aos="fade-up" data-aos-delay="200" data-category="حقوقی">
                     <div class="blog-img">
                         <img src="images/blog/law.jpg" alt="مدیریت هوشمند پرونده‌های حقوقی با نرم‌افزار" loading="lazy" />
                     </div>
                     <div class="blog-content">
                         <div class="flex items-center gap-3 text-xs text-white/40 mb-2">
-                            <span><i class="far fa-calendar-alt"></i> ۱۴۰۵/۰۴/۲۵</span>
+                            <span><i class="far fa-calendar-alt"></i> ۱۴۰۵/۰۶/۰۱</span>
                             <span class="badge badge-amber">حقوقی</span>
                         </div>
                         <h3 class="font-bold text-lg"><a href="law-office.html">مدیریت هوشمند پرونده‌های حقوقی با نرم‌افزار</a></h3>
@@ -442,13 +462,13 @@
                 </article>
 
                 <!-- مقاله ۳: فروشگاه آنلاین -->
-                <article class="blog-card-glow" data-aos="fade-up" data-aos-delay="300">
+                <article class="blog-card-glow" data-aos="fade-up" data-aos-delay="300" data-category="فروشگاه">
                     <div class="blog-img">
                         <img src="images/blog/online-store.jpg" alt="۱۰ ویژگی ضروری برای فروشگاه آنلاین موفق" loading="lazy" />
                     </div>
                     <div class="blog-content">
                         <div class="flex items-center gap-3 text-xs text-white/40 mb-2">
-                            <span><i class="far fa-calendar-alt"></i> ۱۴۰۵/۰۴/۱۸</span>
+                            <span><i class="far fa-calendar-alt"></i> ۱۴۰۵/۰۵/۲۸</span>
                             <span class="badge badge-green">فروشگاه</span>
                         </div>
                         <h3 class="font-bold text-lg"><a href="blog/online-store.html">۱۰ ویژگی ضروری برای یک فروشگاه آنلاین موفق</a></h3>
@@ -458,13 +478,13 @@
                 </article>
 
                 <!-- مقاله ۴: امنیت اطلاعات -->
-                <article class="blog-card-glow" data-aos="fade-up" data-aos-delay="100">
+                <article class="blog-card-glow" data-aos="fade-up" data-aos-delay="100" data-category="امنیت">
                     <div class="blog-img">
                         <img src="images/blog/security.jpg" alt="امنیت اطلاعات در نرم‌افزارهای مدیریتی" loading="lazy" />
                     </div>
                     <div class="blog-content">
                         <div class="flex items-center gap-3 text-xs text-white/40 mb-2">
-                            <span><i class="far fa-calendar-alt"></i> ۱۴۰۵/۰۴/۱۰</span>
+                            <span><i class="far fa-calendar-alt"></i> ۱۴۰۵/۰۵/۲۵</span>
                             <span class="badge badge-rose">امنیت</span>
                         </div>
                         <h3 class="font-bold text-lg"><a href="blog/security.html">امنیت اطلاعات در نرم‌افزارهای مدیریت کسب‌وکار</a></h3>
@@ -474,13 +494,13 @@
                 </article>
 
                 <!-- مقاله ۵: رشد کسب‌وکار -->
-                <article class="blog-card-glow" data-aos="fade-up" data-aos-delay="200">
+                <article class="blog-card-glow" data-aos="fade-up" data-aos-delay="200" data-category="مدیریت">
                     <div class="blog-img">
                         <img src="images/blog/growth.jpg" alt="استراتژی‌های رشد کسب‌وکار با فناوری" loading="lazy" />
                     </div>
                     <div class="blog-content">
                         <div class="flex items-center gap-3 text-xs text-white/40 mb-2">
-                            <span><i class="far fa-calendar-alt"></i> ۱۴۰۵/۰۳/۲۸</span>
+                            <span><i class="far fa-calendar-alt"></i> ۱۴۰۵/۰۵/۲۰</span>
                             <span class="badge badge-purple">مدیریت</span>
                         </div>
                         <h3 class="font-bold text-lg"><a href="blog/business-growth.html">۵ استراتژی برای رشد کسب‌وکار با کمک فناوری</a></h3>
@@ -490,13 +510,13 @@
                 </article>
 
                 <!-- مقاله ۶: مدیریت تیم‌های دورکار -->
-                <article class="blog-card-glow" data-aos="fade-up" data-aos-delay="300">
+                <article class="blog-card-glow" data-aos="fade-up" data-aos-delay="300" data-category="مدیریت">
                     <div class="blog-img">
                         <img src="images/blog/remote.jpg" alt="مدیریت تیم‌های دورکار و راه‌حل‌های آن" loading="lazy" />
                     </div>
                     <div class="blog-content">
                         <div class="flex items-center gap-3 text-xs text-white/40 mb-2">
-                            <span><i class="far fa-calendar-alt"></i> ۱۴۰۵/۰۳/۲۰</span>
+                            <span><i class="far fa-calendar-alt"></i> ۱۴۰۵/۰۵/۱۵</span>
                             <span class="badge badge-blue">مدیریت</span>
                         </div>
                         <h3 class="font-bold text-lg"><a href="blog/remote-teams.html">مدیریت تیم‌های دورکار: چالش‌ها و راه‌حل‌ها</a></h3>
@@ -509,7 +529,7 @@
 
             <!-- ===== CALL TO ACTION ===== -->
             <div class="text-center mt-12">
-                <a href="#" class="btn-glow px-8 py-3">
+                <a href="blog/archive.html" class="btn-glow px-8 py-3">
                     <i class="fas fa-arrow-left"></i> مشاهده همه مقالات
                 </a>
             </div>
@@ -596,6 +616,56 @@
             window.addEventListener('scroll', function() {
                 navbar.classList.toggle('navbar-scrolled', window.scrollY > 20);
             });
+
+            // ===== جستجو =====
+            const searchInput = document.getElementById('searchBlog');
+            const clearBtn = document.getElementById('searchClearBtn');
+
+            searchInput.addEventListener('input', function() {
+                const value = this.value.toLowerCase().trim();
+                clearBtn.style.display = value ? 'block' : 'none';
+                const articles = document.querySelectorAll('.blog-card-glow');
+                articles.forEach(article => {
+                    const title = article.querySelector('h3 a')?.textContent.toLowerCase() || '';
+                    const desc = article.querySelector('p')?.textContent.toLowerCase() || '';
+                    if (title.includes(value) || desc.includes(value)) {
+                        article.style.display = 'block';
+                    } else {
+                        article.style.display = 'none';
+                    }
+                });
+            });
+
+            clearBtn.addEventListener('click', function() {
+                searchInput.value = '';
+                searchInput.dispatchEvent(new Event('input'));
+                searchInput.focus();
+            });
+
+            // ===== دسته‌بندی =====
+            document.querySelectorAll('.category-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // حذف کلاس active از همه
+                    document.querySelectorAll('.category-btn').forEach(b => {
+                        b.style.background = 'rgba(255,255,255,0.06)';
+                        b.style.color = 'rgba(255,255,255,0.7)';
+                    });
+                    // فعال کردن دکمه کلیک شده
+                    this.style.background = '#D4AF37';
+                    this.style.color = '#0B1220';
+                    // فیلتر مقالات
+                    const category = this.dataset.category;
+                    document.querySelectorAll('.blog-card-glow').forEach(article => {
+                        const badge = article.querySelector('.badge');
+                        if (category === 'all' || (badge && badge.textContent.includes(category))) {
+                            article.style.display = 'block';
+                        } else {
+                            article.style.display = 'none';
+                        }
+                    });
+                });
+            });
+
         });
     </script>
 </body>
