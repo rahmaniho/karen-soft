@@ -1,75 +1,161 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
 
-  <!-- صفحه اصلی -->
-  <url>
-    <loc>https://karen-soft.ir/</loc>
-    <lastmod>2026-08-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
+    <!-- ============================================ -->
+    <!-- ====== صفحات اصلی (Main Pages) ====== -->
+    <!-- ============================================ -->
 
-  <!-- محصولات -->
-  <url>
-    <loc>https://karen-soft.ir/products</loc>
-    <lastmod>2026-08-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
+    <!-- صفحه اصلی -->
+    <url>
+        <loc>https://karen-soft.ir/</loc>
+        <lastmod>2025-08-28</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>1.0</priority>
+        <image:image>
+            <image:loc>https://karen-soft.ir/images/logo-karensoft.png</image:loc>
+            <image:title>لوگو کارن سافت</image:title>
+            <image:caption>کارن سافت | راه‌حل‌های نرم‌افزاری هوشمند</image:caption>
+        </image:image>
+    </url>
 
-  <!-- تماس با ما -->
-  <url>
-    <loc>https://karen-soft.ir/contact</loc>
-    <lastmod>2026-08-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
+    <!-- صفحه محصولات -->
+    <url>
+        <loc>https://karen-soft.ir/products.html</loc>
+        <lastmod>2025-08-28</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
 
-  <!-- وبلاگ -->
-  <url>
-    <loc>https://karen-soft.ir/blog/</loc>
-    <lastmod>2026-08-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
+    <!-- صفحه وبلاگ -->
+    <url>
+        <loc>https://karen-soft.ir/blog.html</loc>
+        <lastmod>2025-08-28</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
 
-  <!-- مقالات وبلاگ -->
-  <url>
-    <loc>https://karen-soft.ir/blog/automation.html</loc>
-    <lastmod>2026-08-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://karen-soft.ir/blog/law-management.html</loc>
-    <lastmod>2026-08-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://karen-soft.ir/blog/online-store.html</loc>
-    <lastmod>2026-08-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://karen-soft.ir/blog/security.html</loc>
-    <lastmod>2026-08-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://karen-soft.ir/blog/growth-strategies.html</loc>
-    <lastmod>2026-08-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://karen-soft.ir/blog/remote-teams.html</loc>
-    <lastmod>2026-08-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
+    <!-- صفحه تماس -->
+    <url>
+        <loc>https://karen-soft.ir/contact.html</loc>
+        <lastmod>2025-08-28</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- آرشیو وبلاگ -->
+    <url>
+        <loc>https://karen-soft.ir/blog/archive.html</loc>
+        <lastmod>2025-08-28</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <!-- ============================================ -->
+    <!-- ====== مقالات وبلاگ (Blog Posts) ====== -->
+    <!-- ============================================ -->
+
+    <!-- مقاله ۱: مدیریت هوشمند پرونده‌های حقوقی -->
+    <url>
+        <loc>https://karen-soft.ir/blog/smart-case-management.html</loc>
+        <lastmod>2025-08-28</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+        <news:news>
+            <news:publication>
+                <news:name>کارن سافت</news:name>
+                <news:language>fa</news:language>
+            </news:publication>
+            <news:publication_date>2025-08-28</news:publication_date>
+            <news:title>مدیریت هوشمند پرونده‌های حقوقی با نرم‌افزار وکالت</news:title>
+        </news:news>
+        <image:image>
+            <image:loc>https://raw.githubusercontent.com/rahmaniho/karen-soft/main/images/blog/Women-lawyer.jpg</image:loc>
+            <image:title>وکیل زن حرفه‌ای در حال بررسی پرونده حقوقی</image:title>
+            <image:caption>مدیریت هوشمند پرونده‌های حقوقی با نرم‌افزار وکالت</image:caption>
+        </image:image>
+    </url>
+
+    <!-- مقاله ۲: چرا هر وکیلی به یک سایت حرفه‌ای نیاز دارد؟ -->
+    <url>
+        <loc>https://karen-soft.ir/blog/why-lawyer-needs-website.html</loc>
+        <lastmod>2025-08-25</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://raw.githubusercontent.com/rahmaniho/karen-soft/main/images/blog/lawyer-website.jpg</image:loc>
+            <image:title>وکیل حرفه‌ای با سایت شخصی</image:title>
+            <image:caption>چرا هر وکیلی به یک سایت حرفه‌ای نیاز دارد؟</image:caption>
+        </image:image>
+    </url>
+
+    <!-- مقاله ۳: اتوماسیون اداری -->
+    <url>
+        <loc>https://karen-soft.ir/blog/automation.html</loc>
+        <lastmod>2025-08-04</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+        <image:image>
+            <image:loc>https://karen-soft.ir/images/blog/automation.jpg</image:loc>
+            <image:title>اتوماسیون اداری و افزایش بهره‌وری</image:title>
+            <image:caption>چگونه اتوماسیون اداری بهره‌وری را ۲ برابر می‌کند؟</image:caption>
+        </image:image>
+    </url>
+
+    <!-- مقاله ۴: فروشگاه آنلاین -->
+    <url>
+        <loc>https://karen-soft.ir/blog/online-store.html</loc>
+        <lastmod>2025-07-28</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+        <image:image>
+            <image:loc>https://karen-soft.ir/images/blog/online-store.jpg</image:loc>
+            <image:title>۱۰ ویژگی ضروری برای فروشگاه آنلاین موفق</image:title>
+            <image:caption>۱۰ ویژگی ضروری برای یک فروشگاه آنلاین موفق</image:caption>
+        </image:image>
+    </url>
+
+    <!-- مقاله ۵: امنیت اطلاعات -->
+    <url>
+        <loc>https://karen-soft.ir/blog/security.html</loc>
+        <lastmod>2025-07-25</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+        <image:image>
+            <image:loc>https://karen-soft.ir/images/blog/security.jpg</image:loc>
+            <image:title>امنیت اطلاعات در نرم‌افزارهای مدیریتی</image:title>
+            <image:caption>امنیت اطلاعات در نرم‌افزارهای مدیریت کسب‌وکار</image:caption>
+        </image:image>
+    </url>
+
+    <!-- مقاله ۶: رشد کسب‌وکار -->
+    <url>
+        <loc>https://karen-soft.ir/blog/growth-strategies.html</loc>
+        <lastmod>2025-07-20</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+        <image:image>
+            <image:loc>https://karen-soft.ir/images/blog/growth.jpg</image:loc>
+            <image:title>استراتژی‌های رشد کسب‌وکار با فناوری</image:title>
+            <image:caption>۵ استراتژی برای رشد کسب‌وکار با کمک فناوری</image:caption>
+        </image:image>
+    </url>
+
+    <!-- مقاله ۷: مدیریت تیم‌های دورکار -->
+    <url>
+        <loc>https://karen-soft.ir/blog/remote-teams.html</loc>
+        <lastmod>2025-07-15</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+        <image:image>
+            <image:loc>https://karen-soft.ir/images/blog/remote.jpg</image:loc>
+            <image:title>مدیریت تیم‌های دورکار</image:title>
+            <image:caption>مدیریت تیم‌های دورکار: چالش‌ها و راه‌حل‌ها</image:caption>
+        </image:image>
+    </url>
 
 </urlset>
