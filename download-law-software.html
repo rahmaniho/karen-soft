@@ -39,10 +39,6 @@
     <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" />
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
 
-    <!-- ===== EMAILJS SDK ===== -->
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
-    </script>
-
     <!-- ===== CRISP CHAT ===== -->
     <script type="text/javascript">
         window.$crisp = [];
@@ -540,10 +536,13 @@
                     <h2>📥 دریافت نسخه آزمایشی رایگان</h2>
                     <p class="sub">برای دانلود نرم افزار مدیریت دفتر وکالت، فرم زیر را تکمیل کنید</p>
 
-                    <form id="downloadForm" class="space-y-4">
+                    <!-- ===== فرم با Web3Forms ===== -->
+                    <form id="downloadForm" class="space-y-4" action="https://api.web3forms.com/submit" method="POST">
+                        <input type="hidden" name="access_key" value="2a4bee34-df50-466e-acd0-4e15d71bb8d0" />
+
                         <div>
                             <label class="text-xs font-bold text-white/50 block mb-1.5">نام و نام خانوادگی</label>
-                            <input type="text" id="fullName" name="fullName" class="form-input" placeholder="نام خود را وارد کنید" required />
+                            <input type="text" id="fullName" name="name" class="form-input" placeholder="نام خود را وارد کنید" required />
                         </div>
                         <div>
                             <label class="text-xs font-bold text-white/50 block mb-1.5">ایمیل</label>
@@ -563,7 +562,11 @@
                                 <option value="سایر">سایر</option>
                             </select>
                         </div>
-                        <button type="submit" class="btn-download">
+
+                        <!-- ===== hCaptcha (اختیاری اما توصیه می‌شود) ===== -->
+                        <div class="h-captcha" data-captcha="true"></div>
+
+                        <button type="submit" class="btn-download" id="submitBtn">
                             <i class="fas fa-download ml-2"></i> دانلود رایگان نرم‌افزار
                         </button>
                         <div id="formStatus" class="form-status"></div>
@@ -621,6 +624,11 @@
     <!-- ===== SCRIPTS ===== -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js">
     </script>
+
+    <!-- ===== hCaptcha (اختیاری اما توصیه می‌شود) ===== -->
+    <script src="https://web3forms.com/client/script.js" async defer>
+    </script>
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
 
@@ -631,13 +639,6 @@
                 offset: 50,
                 easing: 'ease-out-cubic'
             });
-
-            // ===== EMAILJS با Public Key جدید =====
-            (function() {
-                emailjs.init({
-                    publicKey: "C1-ZVsarrTBFXbBZ9",
-                });
-            })();
 
             // ===== THEME =====
             var themeToggle = document.getElementById('themeToggle');
@@ -692,48 +693,54 @@
                 });
             });
 
-            // ===== DOWNLOAD FORM =====
-            document.getElementById('downloadForm').addEventListener('submit', function(event) {
-                event.preventDefault();
+            // ===== DOWNLOAD FORM با Web3Forms =====
+            var form = document.getElementById('downloadForm');
+            var submitBtn = document.getElementById('submitBtn');
+
+            form.addEventListener('submit', async function(e) {
+                e.preventDefault();
 
                 var statusDiv = document.getElementById('formStatus');
-                statusDiv.innerHTML = '⏳ در حال ارسال...';
+                var originalText = submitBtn.innerHTML;
+
+                // ===== غیرفعال کردن دکمه و نمایش پیام ارسال =====
+                submitBtn.innerHTML = '⏳ در حال ارسال...';
+                submitBtn.disabled = true;
+                statusDiv.innerHTML = '';
                 statusDiv.style.color = '#fbbf24';
 
-                console.log('📤 ارسال فرم با Public Key جدید...');
+                try {
+                    var formData = new FormData(form);
 
-                emailjs.sendForm(
-                    'service_73f0khr',
-                    'template_dmchdso',
-                    this
-                ).then(
-                    function(response) {
-                        console.log('✅ SUCCESS!', response.status, response.text);
+                    var response = await fetch('https://api.web3forms.com/submit', {
+                        method: 'POST',
+                        body: formData
+                    });
+
+                    var data = await response.json();
+
+                    if (response.ok) {
+                        console.log('✅ SUCCESS!', data);
                         statusDiv.innerHTML = '✅ لینک دانلود به ایمیل شما ارسال شد!';
                         statusDiv.style.color = '#34d399';
-                        document.getElementById('downloadForm').reset();
-                    },
-                    function(error) {
-                        console.log('❌ FAILED!', error);
-                        console.log('📋 کد خطا:', error.status);
-                        console.log('📋 متن خطا:', error.text);
-
-                        var errorMessage = '❌ خطا در ارسال. ';
-                        if (error.text && error.text.includes('Invalid Public Key')) {
-                            errorMessage += 'کلید عمومی نامعتبر است.';
-                        } else if (error.text && error.text.includes('Service not found')) {
-                            errorMessage += 'سرویس پیدا نشد.';
-                        } else if (error.text && error.text.includes('Template not found')) {
-                            errorMessage += 'قالب پیدا نشد.';
-                        } else if (error.status === 403) {
-                            errorMessage += 'دسترسی غیرمجاز.';
-                        } else {
-                            errorMessage += 'لطفاً دوباره تلاش کنید.';
-                        }
-                        statusDiv.innerHTML = errorMessage;
+                        form.reset();
+                        submitBtn.innerHTML = '<i class="fas fa-check-circle"></i> ارسال شد!';
+                        submitBtn.className = 'btn-download bg-emerald-500 hover:bg-emerald-600';
+                    } else {
+                        console.log('❌ FAILED!', data);
+                        statusDiv.innerHTML = '❌ خطا در ارسال. لطفاً دوباره تلاش کنید.';
                         statusDiv.style.color = '#ef4444';
                     }
-                );
+                } catch (error) {
+                    console.log('❌ ERROR!', error);
+                    statusDiv.innerHTML = '❌ خطا در ارسال. لطفاً دوباره تلاش کنید.';
+                    statusDiv.style.color = '#ef4444';
+                } finally {
+                    // ===== بازیابی دکمه =====
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                    submitBtn.className = 'btn-download';
+                }
             });
 
         });
