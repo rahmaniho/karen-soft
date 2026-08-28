@@ -632,10 +632,10 @@
                 easing: 'ease-out-cubic'
             });
 
-            // ===== EMAILJS =====
+            // ===== EMAILJS با Public Key جدید =====
             (function() {
                 emailjs.init({
-                    publicKey: "OWmKE88DWsrY-9mzA",
+                    publicKey: "C1-ZVsarrTBFXbBZ9",
                 });
             })();
 
@@ -700,20 +700,37 @@
                 statusDiv.innerHTML = '⏳ در حال ارسال...';
                 statusDiv.style.color = '#fbbf24';
 
+                console.log('📤 ارسال فرم با Public Key جدید...');
+
                 emailjs.sendForm(
                     'service_73f0khr',
                     'template_dmchdso',
                     this
                 ).then(
                     function(response) {
-                        console.log('SUCCESS!', response.status, response.text);
+                        console.log('✅ SUCCESS!', response.status, response.text);
                         statusDiv.innerHTML = '✅ لینک دانلود به ایمیل شما ارسال شد!';
                         statusDiv.style.color = '#34d399';
                         document.getElementById('downloadForm').reset();
                     },
                     function(error) {
-                        console.log('FAILED...', error);
-                        statusDiv.innerHTML = '❌ خطا در ارسال. لطفاً دوباره تلاش کنید.';
+                        console.log('❌ FAILED!', error);
+                        console.log('📋 کد خطا:', error.status);
+                        console.log('📋 متن خطا:', error.text);
+
+                        var errorMessage = '❌ خطا در ارسال. ';
+                        if (error.text && error.text.includes('Invalid Public Key')) {
+                            errorMessage += 'کلید عمومی نامعتبر است.';
+                        } else if (error.text && error.text.includes('Service not found')) {
+                            errorMessage += 'سرویس پیدا نشد.';
+                        } else if (error.text && error.text.includes('Template not found')) {
+                            errorMessage += 'قالب پیدا نشد.';
+                        } else if (error.status === 403) {
+                            errorMessage += 'دسترسی غیرمجاز.';
+                        } else {
+                            errorMessage += 'لطفاً دوباره تلاش کنید.';
+                        }
+                        statusDiv.innerHTML = errorMessage;
                         statusDiv.style.color = '#ef4444';
                     }
                 );
