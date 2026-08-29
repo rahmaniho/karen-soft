@@ -1,0 +1,2938 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>سیستم مدیریت تاکسی تلفنی | محصول کارن‌سافت</title>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100;300;400;500;700;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js">
+    </script>
+
+    <!-- ============ CRISP CHAT (پشتیبانی آنلاین کارن‌سافت) ============ -->
+    <script type="text/javascript">
+        window.$crisp = [];
+        window.CRISP_WEBSITE_ID = "f5d4e3c2-b1a0-9876-5432-1a2b3c4d5e6f";
+        (function() {
+            var d = document;
+            var s = d.createElement("script");
+            s.src = "https://client.crisp.chat/l.js";
+            s.async = 1;
+            d.getElementsByTagName("head")[0].appendChild(s);
+        })();
+    </script>
+
+    <style>
+        /* ========== ROOT ========== */
+        :root {
+            --gold: #f0b429;
+            --gold-light: #ffd166;
+            --gold-dark: #c99a1f;
+            --bg-dark: #0a0a12;
+            --bg-card: rgba(255, 255, 255, 0.04);
+            --bg-card-hover: rgba(255, 255, 255, 0.07);
+            --border-glass: rgba(255, 255, 255, 0.08);
+            --text-primary: #f0f0f5;
+            --text-secondary: #b0b0c0;
+            --text-muted: #8888a0;
+            --green: #10b981;
+            --red: #ef4444;
+            --yellow: #f59e0b;
+            --blue: #3b82f6;
+            --sidebar-width: 260px;
+            --header-height: 60px;
+            --radius: 16px;
+            --radius-sm: 10px;
+            --radius-xs: 6px;
+            --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            --shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+            --shadow-sm: 0 2px 12px rgba(0, 0, 0, 0.25);
+            --font: 'Vazirmatn', sans-serif;
+        }
+
+        /* ========== RESET & BASE ========== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html {
+            font-size: 14px;
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: var(--font);
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            overflow-x: hidden;
+            background-image: radial-gradient(ellipse at top right, rgba(240, 180, 41, 0.06), transparent 50%),
+                radial-gradient(ellipse at bottom left, rgba(59, 130, 246, 0.05), transparent 50%);
+        }
+        ::-webkit-scrollbar {
+            width: 5px;
+            height: 5px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        /* ========== SIDEBAR ========== */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: var(--sidebar-width);
+            background: rgba(10, 10, 20, 0.85);
+            backdrop-filter: blur(22px);
+            -webkit-backdrop-filter: blur(22px);
+            border-left: 1px solid var(--border-glass);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            transition: transform var(--transition);
+            box-shadow: var(--shadow);
+        }
+        .sidebar.closed {
+            transform: translateX(100%);
+        }
+        .sidebar-header {
+            padding: 18px 20px;
+            border-bottom: 1px solid var(--border-glass);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .sidebar-logo {
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            overflow: hidden;
+            flex-shrink: 0;
+            background: rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .sidebar-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 12px;
+        }
+        .sidebar-title {
+            font-size: 1rem;
+            font-weight: 700;
+            line-height: 1.3;
+            color: var(--gold);
+        }
+        .sidebar-subtitle {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+        .sidebar-nav {
+            flex: 1;
+            overflow-y: auto;
+            padding: 12px 10px;
+        }
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 14px;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            transition: all var(--transition);
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            font-weight: 500;
+            user-select: none;
+            position: relative;
+            margin-bottom: 2px;
+        }
+        .nav-item:hover {
+            background: var(--bg-card-hover);
+            color: var(--text-primary);
+        }
+        .nav-item.active {
+            background: rgba(240, 180, 41, 0.12);
+            color: var(--gold);
+            font-weight: 700;
+        }
+        .nav-item.active::before {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 3px;
+            height: 60%;
+            background: var(--gold);
+            border-radius: 2px;
+        }
+        .nav-item i {
+            width: 20px;
+            text-align: center;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+        .nav-item .chevron {
+            margin-right: auto;
+            font-size: 0.7rem;
+            transition: transform var(--transition);
+            color: var(--text-muted);
+        }
+        .nav-item.open .chevron {
+            transform: rotate(180deg);
+        }
+        .submenu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+            padding-right: 20px;
+        }
+        .submenu.open {
+            max-height: 400px;
+        }
+        .submenu .nav-item {
+            font-size: 0.78rem;
+            padding: 8px 12px;
+            font-weight: 400;
+        }
+        .submenu .nav-item.active {
+            font-weight: 600;
+        }
+        .sidebar-footer {
+            padding: 14px 16px;
+            border-top: 1px solid var(--border-glass);
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            text-align: center;
+        }
+        .sidebar-footer a {
+            color: var(--gold);
+            text-decoration: none;
+        }
+        .sidebar-footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* ========== MAIN CONTENT ========== */
+        .main-content {
+            flex: 1;
+            margin-right: var(--sidebar-width);
+            transition: margin-right var(--transition);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .main-content.expanded {
+            margin-right: 0;
+        }
+
+        /* ========== HEADER ========== */
+        .header {
+            height: var(--header-height);
+            background: rgba(10, 10, 20, 0.7);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border-bottom: 1px solid var(--border-glass);
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            gap: 14px;
+            position: sticky;
+            top: 0;
+            z-index: 500;
+        }
+        .hamburger {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.3rem;
+            cursor: pointer;
+            padding: 6px;
+            border-radius: var(--radius-xs);
+            transition: background var(--transition);
+        }
+        .hamburger:hover {
+            background: var(--bg-card-hover);
+        }
+        .header-date {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-right: auto;
+            font-weight: 400;
+        }
+        .header-status {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.7rem;
+            color: var(--green);
+            background: rgba(16, 185, 129, 0.1);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-weight: 500;
+        }
+        .header-status .dot {
+            width: 7px;
+            height: 7px;
+            background: var(--green);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%,
+            100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.4;
+            }
+        }
+
+        /* ========== PAGES ========== */
+        .page-section {
+            display: none;
+            padding: 20px;
+            animation: fadeIn 0.3s ease;
+        }
+        .page-section.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .page-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--gold);
+            margin-bottom: 18px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .page-title i {
+            font-size: 1.1rem;
+        }
+        .page-title img {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+
+        /* ========== CARDS ========== */
+        .card {
+            background: var(--bg-card);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border: 1px solid var(--border-glass);
+            border-radius: var(--radius);
+            padding: 18px 20px;
+            box-shadow: var(--shadow-sm);
+            transition: all var(--transition);
+        }
+        .card:hover {
+            background: var(--bg-card-hover);
+        }
+        .card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 14px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .card-title {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .card-title i {
+            color: var(--gold);
+            font-size: 0.9rem;
+        }
+        .card-title img {
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+            object-fit: cover;
+        }
+
+        /* ========== STATS ========== */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+        .stat-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(18px);
+            border: 1px solid var(--border-glass);
+            border-radius: var(--radius);
+            padding: 18px 20px;
+            text-align: center;
+            transition: all var(--transition);
+            cursor: default;
+        }
+        .stat-card:hover {
+            background: var(--bg-card-hover);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+        .stat-icon {
+            font-size: 1.6rem;
+            color: var(--gold);
+            margin-bottom: 8px;
+        }
+        .stat-value {
+            font-size: 1.6rem;
+            font-weight: 900;
+            color: var(--text-primary);
+            line-height: 1.2;
+            margin-bottom: 4px;
+        }
+        .stat-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+
+        /* ========== CHARTS ========== */
+        .charts-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+        .chart-container {
+            position: relative;
+            height: 240px;
+        }
+        .chart-container canvas {
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        /* ========== TABLES ========== */
+        .table-wrapper {
+            overflow-x: auto;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-glass);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.8rem;
+        }
+        thead {
+            background: rgba(255, 255, 255, 0.05);
+        }
+        th {
+            padding: 10px 12px;
+            text-align: right;
+            font-weight: 700;
+            color: var(--gold);
+            font-size: 0.75rem;
+            white-space: nowrap;
+            border-bottom: 1px solid var(--border-glass);
+        }
+        td {
+            padding: 9px 12px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            color: var(--text-secondary);
+            white-space: nowrap;
+        }
+        tr:hover td {
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        /* ========== BADGES ========== */
+        .status-badge {
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            display: inline-block;
+        }
+        .status-active {
+            background: rgba(16, 185, 129, 0.15);
+            color: var(--green);
+        }
+        .status-inactive {
+            background: rgba(239, 68, 68, 0.15);
+            color: var(--red);
+        }
+        .status-pending {
+            background: rgba(245, 158, 11, 0.15);
+            color: var(--yellow);
+        }
+        .status-completed {
+            background: rgba(16, 185, 129, 0.15);
+            color: var(--green);
+        }
+        .status-cancelled {
+            background: rgba(239, 68, 68, 0.15);
+            color: var(--red);
+        }
+        .status-inprogress {
+            background: rgba(59, 130, 246, 0.15);
+            color: var(--blue);
+        }
+        .status-suspended {
+            background: rgba(239, 68, 68, 0.15);
+            color: var(--red);
+        }
+        .status-inrepair {
+            background: rgba(245, 158, 11, 0.15);
+            color: var(--yellow);
+        }
+        .status-subscription {
+            background: rgba(240, 180, 41, 0.15);
+            color: var(--gold);
+        }
+
+        /* ========== BUTTONS ========== */
+        .btn {
+            padding: 8px 16px;
+            border-radius: var(--radius-sm);
+            border: none;
+            cursor: pointer;
+            font-family: var(--font);
+            font-size: 0.8rem;
+            font-weight: 600;
+            transition: all var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            white-space: nowrap;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-sm);
+        }
+        .btn:active {
+            transform: translateY(0);
+        }
+        .btn-gold {
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            color: #0a0a12;
+        }
+        .btn-gold:hover {
+            box-shadow: 0 4px 16px rgba(240, 180, 41, 0.35);
+        }
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--border-glass);
+            color: var(--text-secondary);
+        }
+        .btn-outline:hover {
+            background: var(--bg-card-hover);
+            color: var(--text-primary);
+        }
+        .btn-danger {
+            background: rgba(239, 68, 68, 0.15);
+            color: var(--red);
+            border: 1px solid rgba(239, 68, 68, 0.25);
+        }
+        .btn-danger:hover {
+            background: rgba(239, 68, 68, 0.25);
+        }
+        .btn-sm {
+            padding: 5px 10px;
+            font-size: 0.7rem;
+            border-radius: var(--radius-xs);
+        }
+        .btn-icon {
+            width: 30px;
+            height: 30px;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: var(--radius-xs);
+            border: none;
+            cursor: pointer;
+            transition: all var(--transition);
+            background: transparent;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+        .btn-icon:hover {
+            background: var(--bg-card-hover);
+            color: var(--text-primary);
+        }
+        .btn-icon.danger:hover {
+            background: rgba(239, 68, 68, 0.15);
+            color: var(--red);
+        }
+        .btn-icon.edit:hover {
+            background: rgba(59, 130, 246, 0.15);
+            color: var(--blue);
+        }
+
+        /* ========== FORMS ========== */
+        .form-group {
+            margin-bottom: 14px;
+        }
+        .form-label {
+            display: block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-bottom: 5px;
+        }
+        .form-input,
+        .form-select,
+        .form-textarea {
+            width: 100%;
+            padding: 9px 14px;
+            border-radius: var(--radius-xs);
+            border: 1px solid var(--border-glass);
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-primary);
+            font-family: var(--font);
+            font-size: 0.8rem;
+            transition: all var(--transition);
+            outline: none;
+        }
+        .form-input:focus,
+        .form-select:focus,
+        .form-textarea:focus {
+            border-color: var(--gold);
+            box-shadow: 0 0 0 3px rgba(240, 180, 41, 0.1);
+        }
+        .form-textarea {
+            resize: vertical;
+            min-height: 60px;
+        }
+        .form-select option {
+            background: #1a1a2e;
+            color: var(--text-primary);
+        }
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+        .form-row-3 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 12px;
+        }
+
+        /* ========== MODAL ========== */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(8px);
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .modal-overlay.active {
+            display: flex;
+        }
+        .modal {
+            background: rgba(20, 20, 35, 0.95);
+            backdrop-filter: blur(30px);
+            border: 1px solid var(--border-glass);
+            border-radius: var(--radius);
+            padding: 24px;
+            max-width: 600px;
+            width: 100%;
+            max-height: 85vh;
+            overflow-y: auto;
+            box-shadow: var(--shadow);
+            animation: modalIn 0.3s ease;
+        }
+        .modal-lg {
+            max-width: 800px;
+        }
+        @keyframes modalIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95) translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+        .modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 18px;
+        }
+        .modal-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--gold);
+        }
+        .modal-close {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 4px;
+            border-radius: 50%;
+            transition: all var(--transition);
+        }
+        .modal-close:hover {
+            color: var(--text-primary);
+            background: var(--bg-card-hover);
+        }
+        .modal-footer {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        /* ========== TOAST ========== */
+        .toast-container {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            z-index: 3000;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .toast {
+            padding: 12px 18px;
+            border-radius: var(--radius-sm);
+            font-size: 0.8rem;
+            font-weight: 600;
+            animation: toastIn 0.35s ease, toastOut 0.35s ease 2.8s forwards;
+            box-shadow: var(--shadow);
+            max-width: 350px;
+            backdrop-filter: blur(20px);
+        }
+        .toast-success {
+            background: rgba(16, 185, 129, 0.2);
+            color: var(--green);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+        }
+        .toast-error {
+            background: rgba(239, 68, 68, 0.2);
+            color: var(--red);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+        .toast-warning {
+            background: rgba(245, 158, 11, 0.2);
+            color: var(--yellow);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+        }
+        @keyframes toastIn {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        @keyframes toastOut {
+            from {
+                opacity: 1;
+                transform: translateX(0);
+            }
+            to {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+        }
+
+        /* ========== SEARCH ========== */
+        .search-bar {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 14px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .search-bar .form-input {
+            max-width: 250px;
+        }
+
+        /* ========== ALERTS ========== */
+        .alert-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .alert-item {
+            padding: 10px 14px;
+            border-radius: var(--radius-xs);
+            font-size: 0.78rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid;
+        }
+        .alert-warning {
+            background: rgba(245, 158, 11, 0.08);
+            border-color: rgba(245, 158, 11, 0.25);
+            color: var(--yellow);
+        }
+        .alert-danger {
+            background: rgba(239, 68, 68, 0.08);
+            border-color: rgba(239, 68, 68, 0.25);
+            color: var(--red);
+        }
+        .alert-info {
+            background: rgba(59, 130, 246, 0.08);
+            border-color: rgba(59, 130, 246, 0.25);
+            color: var(--blue);
+        }
+
+        /* ========== MISC ========== */
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+        .empty-state i {
+            font-size: 2.5rem;
+            margin-bottom: 12px;
+            opacity: 0.5;
+        }
+        .highlight-warning {
+            color: var(--yellow);
+            font-weight: 700;
+        }
+        .text-gold {
+            color: var(--gold);
+        }
+        .text-green {
+            color: var(--green);
+        }
+        .text-red {
+            color: var(--red);
+        }
+        .text-muted {
+            color: var(--text-muted);
+        }
+        .mb-10 {
+            margin-bottom: 10px;
+        }
+        .mb-16 {
+            margin-bottom: 16px;
+        }
+        .mb-20 {
+            margin-bottom: 20px;
+        }
+        .mt-10 {
+            margin-top: 10px;
+        }
+        .flex-between {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .gap-8 {
+            gap: 8px;
+        }
+        .driver-name-link {
+            color: var(--gold);
+            cursor: pointer;
+            text-decoration: underline;
+            text-decoration-style: dashed;
+            text-underline-offset: 3px;
+        }
+        .driver-name-link:hover {
+            color: var(--gold-light);
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 1024px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .charts-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 280px;
+            }
+            .hamburger {
+                display: block;
+            }
+            .main-content {
+                margin-right: 0 !important;
+            }
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+            }
+            .form-row,
+            .form-row-3 {
+                grid-template-columns: 1fr;
+            }
+            .page-section {
+                padding: 12px;
+            }
+            .modal {
+                padding: 16px;
+                margin: 10px;
+            }
+            .header-date {
+                font-size: 0.7rem;
+            }
+            .header-status span {
+                display: none;
+            }
+            .stat-value {
+                font-size: 1.2rem;
+            }
+            .stat-icon {
+                font-size: 1.2rem;
+            }
+            .table-wrapper {
+                font-size: 0.7rem;
+            }
+        }
+        @media (max-width: 480px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            .page-title {
+                font-size: 1.1rem;
+            }
+            .btn {
+                padding: 6px 12px;
+                font-size: 0.7rem;
+            }
+        }
+
+        /* ========== PRINT ========== */
+        @media print {
+            .sidebar,
+            .header,
+            .btn,
+            .search-bar,
+            .modal-overlay,
+            .toast-container {
+                display: none !important;
+            }
+            .main-content {
+                margin: 0 !important;
+            }
+            .page-section {
+                display: block !important;
+                padding: 0;
+            }
+            body {
+                background: white;
+                color: black;
+            }
+            .card,
+            .stat-card {
+                background: white;
+                border: 1px solid #ddd;
+                box-shadow: none;
+            }
+            .stat-value,
+            .page-title,
+            th {
+                color: #333;
+            }
+            td {
+                color: #555;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============ SIDEBAR ============ -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="sidebar-logo">
+                <img src="https://raw.githubusercontent.com/rahmaniho/karen-soft/main/images/taxi-karensoft.png" alt="کارن‌سافت" />
+            </div>
+            <div>
+                <div class="sidebar-title">کارن‌سافت</div>
+                <div class="sidebar-subtitle">مدیریت تاکسی تلفنی</div>
+            </div>
+        </div>
+        <nav class="sidebar-nav" id="sidebarNav">
+            <div class="nav-item active" data-page="dashboard"><i class="fas fa-chart-pie"></i> داشبورد</div>
+            <div class="nav-item" data-page="products"><i class="fas fa-box"></i> محصولات کارن‌سافت</div>
+            <div class="nav-item" data-page="drivers"><i class="fas fa-user-tie"></i> رانندگان</div>
+            <div class="nav-item" data-page="vehicles"><i class="fas fa-car"></i> خودروها</div>
+            <div class="nav-item" data-page="addresses"><i class="fas fa-map-marker-alt"></i> آدرس‌ها</div>
+            <div class="nav-item" data-page="passengers"><i class="fas fa-users"></i> مسافران و اشتراک‌ها</div>
+
+            <div class="nav-item" data-toggle="submenu" id="navTripsToggle">
+                <i class="fas fa-route"></i> سفرها <i class="fas fa-chevron-down chevron"></i>
+            </div>
+            <div class="submenu" id="submenuTrips">
+                <div class="nav-item" data-page="trips-new"><i class="fas fa-plus-circle"></i> ثبت سفر جدید</div>
+                <div class="nav-item" data-page="trips-list"><i class="fas fa-list"></i> لیست سفرها</div>
+            </div>
+
+            <div class="nav-item" data-toggle="submenu" id="navAccountingToggle">
+                <i class="fas fa-coins"></i> حسابداری <i class="fas fa-chevron-down chevron"></i>
+            </div>
+            <div class="submenu" id="submenuAccounting">
+                <div class="nav-item" data-page="acc-driver"><i class="fas fa-file-invoice"></i> صورت حساب رانندگان</div>
+                <div class="nav-item" data-page="acc-report"><i class="fas fa-chart-bar"></i> گزارش درآمد/هزینه</div>
+                <div class="nav-item" data-page="acc-commissions"><i class="fas fa-percentage"></i> کمیسیون‌ها</div>
+                <div class="nav-item" data-page="acc-subscribers"><i class="fas fa-user-tag"></i> حسابداری مشترکین</div>
+            </div>
+
+            <div class="nav-item" data-page="backup"><i class="fas fa-database"></i> پشتیبان‌گیری</div>
+            <div class="nav-item" data-page="settings"><i class="fas fa-cog"></i> تنظیمات</div>
+
+            <div class="nav-item" onclick="$crisp.push(['do', 'chat:open'])">
+                <i class="fas fa-headset"></i> پشتیبانی آنلاین
+            </div>
+        </nav>
+        <div class="sidebar-footer">
+            <a href="https://karen-soft.ir" target="_blank">کارن‌سافت</a> •
+            <a href="mailto:info@karen-soft.ir">info@karen-soft.ir</a>
+        </div>
+    </aside>
+
+    <!-- ============ MAIN CONTENT ============ -->
+    <div class="main-content" id="mainContent">
+        <!-- Header -->
+        <header class="header">
+            <button class="hamburger" id="hamburgerBtn" aria-label="منو"><i class="fas fa-bars"></i></button>
+            <div class="header-date" id="headerDate"></div>
+            <div class="header-status"><span class="dot"></span><span>آفلاین (محلی)</span></div>
+        </header>
+
+        <!-- ============================================================ -->
+        <!-- PAGE: PRODUCTS (محصولات کارن‌سافت) -->
+        <!-- ============================================================ -->
+        <section class="page-section" id="page-products">
+            <div class="page-title">
+                <img src="https://raw.githubusercontent.com/rahmaniho/karen-soft/main/images/taxi-karensoft.png" alt="لوگو" />
+                محصولات کارن‌سافت
+            </div>
+            <div class="card mb-16">
+                <div class="card-header">
+                    <div class="card-title">
+                        <img src="https://raw.githubusercontent.com/rahmaniho/karen-soft/main/images/taxi-karensoft.png" alt="لوگو" />
+                        سیستم مدیریت تاکسی تلفنی
+                    </div>
+                    <span class="status-badge status-active">نسخه ۱.۰</span>
+                </div>
+                <p style="font-size:0.9rem; color:var(--text-secondary); line-height:1.8;">
+                    این محصول توسط <strong style="color:var(--gold);">کارن‌سافت</strong> توسعه یافته است.
+                    یک راه‌کار کامل برای مدیریت ناوگان تاکسی‌های تلفنی، شامل مدیریت رانندگان، خودروها،
+                    مسافران، ثبت سفر، محاسبه خودکار کرایه، حسابداری رانندگان و مشترکین، گزارش‌گیری و پشتیبان‌گیری.
+                </p>
+                <div class="form-row mt-10" style="margin-top:16px;">
+                    <div class="form-group">
+                        <label class="form-label">وب‌سایت</label>
+                        <div><a href="https://karen-soft.ir" target="_blank" style="color:var(--gold);">karen-soft.ir</a></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">ایمیل پشتیبانی</label>
+                        <div><a href="mailto:info@karen-soft.ir" style="color:var(--gold);">info@karen-soft.ir</a></div>
+                    </div>
+                </div>
+                <div class="form-row mt-10">
+                    <div class="form-group">
+                        <label class="form-label">پشتیبانی آنلاین</label>
+                        <div>
+                            <button class="btn btn-gold btn-sm" onclick="$crisp.push(['do', 'chat:open'])">
+                                <i class="fas fa-comment"></i> گفتگو با پشتیبان
+                            </button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">وضعیت محصول</label>
+                        <div><span class="status-badge status-active">فعال و آماده بهره‌برداری</span></div>
+                    </div>
+                </div>
+                <div class="mt-10" style="margin-top:16px;">
+                    <div class="card-title mb-10"><i class="fas fa-list"></i> ویژگی‌های کلیدی</div>
+                    <ul style="list-style:none; padding-right:0; color:var(--text-secondary); font-size:0.85rem; line-height:2.2;">
+                        <li><i class="fas fa-check-circle" style="color:var(--green);"></i> مدیریت کامل رانندگان، خودروها، آدرس‌ها و مسافران</li>
+                        <li><i class="fas fa-check-circle" style="color:var(--green);"></i> ثبت سفر با محاسبه خودکار کرایه بر اساس مسافت و نرخ‌های تعیین‌شده</li>
+                        <li><i class="fas fa-check-circle" style="color:var(--green);"></i> پشتیبانی از مسافران حقوقی (شرکت‌ها) با تسویه جداگانه</li>
+                        <li><i class="fas fa-check-circle" style="color:var(--green);"></i> صورت‌حساب رانندگان با محاسبه کمیسیون، طلب و مانده</li>
+                        <li><i class="fas fa-check-circle" style="color:var(--green);"></i> حسابداری مشترکین و صدور فاکتور رسمی</li>
+                        <li><i class="fas fa-check-circle" style="color:var(--green);"></i> گزارش‌های مالی، نمودارهای درآمد و کمیسیون</li>
+                        <li><i class="fas fa-check-circle" style="color:var(--green);"></i> پشتیبان‌گیری و بازیابی اطلاعات با فایل JSON</li>
+                        <li><i class="fas fa-check-circle" style="color:var(--green);"></i> ذخیره‌سازی محلی (بدون نیاز به دیتابیس) – مناسب برای دمو و استفاده سبک</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title"><i class="fas fa-info-circle"></i> درباره کارن‌سافت</div>
+                </div>
+                <p style="font-size:0.85rem; color:var(--text-secondary); line-height:1.9;">
+                    کارن‌سافت (Karen-Soft) یک تیم توسعه‌دهنده نرم‌افزار است که در زمینه طراحی و پیاده‌سازی
+                    سیستم‌های مدیریتی، اپلیکیشن‌های تحت وب و راه‌کارهای سفارشی برای کسب‌وکارها فعالیت می‌کند.
+                    این محصول به‌عنوان یک نمونه از توانمندی‌های تیم در حوزه حمل‌ونقل و مدیریت ناوگان ارائه شده است.
+                    برای دریافت مشاوره، سفارش پروژه یا خرید نسخه کامل، با ما تماس بگیرید.
+                </p>
+                <div class="flex-between mt-10" style="margin-top:16px;">
+                    <button class="btn btn-gold" onclick="$crisp.push(['do', 'chat:open'])">
+                        <i class="fas fa-headset"></i> تماس با پشتیبانی
+                    </button>
+                    <button class="btn btn-outline" onclick="window.open('https://karen-soft.ir','_blank')">
+                        <i class="fas fa-globe"></i> بازدید از سایت
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- PAGE: DASHBOARD -->
+        <!-- ============================================================ -->
+        <section class="page-section active" id="page-dashboard">
+            <div class="page-title"><i class="fas fa-chart-pie"></i> داشبورد</div>
+            <div class="stats-grid" id="dashStats"></div>
+            <div class="charts-grid">
+                <div class="card"><div class="card-header"><div class="card-title"><i class="fas fa-chart-column"></i> درآمد ۷ روز اخیر</div></div><div class="chart-container"><canvas id="chartRevenue7"></canvas></div></div>
+                <div class="card"><div class="card-header"><div class="card-title"><i class="fas fa-chart-pie"></i> روش پرداخت</div></div><div class="chart-container"><canvas id="chartPaymentMethods"></canvas></div></div>
+            </div>
+            <div class="card mb-16">
+                <div class="card-header"><div class="card-title"><i class="fas fa-clock"></i> آخرین سفرها</div></div>
+                <div class="table-wrapper" id="dashRecentTrips"></div>
+            </div>
+            <div class="card">
+                <div class="card-header"><div class="card-title"><i class="fas fa-bell"></i> هشدارها</div></div>
+                <div class="alert-list" id="dashAlerts"></div>
+            </div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- DRIVERS -->
+        <!-- ============================================================ -->
+        <section class="page-section" id="page-drivers">
+            <div class="page-title"><i class="fas fa-user-tie"></i> مدیریت رانندگان</div>
+            <div class="search-bar">
+                <button class="btn btn-gold" onclick="openDriverModal()"><i class="fas fa-plus"></i> راننده جدید</button>
+                <input class="form-input" type="text" id="driverSearch" placeholder="جستجو بر اساس نام یا تلفن..." oninput="renderDrivers()">
+                <select class="form-select" id="driverFilterStatus" style="max-width:150px" onchange="renderDrivers()">
+                    <option value="">همه وضعیت‌ها</option>
+                    <option value="active">فعال</option>
+                    <option value="inactive">غیرفعال</option>
+                    <option value="suspended">تعلیق</option>
+                </select>
+            </div>
+            <div class="card"><div class="table-wrapper" id="driversTable"></div></div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- VEHICLES -->
+        <!-- ============================================================ -->
+        <section class="page-section" id="page-vehicles">
+            <div class="page-title"><i class="fas fa-car"></i> مدیریت خودروها</div>
+            <div class="search-bar">
+                <button class="btn btn-gold" onclick="openVehicleModal()"><i class="fas fa-plus"></i> خودرو جدید</button>
+                <input class="form-input" type="text" id="vehicleSearch" placeholder="جستجو بر اساس پلاک یا برند..." oninput="renderVehicles()">
+            </div>
+            <div class="card"><div class="table-wrapper" id="vehiclesTable"></div></div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- ADDRESSES -->
+        <!-- ============================================================ -->
+        <section class="page-section" id="page-addresses">
+            <div class="page-title"><i class="fas fa-map-marker-alt"></i> مدیریت آدرس‌ها</div>
+            <div class="search-bar">
+                <button class="btn btn-gold" onclick="openAddressModal()"><i class="fas fa-plus"></i> آدرس جدید</button>
+                <input class="form-input" type="text" id="addressSearch" placeholder="جستجو بر اساس عنوان یا محله..." oninput="renderAddresses()">
+            </div>
+            <div class="card"><div class="table-wrapper" id="addressesTable"></div></div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- PASSENGERS -->
+        <!-- ============================================================ -->
+        <section class="page-section" id="page-passengers">
+            <div class="page-title"><i class="fas fa-users"></i> مسافران و اشتراک‌ها</div>
+            <div class="search-bar">
+                <button class="btn btn-gold" onclick="openPassengerModal()"><i class="fas fa-plus"></i> مسافر جدید</button>
+                <input class="form-input" type="text" id="passengerSearch" placeholder="جستجو بر اساس نام یا تلفن..." oninput="renderPassengers()">
+            </div>
+            <div class="card"><div class="table-wrapper" id="passengersTable"></div></div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- TRIPS NEW -->
+        <!-- ============================================================ -->
+        <section class="page-section" id="page-trips-new">
+            <div class="page-title"><i class="fas fa-plus-circle"></i> ثبت سفر جدید</div>
+            <div class="card">
+                <form id="tripForm" onsubmit="return saveTrip(event)">
+                    <div class="form-row mb-10">
+                        <div class="form-group">
+                            <label class="form-label">راننده *</label>
+                            <select class="form-select" id="tripDriver" required onchange="onTripDriverChange()">
+                                <option value="">انتخاب راننده...</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">خودرو *</label>
+                            <select class="form-select" id="tripVehicle" required>
+                                <option value="">انتخاب خودرو...</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row mb-10">
+                        <div class="form-group">
+                            <label class="form-label">مسافر (از لیست)</label>
+                            <select class="form-select" id="tripPassenger" onchange="onTripPassengerChange()">
+                                <option value="">— ورود دستی —</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">نام مسافر *</label>
+                            <input class="form-input" type="text" id="tripPassengerName" required placeholder="نام مسافر">
+                        </div>
+                    </div>
+                    <div class="form-row mb-10">
+                        <div class="form-group">
+                            <label class="form-label">تلفن مسافر</label>
+                            <input class="form-input" type="text" id="tripPassengerPhone" placeholder="۰۹۱۲...">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">روش پرداخت *</label>
+                            <select class="form-select" id="tripPayment" required>
+                                <option value="cash">نقدی</option>
+                                <option value="card">کارتی</option>
+                                <option value="subscription">اشتراک</option>
+                                <option value="online">آنلاین</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row mb-10">
+                        <div class="form-group">
+                            <label class="form-label">مبدأ *</label>
+                            <select class="form-select" id="tripPickupSelect" onchange="if(this.value){document.getElementById('tripPickup').value=this.options[this.selectedIndex].text}">
+                                <option value="">— انتخاب از آدرس‌ها —</option>
+                            </select>
+                            <input class="form-input mt-10" type="text" id="tripPickup" required placeholder="آدرس مبدأ">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">مقصد *</label>
+                            <select class="form-select" id="tripDropoffSelect" onchange="if(this.value){document.getElementById('tripDropoff').value=this.options[this.selectedIndex].text}">
+                                <option value="">— انتخاب از آدرس‌ها —</option>
+                            </select>
+                            <input class="form-input mt-10" type="text" id="tripDropoff" required placeholder="آدرس مقصد">
+                        </div>
+                    </div>
+                    <div class="form-row-3 mb-10">
+                        <div class="form-group">
+                            <label class="form-label">مسافت (کیلومتر) *</label>
+                            <input class="form-input" type="number" id="tripDistance" min="0" step="0.1" required oninput="calculateTripFare(true)">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">کرایه (تومان)</label>
+                            <input class="form-input" type="number" id="tripFare" min="0" step="1000" placeholder="دستی یا خودکار" oninput="manualFareInput()">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">وضعیت</label>
+                            <select class="form-select" id="tripStatus">
+                                <option value="pending">در انتظار</option>
+                                <option value="inProgress">در حال انجام</option>
+                                <option value="completed" selected>تکمیل شده</option>
+                                <option value="cancelled">لغو شده</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group mb-10">
+                        <label class="form-label">یادداشت</label>
+                        <textarea class="form-textarea" id="tripNotes" rows="2" placeholder="توضیحات اختیاری..."></textarea>
+                    </div>
+                    <div class="form-group mb-10">
+                        <label class="form-label">پرداخت شده؟</label>
+                        <select class="form-select" id="tripIsPaid">
+                            <option value="true">بله</option>
+                            <option value="false">خیر</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-gold"><i class="fas fa-save"></i> ثبت سفر</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- TRIPS LIST -->
+        <!-- ============================================================ -->
+        <section class="page-section" id="page-trips-list">
+            <div class="page-title"><i class="fas fa-list"></i> لیست سفرها</div>
+            <div class="search-bar">
+                <input class="form-input" type="text" id="tripListSearch" placeholder="جستجو بر اساس مسافر..." oninput="renderTripList()">
+                <select class="form-select" id="tripListFilterDriver" style="max-width:160px" onchange="renderTripList()">
+                    <option value="">همه رانندگان</option>
+                </select>
+                <select class="form-select" id="tripListFilterStatus" style="max-width:140px" onchange="renderTripList()">
+                    <option value="">همه وضعیت‌ها</option>
+                    <option value="pending">در انتظار</option>
+                    <option value="inProgress">در حال انجام</option>
+                    <option value="completed">تکمیل شده</option>
+                    <option value="cancelled">لغو شده</option>
+                </select>
+            </div>
+            <div class="card"><div class="table-wrapper" id="tripsListTable"></div></div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- ACCOUNTING: DRIVER STATEMENT -->
+        <!-- ============================================================ -->
+        <section class="page-section" id="page-acc-driver">
+            <div class="page-title"><i class="fas fa-file-invoice"></i> صورت حساب رانندگان</div>
+            <div class="search-bar">
+                <select class="form-select" id="accDriverSelect" style="max-width:200px">
+                    <option value="">انتخاب راننده...</option>
+                </select>
+                <input class="form-input" type="date" id="accDriverFrom" style="max-width:160px">
+                <input class="form-input" type="date" id="accDriverTo" style="max-width:160px">
+                <button class="btn btn-gold" onclick="renderDriverStatement()"><i class="fas fa-chart-bar"></i> نمایش</button>
+            </div>
+            <div id="driverStatementResult"></div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- ACCOUNTING: REPORT -->
+        <!-- ============================================================ -->
+        <section class="page-section" id="page-acc-report">
+            <div class="page-title"><i class="fas fa-chart-bar"></i> گزارش درآمد/هزینه</div>
+            <div class="card mb-16">
+                <div class="card-header"><div class="card-title"><i class="fas fa-chart-column"></i> درآمد و هزینه ماهانه (۱۲ ماه)</div></div>
+                <div class="chart-container" style="height:280px"><canvas id="chartMonthlyReport"></canvas></div>
+            </div>
+            <div class="card mb-16">
+                <div class="card-header"><div class="card-title"><i class="fas fa-table"></i> خلاصه مالی</div></div>
+                <div class="table-wrapper" id="reportSummaryTable"></div>
+            </div>
+            <div class="flex-between gap-8">
+                <button class="btn btn-outline" onclick="window.print()"><i class="fas fa-print"></i> چاپ گزارش</button>
+                <button class="btn btn-outline" onclick="exportCSV()"><i class="fas fa-file-csv"></i> خروجی CSV</button>
+            </div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- ACCOUNTING: COMMISSIONS -->
+        <!-- ============================================================ -->
+        <section class="page-section" id="page-acc-commissions">
+            <div class="page-title"><i class="fas fa-percentage"></i> گزارش کمیسیون‌ها</div>
+            <div class="card mb-16">
+                <div class="card-header"><div class="card-title"><i class="fas fa-chart-bar"></i> مقایسه کمیسیون رانندگان</div></div>
+                <div class="chart-container" style="height:280px"><canvas id="chartCommissions"></canvas></div>
+            </div>
+            <div class="card"><div class="table-wrapper" id="commissionsTable"></div></div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- ACCOUNTING: SUBSCRIBERS -->
+        <!-- ============================================================ -->
+        <section class="page-section" id="page-acc-subscribers">
+            <div class="page-title"><i class="fas fa-user-tag"></i> حسابداری مشترکین</div>
+            <div class="search-bar">
+                <select class="form-select" id="accSubSelect" style="max-width:200px">
+                    <option value="">انتخاب مشترک...</option>
+                </select>
+                <input class="form-input" type="date" id="accSubFrom" style="max-width:160px">
+                <input class="form-input" type="date" id="accSubTo" style="max-width:160px">
+                <button class="btn btn-gold" onclick="renderSubscriberStatement()"><i class="fas fa-chart-bar"></i> نمایش</button>
+                <button class="btn btn-outline" onclick="printSubscriberInvoice()"><i class="fas fa-print"></i> چاپ فاکتور</button>
+            </div>
+            <div id="subscriberStatementResult"></div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- BACKUP -->
+        <!-- ============================================================ -->
+        <section class="page-section" id="page-backup">
+            <div class="page-title"><i class="fas fa-database"></i> پشتیبان‌گیری</div>
+            <div class="card mb-16">
+                <div class="card-header"><div class="card-title"><i class="fas fa-download"></i> خروجی داده‌ها</div></div>
+                <p style="font-size:0.8rem;color:var(--text-muted)" class="mb-10">دانلود تمام داده‌ها به صورت فایل JSON برای پشتیبان‌گیری.</p>
+                <button class="btn btn-gold" onclick="exportJSON()"><i class="fas fa-download"></i> دانلود JSON</button>
+            </div>
+            <div class="card mb-16">
+                <div class="card-header"><div class="card-title"><i class="fas fa-upload"></i> بازیابی داده‌ها</div></div>
+                <p style="font-size:0.8rem;color:var(--text-muted)" class="mb-10">آپلود فایل JSON برای بازیابی اطلاعات.</p>
+                <input type="file" class="form-input" id="importFile" accept=".json" style="max-width:300px" onchange="importJSON(event)">
+            </div>
+            <div class="card">
+                <div class="card-header"><div class="card-title" style="color:var(--red)"><i class="fas fa-trash"></i> حذف همه داده‌ها</div></div>
+                <p style="font-size:0.8rem;color:var(--text-muted)" class="mb-10">این عملیات غیرقابل بازگشت است. تمام داده‌ها پاک خواهند شد.</p>
+                <button class="btn btn-danger" onclick="clearAllData()"><i class="fas fa-trash"></i> پاک کردن کامل</button>
+            </div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- SETTINGS -->
+        <!-- ============================================================ -->
+        <section class="page-section" id="page-settings">
+            <div class="page-title"><i class="fas fa-cog"></i> تنظیمات</div>
+            <div class="card">
+                <form onsubmit="saveSettings(event)">
+                    <div class="form-row mb-10">
+                        <div class="form-group">
+                            <label class="form-label">نام شرکت</label>
+                            <input class="form-input" type="text" id="setCompanyName">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">تلفن شرکت</label>
+                            <input class="form-input" type="text" id="setCompanyPhone">
+                        </div>
+                    </div>
+                    <div class="form-row mb-10">
+                        <div class="form-group">
+                            <label class="form-label">آدرس شرکت</label>
+                            <input class="form-input" type="text" id="setCompanyAddress">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">درصد مالیات (اختیاری)</label>
+                            <input class="form-input" type="number" id="setTaxRate" min="0" max="100" step="0.1">
+                        </div>
+                    </div>
+                    <div class="form-row-3 mb-10">
+                        <div class="form-group">
+                            <label class="form-label">درصد کمیسیون پیش‌فرض *</label>
+                            <input class="form-input" type="number" id="setCommissionDefault" min="0" max="100" step="0.5" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">نرخ هر کیلومتر (تومان) *</label>
+                            <input class="form-input" type="number" id="setFarePerKm" min="0" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">کرایه پایه (تومان) *</label>
+                            <input class="form-input" type="number" id="setBaseFare" min="0" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-gold"><i class="fas fa-save"></i> ذخیره تنظیمات</button>
+                </form>
+            </div>
+        </section>
+    </div>
+
+    <!-- ============ MODAL ============ -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal" id="modalContent"></div>
+    </div>
+
+    <!-- ============ TOAST ============ -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- ============================================================ -->
+    <!-- JAVASCRIPT کامل -->
+    <!-- ============================================================ -->
+    <script>
+        // ============================================================
+        // DATA LAYER (localStorage)
+        // ============================================================
+        const DB_KEY = 'taxi_dispatch_db_v1';
+
+        function getDB() {
+            const raw = localStorage.getItem(DB_KEY);
+            if (raw) { try { return JSON.parse(raw); } catch (e) { console.error('DB parse error', e); } }
+            return null;
+        }
+
+        function saveDB(db) { localStorage.setItem(DB_KEY, JSON.stringify(db)); }
+
+        function initDB() {
+            if (!getDB()) {
+                const db = {
+                    drivers: [],
+                    vehicles: [],
+                    addresses: [],
+                    passengers: [],
+                    trips: [],
+                    transactions: [],
+                    settings: {
+                        commissionDefault: 15,
+                        farePerKm: 5000,
+                        baseFare: 15000,
+                        currency: 'IRR',
+                        companyName: 'کارن‌سافت',
+                        address: 'https://karen-soft.ir',
+                        phone: 'info@karen-soft.ir',
+                        taxRate: 0,
+                        videoBg: false
+                    },
+                    tripCounter: 1
+                };
+                db.drivers = [
+                    { id: 'd1', fullName: 'علی محمدی', phone: '09123456789', nationalCode: '0012345678',
+                        licenseNumber: 'L12345', joinDate: '1403-01-15', status: 'active', commissionRate: 15,
+                        notes: '' },
+                    { id: 'd2', fullName: 'رضا کریمی', phone: '09359876543', nationalCode: '0023456789',
+                        licenseNumber: 'L67890', joinDate: '1403-02-20', status: 'active', commissionRate: 12,
+                        notes: '' }
+                ];
+                db.vehicles = [
+                    { id: 'v1', plateNumber: '۱۲ب۳۴۵', brand: 'پژو ۴۰۵', model: 'GLX', color: 'سفید', year: 1398,
+                        driverId: 'd1', insuranceExpiry: '1404-06-01', technicalExpiry: '1404-04-15',
+                        status: 'active', notes: '' },
+                    { id: 'v2', plateNumber: '۴۵۶ج۷۸', brand: 'سمند', model: 'LX', color: 'نقره‌ای', year: 1400,
+                        driverId: 'd2', insuranceExpiry: '1404-03-10', technicalExpiry: '1404-05-20',
+                        status: 'active', notes: '' }
+                ];
+                db.addresses = [
+                    { id: 'a1', title: 'فرودگاه', address: 'فرودگاه بین‌المللی', neighborhood: 'فرودگاه', city: 'تهران',
+                        lat: 35.416, lng: 51.152, notes: '' },
+                    { id: 'a2', title: 'پایانه مسافربری', address: 'پایانه غرب', neighborhood: 'آزادی', city: 'تهران',
+                        lat: 35.704, lng: 51.335, notes: '' }
+                ];
+                db.passengers = [
+                    { id: 'p1', fullName: 'مریم حسینی', phone: '09121234567', addressId: 'a1', type: 'individual',
+                        subscriptionType: 'monthly', subscriptionStart: '1403-09-01', subscriptionEnd: '1403-10-01',
+                        subscriptionPrice: 1500000, tripsCount: 0, notes: 'اشتراک ماهانه' },
+                    { id: 'p2', fullName: 'شرکت حمل و نقل البرز', phone: '02112345678', addressId: 'a2',
+                        type: 'corporate', subscriptionType: 'monthly', subscriptionStart: '1403-08-01',
+                        subscriptionEnd: '1403-09-01', subscriptionPrice: 8000000, tripsCount: 0,
+                        notes: 'حقوقی - تسویه با شرکت' }
+                ];
+                db.trips = [];
+                db.tripCounter = 1;
+                saveDB(db);
+            }
+        }
+
+        function getSettings() { const db = getDB(); return db ? db.settings : { commissionDefault: 15, farePerKm: 5000,
+                baseFare: 15000, currency: 'IRR', companyName: 'کارن‌سافت', address: 'https://karen-soft.ir',
+                phone: 'info@karen-soft.ir', taxRate: 0, videoBg: false }; }
+
+        function updateSettings(s) { const db = getDB(); if (db) { db.settings = { ...db.settings, ...s };
+                saveDB(db); } }
+
+        function getDrivers() { const db = getDB(); return db ? db.drivers : []; }
+
+        function getVehicles() { const db = getDB(); return db ? db.vehicles : []; }
+
+        function getAddresses() { const db = getDB(); return db ? db.addresses : []; }
+
+        function getPassengers() { const db = getDB(); return db ? db.passengers : []; }
+
+        function getTrips() { const db = getDB(); return db ? db.trips : []; }
+
+        function getTransactions() { const db = getDB(); return db ? db.transactions : []; }
+
+        function saveDriver(driver) { const db = getDB(); if (db) { const i = db.drivers.findIndex(d => d.id === driver.id);
+                if (i >= 0) db.drivers[i] = driver;
+                else db.drivers.push(driver);
+                saveDB(db); } }
+
+        function deleteDriver(id) { const db = getDB(); if (db) { db.drivers = db.drivers.filter(d => d.id !== id);
+                saveDB(db); } }
+
+        function saveVehicle(vehicle) { const db = getDB(); if (db) { const i = db.vehicles.findIndex(v => v.id === vehicle
+                    .id); if (i >= 0) db.vehicles[i] = vehicle;
+                else db.vehicles.push(vehicle);
+                saveDB(db); } }
+
+        function deleteVehicle(id) { const db = getDB(); if (db) { db.vehicles = db.vehicles.filter(v => v.id !== id);
+                saveDB(db); } }
+
+        function saveAddress(addr) { const db = getDB(); if (db) { const i = db.addresses.findIndex(a => a.id === addr.id); if (
+                    i >= 0) db.addresses[i] = addr;
+                else db.addresses.push(addr);
+                saveDB(db); } }
+
+        function deleteAddress(id) { const db = getDB(); if (db) { db.addresses = db.addresses.filter(a => a.id !== id);
+                saveDB(db); } }
+
+        function savePassenger(p) { const db = getDB(); if (db) { const i = db.passengers.findIndex(x => x.id === p.id); if (
+                    i >= 0) db.passengers[i] = p;
+                else db.passengers.push(p);
+                saveDB(db); } }
+
+        function deletePassenger(id) { const db = getDB(); if (db) { db.passengers = db.passengers.filter(p => p.id !== id);
+                saveDB(db); } }
+
+        function saveTripToDB(trip) {
+            const db = getDB();
+            if (db) {
+                const i = db.trips.findIndex(t => t.id === trip.id);
+                if (i >= 0) db.trips[i] = trip;
+                else { db.trips.push(trip);
+                    db.tripCounter = (db.tripCounter || 1) + 1; }
+                saveDB(db);
+            }
+        }
+
+        function deleteTrip(id) { const db = getDB(); if (db) { db.trips = db.trips.filter(t => t.id !== id);
+                saveDB(db); } }
+
+        function addTransaction(tr) { const db = getDB(); if (db) { db.transactions.push(tr);
+                saveDB(db); } }
+
+        // ============================================================
+        // UTILITIES
+        // ============================================================
+        function generateId() { return Date.now().toString(36) + Math.random().toString(36).substr(2, 5); }
+
+        function toPersianDigits(str) {
+            const map = { '0': '۰', '1': '۱', '2': '۲', '3': '۳', '4': '۴', '5': '۵', '6': '۶', '7': '۷', '8': '۸',
+                '9': '۹' };
+            return String(str).replace(/[0-9]/g, d => map[d] || d);
+        }
+
+        function formatNumber(num) {
+            if (num === undefined || num === null || isNaN(num)) return '۰';
+            const n = Math.round(num);
+            const formatted = n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '٬');
+            return toPersianDigits(formatted);
+        }
+
+        function formatMoney(num) { return formatNumber(num) + ' تومان'; }
+
+        function getDriverName(id) { const d = getDrivers().find(x => x.id === id); return d ? d.fullName : 'نامشخص'; }
+
+        function getVehiclePlate(id) { const v = getVehicles().find(x => x.id === id); return v ? v.plateNumber : '—'; }
+
+        function getPassengerName(id) { const p = getPassengers().find(x => x.id === id); return p ? p.fullName : ''; }
+
+        function getAddressTitle(id) { const a = getAddresses().find(x => x.id === id); return a ? a.title : ''; }
+
+        function toJalali(gy, gm, gd) {
+            const g_d_m = [0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334];
+            let jy = (gy <= 1600) ? 0 : 979;
+            gy -= (gy <= 1600) ? 621 : 1600;
+            const gy2 = (gm > 2) ? (gy + 1) : gy;
+            let days = (365 * gy) + Math.floor((gy2 + 3) / 4) - Math.floor((gy2 + 99) / 100) + Math.floor((gy2 + 399) / 400) -
+                80 + gd + g_d_m[gm - 1];
+            jy += 33 * Math.floor(days / 12053);
+            days %= 12053;
+            jy += 4 * Math.floor(days / 1461);
+            days %= 1461;
+            if (days > 365) { jy += Math.floor((days - 1) / 365);
+                days = (days - 1) % 365; }
+            const jm = (days < 186) ? 1 + Math.floor(days / 31) : 7 + Math.floor((days - 186) / 30);
+            const jd = 1 + ((days < 186) ? (days % 31) : ((days - 186) % 30));
+            return { jy, jm, jd };
+        }
+
+        function todayJalali() {
+            const now = new Date();
+            const j = toJalali(now.getFullYear(), now.getMonth() + 1, now.getDate());
+            return `${j.jy}-${String(j.jm).padStart(2,'0')}-${String(j.jd).padStart(2,'0')}`;
+        }
+
+        function formatJalaliDate(isoDate) {
+            if (!isoDate) return '—';
+            const d = new Date(isoDate);
+            if (isNaN(d.getTime())) return toPersianDigits(isoDate);
+            const j = toJalali(d.getFullYear(), d.getMonth() + 1, d.getDate());
+            return toPersianDigits(`${j.jy}/${String(j.jm).padStart(2,'0')}/${String(j.jd).padStart(2,'0')}`);
+        }
+
+        function formatJalaliDateTime(isoDate) {
+            if (!isoDate) return '—';
+            const d = new Date(isoDate);
+            if (isNaN(d.getTime())) return toPersianDigits(isoDate);
+            const j = toJalali(d.getFullYear(), d.getMonth() + 1, d.getDate());
+            const hh = String(d.getHours()).padStart(2, '0');
+            const mm = String(d.getMinutes()).padStart(2, '0');
+            return toPersianDigits(`${j.jy}/${String(j.jm).padStart(2,'0')}/${String(j.jd).padStart(2,'0')} ${hh}:${mm}`);
+        }
+
+        function formatJalaliDateStr(jalaliStr) {
+            if (!jalaliStr) return '—';
+            const parts = jalaliStr.split('-');
+            if (parts.length !== 3) return toPersianDigits(jalaliStr);
+            return toPersianDigits(`${parts[0]}/${parts[1]}/${parts[2]}`);
+        }
+
+        function getStatusBadge(status) {
+            const map = {
+                'active': 'status-active',
+                'inactive': 'status-inactive',
+                'suspended': 'status-suspended',
+                'pending': 'status-pending',
+                'inProgress': 'status-inprogress',
+                'completed': 'status-completed',
+                'cancelled': 'status-cancelled',
+                'inRepair': 'status-inrepair',
+                'monthly': 'status-subscription',
+                'weekly': 'status-subscription',
+                'custom': 'status-subscription',
+                'none': 'status-inactive'
+            };
+            const labels = {
+                'active': 'فعال',
+                'inactive': 'غیرفعال',
+                'suspended': 'تعلیق',
+                'pending': 'در انتظار',
+                'inProgress': 'در حال انجام',
+                'completed': 'تکمیل شده',
+                'cancelled': 'لغو شده',
+                'inRepair': 'در تعمیر',
+                'monthly': 'ماهانه',
+                'weekly': 'هفتگی',
+                'custom': 'سفارشی',
+                'none': 'بدون اشتراک'
+            };
+            return `<span class="status-badge ${map[status]||'status-inactive'}">${labels[status]||status||'—'}</span>`;
+        }
+
+        function showToast(message, type = 'success') {
+            const container = document.getElementById('toastContainer');
+            const icons = { success: 'fa-check-circle', error: 'fa-exclamation-circle', warning: 'fa-exclamation-triangle' };
+            const toast = document.createElement('div');
+            toast.className = `toast toast-${type}`;
+            toast.innerHTML = `<i class="fas ${icons[type]||icons.success}"></i> ${message}`;
+            container.appendChild(toast);
+            setTimeout(() => { if (toast.parentNode) toast.remove(); }, 3200);
+        }
+
+        // ============================================================
+        // NAVIGATION
+        // ============================================================
+        function navigateTo(pageId) {
+            document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
+            const pageEl = document.getElementById('page-' + pageId);
+            if (pageEl) pageEl.classList.add('active');
+            document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+            document.querySelectorAll(`.nav-item[data-page="${pageId}"]`).forEach(n => n.classList.add('active'));
+            if (window.innerWidth <= 768) document.getElementById('sidebar').classList.add('closed');
+            switch (pageId) {
+                case 'dashboard':
+                    renderDashboard();
+                    break;
+                case 'drivers':
+                    renderDrivers();
+                    break;
+                case 'vehicles':
+                    renderVehicles();
+                    break;
+                case 'addresses':
+                    renderAddresses();
+                    break;
+                case 'passengers':
+                    renderPassengers();
+                    break;
+                case 'trips-new':
+                    populateTripForm();
+                    break;
+                case 'trips-list':
+                    renderTripList();
+                    break;
+                case 'acc-driver':
+                    populateAccDrivers();
+                    break;
+                case 'acc-report':
+                    renderMonthlyReport();
+                    break;
+                case 'acc-commissions':
+                    renderCommissions();
+                    break;
+                case 'acc-subscribers':
+                    populateSubscriberSelect();
+                    break;
+                case 'settings':
+                    populateSettings();
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        document.querySelectorAll('.nav-item[data-page]').forEach(item => {
+            item.addEventListener('click', () => navigateTo(item.dataset.page));
+        });
+
+        document.querySelectorAll('.nav-item[data-toggle="submenu"]').forEach(item => {
+            item.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const submenuId = item.id === 'navTripsToggle' ? 'submenuTrips' : 'submenuAccounting';
+                const submenu = document.getElementById(submenuId);
+                submenu.classList.toggle('open');
+                item.classList.toggle('open');
+            });
+        });
+
+        document.getElementById('hamburgerBtn').addEventListener('click', () => {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('closed');
+            if (!sidebar.classList.contains('closed')) document.getElementById('mainContent').classList.remove(
+            'expanded');
+            else document.getElementById('mainContent').classList.add('expanded');
+        });
+
+        function closeSidebarOnDesktop() {
+            if (window.innerWidth > 768) { document.getElementById('sidebar').classList.remove('closed');
+                document.getElementById('mainContent').classList.remove('expanded'); }
+        }
+        window.addEventListener('resize', closeSidebarOnDesktop);
+        closeSidebarOnDesktop();
+
+        // ============================================================
+        // DASHBOARD
+        // ============================================================
+        function renderDashboard() {
+            const trips = getTrips();
+            const drivers = getDrivers();
+            const vehicles = getVehicles();
+            const passengers = getPassengers();
+            const today = todayJalali();
+
+            const activeDrivers = drivers.filter(d => d.status === 'active').length;
+            const activeVehicles = vehicles.filter(v => v.status === 'active').length;
+            const todayTrips = trips.filter(t => { const td = formatJalaliDate(t.pickupTime); return td ===
+                    formatJalaliDateStr(today); });
+            const todayRevenue = todayTrips.reduce((sum, t) => sum + (t.status === 'completed' ? t.fare : 0), 0);
+
+            document.getElementById('dashStats').innerHTML = `
+            <div class="stat-card"><div class="stat-icon"><i class="fas fa-user-tie"></i></div><div class="stat-value">${formatNumber(activeDrivers)}</div><div class="stat-label">رانندگان فعال</div></div>
+            <div class="stat-card"><div class="stat-icon"><i class="fas fa-car"></i></div><div class="stat-value">${formatNumber(activeVehicles)}</div><div class="stat-label">خودروهای فعال</div></div>
+            <div class="stat-card"><div class="stat-icon"><i class="fas fa-route"></i></div><div class="stat-value">${formatNumber(todayTrips.length)}</div><div class="stat-label">سفرهای امروز</div></div>
+            <div class="stat-card"><div class="stat-icon"><i class="fas fa-money-bill"></i></div><div class="stat-value">${formatNumber(todayRevenue)}</div><div class="stat-label">درآمد امروز (تومان)</div></div>
+          `;
+
+            // 7-day revenue
+            const days = [],
+                revenues = [];
+            for (let i = 6; i >= 0; i--) {
+                const d = new Date();
+                d.setDate(d.getDate() - i);
+                const j = toJalali(d.getFullYear(), d.getMonth() + 1, d.getDate());
+                const dateKey = `${j.jy}-${String(j.jm).padStart(2,'0')}-${String(j.jd).padStart(2,'0')}`;
+                const dayTrips = trips.filter(t => { const td = formatJalaliDate(t.pickupTime); return td ===
+                        formatJalaliDateStr(dateKey) && t.status === 'completed'; });
+                days.push(toPersianDigits(`${String(j.jm).padStart(2,'0')}/${String(j.jd).padStart(2,'0')}`));
+                revenues.push(dayTrips.reduce((s, t) => s + t.fare, 0));
+            }
+            renderBarChart('chartRevenue7', days, revenues, 'درآمد (تومان)');
+
+            // Payment methods
+            const methods = { cash: 0, card: 0, subscription: 0, online: 0 };
+            trips.forEach(t => { if (methods[t.paymentMethod] !== undefined) methods[t.paymentMethod]++; });
+            renderPieChart('chartPaymentMethods', ['نقدی', 'کارتی', 'اشتراک', 'آنلاین'],
+                [methods.cash, methods.card, methods.subscription, methods.online],
+                ['#f0b429', '#3b82f6', '#10b981', '#f59e0b']);
+
+            // Recent trips
+            const recentTrips = [...trips].sort((a, b) => new Date(b.pickupTime) - new Date(a.pickupTime)).slice(0, 5);
+            let tripsHTML = '';
+            if (recentTrips.length === 0) { tripsHTML =
+                    '<div class="empty-state"><i class="fas fa-route"></i><p>سفری ثبت نشده است</p></div>'; } else {
+                tripsHTML =
+                    `<table><thead><tr><th>زمان</th><th>مسافر</th><th>مبدأ</th><th>مقصد</th><th>کرایه</th><th>وضعیت</th></tr></thead><tbody>`;
+                recentTrips.forEach(t => {
+                    tripsHTML +=
+                        `<tr><td>${formatJalaliDateTime(t.pickupTime)}</td><td>${t.passengerName}</td><td>${t.pickupAddress}</td><td>${t.dropoffAddress}</td><td>${formatNumber(t.fare)}</td><td>${getStatusBadge(t.status)}</td></tr>`;
+                });
+                tripsHTML += '</tbody></table>';
+            }
+            document.getElementById('dashRecentTrips').innerHTML = tripsHTML;
+
+            // Alerts
+            const alerts = [];
+            vehicles.forEach(v => {
+                const todayDate = new Date();
+                const insDate = new Date(v.insuranceExpiry);
+                const techDate = new Date(v.technicalExpiry);
+                if (insDate < todayDate) alerts.push({ type: 'danger',
+                    msg: `بیمه خودرو ${v.plateNumber} منقضی شده است.` });
+                else if ((insDate - todayDate) / (1000 * 60 * 60 * 24) <= 30) alerts.push({ type: 'warning',
+                    msg: `بیمه خودرو ${v.plateNumber} تا ${formatJalaliDateStr(v.insuranceExpiry)} منقضی می‌شود.` });
+                if (techDate < todayDate) alerts.push({ type: 'danger',
+                    msg: `معاینه فنی خودرو ${v.plateNumber} منقضی شده است.` });
+                else if ((techDate - todayDate) / (1000 * 60 * 60 * 24) <= 30) alerts.push({ type: 'warning',
+                    msg: `معاینه فنی خودرو ${v.plateNumber} تا ${formatJalaliDateStr(v.technicalExpiry)} منقضی می‌شود.` });
+            });
+            passengers.forEach(p => {
+                if (p.subscriptionType !== 'none' && p.subscriptionEnd) {
+                    const endDate = new Date(p.subscriptionEnd);
+                    const diff = (endDate - new Date()) / (1000 * 60 * 60 * 24);
+                    if (diff <= 7 && diff >= 0) alerts.push({ type: 'warning',
+                        msg: `اشتراک ${p.fullName} تا ${formatJalaliDateStr(p.subscriptionEnd)} منقضی می‌شود.` });
+                    if (diff < 0) alerts.push({ type: 'danger',
+                        msg: `اشتراک ${p.fullName} منقضی شده است.` });
+                }
+            });
+            const alertHTML = alerts.length ? alerts.map(a =>
+                `<div class="alert-item alert-${a.type}"><i class="fas ${a.type==='danger'?'fa-exclamation-circle':'fa-exclamation-triangle'}"></i> ${a.msg}</div>`
+                ).join('') :
+                '<div class="alert-item alert-info"><i class="fas fa-check-circle"></i> هیچ هشداری وجود ندارد.</div>';
+            document.getElementById('dashAlerts').innerHTML = alertHTML;
+        }
+
+        // ============================================================
+        // CHARTS
+        // ============================================================
+        const chartInstances = {};
+
+        function renderBarChart(canvasId, labels, data, label) {
+            const canvas = document.getElementById(canvasId);
+            if (!canvas) return;
+            if (chartInstances[canvasId]) chartInstances[canvasId].destroy();
+            chartInstances[canvasId] = new Chart(canvas, {
+                type: 'bar',
+                data: { labels, datasets: [{ label, data, backgroundColor: 'rgba(240,180,41,0.6)',
+                        borderColor: '#f0b429', borderWidth: 1, borderRadius: 6 }] },
+                options: { responsive: true, maintainAspectRatio: false,
+                    plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true,
+                            ticks: { color: '#8888a0' }, grid: { color: 'rgba(255,255,255,0.06)' } },
+                        x: { ticks: { color: '#8888a0' }, grid: { display: false } } } }
+            });
+        }
+
+        function renderPieChart(canvasId, labels, data, colors) {
+            const canvas = document.getElementById(canvasId);
+            if (!canvas) return;
+            if (chartInstances[canvasId]) chartInstances[canvasId].destroy();
+            chartInstances[canvasId] = new Chart(canvas, {
+                type: 'doughnut',
+                data: { labels, datasets: [{ data, backgroundColor: colors, borderWidth: 2,
+                            borderColor: 'rgba(10,10,20,0.8)' }] },
+                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom',
+                            labels: { color: '#b0b0c0', font: { family: 'Vazirmatn' } } } } }
+            });
+        }
+
+        function renderGroupedBarChart(canvasId, labels, dataset1, label1, dataset2, label2) {
+            const canvas = document.getElementById(canvasId);
+            if (!canvas) return;
+            if (chartInstances[canvasId]) chartInstances[canvasId].destroy();
+            chartInstances[canvasId] = new Chart(canvas, {
+                type: 'bar',
+                data: { labels, datasets: [
+                        { label: label1, data: dataset1, backgroundColor: 'rgba(16,185,129,0.6)',
+                            borderColor: '#10b981', borderWidth: 1, borderRadius: 5 },
+                        { label: label2, data: dataset2, backgroundColor: 'rgba(239,68,68,0.5)',
+                            borderColor: '#ef4444', borderWidth: 1, borderRadius: 5 }
+                    ] },
+                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom',
+                            labels: { color: '#b0b0c0', font: { family: 'Vazirmatn' } } } },
+                    scales: { y: { beginAtZero: true, ticks: { color: '#8888a0' },
+                            grid: { color: 'rgba(255,255,255,0.06)' } }, x: { ticks: { color: '#8888a0' },
+                            grid: { display: false } } } }
+            });
+        }
+
+        // ============================================================
+        // DRIVERS
+        // ============================================================
+        function renderDrivers() {
+            const drivers = getDrivers();
+            const search = (document.getElementById('driverSearch')?.value || '').trim();
+            const filterStatus = document.getElementById('driverFilterStatus')?.value || '';
+            const trips = getTrips();
+            let filtered = [...drivers];
+            if (search) filtered = filtered.filter(d => d.fullName.includes(search) || d.phone.includes(search));
+            if (filterStatus) filtered = filtered.filter(d => d.status === filterStatus);
+            if (filtered.length === 0) { document.getElementById('driversTable').innerHTML =
+                    '<div class="empty-state"><i class="fas fa-user-tie"></i><p>راننده‌ای یافت نشد</p></div>'; return; }
+            let html =
+                `<table><thead><tr><th>نام</th><th>تلفن</th><th>وضعیت</th><th>کمیسیون %</th><th>تعداد سفر</th><th>مجموع درآمد</th><th>عملیات</th></tr></thead><tbody>`;
+            filtered.forEach(d => {
+                const dTrips = trips.filter(t => t.driverId === d.id && t.status === 'completed');
+                const totalFare = dTrips.reduce((s, t) => s + t.fare, 0);
+                html += `<tr>
+              <td><span class="driver-name-link" onclick="showDriverDetails('${d.id}')">${d.fullName}</span></td>
+              <td>${toPersianDigits(d.phone)}</td>
+              <td>${getStatusBadge(d.status)}</td>
+              <td>${toPersianDigits(d.commissionRate)}٪</td>
+              <td>${formatNumber(dTrips.length)}</td>
+              <td>${formatNumber(totalFare)}</td>
+              <td>
+                <button class="btn-icon edit" onclick="openDriverModal('${d.id}')" title="ویرایش"><i class="fas fa-edit"></i></button>
+                <button class="btn-icon danger" onclick="confirmDeleteDriver('${d.id}')" title="حذف"><i class="fas fa-trash"></i></button>
+              </td>
+            </tr>`;
+            });
+            html += '</tbody></table>';
+            document.getElementById('driversTable').innerHTML = html;
+        }
+
+        function openDriverModal(id) {
+            const drivers = getDrivers();
+            const driver = id ? drivers.find(d => d.id === id) : null;
+            const isEdit = !!driver;
+            const modal = document.getElementById('modalContent');
+            modal.innerHTML = `
+            <div class="modal-header"><div class="modal-title">${isEdit?'ویرایش راننده':'افزودن راننده جدید'}</div><button class="modal-close" onclick="closeModal()"><i class="fas fa-times"></i></button></div>
+            <form onsubmit="saveDriverForm(event, '${id||''}')">
+              <div class="form-row mb-10">
+                <div class="form-group"><label class="form-label">نام و نام خانوادگی *</label><input class="form-input" type="text" id="drName" required value="${driver?driver.fullName:''}"></div>
+                <div class="form-group"><label class="form-label">تلفن *</label><input class="form-input" type="text" id="drPhone" required value="${driver?driver.phone:''}"></div>
+              </div>
+              <div class="form-row mb-10">
+                <div class="form-group"><label class="form-label">کد ملی</label><input class="form-input" type="text" id="drNationalCode" value="${driver?driver.nationalCode:''}"></div>
+                <div class="form-group"><label class="form-label">شماره گواهینامه</label><input class="form-input" type="text" id="drLicense" value="${driver?driver.licenseNumber:''}"></div>
+              </div>
+              <div class="form-row mb-10">
+                <div class="form-group"><label class="form-label">تاریخ استخدام</label><input class="form-input" type="text" id="drJoinDate" placeholder="مثلاً 1403-05-15" value="${driver?driver.joinDate:''}"></div>
+                <div class="form-group"><label class="form-label">درصد کمیسیون *</label><input class="form-input" type="number" id="drCommission" min="0" max="100" step="0.5" required value="${driver?driver.commissionRate:getSettings().commissionDefault}"></div>
+              </div>
+              <div class="form-group mb-10">
+                <label class="form-label">وضعیت *</label>
+                <select class="form-select" id="drStatus">
+                  <option value="active" ${driver&&driver.status==='active'?'selected':''}>فعال</option>
+                  <option value="inactive" ${driver&&driver.status==='inactive'?'selected':''}>غیرفعال</option>
+                  <option value="suspended" ${driver&&driver.status==='suspended'?'selected':''}>تعلیق</option>
+                </select>
+              </div>
+              <div class="form-group mb-10"><label class="form-label">یادداشت</label><textarea class="form-textarea" id="drNotes">${driver?driver.notes:''}</textarea></div>
+              <button type="submit" class="btn btn-gold"><i class="fas fa-save"></i> ذخیره</button>
+            </form>
+          `;
+            document.getElementById('modalOverlay').classList.add('active');
+        }
+
+        function saveDriverForm(e, id) {
+            e.preventDefault();
+            const name = document.getElementById('drName').value.trim();
+            const phone = document.getElementById('drPhone').value.trim();
+            if (!name || !phone) { showToast('نام و تلفن الزامی است', 'error'); return; }
+            const driver = {
+                id: id || generateId(),
+                fullName: name,
+                phone,
+                nationalCode: document.getElementById('drNationalCode').value.trim(),
+                licenseNumber: document.getElementById('drLicense').value.trim(),
+                joinDate: document.getElementById('drJoinDate').value.trim(),
+                status: document.getElementById('drStatus').value,
+                commissionRate: parseFloat(document.getElementById('drCommission').value) || 15,
+                notes: document.getElementById('drNotes').value.trim()
+            };
+            saveDriver(driver);
+            closeModal();
+            renderDrivers();
+            showToast(id ? 'راننده ویرایش شد' : 'راننده جدید ثبت شد');
+        }
+
+        function confirmDeleteDriver(id) {
+            if (confirm('آیا مطمئن هستید این راننده حذف شود؟')) { deleteDriver(id);
+                renderDrivers();
+                showToast('راننده حذف شد', 'warning'); }
+        }
+
+        function showDriverDetails(id) {
+            const driver = getDrivers().find(d => d.id === id);
+            if (!driver) return;
+            const trips = getTrips().filter(t => t.driverId === id && t.status === 'completed');
+            const totalFare = trips.reduce((s, t) => s + t.fare, 0);
+            const totalCommission = trips.reduce((s, t) => s + t.commission, 0);
+            const totalShare = trips.reduce((s, t) => s + t.driverShare, 0);
+            const corporateTrips = trips.filter(t => t.billedTo === 'company');
+            const totalCorporateShare = corporateTrips.reduce((s, t) => s + t.driverShare, 0);
+            const modal = document.getElementById('modalContent');
+            modal.innerHTML = `
+            <div class="modal-header"><div class="modal-title">جزئیات راننده</div><button class="modal-close" onclick="closeModal()"><i class="fas fa-times"></i></button></div>
+            <div class="mb-16"><strong>${driver.fullName}</strong> • ${toPersianDigits(driver.phone)} • ${getStatusBadge(driver.status)}</div>
+            <div class="form-row mb-16">
+              <div class="form-group"><label class="form-label">مجموع کرایه‌ها</label><div class="stat-value" style="font-size:1.2rem">${formatNumber(totalFare)}</div></div>
+              <div class="form-group"><label class="form-label">مجموع کمیسیون</label><div class="stat-value" style="font-size:1.2rem;color:var(--gold)">${formatNumber(totalCommission)}</div></div>
+              <div class="form-group"><label class="form-label">سهم راننده</label><div class="stat-value" style="font-size:1.2rem;color:var(--green)">${formatNumber(totalShare)}</div></div>
+            </div>
+            <div class="form-row mb-16">
+              <div class="form-group"><label class="form-label">سفرهای حقوقی (تعداد)</label><div class="stat-value" style="font-size:1.2rem">${formatNumber(corporateTrips.length)}</div></div>
+              <div class="form-group"><label class="form-label">مبلغ طلب از تاکسی تلفنی</label><div class="stat-value" style="font-size:1.2rem;color:var(--blue)">${formatNumber(totalCorporateShare)}</div></div>
+            </div>
+            <div class="card-title mb-10"><i class="fas fa-list"></i> سفرهای انجام شده (${formatNumber(trips.length)})</div>
+            <div class="table-wrapper">
+              <table><thead><tr><th>تاریخ</th><th>مسافر</th><th>کرایه</th><th>کمیسیون</th><th>سهم</th><th>نوع تسویه</th></tr></thead><tbody>
+                ${trips.map(t=>`<tr><td>${formatJalaliDateTime(t.pickupTime)}</td><td>${t.passengerName}</td><td>${formatNumber(t.fare)}</td><td>${formatNumber(t.commission)}</td><td>${formatNumber(t.driverShare)}</td><td>${t.billedTo==='company'?'<span class="status-badge status-subscription">حقوقی</span>':'<span class="status-badge status-active">عادی</span>'}</td></tr>`).join('')}
+              </tbody></table>
+            </div>
+          `;
+            document.getElementById('modalOverlay').classList.add('active');
+        }
+
+        // ============================================================
+        // VEHICLES
+        // ============================================================
+        function renderVehicles() {
+            const vehicles = getVehicles();
+            const search = (document.getElementById('vehicleSearch')?.value || '').trim();
+            let filtered = [...vehicles];
+            if (search) filtered = filtered.filter(v => v.plateNumber.includes(search) || v.brand.includes(search));
+            if (filtered.length === 0) { document.getElementById('vehiclesTable').innerHTML =
+                    '<div class="empty-state"><i class="fas fa-car"></i><p>خودرویی یافت نشد</p></div>'; return; }
+            const today = new Date();
+            let html =
+                `<table><thead><tr><th>پلاک</th><th>برند</th><th>راننده</th><th>وضعیت</th><th>بیمه</th><th>معاینه فنی</th><th>عملیات</th></tr></thead><tbody>`;
+            filtered.forEach(v => {
+                const driverName = v.driverId ? getDriverName(v.driverId) : '—';
+                const insDate = new Date(v.insuranceExpiry);
+                const techDate = new Date(v.technicalExpiry);
+                const insWarn = insDate < today || (insDate - today) / (1000 * 60 * 60 * 24) <= 30;
+                const techWarn = techDate < today || (techDate - today) / (1000 * 60 * 60 * 24) <= 30;
+                html += `<tr>
+              <td>${toPersianDigits(v.plateNumber)}</td>
+              <td>${v.brand} ${v.model}</td>
+              <td>${driverName}</td>
+              <td>${getStatusBadge(v.status)}</td>
+              <td class="${insWarn?'highlight-warning':''}">${formatJalaliDateStr(v.insuranceExpiry)}</td>
+              <td class="${techWarn?'highlight-warning':''}">${formatJalaliDateStr(v.technicalExpiry)}</td>
+              <td>
+                <button class="btn-icon edit" onclick="openVehicleModal('${v.id}')" title="ویرایش"><i class="fas fa-edit"></i></button>
+                <button class="btn-icon danger" onclick="confirmDeleteVehicle('${v.id}')" title="حذف"><i class="fas fa-trash"></i></button>
+              </td>
+            </tr>`;
+            });
+            html += '</tbody></table>';
+            document.getElementById('vehiclesTable').innerHTML = html;
+        }
+
+        function openVehicleModal(id) {
+            const vehicles = getVehicles();
+            const drivers = getDrivers().filter(d => d.status === 'active');
+            const vehicle = id ? vehicles.find(v => v.id === id) : null;
+            const isEdit = !!vehicle;
+            const modal = document.getElementById('modalContent');
+            modal.innerHTML = `
+            <div class="modal-header"><div class="modal-title">${isEdit?'ویرایش خودرو':'افزودن خودرو جدید'}</div><button class="modal-close" onclick="closeModal()"><i class="fas fa-times"></i></button></div>
+            <form onsubmit="saveVehicleForm(event, '${id||''}')">
+              <div class="form-row mb-10">
+                <div class="form-group"><label class="form-label">شماره پلاک *</label><input class="form-input" type="text" id="vhPlate" required value="${vehicle?vehicle.plateNumber:''}"></div>
+                <div class="form-group"><label class="form-label">برند *</label><input class="form-input" type="text" id="vhBrand" required value="${vehicle?vehicle.brand:''}"></div>
+              </div>
+              <div class="form-row mb-10">
+                <div class="form-group"><label class="form-label">مدل</label><input class="form-input" type="text" id="vhModel" value="${vehicle?vehicle.model:''}"></div>
+                <div class="form-group"><label class="form-label">رنگ</label><input class="form-input" type="text" id="vhColor" value="${vehicle?vehicle.color:''}"></div>
+              </div>
+              <div class="form-row mb-10">
+                <div class="form-group"><label class="form-label">سال ساخت</label><input class="form-input" type="number" id="vhYear" min="1350" max="1410" value="${vehicle?vehicle.year:''}"></div>
+                <div class="form-group"><label class="form-label">راننده اختصاصی</label><select class="form-select" id="vhDriver"><option value="">— بدون راننده —</option>${drivers.map(d=>`<option value="${d.id}" ${vehicle&&vehicle.driverId===d.id?'selected':''}>${d.fullName}</option>`).join('')}</select></div>
+              </div>
+              <div class="form-row mb-10">
+                <div class="form-group"><label class="form-label">تاریخ انقضای بیمه</label><input class="form-input" type="text" id="vhInsurance" placeholder="1404-06-01" value="${vehicle?vehicle.insuranceExpiry:''}"></div>
+                <div class="form-group"><label class="form-label">تاریخ انقضای معاینه فنی</label><input class="form-input" type="text" id="vhTechnical" placeholder="1404-04-15" value="${vehicle?vehicle.technicalExpiry:''}"></div>
+              </div>
+              <div class="form-group mb-10"><label class="form-label">وضعیت *</label><select class="form-select" id="vhStatus"><option value="active" ${vehicle&&vehicle.status==='active'?'selected':''}>فعال</option><option value="inactive" ${vehicle&&vehicle.status==='inactive'?'selected':''}>غیرفعال</option><option value="inRepair" ${vehicle&&vehicle.status==='inRepair'?'selected':''}>در تعمیر</option></select></div>
+              <div class="form-group mb-10"><label class="form-label">یادداشت</label><textarea class="form-textarea" id="vhNotes">${vehicle?vehicle.notes:''}</textarea></div>
+              <button type="submit" class="btn btn-gold"><i class="fas fa-save"></i> ذخیره</button>
+            </form>
+          `;
+            document.getElementById('modalOverlay').classList.add('active');
+        }
+
+        function saveVehicleForm(e, id) {
+            e.preventDefault();
+            const plate = document.getElementById('vhPlate').value.trim();
+            const brand = document.getElementById('vhBrand').value.trim();
+            if (!plate || !brand) { showToast('پلاک و برند الزامی است', 'error'); return; }
+            const vehicles = getVehicles();
+            const dup = vehicles.find(v => v.plateNumber === plate && v.id !== id);
+            if (dup) { showToast('این پلاک قبلاً ثبت شده است', 'error'); return; }
+            const vehicle = {
+                id: id || generateId(),
+                plateNumber: plate,
+                brand,
+                model: document.getElementById('vhModel').value.trim(),
+                color: document.getElementById('vhColor').value.trim(),
+                year: parseInt(document.getElementById('vhYear').value) || 1400,
+                driverId: document.getElementById('vhDriver').value,
+                insuranceExpiry: document.getElementById('vhInsurance').value.trim(),
+                technicalExpiry: document.getElementById('vhTechnical').value.trim(),
+                status: document.getElementById('vhStatus').value,
+                notes: document.getElementById('vhNotes').value.trim()
+            };
+            saveVehicle(vehicle);
+            closeModal();
+            renderVehicles();
+            showToast(id ? 'خودرو ویرایش شد' : 'خودرو جدید ثبت شد');
+        }
+
+        function confirmDeleteVehicle(id) {
+            if (confirm('آیا مطمئن هستید این خودرو حذف شود؟')) { deleteVehicle(id);
+                renderVehicles();
+                showToast('خودرو حذف شد', 'warning'); }
+        }
+
+        // ============================================================
+        // ADDRESSES
+        // ============================================================
+        function renderAddresses() {
+            const addresses = getAddresses();
+            const search = (document.getElementById('addressSearch')?.value || '').trim();
+            let filtered = [...addresses];
+            if (search) filtered = filtered.filter(a => a.title.includes(search) || a.neighborhood.includes(search));
+            if (filtered.length === 0) { document.getElementById('addressesTable').innerHTML =
+                    '<div class="empty-state"><i class="fas fa-map-marker-alt"></i><p>آدرسی یافت نشد</p></div>'; return; }
+            let html =
+                `<table><thead><tr><th>عنوان</th><th>آدرس</th><th>محله</th><th>شهر</th><th>عملیات</th></tr></thead><tbody>`;
+            filtered.forEach(a => {
+                html += `<tr>
+              <td><strong>${a.title}</strong></td>
+              <td>${a.address}</td>
+              <td>${a.neighborhood}</td>
+              <td>${a.city}</td>
+              <td>
+                <button class="btn-icon edit" onclick="openAddressModal('${a.id}')" title="ویرایش"><i class="fas fa-edit"></i></button>
+                <button class="btn-icon danger" onclick="confirmDeleteAddress('${a.id}')" title="حذف"><i class="fas fa-trash"></i></button>
+              </td>
+            </tr>`;
+            });
+            html += '</tbody></table>';
+            document.getElementById('addressesTable').innerHTML = html;
+        }
+
+        function openAddressModal(id) {
+            const addresses = getAddresses();
+            const addr = id ? addresses.find(a => a.id === id) : null;
+            const isEdit = !!addr;
+            const modal = document.getElementById('modalContent');
+            modal.innerHTML = `
+            <div class="modal-header"><div class="modal-title">${isEdit?'ویرایش آدرس':'افزودن آدرس جدید'}</div><button class="modal-close" onclick="closeModal()"><i class="fas fa-times"></i></button></div>
+            <form onsubmit="saveAddressForm(event, '${id||''}')">
+              <div class="form-row mb-10">
+                <div class="form-group"><label class="form-label">عنوان *</label><input class="form-input" type="text" id="adTitle" required value="${addr?addr.title:''}"></div>
+                <div class="form-group"><label class="form-label">شهر</label><input class="form-input" type="text" id="adCity" value="${addr?addr.city:'تهران'}"></div>
+              </div>
+              <div class="form-group mb-10"><label class="form-label">آدرس کامل *</label><input class="form-input" type="text" id="adAddress" required value="${addr?addr.address:''}"></div>
+              <div class="form-row mb-10">
+                <div class="form-group"><label class="form-label">محله</label><input class="form-input" type="text" id="adNeighborhood" value="${addr?addr.neighborhood:''}"></div>
+                <div class="form-group"><label class="form-label">یادداشت</label><input class="form-input" type="text" id="adNotes" value="${addr?addr.notes:''}"></div>
+              </div>
+              <button type="submit" class="btn btn-gold"><i class="fas fa-save"></i> ذخیره</button>
+            </form>
+          `;
+            document.getElementById('modalOverlay').classList.add('active');
+        }
+
+        function saveAddressForm(e, id) {
+            e.preventDefault();
+            const title = document.getElementById('adTitle').value.trim();
+            const address = document.getElementById('adAddress').value.trim();
+            if (!title || !address) { showToast('عنوان و آدرس الزامی است', 'error'); return; }
+            const addr = {
+                id: id || generateId(),
+                title,
+                address,
+                neighborhood: document.getElementById('adNeighborhood').value.trim(),
+                city: document.getElementById('adCity').value.trim() || 'تهران',
+                lat: 0,
+                lng: 0,
+                notes: document.getElementById('adNotes').value.trim()
+            };
+            saveAddress(addr);
+            closeModal();
+            renderAddresses();
+            showToast(id ? 'آدرس ویرایش شد' : 'آدرس جدید ثبت شد');
+        }
+
+        function confirmDeleteAddress(id) {
+            if (confirm('آیا مطمئن هستید این آدرس حذف شود؟')) { deleteAddress(id);
+                renderAddresses();
+                showToast('آدرس حذف شد', 'warning'); }
+        }
+
+        // ============================================================
+        // PASSENGERS
+        // ============================================================
+        function renderPassengers() {
+            const passengers = getPassengers();
+            const search = (document.getElementById('passengerSearch')?.value || '').trim();
+            let filtered = [...passengers];
+            if (search) filtered = filtered.filter(p => p.fullName.includes(search) || p.phone.includes(search));
+            if (filtered.length === 0) { document.getElementById('passengersTable').innerHTML =
+                    '<div class="empty-state"><i class="fas fa-users"></i><p>مسافری یافت نشد</p></div>'; return; }
+            const now = new Date();
+            let html =
+                `<table><thead><tr><th>نام</th><th>تلفن</th><th>نوع</th><th>اشتراک</th><th>انقضا</th><th>تعداد سفر</th><th>وضعیت</th><th>عملیات</th></tr></thead><tbody>`;
+            filtered.forEach(p => {
+                const isActive = p.subscriptionType !== 'none' && p.subscriptionEnd && new Date(p
+                    .subscriptionEnd) >= now;
+                html += `<tr>
+              <td><strong>${p.fullName}</strong></td>
+              <td>${toPersianDigits(p.phone)}</td>
+              <td>${p.type==='corporate'?'<span class="status-badge status-subscription">حقوقی</span>':'<span class="status-badge status-active">حقیقی</span>'}</td>
+              <td>${p.subscriptionType!=='none'?getStatusBadge(p.subscriptionType):'—'}</td>
+              <td>${p.subscriptionEnd?formatJalaliDateStr(p.subscriptionEnd):'—'}</td>
+              <td>${formatNumber(p.tripsCount)}</td>
+              <td>${p.subscriptionType!=='none'?(isActive?'<span class="status-badge status-active">فعال</span>':'<span class="status-badge status-inactive">منقضی</span>'):'—'}</td>
+              <td>
+                <button class="btn-icon edit" onclick="openPassengerModal('${p.id}')" title="ویرایش"><i class="fas fa-edit"></i></button>
+                <button class="btn-icon danger" onclick="confirmDeletePassenger('${p.id}')" title="حذف"><i class="fas fa-trash"></i></button>
+              </td>
+            </tr>`;
+            });
+            html += '</tbody></table>';
+            document.getElementById('passengersTable').innerHTML = html;
+        }
+
+        function openPassengerModal(id) {
+            const passengers = getPassengers();
+            const addresses = getAddresses();
+            const p = id ? passengers.find(x => x.id === id) : null;
+            const isEdit = !!p;
+            const modal = document.getElementById('modalContent');
+            modal.innerHTML = `
+            <div class="modal-header"><div class="modal-title">${isEdit?'ویرایش مسافر':'افزودن مسافر جدید'}</div><button class="modal-close" onclick="closeModal()"><i class="fas fa-times"></i></button></div>
+            <form onsubmit="savePassengerForm(event, '${id||''}')">
+              <div class="form-row mb-10">
+                <div class="form-group"><label class="form-label">نام و نام خانوادگی *</label><input class="form-input" type="text" id="psName" required value="${p?p.fullName:''}"></div>
+                <div class="form-group"><label class="form-label">تلفن *</label><input class="form-input" type="text" id="psPhone" required value="${p?p.phone:''}"></div>
+              </div>
+              <div class="form-row mb-10">
+                <div class="form-group"><label class="form-label">نوع مسافر</label><select class="form-select" id="psType"><option value="individual" ${p&&p.type==='individual'?'selected':''}>حقیقی</option><option value="corporate" ${p&&p.type==='corporate'?'selected':''}>حقوقی (شرکت)</option></select></div>
+                <div class="form-group"><label class="form-label">آدرس اصلی</label><select class="form-select" id="psAddress"><option value="">— بدون آدرس —</option>${addresses.map(a=>`<option value="${a.id}" ${p&&p.addressId===a.id?'selected':''}>${a.title} - ${a.address}</option>`).join('')}</select></div>
+              </div>
+              <div class="form-group mb-10"><label class="form-label">نوع اشتراک</label><select class="form-select" id="psSubType" onchange="toggleSubFields()"><option value="none" ${p&&p.subscriptionType==='none'?'selected':''}>بدون اشتراک</option><option value="monthly" ${p&&p.subscriptionType==='monthly'?'selected':''}>ماهانه</option><option value="weekly" ${p&&p.subscriptionType==='weekly'?'selected':''}>هفتگی</option><option value="custom" ${p&&p.subscriptionType==='custom'?'selected':''}>سفارشی</option></select></div>
+              <div id="subFields" style="${p&&p.subscriptionType!=='none'?'':'display:none'}">
+                <div class="form-row mb-10">
+                  <div class="form-group"><label class="form-label">تاریخ شروع</label><input class="form-input" type="text" id="psSubStart" placeholder="1403-09-01" value="${p?p.subscriptionStart:''}"></div>
+                  <div class="form-group"><label class="form-label">تاریخ پایان</label><input class="form-input" type="text" id="psSubEnd" placeholder="1403-10-01" value="${p?p.subscriptionEnd:''}"></div>
+                </div>
+                <div class="form-group mb-10"><label class="form-label">مبلغ اشتراک (تومان)</label><input class="form-input" type="number" id="psSubPrice" min="0" value="${p?p.subscriptionPrice:''}"></div>
+              </div>
+              <div class="form-group mb-10"><label class="form-label">یادداشت</label><textarea class="form-textarea" id="psNotes">${p?p.notes:''}</textarea></div>
+              <button type="submit" class="btn btn-gold"><i class="fas fa-save"></i> ذخیره</button>
+            </form>
+          `;
+            document.getElementById('modalOverlay').classList.add('active');
+        }
+
+        function toggleSubFields() {
+            const type = document.getElementById('psSubType').value;
+            document.getElementById('subFields').style.display = type !== 'none' ? 'block' : 'none';
+        }
+
+        function savePassengerForm(e, id) {
+            e.preventDefault();
+            const name = document.getElementById('psName').value.trim();
+            const phone = document.getElementById('psPhone').value.trim();
+            if (!name || !phone) { showToast('نام و تلفن الزامی است', 'error'); return; }
+            const subType = document.getElementById('psSubType').value;
+            const passenger = {
+                id: id || generateId(),
+                fullName: name,
+                phone,
+                type: document.getElementById('psType').value,
+                addressId: document.getElementById('psAddress').value,
+                subscriptionType: subType,
+                subscriptionStart: subType !== 'none' ? document.getElementById('psSubStart').value.trim() : '',
+                subscriptionEnd: subType !== 'none' ? document.getElementById('psSubEnd').value.trim() : '',
+                subscriptionPrice: subType !== 'none' ? (parseFloat(document.getElementById('psSubPrice').value) || 0) :
+                    0,
+                tripsCount: getPassengers().find(x => x.id === id)?.tripsCount || 0,
+                notes: document.getElementById('psNotes').value.trim()
+            };
+            savePassenger(passenger);
+            closeModal();
+            renderPassengers();
+            showToast(id ? 'مسافر ویرایش شد' : 'مسافر جدید ثبت شد');
+        }
+
+        function confirmDeletePassenger(id) {
+            if (confirm('آیا مطمئن هستید این مسافر حذف شود؟')) { deletePassenger(id);
+                renderPassengers();
+                showToast('مسافر حذف شد', 'warning'); }
+        }
+
+        // ============================================================
+        // TRIPS
+        // ============================================================
+        let manualFareFlag = false;
+
+        function populateTripForm() {
+            const drivers = getDrivers().filter(d => d.status === 'active');
+            const addresses = getAddresses();
+            const passengers = getPassengers();
+            document.getElementById('tripDriver').innerHTML = '<option value="">انتخاب راننده...</option>' + drivers
+                .map(d => `<option value="${d.id}">${d.fullName}</option>`).join('');
+            document.getElementById('tripVehicle').innerHTML = '<option value="">انتخاب خودرو...</option>';
+            document.getElementById('tripPassenger').innerHTML = '<option value="">— ورود دستی —</option>' + passengers
+                .map(p => `<option value="${p.id}">${p.fullName} ${p.type==='corporate'?'(حقوقی)':''}</option>`).join('');
+            document.getElementById('tripPickupSelect').innerHTML = '<option value="">— انتخاب از آدرس‌ها —</option>' +
+                addresses.map(a => `<option value="${a.id}">${a.title} - ${a.address}</option>`).join('');
+            document.getElementById('tripDropoffSelect').innerHTML = '<option value="">— انتخاب از آدرس‌ها —</option>' +
+                addresses.map(a => `<option value="${a.id}">${a.title} - ${a.address}</option>`).join('');
+            document.getElementById('tripDistance').value = '';
+            document.getElementById('tripFare').value = '';
+            document.getElementById('tripPassengerName').value = '';
+            document.getElementById('tripPassengerPhone').value = '';
+            document.getElementById('tripPickup').value = '';
+            document.getElementById('tripDropoff').value = '';
+            document.getElementById('tripNotes').value = '';
+            document.getElementById('tripStatus').value = 'completed';
+            document.getElementById('tripIsPaid').value = 'true';
+            manualFareFlag = false;
+            const driverSelect = document.getElementById('tripDriver');
+            if (driverSelect.value) onTripDriverChange();
+        }
+
+        function onTripDriverChange() {
+            const driverId = document.getElementById('tripDriver').value;
+            const vehicles = getVehicles().filter(v => v.driverId === driverId && v.status === 'active');
+            const select = document.getElementById('tripVehicle');
+            select.innerHTML = '<option value="">انتخاب خودرو...</option>' + vehicles
+                .map(v => `<option value="${v.id}">${v.plateNumber} - ${v.brand}</option>`).join('');
+            if (vehicles.length === 1) select.value = vehicles[0].id;
+        }
+
+        function onTripPassengerChange() {
+            const passengerId = document.getElementById('tripPassenger').value;
+            if (passengerId) {
+                const p = getPassengers().find(x => x.id === passengerId);
+                if (p) {
+                    document.getElementById('tripPassengerName').value = p.fullName;
+                    document.getElementById('tripPassengerPhone').value = p.phone;
+                    const addr = getAddresses().find(a => a.id === p.addressId);
+                    if (addr) document.getElementById('tripPickup').value = addr.address;
+                    else document.getElementById('tripPickup').value = '';
+                    if (p.type === 'corporate') {
+                        document.getElementById('tripPayment').value = 'subscription';
+                    }
+                }
+            } else {
+                document.getElementById('tripPassengerName').value = '';
+                document.getElementById('tripPassengerPhone').value = '';
+                document.getElementById('tripPickup').value = '';
+            }
+        }
+
+        function calculateTripFare(auto) {
+            if (manualFareFlag && !auto) return;
+            const settings = getSettings();
+            const dist = parseFloat(document.getElementById('tripDistance').value) || 0;
+            const fare = Math.round(settings.baseFare + (dist * settings.farePerKm));
+            document.getElementById('tripFare').value = fare;
+            return fare;
+        }
+
+        function manualFareInput() { manualFareFlag = true; }
+
+        function saveTrip(e) {
+            if (e && typeof e.preventDefault === 'function') e.preventDefault();
+            try {
+                const driverId = document.getElementById('tripDriver').value;
+                const vehicleId = document.getElementById('tripVehicle').value;
+                const passengerName = document.getElementById('tripPassengerName').value.trim();
+                const pickup = document.getElementById('tripPickup').value.trim();
+                const dropoff = document.getElementById('tripDropoff').value.trim();
+                const distance = parseFloat(document.getElementById('tripDistance').value) || 0;
+                const fare = parseFloat(document.getElementById('tripFare').value) || 0;
+
+                if (!driverId) { showToast('لطفاً راننده را انتخاب کنید', 'error'); return false; }
+                if (!vehicleId) { showToast('لطفاً خودرو را انتخاب کنید', 'error'); return false; }
+                if (!passengerName) { showToast('لطفاً نام مسافر را وارد کنید', 'error'); return false; }
+                if (!pickup) { showToast('لطفاً آدرس مبدأ را وارد کنید', 'error'); return false; }
+                if (!dropoff) { showToast('لطفاً آدرس مقصد را وارد کنید', 'error'); return false; }
+                if (fare <= 0) { showToast('کرایه باید بزرگتر از صفر باشد', 'error'); return false; }
+
+                const driver = getDrivers().find(d => d.id === driverId);
+                if (!driver) { showToast('راننده نامعتبر است', 'error'); return false; }
+
+                const passengerId = document.getElementById('tripPassenger').value;
+                const passenger = passengerId ? getPassengers().find(p => p.id === passengerId) : null;
+                const isCorporate = passenger && passenger.type === 'corporate';
+                const commissionRate = driver.commissionRate || getSettings().commissionDefault;
+                const commission = Math.round(fare * (commissionRate / 100));
+                const driverShare = fare - commission;
+
+                const trip = {
+                    id: generateId(),
+                    driverId,
+                    vehicleId,
+                    passengerId: passengerId || '',
+                    passengerName,
+                    passengerPhone: document.getElementById('tripPassengerPhone').value.trim(),
+                    pickupAddress: pickup,
+                    dropoffAddress: dropoff,
+                    pickupTime: new Date().toISOString(),
+                    dropoffTime: new Date().toISOString(),
+                    distance,
+                    fare,
+                    commission,
+                    driverShare,
+                    status: document.getElementById('tripStatus').value,
+                    paymentMethod: document.getElementById('tripPayment').value,
+                    isPaid: document.getElementById('tripIsPaid').value === 'true',
+                    billedTo: isCorporate ? 'company' : 'driver',
+                    notes: document.getElementById('tripNotes').value.trim()
+                };
+
+                saveTripToDB(trip);
+                if (passengerId) {
+                    const p = getPassengers().find(x => x.id === passengerId);
+                    if (p) { p.tripsCount = (p.tripsCount || 0) + 1;
+                        savePassenger(p); }
+                }
+                showToast('سفر با موفقیت ثبت شد');
+                populateTripForm();
+                manualFareFlag = false;
+                return false;
+            } catch (err) {
+                console.error(err);
+                showToast('خطا در ثبت سفر: ' + err.message, 'error');
+                return false;
+            }
+        }
+
+        function renderTripList() {
+            const trips = getTrips();
+            const drivers = getDrivers();
+            const search = (document.getElementById('tripListSearch')?.value || '').trim();
+            const filterDriver = document.getElementById('tripListFilterDriver')?.value || '';
+            const filterStatus = document.getElementById('tripListFilterStatus')?.value || '';
+            let filtered = [...trips].sort((a, b) => new Date(b.pickupTime) - new Date(a.pickupTime));
+            if (search) filtered = filtered.filter(t => t.passengerName.includes(search));
+            if (filterDriver) filtered = filtered.filter(t => t.driverId === filterDriver);
+            if (filterStatus) filtered = filtered.filter(t => t.status === filterStatus);
+
+            const driverSelect = document.getElementById('tripListFilterDriver');
+            if (driverSelect) {
+                const currentVal = driverSelect.value;
+                driverSelect.innerHTML = '<option value="">همه رانندگان</option>' + drivers.map(d =>
+                    `<option value="${d.id}">${d.fullName}</option>`).join('');
+                driverSelect.value = currentVal;
+            }
+
+            if (filtered.length === 0) { document.getElementById('tripsListTable').innerHTML =
+                    '<div class="empty-state"><i class="fas fa-route"></i><p>سفری یافت نشد</p></div>'; return; }
+            let html =
+                `<table><thead><tr><th>#</th><th>راننده</th><th>مسافر</th><th>مبدأ</th><th>مقصد</th><th>کرایه</th><th>کمیسیون</th><th>وضعیت</th><th>تسویه</th><th>عملیات</th></tr></thead><tbody>`;
+            filtered.forEach((t, idx) => {
+                html += `<tr>
+              <td>${toPersianDigits(idx+1)}</td>
+              <td>${getDriverName(t.driverId)}</td>
+              <td>${t.passengerName}</td>
+              <td>${t.pickupAddress}</td>
+              <td>${t.dropoffAddress}</td>
+              <td>${formatNumber(t.fare)}</td>
+              <td>${formatNumber(t.commission)}</td>
+              <td>${getStatusBadge(t.status)}</td>
+              <td>${t.billedTo==='company'?'<span class="status-badge status-subscription">حقوقی</span>':'<span class="status-badge status-active">عادی</span>'}</td>
+              <td>
+                <button class="btn-icon edit" onclick="changeTripStatus('${t.id}')" title="تغییر وضعیت"><i class="fas fa-exchange-alt"></i></button>
+                <button class="btn-icon danger" onclick="confirmDeleteTrip('${t.id}')" title="حذف"><i class="fas fa-trash"></i></button>
+              </td>
+            </tr>`;
+            });
+            html += '</tbody></table>';
+            document.getElementById('tripsListTable').innerHTML = html;
+        }
+
+        function changeTripStatus(id) {
+            const trip = getTrips().find(t => t.id === id);
+            if (!trip) return;
+            const statuses = ['pending', 'inProgress', 'completed', 'cancelled'];
+            const labels = { pending: 'در انتظار', inProgress: 'در حال انجام', completed: 'تکمیل شده', cancelled: 'لغو شده' };
+            const currentIdx = statuses.indexOf(trip.status);
+            const nextIdx = (currentIdx + 1) % statuses.length;
+            trip.status = statuses[nextIdx];
+            saveTripToDB(trip);
+            renderTripList();
+            showToast(`وضعیت به «${labels[statuses[nextIdx]]}» تغییر کرد`);
+        }
+
+        function confirmDeleteTrip(id) {
+            if (confirm('آیا مطمئن هستید این سفر حذف شود؟')) { deleteTrip(id);
+                renderTripList();
+                showToast('سفر حذف شد', 'warning'); }
+        }
+
+        // ============================================================
+        // ACCOUNTING
+        // ============================================================
+        function populateAccDrivers() {
+            const drivers = getDrivers();
+            document.getElementById('accDriverSelect').innerHTML = '<option value="">انتخاب راننده...</option>' + drivers
+                .map(d => `<option value="${d.id}">${d.fullName}</option>`).join('');
+            const today = todayJalali();
+            document.getElementById('accDriverFrom').value = today;
+            document.getElementById('accDriverTo').value = today;
+        }
+
+        function renderDriverStatement() {
+            const driverId = document.getElementById('accDriverSelect').value;
+            const from = document.getElementById('accDriverFrom').value;
+            const to = document.getElementById('accDriverTo').value;
+            if (!driverId) { showToast('راننده را انتخاب کنید', 'error'); return; }
+            const driver = getDrivers().find(d => d.id === driverId);
+            const trips = getTrips().filter(t => t.driverId === driverId && t.status === 'completed');
+            let filteredTrips = [...trips];
+            if (from) filteredTrips = filteredTrips.filter(t => formatJalaliDate(t.pickupTime) >=
+                formatJalaliDateStr(from));
+            if (to) filteredTrips = filteredTrips.filter(t => formatJalaliDate(t.pickupTime) <= formatJalaliDateStr(to));
+
+            const totalFare = filteredTrips.reduce((s, t) => s + t.fare, 0);
+            const totalCommission = filteredTrips.reduce((s, t) => s + t.commission, 0);
+            const totalShare = filteredTrips.reduce((s, t) => s + t.driverShare, 0);
+            const corporateTrips = filteredTrips.filter(t => t.billedTo === 'company');
+            const totalCorporateShare = corporateTrips.reduce((s, t) => s + t.driverShare, 0);
+            const payments = getTransactions().filter(tr => tr.type === 'expense' && tr.relatedId === driverId);
+            const totalPaid = payments.reduce((s, tr) => s + tr.amount, 0);
+            const debt = totalCommission - totalCorporateShare;
+            const balance = totalShare - totalPaid;
+
+            const result = document.getElementById('driverStatementResult');
+            result.innerHTML = `
+            <div class="card">
+              <div class="card-header"><div class="card-title"><i class="fas fa-user"></i> ${driver.fullName}</div><div>${getStatusBadge(driver.status)}</div></div>
+              <div class="form-row mb-16">
+                <div class="form-group"><label class="form-label">مجموع کرایه‌ها</label><div class="stat-value" style="font-size:1.1rem">${formatNumber(totalFare)}</div></div>
+                <div class="form-group"><label class="form-label">مجموع کمیسیون</label><div class="stat-value" style="font-size:1.1rem;color:var(--gold)">${formatNumber(totalCommission)}</div></div>
+                <div class="form-group"><label class="form-label">سهم راننده</label><div class="stat-value" style="font-size:1.1rem;color:var(--green)">${formatNumber(totalShare)}</div></div>
+              </div>
+              <div class="form-row mb-16">
+                <div class="form-group"><label class="form-label">سفرهای حقوقی (تعداد)</label><div class="stat-value" style="font-size:1.1rem">${formatNumber(corporateTrips.length)}</div></div>
+                <div class="form-group"><label class="form-label">طلب از تاکسی (حقوقی)</label><div class="stat-value" style="font-size:1.1rem;color:var(--blue)">${formatNumber(totalCorporateShare)}</div></div>
+                <div class="form-group"><label class="form-label">پرداخت شده به راننده</label><div class="stat-value" style="font-size:1.1rem;color:var(--blue)">${formatNumber(totalPaid)}</div></div>
+              </div>
+              <div class="form-row mb-16">
+                <div class="form-group"><label class="form-label">بدهی راننده (کمیسیون - طلب)</label><div class="stat-value" style="font-size:1.1rem;color:${debt>=0?'var(--red)':'var(--green)'}">${formatNumber(debt)}</div></div>
+                <div class="form-group"><label class="form-label">مانده نهایی</label><div class="stat-value" style="font-size:1.1rem;color:${balance>=0?'var(--green)':'var(--red)'}">${formatNumber(balance)}</div></div>
+              </div>
+              <div class="flex-between gap-8 mb-10">
+                <div class="card-title"><i class="fas fa-list"></i> سفرها (${formatNumber(filteredTrips.length)})</div>
+                <button class="btn btn-outline btn-sm" onclick="recordDriverPayment('${driverId}')"><i class="fas fa-money-bill"></i> ثبت پرداخت</button>
+              </div>
+              <div class="table-wrapper">
+                <table><thead><tr><th>تاریخ</th><th>مسافر</th><th>کرایه</th><th>کمیسیون</th><th>سهم</th><th>تسویه</th></tr></thead><tbody>
+                  ${filteredTrips.map(t=>`<tr><td>${formatJalaliDateTime(t.pickupTime)}</td><td>${t.passengerName}</td><td>${formatNumber(t.fare)}</td><td>${formatNumber(t.commission)}</td><td>${formatNumber(t.driverShare)}</td><td>${t.billedTo==='company'?'حقوقی':'عادی'}</td></tr>`).join('')}
+                </tbody></table>
+              </div>
+            </div>
+          `;
+        }
+
+        function recordDriverPayment(driverId) {
+            const amount = prompt('مبلغ پرداختی (تومان):');
+            if (!amount) return;
+            const numAmount = parseFloat(amount);
+            if (isNaN(numAmount) || numAmount <= 0) { showToast('مبلغ نامعتبر است', 'error'); return; }
+            addTransaction({
+                id: generateId(),
+                type: 'expense',
+                category: 'حقوق راننده',
+                amount: numAmount,
+                description: `پرداخت به ${getDriverName(driverId)}`,
+                date: todayJalali(),
+                relatedId: driverId,
+                notes: ''
+            });
+            showToast('پرداخت ثبت شد');
+            renderDriverStatement();
+        }
+
+        function renderMonthlyReport() {
+            const trips = getTrips().filter(t => t.status === 'completed');
+            const transactions = getTransactions();
+            const months = [],
+                income = [],
+                expense = [];
+            const now = new Date();
+            for (let i = 11; i >= 0; i--) {
+                const d = new Date(now.getFullYear(), now.getMonth() - i, 1);
+                const j = toJalali(d.getFullYear(), d.getMonth() + 1, 1);
+                const monthKey = `${j.jy}-${String(j.jm).padStart(2,'0')}`;
+                const monthTrips = trips.filter(t => {
+                    const tj = toJalali(new Date(t.pickupTime).getFullYear(), new Date(t.pickupTime).getMonth() + 1,
+                        1);
+                    return `${tj.jy}-${String(tj.jm).padStart(2,'0')}` === monthKey;
+                });
+                const monthIncome = monthTrips.reduce((s, t) => s + t.fare, 0);
+                const monthExpense = transactions.filter(tr => {
+                    const td = new Date(tr.date);
+                    const tj2 = toJalali(td.getFullYear(), td.getMonth() + 1, 1);
+                    return `${tj2.jy}-${String(tj2.jm).padStart(2,'0')}` === monthKey && tr.type === 'expense';
+                }).reduce((s, tr) => s + tr.amount, 0);
+                months.push(toPersianDigits(`${j.jm}/${j.jy}`));
+                income.push(monthIncome);
+                expense.push(monthExpense);
+            }
+            renderGroupedBarChart('chartMonthlyReport', months, income, 'درآمد', expense, 'هزینه');
+
+            const totalIncome = trips.reduce((s, t) => s + t.fare, 0);
+            const totalExpense = transactions.filter(tr => tr.type === 'expense').reduce((s, tr) => s + tr.amount, 0);
+            const netProfit = totalIncome - totalExpense;
+            const totalCommission = trips.reduce((s, t) => s + t.commission, 0);
+            const totalSubscriptions = getPassengers().filter(p => p.subscriptionType !== 'none' && new Date(p
+                .subscriptionEnd) >= new Date()).reduce((s, p) => s + p.subscriptionPrice, 0);
+
+            document.getElementById('reportSummaryTable').innerHTML = `
+            <table><thead><tr><th>شاخص</th><th>مبلغ (تومان)</th></tr></thead><tbody>
+              <tr><td>مجموع درآمد (کرایه‌ها)</td><td class="text-green">${formatNumber(totalIncome)}</td></tr>
+              <tr><td>مجموع کمیسیون‌ها</td><td class="text-gold">${formatNumber(totalCommission)}</td></tr>
+              <tr><td>درآمد اشتراک‌های فعال</td><td>${formatNumber(totalSubscriptions)}</td></tr>
+              <tr><td>مجموع هزینه‌ها</td><td class="text-red">${formatNumber(totalExpense)}</td></tr>
+              <tr style="font-weight:700;border-top:2px solid var(--gold)"><td>سود خالص</td><td class="${netProfit>=0?'text-green':'text-red'}">${formatNumber(netProfit)}</td></tr>
+            </tbody></table>
+          `;
+        }
+
+        function renderCommissions() {
+            const drivers = getDrivers();
+            const trips = getTrips().filter(t => t.status === 'completed');
+            const driverData = drivers.map(d => {
+                const dTrips = trips.filter(t => t.driverId === d.id);
+                return { name: d.fullName, commission: dTrips.reduce((s, t) => s + t.commission, 0),
+                    tripCount: dTrips.length };
+            }).sort((a, b) => b.commission - a.commission);
+
+            const labels = driverData.map(d => d.name);
+            const data = driverData.map(d => d.commission);
+            renderBarChart('chartCommissions', labels, data, 'کمیسیون (تومان)');
+
+            if (driverData.length === 0) { document.getElementById('commissionsTable').innerHTML =
+                    '<div class="empty-state"><i class="fas fa-percentage"></i><p>داده‌ای موجود نیست</p></div>'; return; }
+            let html =
+                `<table><thead><tr><th>راننده</th><th>تعداد سفر</th><th>مجموع کمیسیون</th></tr></thead><tbody>`;
+            driverData.forEach(d => {
+                html +=
+                    `<tr><td>${d.name}</td><td>${formatNumber(d.tripCount)}</td><td class="text-gold">${formatNumber(d.commission)}</td></tr>`;
+            });
+            html += '</tbody></table>';
+            document.getElementById('commissionsTable').innerHTML = html;
+        }
+
+        function populateSubscriberSelect() {
+            const passengers = getPassengers().filter(p => p.subscriptionType !== 'none');
+            const select = document.getElementById('accSubSelect');
+            select.innerHTML = '<option value="">انتخاب مشترک...</option>' + passengers
+                .map(p => `<option value="${p.id}">${p.fullName} (${p.type==='corporate'?'حقوقی':'حقیقی'})</option>`).join(
+                '');
+            const today = todayJalali();
+            document.getElementById('accSubFrom').value = today;
+            document.getElementById('accSubTo').value = today;
+        }
+
+        function renderSubscriberStatement() {
+            const passengerId = document.getElementById('accSubSelect').value;
+            const from = document.getElementById('accSubFrom').value;
+            const to = document.getElementById('accSubTo').value;
+            if (!passengerId) { showToast('مشترک را انتخاب کنید', 'error'); return; }
+            const passenger = getPassengers().find(p => p.id === passengerId);
+            if (!passenger) { showToast('مشترک یافت نشد', 'error'); return; }
+
+            const trips = getTrips().filter(t => t.passengerId === passengerId && t.status === 'completed');
+            let filteredTrips = [...trips];
+            if (from) filteredTrips = filteredTrips.filter(t => formatJalaliDate(t.pickupTime) >=
+                formatJalaliDateStr(from));
+            if (to) filteredTrips = filteredTrips.filter(t => formatJalaliDate(t.pickupTime) <= formatJalaliDateStr(to));
+
+            const totalFare = filteredTrips.reduce((s, t) => s + t.fare, 0);
+            const totalCorporate = filteredTrips.filter(t => t.billedTo === 'company').length;
+
+            const result = document.getElementById('subscriberStatementResult');
+            result.innerHTML = `
+            <div class="card" id="subscriberInvoice">
+              <div class="card-header"><div class="card-title"><i class="fas fa-user-tag"></i> ${passenger.fullName}</div><div>${passenger.type==='corporate'?'<span class="status-badge status-subscription">حقوقی</span>':'<span class="status-badge status-active">حقیقی</span>'}</div></div>
+              <div class="form-row mb-16">
+                <div class="form-group"><label class="form-label">تلفن</label><div>${toPersianDigits(passenger.phone)}</div></div>
+                <div class="form-group"><label class="form-label">نوع اشتراک</label><div>${getStatusBadge(passenger.subscriptionType)}</div></div>
+                <div class="form-group"><label class="form-label">اعتبار اشتراک</label><div>${passenger.subscriptionEnd?formatJalaliDateStr(passenger.subscriptionEnd):'—'}</div></div>
+              </div>
+              <div class="form-row mb-16">
+                <div class="form-group"><label class="form-label">تعداد کل سفر</label><div class="stat-value" style="font-size:1.2rem">${formatNumber(passenger.tripsCount)}</div></div>
+                <div class="form-group"><label class="form-label">تعداد سفر در بازه</label><div class="stat-value" style="font-size:1.2rem">${formatNumber(filteredTrips.length)}</div></div>
+                <div class="form-group"><label class="form-label">مجموع کرایه در بازه</label><div class="stat-value" style="font-size:1.2rem;color:var(--gold)">${formatNumber(totalFare)}</div></div>
+                <div class="form-group"><label class="form-label">سفرهای حقوقی (تسویه با شرکت)</label><div class="stat-value" style="font-size:1.2rem">${formatNumber(totalCorporate)}</div></div>
+              </div>
+              <div class="card-title mb-10"><i class="fas fa-list"></i> لیست سفرها (${formatNumber(filteredTrips.length)})</div>
+              <div class="table-wrapper">
+                <table><thead><tr><th>تاریخ</th><th>راننده</th><th>مبدأ</th><th>مقصد</th><th>کرایه</th><th>تسویه</th></tr></thead><tbody>
+                  ${filteredTrips.map(t=>`<tr><td>${formatJalaliDateTime(t.pickupTime)}</td><td>${getDriverName(t.driverId)}</td><td>${t.pickupAddress}</td><td>${t.dropoffAddress}</td><td>${formatNumber(t.fare)}</td><td>${t.billedTo==='company'?'<span class="status-badge status-subscription">شرکت</span>':'<span class="status-badge status-active">راننده</span>'}</td></tr>`).join('')}
+                </tbody></table>
+              </div>
+              <div class="modal-footer no-print" style="margin-top:16px;">
+                <button class="btn btn-outline btn-sm" onclick="printSubscriberInvoice()"><i class="fas fa-print"></i> چاپ فاکتور</button>
+              </div>
+            </div>
+          `;
+        }
+
+        function printSubscriberInvoice() {
+            const content = document.getElementById('subscriberStatementResult');
+            if (!content || !content.innerHTML.trim()) { showToast('ابتدا اطلاعات یک مشترک را نمایش دهید', 'error'); return; }
+            const win = window.open('', '_blank', 'width=800,height=600');
+            if (!win) { showToast('لطفاً پنجره بازشو را مجاز کنید', 'error'); return; }
+            const settings = getSettings();
+            const html = `
+            <html dir="rtl"><head><meta charset="UTF-8"><title>فاکتور مشترک</title>
+            <style>body{font-family:'Vazirmatn',sans-serif;padding:30px;background:#fff;color:#333}table{width:100%;border-collapse:collapse;margin:20px 0}th,td{padding:8px 12px;border:1px solid #ddd;text-align:right}th{background:#f5f5f5}.header{text-align:center;margin-bottom:20px;border-bottom:2px solid #f0b429;padding-bottom:10px}.footer{text-align:center;margin-top:30px;font-size:0.8rem;color:#888}.print-only{display:block}</style>
+            <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&display=swap" rel="stylesheet">
+            </head><body>
+            <div class="header"><h2>${settings.companyName||'کارن‌سافت'}</h2><p>${settings.address||''} • تلفن: ${settings.phone||''}</p><h3>فاکتور رسمی مشترک</h3></div>
+            ${content.innerHTML}
+            <div class="footer">تاریخ چاپ: ${formatJalaliDateStr(todayJalali())}</div>
+            <script>
+              window.onload = function(){ window.print(); setTimeout(function(){ window.close(); }, 500); }
+            <\/script>
+            </body></html>
+          `;
+            win.document.write(html);
+            win.document.close();
+        }
+
+        // ============================================================
+        // BACKUP
+        // ============================================================
+        function exportJSON() {
+            const db = getDB();
+            if (!db) { showToast('داده‌ای برای خروجی وجود ندارد', 'error'); return; }
+            const blob = new Blob([JSON.stringify(db, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `taxi_backup_${todayJalali()}.json`;
+            a.click();
+            URL.revokeObjectURL(url);
+            showToast('پشتیبان‌گیری انجام شد');
+        }
+
+        function importJSON(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                try {
+                    const data = JSON.parse(e.target.result);
+                    if (data.drivers && data.vehicles && data.trips && data.settings) {
+                        saveDB(data);
+                        showToast('داده‌ها با موفقیت بازیابی شدند');
+                        navigateTo('dashboard');
+                    } else {
+                        showToast('فرمت فایل نامعتبر است', 'error');
+                    }
+                } catch (err) {
+                    showToast('خطا در خواندن فایل', 'error');
+                }
+            };
+            reader.readAsText(file);
+            event.target.value = '';
+        }
+
+        function clearAllData() {
+            if (confirm('آیا مطمئن هستید؟ تمام داده‌ها برای همیشه حذف خواهند شد!')) {
+                if (confirm('این عملیات غیرقابل بازگشت است. باز هم مطمئن هستید؟')) {
+                    localStorage.removeItem(DB_KEY);
+                    initDB();
+                    showToast('همه داده‌ها پاک شدند و داده‌های نمونه بارگذاری شد', 'warning');
+                    navigateTo('dashboard');
+                }
+            }
+        }
+
+        // ============================================================
+        // SETTINGS
+        // ============================================================
+        function populateSettings() {
+            const s = getSettings();
+            document.getElementById('setCompanyName').value = s.companyName || '';
+            document.getElementById('setCompanyPhone').value = s.phone || '';
+            document.getElementById('setCompanyAddress').value = s.address || '';
+            document.getElementById('setTaxRate').value = s.taxRate || 0;
+            document.getElementById('setCommissionDefault').value = s.commissionDefault;
+            document.getElementById('setFarePerKm').value = s.farePerKm;
+            document.getElementById('setBaseFare').value = s.baseFare;
+        }
+
+        function saveSettings(e) {
+            e.preventDefault();
+            const settings = {
+                commissionDefault: parseFloat(document.getElementById('setCommissionDefault').value) || 15,
+                farePerKm: parseFloat(document.getElementById('setFarePerKm').value) || 5000,
+                baseFare: parseFloat(document.getElementById('setBaseFare').value) || 15000,
+                companyName: document.getElementById('setCompanyName').value.trim() || 'کارن‌سافت',
+                address: document.getElementById('setCompanyAddress').value.trim() || 'https://karen-soft.ir',
+                phone: document.getElementById('setCompanyPhone').value.trim() || 'info@karen-soft.ir',
+                taxRate: parseFloat(document.getElementById('setTaxRate').value) || 0,
+                currency: 'IRR',
+                videoBg: false
+            };
+            updateSettings(settings);
+            document.getElementById('companyNameSide').textContent = settings.companyName;
+            showToast('تنظیمات ذخیره شد');
+        }
+
+        // ============================================================
+        // MODAL
+        // ============================================================
+        function closeModal() {
+            document.getElementById('modalOverlay').classList.remove('active');
+            document.getElementById('modalContent').innerHTML = '';
+        }
+        document.getElementById('modalOverlay').addEventListener('click', (e) => {
+            if (e.target === document.getElementById('modalOverlay')) closeModal();
+        });
+
+        // ============================================================
+        // EXPORT CSV
+        // ============================================================
+        function exportCSV() {
+            const trips = getTrips().filter(t => t.status === 'completed');
+            if (trips.length === 0) { showToast('داده‌ای برای خروجی نیست', 'error'); return; }
+            const headers = ['تاریخ', 'راننده', 'مسافر', 'مبدأ', 'مقصد', 'کرایه', 'کمیسیون', 'سهم راننده', 'روش پرداخت', 'تسویه'];
+            const rows = trips.map(t => [
+                formatJalaliDateTime(t.pickupTime),
+                getDriverName(t.driverId),
+                t.passengerName,
+                t.pickupAddress,
+                t.dropoffAddress,
+                t.fare,
+                t.commission,
+                t.driverShare,
+                t.paymentMethod,
+                t.billedTo === 'company' ? 'حقوقی' : 'عادی'
+            ]);
+            const csv = [headers, ...rows].map(r => r.join(',')).join('\n');
+            const blob = new Blob(['\uFEFF' + csv], { type: 'text/csv;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `report_${todayJalali()}.csv`;
+            a.click();
+            URL.revokeObjectURL(url);
+            showToast('CSV دانلود شد');
+        }
+
+        // ============================================================
+        // INIT
+        // ============================================================
+        function init() {
+            initDB();
+            const settings = getSettings();
+            if (settings.companyName) document.getElementById('companyNameSide').textContent = settings.companyName;
+            document.getElementById('headerDate').textContent = 'امروز: ' + formatJalaliDateStr(todayJalali());
+            renderDashboard();
+            populateAccDrivers();
+            populateSubscriberSelect();
+        }
+        init();
+    </script>
+</body>
+</html>
