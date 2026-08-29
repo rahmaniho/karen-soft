@@ -2,17 +2,26 @@
 <html lang="fa" dir="rtl">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>سیستم مدیریت تاکسی تلفنی | محصول کارن‌سافت</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
+    <title>سیستم مدیریت تاکسی تلفنی · کارن سافت</title>
+    <meta name="description" content="سیستم جامع مدیریت ناوگان تاکسی‌های تلفنی · محصول کارن سافت" />
+    <meta name="theme-color" content="#080A19" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <!-- ===== PWA Manifest (inline via data URI) ===== -->
+    <link rel="manifest" href="data:application/json;base64,ewogICJuYW1lIjogItmF2LHYrdm+2KfYp9mGINin2YTYudin2KfYqgogINin2YTYr9ix2KfYqiIsCiAgInNob3J0X25hbWUiOiAi2YXYsdmF2b7Yp9in2YYiLAogICJkZXNjcmlwdGlvbiI6ICLZhdin2YTYrdmF2KfYqiDYp9mE2K/Ysdin2Kog2KfZhNmF2LHbjNiv2YciLAogICJzdGFydF91cmwiOiAiLiIsCiAgImRpc3BsYXkiOiAic3RhbmRhbG9uZSIsCiAgImJhY2tncm91bmRfY29sb3IiOiAiIzA4MEExOSIsCiAgInRoZW1lX2NvbG9yIjogIiMwODBBMTkiLAogICJpY29ucyI6IFsKICAgIHsKICAgICAgInNyYyI6ICJpbWFnZXMvbG9nby5wbmciLAogICAgICAic2l6ZXMiOiAiMTkyeDE5MiIsCiAgICAgICJ0eXBlIjogImltYWdlL3BuZyIsCiAgICAgICJwdXJwb3NlIjogImFueSBtYXNrYWJsZSIKICAgIH0KICBdLAogICJvcmllbnRhdGlvbiI6ICJwb3J0cmFpdCIsCiAgInNjb3BlIjogIndlYiIsCiAgInNob3dfYmFja19idXR0b24iOiB0cnVlLAogICJkaXJlY3Rpb24iOiAicnRsIiwKICAibGFuZyI6ICJmYS1JUiIsCiAgInByZWZlcl9yZWxhdGVkX2FwcGxpY2F0aW9ucyI6IFtdCn0=" />
+
+    <!-- ===== فونت و آیکون‌ها ===== -->
     <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100;300;400;500;700;900&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js">
     </script>
 
-    <!-- ============ CRISP CHAT (پشتیبانی آنلاین کارن‌سافت) ============ -->
+    <!-- ===== CRISP CHAT (فقط با لوگوی کارن سافت) ===== -->
     <script type="text/javascript">
         window.$crisp = [];
-        window.CRISP_WEBSITE_ID = "f5d4e3c2-b1a0-9876-5432-1a2b3c4d5e6f";
+        window.CRISP_WEBSITE_ID = "ffafdfcf-e510-45d0-a026-4e964ad420ee";
         (function() {
             var d = document;
             var s = d.createElement("script");
@@ -22,13 +31,18 @@
         })();
     </script>
 
+    <!-- ===== فاویکون ===== -->
+    <link rel="icon" href="images/logo.png" type="image/png" />
+    <link rel="shortcut icon" href="images/logo.png" type="image/png" />
+    <link rel="apple-touch-icon" href="images/logo.png" />
+
     <style>
         /* ========== ROOT ========== */
         :root {
-            --gold: #f0b429;
-            --gold-light: #ffd166;
-            --gold-dark: #c99a1f;
-            --bg-dark: #0a0a12;
+            --gold: #D4AF37;
+            --gold-light: #E4C56A;
+            --gold-dark: #B8942A;
+            --bg-dark: #080A19;
             --bg-card: rgba(255, 255, 255, 0.04);
             --bg-card-hover: rgba(255, 255, 255, 0.07);
             --border-glass: rgba(255, 255, 255, 0.08);
@@ -59,6 +73,7 @@
         html {
             font-size: 14px;
             scroll-behavior: smooth;
+            -webkit-tap-highlight-color: transparent;
         }
         body {
             font-family: var(--font);
@@ -67,8 +82,10 @@
             min-height: 100vh;
             display: flex;
             overflow-x: hidden;
-            background-image: radial-gradient(ellipse at top right, rgba(240, 180, 41, 0.06), transparent 50%),
+            background-image: radial-gradient(ellipse at top right, rgba(212, 175, 55, 0.06), transparent 50%),
                 radial-gradient(ellipse at bottom left, rgba(59, 130, 246, 0.05), transparent 50%);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
         ::-webkit-scrollbar {
             width: 5px;
@@ -82,7 +99,7 @@
             border-radius: 10px;
         }
         ::-webkit-scrollbar-thumb:hover {
-            background: rgba(255, 255, 255, 0.25);
+            background: rgba(212, 175, 55, 0.4);
         }
 
         /* ========== SIDEBAR ========== */
@@ -92,7 +109,7 @@
             right: 0;
             bottom: 0;
             width: var(--sidebar-width);
-            background: rgba(10, 10, 20, 0.85);
+            background: rgba(8, 10, 25, 0.92);
             backdrop-filter: blur(22px);
             -webkit-backdrop-filter: blur(22px);
             border-left: 1px solid var(--border-glass);
@@ -127,7 +144,6 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            border-radius: 12px;
         }
         .sidebar-title {
             font-size: 1rem;
@@ -159,13 +175,14 @@
             user-select: none;
             position: relative;
             margin-bottom: 2px;
+            -webkit-tap-highlight-color: transparent;
         }
         .nav-item:hover {
             background: var(--bg-card-hover);
             color: var(--text-primary);
         }
         .nav-item.active {
-            background: rgba(240, 180, 41, 0.12);
+            background: rgba(212, 175, 55, 0.12);
             color: var(--gold);
             font-weight: 700;
         }
@@ -243,7 +260,7 @@
         /* ========== HEADER ========== */
         .header {
             height: var(--header-height);
-            background: rgba(10, 10, 20, 0.7);
+            background: rgba(8, 10, 25, 0.7);
             backdrop-filter: blur(18px);
             -webkit-backdrop-filter: blur(18px);
             border-bottom: 1px solid var(--border-glass);
@@ -265,6 +282,7 @@
             padding: 6px;
             border-radius: var(--radius-xs);
             transition: background var(--transition);
+            -webkit-tap-highlight-color: transparent;
         }
         .hamburger:hover {
             background: var(--bg-card-hover);
@@ -330,15 +348,10 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            flex-wrap: wrap;
         }
         .page-title i {
             font-size: 1.1rem;
-        }
-        .page-title img {
-            width: 36px;
-            height: 36px;
-            border-radius: 8px;
-            object-fit: cover;
         }
 
         /* ========== CARDS ========== */
@@ -432,6 +445,7 @@
         .chart-container {
             position: relative;
             height: 240px;
+            width: 100%;
         }
         .chart-container canvas {
             max-width: 100%;
@@ -443,11 +457,13 @@
             overflow-x: auto;
             border-radius: var(--radius-sm);
             border: 1px solid var(--border-glass);
+            -webkit-overflow-scrolling: touch;
         }
         table {
             width: 100%;
             border-collapse: collapse;
             font-size: 0.8rem;
+            min-width: 500px;
         }
         thead {
             background: rgba(255, 255, 255, 0.05);
@@ -478,6 +494,7 @@
             font-size: 0.7rem;
             font-weight: 600;
             display: inline-block;
+            white-space: nowrap;
         }
         .status-active {
             background: rgba(16, 185, 129, 0.15);
@@ -512,7 +529,7 @@
             color: var(--yellow);
         }
         .status-subscription {
-            background: rgba(240, 180, 41, 0.15);
+            background: rgba(212, 175, 55, 0.15);
             color: var(--gold);
         }
 
@@ -530,6 +547,7 @@
             align-items: center;
             gap: 6px;
             white-space: nowrap;
+            -webkit-tap-highlight-color: transparent;
         }
         .btn:hover {
             transform: translateY(-2px);
@@ -539,11 +557,11 @@
             transform: translateY(0);
         }
         .btn-gold {
-            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            background: linear-gradient(135deg, var(--gold-light), var(--gold) 45%, var(--gold-dark));
             color: #0a0a12;
         }
         .btn-gold:hover {
-            box-shadow: 0 4px 16px rgba(240, 180, 41, 0.35);
+            box-shadow: 0 4px 16px rgba(212, 175, 55, 0.35);
         }
         .btn-outline {
             background: transparent;
@@ -581,6 +599,7 @@
             background: transparent;
             color: var(--text-muted);
             font-size: 0.85rem;
+            -webkit-tap-highlight-color: transparent;
         }
         .btn-icon:hover {
             background: var(--bg-card-hover);
@@ -619,12 +638,14 @@
             font-size: 0.8rem;
             transition: all var(--transition);
             outline: none;
+            -webkit-appearance: none;
+            appearance: none;
         }
         .form-input:focus,
         .form-select:focus,
         .form-textarea:focus {
             border-color: var(--gold);
-            box-shadow: 0 0 0 3px rgba(240, 180, 41, 0.1);
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
         }
         .form-textarea {
             resize: vertical;
@@ -694,6 +715,8 @@
             align-items: center;
             justify-content: space-between;
             margin-bottom: 18px;
+            flex-wrap: wrap;
+            gap: 10px;
         }
         .modal-title {
             font-size: 1.05rem;
@@ -709,6 +732,7 @@
             padding: 4px;
             border-radius: 50%;
             transition: all var(--transition);
+            -webkit-tap-highlight-color: transparent;
         }
         .modal-close:hover {
             color: var(--text-primary);
@@ -788,6 +812,8 @@
         }
         .search-bar .form-input {
             max-width: 250px;
+            min-width: 120px;
+            flex: 1;
         }
 
         /* ========== ALERTS ========== */
@@ -882,6 +908,50 @@
             color: var(--gold-light);
         }
 
+        /* ========== SUPPORT BUTTON (Crisp) ========== */
+        .crisp-float {
+            position: fixed;
+            bottom: 24px;
+            left: 24px;
+            z-index: 150;
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--gold-light), var(--gold-dark));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #080A19;
+            font-size: 1.4rem;
+            cursor: pointer;
+            box-shadow: 0 8px 24px rgba(212, 175, 55, 0.35);
+            transition: all 0.3s;
+            text-decoration: none;
+            border: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .crisp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 12px 40px rgba(212, 175, 55, 0.5);
+        }
+        .crisp-float .pulse-ring {
+            position: absolute;
+            inset: -6px;
+            border-radius: 50%;
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            animation: ringPulse 2s ease-out infinite;
+        }
+        @keyframes ringPulse {
+            0% {
+                transform: scale(1);
+                opacity: 0.8;
+            }
+            100% {
+                transform: scale(1.4);
+                opacity: 0;
+            }
+        }
+
         /* ========== RESPONSIVE ========== */
         @media (max-width: 1024px) {
             .stats-grid {
@@ -889,6 +959,9 @@
             }
             .charts-grid {
                 grid-template-columns: 1fr;
+            }
+            .form-row-3 {
+                grid-template-columns: 1fr 1fr;
             }
         }
         @media (max-width: 768px) {
@@ -931,6 +1004,20 @@
             .table-wrapper {
                 font-size: 0.7rem;
             }
+            .search-bar .form-input {
+                max-width: 100%;
+                min-width: 100px;
+            }
+            .chart-container {
+                height: 180px;
+            }
+            .crisp-float {
+                width: 44px;
+                height: 44px;
+                font-size: 1.2rem;
+                bottom: 16px;
+                left: 16px;
+            }
         }
         @media (max-width: 480px) {
             .stats-grid {
@@ -943,6 +1030,36 @@
                 padding: 6px 12px;
                 font-size: 0.7rem;
             }
+            .modal {
+                padding: 12px;
+            }
+            .card {
+                padding: 12px 14px;
+            }
+            .header {
+                padding: 0 12px;
+                gap: 8px;
+            }
+            .sidebar {
+                width: 260px;
+            }
+        }
+        @media (max-width: 360px) {
+            html {
+                font-size: 12px;
+            }
+            .stat-value {
+                font-size: 1rem;
+            }
+            .btn {
+                font-size: 0.65rem;
+                padding: 4px 10px;
+            }
+            .form-input,
+            .form-select {
+                font-size: 0.7rem;
+                padding: 6px 10px;
+            }
         }
 
         /* ========== PRINT ========== */
@@ -952,7 +1069,8 @@
             .btn,
             .search-bar,
             .modal-overlay,
-            .toast-container {
+            .toast-container,
+            .crisp-float {
                 display: none !important;
             }
             .main-content {
@@ -981,6 +1099,85 @@
                 color: #555;
             }
         }
+
+        /* ========== PWA Install Banner ========== */
+        #pwa-install-banner {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 999;
+            background: rgba(8, 10, 25, 0.95);
+            backdrop-filter: blur(16px);
+            border-top: 1px solid var(--border-glass);
+            padding: 12px 16px;
+            direction: rtl;
+            box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.5);
+        }
+        #pwa-install-banner.show {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        #pwa-install-banner .pwa-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex: 1;
+            min-width: 150px;
+        }
+        #pwa-install-banner .pwa-info img {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            object-fit: cover;
+        }
+        #pwa-install-banner .pwa-info div {
+            font-size: 0.8rem;
+        }
+        #pwa-install-banner .pwa-info div strong {
+            color: var(--gold);
+            display: block;
+        }
+        #pwa-install-banner .pwa-info div span {
+            color: var(--text-muted);
+            font-size: 0.7rem;
+        }
+        #pwa-install-banner .pwa-actions {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        #pwa-install-banner .pwa-actions .btn {
+            font-size: 0.75rem;
+            padding: 6px 14px;
+        }
+        #pwa-install-banner .pwa-actions .btn-close-banner {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            cursor: pointer;
+            padding: 4px 8px;
+            -webkit-tap-highlight-color: transparent;
+        }
+        @media (max-width: 480px) {
+            #pwa-install-banner {
+                padding: 10px 12px;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 8px;
+            }
+            #pwa-install-banner .pwa-info {
+                min-width: auto;
+            }
+            #pwa-install-banner .pwa-actions {
+                justify-content: center;
+            }
+        }
     </style>
 </head>
 <body>
@@ -989,16 +1186,15 @@
     <aside class="sidebar" id="sidebar">
         <div class="sidebar-header">
             <div class="sidebar-logo">
-                <img src="https://raw.githubusercontent.com/rahmaniho/karen-soft/main/images/taxi-karensoft.png" alt="کارن‌سافت" />
+                <img src="images/logo.png" alt="کارن سافت" />
             </div>
             <div>
-                <div class="sidebar-title">کارن‌سافت</div>
+                <div class="sidebar-title">کارن سافت</div>
                 <div class="sidebar-subtitle">مدیریت تاکسی تلفنی</div>
             </div>
         </div>
         <nav class="sidebar-nav" id="sidebarNav">
             <div class="nav-item active" data-page="dashboard"><i class="fas fa-chart-pie"></i> داشبورد</div>
-            <div class="nav-item" data-page="products"><i class="fas fa-box"></i> محصولات کارن‌سافت</div>
             <div class="nav-item" data-page="drivers"><i class="fas fa-user-tie"></i> رانندگان</div>
             <div class="nav-item" data-page="vehicles"><i class="fas fa-car"></i> خودروها</div>
             <div class="nav-item" data-page="addresses"><i class="fas fa-map-marker-alt"></i> آدرس‌ها</div>
@@ -1025,108 +1221,25 @@
             <div class="nav-item" data-page="backup"><i class="fas fa-database"></i> پشتیبان‌گیری</div>
             <div class="nav-item" data-page="settings"><i class="fas fa-cog"></i> تنظیمات</div>
 
-            <div class="nav-item" onclick="$crisp.push(['do', 'chat:open'])">
+            <div class="nav-item" onclick="window.$crisp?.push(['do', 'chat:open'])">
                 <i class="fas fa-headset"></i> پشتیبانی آنلاین
             </div>
         </nav>
         <div class="sidebar-footer">
-            <a href="https://karen-soft.ir" target="_blank">کارن‌سافت</a> •
+            <a href="https://karen-soft.ir" target="_blank">کارن سافت</a> •
             <a href="mailto:info@karen-soft.ir">info@karen-soft.ir</a>
         </div>
     </aside>
 
     <!-- ============ MAIN CONTENT ============ -->
     <div class="main-content" id="mainContent">
-        <!-- Header -->
         <header class="header">
             <button class="hamburger" id="hamburgerBtn" aria-label="منو"><i class="fas fa-bars"></i></button>
             <div class="header-date" id="headerDate"></div>
             <div class="header-status"><span class="dot"></span><span>آفلاین (محلی)</span></div>
         </header>
 
-        <!-- ============================================================ -->
-        <!-- PAGE: PRODUCTS (محصولات کارن‌سافت) -->
-        <!-- ============================================================ -->
-        <section class="page-section" id="page-products">
-            <div class="page-title">
-                <img src="https://raw.githubusercontent.com/rahmaniho/karen-soft/main/images/taxi-karensoft.png" alt="لوگو" />
-                محصولات کارن‌سافت
-            </div>
-            <div class="card mb-16">
-                <div class="card-header">
-                    <div class="card-title">
-                        <img src="https://raw.githubusercontent.com/rahmaniho/karen-soft/main/images/taxi-karensoft.png" alt="لوگو" />
-                        سیستم مدیریت تاکسی تلفنی
-                    </div>
-                    <span class="status-badge status-active">نسخه ۱.۰</span>
-                </div>
-                <p style="font-size:0.9rem; color:var(--text-secondary); line-height:1.8;">
-                    این محصول توسط <strong style="color:var(--gold);">کارن‌سافت</strong> توسعه یافته است.
-                    یک راه‌کار کامل برای مدیریت ناوگان تاکسی‌های تلفنی، شامل مدیریت رانندگان، خودروها،
-                    مسافران، ثبت سفر، محاسبه خودکار کرایه، حسابداری رانندگان و مشترکین، گزارش‌گیری و پشتیبان‌گیری.
-                </p>
-                <div class="form-row mt-10" style="margin-top:16px;">
-                    <div class="form-group">
-                        <label class="form-label">وب‌سایت</label>
-                        <div><a href="https://karen-soft.ir" target="_blank" style="color:var(--gold);">karen-soft.ir</a></div>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">ایمیل پشتیبانی</label>
-                        <div><a href="mailto:info@karen-soft.ir" style="color:var(--gold);">info@karen-soft.ir</a></div>
-                    </div>
-                </div>
-                <div class="form-row mt-10">
-                    <div class="form-group">
-                        <label class="form-label">پشتیبانی آنلاین</label>
-                        <div>
-                            <button class="btn btn-gold btn-sm" onclick="$crisp.push(['do', 'chat:open'])">
-                                <i class="fas fa-comment"></i> گفتگو با پشتیبان
-                            </button>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">وضعیت محصول</label>
-                        <div><span class="status-badge status-active">فعال و آماده بهره‌برداری</span></div>
-                    </div>
-                </div>
-                <div class="mt-10" style="margin-top:16px;">
-                    <div class="card-title mb-10"><i class="fas fa-list"></i> ویژگی‌های کلیدی</div>
-                    <ul style="list-style:none; padding-right:0; color:var(--text-secondary); font-size:0.85rem; line-height:2.2;">
-                        <li><i class="fas fa-check-circle" style="color:var(--green);"></i> مدیریت کامل رانندگان، خودروها، آدرس‌ها و مسافران</li>
-                        <li><i class="fas fa-check-circle" style="color:var(--green);"></i> ثبت سفر با محاسبه خودکار کرایه بر اساس مسافت و نرخ‌های تعیین‌شده</li>
-                        <li><i class="fas fa-check-circle" style="color:var(--green);"></i> پشتیبانی از مسافران حقوقی (شرکت‌ها) با تسویه جداگانه</li>
-                        <li><i class="fas fa-check-circle" style="color:var(--green);"></i> صورت‌حساب رانندگان با محاسبه کمیسیون، طلب و مانده</li>
-                        <li><i class="fas fa-check-circle" style="color:var(--green);"></i> حسابداری مشترکین و صدور فاکتور رسمی</li>
-                        <li><i class="fas fa-check-circle" style="color:var(--green);"></i> گزارش‌های مالی، نمودارهای درآمد و کمیسیون</li>
-                        <li><i class="fas fa-check-circle" style="color:var(--green);"></i> پشتیبان‌گیری و بازیابی اطلاعات با فایل JSON</li>
-                        <li><i class="fas fa-check-circle" style="color:var(--green);"></i> ذخیره‌سازی محلی (بدون نیاز به دیتابیس) – مناسب برای دمو و استفاده سبک</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-header">
-                    <div class="card-title"><i class="fas fa-info-circle"></i> درباره کارن‌سافت</div>
-                </div>
-                <p style="font-size:0.85rem; color:var(--text-secondary); line-height:1.9;">
-                    کارن‌سافت (Karen-Soft) یک تیم توسعه‌دهنده نرم‌افزار است که در زمینه طراحی و پیاده‌سازی
-                    سیستم‌های مدیریتی، اپلیکیشن‌های تحت وب و راه‌کارهای سفارشی برای کسب‌وکارها فعالیت می‌کند.
-                    این محصول به‌عنوان یک نمونه از توانمندی‌های تیم در حوزه حمل‌ونقل و مدیریت ناوگان ارائه شده است.
-                    برای دریافت مشاوره، سفارش پروژه یا خرید نسخه کامل، با ما تماس بگیرید.
-                </p>
-                <div class="flex-between mt-10" style="margin-top:16px;">
-                    <button class="btn btn-gold" onclick="$crisp.push(['do', 'chat:open'])">
-                        <i class="fas fa-headset"></i> تماس با پشتیبانی
-                    </button>
-                    <button class="btn btn-outline" onclick="window.open('https://karen-soft.ir','_blank')">
-                        <i class="fas fa-globe"></i> بازدید از سایت
-                    </button>
-                </div>
-            </div>
-        </section>
-
-        <!-- ============================================================ -->
-        <!-- PAGE: DASHBOARD -->
-        <!-- ============================================================ -->
+        <!-- ===== PAGES (همانند قبل با تمام توابع) ===== -->
         <section class="page-section active" id="page-dashboard">
             <div class="page-title"><i class="fas fa-chart-pie"></i> داشبورد</div>
             <div class="stats-grid" id="dashStats"></div>
@@ -1144,14 +1257,11 @@
             </div>
         </section>
 
-        <!-- ============================================================ -->
-        <!-- DRIVERS -->
-        <!-- ============================================================ -->
         <section class="page-section" id="page-drivers">
             <div class="page-title"><i class="fas fa-user-tie"></i> مدیریت رانندگان</div>
             <div class="search-bar">
                 <button class="btn btn-gold" onclick="openDriverModal()"><i class="fas fa-plus"></i> راننده جدید</button>
-                <input class="form-input" type="text" id="driverSearch" placeholder="جستجو بر اساس نام یا تلفن..." oninput="renderDrivers()">
+                <input class="form-input" type="text" id="driverSearch" placeholder="جستجو..." oninput="renderDrivers()">
                 <select class="form-select" id="driverFilterStatus" style="max-width:150px" onchange="renderDrivers()">
                     <option value="">همه وضعیت‌ها</option>
                     <option value="active">فعال</option>
@@ -1162,45 +1272,33 @@
             <div class="card"><div class="table-wrapper" id="driversTable"></div></div>
         </section>
 
-        <!-- ============================================================ -->
-        <!-- VEHICLES -->
-        <!-- ============================================================ -->
         <section class="page-section" id="page-vehicles">
             <div class="page-title"><i class="fas fa-car"></i> مدیریت خودروها</div>
             <div class="search-bar">
                 <button class="btn btn-gold" onclick="openVehicleModal()"><i class="fas fa-plus"></i> خودرو جدید</button>
-                <input class="form-input" type="text" id="vehicleSearch" placeholder="جستجو بر اساس پلاک یا برند..." oninput="renderVehicles()">
+                <input class="form-input" type="text" id="vehicleSearch" placeholder="جستجو..." oninput="renderVehicles()">
             </div>
             <div class="card"><div class="table-wrapper" id="vehiclesTable"></div></div>
         </section>
 
-        <!-- ============================================================ -->
-        <!-- ADDRESSES -->
-        <!-- ============================================================ -->
         <section class="page-section" id="page-addresses">
             <div class="page-title"><i class="fas fa-map-marker-alt"></i> مدیریت آدرس‌ها</div>
             <div class="search-bar">
                 <button class="btn btn-gold" onclick="openAddressModal()"><i class="fas fa-plus"></i> آدرس جدید</button>
-                <input class="form-input" type="text" id="addressSearch" placeholder="جستجو بر اساس عنوان یا محله..." oninput="renderAddresses()">
+                <input class="form-input" type="text" id="addressSearch" placeholder="جستجو..." oninput="renderAddresses()">
             </div>
             <div class="card"><div class="table-wrapper" id="addressesTable"></div></div>
         </section>
 
-        <!-- ============================================================ -->
-        <!-- PASSENGERS -->
-        <!-- ============================================================ -->
         <section class="page-section" id="page-passengers">
             <div class="page-title"><i class="fas fa-users"></i> مسافران و اشتراک‌ها</div>
             <div class="search-bar">
                 <button class="btn btn-gold" onclick="openPassengerModal()"><i class="fas fa-plus"></i> مسافر جدید</button>
-                <input class="form-input" type="text" id="passengerSearch" placeholder="جستجو بر اساس نام یا تلفن..." oninput="renderPassengers()">
+                <input class="form-input" type="text" id="passengerSearch" placeholder="جستجو..." oninput="renderPassengers()">
             </div>
             <div class="card"><div class="table-wrapper" id="passengersTable"></div></div>
         </section>
 
-        <!-- ============================================================ -->
-        <!-- TRIPS NEW -->
-        <!-- ============================================================ -->
         <section class="page-section" id="page-trips-new">
             <div class="page-title"><i class="fas fa-plus-circle"></i> ثبت سفر جدید</div>
             <div class="card">
@@ -1297,13 +1395,10 @@
             </div>
         </section>
 
-        <!-- ============================================================ -->
-        <!-- TRIPS LIST -->
-        <!-- ============================================================ -->
         <section class="page-section" id="page-trips-list">
             <div class="page-title"><i class="fas fa-list"></i> لیست سفرها</div>
             <div class="search-bar">
-                <input class="form-input" type="text" id="tripListSearch" placeholder="جستجو بر اساس مسافر..." oninput="renderTripList()">
+                <input class="form-input" type="text" id="tripListSearch" placeholder="جستجو..." oninput="renderTripList()">
                 <select class="form-select" id="tripListFilterDriver" style="max-width:160px" onchange="renderTripList()">
                     <option value="">همه رانندگان</option>
                 </select>
@@ -1318,9 +1413,6 @@
             <div class="card"><div class="table-wrapper" id="tripsListTable"></div></div>
         </section>
 
-        <!-- ============================================================ -->
-        <!-- ACCOUNTING: DRIVER STATEMENT -->
-        <!-- ============================================================ -->
         <section class="page-section" id="page-acc-driver">
             <div class="page-title"><i class="fas fa-file-invoice"></i> صورت حساب رانندگان</div>
             <div class="search-bar">
@@ -1334,9 +1426,6 @@
             <div id="driverStatementResult"></div>
         </section>
 
-        <!-- ============================================================ -->
-        <!-- ACCOUNTING: REPORT -->
-        <!-- ============================================================ -->
         <section class="page-section" id="page-acc-report">
             <div class="page-title"><i class="fas fa-chart-bar"></i> گزارش درآمد/هزینه</div>
             <div class="card mb-16">
@@ -1353,9 +1442,6 @@
             </div>
         </section>
 
-        <!-- ============================================================ -->
-        <!-- ACCOUNTING: COMMISSIONS -->
-        <!-- ============================================================ -->
         <section class="page-section" id="page-acc-commissions">
             <div class="page-title"><i class="fas fa-percentage"></i> گزارش کمیسیون‌ها</div>
             <div class="card mb-16">
@@ -1365,9 +1451,6 @@
             <div class="card"><div class="table-wrapper" id="commissionsTable"></div></div>
         </section>
 
-        <!-- ============================================================ -->
-        <!-- ACCOUNTING: SUBSCRIBERS -->
-        <!-- ============================================================ -->
         <section class="page-section" id="page-acc-subscribers">
             <div class="page-title"><i class="fas fa-user-tag"></i> حسابداری مشترکین</div>
             <div class="search-bar">
@@ -1382,9 +1465,6 @@
             <div id="subscriberStatementResult"></div>
         </section>
 
-        <!-- ============================================================ -->
-        <!-- BACKUP -->
-        <!-- ============================================================ -->
         <section class="page-section" id="page-backup">
             <div class="page-title"><i class="fas fa-database"></i> پشتیبان‌گیری</div>
             <div class="card mb-16">
@@ -1404,9 +1484,6 @@
             </div>
         </section>
 
-        <!-- ============================================================ -->
-        <!-- SETTINGS -->
-        <!-- ============================================================ -->
         <section class="page-section" id="page-settings">
             <div class="page-title"><i class="fas fa-cog"></i> تنظیمات</div>
             <div class="card">
@@ -1449,6 +1526,7 @@
                 </form>
             </div>
         </section>
+
     </div>
 
     <!-- ============ MODAL ============ -->
@@ -1459,10 +1537,122 @@
     <!-- ============ TOAST ============ -->
     <div class="toast-container" id="toastContainer"></div>
 
+    <!-- ============ CRISP FLOAT BUTTON ============ -->
+    <button class="crisp-float" onclick="window.$crisp?.push(['do', 'chat:open'])" title="پشتیبانی آنلاین کارن سافت">
+        <span class="pulse-ring"></span>
+        <i class="fas fa-headset"></i>
+    </button>
+
+    <!-- ============ PWA INSTALL BANNER ============ -->
+    <div id="pwa-install-banner">
+        <div class="pwa-info">
+            <img src="images/logo.png" alt="کارن سافت" />
+            <div>
+                <strong>کارن سافت · تاکسی تلفنی</strong>
+                <span>نصب برنامه برای دسترسی سریع‌تر</span>
+            </div>
+        </div>
+        <div class="pwa-actions">
+            <button class="btn btn-gold" id="pwaInstallBtn"><i class="fas fa-download"></i> نصب</button>
+            <button class="btn btn-outline" id="pwaLaterBtn">بعداً</button>
+            <button class="btn-close-banner" id="pwaCloseBanner"><i class="fas fa-times"></i></button>
+        </div>
+    </div>
+
     <!-- ============================================================ -->
-    <!-- JAVASCRIPT کامل -->
+    <!-- JAVASCRIPT کامل (همانند قبل با PWA Support) -->
     <!-- ============================================================ -->
     <script>
+        // ============================================================
+        // PWA Setup
+        // ============================================================
+        (function() {
+            let deferredPrompt = null;
+            const banner = document.getElementById('pwa-install-banner');
+            const installBtn = document.getElementById('pwaInstallBtn');
+            const laterBtn = document.getElementById('pwaLaterBtn');
+            const closeBtn = document.getElementById('pwaCloseBanner');
+
+            // Show banner if app is not installed
+            function showBanner() {
+                if (!localStorage.getItem('pwa-banner-dismissed')) {
+                    banner.classList.add('show');
+                }
+            }
+
+            // Hide banner
+            function hideBanner() {
+                banner.classList.remove('show');
+            }
+
+            // Event: beforeinstallprompt
+            window.addEventListener('beforeinstallprompt', function(e) {
+                e.preventDefault();
+                deferredPrompt = e;
+                showBanner();
+            });
+
+            // Event: app installed
+            window.addEventListener('appinstalled', function() {
+                hideBanner();
+                localStorage.setItem('pwa-banner-dismissed', 'true');
+                deferredPrompt = null;
+                showToast('برنامه با موفقیت نصب شد!', 'success');
+            });
+
+            // Install button
+            installBtn.addEventListener('click', async function() {
+                if (deferredPrompt) {
+                    deferredPrompt.prompt();
+                    const result = await deferredPrompt.userChoice;
+                    if (result.outcome === 'accepted') {
+                        hideBanner();
+                        localStorage.setItem('pwa-banner-dismissed', 'true');
+                        showToast('نصب برنامه آغاز شد', 'success');
+                    } else {
+                        showToast('نصب لغو شد', 'warning');
+                    }
+                    deferredPrompt = null;
+                } else {
+                    // Fallback: show instructions or open in new tab
+                    showToast('برای نصب، از گزینه‌های مرورگر استفاده کنید', 'info');
+                    hideBanner();
+                }
+            });
+
+            // Later button
+            laterBtn.addEventListener('click', function() {
+                hideBanner();
+                localStorage.setItem('pwa-banner-dismissed', 'true');
+                showToast('می‌توانید بعداً از تنظیمات نصب کنید', 'info');
+            });
+
+            // Close button
+            closeBtn.addEventListener('click', function() {
+                hideBanner();
+                localStorage.setItem('pwa-banner-dismissed', 'true');
+            });
+
+            // Check if already installed (standalone mode)
+            if (window.matchMedia('(display-mode: standalone)').matches) {
+                hideBanner();
+                localStorage.setItem('pwa-banner-dismissed', 'true');
+            }
+
+            // اگر قبلاً بسته شده بود، نمایش نده
+            if (localStorage.getItem('pwa-banner-dismissed') === 'true') {
+                hideBanner();
+            }
+
+            // بعد از 5 ثانیه اگر نصب نشده بود، بنر را نشان بده
+            setTimeout(function() {
+                if (!localStorage.getItem('pwa-banner-dismissed') && !window.matchMedia(
+                        '(display-mode: standalone)').matches) {
+                    showBanner();
+                }
+            }, 5000);
+        })();
+
         // ============================================================
         // DATA LAYER (localStorage)
         // ============================================================
@@ -1490,7 +1680,7 @@
                         farePerKm: 5000,
                         baseFare: 15000,
                         currency: 'IRR',
-                        companyName: 'کارن‌سافت',
+                        companyName: 'کارن سافت',
                         address: 'https://karen-soft.ir',
                         phone: 'info@karen-soft.ir',
                         taxRate: 0,
@@ -1498,6 +1688,7 @@
                     },
                     tripCounter: 1
                 };
+                // داده‌های نمونه
                 db.drivers = [
                     { id: 'd1', fullName: 'علی محمدی', phone: '09123456789', nationalCode: '0012345678',
                         licenseNumber: 'L12345', joinDate: '1403-01-15', status: 'active', commissionRate: 15,
@@ -1536,7 +1727,7 @@
         }
 
         function getSettings() { const db = getDB(); return db ? db.settings : { commissionDefault: 15, farePerKm: 5000,
-                baseFare: 15000, currency: 'IRR', companyName: 'کارن‌سافت', address: 'https://karen-soft.ir',
+                baseFare: 15000, currency: 'IRR', companyName: 'کارن سافت', address: 'https://karen-soft.ir',
                 phone: 'info@karen-soft.ir', taxRate: 0, videoBg: false }; }
 
         function updateSettings(s) { const db = getDB(); if (db) { db.settings = { ...db.settings, ...s };
@@ -1846,7 +2037,7 @@
             trips.forEach(t => { if (methods[t.paymentMethod] !== undefined) methods[t.paymentMethod]++; });
             renderPieChart('chartPaymentMethods', ['نقدی', 'کارتی', 'اشتراک', 'آنلاین'],
                 [methods.cash, methods.card, methods.subscription, methods.online],
-                ['#f0b429', '#3b82f6', '#10b981', '#f59e0b']);
+                ['#D4AF37', '#3b82f6', '#10b981', '#f59e0b']);
 
             // Recent trips
             const recentTrips = [...trips].sort((a, b) => new Date(b.pickupTime) - new Date(a.pickupTime)).slice(0, 5);
@@ -1906,8 +2097,8 @@
             if (chartInstances[canvasId]) chartInstances[canvasId].destroy();
             chartInstances[canvasId] = new Chart(canvas, {
                 type: 'bar',
-                data: { labels, datasets: [{ label, data, backgroundColor: 'rgba(240,180,41,0.6)',
-                        borderColor: '#f0b429', borderWidth: 1, borderRadius: 6 }] },
+                data: { labels, datasets: [{ label, data, backgroundColor: 'rgba(212,175,55,0.6)',
+                        borderColor: '#D4AF37', borderWidth: 1, borderRadius: 6 }] },
                 options: { responsive: true, maintainAspectRatio: false,
                     plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true,
                             ticks: { color: '#8888a0' }, grid: { color: 'rgba(255,255,255,0.06)' } },
@@ -1922,7 +2113,7 @@
             chartInstances[canvasId] = new Chart(canvas, {
                 type: 'doughnut',
                 data: { labels, datasets: [{ data, backgroundColor: colors, borderWidth: 2,
-                            borderColor: 'rgba(10,10,20,0.8)' }] },
+                            borderColor: 'rgba(8,10,25,0.8)' }] },
                 options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom',
                             labels: { color: '#b0b0c0', font: { family: 'Vazirmatn' } } } } }
             });
@@ -2783,10 +2974,10 @@
             const settings = getSettings();
             const html = `
             <html dir="rtl"><head><meta charset="UTF-8"><title>فاکتور مشترک</title>
-            <style>body{font-family:'Vazirmatn',sans-serif;padding:30px;background:#fff;color:#333}table{width:100%;border-collapse:collapse;margin:20px 0}th,td{padding:8px 12px;border:1px solid #ddd;text-align:right}th{background:#f5f5f5}.header{text-align:center;margin-bottom:20px;border-bottom:2px solid #f0b429;padding-bottom:10px}.footer{text-align:center;margin-top:30px;font-size:0.8rem;color:#888}.print-only{display:block}</style>
+            <style>body{font-family:'Vazirmatn',sans-serif;padding:30px;background:#fff;color:#333}table{width:100%;border-collapse:collapse;margin:20px 0}th,td{padding:8px 12px;border:1px solid #ddd;text-align:right}th{background:#f5f5f5}.header{text-align:center;margin-bottom:20px;border-bottom:2px solid #D4AF37;padding-bottom:10px}.footer{text-align:center;margin-top:30px;font-size:0.8rem;color:#888}.print-only{display:block}</style>
             <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&display=swap" rel="stylesheet">
             </head><body>
-            <div class="header"><h2>${settings.companyName||'کارن‌سافت'}</h2><p>${settings.address||''} • تلفن: ${settings.phone||''}</p><h3>فاکتور رسمی مشترک</h3></div>
+            <div class="header"><h2>${settings.companyName||'کارن سافت'}</h2><p>${settings.address||''} • تلفن: ${settings.phone||''}</p><h3>فاکتور رسمی مشترک</h3></div>
             ${content.innerHTML}
             <div class="footer">تاریخ چاپ: ${formatJalaliDateStr(todayJalali())}</div>
             <script>
@@ -2867,7 +3058,7 @@
                 commissionDefault: parseFloat(document.getElementById('setCommissionDefault').value) || 15,
                 farePerKm: parseFloat(document.getElementById('setFarePerKm').value) || 5000,
                 baseFare: parseFloat(document.getElementById('setBaseFare').value) || 15000,
-                companyName: document.getElementById('setCompanyName').value.trim() || 'کارن‌سافت',
+                companyName: document.getElementById('setCompanyName').value.trim() || 'کارن سافت',
                 address: document.getElementById('setCompanyAddress').value.trim() || 'https://karen-soft.ir',
                 phone: document.getElementById('setCompanyPhone').value.trim() || 'info@karen-soft.ir',
                 taxRate: parseFloat(document.getElementById('setTaxRate').value) || 0,
@@ -2931,6 +3122,15 @@
             renderDashboard();
             populateAccDrivers();
             populateSubscriberSelect();
+
+            // Service Worker registration for PWA (offline support)
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('/sw.js').then(function(reg) {
+                    console.log('Service Worker registered successfully');
+                }).catch(function(err) {
+                    console.log('Service Worker registration failed:', err);
+                });
+            }
         }
         init();
     </script>
