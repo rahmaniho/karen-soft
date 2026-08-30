@@ -11,11 +11,81 @@
     <!-- ===== PWA Manifest ===== -->
     <link rel="manifest" href="data:application/json;base64,ewogICJuYW1lIjogItmF2LHYrdm+2KfYp9mGINin2YTYudin2KfYqgogINin2YTYr9ix2KfYqiIsCiAgInNob3J0X25hbWUiOiAi2YXYsdmF2b7Yp9in2YYiLAogICJkZXNjcmlwdGlvbiI6ICLZhdin2YTYrdmF2KfYqiDYp9mE2K/Ysdin2Kog2KfZhNmF2LHbjNiv2YciLAogICJzdGFydF91cmwiOiAiLiIsCiAgImRpc3BsYXkiOiAic3RhbmRhbG9uZSIsCiAgImJhY2tncm91bmRfY29sb3IiOiAiIzA4MEExOSIsCiAgInRoZW1lX2NvbG9yIjogIiMwODBBMTkiLAogICJpY29ucyI6IFsKICAgIHsKICAgICAgInNyYyI6ICJodHRwczovL3Jhdy5naXRodWJ1c2VyY29udGVudC5jb20vcmFobWFuaWhvL2thcmVuLXNvZnQvbWFpbi9pbWFnZXMvdGF4aS1rYXJlbnNvZnQucG5nIiwKICAgICAgInNpemVzIjogIjE5MngxOTIiLAogICAgICAidHlwZSI6ICJpbWFnZS9wbmciLAogICAgICAicHVycG9zZSI6ICJhbnkgbWFza2FibGUiCiAgICB9CiAgXSwKICAib3JpZW50YXRpb24iOiAicG9ydHJhaXQiLAogICJzY29wZSI6ICJ3ZWIiLAogICJzaG93X2JhY2tfYnV0dG9uIjogdHJ1ZSwKICAiZGlyZWN0aW9uIjogInJ0bCIsCiAgImxhbmciOiAiZmEtSVIiLAogICJwcmVmZXJfcmVsYXRlZF9hcHBsaWNhdGlvbnMiOiBbXQp9" />
 
-    <!-- ===== فونت و آیکون‌ها ===== -->
-    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100;300;400;500;700;900&display=swap" rel="stylesheet" />
+    <!-- ===== آیکون‌ها ===== -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js">
     </script>
+
+    <!-- ===== فونت‌های اختصاصی از مخزن گیت‌هاب (بدون Vazirmatn) ===== -->
+    <style>
+        /* ===== تعریف فونت‌های ایرانی با فرمت‌های مختلف ===== */
+        @font-face {
+            font-family: 'BNazanin';
+            src: url('https://raw.githubusercontent.com/rahmaniho/karen-soft/main/fonts/BNazanin.eot');
+            src: url('https://raw.githubusercontent.com/rahmaniho/karen-soft/main/fonts/BNazanin.eot?#iefix') format('embedded-opentype'),
+                 url('https://raw.githubusercontent.com/rahmaniho/karen-soft/main/fonts/BNazanin.woff') format('woff'),
+                 url('https://raw.githubusercontent.com/rahmaniho/karen-soft/main/fonts/BNazanin.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'BTitr';
+            src: url('https://raw.githubusercontent.com/rahmaniho/karen-soft/main/fonts/BTitrBold.eot');
+            src: url('https://raw.githubusercontent.com/rahmaniho/karen-soft/main/fonts/BTitrBold.eot?#iefix') format('embedded-opentype'),
+                 url('https://raw.githubusercontent.com/rahmaniho/karen-soft/main/fonts/BTitrBold.woff') format('woff'),
+                 url('https://raw.githubusercontent.com/rahmaniho/karen-soft/main/fonts/BTitrBold.ttf') format('truetype');
+            font-weight: bold;
+            font-style: normal;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'BLotus';
+            src: url('https://raw.githubusercontent.com/rahmaniho/karen-soft/main/fonts/BLotus.eot');
+            src: url('https://raw.githubusercontent.com/rahmaniho/karen-soft/main/fonts/BLotus.eot?#iefix') format('embedded-opentype'),
+                 url('https://raw.githubusercontent.com/rahmaniho/karen-soft/main/fonts/BLotus.woff') format('woff'),
+                 url('https://raw.githubusercontent.com/rahmaniho/karen-soft/main/fonts/BLotus.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+        /* فایل پشتیبان - در صورتی که فونت اصلی بارگذاری نشود */
+        @font-face {
+            font-family: 'BCompset';
+            src: url('https://raw.githubusercontent.com/rahmaniho/karen-soft/main/fonts/BCompset.eot');
+            src: url('https://raw.githubusercontent.com/rahmaniho/karen-soft/main/fonts/BCompset.eot?#iefix') format('embedded-opentype'),
+                 url('https://raw.githubusercontent.com/rahmaniho/karen-soft/main/fonts/BCompset.woff') format('woff'),
+                 url('https://raw.githubusercontent.com/rahmaniho/karen-soft/main/fonts/BCompset.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        /* ===== استفاده از فونت‌ها ===== */
+        /* بدنه و متن‌های عمومی */
+        body, .form-input, .form-select, .form-textarea, .btn, .nav-item, .card-title, .stat-label, 
+        td, th, p, span, div, .page-section, .sidebar-footer, .header-date, .header-status {
+            font-family: 'BNazanin', 'BCompset', Tahoma, sans-serif !important;
+        }
+        /* سرفصل‌ها و عناصر پررنگ */
+        h1, h2, h3, h4, .page-title, .brand-name, .stat-value, .nav-item.active, 
+        .btn-gold, .card-title, .training-step h4, .about-card h3, .sidebar-brand .brand-name {
+            font-family: 'BTitr', 'BNazanin', 'BCompset', Tahoma, sans-serif !important;
+            font-weight: bold;
+        }
+        /* بخش درباره ما و متن‌های ادبی */
+        .about-card p, #page-about p, .about-card .about-logo + p {
+            font-family: 'BLotus', 'BNazanin', Tahoma, sans-serif !important;
+        }
+        /* اعداد فارسی */
+        .stat-value, .format-number, td, th {
+            font-family: 'BNazanin', 'BCompset', Tahoma, sans-serif !important;
+        }
+        /* بهبود نمایش اعداد در چارت */
+        .chart-container {
+            font-family: 'BNazanin', 'BCompset', Tahoma, sans-serif !important;
+        }
+    </style>
 
     <!-- ===== CRISP CHAT ===== -->
     <script type="text/javascript">
@@ -35,6 +105,7 @@
     <link rel="shortcut icon" href="https://raw.githubusercontent.com/rahmaniho/karen-soft/main/images/taxi-karensoft.png" type="image/png" />
     <link rel="apple-touch-icon" href="https://raw.githubusercontent.com/rahmaniho/karen-soft/main/images/taxi-karensoft.png" />
 
+    <!-- ===== استایل‌های اصلی (همانند نسخه قبلی با تغییرات فونت) ===== -->
     <style>
         /* ========== ROOT VARIABLES ========== */
         :root {
@@ -49,7 +120,6 @@
             --radius-sm: 10px;
             --radius-xs: 6px;
             --transition: 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-            --font: 'Vazirmatn', sans-serif;
         }
 
         [data-theme="light"] {
@@ -65,6 +135,7 @@
             --text-muted: #8888a0;
             --shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
             --shadow-sm: 0 2px 12px rgba(0, 0, 0, 0.05);
+            --particle-color: rgba(201, 154, 31, 0.15);
         }
 
         [data-theme="dark"] {
@@ -80,8 +151,10 @@
             --text-muted: #8888a0;
             --shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
             --shadow-sm: 0 2px 12px rgba(0, 0, 0, 0.25);
+            --particle-color: rgba(212, 175, 55, 0.08);
         }
 
+        /* ========== RESET & BASE ========== */
         * {
             margin: 0;
             padding: 0;
@@ -93,7 +166,6 @@
             -webkit-tap-highlight-color: transparent;
         }
         body {
-            font-family: var(--font);
             background: var(--bg-primary);
             color: var(--text-primary);
             min-height: 100vh;
@@ -105,15 +177,18 @@
             width: 5px;
             height: 5px;
         }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
         ::-webkit-scrollbar-thumb {
-            background: rgba(212, 175, 55, 0.3);
+            background: rgba(255, 255, 255, 0.15);
             border-radius: 10px;
         }
         ::-webkit-scrollbar-thumb:hover {
-            background: rgba(212, 175, 55, 0.5);
+            background: rgba(212, 175, 55, 0.4);
         }
 
-        /* ===== PARTICLES ===== */
+        /* ===== PARTICLES BACKGROUND ===== */
         #particles-canvas {
             position: fixed;
             top: 0;
@@ -122,10 +197,10 @@
             height: 100vh;
             z-index: 0;
             pointer-events: none;
-            opacity: 0.4;
+            opacity: 0.5;
         }
 
-        /* ===== SIDEBAR ===== */
+        /* ========== SIDEBAR ========== */
         .sidebar {
             position: fixed;
             top: 0;
@@ -218,7 +293,16 @@
             flex: 1;
             overflow-y: auto;
             padding: 12px 10px 20px;
+            scroll-behavior: smooth;
         }
+        .sidebar-nav::-webkit-scrollbar {
+            width: 3px;
+        }
+        .sidebar-nav::-webkit-scrollbar-thumb {
+            background: rgba(212, 175, 55, 0.3);
+            border-radius: 10px;
+        }
+
         .nav-item {
             display: flex;
             align-items: center;
@@ -237,7 +321,6 @@
             border: none;
             width: 100%;
             text-align: right;
-            font-family: var(--font);
         }
         .nav-item:hover {
             background: var(--bg-card-hover);
@@ -543,6 +626,10 @@
             height: 240px;
             width: 100%;
         }
+        .chart-container canvas {
+            max-width: 100%;
+            max-height: 100%;
+        }
 
         /* ===== TABLES ===== */
         .table-wrapper {
@@ -639,7 +726,6 @@
             border-radius: var(--radius-sm);
             border: none;
             cursor: pointer;
-            font-family: var(--font);
             font-size: 0.8rem;
             font-weight: 600;
             transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
@@ -752,7 +838,6 @@
             border: 1px solid var(--border-glass);
             background: rgba(255, 255, 255, 0.05);
             color: var(--text-primary);
-            font-family: var(--font);
             font-size: 0.8rem;
             transition: all 0.3s ease;
             outline: none;
@@ -1815,7 +1900,7 @@
     </div>
 
     <!-- ================================================================ -->
-    <!-- JAVASCRIPT (اصلاح‌شده) -->
+    <!-- JAVASCRIPT (یک‌پارچه، شامل تمام توابع) -->
     <!-- ================================================================ -->
     <script>
         // ================================================================
@@ -1996,7 +2081,7 @@
         })();
 
         // ================================================================
-        // 4. DATA LAYER (localStorage) با داده‌های نمونه اصلاح‌شده
+        // 4. DATA LAYER (localStorage) با داده‌های نمونه
         // ================================================================
         const DB_KEY = 'taxi_dispatch_db_v4';
 
@@ -2506,7 +2591,7 @@
             }
             document.getElementById('dashRecentTrips').innerHTML = tripsHTML;
 
-            // هشدارها (با تاریخ‌های اصلاح‌شده دیگر هشداری نیست)
+            // هشدارها
             const alerts = [];
             const todayJKey = today;
             const warning30Date = new Date();
@@ -2579,7 +2664,7 @@
                 data: { labels, datasets: [{ data, backgroundColor: colors, borderWidth: 2,
                             borderColor: 'rgba(8,10,25,0.8)' }] },
                 options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom',
-                            labels: { color: '#b0b0c0', font: { family: 'Vazirmatn' } } } } }
+                            labels: { color: '#b0b0c0', font: { family: 'BNazanin' } } } } }
             });
         }
 
@@ -2596,7 +2681,7 @@
                             borderColor: '#ef4444', borderWidth: 1, borderRadius: 5 }
                     ] },
                 options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom',
-                            labels: { color: '#b0b0c0', font: { family: 'Vazirmatn' } } } },
+                            labels: { color: '#b0b0c0' } } },
                     scales: { y: { beginAtZero: true, ticks: { color: '#8888a0' },
                             grid: { color: 'rgba(255,255,255,0.06)' } }, x: { ticks: { color: '#8888a0' },
                             grid: { display: false } } } }
@@ -3260,7 +3345,7 @@
         }
 
         // ================================================================
-        // 13. ACCOUNTING - DRIVER STATEMENT (اصلاح‌شده)
+        // 13. ACCOUNTING - DRIVER STATEMENT
         // ================================================================
         function populateAccDrivers() {
             const drivers = getDrivers();
@@ -3279,11 +3364,8 @@
             const driver = getDrivers().find(d => d.id === driverId);
             if (!driver) { showToast('راننده یافت نشد', 'error'); return; }
 
-            // دریافت تمام سفرهای تکمیل‌شده این راننده
             const allTrips = getTrips().filter(t => t.driverId === driverId && t.status === 'completed');
             let filteredTrips = [...allTrips];
-
-            // فیلتر بر اساس تاریخ (اگر کاربر انتخاب کرده باشد)
             if (from) {
                 const fromKey = gregorianToJalaliKey(from);
                 if (fromKey) filteredTrips = filteredTrips.filter(t => isoToJalaliKey(t.pickupTime) >= fromKey);
@@ -3303,7 +3385,6 @@
             const debt = totalCommission - totalCorporateShare;
             const balance = totalShare - totalPaid;
 
-            // گروه‌بندی بر اساس شرکت
             const companyGroups = {};
             filteredTrips.forEach(t => {
                 if (t.companyId) {
@@ -3560,7 +3641,7 @@
             const html = `
             <html dir="rtl"><head><meta charset="UTF-8"><title>فاکتور مشترک</title>
             <style>
-              body{font-family:'Vazirmatn',sans-serif;padding:30px;background:#fff;color:#333}
+              body{font-family:'BNazanin','BCompset',Tahoma,sans-serif;padding:30px;background:#fff;color:#333}
               table{width:100%;border-collapse:collapse;margin:20px 0;font-size:0.9rem}
               th,td{padding:10px 14px;border:1px solid #ddd;text-align:right}
               th{background:#f5f5f5;color:#333}
@@ -3571,7 +3652,6 @@
               .total-row{font-weight:700;background:#f9f9f9}
               @media print{body{padding:20px}}
             </style>
-            <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&display=swap" rel="stylesheet">
             </head><body>
             <div class="header"><h2>${settings.companyName||'کارن‌سافت'}</h2><p>${settings.address||''} • تلفن: ${settings.phone||''}</p><h3>فاکتور رسمی مشترک</h3></div>
             ${content.innerHTML}
