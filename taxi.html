@@ -36,7 +36,7 @@
     <link rel="apple-touch-icon" href="https://raw.githubusercontent.com/rahmaniho/karen-soft/main/images/taxi-karensoft.png" />
 
     <style>
-        /* ========== ROOT VARIABLES (Light & Dark) ========== */
+        /* ========== ROOT VARIABLES ========== */
         :root {
             --gold: #D4AF37;
             --gold-light: #E4C56A;
@@ -52,7 +52,6 @@
             --font: 'Vazirmatn', sans-serif;
         }
 
-        /* Light theme */
         [data-theme="light"] {
             --bg-primary: #f0f2f5;
             --bg-secondary: #ffffff;
@@ -66,10 +65,8 @@
             --text-muted: #8888a0;
             --shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
             --shadow-sm: 0 2px 12px rgba(0, 0, 0, 0.05);
-            --particle-color: rgba(201, 154, 31, 0.15);
         }
 
-        /* Dark theme */
         [data-theme="dark"] {
             --bg-primary: #080A19;
             --bg-secondary: #0d0f24;
@@ -83,10 +80,8 @@
             --text-muted: #8888a0;
             --shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
             --shadow-sm: 0 2px 12px rgba(0, 0, 0, 0.25);
-            --particle-color: rgba(212, 175, 55, 0.08);
         }
 
-        /* ========== RESET & BASE ========== */
         * {
             margin: 0;
             padding: 0;
@@ -110,18 +105,15 @@
             width: 5px;
             height: 5px;
         }
-        ::-webkit-scrollbar-track {
-            background: transparent;
-        }
         ::-webkit-scrollbar-thumb {
-            background: rgba(255, 255, 255, 0.15);
+            background: rgba(212, 175, 55, 0.3);
             border-radius: 10px;
         }
         ::-webkit-scrollbar-thumb:hover {
-            background: rgba(212, 175, 55, 0.4);
+            background: rgba(212, 175, 55, 0.5);
         }
 
-        /* ========== PARTICLES BACKGROUND ========== */
+        /* ===== PARTICLES ===== */
         #particles-canvas {
             position: fixed;
             top: 0;
@@ -130,10 +122,10 @@
             height: 100vh;
             z-index: 0;
             pointer-events: none;
-            opacity: 0.5;
+            opacity: 0.4;
         }
 
-        /* ========== SIDEBAR ========== */
+        /* ===== SIDEBAR ===== */
         .sidebar {
             position: fixed;
             top: 0;
@@ -194,9 +186,6 @@
             font-weight: 700;
             color: var(--gold);
             letter-spacing: 0.5px;
-            display: flex;
-            align-items: center;
-            gap: 6px;
         }
         .sidebar-brand .brand-sub {
             font-size: 0.65rem;
@@ -229,16 +218,7 @@
             flex: 1;
             overflow-y: auto;
             padding: 12px 10px 20px;
-            scroll-behavior: smooth;
         }
-        .sidebar-nav::-webkit-scrollbar {
-            width: 3px;
-        }
-        .sidebar-nav::-webkit-scrollbar-thumb {
-            background: rgba(212, 175, 55, 0.3);
-            border-radius: 10px;
-        }
-
         .nav-item {
             display: flex;
             align-items: center;
@@ -354,7 +334,7 @@
             text-decoration: underline;
         }
 
-        /* ========== MAIN CONTENT ========== */
+        /* ===== MAIN CONTENT ===== */
         .main-content {
             flex: 1;
             margin-right: 280px;
@@ -369,7 +349,7 @@
             margin-right: 0;
         }
 
-        /* ========== HEADER ========== */
+        /* ===== HEADER ===== */
         .header {
             height: 60px;
             background: var(--bg-header);
@@ -437,7 +417,7 @@
             }
         }
 
-        /* ========== PAGES ========== */
+        /* ===== PAGES ===== */
         .page-section {
             display: none;
             padding: 20px;
@@ -470,7 +450,7 @@
             font-size: 1.1rem;
         }
 
-        /* ========== CARDS ========== */
+        /* ===== CARDS ===== */
         .card {
             background: var(--bg-card);
             backdrop-filter: blur(18px);
@@ -507,7 +487,7 @@
             font-size: 0.9rem;
         }
 
-        /* ========== STATS ========== */
+        /* ===== STATS ===== */
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -551,7 +531,7 @@
             font-weight: 400;
         }
 
-        /* ========== CHARTS ========== */
+        /* ===== CHARTS ===== */
         .charts-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -563,12 +543,8 @@
             height: 240px;
             width: 100%;
         }
-        .chart-container canvas {
-            max-width: 100%;
-            max-height: 100%;
-        }
 
-        /* ========== TABLES ========== */
+        /* ===== TABLES ===== */
         .table-wrapper {
             overflow-x: auto;
             border-radius: var(--radius-sm);
@@ -603,7 +579,7 @@
             background: rgba(255, 255, 255, 0.03);
         }
 
-        /* ========== BADGES ========== */
+        /* ===== BADGES ===== */
         .status-badge {
             padding: 3px 10px;
             border-radius: 20px;
@@ -657,7 +633,7 @@
             color: var(--green);
         }
 
-        /* ========== BUTTONS ========== */
+        /* ===== BUTTONS ===== */
         .btn {
             padding: 8px 18px;
             border-radius: var(--radius-sm);
@@ -756,7 +732,7 @@
             color: var(--blue);
         }
 
-        /* ========== FORMS ========== */
+        /* ===== FORMS ===== */
         .form-group {
             margin-bottom: 14px;
         }
@@ -806,7 +782,7 @@
             gap: 12px;
         }
 
-        /* ========== MODAL ========== */
+        /* ===== MODAL ===== */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -886,7 +862,7 @@
             flex-wrap: wrap;
         }
 
-        /* ========== TOAST ========== */
+        /* ===== TOAST ===== */
         .toast-container {
             position: fixed;
             bottom: 80px;
@@ -942,7 +918,7 @@
             }
         }
 
-        /* ========== SEARCH BAR ========== */
+        /* ===== SEARCH ===== */
         .search-bar {
             display: flex;
             gap: 10px;
@@ -956,7 +932,7 @@
             flex: 1;
         }
 
-        /* ========== ALERTS ========== */
+        /* ===== ALERTS ===== */
         .alert-list {
             display: flex;
             flex-direction: column;
@@ -985,7 +961,7 @@
             color: var(--blue);
         }
 
-        /* ========== MISC ========== */
+        /* ===== MISC ===== */
         .empty-state {
             text-align: center;
             padding: 40px 20px;
@@ -996,10 +972,6 @@
             font-size: 2.8rem;
             margin-bottom: 12px;
             opacity: 0.4;
-        }
-        .highlight-warning {
-            color: var(--yellow);
-            font-weight: 700;
         }
         .text-gold {
             color: var(--gold);
@@ -1044,7 +1016,7 @@
             color: var(--gold-light);
         }
 
-        /* ========== CRISP FLOAT ========== */
+        /* ===== CRISP FLOAT ===== */
         .crisp-float {
             position: fixed;
             bottom: 24px;
@@ -1090,7 +1062,7 @@
             }
         }
 
-        /* ========== RESPONSIVE (موبایل و تبلت) ========== */
+        /* ===== RESPONSIVE ===== */
         @media (max-width: 1024px) {
             .stats-grid {
                 grid-template-columns: repeat(2, 1fr);
@@ -1098,11 +1070,7 @@
             .charts-grid {
                 grid-template-columns: 1fr;
             }
-            .form-row-3 {
-                grid-template-columns: 1fr 1fr;
-            }
         }
-
         @media (max-width: 768px) {
             .sidebar {
                 width: 280px;
@@ -1147,13 +1115,6 @@
             .stat-icon {
                 font-size: 1.2rem;
             }
-            .table-wrapper {
-                font-size: 0.7rem;
-            }
-            .search-bar .form-input {
-                max-width: 100%;
-                min-width: 100px;
-            }
             .chart-container {
                 height: 180px;
             }
@@ -1165,7 +1126,6 @@
                 left: 16px;
             }
         }
-
         @media (max-width: 480px) {
             .stats-grid {
                 grid-template-columns: 1fr;
@@ -1188,25 +1148,7 @@
             }
         }
 
-        @media (max-width: 360px) {
-            html {
-                font-size: 12px;
-            }
-            .stat-value {
-                font-size: 1rem;
-            }
-            .btn {
-                font-size: 0.65rem;
-                padding: 4px 10px;
-            }
-            .form-input,
-            .form-select {
-                font-size: 0.7rem;
-                padding: 6px 10px;
-            }
-        }
-
-        /* ========== PRINT ========== */
+        /* ===== PRINT ===== */
         @media print {
             .sidebar,
             .header,
@@ -1245,7 +1187,7 @@
             }
         }
 
-        /* ========== PWA Install Banner ========== */
+        /* ===== PWA BANNER ===== */
         #pwa-install-banner {
             display: none;
             position: fixed;
@@ -1312,22 +1254,8 @@
         #pwa-install-banner .pwa-actions .btn-close-banner:hover {
             transform: rotate(90deg);
         }
-        @media (max-width: 480px) {
-            #pwa-install-banner {
-                padding: 10px 12px;
-                flex-direction: column;
-                align-items: stretch;
-                gap: 8px;
-            }
-            #pwa-install-banner .pwa-info {
-                min-width: auto;
-            }
-            #pwa-install-banner .pwa-actions {
-                justify-content: center;
-            }
-        }
 
-        /* ========== TRAINING STYLES ========== */
+        /* ===== TRAINING ===== */
         .training-step {
             display: flex;
             gap: 16px;
@@ -1412,7 +1340,7 @@
 </head>
 <body>
 
-    <!-- ===== PARTICLES CANVAS ===== -->
+    <!-- ===== PARTICLES ===== -->
     <canvas id="particles-canvas"></canvas>
 
     <!-- ===== SIDEBAR ===== -->
@@ -1497,7 +1425,7 @@
             </div>
         </section>
 
-        <!-- ===== DRIVERS + VEHICLES ===== -->
+        <!-- ===== DRIVERS ===== -->
         <section class="page-section" id="page-drivers">
             <div class="page-title"><i class="fas fa-user-tie"></i> رانندگان و خودروها</div>
             <div class="search-bar">
@@ -1819,14 +1747,14 @@
             <div class="page-title"><i class="fas fa-graduation-cap"></i> آموزش نرم‌افزار</div>
             <div class="card mb-16">
                 <div class="card-header"><div class="card-title"><i class="fas fa-book"></i> راهنمای کامل استفاده</div></div>
-                <div class="training-step"><div class="step-num">۱</div><div class="step-content"><h4><i class="fas fa-user-tie step-icon"></i> ثبت راننده و خودرو</h4><p>از منوی «رانندگان و خودروها» یا دکمه «ثبت راننده + خودرو» استفاده کنید. اطلاعات راننده و خودرو به‌صورت همزمان ثبت می‌شوند.</p></div></div>
-                <div class="training-step"><div class="step-num">۲</div><div class="step-content"><h4><i class="fas fa-map-marker-alt step-icon"></i> مدیریت آدرس‌ها</h4><p>آدرس‌های پرکاربرد را ثبت کنید تا در زمان ثبت سفر به‌سرعت قابل انتخاب باشند.</p></div></div>
-                <div class="training-step"><div class="step-num">۳</div><div class="step-content"><h4><i class="fas fa-users step-icon"></i> مدیریت مشترکین</h4><p>مشترکین (حقیقی یا حقوقی) را با اطلاعات کامل ثبت کنید. کد اشتراک به‌صورت خودکار تولید می‌شود.</p></div></div>
-                <div class="training-step"><div class="step-num">۴</div><div class="step-content"><h4><i class="fas fa-route step-icon"></i> ثبت سفر</h4><p>راننده، خودرو، مشترک، مبدأ، مقصد و مسافت را وارد کنید. کرایه به‌صورت خودکار محاسبه می‌شود. تاریخ سفر به‌صورت امروز ثبت می‌شود.</p></div></div>
-                <div class="training-step"><div class="step-num">۵</div><div class="step-content"><h4><i class="fas fa-coins step-icon"></i> حسابداری</h4><p>صورت‌حساب رانندگان، گزارش درآمد/هزینه، کمیسیون‌ها، حسابداری مشترکین و هزینه‌های جانبی.</p></div></div>
-                <div class="training-step"><div class="step-num">۶</div><div class="step-content"><h4><i class="fas fa-database step-icon"></i> پشتیبان‌گیری</h4><p>دانلود یا بازیابی فایل JSON از تمام داده‌های سیستم.</p></div></div>
-                <div class="training-step"><div class="step-num">۷</div><div class="step-content"><h4><i class="fas fa-cog step-icon"></i> تنظیمات</h4><p>تنظیم نرخ‌ها، کمیسیون و اطلاعات شرکت.</p></div></div>
-                <div class="training-step"><div class="step-num">۸</div><div class="step-content"><h4><i class="fas fa-headset step-icon"></i> پشتیبانی</h4><p>از دکمه هدست در پایین سمت چپ برای ارتباط با تیم پشتیبانی استفاده کنید.</p></div></div>
+                <div class="training-step"><div class="step-num">۱</div><div class="step-content"><h4><i class="fas fa-user-tie step-icon"></i> ثبت راننده و خودرو</h4><p>از منوی «رانندگان و خودروها» یا دکمه «ثبت راننده + خودرو» استفاده کنید.</p></div></div>
+                <div class="training-step"><div class="step-num">۲</div><div class="step-content"><h4><i class="fas fa-map-marker-alt step-icon"></i> مدیریت آدرس‌ها</h4><p>آدرس‌های پرکاربرد را ثبت کنید.</p></div></div>
+                <div class="training-step"><div class="step-num">۳</div><div class="step-content"><h4><i class="fas fa-users step-icon"></i> مدیریت مشترکین</h4><p>مشترکین حقیقی و حقوقی با کد اشتراک خودکار.</p></div></div>
+                <div class="training-step"><div class="step-num">۴</div><div class="step-content"><h4><i class="fas fa-route step-icon"></i> ثبت سفر</h4><p>انتخاب راننده، مشترک، مبدأ، مقصد و مسافت. کرایه خودکار محاسبه می‌شود.</p></div></div>
+                <div class="training-step"><div class="step-num">۵</div><div class="step-content"><h4><i class="fas fa-coins step-icon"></i> حسابداری</h4><p>صورت حساب رانندگان، گزارش درآمد/هزینه، کمیسیون، مشترکین و هزینه‌ها.</p></div></div>
+                <div class="training-step"><div class="step-num">۶</div><div class="step-content"><h4><i class="fas fa-database step-icon"></i> پشتیبان‌گیری</h4><p>دانلود/بازیابی JSON از تمام داده‌ها.</p></div></div>
+                <div class="training-step"><div class="step-num">۷</div><div class="step-content"><h4><i class="fas fa-cog step-icon"></i> تنظیمات</h4><p>نرخ‌ها، کمیسیون و اطلاعات شرکت.</p></div></div>
+                <div class="training-step"><div class="step-num">۸</div><div class="step-content"><h4><i class="fas fa-headset step-icon"></i> پشتیبانی</h4><p>از دکمه هدست پایین سمت چپ برای ارتباط با پشتیبانی استفاده کنید.</p></div></div>
             </div>
         </section>
 
@@ -1887,11 +1815,11 @@
     </div>
 
     <!-- ================================================================ -->
-    <!-- JAVASCRIPT -->
+    <!-- JAVASCRIPT (اصلاح‌شده) -->
     <!-- ================================================================ -->
     <script>
         // ================================================================
-        // 1. PARTICLES BACKGROUND
+        // 1. PARTICLES
         // ================================================================
         (function() {
             const canvas = document.getElementById('particles-canvas');
@@ -1984,18 +1912,8 @@
                 localStorage.setItem('theme', isDark ? 'dark' : 'light');
             }
 
-            function getAutoTheme() {
-                const hour = new Date().getHours();
-                return hour < 6 || hour >= 18;
-            }
-
             const saved = localStorage.getItem('theme');
-            let isDark;
-            if (saved === 'dark' || saved === 'light') {
-                isDark = saved === 'dark';
-            } else {
-                isDark = getAutoTheme();
-            }
+            let isDark = (saved === 'dark') || (saved === null && (new Date().getHours() < 6 || new Date().getHours() >= 18));
             setTheme(isDark);
 
             document.getElementById('themeToggleHeader').addEventListener('click', function(e) {
@@ -2004,7 +1922,6 @@
                 setTheme(!current);
                 showToast(!current ? 'تم تاریک' : 'تم روشن', 'success');
             });
-
             window.setTheme = setTheme;
         })();
 
@@ -2070,25 +1987,18 @@
                 localStorage.setItem('pwa-banner-dismissed', 'true');
             });
 
-            if (window.matchMedia('(display-mode: standalone)').matches) {
+            if (window.matchMedia('(display-mode: standalone)').matches || localStorage.getItem('pwa-banner-dismissed') ===
+                'true') {
                 hideBanner();
-                localStorage.setItem('pwa-banner-dismissed', 'true');
+            } else {
+                setTimeout(showBanner, 4000);
             }
-            if (localStorage.getItem('pwa-banner-dismissed') === 'true') {
-                hideBanner();
-            }
-            setTimeout(function() {
-                if (!localStorage.getItem('pwa-banner-dismissed') && !window.matchMedia(
-                        '(display-mode: standalone)').matches) {
-                    showBanner();
-                }
-            }, 5000);
         })();
 
         // ================================================================
-        // 4. DATA LAYER (localStorage)
+        // 4. DATA LAYER (localStorage) با داده‌های نمونه اصلاح‌شده
         // ================================================================
-        const DB_KEY = 'taxi_dispatch_db_v3';
+        const DB_KEY = 'taxi_dispatch_db_v4';
 
         function getDB() {
             const raw = localStorage.getItem(DB_KEY);
@@ -2120,7 +2030,7 @@
                     },
                     tripCounter: 1
                 };
-                // نمونه داده
+                // رانندگان نمونه
                 db.drivers = [
                     { id: 'd1', fullName: 'علی محمدی', phone: '09123456789', nationalCode: '0012345678',
                         licenseNumber: 'L12345', joinDate: '1403-01-15', status: 'active', commissionRate: 15,
@@ -2129,12 +2039,13 @@
                         licenseNumber: 'L67890', joinDate: '1403-02-20', status: 'active', commissionRate: 12,
                         notes: '' }
                 ];
+                // خودروها با تاریخ انقضا در آینده (۱۴۰۵)
                 db.vehicles = [
                     { id: 'v1', plateNumber: '۱۲ب۳۴۵', brand: 'پژو ۴۰۵', model: 'GLX', color: 'سفید', year: 1398,
-                        driverId: 'd1', insuranceExpiry: '1404-06-01', technicalExpiry: '1404-04-15',
+                        driverId: 'd1', insuranceExpiry: '1405-06-01', technicalExpiry: '1405-04-15',
                         status: 'active', notes: '' },
                     { id: 'v2', plateNumber: '۴۵۶ج۷۸', brand: 'سمند', model: 'LX', color: 'نقره‌ای', year: 1400,
-                        driverId: 'd2', insuranceExpiry: '1404-03-10', technicalExpiry: '1404-05-20',
+                        driverId: 'd2', insuranceExpiry: '1405-03-10', technicalExpiry: '1405-05-20',
                         status: 'active', notes: '' }
                 ];
                 db.addresses = [
@@ -2143,10 +2054,11 @@
                     { id: 'a2', title: 'پایانه مسافربری', address: 'پایانه غرب', neighborhood: 'آزادی', city: 'تهران',
                         lat: 35.704, lng: 51.335, notes: '' }
                 ];
+                // مشترکین با تاریخ اشتراک در آینده
                 db.subscribers = [
                     { id: 'p1', fullName: 'مریم حسینی', phone: '09121234567', type: 'individual',
                         subscriptionNumber: 'SUB-0001', subscriptionType: 'monthly',
-                        subscriptionStart: '1403-09-01', subscriptionEnd: '1403-10-01',
+                        subscriptionStart: '1405-01-01', subscriptionEnd: '1405-02-01',
                         subscriptionPrice: 1500000, address: 'تهران، خیابان آزادی', companyName: '',
                         nationalId: '', companyPhone: '', companyAddress: '', notes: '', debt: 0 },
                     { id: 'p2', fullName: 'شرکت انصارالمهدی', phone: '02112345678', type: 'corporate',
@@ -2164,9 +2076,9 @@
             }
         }
 
+        // ===== توابع دسترسی به داده =====
         function getSettings() { const db = getDB(); return db ? db.settings : { commissionDefault: 15, farePerKm: 5000,
-                baseFare: 15000, currency: 'IRR', companyName: 'کارن‌سافت', address: 'https://karen-soft.ir',
-                phone: 'info@karen-soft.ir', taxRate: 0 }; }
+                baseFare: 15000 }; }
 
         function updateSettings(s) { const db = getDB(); if (db) { db.settings = { ...db.settings, ...s };
                 saveDB(db); } }
@@ -2210,21 +2122,11 @@
         function deleteAddress(id) { const db = getDB(); if (db) { db.addresses = db.addresses.filter(a => a.id !== id);
                 saveDB(db); } }
 
-        function saveSubscriber(s) {
-            const db = getDB();
-            if (db) {
-                const i = db.subscribers.findIndex(x => x.id === s.id);
-                if (i >= 0) db.subscribers[i] = s;
-                else {
-                    if (!s.subscriptionNumber) {
-                        const count = db.subscribers.length + 1;
-                        s.subscriptionNumber = 'SUB-' + String(count).padStart(4, '0');
-                    }
-                    db.subscribers.push(s);
-                }
-                saveDB(db);
-            }
-        }
+        function saveSubscriber(s) { const db = getDB(); if (db) { const i = db.subscribers.findIndex(x => x.id === s.id); if (i >=
+                    0) db.subscribers[i] = s;
+                else { if (!s.subscriptionNumber) { const count = db.subscribers.length + 1;
+                        s.subscriptionNumber = 'SUB-' + String(count).padStart(4, '0'); } db.subscribers.push(s); }
+                saveDB(db); } }
 
         function deleteSubscriber(id) { const db = getDB(); if (db) { db.subscribers = db.subscribers.filter(p => p.id !==
                     id);
@@ -2314,8 +2216,6 @@
         function getVehiclePlate(id) { const v = getVehicles().find(x => x.id === id); return v ? v.plateNumber : '—'; }
 
         function getSubscriberName(id) { const s = getSubscribers().find(x => x.id === id); return s ? s.fullName : ''; }
-
-        function getAddressTitle(id) { const a = getAddresses().find(x => x.id === id); return a ? a.title : ''; }
 
         function toJalali(gy, gm, gd) {
             const g_d_m = [0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334];
@@ -2568,6 +2468,7 @@
             <div class="stat-card"><div class="stat-icon"><i class="fas fa-money-bill"></i></div><div class="stat-value">${formatNumber(todayRevenue)}</div><div class="stat-label">درآمد امروز (تومان)</div></div>
           `;
 
+            // نمودار ۷ روزه
             const days = [],
                 revenues = [];
             for (let i = 6; i >= 0; i--) {
@@ -2582,16 +2483,19 @@
             }
             renderBarChart('chartRevenue7', days, revenues, 'درآمد (تومان)');
 
+            // نمودار روش پرداخت
             const methods = { cash: 0, card: 0, subscription: 0, online: 0 };
             trips.forEach(t => { if (methods[t.paymentMethod] !== undefined) methods[t.paymentMethod]++; });
             renderPieChart('chartPaymentMethods', ['نقدی', 'کارتی', 'اشتراک', 'آنلاین'],
                 [methods.cash, methods.card, methods.subscription, methods.online],
                 ['#D4AF37', '#3b82f6', '#10b981', '#f59e0b']);
 
+            // آخرین سفرها
             const recentTrips = [...trips].sort((a, b) => new Date(b.pickupTime) - new Date(a.pickupTime)).slice(0, 5);
             let tripsHTML = '';
-            if (recentTrips.length === 0) { tripsHTML =
-                    '<div class="empty-state"><i class="fas fa-route"></i><p>سفری ثبت نشده است</p></div>'; } else {
+            if (recentTrips.length === 0) {
+                tripsHTML = '<div class="empty-state"><i class="fas fa-route"></i><p>سفری ثبت نشده است</p></div>';
+            } else {
                 tripsHTML =
                     `<table><thead><tr><th>زمان</th><th>مسافر</th><th>مبدأ</th><th>مقصد</th><th>کرایه</th><th>وضعیت</th></tr></thead><tbody>`;
                 recentTrips.forEach(t => {
@@ -2602,6 +2506,7 @@
             }
             document.getElementById('dashRecentTrips').innerHTML = tripsHTML;
 
+            // هشدارها (با تاریخ‌های اصلاح‌شده دیگر هشداری نیست)
             const alerts = [];
             const todayJKey = today;
             const warning30Date = new Date();
@@ -2699,7 +2604,7 @@
         }
 
         // ================================================================
-        // 9. DRIVERS (با خودرو یکجا)
+        // 9. DRIVERS
         // ================================================================
         function renderDrivers() {
             const drivers = getDrivers();
@@ -2797,8 +2702,8 @@
                 </div>
               </div>
               <div class="form-row mb-10">
-                <div class="form-group"><label class="form-label">تاریخ انقضای بیمه</label><input class="form-input" type="text" id="vhInsurance" placeholder="1404-06-01" value="${vehicle?vehicle.insuranceExpiry:''}"></div>
-                <div class="form-group"><label class="form-label">تاریخ انقضای معاینه فنی</label><input class="form-input" type="text" id="vhTechnical" placeholder="1404-04-15" value="${vehicle?vehicle.technicalExpiry:''}"></div>
+                <div class="form-group"><label class="form-label">تاریخ انقضای بیمه</label><input class="form-input" type="text" id="vhInsurance" placeholder="1405-06-01" value="${vehicle?vehicle.insuranceExpiry:''}"></div>
+                <div class="form-group"><label class="form-label">تاریخ انقضای معاینه فنی</label><input class="form-input" type="text" id="vhTechnical" placeholder="1405-04-15" value="${vehicle?vehicle.technicalExpiry:''}"></div>
               </div>
               <div class="form-group mb-10"><label class="form-label">یادداشت خودرو</label><textarea class="form-textarea" id="vhNotes">${vehicle?vehicle.notes:''}</textarea></div>
 
@@ -3265,7 +3170,6 @@
 
                 saveTripToDB(trip);
 
-                // اگر تسویه به صورت حقوقی باشد، بدهی مشترک افزایش می‌یابد
                 if (billedTo === 'company' && subscriberId) {
                     const sub = getSubscribers().find(s => s.id === subscriberId);
                     if (sub) {
@@ -3356,13 +3260,13 @@
         }
 
         // ================================================================
-        // 13. ACCOUNTING - DRIVER
+        // 13. ACCOUNTING - DRIVER STATEMENT (اصلاح‌شده)
         // ================================================================
         function populateAccDrivers() {
             const drivers = getDrivers();
             document.getElementById('accDriverSelect').innerHTML = '<option value="">انتخاب راننده...</option>' + drivers
                 .map(d => `<option value="${d.id}">${d.fullName}</option>`).join('');
-            const today = todayJalali();
+            const today = new Date().toISOString().split('T')[0];
             document.getElementById('accDriverFrom').value = today;
             document.getElementById('accDriverTo').value = today;
         }
@@ -3373,12 +3277,21 @@
             const to = document.getElementById('accDriverTo').value;
             if (!driverId) { showToast('راننده را انتخاب کنید', 'error'); return; }
             const driver = getDrivers().find(d => d.id === driverId);
-            const trips = getTrips().filter(t => t.driverId === driverId && t.status === 'completed');
-            let filteredTrips = [...trips];
-            const fromKey = from ? gregorianToJalaliKey(from) : '';
-            const toKey = to ? gregorianToJalaliKey(to) : '';
-            if (fromKey) filteredTrips = filteredTrips.filter(t => isoToJalaliKey(t.pickupTime) >= fromKey);
-            if (toKey) filteredTrips = filteredTrips.filter(t => isoToJalaliKey(t.pickupTime) <= toKey);
+            if (!driver) { showToast('راننده یافت نشد', 'error'); return; }
+
+            // دریافت تمام سفرهای تکمیل‌شده این راننده
+            const allTrips = getTrips().filter(t => t.driverId === driverId && t.status === 'completed');
+            let filteredTrips = [...allTrips];
+
+            // فیلتر بر اساس تاریخ (اگر کاربر انتخاب کرده باشد)
+            if (from) {
+                const fromKey = gregorianToJalaliKey(from);
+                if (fromKey) filteredTrips = filteredTrips.filter(t => isoToJalaliKey(t.pickupTime) >= fromKey);
+            }
+            if (to) {
+                const toKey = gregorianToJalaliKey(to);
+                if (toKey) filteredTrips = filteredTrips.filter(t => isoToJalaliKey(t.pickupTime) <= toKey);
+            }
 
             const totalFare = filteredTrips.reduce((s, t) => s + t.fare, 0);
             const totalCommission = filteredTrips.reduce((s, t) => s + t.commission, 0);
@@ -3390,6 +3303,7 @@
             const debt = totalCommission - totalCorporateShare;
             const balance = totalShare - totalPaid;
 
+            // گروه‌بندی بر اساس شرکت
             const companyGroups = {};
             filteredTrips.forEach(t => {
                 if (t.companyId) {
@@ -3481,7 +3395,7 @@
                 const j = toJalali(d.getFullYear(), d.getMonth() + 1, 1);
                 const monthKey = `${j.jy}-${String(j.jm).padStart(2,'0')}`;
                 const monthTrips = trips.filter(t => isoToJalaliMonthKey(t.pickupTime) === monthKey);
-                const monthIncome = monthTrips.reduce((s, t) => s + t.commission, 0); // درآمد = کمیسیون‌ها
+                const monthIncome = monthTrips.reduce((s, t) => s + t.commission, 0);
                 const monthExpense = transactions.filter(tr => {
                     if (tr.type !== 'expense') return false;
                     const trMonthKey = (tr.date || '').substring(0, 7);
@@ -3555,7 +3469,7 @@
             select.innerHTML = '<option value="">انتخاب مشترک...</option>' + subscribers
                 .map(s => `<option value="${s.id}">${s.fullName} (${s.type === 'corporate' ? 'حقوقی' : 'حقیقی'}) [${s.subscriptionNumber||''}]</option>`)
                 .join('');
-            const today = todayJalali();
+            const today = new Date().toISOString().split('T')[0];
             document.getElementById('accSubFrom').value = today;
             document.getElementById('accSubTo').value = today;
         }
@@ -3570,10 +3484,14 @@
 
             const trips = getTrips().filter(t => t.subscriberId === subscriberId && t.status === 'completed');
             let filteredTrips = [...trips];
-            const fromKey = from ? gregorianToJalaliKey(from) : '';
-            const toKey = to ? gregorianToJalaliKey(to) : '';
-            if (fromKey) filteredTrips = filteredTrips.filter(t => isoToJalaliKey(t.pickupTime) >= fromKey);
-            if (toKey) filteredTrips = filteredTrips.filter(t => isoToJalaliKey(t.pickupTime) <= toKey);
+            if (from) {
+                const fromKey = gregorianToJalaliKey(from);
+                if (fromKey) filteredTrips = filteredTrips.filter(t => isoToJalaliKey(t.pickupTime) >= fromKey);
+            }
+            if (to) {
+                const toKey = gregorianToJalaliKey(to);
+                if (toKey) filteredTrips = filteredTrips.filter(t => isoToJalaliKey(t.pickupTime) <= toKey);
+            }
 
             const totalFare = filteredTrips.reduce((s, t) => s + t.fare, 0);
             const totalCorporate = filteredTrips.filter(t => t.billedTo === 'company').length;
@@ -3697,7 +3615,7 @@
         }
 
         // ================================================================
-        // 17. EXPENSES (هزینه‌های جانبی)
+        // 17. EXPENSES
         // ================================================================
         function renderExpenses() {
             const expenses = getExpenses();
@@ -3742,7 +3660,7 @@
             <div class="modal-header"><div class="modal-title">${isEdit ? 'ویرایش هزینه' : 'ثبت هزینه جدید'}</div><button class="modal-close" onclick="closeModal()"><i class="fas fa-times"></i></button></div>
             <form onsubmit="return saveExpenseForm(event, '${id||''}')">
               <div class="form-row mb-10">
-                <div class="form-group"><label class="form-label">تاریخ *</label><input class="form-input" type="date" id="expDate" required value="${exp ? exp.date : todayJalali()}"></div>
+                <div class="form-group"><label class="form-label">تاریخ *</label><input class="form-input" type="date" id="expDate" required value="${exp ? exp.date : new Date().toISOString().split('T')[0]}"></div>
                 <div class="form-group"><label class="form-label">دسته‌بندی *</label>
                   <select class="form-select" id="expCategory" required>
                     <option value="برق" ${exp && exp.category === 'برق' ? 'selected' : ''}>برق</option>
@@ -3918,7 +3836,7 @@
         }
 
         // ================================================================
-        // 22. SERVICE WORKER REGISTRATION
+        // 22. SERVICE WORKER
         // ================================================================
         if ('serviceWorker' in navigator) {
             const swCode = `
