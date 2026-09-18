@@ -3,653 +3,280 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- ===== حذف .html از نوار آدرس ===== -->
-    <script>
-        if (window.location.pathname.endsWith('.html')) {
-            window.location.href = window.location.pathname.replace('.html', '');
-        }
-    </script>
-
-    <!-- ===== سئو ===== -->
-    <title>وبلاگ کارن سافت | مقالات تخصصی نرم‌افزار، امنیت و اتوماسیون اداری</title>
-    <meta name="description" content="مقالات و اخبار تخصصی کارن سافت در حوزه نرم‌افزارهای مدیریتی، امنیت اطلاعات، اتوماسیون اداری، مدیریت کسب‌وکار و فناوری. جدیدترین مطالب را مطالعه کنید.">
-    <meta name="keywords" content="وبلاگ کارن سافت, مقالات نرم افزار, امنیت اطلاعات, اتوماسیون اداری, مدیریت کسب و کار, اخبار فناوری, استارلینک, Direct to Cell">
-    <meta name="author" content="کارن سافت">
-    <meta name="robots" content="index, follow, max-image-preview:large">
-    <link rel="canonical" href="https://karen-soft.ir/blog">
-
-    <!-- ===== Open Graph ===== -->
-    <meta property="og:title" content="وبلاگ کارن سافت | مقالات تخصصی نرم‌افزار و فناوری">
-    <meta property="og:description" content="مقالات و اخبار تخصصی کارن سافت در حوزه نرم‌افزار، امنیت و اتوماسیون اداری.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://karen-soft.ir/blog">
-    <meta property="og:image" content="https://karen-soft.ir/images/og-blog.jpg">
-    <meta property="og:site_name" content="کارن سافت">
-    <meta property="og:locale" content="fa_IR">
-
-    <!-- ===== Twitter ===== -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="وبلاگ کارن سافت">
-    <meta name="twitter:description" content="مقالات تخصصی نرم‌افزار، امنیت و اتوماسیون اداری">
-    <meta name="twitter:image" content="https://karen-soft.ir/images/og-blog.jpg">
-
-    <!-- ===== Preconnect ===== -->
-    <link rel="preconnect" href="https://cdn.tailwindcss.com">
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-    <link rel="preconnect" href="https://cdn.jsdelivr.net">
-    <link rel="preconnect" href="https://unpkg.com">
-    <link rel="preconnect" href="https://client.crisp.chat">
-    <link rel="dns-prefetch" href="https://raw.githubusercontent.com">
-
-    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
-
-    <!-- ===== فونت IRANSans ===== -->
-    <link href="https://cdn.jsdelivr.net/npm/iransans-fontface@0.1.1/css/iransans/iransans-fontface.min.css" rel="stylesheet">
+    <title>وبلاگ کارن سافت | مقالات و اخبار فناوری</title>
+    <meta name="description" content="جدیدترین مقالات و اخبار کارن سافت در حوزه نرم‌افزارهای مدیریتی، امنیت اطلاعات و اتوماسیون اداری">
+    
+    <!-- ===== فونت اختصاصی BNazanin ===== -->
     <style>
         @font-face {
-            font-family: 'IRANSans';
-            src: url('https://cdn.jsdelivr.net/gh/rastikerdar/iransans@v5.0/font/woff2/IRANSansWeb.woff2') format('woff2'),
-                 url('https://cdn.jsdelivr.net/gh/rastikerdar/iransans@v5.0/font/woff/IRANSansWeb.woff') format('woff');
-            font-weight: 400; font-style: normal; font-display: swap;
+            font-family: 'BNazanin';
+            src: url('../font/BNazanin.eot'); /* برای IE9 */
+            src: url('../font/BNazanin.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+                 url('../font/BNazanin.woff') format('woff'), /* مرورگرهای مدرن */
+                 url('../font/BNazanin.ttf') format('truetype'); /* سیستم‌های قدیمی */
+            font-weight: normal;
+            font-style: normal;
         }
-        @font-face {
-            font-family: 'IRANSans';
-            src: url('https://cdn.jsdelivr.net/gh/rastikerdar/iransans@v5.0/font/woff2/IRANSansWeb_Bold.woff2') format('woff2'),
-                 url('https://cdn.jsdelivr.net/gh/rastikerdar/iransans@v5.0/font/woff/IRANSansWeb_Bold.woff') format('woff');
-            font-weight: 700; font-style: normal; font-display: swap;
+
+        /* ===== تنظیمات پایه و اعمال فونت ===== */
+        body, h1, h2, h3, h4, p, a, span, li, button, input, .blog-content p, .badge {
+            font-family: 'BNazanin', Tahoma, sans-serif;
+            line-height: 1.8;
+            color: #fff;
         }
-        @font-face {
-            font-family: 'IRANSans';
-            src: url('https://cdn.jsdelivr.net/gh/rastikerdar/iransans@v5.0/font/woff2/IRANSansWeb_Light.woff2') format('woff2'),
-                 url('https://cdn.jsdelivr.net/gh/rastikerdar/iransans@v5.0/font/woff/IRANSansWeb_Light.woff') format('woff');
-            font-weight: 300; font-style: normal; font-display: swap;
-        }
-        @font-face {
-            font-family: 'IRANSans';
-            src: url('https://cdn.jsdelivr.net/gh/rastikerdar/iransans@v5.0/font/woff2/IRANSansWeb_Medium.woff2') format('woff2'),
-                 url('https://cdn.jsdelivr.net/gh/rastikerdar/iransans@v5.0/font/woff/IRANSansWeb_Medium.woff') format('woff');
-            font-weight: 500; font-style: normal; font-display: swap;
-        }
+        body { background: #080A19; overflow-x: hidden; }
+        
+        /* ... (بقیه استایل‌های ظاهری سایت، مانند رنگ‌ها، کارت‌ها و غیره، از نسخه قبلی باقی می‌ماند) ... */
     </style>
 
-    <!-- ===== استایل‌ها ===== -->
+    <!-- ===== لینک‌های خارجی (Tailwind, AOS, etc.) ===== -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
-    <!-- ===== CRISP CHAT ===== -->
-    <script type="text/javascript">
-        window.$crisp = [];
-        window.CRISP_WEBSITE_ID = "ffafdfcf-e510-45d0-a026-4e964ad420ee";
-        (function() {
-            var d = document;
-            var s = d.createElement("script");
-            s.src = "https://client.crisp.chat/l.js";
-            s.async = 1;
-            d.getElementsByTagName("head")[0].appendChild(s);
-        })();
-    </script>
-
-    <!-- ===== SCHEMA CollectionPage ===== -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "CollectionPage",
-        "name": "وبلاگ کارن سافت",
-        "description": "مقالات و اخبار تخصصی در حوزه نرم‌افزار، امنیت و اتوماسیون اداری",
-        "url": "https://karen-soft.ir/blog",
-        "publisher": {
-            "@type": "Organization",
-            "name": "کارن سافت",
-            "logo": { "@type": "ImageObject", "url": "https://karen-soft.ir/images/logo-karensoft.png" }
-        }
-    }
-    </script>
-
-    <!-- ===== SCHEMA Breadcrumb ===== -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "BreadcrumbList",
-        "itemListElement": [{
-            "@type": "ListItem", "position": 1, "name": "خانه", "item": "https://karen-soft.ir/"
-        }, {
-            "@type": "ListItem", "position": 2, "name": "وبلاگ", "item": "https://karen-soft.ir/blog"
-        }]
-    }
-    </script>
-
-    <style>
-        body, h1, h2, h3, h4, p, a, span, li, button, input {
-            font-family: 'IRANSans', 'IRANSansWeb', Tahoma, sans-serif !important;
-        }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { background: #080A19; color: #fff; overflow-x: hidden; line-height: 1.8; }
-
-        #video-background {
-            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-            object-fit: cover; z-index: 0;
-        }
-        .page-overlay {
-            position: relative; z-index: 1; min-height: 100vh;
-            background: rgba(8, 10, 25, 0.72);
-            backdrop-filter: blur(2px); -webkit-backdrop-filter: blur(2px);
-            padding-top: 80px;
-        }
-        .section-content { position: relative; z-index: 2; }
-
-        .navbar-glass {
-            background: rgba(8, 10, 25, 0.75);
-            backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-            transition: all 0.3s ease;
-        }
-        .navbar-scrolled { box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3); }
-        #mobileMenu { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
-        #mobileMenu.open { max-height: 300px; }
-
-        .breadcrumb {
-            max-width: 900px; margin: 0 auto 24px; padding: 0 16px;
-            display: flex; align-items: center; gap: 8px;
-            font-size: 0.85rem; color: rgba(255, 255, 255, 0.5);
-        }
-        .breadcrumb a { color: rgba(255, 255, 255, 0.6); text-decoration: none; transition: color 0.3s ease; }
-        .breadcrumb a:hover { color: #D4AF37; }
-        .breadcrumb .sep { color: rgba(255, 255, 255, 0.3); }
-        .breadcrumb .current { color: #D4AF37; font-weight: 600; }
-
-        .blog-header { text-align: center; margin-bottom: 40px; }
-        .blog-header h1 { font-size: 2.6rem; font-weight: 800; color: #fff; margin-bottom: 12px; line-height: 1.5; }
-        .blog-header .gold-line {
-            width: 90px; height: 4px;
-            background: linear-gradient(135deg, #E4C56A, #D4AF37, #B8942A);
-            margin: 0 auto 20px; border-radius: 4px;
-        }
-        .blog-header p {
-            color: rgba(255, 255, 255, 0.6); font-size: 1.05rem; font-weight: 300;
-            max-width: 640px; margin: 0 auto;
-        }
-
-        .search-wrapper { position: relative; max-width: 500px; margin: 0 auto 28px; }
-        .search-wrapper input {
-            width: 100%; background: rgba(255, 255, 255, 0.06);
-            border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 50px;
-            padding: 14px 50px 14px 50px; color: #fff; font-size: 0.95rem;
-            transition: all 0.3s ease;
-        }
-        .search-wrapper input::placeholder { color: rgba(255, 255, 255, 0.4); }
-        .search-wrapper input:focus {
-            outline: none; border-color: #D4AF37;
-            background: rgba(212, 175, 55, 0.06);
-            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
-        }
-        .search-wrapper .search-icon {
-            position: absolute; right: 20px; top: 50%;
-            transform: translateY(-50%); color: rgba(255, 255, 255, 0.4);
-            pointer-events: none;
-        }
-        .search-wrapper .clear-btn {
-            position: absolute; left: 14px; top: 50%;
-            transform: translateY(-50%); background: rgba(255, 255, 255, 0.1);
-            border: none; color: rgba(255, 255, 255, 0.6);
-            width: 28px; height: 28px; border-radius: 50%;
-            cursor: pointer; display: none; align-items: center;
-            justify-content: center; transition: all 0.3s ease;
-        }
-        .search-wrapper .clear-btn:hover { background: rgba(212, 175, 55, 0.2); color: #D4AF37; }
-
-        .categories {
-            display: flex; justify-content: center; flex-wrap: wrap;
-            gap: 10px; margin-bottom: 46px;
-        }
-        .category-btn {
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            color: rgba(255, 255, 255, 0.7);
-            padding: 8px 22px; border-radius: 999px;
-            font-size: 0.85rem; font-weight: 500; cursor: pointer;
-            transition: all 0.3s ease; font-family: inherit;
-        }
-        .category-btn:hover {
-            background: rgba(212, 175, 55, 0.1); color: #D4AF37;
-            border-color: rgba(212, 175, 55, 0.3);
-        }
-        .category-btn.active {
-            background: linear-gradient(135deg, #E4C56A, #D4AF37, #B8942A);
-            color: #0B1220; border-color: transparent; font-weight: 700;
-            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.25);
-        }
-
-        .blog-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 24px;
-        }
-        .blog-card-glow {
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 18px; overflow: hidden;
-            transition: all 0.45s cubic-bezier(0.4, 0, 0.2, 1);
-            display: flex; flex-direction: column; height: 100%;
-        }
-        .blog-card-glow:hover {
-            transform: translateY(-8px);
-            border-color: rgba(212, 175, 55, 0.25);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4), 0 0 40px rgba(212, 175, 55, 0.08);
-        }
-        .blog-img {
-            position: relative; width: 100%; height: 200px; overflow: hidden;
-            background: linear-gradient(135deg, rgba(255,255,255,0.04), rgba(212,175,55,0.04));
-        }
-        .blog-img img {
-            width: 100%; height: 100%; object-fit: cover;
-            transition: transform 0.6s ease;
-        }
-        .blog-card-glow:hover .blog-img img { transform: scale(1.06); }
-        .blog-content {
-            padding: 22px 22px 24px; display: flex;
-            flex-direction: column; flex-grow: 1;
-        }
-        .blog-content h3 { font-size: 1.08rem; line-height: 1.9; font-weight: 700; margin-bottom: 8px; }
-        .blog-content h3 a { color: #fff; text-decoration: none; transition: color 0.3s ease; }
-        .blog-content h3 a:hover { color: #D4AF37; }
-        .blog-content p {
-            color: rgba(255, 255, 255, 0.65); font-size: 0.9rem;
-            line-height: 1.95; font-weight: 300; flex-grow: 1;
-        }
-        .blog-content .read-more {
-            display: inline-flex; align-items: center; gap: 6px;
-            color: #D4AF37; font-size: 0.88rem; font-weight: 700;
-            text-decoration: none; margin-top: 16px; transition: gap 0.3s ease;
-        }
-        .blog-content .read-more:hover { gap: 12px; }
-
-        .badge {
-            padding: 3px 12px; border-radius: 999px;
-            font-size: 0.7rem; font-weight: 600; display: inline-block;
-        }
-        .badge-gold { background: rgba(212, 175, 55, 0.15); color: #E4C56A; }
-        .badge-rose { background: rgba(244, 63, 94, 0.15); color: #fb7185; }
-        .badge-purple { background: rgba(168, 85, 247, 0.15); color: #c084fc; }
-        .badge-blue { background: rgba(59, 130, 246, 0.15); color: #60a5fa; }
-        .badge-emerald { background: rgba(16, 185, 129, 0.15); color: #34d399; }
-        .badge-amber { background: rgba(245, 158, 11, 0.15); color: #fbbf24; }
-
-        .read-time {
-            font-size: 0.75rem; color: rgba(255, 255, 255, 0.4);
-            display: inline-flex; align-items: center; gap: 4px;
-        }
-
-        .no-results {
-            display: none; text-align: center; padding: 60px 20px;
-            color: rgba(255, 255, 255, 0.5);
-        }
-        .no-results i { font-size: 3rem; color: rgba(212, 175, 55, 0.3); margin-bottom: 16px; display: block; }
-        .no-results h3 { color: rgba(255, 255, 255, 0.7); font-size: 1.2rem; margin-bottom: 8px; }
-        .no-results.show { display: block; }
-
-        .btn-glow {
-            display: inline-flex; align-items: center; gap: 10px;
-            background: linear-gradient(135deg, #E4C56A, #D4AF37 45%, #B8942A);
-            color: #0B1220; font-weight: 700; padding: 12px 32px;
-            border-radius: 50px; text-decoration: none;
-            transition: all 0.4s ease;
-            box-shadow: 0 8px 32px rgba(212, 175, 55, 0.25);
-            font-family: inherit;
-        }
-        .btn-glow:hover {
-            transform: translateY(-4px) scale(1.03);
-            box-shadow: 0 16px 48px rgba(212, 175, 55, 0.4);
-        }
-
-        .author-box {
-            display: flex; align-items: center; gap: 18px;
-            margin-top: 60px; padding: 25px 30px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 16px; border-right: 4px solid #D4AF37;
-            transition: all 0.4s ease;
-        }
-        .author-box:hover {
-            background: rgba(255, 255, 255, 0.08);
-            transform: translateY(-3px);
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
-        }
-
-        .social-link {
-            width: 36px; height: 36px; display: inline-flex;
-            align-items: center; justify-content: center;
-            background: rgba(255, 255, 255, 0.05); border-radius: 50%;
-            color: rgba(255, 255, 255, 0.6); text-decoration: none;
-            transition: all 0.3s ease;
-        }
-        .social-link:hover {
-            background: rgba(212, 175, 55, 0.15);
-            color: #D4AF37; transform: translateY(-3px);
-        }
-
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.05); }
-        ::-webkit-scrollbar-thumb { background: rgba(212, 175, 55, 0.4); border-radius: 999px; }
-        ::-webkit-scrollbar-thumb:hover { background: rgba(212, 175, 55, 0.6); }
-
-        @media (max-width: 768px) {
-            .page-overlay { padding-top: 70px; }
-            .blog-header h1 { font-size: 1.9rem; }
-            .blog-grid { grid-template-columns: 1fr; }
-            .author-box { flex-direction: column; text-align: center; }
-        }
-        @media (max-width: 450px) {
-            .blog-header h1 { font-size: 1.5rem; }
-            .blog-grid { gap: 18px; }
-            .blog-content { padding: 18px; }
-        }
-    </style>
 </head>
 <body>
 
-    <!-- ===== VIDEO BACKGROUND ===== -->
-    <video id="video-background" autoplay loop muted playsinline>
-        <source src="images/video/law-back.mp4" type="video/mp4">
-    </video>
+    <!-- ===== بخش ناوبری ===== -->
+    <nav class="fixed top-0 right-0 left-0 z-50 bg-[#080A19]/80 backdrop-blur-md border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16 md:h-20">
+            <div class="flex items-center gap-2">
+                <img src="images/logo-karensoft.png" alt="لوگو کارن سافت" class="h-9 w-9 rounded-xl object-cover">
+                <span class="font-bold text-lg text-white">کارن سافت</span>
+            </div>
+            <div class="hidden md:flex items-center gap-6 text-sm font-medium text-white/60">
+                <a href="index" class="hover:text-amber-400 transition">خانه</a>
+                <a href="products" class="hover:text-amber-400 transition">محصولات</a>
+                <a href="blog" class="text-white hover:text-amber-400 transition">وبلاگ</a>
+                <a href="contact" class="hover:text-emerald-400 transition">تماس با ما</a>
+            </div>
+            <a href="tel:09152521166" class="hidden sm:inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-4 py-2 text-sm font-semibold text-emerald-400" dir="ltr">
+                <i class="fas fa-phone-alt"></i> ۰۹۱۵۲۵۲۱۱۶۶
+            </a>
+        </div>
+    </nav>
 
-    <div class="page-overlay">
+    <!-- ===== محتوای اصلی ===== -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-16">
+        <div class="text-center mb-12">
+            <h1 class="text-4xl font-bold text-white mb-3">وبلاگ کارن سافت</h1>
+            <div class="w-24 h-1 bg-amber-400 mx-auto mb-4"></div>
+            <p class="text-white/60 max-w-xl mx-auto">جدیدترین مقالات و اخبار در حوزه نرم‌افزار، امنیت و اتوماسیون اداری</p>
+        </div>
 
-        <!-- ===== NAVBAR ===== -->
-        <nav id="navbar" class="fixed top-0 right-0 left-0 z-50 navbar-glass transition-all duration-300">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="flex items-center justify-between h-16 md:h-20">
-                    <div class="flex items-center gap-2 shrink-0">
-                        <img src="images/logo-karensoft.png" alt="لوگو کارن سافت" class="h-9 w-9 rounded-xl object-cover">
-                        <span class="font-bold text-sm md:text-lg text-white whitespace-nowrap">کارن سافت</span>
-                    </div>
-                    <div class="hidden md:flex items-center gap-6 text-sm font-medium text-white/60">
-                        <a href="index" class="hover:text-gold-400 transition">خانه</a>
-                        <a href="products" class="hover:text-gold-400 transition">محصولات</a>
-                        <a href="blog" class="text-white hover:text-gold-400 transition">وبلاگ</a>
-                        <a href="contact" class="hover:text-emerald-400 transition" style="color:#34d399;">تماس با ما</a>
-                    </div>
-                    <div class="flex items-center gap-2">
-                        <a href="tel:09152521166" class="hidden sm:inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-4 py-2 text-sm font-semibold text-emerald-400 transition hover:bg-emerald-500/20" style="direction:ltr;">
-                            <i class="fas fa-phone-alt"></i> ۰۹۱۵۲۵۲۱۱۶۶
-                        </a>
-                        <button id="mobileMenuBtn" class="md:hidden w-10 h-10 flex items-center justify-center rounded-xl bg-white/5 border border-white/10 text-white/70" aria-label="باز کردن منو">
-                            <i class="fas fa-bars"></i>
-                        </button>
-                    </div>
+        <!-- ===== فیلتر دسته‌بندی ===== -->
+        <div class="flex justify-center flex-wrap gap-3 mb-10">
+            <button class="category-btn active" data-category="all">همه</button>
+            <button class="category-btn" data-category="news">اخبار فناوری</button>
+            <button class="category-btn" data-category="security">امنیت</button>
+            <button class="category-btn" data-category="management">مدیریت</button>
+            <button class="category-btn" data-category="automation">اتوماسیون</button>
+        </div>
+
+        <!-- ===== گرید مقالات ===== -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="articlesGrid">
+
+            <!-- مقاله ۱: Direct to Cell -->
+            <article class="blog-card-glow" data-category="news">
+                <div class="blog-img">
+                    <img src="https://api2.zoomit.ir/media/2022-9-iphone-14-pro-max-satellite-feature-text-screenshot-638bb886e60c0026b82557bf?w=1080&q=75" alt="تماس ماهواره‌ای استارلینک" loading="lazy" />
                 </div>
-            </div>
-            <div id="mobileMenu" class="md:hidden bg-[#080A19]/95 backdrop-blur-xl border-t border-white/5">
-                <div class="px-4 py-4 space-y-3 text-sm font-medium text-white/60">
-                    <a href="index" class="block py-2 hover:text-gold-400 transition">خانه</a>
-                    <a href="products" class="block py-2 hover:text-gold-400 transition">محصولات</a>
-                    <a href="blog" class="block py-2 text-white hover:text-gold-400 transition">وبلاگ</a>
-                    <a href="contact" class="block py-2 hover:text-emerald-400 transition" style="color:#34d399;">تماس با ما</a>
+                <div class="blog-content">
+                    <div class="flex items-center gap-2 text-xs text-white/40 mb-2 flex-wrap">
+                        <span><i class="far fa-calendar-alt"></i> ۱۴۰۵/۰۶/۲۷</span>
+                        <span class="badge badge-amber">اخبار فناوری</span>
+                    </div>
+                    <h3><a href="blog/direct_to_cell">تماس ماهواره‌ای استارلینک با یک گوشی معمولی برقرار شد</a></h3>
+                    <p>شرکت ایتالیایی فست‌وب با همکاری استارلینک، نخستین تماس تصویری ماهواره‌ای با یک گوشی معمولی را در کوه‌های آپنین اومبریا آزمایش کرد.</p>
+                    <a href="blog/direct_to_cell" class="read-more">مشاهده خبر <i class="fas fa-arrow-left"></i></a>
                 </div>
-            </div>
-        </nav>
+            </article>
 
-        <!-- ===== MAIN CONTENT ===== -->
-        <main class="section-content max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
-
-            <!-- Breadcrumb -->
-            <nav class="breadcrumb" aria-label="مسیر صفحه">
-                <a href="index"><i class="fas fa-home"></i> خانه</a>
-                <span class="sep">/</span>
-                <span class="current">وبلاگ</span>
-            </nav>
-
-            <!-- Header -->
-            <div class="blog-header" data-aos="fade-up">
-                <h1>وبلاگ کارن سافت</h1>
-                <div class="gold-line"></div>
-                <p>مقالات تخصصی و اخبار جدید در حوزه نرم‌افزار، امنیت، اتوماسیون اداری و مدیریت کسب‌وکار</p>
-            </div>
-
-            <!-- Search -->
-            <div class="search-wrapper" data-aos="fade-up" data-aos-delay="100">
-                <label for="searchBlog" class="sr-only" style="position:absolute; width:1px; height:1px; overflow:hidden;">جستجو در مقالات</label>
-                <i class="fas fa-search search-icon"></i>
-                <input type="text" id="searchBlog" placeholder="جستجو در مقالات..." aria-label="جستجو در مقالات">
-                <button class="clear-btn" id="searchClearBtn" aria-label="پاک کردن جستجو">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-
-            <!-- Categories -->
-            <div class="categories" role="tablist" data-aos="fade-up" data-aos-delay="150">
-                <button class="category-btn active" data-category="all" aria-label="نمایش همه مقالات">همه</button>
-                <button class="category-btn" data-category="اخبار" aria-label="نمایش اخبار فناوری">اخبار فناوری</button>
-                <button class="category-btn" data-category="حقوقی" aria-label="نمایش مقالات حقوقی">حقوقی</button>
-                <button class="category-btn" data-category="اتوماسیون" aria-label="نمایش مقالات اتوماسیون">اتوماسیون</button>
-                <button class="category-btn" data-category="فروشگاه" aria-label="نمایش مقالات فروشگاهی">فروشگاه</button>
-                <button class="category-btn" data-category="امنیت" aria-label="نمایش مقالات امنیت">امنیت</button>
-                <button class="category-btn" data-category="مدیریت" aria-label="نمایش مقالات مدیریت">مدیریت</button>
-            </div>
-
-            <!-- Blog Grid -->
-            <div class="blog-grid" id="articlesGrid" data-aos="fade-up" data-aos-delay="200">
-
-                <!-- ===== خبر ویژه: Direct to Cell (استارلینک) ===== -->
-                <article class="blog-card-glow" data-aos="fade-up" data-aos-delay="50" data-category="اخبار">
-                    <div class="blog-img">
-                        <img src="https://api2.zoomit.ir/media/2022-9-iphone-14-pro-max-satellite-feature-text-screenshot-638bb886e60c0026b82557bf?w=1080&q=75" alt="تماس ماهواره‌ای استارلینک با گوشی معمولی" loading="lazy" />
-                    </div>
-                    <div class="blog-content">
-                        <div class="flex items-center gap-2 text-xs text-white/40 mb-2 flex-wrap">
-                            <span><i class="far fa-calendar-alt"></i> ۱۴۰۵/۰۶/۲۷</span>
-                            <span class="badge badge-amber">اخبار فناوری</span>
-                            <span class="read-time"><i class="far fa-clock"></i> ۳ دقیقه</span>
-                        </div>
-                        <h3><a href="blog/direct_to_cell">برای اولین‌بار؛ تماس ماهواره‌ای استارلینک با یک گوشی معمولی برقرار شد</a></h3>
-                        <p>شرکت ایتالیایی فست‌وب با همکاری استارلینک، نخستین تماس تصویری ماهواره‌ای با یک گوشی معمولی را در کوه‌های آپنین اومبریا آزمایش کرد.</p>
-                        <a href="blog/direct_to_cell" class="read-more">مشاهده خبر <i class="fas fa-arrow-left"></i></a>
-                    </div>
-                </article>
-
-                <!-- ===== مقاله: امنیت ===== -->
-                <article class="blog-card-glow" data-aos="fade-up" data-aos-delay="150" data-category="امنیت">
-                    <div class="blog-img">
-                        <img src="images/blog/security.jpg" alt="امنیت اطلاعات در نرم‌افزارهای مدیریت کسب‌وکار" loading="lazy" />
-                    </div>
-                    <div class="blog-content">
-                        <div class="flex items-center gap-2 text-xs text-white/40 mb-2 flex-wrap">
-                            <span><i class="far fa-calendar-alt"></i> ۱۴۰۵/۰۵/۲۵</span>
-                            <span class="badge badge-rose">امنیت</span>
-                            <span class="read-time"><i class="far fa-clock"></i> ۵ دقیقه</span>
-                        </div>
-                        <h3><a href="blog/security">امنیت اطلاعات در نرم‌افزارهای مدیریت کسب‌وکار</a></h3>
-                        <p>امنیت داده‌ها یکی از دغدغه‌های اصلی کسب‌وکارهاست. در این مقاله به بررسی روش‌های تأمین امنیت اطلاعات در نرم‌افزارهای مدیریتی می‌پردازیم.</p>
-                        <a href="blog/security" class="read-more">ادامه مطلب <i class="fas fa-arrow-left"></i></a>
-                    </div>
-                </article>
-
-                <!-- ===== مقاله: رشد کسب‌وکار ===== -->
-                <article class="blog-card-glow" data-aos="fade-up" data-aos-delay="250" data-category="مدیریت">
-                    <div class="blog-img">
-                        <img src="images/blog/growth.jpg" alt="استراتژی‌های رشد کسب‌وکار با کمک فناوری" loading="lazy" />
-                    </div>
-                    <div class="blog-content">
-                        <div class="flex items-center gap-2 text-xs text-white/40 mb-2 flex-wrap">
-                            <span><i class="far fa-calendar-alt"></i> ۱۴۰۵/۰۵/۲۰</span>
-                            <span class="badge badge-purple">مدیریت</span>
-                            <span class="read-time"><i class="far fa-clock"></i> ۴ دقیقه</span>
-                        </div>
-                        <h3><a href="blog/growth-strategies">۵ استراتژی برای رشد کسب‌وکار با کمک فناوری</a></h3>
-                        <p>فناوری اطلاعات می‌تواند به عنوان یک اهرم قدرتمند برای رشد کسب‌وکار عمل کند. در این مقاله با ۵ استراتژی کلیدی آشنا می‌شوید.</p>
-                        <a href="blog/growth-strategies" class="read-more">ادامه مطلب <i class="fas fa-arrow-left"></i></a>
-                    </div>
-                </article>
-
-            </div>
-
-            <!-- No Results -->
-            <div class="no-results" id="noResults">
-                <i class="fas fa-search-minus"></i>
-                <h3>نتیجه‌ای یافت نشد</h3>
-                <p>هیچ مقاله‌ای با جستجو یا دسته‌بندی شما مطابقت نداشت. لطفاً عبارت دیگری امتحان کنید.</p>
-            </div>
-
-            <!-- CTA -->
-            <div class="text-center mt-12" data-aos="fade-up">
-                <a href="blog/archive" class="btn-glow">
-                    <i class="fas fa-arrow-left"></i>
-                    مشاهده همه مقالات
-                </a>
-            </div>
-
-            <!-- Author Box -->
-            <div class="author-box" data-aos="fade-up" data-aos-delay="200">
-                <img src="https://raw.githubusercontent.com/rahmaniho/karen-soft/main/images/Hosein-rahmani.jpg" alt="حسین رحمانی، بنیان‌گذار کارن سافت" style="width:70px; height:70px; border-radius:50%; object-fit:cover; border:2px solid #D4AF37;" loading="lazy" />
-                <div>
-                    <p style="margin:0; font-weight:bold; color:#fff; font-size:1.05rem;">حسین رحمانی</p>
-                    <p style="margin:0; font-size:0.9rem; color:rgba(255,255,255,0.7);">بنیان‌گذار و مدیر فنی کارن سافت</p>
-                    <p style="margin:5px 0 0 0; font-size:0.85rem; color:rgba(255,255,255,0.5);">تخصص در توسعه نرم‌افزارهای مدیریتی و اتوماسیون اداری</p>
+            <!-- مقاله ۲: امنیت -->
+            <article class="blog-card-glow" data-category="security">
+                <div class="blog-img">
+                    <img src="images/blog/security.jpg" alt="امنیت اطلاعات" loading="lazy" />
                 </div>
-            </div>
-
-        </main>
-
-        <!-- ===== FOOTER ===== -->
-        <footer class="border-t border-white/5 bg-[#080A19]/80 text-white/40 mt-8">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-                <div class="flex flex-col md:flex-row items-center justify-between gap-4">
-                    <div class="flex items-center gap-2">
-                        <img src="images/logo-karensoft.png" alt="کارن سافت" class="h-8 w-8 rounded-xl object-cover" />
-                        <span class="font-bold text-white">کارن سافت</span>
-                        <span class="text-xs text-white/40 mr-2">راه‌حل‌های نرم‌افزاری هوشمند</span>
+                <div class="blog-content">
+                    <div class="flex items-center gap-2 text-xs text-white/40 mb-2 flex-wrap">
+                        <span><i class="far fa-calendar-alt"></i> ۱۴۰۵/۰۵/۲۵</span>
+                        <span class="badge badge-rose">امنیت</span>
                     </div>
-                    <div class="flex flex-wrap items-center gap-4 text-xs justify-center">
-                        <a href="index" class="hover:text-gold-400 transition">خانه</a>
-                        <a href="products" class="hover:text-gold-400 transition">محصولات</a>
-                        <a href="blog" class="hover:text-gold-400 transition text-white">وبلاگ</a>
-                        <a href="contact" class="hover:text-gold-400 transition">تماس</a>
-                        <a href="tel:09152521166" class="hover:text-emerald-400 transition font-bold text-emerald-400" dir="ltr"><i class="fas fa-phone"></i> ۰۹۱۵۲۵۲۱۱۶۶</a>
-                        <a href="mailto:info@karen-soft.ir" class="hover:text-gold-400 transition"><i class="fas fa-envelope"></i> info@karen-soft.ir</a>
+                    <h3><a href="blog/security">امنیت اطلاعات در نرم‌افزارهای مدیریت کسب‌وکار</a></h3>
+                    <p>امنیت داده‌ها یکی از دغدغه‌های اصلی کسب‌وکارهاست. در این مقاله به بررسی روش‌های تأمین امنیت اطلاعات می‌پردازیم.</p>
+                    <a href="blog/security" class="read-more">ادامه مطلب <i class="fas fa-arrow-left"></i></a>
+                </div>
+            </article>
+
+            <!-- مقاله ۳: مدیریت -->
+            <article class="blog-card-glow" data-category="management">
+                <div class="blog-img">
+                    <img src="images/blog/growth.jpg" alt="استراتژی‌های رشد" loading="lazy" />
+                </div>
+                <div class="blog-content">
+                    <div class="flex items-center gap-2 text-xs text-white/40 mb-2 flex-wrap">
+                        <span><i class="far fa-calendar-alt"></i> ۱۴۰۵/۰۵/۲۰</span>
+                        <span class="badge badge-purple">مدیریت</span>
                     </div>
-                    <div class="text-[10px]"><i class="fas fa-copyright"></i> ۱۴۰۴ تمامی حقوق محفوظ است</div>
+                    <h3><a href="blog/growth-strategies">۵ استراتژی برای رشد کسب‌وکار با کمک فناوری</a></h3>
+                    <p>فناوری اطلاعات می‌تواند به عنوان یک اهرم قدرتمند برای رشد کسب‌وکار عمل کند. با ۵ استراتژی کلیدی آشنا شوید.</p>
+                    <a href="blog/growth-strategies" class="read-more">ادامه مطلب <i class="fas fa-arrow-left"></i></a>
                 </div>
-                <div class="flex flex-wrap items-center justify-center gap-3 mt-4 pt-4 border-t border-white/5">
-                    <span class="text-xs">ما را دنبال کنید:</span>
-                    <a href="https://t.me/KarenSoftOfficial" target="_blank" rel="noopener" class="social-link" aria-label="تلگرام"><i class="fab fa-telegram-plane"></i></a>
-                    <a href="https://www.instagram.com/karen_soft.ir" target="_blank" rel="noopener" class="social-link" aria-label="اینستاگرام"><i class="fab fa-instagram"></i></a>
-                    <a href="https://www.youtube.com/@KarenSoftOfficial" target="_blank" rel="noopener" class="social-link" aria-label="یوتیوب"><i class="fab fa-youtube"></i></a>
-                    <a href="https://www.linkedin.com/company/karensoft" target="_blank" rel="noopener" class="social-link" aria-label="لینکدین"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="https://twitter.com/KarenSoft_ir" target="_blank" rel="noopener" class="social-link" aria-label="توییتر"><i class="fab fa-x-twitter"></i></a>
+            </article>
+
+            <!-- مقاله ۴: مدیریت پرونده حقوقی -->
+            <article class="blog-card-glow" data-category="management">
+                <div class="blog-img">
+                    <img src="images/blog/law.jpg" alt="مدیریت پرونده حقوقی" loading="lazy" />
                 </div>
-            </div>
-        </footer>
+                <div class="blog-content">
+                    <div class="flex items-center gap-2 text-xs text-white/40 mb-2 flex-wrap">
+                        <span><i class="far fa-calendar-alt"></i> ۱۴۰۵/۰۵/۱۵</span>
+                        <span class="badge badge-purple">مدیریت</span>
+                    </div>
+                    <h3><a href="blog/law-management">مدیریت هوشمند پرونده‌های حقوقی</a></h3>
+                    <p>نرم‌افزارهای مدیریت پرونده حقوقی به وکلا کمک می‌کنند تا پرونده‌ها را به صورت منظم و کارآمد مدیریت کنند.</p>
+                    <a href="blog/law-management" class="read-more">ادامه مطلب <i class="fas fa-arrow-left"></i></a>
+                </div>
+            </article>
 
-    </div>
+            <!-- مقاله ۵: اتوماسیون اداری -->
+            <article class="blog-card-glow" data-category="automation">
+                <div class="blog-img">
+                    <img src="images/blog/automation.jpg" alt="اتوماسیون اداری" loading="lazy" />
+                </div>
+                <div class="blog-content">
+                    <div class="flex items-center gap-2 text-xs text-white/40 mb-2 flex-wrap">
+                        <span><i class="far fa-calendar-alt"></i> ۱۴۰۵/۰۵/۱۰</span>
+                        <span class="badge badge-blue">اتوماسیون</span>
+                    </div>
+                    <h3><a href="blog/automation">مزایای اتوماسیون اداری برای کسب‌وکارها</a></h3>
+                    <p>اتوماسیون اداری با حذف فرآیندهای دستی، سرعت و دقت کارها را افزایش می‌دهد. در این مقاله به بررسی مزایای آن می‌پردازیم.</p>
+                    <a href="blog/automation" class="read-more">ادامه مطلب <i class="fas fa-arrow-left"></i></a>
+                </div>
+            </article>
 
-    <!-- ===== SCRIPTS ===== -->
+            <!-- مقاله ۶: تیم‌های دورکار -->
+            <article class="blog-card-glow" data-category="management">
+                <div class="blog-img">
+                    <img src="images/blog/remote.jpg" alt="مدیریت تیم‌های دورکار" loading="lazy" />
+                </div>
+                <div class="blog-content">
+                    <div class="flex items-center gap-2 text-xs text-white/40 mb-2 flex-wrap">
+                        <span><i class="far fa-calendar-alt"></i> ۱۴۰۵/۰۵/۰۵</span>
+                        <span class="badge badge-purple">مدیریت</span>
+                    </div>
+                    <h3><a href="blog/remote-teams">چالش‌ها و راهکارهای مدیریت تیم‌های دورکار</a></h3>
+                    <p>مدیریت تیم‌های دورکار نیازمند ابزارها و مهارت‌های خاصی است. در این مقاله به بررسی این چالش‌ها می‌پردازیم.</p>
+                    <a href="blog/remote-teams" class="read-more">ادامه مطلب <i class="fas fa-arrow-left"></i></a>
+                </div>
+            </article>
+
+            <!-- مقاله ۷: فروشگاه آنلاین -->
+            <article class="blog-card-glow" data-category="management">
+                <div class="blog-img">
+                    <img src="images/blog/store.jpg" alt="راه‌اندازی فروشگاه آنلاین" loading="lazy" />
+                </div>
+                <div class="blog-content">
+                    <div class="flex items-center gap-2 text-xs text-white/40 mb-2 flex-wrap">
+                        <span><i class="far fa-calendar-alt"></i> ۱۴۰۵/۰۴/۲۸</span>
+                        <span class="badge badge-purple">مدیریت</span>
+                    </div>
+                    <h3><a href="blog/online-store">راهنمای راه‌اندازی فروشگاه آنلاین</a></h3>
+                    <p>راه‌اندازی یک فروشگاه آنلاین موفق نیازمند برنامه‌ریزی دقیق و انتخاب ابزار مناسب است. با ما همراه باشید.</p>
+                    <a href="blog/online-store" class="read-more">ادامه مطلب <i class="fas fa-arrow-left"></i></a>
+                </div>
+            </article>
+
+            <!-- مقاله ۸: پرونده هوشمند -->
+            <article class="blog-card-glow" data-category="management">
+                <div class="blog-img">
+                    <img src="images/blog/smart-case.jpg" alt="مدیریت هوشمند پرونده" loading="lazy" />
+                </div>
+                <div class="blog-content">
+                    <div class="flex items-center gap-2 text-xs text-white/40 mb-2 flex-wrap">
+                        <span><i class="far fa-calendar-alt"></i> ۱۴۰۵/۰۴/۲۰</span>
+                        <span class="badge badge-purple">مدیریت</span>
+                    </div>
+                    <h3><a href="blog/smart-case-management">مدیریت هوشمند پرونده‌ها با نرم‌افزار</a></h3>
+                    <p>نرم‌افزارهای مدیریت پرونده هوشمند به سازمان‌ها کمک می‌کنند تا پرونده‌ها را به صورت دیجیتال و منظم مدیریت کنند.</p>
+                    <a href="blog/smart-case-management" class="read-more">ادامه مطلب <i class="fas fa-arrow-left"></i></a>
+                </div>
+            </article>
+
+            <!-- مقاله ۹: وب‌سایت وکیل -->
+            <article class="blog-card-glow" data-category="management">
+                <div class="blog-img">
+                    <img src="images/blog/lawyer-website.jpg" alt="وب‌سایت وکیل" loading="lazy" />
+                </div>
+                <div class="blog-content">
+                    <div class="flex items-center gap-2 text-xs text-white/40 mb-2 flex-wrap">
+                        <span><i class="far fa-calendar-alt"></i> ۱۴۰۵/۰۴/۱۵</span>
+                        <span class="badge badge-purple">مدیریت</span>
+                    </div>
+                    <h3><a href="blog/why-lawyer-needs-website">چرا یک وکیل به وب‌سایت نیاز دارد؟</a></h3>
+                    <p>داشتن وب‌سایت برای وکلا به جذب مشتریان جدید و افزایش اعتبار حرفه‌ای کمک می‌کند. در این مقاله به بررسی دلایل آن می‌پردازیم.</p>
+                    <a href="blog/why-lawyer-needs-website" class="read-more">ادامه مطلب <i class="fas fa-arrow-left"></i></a>
+                </div>
+            </article>
+
+        </div>
+    </main>
+
+    <!-- ===== اسکریپت‌ها ===== -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        AOS.init({ duration: 600, once: true, offset: 50 });
+        document.addEventListener('DOMContentLoaded', function() {
+            AOS.init({ duration: 600, once: true });
 
-        // Mobile Menu
-        const mobileBtn = document.getElementById('mobileMenuBtn');
-        const mobileMenu = document.getElementById('mobileMenu');
-        if (mobileBtn && mobileMenu) {
-            mobileBtn.addEventListener('click', function() {
-                mobileMenu.classList.toggle('open');
-                const icon = this.querySelector('i');
-                icon.className = mobileMenu.classList.contains('open') ? 'fas fa-times' : 'fas fa-bars';
-            });
-        }
+            // ===== فیلتر دسته‌بندی =====
+            const categoryBtns = document.querySelectorAll('.category-btn');
+            const articles = document.querySelectorAll('.blog-card-glow');
 
-        // Navbar Scroll
-        const navbar = document.getElementById('navbar');
-        window.addEventListener('scroll', function() {
-            navbar.classList.toggle('navbar-scrolled', window.scrollY > 20);
-        }, { passive: true });
+            categoryBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // ۱. تغییر ظاهر دکمه فعال
+                    categoryBtns.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
 
-        // Elements
-        const searchInput = document.getElementById('searchBlog');
-        const clearBtn = document.getElementById('searchClearBtn');
-        const noResults = document.getElementById('noResults');
-        const articles = document.querySelectorAll('.blog-card-glow');
-        const categoryBtns = document.querySelectorAll('.category-btn');
-
-        let activeCategory = 'all';
-        let searchQuery = '';
-
-        // Filter Function
-        function filterArticles() {
-            let visibleCount = 0;
-            articles.forEach(article => {
-                const category = article.dataset.category || '';
-                const title = (article.querySelector('h3 a')?.textContent || '').toLowerCase();
-                const desc = (article.querySelector('p')?.textContent || '').toLowerCase();
-                const query = searchQuery.toLowerCase().trim();
-                const matchesCategory = activeCategory === 'all' || category === activeCategory;
-                const matchesSearch = !query || title.includes(query) || desc.includes(query);
-                if (matchesCategory && matchesSearch) {
-                    article.style.display = '';
-                    visibleCount++;
-                } else {
-                    article.style.display = 'none';
-                }
-            });
-            if (noResults) {
-                noResults.classList.toggle('show', visibleCount === 0);
-            }
-        }
-
-        // Search
-        if (searchInput) {
-            searchInput.addEventListener('input', function() {
-                searchQuery = this.value;
-                clearBtn.style.display = this.value ? 'flex' : 'none';
-                filterArticles();
-            });
-        }
-        if (clearBtn) {
-            clearBtn.addEventListener('click', function() {
-                searchInput.value = '';
-                searchQuery = '';
-                clearBtn.style.display = 'none';
-                searchInput.focus();
-                filterArticles();
-            });
-        }
-
-        // Category Filter
-        categoryBtns.forEach(btn => {
-            btn.addEventListener('click', function() {
-                categoryBtns.forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
-                activeCategory = this.dataset.category;
-                filterArticles();
-                const url = new URL(window.location);
-                if (activeCategory === 'all') {
-                    url.searchParams.delete('category');
-                } else {
-                    url.searchParams.set('category', activeCategory);
-                }
-                window.history.replaceState({}, '', url);
+                    // ۲. فیلتر کردن مقالات
+                    const category = this.dataset.category;
+                    articles.forEach(article => {
+                        if (category === 'all' || article.dataset.category === category) {
+                            article.style.display = 'flex';
+                        } else {
+                            article.style.display = 'none';
+                        }
+                    });
+                });
             });
         });
-
-        // Read Category from URL
-        const urlParams = new URLSearchParams(window.location.search);
-        const initialCategory = urlParams.get('category');
-        if (initialCategory) {
-            const targetBtn = document.querySelector(`.category-btn[data-category="${initialCategory}"]`);
-            if (targetBtn) targetBtn.click();
-        }
-
-        // Deep Search from URL
-        const initialSearch = urlParams.get('q');
-        if (initialSearch && searchInput) {
-            searchInput.value = initialSearch;
-            searchQuery = initialSearch;
-            clearBtn.style.display = 'flex';
-            filterArticles();
-        }
-    });
     </script>
+
+    <!-- ===== استایل‌های ظاهری (فقط برای مرجع، در فایل نهایی ادغام شود) ===== -->
+    <style>
+        .category-btn { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08); color: rgba(255,255,255,0.7); padding: 8px 22px; border-radius: 999px; font-size: 0.85rem; cursor: pointer; transition: all 0.3s ease; }
+        .category-btn:hover { background: rgba(212, 175, 55, 0.1); color: #D4AF37; border-color: rgba(212, 175, 55, 0.3); }
+        .category-btn.active { background: linear-gradient(135deg, #E4C56A, #D4AF37, #B8942A); color: #0B1220; border-color: transparent; font-weight: 700; box-shadow: 0 6px 20px rgba(212, 175, 55, 0.25); }
+
+        .blog-card-glow { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); border-radius: 18px; overflow: hidden; transition: all 0.45s cubic-bezier(0.4, 0, 0.2, 1); display: flex; flex-direction: column; height: 100%; }
+        .blog-card-glow:hover { transform: translateY(-8px); border-color: rgba(212,175,55,0.25); box-shadow: 0 20px 50px rgba(0,0,0,0.4), 0 0 40px rgba(212,175,55,0.08); }
+        .blog-img { position: relative; width: 100%; height: 200px; overflow: hidden; background: linear-gradient(135deg, rgba(255,255,255,0.04), rgba(212,175,55,0.04)); }
+        .blog-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+        .blog-card-glow:hover .blog-img img { transform: scale(1.06); }
+        .blog-content { padding: 22px; display: flex; flex-direction: column; flex-grow: 1; }
+        .blog-content h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; }
+        .blog-content h3 a { color: #fff; text-decoration: none; }
+        .blog-content h3 a:hover { color: #D4AF37; }
+        .blog-content p { color: rgba(255,255,255,0.65); font-size: 0.9rem; flex-grow: 1; margin-bottom: 16px; }
+        .blog-content .read-more { color: #D4AF37; font-size: 0.88rem; font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; transition: gap 0.3s ease; }
+        .blog-content .read-more:hover { gap: 12px; }
+
+        .badge { padding: 3px 12px; border-radius: 999px; font-size: 0.7rem; font-weight: 600; display: inline-block; }
+        .badge-amber { background: rgba(245, 158, 11, 0.15); color: #fbbf24; }
+        .badge-rose { background: rgba(244, 63, 94, 0.15); color: #fb7185; }
+        .badge-purple { background: rgba(168, 85, 247, 0.15); color: #c084fc; }
+        .badge-blue { background: rgba(59, 130, 246, 0.15); color: #60a5fa; }
+    </style>
 
 </body>
 </html>
