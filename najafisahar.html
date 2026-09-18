@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<title>سالن زیبایی و آکادمی سحر نجفی | قزوین</title>
+<meta name="description" content="سالن زیبایی و آکادمی سحر نجفی — میکاپ عروس، شنیون، کاشت ناخن متد روسی، آکادمی تخصصی در قزوین، چهارراه محمد رسول‌الله"/>
+<meta name="theme-color" content="#faf7f2"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&family=Great+Vibes&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config={theme:{extend:{
+  colors:{
+    rosegold:'#b76e79', rosedeep:'#96555f', roseblush:'#e9c9cd',
+    gold:'#d4af37', goldsoft:'#c9a96e', goldlight:'#ecd9a8',
+    cream:'#faf7f2', sand:'#f3ecdf', ink:'#1a1a1a', body:'#333333',
+  },
+  fontFamily:{sans:['Vazirmatn','system-ui','sans-serif'],script:['Great Vibes','cursive']}
+}}}
+</script>
+<style>
+/* ===== Base ===== */
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:24px}
+body{
+  font-family:Vazirmatn,system-ui,sans-serif;
+  background:#faf7f2;color:#333;
+  overflow-x:hidden;
+  overscroll-behavior-y:contain;
+  -webkit-font-smoothing:antialiased;
+  letter-spacing:-.005em;
+}
+::selection{background:#b76e79;color:#fff}
+
+/* ===== Grain / Paper texture overlay ===== */
+body::after{
+  content:'';
+  position:fixed;inset:0;
+  z-index:1;pointer-events:none;
+  opacity:.035;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ===== Custom cursor halo ===== */
+.cursor-halo{
+  position:fixed;top:0;left:0;
+  width:26px;height:26px;border-radius:50%;
+  border:1.5px solid rgba(183,110,121,.55);
+  background:radial-gradient(circle, rgba(212,175,55,.18), transparent 70%);
+  pointer-events:none;z-index:9999;
+  transform:translate(-50%,-50%);
+  transition:width .25s ease,height .25s ease,background .25s ease,border-color .25s ease,opacity .3s;
+  mix-blend-mode:screen;
+  will-change:transform;
+}
+.cursor-halo.is-hover{
+  width:58px;height:58px;
+  border-color:rgba(183,110,121,.35);
+  background:radial-gradient(circle, rgba(183,110,121,.28), transparent 70%);
+}
+@media (hover:none){ .cursor-halo{display:none} }
+
+/* ===== Preloader ===== */
+#preloader{
+  position:fixed;inset:0;z-index:10000;
+  background:#faf7f2;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.4rem;
+  animation:preOut .7s ease 1.5s forwards;
+}
+#preloader .mono{width:84px;height:84px}
+#preloader .mono circle{
+  fill:none;stroke:#b76e79;stroke-width:1.6;
+  stroke-dasharray:264;stroke-dashoffset:264;
+  stroke-linecap:round;
+  transform-origin:50% 50%;
+  transform:rotate(-90deg);
+  animation:draw 1.2s cubic-bezier(.65,0,.35,1) forwards;
+}
+#preloader .pre-name{
+  font-family:'Great Vibes',cursive;
+  font-size:1.7rem;color:#b76e79;
+  opacity:0;animation:fadeIn .8s ease .5s forwards;
+}
+@keyframes draw{to{stroke-dashoffset:0}}
+@keyframes fadeIn{to{opacity:1}}
+@keyframes preOut{to{opacity:0;visibility:hidden}}
+
+/* ===== Utilities ===== */
+.font-script{font-family:'Great Vibes',cursive}
+.wrap{max-width:72rem;margin-inline:auto;padding-inline:1.25rem}
+@media(min-width:640px){.wrap{padding-inline:2rem}}
+.text-gold-grad{background:linear-gradient(135deg,#d4af37,#c9a96e,#ecd9a8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.eyebrow{font-size:.7rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#b76e79}
+h1,h2,h3{letter-spacing:-.01em}
+
+/* ===== Buttons ===== */
+.btn-gold,.btn-ghost,.btn-outline{
+  display:inline-flex;align-items:center;gap:.5rem;
+  border-radius:9999px;font-weight:700;font-size:.9rem;
+  cursor:pointer;font-family:inherit;text-decoration:none;
+  transition:box-shadow .3s,background .3s,color .3s,border-color .3s,transform .25s cubic-bezier(.22,1,.36,1);
+  will-change:transform;
+}
+.btn-gold{padding:.85rem 1.7rem;background:linear-gradient(135deg,#b76e79,#c9a96e);color:#fff;border:none;
+  box-shadow:0 6px 18px rgba(183,110,121,.28),0 2px 6px rgba(183,110,121,.14)}
+.btn-gold:hover{box-shadow:0 14px 34px rgba(183,110,121,.4),0 4px 10px rgba(183,110,121,.2)}
+.btn-ghost{padding:.8rem 1.5rem;border:1.5px solid rgba(255,255,255,.5);color:#fff;background:transparent}
+.btn-ghost:hover{background:rgba(255,255,255,.12)}
+.btn-outline{padding:.8rem 1.5rem;border:1.5px solid #1a1a1a;color:#1a1a1a;background:transparent}
+.btn-outline:hover{background:#1a1a1a;color:#fff}
+.magnetic{transition:box-shadow .3s, background .3s, color .3s, border-color .3s, transform .25s cubic-bezier(.22,1,.36,1)}
+
+/* ===== Cards — two-layer soft shadow ===== */
+.card{
+  background:#fff;border:1px solid #eee5d8;border-radius:1.5rem;
+  transition:transform .35s cubic-bezier(.22,1,.36,1),box-shadow .35s,border-color .35s;
+  box-shadow:
+    0 1px 2px rgba(183,110,121,.04),
+    0 8px 22px rgba(26,26,26,.045);
+}
+.card:hover{
+  transform:translateY(-5px);
+  border-color:#e9c9cd;
+  box-shadow:
+    0 2px 6px rgba(183,110,121,.09),
+    0 22px 48px rgba(26,26,26,.09);
+}
+
+/* ===== Progress bar ===== */
+#progress{
+  position:fixed;top:0;right:0;left:0;height:2.5px;z-index:100;
+  background:linear-gradient(to left,#b76e79,#d4af37);
+  transform-origin:right;transform:scaleX(0);
+  transition:transform .1s linear;
+}
+
+/* ===== Reveal on scroll with stagger ===== */
+.fade-up{
+  opacity:0;transform:translateY(24px);
+  transition:opacity .8s cubic-bezier(.22,1,.36,1),transform .8s cubic-bezier(.22,1,.36,1);
+  transition-delay:calc(var(--i, 0) * 0.08s);
+}
+.fade-up.on{opacity:1;transform:none}
+
+/* ===== Forms ===== */
+input,select,textarea{
+  width:100%;padding:.85rem 1rem;border-radius:1rem;
+  border:1.5px solid #eee5d8;background:#fff;
+  font-family:inherit;font-size:.9rem;transition:border-color .2s,box-shadow .2s;
+}
+input:focus,select:focus,textarea:focus{outline:none;border-color:#b76e79;box-shadow:0 0 0 4px rgba(183,110,121,.09)}
+
+/* ===== WhatsApp float ===== */
+.wa-float{
+  position:fixed;bottom:calc(1.5rem + env(safe-area-inset-bottom, 0px));
+  right:max(1.5rem, env(safe-area-inset-right, 0px));
+  z-index:90;width:56px;height:56px;border-radius:50%;
+  background:#25d366;color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 8px 24px rgba(37,211,102,.4);
+  transition:transform .3s;text-decoration:none;
+  animation:pulse-ring 2.2s infinite;
+}
+.wa-float:hover{transform:scale(1.08)}
+@keyframes pulse-ring{
+  0%{box-shadow:0 0 0 0 rgba(37,211,102,.45)}
+  70%{box-shadow:0 0 0 14px rgba(37,211,102,0)}
+  100%{box-shadow:0 0 0 0 rgba(37,211,102,0)}
+}
+
+/* ===== Marquee ===== */
+.marquee{overflow:hidden;white-space:nowrap;border-block:1px solid #eee5d8;background:rgba(243,236,223,.6)}
+.marquee-track{display:inline-flex;animation:marquee 40s linear infinite;will-change:transform;gap:2.5rem;padding-left:2.5rem}
+.marquee:hover .marquee-track{animation-play-state:paused}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(50%)}}
+
+/* ===== Filters ===== */
+.filter-btn{
+  padding:.4rem 1rem;border-radius:9999px;font-size:.8rem;font-weight:600;
+  border:1px solid #eee5d8;transition:all .25s;cursor:pointer;
+  background:#fff;font-family:inherit;color:#333;
+}
+.filter-btn.active,.filter-btn:hover{background:#b76e79;color:#fff;border-color:#b76e79}
+
+/* ===== Hero split-text ===== */
+.hero-title .w{display:inline-block;overflow:hidden;padding-bottom:.1em;vertical-align:bottom}
+.hero-title .w > span{
+  display:inline-block;
+  transform:translateY(110%);opacity:0;
+  animation:heroRise .95s cubic-bezier(.22,1,.36,1) forwards;
+  animation-delay:calc(.25s + var(--i,0) * .1s);
+}
+.hero-title .w.gold > span{
+  background:linear-gradient(90deg,#d4af37 0%,#ecd9a8 22%,#b76e79 50%,#ecd9a8 78%,#d4af37 100%);
+  background-size:200% auto;
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:transparent;
+  animation:
+    heroRise .95s cubic-bezier(.22,1,.36,1) forwards,
+    shimmer 4.5s linear infinite;
+  animation-delay:
+    calc(.25s + var(--i,0) * .1s),
+    1.6s;
+}
+@keyframes heroRise{to{transform:translateY(0);opacity:1}}
+@keyframes shimmer{to{background-position:200% center}}
+
+/* ===== Ambient blobs ===== */
+.blob{
+  position:absolute;border-radius:50%;filter:blur(90px);
+  pointer-events:none;opacity:.55;
+  animation:floaty 22s ease-in-out infinite alternate;
+}
+.blob.b1{width:280px;height:280px;background:rgba(183,110,121,.22);top:12%;left:-8%}
+.blob.b2{width:320px;height:320px;background:rgba(212,175,55,.18);bottom:8%;right:-10%;animation-duration:26s}
+.blob.b3{width:200px;height:200px;background:rgba(233,201,205,.35);top:45%;right:30%;animation-duration:30s;opacity:.45}
+@keyframes floaty{
+  from{transform:translate(0,0) scale(1)}
+  to{transform:translate(40px,-50px) scale(1.15)}
+}
+
+/* ===== Service line-art icon ===== */
+.svc-icon{
+  width:52px;height:52px;border-radius:1rem;
+  display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(140deg,rgba(243,236,223,.7),rgba(233,201,205,.35));
+  border:1px solid rgba(183,110,121,.14);
+  color:#b76e79;margin-bottom:1rem;
+  transition:transform .4s cubic-bezier(.22,1,.36,1),color .3s,box-shadow .3s;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.7);
+}
+.svc-icon svg{
+  width:24px;height:24px;fill:none;
+  stroke:currentColor;stroke-width:1.6;
+  stroke-linecap:round;stroke-linejoin:round;
+}
+.card:hover .svc-icon{
+  transform:translateY(-3px) rotate(-4deg);
+  color:#96555f;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.7),
+    0 8px 20px rgba(183,110,121,.18);
+}
+
+/* ===== Testimonial paper card ===== */
+.tcard{
+  position:relative;
+  background:linear-gradient(180deg,#fffefb 0%,#fdfbf6 100%);
+  border:1px solid #eee5d8;border-radius:1.5rem;
+  padding:1.6rem;
+  box-shadow:
+    0 1px 2px rgba(183,110,121,.05),
+    0 14px 34px rgba(26,26,26,.06),
+    inset 0 1px 0 rgba(255,255,255,.9);
+  transition:transform .35s cubic-bezier(.22,1,.36,1),box-shadow .35s;
+}
+.tcard:hover{
+  transform:translateY(-4px);
+  box-shadow:
+    0 3px 8px rgba(183,110,121,.09),
+    0 22px 48px rgba(26,26,26,.09),
+    inset 0 1px 0 rgba(255,255,255,.9);
+}
+.tcard::before{
+  content:'”';
+  position:absolute;top:-22px;left:16px;
+  font-family:'Great Vibes',cursive;
+  font-size:5rem;line-height:1;
+  color:#b76e79;opacity:.14;pointer-events:none;
+}
+
+/* ===== Mobile: horizontal snap gallery ===== */
+@media (max-width:767px){
+  #gallery{
+    display:flex;overflow-x:auto;
+    scroll-snap-type:x mandatory;
+    gap:.75rem;padding-bottom:.75rem;
+    scrollbar-width:none;
+    -webkit-overflow-scrolling:touch;
+  }
+  #gallery::-webkit-scrollbar{display:none}
+  #gallery > div{flex:0 0 66%;scroll-snap-align:center}
+}
+
+/* =========================================================
+   NEON GLASS DOCK
+   ========================================================= */
+.neon-dock{
+  position:fixed;
+  left:max(1.25rem, env(safe-area-inset-left, 0px));
+  bottom:calc(1.5rem + env(safe-area-inset-bottom, 0px));
+  z-index:95;width:60px;height:60px;
+  display:flex;align-items:center;justify-content:center;
+}
+.neon-items{
+  position:absolute;bottom:calc(100% + .75rem);left:50%;
+  transform:translateX(-50%);
+  display:flex;flex-direction:column;gap:.7rem;align-items:center;
+  pointer-events:none;
+}
+.neon-item{
+  --neon:#00e5ff;--d:0;--ty:40px;
+  width:52px;height:52px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  color:var(--neon);text-decoration:none;position:relative;
+  background:rgba(255,255,255,.05);
+  backdrop-filter:blur(16px) saturate(180%);
+  -webkit-backdrop-filter:blur(16px) saturate(180%);
+  border:1px solid rgba(255,255,255,.35);
+  box-shadow:
+    0 4px 20px rgba(0,0,0,.08),
+    0 0 12px color-mix(in srgb, var(--neon) 25%, transparent),
+    inset 0 0 14px color-mix(in srgb, var(--neon) 10%, transparent);
+  opacity:0;transform:translateY(var(--ty)) scale(.35);
+  pointer-events:none;
+  transition:
+    opacity .4s ease,
+    transform .65s cubic-bezier(.34,1.56,.64,1),
+    background .3s,border-color .3s,box-shadow .3s;
+  transition-delay:calc((.30 - var(--d)) * 1s);
+  will-change:transform,opacity;
+}
+.neon-items.open .neon-item{
+  opacity:1;transform:translateY(0) scale(1);pointer-events:auto;
+  transition-delay:calc(var(--d) * 1s);
+}
+.neon-item svg{
+  width:22px;height:22px;
+  stroke:currentColor;stroke-width:1.7;
+  stroke-linecap:round;stroke-linejoin:round;fill:none;
+  filter:
+    drop-shadow(0 0 3px currentColor)
+    drop-shadow(0 0 8px color-mix(in srgb, currentColor 70%, transparent));
+  transition:filter .3s;
+}
+.neon-item:hover{
+  background:color-mix(in srgb, var(--neon) 15%, rgba(255,255,255,.08));
+  border-color:color-mix(in srgb, var(--neon) 70%, transparent);
+  box-shadow:
+    0 0 16px color-mix(in srgb, var(--neon) 60%, transparent),
+    0 0 34px color-mix(in srgb, var(--neon) 35%, transparent),
+    inset 0 0 18px color-mix(in srgb, var(--neon) 25%, transparent);
+  transform:translateY(0) scale(1.12) !important;
+}
+.neon-item:hover svg{
+  filter:
+    drop-shadow(0 0 4px currentColor)
+    drop-shadow(0 0 12px currentColor)
+    drop-shadow(0 0 22px currentColor);
+}
+.neon-item::after{
+  content:attr(data-label);
+  position:absolute;left:calc(100% + 12px);top:50%;
+  transform:translateY(-50%) translateX(-6px);
+  background:rgba(15,15,25,.9);color:#fff;
+  font-size:.72rem;font-weight:500;
+  padding:.35rem .7rem;border-radius:.55rem;
+  white-space:nowrap;opacity:0;pointer-events:none;
+  transition:opacity .2s,transform .2s;
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  border:1px solid color-mix(in srgb, var(--neon) 40%, transparent);
+  box-shadow:0 0 12px color-mix(in srgb, var(--neon) 40%, transparent);
+  z-index:5;
+}
+.neon-item:hover::after{opacity:1;transform:translateY(-50%) translateX(0)}
+.neon-toggle{
+  position:relative;width:60px;height:60px;border-radius:50%;
+  border:none;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(255,255,255,.08);
+  backdrop-filter:blur(16px) saturate(180%);
+  -webkit-backdrop-filter:blur(16px) saturate(180%);
+  color:#0b0b14;
+  box-shadow:
+    0 8px 28px rgba(0,0,0,.15),
+    0 0 20px rgba(0,229,255,.45),
+    0 0 36px rgba(168,85,247,.3);
+  transition:transform .35s cubic-bezier(.34,1.56,.64,1),box-shadow .35s;
+  z-index:2;
+}
+.neon-toggle::before{
+  content:'';position:absolute;inset:-2px;border-radius:50%;padding:2px;
+  background:conic-gradient(from 0deg,#00e5ff,#a855f7,#ff2d95,#ffd700,#00e5ff);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;mask-composite:exclude;
+  animation:ring-spin 5s linear infinite;pointer-events:none;
+}
+.neon-toggle::after{
+  content:'';position:absolute;inset:-10px;border-radius:50%;
+  background:conic-gradient(from 0deg,#00e5ff,#a855f7,#ff2d95,#ffd700,#00e5ff);
+  opacity:.35;filter:blur(16px);
+  animation:ring-spin 5s linear infinite, pulse-glow 2.4s ease-in-out infinite;
+  pointer-events:none;z-index:-1;
+}
+@keyframes ring-spin{to{transform:rotate(360deg)}}
+@keyframes pulse-glow{0%,100%{opacity:.30}50%{opacity:.6}}
+.neon-toggle:hover{transform:scale(1.07)}
+.neon-toggle:active{transform:scale(.94)}
+.neon-toggle svg{
+  width:24px;height:24px;
+  stroke:#0b0b14;stroke-width:2.2;stroke-linecap:round;fill:none;
+  filter:drop-shadow(0 0 6px rgba(255,255,255,.7));
+  transition:transform .55s cubic-bezier(.34,1.56,.64,1);
+}
+.neon-toggle.open svg{transform:rotate(135deg)}
+
+/* ===== Reduced motion ===== */
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{
+    animation-duration:.01ms!important;
+    animation-iteration-count:1!important;
+    transition-duration:.01ms!important;
+    animation-delay:0s!important;
+  }
+  html{scroll-behavior:auto}
+  .fade-up{opacity:1;transform:none}
+  .marquee-track{animation:none}
+  .wa-float{animation:none}
+  .neon-toggle::before,.neon-toggle::after{animation:none}
+  .blob{animation:none}
+  .hero-title .w > span{transform:none;opacity:1}
+  #preloader{display:none}
+}
+
+a:focus-visible,button:focus-visible{outline:2px solid #b76e79;outline-offset:3px;border-radius:6px}
+</style>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"BeautySalon",
+  "name":"سالن زیبایی و آکادمی سحر نجفی",
+  "telephone":"+989352421366",
+  "address":{
+    "@type":"PostalAddress",
+    "streetAddress":"چهارراه محمد رسول‌الله، روبروی درب زنانه مسجد، ساختمان محمد مهر، طبقه دوم",
+    "addressLocality":"قزوین",
+    "addressCountry":"IR"
+  },
+  "openingHoursSpecification":[{
+    "@type":"OpeningHoursSpecification",
+    "dayOfWeek":["Saturday","Sunday","Monday","Tuesday","Wednesday","Thursday"],
+    "opens":"09:00","closes":"19:00"
+  }],
+  "sameAs":[
+    "https://instagram.com/saharnajafi.nailacademy",
+    "https://instagram.com/saharnajafi.mua"
+  ]
+}
+</script>
+</head>
+<body>
+
+<!-- ===== Preloader ===== -->
+<div id="preloader" aria-hidden="true">
+  <svg class="mono" viewBox="0 0 100 100">
+    <circle cx="50" cy="50" r="42"/>
+  </svg>
+  <span class="pre-name">Sahar Najafi</span>
+</div>
+
+<!-- ===== Custom cursor halo ===== -->
+<div class="cursor-halo" id="cursor-halo" aria-hidden="true"></div>
+
+<div id="progress" aria-hidden="true"></div>
+
+<main>
+
+<!-- ===== HERO ===== -->
+<section id="home" class="relative min-h-[100svh] flex items-center justify-center overflow-hidden">
+  <img id="hero-img"
+       src="https://images.pexels.com/photos/3997388/pexels-photo-3997388.jpeg?auto=compress&cs=tinysrgb&w=1600&h=1000&fit=crop"
+       alt="سالن زیبایی سحر نجفی در قزوین"
+       class="absolute inset-0 w-full h-full object-cover will-change-transform"
+       fetchpriority="high" decoding="async" width="1600" height="1000"/>
+  <div class="absolute inset-0 bg-ink/55"></div>
+  <div class="absolute inset-0 bg-gradient-to-b from-ink/70 via-transparent to-ink"></div>
+  <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_30%,rgba(26,26,26,.65)_100%)]"></div>
+  <div class="blob b1"></div>
+  <div class="blob b2"></div>
+
+  <div class="relative z-10 wrap text-center pt-20 pb-32 max-w-5xl">
+    <p class="font-script text-3xl sm:text-4xl text-goldlight">Sahar Najafi · Qazvin</p>
+    <div class="mx-auto mt-5 inline-flex items-center gap-2 rounded-full border border-goldsoft/40 bg-white/5 px-5 py-2 text-xs font-medium text-goldlight backdrop-blur-md sm:text-sm">
+      ✦ سالن زیبایی و آکادمی تخصصی — شعبه چهارراه محمد رسول‌الله
+    </div>
+
+    <h1 class="hero-title mt-6 text-[2.6rem] font-black leading-[1.3] text-white sm:text-6xl lg:text-7xl">
+      <span class="w" style="--i:0"><span>زیبایی</span></span>
+      <span class="w" style="--i:1"><span>شما،</span></span>
+      <span class="w gold" style="--i:2"><span>هنر</span></span>
+      <span class="w gold" style="--i:3"><span>ماست</span></span>
+    </h1>
+
+    <p class="mx-auto mt-6 max-w-2xl text-base font-light leading-9 text-white/85 sm:text-lg">
+      با بیش از ۱۰ سال تجربه درخشان در قلب قزوین — از میکاپ عروس و شنیون تا کاشت ناخن به متد روسی و آکادمی تخصصی ناخن؛ همراه شما هستیم تا بهترین نسخه خودتان باشید.
+    </p>
+    <div class="mt-9 flex flex-wrap items-center justify-center gap-4">
+      <a href="#contact" class="btn-gold magnetic">رزرو نوبت فوری</a>
+      <a href="#portfolio" class="btn-ghost magnetic">مشاهده نمونه‌کارها</a>
+    </div>
+    <div class="mt-12 flex flex-wrap items-center justify-center gap-8 text-sm text-white/80">
+      <div class="flex items-center gap-2"><span class="text-gold">★</span> امتیاز ۴.۹ مشتریان</div>
+      <div class="hidden sm:block w-px h-4 bg-white/20"></div>
+      <div>+۵۰۰ مشتری راضی</div>
+      <div class="hidden sm:block w-px h-4 bg-white/20"></div>
+      <div>مدرک بین‌المللی ۳ کشور</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Marquee ===== -->
+<div class="marquee py-3.5" aria-hidden="true">
+  <div class="marquee-track text-sm font-medium text-body/60">
+    <span>میکاپ عروس</span><span class="text-rosegold">✦</span>
+    <span>مانیکور روسی</span><span class="text-rosegold">✦</span>
+    <span>کاشت ناخن</span><span class="text-rosegold">✦</span>
+    <span>شنیون و استایل مو</span><span class="text-rosegold">✦</span>
+    <span>کاشت و لیفت مژه</span><span class="text-rosegold">✦</span>
+    <span>رنگ و لایت</span><span class="text-rosegold">✦</span>
+    <span>پاکسازی پوست</span><span class="text-rosegold">✦</span>
+    <span>آکادمی ناخن</span><span class="text-rosegold">✦</span>
+    <span>میکاپ عروس</span><span class="text-rosegold">✦</span>
+    <span>مانیکور روسی</span><span class="text-rosegold">✦</span>
+    <span>کاشت ناخن</span><span class="text-rosegold">✦</span>
+    <span>شنیون و استایل مو</span><span class="text-rosegold">✦</span>
+    <span>کاشت و لیفت مژه</span><span class="text-rosegold">✦</span>
+    <span>رنگ و لایت</span><span class="text-rosegold">✦</span>
+    <span>پاکسازی پوست</span><span class="text-rosegold">✦</span>
+    <span>آکادمی ناخن</span><span class="text-rosegold">✦</span>
+  </div>
+</div>
+
+<!-- ===== BRANCH ===== -->
+<section id="branch" class="py-16 md:py-20 relative">
+  <div class="wrap">
+    <div class="card p-8 md:p-10 fade-up">
+      <div class="grid md:grid-cols-2 gap-8 items-center">
+        <div>
+          <span class="eyebrow">آدرس سالن</span>
+          <h2 class="mt-3 text-2xl sm:text-3xl font-black text-ink">شعبه چهارراه محمد رسول‌الله</h2>
+          <p class="mt-4 text-body/75 leading-relaxed text-sm md:text-base">
+            قزوین، چهارراه محمد رسول‌الله به سمت چهارراه پادگان، روبروی درب زنانه مسجد، ساختمان محمد مهر، طبقه دوم
+          </p>
+          <div class="mt-5 flex flex-wrap gap-3 text-sm">
+            <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-sand text-body/80">🕐 شنبه تا پنجشنبه · ۹ صبح تا ۷ عصر</span>
+            <a href="tel:09352421366" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-sand text-body/80 hover:bg-rosegold hover:text-white transition" dir="ltr">☎ ۰۹۳۵ ۲۴۲ ۱۳۶۶</a>
+          </div>
+          <div class="mt-6 flex flex-wrap gap-3">
+            <a href="#contact" class="btn-gold text-sm magnetic">رزرو نوبت</a>
+            <a href="https://wa.me/989352421366" target="_blank" rel="noopener" class="btn-outline text-sm">واتساپ</a>
+          </div>
+        </div>
+        <div class="grid grid-cols-2 gap-3">
+          <div class="flex items-center gap-2 text-sm p-3 rounded-xl bg-sand/60"><span class="text-emerald-500">✓</span> ابزار استریل اتوکلاو</div>
+          <div class="flex items-center gap-2 text-sm p-3 rounded-xl bg-sand/60"><span class="text-emerald-500">✓</span> متریال اورجینال</div>
+          <div class="flex items-center gap-2 text-sm p-3 rounded-xl bg-sand/60"><span class="text-emerald-500">✓</span> متد روسی</div>
+          <div class="flex items-center gap-2 text-sm p-3 rounded-xl bg-sand/60"><span class="text-emerald-500">✓</span> فضای آرام و خلوت</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SERVICES ===== -->
+<section id="services" class="py-16 md:py-24 bg-sand/40 relative">
+  <div class="blob b3"></div>
+  <div class="wrap relative">
+    <div class="text-center max-w-2xl mx-auto mb-14 fade-up">
+      <span class="eyebrow">خدمات</span>
+      <h2 class="mt-3 text-3xl sm:text-4xl font-black text-ink">هر آنچه برای درخشش شما نیاز است</h2>
+      <p class="mt-4 text-body/75 leading-relaxed">از میکاپ عروس تا کاشت ناخن متد روسی — کیفیت درجه یک و استریل کامل ابزار.</p>
+    </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+
+      <div class="card p-7 fade-up" style="--i:0">
+        <div class="svc-icon">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M4 18h16l-1.6-9.5-3.4 3.8L12 4l-3 8.3-3.4-3.8L4 18z"/>
+          </svg>
+        </div>
+        <h3 class="font-bold text-lg text-ink">پکیج کامل عروس</h3>
+        <p class="mt-2 text-sm text-body/75 leading-relaxed">میکاپ، شنیون و ناخن عروس در یک روز؛ شما فقط بدرخشید.</p>
+      </div>
+
+      <div class="card p-7 fade-up" style="--i:1">
+        <div class="svc-icon">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="6" cy="6" r="2.6"/>
+            <circle cx="6" cy="18" r="2.6"/>
+            <path d="M20 4L8.14 15.86M14.5 14.5L20 20"/>
+          </svg>
+        </div>
+        <h3 class="font-bold text-lg text-ink">رنگ، لایت و کراتین مو</h3>
+        <p class="mt-2 text-sm text-body/75 leading-relaxed">پالت رنگ اختصاصی چهره شما، به‌همراه احیای عمیق و درخشندگی ابریشمی.</p>
+      </div>
+
+      <div class="card p-7 fade-up" style="--i:2">
+        <div class="svc-icon">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M8 13V5.5a1.75 1.75 0 1 1 3.5 0V13"/>
+            <path d="M11.5 13V4.5a1.75 1.75 0 1 1 3.5 0V13"/>
+            <path d="M15 13v-2a1.75 1.75 0 1 1 3.5 0v5.5a6.5 6.5 0 0 1-6.5 6.5h-1.6a6.5 6.5 0 0 1-6.5-6.5V13a1.75 1.75 0 1 1 3.5 0"/>
+          </svg>
+        </div>
+        <h3 class="font-bold text-lg text-ink">کاشت و طراحی ناخن (متد روسی)</h3>
+        <p class="mt-2 text-sm text-body/75 leading-relaxed">زیرسازی اصولی و مانیکور روسی با اولویت سلامت ناخن طبیعی شما.</p>
+      </div>
+
+      <div class="card p-7 fade-up" style="--i:3">
+        <div class="svc-icon">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/>
+            <circle cx="12" cy="12" r="3"/>
+          </svg>
+        </div>
+        <h3 class="font-bold text-lg text-ink">کاشت، لیفت و لمینت مژه</h3>
+        <p class="mt-2 text-sm text-body/75 leading-relaxed">نگاهی عمیق‌تر با مژه‌هایی پرپشت، اما کاملاً طبیعی.</p>
+      </div>
+
+      <div class="card p-7 fade-up" style="--i:4">
+        <div class="svc-icon">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 3c3 4 6 6 6 10a6 6 0 0 1-12 0c0-4 3-6 6-10z"/>
+            <path d="M9.5 14.5c.7 1 1.6 1.5 2.5 1.5s1.8-.5 2.5-1.5"/>
+          </svg>
+        </div>
+        <h3 class="font-bold text-lg text-ink">پاکسازی حرفه‌ای پوست</h3>
+        <p class="mt-2 text-sm text-body/75 leading-relaxed">پوستی شفاف و تازه با تکنیک‌های استاندارد و متریال اورجینال.</p>
+      </div>
+
+      <div class="card p-7 fade-up" style="--i:5">
+        <div class="svc-icon">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 3c3 4 6 6 6 10a6 6 0 0 1-12 0c0-4 3-6 6-10z"/>
+            <path d="M12 9.5a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/>
+          </svg>
+        </div>
+        <h3 class="font-bold text-lg text-ink">حلزون تراپی</h3>
+        <p class="mt-2 text-sm text-body/75 leading-relaxed">ترمیم، جوان‌سازی و شادابی پوست با خواص موسین حلزون.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== PORTFOLIO ===== -->
+<section id="portfolio" class="py-16 md:py-24 relative">
+  <div class="wrap">
+    <div class="text-center max-w-2xl mx-auto mb-10 fade-up">
+      <span class="eyebrow">نمونه‌کارها</span>
+      <h2 class="mt-3 text-3xl sm:text-4xl font-black text-ink">هنر دستان ما را ببینید</h2>
+    </div>
+    <div class="flex flex-wrap justify-center gap-2 mb-10 fade-up" id="filters" role="tablist" aria-label="فیلتر نمونه‌کارها">
+      <button class="filter-btn active" data-f="all" role="tab" aria-selected="true">همه</button>
+      <button class="filter-btn" data-f="bride" role="tab" aria-selected="false">میکاپ عروس</button>
+      <button class="filter-btn" data-f="nail" role="tab" aria-selected="false">طرح ناخن</button>
+      <button class="filter-btn" data-f="hair" role="tab" aria-selected="false">رنگ و لایت</button>
+      <button class="filter-btn" data-f="lash" role="tab" aria-selected="false">مژه</button>
+    </div>
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4" id="gallery">
+      <div class="relative overflow-hidden rounded-2xl aspect-[3/4] group" data-cat="nail"><img src="https://images.pexels.com/photos/3997388/pexels-photo-3997388.jpeg?auto=compress&cs=tinysrgb&w=500&h=650&fit=crop" alt="مانیکور روسی و کاشت ناخن — سالن سحر نجفی قزوین" loading="lazy" decoding="async" width="500" height="650" class="w-full h-full object-cover transition duration-500 group-hover:scale-105"/><div class="absolute inset-0 bg-gradient-to-t from-ink/60 to-transparent opacity-0 group-hover:opacity-100 transition flex items-end p-3"><span class="text-white text-xs font-medium">مانیکور روسی</span></div></div>
+      <div class="relative overflow-hidden rounded-2xl aspect-[3/4] group" data-cat="bride"><img src="https://images.pexels.com/photos/1043474/pexels-photo-1043474.jpeg?auto=compress&cs=tinysrgb&w=500&h=650&fit=crop" alt="میکاپ عروس حرفه‌ای — سالن سحر نجفی" loading="lazy" decoding="async" width="500" height="650" class="w-full h-full object-cover transition duration-500 group-hover:scale-105"/><div class="absolute inset-0 bg-gradient-to-t from-ink/60 to-transparent opacity-0 group-hover:opacity-100 transition flex items-end p-3"><span class="text-white text-xs font-medium">میکاپ عروس</span></div></div>
+      <div class="relative overflow-hidden rounded-2xl aspect-[3/4] group" data-cat="nail"><img src="https://images.pexels.com/photos/3997379/pexels-photo-3997379.jpeg?auto=compress&cs=tinysrgb&w=500&h=650&fit=crop" alt="کاشت ناخن متد روسی — سالن سحر نجفی" loading="lazy" decoding="async" width="500" height="650" class="w-full h-full object-cover transition duration-500 group-hover:scale-105"/><div class="absolute inset-0 bg-gradient-to-t from-ink/60 to-transparent opacity-0 group-hover:opacity-100 transition flex items-end p-3"><span class="text-white text-xs font-medium">کاشت ناخن</span></div></div>
+      <div class="relative overflow-hidden rounded-2xl aspect-[3/4] group" data-cat="hair"><img src="https://images.pexels.com/photos/3993449/pexels-photo-3993449.jpeg?auto=compress&cs=tinysrgb&w=500&h=650&fit=crop" alt="رنگ و لایت مو — سالن سحر نجفی" loading="lazy" decoding="async" width="500" height="650" class="w-full h-full object-cover transition duration-500 group-hover:scale-105"/><div class="absolute inset-0 bg-gradient-to-t from-ink/60 to-transparent opacity-0 group-hover:opacity-100 transition flex items-end p-3"><span class="text-white text-xs font-medium">رنگ و لایت</span></div></div>
+      <div class="relative overflow-hidden rounded-2xl aspect-[3/4] group" data-cat="lash"><img src="https://images.pexels.com/photos/3373736/pexels-photo-3373736.jpeg?auto=compress&cs=tinysrgb&w=500&h=650&fit=crop" alt="لیفت و لمینت مژه — سالن سحر نجفی" loading="lazy" decoding="async" width="500" height="650" class="w-full h-full object-cover transition duration-500 group-hover:scale-105"/><div class="absolute inset-0 bg-gradient-to-t from-ink/60 to-transparent opacity-0 group-hover:opacity-100 transition flex items-end p-3"><span class="text-white text-xs font-medium">لیفت مژه</span></div></div>
+      <div class="relative overflow-hidden rounded-2xl aspect-[3/4] group" data-cat="bride"><img src="https://images.pexels.com/photos/1024993/pexels-photo-1024993.jpeg?auto=compress&cs=tinysrgb&w=500&h=650&fit=crop" alt="شنیون عروس — سالن سحر نجفی" loading="lazy" decoding="async" width="500" height="650" class="w-full h-full object-cover transition duration-500 group-hover:scale-105"/><div class="absolute inset-0 bg-gradient-to-t from-ink/60 to-transparent opacity-0 group-hover:opacity-100 transition flex items-end p-3"><span class="text-white text-xs font-medium">شنیون عروس</span></div></div>
+      <div class="relative overflow-hidden rounded-2xl aspect-[3/4] group" data-cat="nail"><img src="https://images.pexels.com/photos/3997993/pexels-photo-3997993.jpeg?auto=compress&cs=tinysrgb&w=500&h=650&fit=crop" alt="طراحی ناخن مدرن — سالن سحر نجفی" loading="lazy" decoding="async" width="500" height="650" class="w-full h-full object-cover transition duration-500 group-hover:scale-105"/><div class="absolute inset-0 bg-gradient-to-t from-ink/60 to-transparent opacity-0 group-hover:opacity-100 transition flex items-end p-3"><span class="text-white text-xs font-medium">طراحی ناخن</span></div></div>
+      <div class="relative overflow-hidden rounded-2xl aspect-[3/4] group" data-cat="hair"><img src="https://images.pexels.com/photos/3065171/pexels-photo-3065171.jpeg?auto=compress&cs=tinysrgb&w=500&h=650&fit=crop" alt="کراتین و احیای مو — سالن سحر نجفی" loading="lazy" decoding="async" width="500" height="650" class="w-full h-full object-cover transition duration-500 group-hover:scale-105"/><div class="absolute inset-0 bg-gradient-to-t from-ink/60 to-transparent opacity-0 group-hover:opacity-100 transition flex items-end p-3"><span class="text-white text-xs font-medium">کراتین مو</span></div></div>
+    </div>
+    <div class="text-center mt-10 fade-up">
+      <a href="https://instagram.com/saharnajafi.nailacademy" target="_blank" rel="noopener" class="btn-outline text-sm">مشاهده همه در اینستاگرام ←</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ABOUT ===== -->
+<section id="about" class="py-16 md:py-24 bg-sand/40 relative">
+  <div class="wrap grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+    <div class="fade-up relative">
+      <div class="absolute -inset-4 rounded-[2rem] bg-gradient-to-br from-roseblush/50 to-goldlight/40 blur-2xl -z-10"></div>
+      <img src="https://images.pexels.com/photos/3997379/pexels-photo-3997379.jpeg?auto=compress&cs=tinysrgb&w=600&h=750&fit=crop"
+           alt="سحر نجفی — مدرس ناخن و میکاپ آرتیست در قزوین"
+           loading="lazy" decoding="async" width="600" height="750"
+           class="rounded-[2rem] w-full max-w-md mx-auto lg:mx-0 shadow-xl aspect-[4/5] object-cover"/>
+    </div>
+    <div class="fade-up">
+      <span class="eyebrow">درباره ما</span>
+      <h2 class="mt-3 text-3xl sm:text-4xl font-black text-ink">آشنایی با سحر نجفی</h2>
+      <p class="mt-5 text-body/80 leading-9">فوق‌لیسانس شیمی با عشقی عمیق به هنر زیبایی. آموزش تخصصی ناخن را در روسیه، ایتالیا و ترکیه گذرانده‌ام و امروز به‌عنوان مدرس ناخن و میکاپ آرتیست در قلب قزوین میزبان شما هستم.</p>
+      <p class="mt-4 text-body/80 leading-9">زیبایی و سلامت دو روی یک سکه‌اند؛ استریل کامل ابزار، متریال اورجینال و زیرسازی اصولی خط قرمز ماست.</p>
+      <blockquote class="mt-6 border-r-4 border-rosegold pr-5 italic text-ink/85 leading-relaxed">«اصلی‌ترین اصل کار من، حفظ سلامت ناخن و پوست شماست. زیبایی بدون سلامت، ماندگار نیست.»</blockquote>
+      <p class="mt-2 text-sm font-bold text-rosegold">— سحر نجفی</p>
+      <div class="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-4">
+        <div class="text-center"><div class="text-2xl font-black text-rosegold">۵۰۰+</div><p class="text-xs text-body/70 mt-1">مشتری راضی</p></div>
+        <div class="text-center"><div class="text-2xl font-black text-rosegold">۲۰۰+</div><p class="text-xs text-body/70 mt-1">هنرجوی موفق</p></div>
+        <div class="text-center"><div class="text-2xl font-black text-rosegold">۳</div><p class="text-xs text-body/70 mt-1">کشور آموزش</p></div>
+        <div class="text-center"><div class="text-2xl font-black text-rosegold">۱۰+</div><p class="text-xs text-body/70 mt-1">سال تجربه</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== COURSES ===== -->
+<section id="courses" class="py-16 md:py-24">
+  <div class="wrap">
+    <div class="text-center max-w-2xl mx-auto mb-14 fade-up">
+      <span class="eyebrow">آکادمی آنلاین</span>
+      <h2 class="mt-3 text-3xl sm:text-4xl font-black text-ink">از مبتدی تا حرفه‌ای</h2>
+    </div>
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="card p-7 flex flex-col fade-up" style="--i:0">
+        <span class="text-xs font-bold bg-rosegold/10 text-rosegold px-2.5 py-1 rounded-full w-fit mb-4">پیشنهاد ویژه</span>
+        <h3 class="font-bold text-lg text-ink">دوره جامع کاشت ناخن</h3>
+        <p class="text-sm text-body/70 mt-1">پودری، ژل و میکس</p>
+        <ul class="mt-4 space-y-1.5 text-sm text-body/80 flex-1"><li>• ۴۲ جلسه ویدیوی 4K</li><li>• جزوه PDF جامع</li><li>• پشتیبانی آنلاین نامحدود</li><li>• مدرک پایان دوره</li></ul>
+        <div class="mt-5 pt-4 border-t border-sand flex items-end justify-between">
+          <div><span class="text-xs text-body/60 line-through">۶,۵۰۰,۰۰۰</span><p class="text-xl font-black text-rosegold">۴,۹۰۰,۰۰۰</p></div>
+          <a href="#contact" class="text-sm font-bold hover:text-rosegold">ثبت‌نام</a>
+        </div>
+      </div>
+      <div class="card p-7 flex flex-col fade-up" style="--i:1">
+        <h3 class="font-bold text-lg text-ink">مانیکور روسی و زیرسازی</h3>
+        <p class="text-sm text-body/70 mt-1">تمرکز بر سلامت ناخن</p>
+        <ul class="mt-4 space-y-1.5 text-sm text-body/80 flex-1"><li>• ۱۸ جلسه ویدیوی 4K</li><li>• تکنیک زیرسازی بدون آسیب</li><li>• تمرین عملی با نظارت</li><li>• ۶ ماه پشتیبانی آنلاین</li></ul>
+        <div class="mt-5 pt-4 border-t border-sand flex items-end justify-between">
+          <p class="text-xl font-black text-rosegold">۲,۸۰۰,۰۰۰</p>
+          <a href="#contact" class="text-sm font-bold hover:text-rosegold">ثبت‌نام</a>
+        </div>
+      </div>
+      <div class="card p-7 flex flex-col fade-up" style="--i:2">
+        <h3 class="font-bold text-lg text-ink">طراحی ناخن و ترندها</h3>
+        <p class="text-sm text-body/70 mt-1">از فرنچ تا دیزاین مدرن</p>
+        <ul class="mt-4 space-y-1.5 text-sm text-body/80 flex-1"><li>• ۲۴ جلسه ویدیوی 4K</li><li>• آپدیت ماهانه ترندها</li><li>• گروه اختصاصی هنرجویان</li><li>• آموزش عکاسی نمونه‌کار</li></ul>
+        <div class="mt-5 pt-4 border-t border-sand flex items-end justify-between">
+          <p class="text-xl font-black text-rosegold">۱,۹۰۰,۰۰۰</p>
+          <a href="#contact" class="text-sm font-bold hover:text-rosegold">ثبت‌نام</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TESTIMONIALS ===== -->
+<section class="py-16 md:py-24 bg-sand/40">
+  <div class="wrap">
+    <div class="text-center max-w-2xl mx-auto mb-16 fade-up">
+      <span class="eyebrow">نظرات</span>
+      <h2 class="mt-3 text-3xl sm:text-4xl font-black text-ink">حرف‌های مشتریان ما</h2>
+    </div>
+    <div class="grid md:grid-cols-3 gap-6 md:gap-5">
+      <div class="tcard fade-up" style="--i:0"><div class="text-gold text-sm mb-3" aria-label="۵ از ۵ ستاره">★★★★★</div><p class="text-sm leading-relaxed text-body/80 mb-4">«سالنی بسیار عالی، همه خدماتش عالیه مخصوصاً رنگ و شنیون و میکاپ. بسیار کاربلد در کار عروس.»</p><p class="text-sm font-bold">نگار م.</p><p class="text-xs text-body/60">میکاپ و شنیون عروس</p></div>
+      <div class="tcard fade-up" style="--i:1"><div class="text-gold text-sm mb-3" aria-label="۵ از ۵ ستاره">★★★★★</div><p class="text-sm leading-relaxed text-body/80 mb-4">«برای کاشت ناخن رفتم؛ عاشق این شدم که چقدر به سلامت ناخن‌هام اهمیت داده شد. هنوز سالم و خوش‌فرمن.»</p><p class="text-sm font-bold">سارا ک.</p><p class="text-xs text-body/60">کاشت ناخن</p></div>
+      <div class="tcard fade-up" style="--i:2"><div class="text-gold text-sm mb-3" aria-label="۵ از ۵ ستاره">★★★★★</div><p class="text-sm leading-relaxed text-body/80 mb-4">«دوره مانیکور روسی رو گذروندم؛ از صفر شروع کردم و الان خودم مشتری دارم. پشتیبانی فوق‌العاده‌ست.»</p><p class="text-sm font-bold">الهه ص.</p><p class="text-xs text-body/60">هنرجوی آکادمی</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<section id="contact" class="py-16 md:py-24">
+  <div class="wrap">
+    <div class="text-center max-w-xl mx-auto mb-12 fade-up">
+      <span class="eyebrow">رزرو نوبت</span>
+      <h2 class="mt-3 text-3xl sm:text-4xl font-black text-ink">رزرو نوبت آنلاین</h2>
+      <p class="mt-3 text-body/75 text-sm">فرم را تکمیل کنید؛ همکاران ما جهت تأیید نهایی با شما تماس می‌گیرند.</p>
+    </div>
+    <div class="grid lg:grid-cols-5 gap-8">
+      <div class="lg:col-span-3 card p-7 md:p-9 fade-up">
+        <form onsubmit="handleBook(event)" novalidate>
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div>
+              <label for="bk-name" class="block text-sm font-medium mb-1.5">نام و نام خانوادگی</label>
+              <input id="bk-name" name="name" required autocomplete="name" placeholder="مثلاً: سارا محمدی"/>
+            </div>
+            <div>
+              <label for="bk-phone" class="block text-sm font-medium mb-1.5">شماره تماس</label>
+              <input id="bk-phone" name="phone" required inputmode="tel" autocomplete="tel" placeholder="۰۹۱۲۳۴۵۶۷۸۹" dir="ltr" class="text-left"/>
+            </div>
+          </div>
+          <div class="mt-4">
+            <label for="bk-service" class="block text-sm font-medium mb-1.5">خدمت مورد نظر</label>
+            <select id="bk-service" name="service" required>
+              <option value="">انتخاب کنید…</option>
+              <option>پکیج کامل عروس</option><option>میکاپ عروس</option><option>شنیون</option>
+              <option>رنگ و لایت مو</option><option>کراتین و احیای مو</option>
+              <option>کاشت ناخن</option><option>مانیکور روسی</option><option>پدیکور</option><option>طراحی ناخن</option>
+              <option>کاشت مژه</option><option>لیفت و لمینت مژه و ابرو</option>
+              <option>پاکسازی پوست</option><option>حلزون تراپی</option>
+              <option>مشاوره آموزش (آکادمی ناخن)</option>
+            </select>
+          </div>
+          <div class="grid sm:grid-cols-2 gap-4 mt-4">
+            <div>
+              <label for="bk-date" class="block text-sm font-medium mb-1.5">تاریخ پیشنهادی</label>
+              <input id="bk-date" name="date" placeholder="مثلاً فردا"/>
+            </div>
+            <div>
+              <label for="bk-time" class="block text-sm font-medium mb-1.5">بازه ساعتی</label>
+              <select id="bk-time" name="time">
+                <option>۹ تا ۱۲ صبح</option><option>۱۲ تا ۱۵</option><option>۱۵ تا ۱۸</option><option>۱۸ تا ۱۹</option>
+              </select>
+            </div>
+          </div>
+          <button type="submit" class="btn-gold w-full mt-6 justify-center">ثبت درخواست رزرو</button>
+          <p id="bk-msg" class="text-center text-sm mt-3 hidden text-rosegold" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+      <div class="lg:col-span-2 space-y-5 fade-up">
+        <div class="card p-6 space-y-4">
+          <h3 class="font-bold text-ink">اطلاعات تماس</h3>
+          <div class="text-sm space-y-3">
+            <div><p class="text-xs text-body/60">سالن</p><a href="tel:09352421366" class="font-medium" dir="ltr">۰۹۳۵ ۲۴۲ ۱۳۶۶</a></div>
+            <div><p class="text-xs text-body/60">آکادمی</p><a href="tel:09351707003" class="font-medium" dir="ltr">۰۹۳۵ ۱۷۰ ۷۰۰۳</a></div>
+            <div><p class="text-xs text-body/60">ساعات کاری</p><p class="font-medium">شنبه تا پنجشنبه | ۹ صبح تا ۷ عصر</p></div>
+          </div>
+        </div>
+        <div class="card p-6">
+          <h3 class="font-bold text-ink text-sm mb-2">آدرس شعبه</h3>
+          <p class="text-xs text-rosegold font-bold mb-1">چهارراه محمد رسول‌الله</p>
+          <p class="text-sm text-body/80 leading-relaxed">قزوین، چهارراه محمد رسول‌الله به سمت چهارراه پادگان، روبروی درب زنانه مسجد، ساختمان محمد مهر، طبقه دوم</p>
+        </div>
+        <div class="flex gap-3">
+          <a href="https://instagram.com/saharnajafi.nailacademy" target="_blank" rel="noopener" class="card p-4 flex-1 text-center text-sm font-medium hover:border-rosegold transition">@saharnajafi.nailacademy</a>
+          <a href="https://instagram.com/saharnajafi.mua" target="_blank" rel="noopener" class="card p-4 flex-1 text-center text-sm font-medium hover:border-rosegold transition">@saharnajafi.mua</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FINAL CTA ===== -->
+<section class="py-14 md:py-16">
+  <div class="wrap">
+    <div class="relative overflow-hidden rounded-[2rem] bg-gradient-to-l from-rosegold to-goldsoft p-10 md:p-14 text-center text-white fade-up">
+      <h2 class="text-2xl md:text-4xl font-black">شما زیباترین هستین</h2>
+      <p class="mt-2 text-white/90 max-w-md mx-auto">و زیباترین‌ها لایق شماست</p>
+      <a href="#contact" class="inline-flex mt-7 px-7 py-3 rounded-full bg-white text-rosegold font-bold text-sm hover:bg-cream transition magnetic">رزرو نوبت</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="border-t border-sand py-10" style="padding-bottom:calc(6rem + env(safe-area-inset-bottom, 0px))">
+  <div class="wrap flex flex-col md:flex-row items-center justify-between gap-5">
+    <div class="text-center md:text-right">
+      <p class="font-black text-lg text-ink">سالن زیبایی و آکادمی سحر نجفی</p>
+      <p class="text-sm text-body/60 mt-1">قزوین · چهارراه محمد رسول‌الله</p>
+    </div>
+    <div class="flex gap-5 text-sm text-body/60">
+      <a href="#services" class="hover:text-ink">خدمات</a>
+      <a href="#courses" class="hover:text-ink">آکادمی</a>
+      <a href="#contact" class="hover:text-ink">تماس</a>
+    </div>
+  </div>
+  <div class="wrap mt-6 pt-5 border-t border-sand flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-body/55">
+    <p>© ۱۴۰۵ سالن سحر نجفی</p>
+    <p>توسعه: <a href="https://karen-soft.ir" target="_blank" rel="noopener" class="hover:text-rosegold">تیم کارن سافت</a></p>
+  </div>
+</footer>
+
+<!-- ===== NEON DOCK ===== -->
+<div class="neon-dock" id="neon-dock">
+  <div class="neon-items" id="neon-items">
+    <a href="#home" class="neon-item" data-label="خانه" style="--neon:#00e5ff;--d:.25;--ty:354px">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10.5L12 3l9 7.5V21a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1V10.5z"/></svg>
+    </a>
+    <a href="#services" class="neon-item" data-label="خدمات" style="--neon:#ff2d95;--d:.20;--ty:291px">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.8 5.4 5.4 1.8-5.4 1.8L12 17.4l-1.8-5.4L4.8 10.2l5.4-1.8L12 3z"/><path d="M19 15l.6 1.8 1.8.6-1.8.6L19 19.8l-.6-1.8-1.8-.6 1.8-.6L19 15z"/></svg>
+    </a>
+    <a href="#portfolio" class="neon-item" data-label="نمونه‌کارها" style="--neon:#a855f7;--d:.15;--ty:228px">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10" r="1.5"/><path d="M3 16l5-4 4 3 3-3 6 5"/></svg>
+    </a>
+    <a href="#courses" class="neon-item" data-label="دوره‌ها" style="--neon:#84ff00;--d:.10;--ty:165px">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.1 2.7 3 6 3s6-1.9 6-3v-5"/></svg>
+    </a>
+    <a href="#about" class="neon-item" data-label="درباره ما" style="--neon:#ff9500;--d:.05;--ty:102px">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-3.3 3.6-6 8-6s8 2.7 8 6"/></svg>
+    </a>
+    <a href="#contact" class="neon-item" data-label="رزرو نوبت" style="--neon:#ffd700;--d:0;--ty:40px">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A15 15 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg>
+    </a>
+  </div>
+  <button class="neon-toggle" id="neon-toggle"
+          aria-label="منوی دسترسی سریع"
+          aria-expanded="false"
+          aria-controls="neon-items">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+  </button>
+</div>
+
+<!-- ===== WhatsApp ===== -->
+<a href="https://wa.me/989352421366" target="_blank" rel="noopener" class="wa-float" aria-label="تماس از طریق واتساپ">
+  <svg width="28" height="28" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.1-1.6-.8-1.9-.9-.2-.1-.4-.1-.6.1-.2.2-.7.9-.8 1-.2.1-.3.2-.6.1-1.5-.6-2.5-1.2-3.5-2.6-.2-.4.2-.4.6-1.3.1-.2 0-.4-.1-.5-.1-.1-.6-1.4-.8-1.9-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.1s.9 2.4 1 2.6c.1.2 1.8 2.8 4.4 3.9 1.6.7 2.1.7 2.9.6.4-.1 1.6-.6 1.8-1.3.2-.6.2-1.2.1-1.3-.1-.1-.3-.2-.6-.3zM12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.3 5L2 22l5.2-1.3c1.4.8 3.1 1.2 4.8 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2z"/></svg>
+</a>
+
+<script>
+/* ===== Booking form → WhatsApp ===== */
+function handleBook(e){
+  e.preventDefault();
+  const f = e.target;
+  const g = n => (f.elements.namedItem(n)?.value || '').trim();
+
+  if (!g('name') || !g('phone') || !g('service')) {
+    const m = document.getElementById('bk-msg');
+    m.textContent = 'لطفاً نام، شماره تماس و خدمت مورد نظر را کامل کنید.';
+    m.classList.remove('hidden');
+    return;
+  }
+
+  const text = encodeURIComponent(
+    `سلام، درخواست رزرو:\n` +
+    `نام: ${g('name')}\n` +
+    `موبایل: ${g('phone')}\n` +
+    `خدمت: ${g('service')}\n` +
+    `تاریخ: ${g('date') || 'هماهنگ شود'}\n` +
+    `ساعت: ${g('time')}`
+  );
+
+  window.open(`https://wa.me/989352421366?text=${text}`, '_blank', 'noopener,noreferrer');
+  const msg = document.getElementById('bk-msg');
+  msg.textContent = 'در حال انتقال به واتساپ…';
+  msg.classList.remove('hidden');
+}
+
+/* ===== Neon dock toggle ===== */
+const neonToggle = document.getElementById('neon-toggle');
+const neonItems  = document.getElementById('neon-items');
+
+function setDock(open){
+  neonToggle.classList.toggle('open', open);
+  neonItems.classList.toggle('open', open);
+  neonToggle.setAttribute('aria-expanded', String(open));
+}
+neonToggle.addEventListener('click', ev => {
+  ev.stopPropagation();
+  setDock(!neonItems.classList.contains('open'));
+  if (navigator.vibrate) { try { navigator.vibrate(8); } catch(_){} }
+});
+neonItems.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setDock(false)));
+document.addEventListener('keydown', e => { if (e.key === 'Escape') setDock(false); });
+document.addEventListener('click', e => {
+  if (!e.target.closest('.neon-dock')) setDock(false);
+});
+
+/* ===== Portfolio filters ===== */
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => {
+      b.classList.remove('active');
+      b.setAttribute('aria-selected','false');
+    });
+    btn.classList.add('active');
+    btn.setAttribute('aria-selected','true');
+
+    const f = btn.dataset.f;
+    document.querySelectorAll('#gallery > div').forEach(el => {
+      const show = (f === 'all' || el.dataset.cat === f);
+      el.style.display = show ? '' : 'none';
+    });
+  });
+});
+
+/* ===== Scroll progress + fade-up ===== */
+const progressBar = document.getElementById('progress');
+let rafPending = false;
+function updateProgress(){
+  const h = document.documentElement;
+  const max = h.scrollHeight - h.clientHeight;
+  const p = max > 0 ? h.scrollTop / max : 0;
+  progressBar.style.transform = `scaleX(${p})`;
+  rafPending = false;
+}
+window.addEventListener('scroll', () => {
+  if (!rafPending){ rafPending = true; requestAnimationFrame(updateProgress); }
+}, { passive: true });
+updateProgress();
+
+const obs = new IntersectionObserver(
+  entries => entries.forEach(en => { if (en.isIntersecting) en.target.classList.add('on'); }),
+  { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+);
+document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+
+/* ===== Hero parallax ===== */
+const heroImg = document.getElementById('hero-img');
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+let parallaxPending = false;
+function updateParallax(){
+  const y = window.scrollY;
+  if (heroImg && y < window.innerHeight) {
+    heroImg.style.transform = `translateY(${y * 0.35}px) scale(${1 + y * 0.00025})`;
+  }
+  parallaxPending = false;
+}
+if (!reduceMotion && heroImg) {
+  window.addEventListener('scroll', () => {
+    if (!parallaxPending){ parallaxPending = true; requestAnimationFrame(updateParallax); }
+  }, { passive: true });
+}
+
+/* ===== Custom cursor halo ===== */
+const halo = document.getElementById('cursor-halo');
+const finePointer = window.matchMedia('(hover:hover) and (pointer:fine)').matches;
+if (halo && finePointer && !reduceMotion) {
+  let hx = window.innerWidth/2, hy = window.innerHeight/2;
+  let cx = hx, cy = hy;
+
+  document.addEventListener('mousemove', e => {
+    hx = e.clientX; hy = e.clientY;
+    halo.style.opacity = '1';
+  }, { passive: true });
+  document.addEventListener('mouseleave', () => { halo.style.opacity = '0'; });
+
+  function loop(){
+    cx += (hx - cx) * 0.18;
+    cy += (hy - cy) * 0.18;
+    halo.style.transform = `translate(${cx}px, ${cy}px) translate(-50%,-50%)`;
+    requestAnimationFrame(loop);
+  }
+  requestAnimationFrame(loop);
+
+  /* grow on interactive elements */
+  document.querySelectorAll('a, button, .card, .filter-btn, .neon-item, .neon-toggle').forEach(el => {
+    el.addEventListener('mouseenter', () => halo.classList.add('is-hover'));
+    el.addEventListener('mouseleave', () => halo.classList.remove('is-hover'));
+  });
+}
+
+/* ===== Magnetic buttons ===== */
+document.querySelectorAll('.magnetic').forEach(btn => {
+  if (reduceMotion) return;
+  btn.addEventListener('mousemove', e => {
+    const r = btn.getBoundingClientRect();
+    const x = (e.clientX - r.left - r.width / 2) * 0.18;
+    const y = (e.clientY - r.top - r.height / 2) * 0.18;
+    btn.style.transform = `translate(${x}px, ${y}px)`;
+  });
+  btn.addEventListener('mouseleave', () => { btn.style.transform = ''; });
+});
+
+/* ===== Preloader cleanup (safety net) ===== */
+window.addEventListener('load', () => {
+  const p = document.getElementById('preloader');
+  if (p) setTimeout(() => p.remove(), 2400);
+});
+</script>
+</body>
+</html>
