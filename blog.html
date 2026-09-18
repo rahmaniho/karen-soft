@@ -14,7 +14,7 @@
     <!-- ===== سئو ===== -->
     <title>وبلاگ کارن سافت | مقالات تخصصی نرم‌افزار، امنیت و اتوماسیون اداری</title>
     <meta name="description" content="مقالات و اخبار تخصصی کارن سافت در حوزه نرم‌افزارهای مدیریتی، امنیت اطلاعات، اتوماسیون اداری، مدیریت کسب‌وکار و فناوری. جدیدترین مطالب را مطالعه کنید.">
-    <meta name="keywords" content="وبلاگ کارن سافت, مقالات نرم افزار, امنیت اطلاعات, اتوماسیون اداری, مدیریت کسب و کار, اخبار فناوری">
+    <meta name="keywords" content="وبلاگ کارن سافت, مقالات نرم افزار, امنیت اطلاعات, اتوماسیون اداری, مدیریت کسب و کار, اخبار فناوری, استارلینک, Direct to Cell">
     <meta name="author" content="کارن سافت">
     <meta name="robots" content="index, follow, max-image-preview:large">
     <link rel="canonical" href="https://karen-soft.ir/blog">
@@ -44,43 +44,32 @@
 
     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
 
-    <!-- ===== فونت IRANSans (CDN رسمی iransans-fontface) ===== -->
+    <!-- ===== فونت IRANSans ===== -->
     <link href="https://cdn.jsdelivr.net/npm/iransans-fontface@0.1.1/css/iransans/iransans-fontface.min.css" rel="stylesheet">
-
-    <!-- ===== فونت IRANSans (جایگزین با فایل‌های واقعی) ===== -->
     <style>
-        /* این تعریف جایگزین، مطمئن می‌شود فونت حتماً لود شود */
         @font-face {
             font-family: 'IRANSans';
             src: url('https://cdn.jsdelivr.net/gh/rastikerdar/iransans@v5.0/font/woff2/IRANSansWeb.woff2') format('woff2'),
                  url('https://cdn.jsdelivr.net/gh/rastikerdar/iransans@v5.0/font/woff/IRANSansWeb.woff') format('woff');
-            font-weight: 400;
-            font-style: normal;
-            font-display: swap;
+            font-weight: 400; font-style: normal; font-display: swap;
         }
         @font-face {
             font-family: 'IRANSans';
             src: url('https://cdn.jsdelivr.net/gh/rastikerdar/iransans@v5.0/font/woff2/IRANSansWeb_Bold.woff2') format('woff2'),
                  url('https://cdn.jsdelivr.net/gh/rastikerdar/iransans@v5.0/font/woff/IRANSansWeb_Bold.woff') format('woff');
-            font-weight: 700;
-            font-style: normal;
-            font-display: swap;
+            font-weight: 700; font-style: normal; font-display: swap;
         }
         @font-face {
             font-family: 'IRANSans';
             src: url('https://cdn.jsdelivr.net/gh/rastikerdar/iransans@v5.0/font/woff2/IRANSansWeb_Light.woff2') format('woff2'),
                  url('https://cdn.jsdelivr.net/gh/rastikerdar/iransans@v5.0/font/woff/IRANSansWeb_Light.woff') format('woff');
-            font-weight: 300;
-            font-style: normal;
-            font-display: swap;
+            font-weight: 300; font-style: normal; font-display: swap;
         }
         @font-face {
             font-family: 'IRANSans';
             src: url('https://cdn.jsdelivr.net/gh/rastikerdar/iransans@v5.0/font/woff2/IRANSansWeb_Medium.woff2') format('woff2'),
                  url('https://cdn.jsdelivr.net/gh/rastikerdar/iransans@v5.0/font/woff/IRANSansWeb_Medium.woff') format('woff');
-            font-weight: 500;
-            font-style: normal;
-            font-display: swap;
+            font-weight: 500; font-style: normal; font-display: swap;
         }
     </style>
 
@@ -113,10 +102,7 @@
         "publisher": {
             "@type": "Organization",
             "name": "کارن سافت",
-            "logo": {
-                "@type": "ImageObject",
-                "url": "https://karen-soft.ir/images/logo-karensoft.png"
-            }
+            "logo": { "@type": "ImageObject", "url": "https://karen-soft.ir/images/logo-karensoft.png" }
         }
     }
     </script>
@@ -127,191 +113,114 @@
         "@context": "https://schema.org",
         "@type": "BreadcrumbList",
         "itemListElement": [{
-            "@type": "ListItem", "position": 1,
-            "name": "خانه", "item": "https://karen-soft.ir/"
+            "@type": "ListItem", "position": 1, "name": "خانه", "item": "https://karen-soft.ir/"
         }, {
-            "@type": "ListItem", "position": 2,
-            "name": "وبلاگ", "item": "https://karen-soft.ir/blog"
+            "@type": "ListItem", "position": 2, "name": "وبلاگ", "item": "https://karen-soft.ir/blog"
         }]
     }
     </script>
 
     <style>
-        /* ===== تنظیم فونت ===== */
         body, h1, h2, h3, h4, p, a, span, li, button, input {
             font-family: 'IRANSans', 'IRANSansWeb', Tahoma, sans-serif !important;
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            background: #080A19;
-            color: #fff;
-            overflow-x: hidden;
-            line-height: 1.8;
-        }
+        body { background: #080A19; color: #fff; overflow-x: hidden; line-height: 1.8; }
 
-        /* ===== بک‌گراند ===== */
         #video-background {
-            position: fixed; top: 0; left: 0;
-            width: 100vw; height: 100vh;
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
             object-fit: cover; z-index: 0;
         }
         .page-overlay {
-            position: relative; z-index: 1;
-            min-height: 100vh;
+            position: relative; z-index: 1; min-height: 100vh;
             background: rgba(8, 10, 25, 0.72);
-            backdrop-filter: blur(2px);
-            -webkit-backdrop-filter: blur(2px);
+            backdrop-filter: blur(2px); -webkit-backdrop-filter: blur(2px);
             padding-top: 80px;
         }
         .section-content { position: relative; z-index: 2; }
 
-        /* ===== NAVBAR ===== */
         .navbar-glass {
             background: rgba(8, 10, 25, 0.75);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
+            backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.06);
             transition: all 0.3s ease;
         }
         .navbar-scrolled { box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3); }
-        #mobileMenu {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s ease;
-        }
+        #mobileMenu { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
         #mobileMenu.open { max-height: 300px; }
 
-        /* ===== Breadcrumb ===== */
         .breadcrumb {
-            max-width: 900px;
-            margin: 0 auto 24px;
-            padding: 0 16px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 0.85rem;
-            color: rgba(255, 255, 255, 0.5);
+            max-width: 900px; margin: 0 auto 24px; padding: 0 16px;
+            display: flex; align-items: center; gap: 8px;
+            font-size: 0.85rem; color: rgba(255, 255, 255, 0.5);
         }
-        .breadcrumb a {
-            color: rgba(255, 255, 255, 0.6);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
+        .breadcrumb a { color: rgba(255, 255, 255, 0.6); text-decoration: none; transition: color 0.3s ease; }
         .breadcrumb a:hover { color: #D4AF37; }
         .breadcrumb .sep { color: rgba(255, 255, 255, 0.3); }
         .breadcrumb .current { color: #D4AF37; font-weight: 600; }
 
-        /* ===== HEADER وبلاگ ===== */
         .blog-header { text-align: center; margin-bottom: 40px; }
-        .blog-header h1 {
-            font-size: 2.6rem;
-            font-weight: 800;
-            color: #fff;
-            margin-bottom: 12px;
-            line-height: 1.5;
-        }
+        .blog-header h1 { font-size: 2.6rem; font-weight: 800; color: #fff; margin-bottom: 12px; line-height: 1.5; }
         .blog-header .gold-line {
-            width: 90px;
-            height: 4px;
+            width: 90px; height: 4px;
             background: linear-gradient(135deg, #E4C56A, #D4AF37, #B8942A);
-            margin: 0 auto 20px;
-            border-radius: 4px;
+            margin: 0 auto 20px; border-radius: 4px;
         }
         .blog-header p {
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 1.05rem;
-            font-weight: 300;
-            max-width: 640px;
-            margin: 0 auto;
+            color: rgba(255, 255, 255, 0.6); font-size: 1.05rem; font-weight: 300;
+            max-width: 640px; margin: 0 auto;
         }
 
-        /* ===== جستجو ===== */
-        .search-wrapper {
-            position: relative;
-            max-width: 500px;
-            margin: 0 auto 28px;
-        }
+        .search-wrapper { position: relative; max-width: 500px; margin: 0 auto 28px; }
         .search-wrapper input {
-            width: 100%;
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 50px;
-            padding: 14px 50px 14px 50px;
-            color: #fff;
-            font-size: 0.95rem;
+            width: 100%; background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 50px;
+            padding: 14px 50px 14px 50px; color: #fff; font-size: 0.95rem;
             transition: all 0.3s ease;
         }
         .search-wrapper input::placeholder { color: rgba(255, 255, 255, 0.4); }
         .search-wrapper input:focus {
-            outline: none;
-            border-color: #D4AF37;
+            outline: none; border-color: #D4AF37;
             background: rgba(212, 175, 55, 0.06);
             box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
         }
         .search-wrapper .search-icon {
-            position: absolute;
-            right: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: rgba(255, 255, 255, 0.4);
+            position: absolute; right: 20px; top: 50%;
+            transform: translateY(-50%); color: rgba(255, 255, 255, 0.4);
             pointer-events: none;
         }
         .search-wrapper .clear-btn {
-            position: absolute;
-            left: 14px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(255, 255, 255, 0.1);
-            border: none;
-            color: rgba(255, 255, 255, 0.6);
-            width: 28px;
-            height: 28px;
-            border-radius: 50%;
-            cursor: pointer;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
+            position: absolute; left: 14px; top: 50%;
+            transform: translateY(-50%); background: rgba(255, 255, 255, 0.1);
+            border: none; color: rgba(255, 255, 255, 0.6);
+            width: 28px; height: 28px; border-radius: 50%;
+            cursor: pointer; display: none; align-items: center;
+            justify-content: center; transition: all 0.3s ease;
         }
-        .search-wrapper .clear-btn:hover {
-            background: rgba(212, 175, 55, 0.2);
-            color: #D4AF37;
-        }
+        .search-wrapper .clear-btn:hover { background: rgba(212, 175, 55, 0.2); color: #D4AF37; }
 
-        /* ===== دسته‌بندی ===== */
         .categories {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-bottom: 46px;
+            display: flex; justify-content: center; flex-wrap: wrap;
+            gap: 10px; margin-bottom: 46px;
         }
         .category-btn {
             background: rgba(255, 255, 255, 0.06);
             border: 1px solid rgba(255, 255, 255, 0.08);
             color: rgba(255, 255, 255, 0.7);
-            padding: 8px 22px;
-            border-radius: 999px;
-            font-size: 0.85rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-family: inherit;
+            padding: 8px 22px; border-radius: 999px;
+            font-size: 0.85rem; font-weight: 500; cursor: pointer;
+            transition: all 0.3s ease; font-family: inherit;
         }
         .category-btn:hover {
-            background: rgba(212, 175, 55, 0.1);
-            color: #D4AF37;
+            background: rgba(212, 175, 55, 0.1); color: #D4AF37;
             border-color: rgba(212, 175, 55, 0.3);
         }
         .category-btn.active {
             background: linear-gradient(135deg, #E4C56A, #D4AF37, #B8942A);
-            color: #0B1220;
-            border-color: transparent;
-            font-weight: 700;
+            color: #0B1220; border-color: transparent; font-weight: 700;
             box-shadow: 0 6px 20px rgba(212, 175, 55, 0.25);
         }
 
-        /* ===== کارت وبلاگ ===== */
         .blog-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -320,12 +229,9 @@
         .blog-card-glow {
             background: rgba(255, 255, 255, 0.04);
             border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 18px;
-            overflow: hidden;
+            border-radius: 18px; overflow: hidden;
             transition: all 0.45s cubic-bezier(0.4, 0, 0.2, 1);
-            display: flex;
-            flex-direction: column;
-            height: 100%;
+            display: flex; flex-direction: column; height: 100%;
         }
         .blog-card-glow:hover {
             transform: translateY(-8px);
@@ -333,64 +239,35 @@
             box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4), 0 0 40px rgba(212, 175, 55, 0.08);
         }
         .blog-img {
-            position: relative;
-            width: 100%;
-            height: 200px;
-            overflow: hidden;
+            position: relative; width: 100%; height: 200px; overflow: hidden;
             background: linear-gradient(135deg, rgba(255,255,255,0.04), rgba(212,175,55,0.04));
         }
         .blog-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+            width: 100%; height: 100%; object-fit: cover;
             transition: transform 0.6s ease;
         }
         .blog-card-glow:hover .blog-img img { transform: scale(1.06); }
         .blog-content {
-            padding: 22px 22px 24px;
-            display: flex;
-            flex-direction: column;
-            flex-grow: 1;
+            padding: 22px 22px 24px; display: flex;
+            flex-direction: column; flex-grow: 1;
         }
-        .blog-content h3 {
-            font-size: 1.08rem;
-            line-height: 1.9;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-        .blog-content h3 a {
-            color: #fff;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
+        .blog-content h3 { font-size: 1.08rem; line-height: 1.9; font-weight: 700; margin-bottom: 8px; }
+        .blog-content h3 a { color: #fff; text-decoration: none; transition: color 0.3s ease; }
         .blog-content h3 a:hover { color: #D4AF37; }
         .blog-content p {
-            color: rgba(255, 255, 255, 0.65);
-            font-size: 0.9rem;
-            line-height: 1.95;
-            font-weight: 300;
-            flex-grow: 1;
+            color: rgba(255, 255, 255, 0.65); font-size: 0.9rem;
+            line-height: 1.95; font-weight: 300; flex-grow: 1;
         }
         .blog-content .read-more {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            color: #D4AF37;
-            font-size: 0.88rem;
-            font-weight: 700;
-            text-decoration: none;
-            margin-top: 16px;
-            transition: gap 0.3s ease;
+            display: inline-flex; align-items: center; gap: 6px;
+            color: #D4AF37; font-size: 0.88rem; font-weight: 700;
+            text-decoration: none; margin-top: 16px; transition: gap 0.3s ease;
         }
         .blog-content .read-more:hover { gap: 12px; }
 
-        /* ===== Badge ===== */
         .badge {
-            padding: 3px 12px;
-            border-radius: 999px;
-            font-size: 0.7rem;
-            font-weight: 600;
-            display: inline-block;
+            padding: 3px 12px; border-radius: 999px;
+            font-size: 0.7rem; font-weight: 600; display: inline-block;
         }
         .badge-gold { background: rgba(212, 175, 55, 0.15); color: #E4C56A; }
         .badge-rose { background: rgba(244, 63, 94, 0.15); color: #fb7185; }
@@ -399,46 +276,24 @@
         .badge-emerald { background: rgba(16, 185, 129, 0.15); color: #34d399; }
         .badge-amber { background: rgba(245, 158, 11, 0.15); color: #fbbf24; }
 
-        /* ===== Read Time ===== */
         .read-time {
-            font-size: 0.75rem;
-            color: rgba(255, 255, 255, 0.4);
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
+            font-size: 0.75rem; color: rgba(255, 255, 255, 0.4);
+            display: inline-flex; align-items: center; gap: 4px;
         }
 
-        /* ===== No Results ===== */
         .no-results {
-            display: none;
-            text-align: center;
-            padding: 60px 20px;
+            display: none; text-align: center; padding: 60px 20px;
             color: rgba(255, 255, 255, 0.5);
         }
-        .no-results i {
-            font-size: 3rem;
-            color: rgba(212, 175, 55, 0.3);
-            margin-bottom: 16px;
-            display: block;
-        }
-        .no-results h3 {
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 1.2rem;
-            margin-bottom: 8px;
-        }
+        .no-results i { font-size: 3rem; color: rgba(212, 175, 55, 0.3); margin-bottom: 16px; display: block; }
+        .no-results h3 { color: rgba(255, 255, 255, 0.7); font-size: 1.2rem; margin-bottom: 8px; }
         .no-results.show { display: block; }
 
-        /* ===== دکمه مشاهده همه ===== */
         .btn-glow {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
+            display: inline-flex; align-items: center; gap: 10px;
             background: linear-gradient(135deg, #E4C56A, #D4AF37 45%, #B8942A);
-            color: #0B1220;
-            font-weight: 700;
-            padding: 12px 32px;
-            border-radius: 50px;
-            text-decoration: none;
+            color: #0B1220; font-weight: 700; padding: 12px 32px;
+            border-radius: 50px; text-decoration: none;
             transition: all 0.4s ease;
             box-shadow: 0 8px 32px rgba(212, 175, 55, 0.25);
             font-family: inherit;
@@ -448,16 +303,11 @@
             box-shadow: 0 16px 48px rgba(212, 175, 55, 0.4);
         }
 
-        /* ===== Author Box ===== */
         .author-box {
-            display: flex;
-            align-items: center;
-            gap: 18px;
-            margin-top: 60px;
-            padding: 25px 30px;
+            display: flex; align-items: center; gap: 18px;
+            margin-top: 60px; padding: 25px 30px;
             background: rgba(255, 255, 255, 0.05);
-            border-radius: 16px;
-            border-right: 4px solid #D4AF37;
+            border-radius: 16px; border-right: 4px solid #D4AF37;
             transition: all 0.4s ease;
         }
         .author-box:hover {
@@ -466,32 +316,23 @@
             box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
         }
 
-        /* ===== Footer ===== */
         .social-link {
-            width: 36px;
-            height: 36px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 50%;
-            color: rgba(255, 255, 255, 0.6);
-            text-decoration: none;
+            width: 36px; height: 36px; display: inline-flex;
+            align-items: center; justify-content: center;
+            background: rgba(255, 255, 255, 0.05); border-radius: 50%;
+            color: rgba(255, 255, 255, 0.6); text-decoration: none;
             transition: all 0.3s ease;
         }
         .social-link:hover {
             background: rgba(212, 175, 55, 0.15);
-            color: #D4AF37;
-            transform: translateY(-3px);
+            color: #D4AF37; transform: translateY(-3px);
         }
 
-        /* ===== Scrollbar ===== */
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.05); }
         ::-webkit-scrollbar-thumb { background: rgba(212, 175, 55, 0.4); border-radius: 999px; }
         ::-webkit-scrollbar-thumb:hover { background: rgba(212, 175, 55, 0.6); }
 
-        /* ===== Responsive ===== */
         @media (max-width: 768px) {
             .page-overlay { padding-top: 70px; }
             .blog-header h1 { font-size: 1.9rem; }
@@ -589,7 +430,7 @@
             <!-- Blog Grid -->
             <div class="blog-grid" id="articlesGrid" data-aos="fade-up" data-aos-delay="200">
 
-                <!-- ===== خبر ویژه: استارلینک ===== -->
+                <!-- ===== خبر ویژه: Direct to Cell (استارلینک) ===== -->
                 <article class="blog-card-glow" data-aos="fade-up" data-aos-delay="50" data-category="اخبار">
                     <div class="blog-img">
                         <img src="https://api2.zoomit.ir/media/2022-9-iphone-14-pro-max-satellite-feature-text-screenshot-638bb886e60c0026b82557bf?w=1080&q=75" alt="تماس ماهواره‌ای استارلینک با گوشی معمولی" loading="lazy" />
@@ -600,9 +441,9 @@
                             <span class="badge badge-amber">اخبار فناوری</span>
                             <span class="read-time"><i class="far fa-clock"></i> ۳ دقیقه</span>
                         </div>
-                        <h3><a href="blog/starlink-satellite-call">برای اولین‌بار؛ تماس ماهواره‌ای استارلینک با یک گوشی معمولی برقرار شد</a></h3>
+                        <h3><a href="blog/direct_to_cell">برای اولین‌بار؛ تماس ماهواره‌ای استارلینک با یک گوشی معمولی برقرار شد</a></h3>
                         <p>شرکت ایتالیایی فست‌وب با همکاری استارلینک، نخستین تماس تصویری ماهواره‌ای با یک گوشی معمولی را در کوه‌های آپنین اومبریا آزمایش کرد.</p>
-                        <a href="blog/starlink-satellite-call" class="read-more">مشاهده خبر <i class="fas fa-arrow-left"></i></a>
+                        <a href="blog/direct_to_cell" class="read-more">مشاهده خبر <i class="fas fa-arrow-left"></i></a>
                     </div>
                 </article>
 
@@ -707,26 +548,24 @@
     document.addEventListener('DOMContentLoaded', function() {
         AOS.init({ duration: 600, once: true, offset: 50 });
 
-        // ===== Mobile Menu =====
+        // Mobile Menu
         const mobileBtn = document.getElementById('mobileMenuBtn');
         const mobileMenu = document.getElementById('mobileMenu');
         if (mobileBtn && mobileMenu) {
             mobileBtn.addEventListener('click', function() {
                 mobileMenu.classList.toggle('open');
                 const icon = this.querySelector('i');
-                icon.className = mobileMenu.classList.contains('open')
-                    ? 'fas fa-times'
-                    : 'fas fa-bars';
+                icon.className = mobileMenu.classList.contains('open') ? 'fas fa-times' : 'fas fa-bars';
             });
         }
 
-        // ===== Navbar Scroll =====
+        // Navbar Scroll
         const navbar = document.getElementById('navbar');
         window.addEventListener('scroll', function() {
             navbar.classList.toggle('navbar-scrolled', window.scrollY > 20);
         }, { passive: true });
 
-        // ===== عناصر اصلی =====
+        // Elements
         const searchInput = document.getElementById('searchBlog');
         const clearBtn = document.getElementById('searchClearBtn');
         const noResults = document.getElementById('noResults');
@@ -736,19 +575,16 @@
         let activeCategory = 'all';
         let searchQuery = '';
 
-        // ===== تابع فیلتر =====
+        // Filter Function
         function filterArticles() {
             let visibleCount = 0;
-
             articles.forEach(article => {
                 const category = article.dataset.category || '';
                 const title = (article.querySelector('h3 a')?.textContent || '').toLowerCase();
                 const desc = (article.querySelector('p')?.textContent || '').toLowerCase();
                 const query = searchQuery.toLowerCase().trim();
-
                 const matchesCategory = activeCategory === 'all' || category === activeCategory;
                 const matchesSearch = !query || title.includes(query) || desc.includes(query);
-
                 if (matchesCategory && matchesSearch) {
                     article.style.display = '';
                     visibleCount++;
@@ -756,13 +592,12 @@
                     article.style.display = 'none';
                 }
             });
-
             if (noResults) {
                 noResults.classList.toggle('show', visibleCount === 0);
             }
         }
 
-        // ===== جستجو =====
+        // Search
         if (searchInput) {
             searchInput.addEventListener('input', function() {
                 searchQuery = this.value;
@@ -770,7 +605,6 @@
                 filterArticles();
             });
         }
-
         if (clearBtn) {
             clearBtn.addEventListener('click', function() {
                 searchInput.value = '';
@@ -781,14 +615,13 @@
             });
         }
 
-        // ===== دسته‌بندی =====
+        // Category Filter
         categoryBtns.forEach(btn => {
             btn.addEventListener('click', function() {
                 categoryBtns.forEach(b => b.classList.remove('active'));
                 this.classList.add('active');
                 activeCategory = this.dataset.category;
                 filterArticles();
-
                 const url = new URL(window.location);
                 if (activeCategory === 'all') {
                     url.searchParams.delete('category');
@@ -799,7 +632,7 @@
             });
         });
 
-        // ===== خواندن دسته از URL =====
+        // Read Category from URL
         const urlParams = new URLSearchParams(window.location.search);
         const initialCategory = urlParams.get('category');
         if (initialCategory) {
@@ -807,7 +640,7 @@
             if (targetBtn) targetBtn.click();
         }
 
-        // ===== Deep Search از URL =====
+        // Deep Search from URL
         const initialSearch = urlParams.get('q');
         if (initialSearch && searchInput) {
             searchInput.value = initialSearch;
