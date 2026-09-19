@@ -1,1 +1,671 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <!-- ===== حذف .html از نوار آدرس ===== -->
+    <script>
+        if (window.location.pathname.endsWith('.html')) {
+            window.location.href = window.location.pathname.replace('.html', '');
+        }
+    </script>
+
+    <!-- ===== سئو (بهینه‌سازی شده برای جستجوی فارسی) ===== -->
+    <title>نرم افزار رایگان مدیریت تاکسی تلفنی | ویژه آژانس‌های سنتی — کارن سافت</title>
+    <meta name="description" content="دانلود نرم افزار رایگان مدیریت تاکسی تلفنی برای آژانس‌های سنتی. ثبت تماس و آدرس مشتری، مدیریت رانندگان و خودروها، نوبت‌دهی خودکار، محاسبه کرایه و گزارش‌گیری. بدون نیاز به سخت‌افزار گران‌قیمت.">
+    <meta name="keywords" content="نرم افزار رایگان تاکسی تلفنی, نرم افزار مدیریت تاکسی تلفنی, سیستم مدیریت آژانس تاکسی, نرم افزار تاکسی تلفنی رایگان, برنامه مدیریت دفتر تاکسی تلفنی, نرم افزار آژانس تلفنی, دانلود نرم افزار تاکسی سرویس, مدیریت رانندگان تاکسی, نوبت دهی تاکسی تلفنی">
+    <meta name="author" content="کارن سافت">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+    <link rel="canonical" href="https://karen-soft.ir/blog/taxi">
+
+    <!-- ===== Open Graph ===== -->
+    <meta property="og:title" content="نرم افزار رایگان مدیریت تاکسی تلفنی | ویژه آژانس‌های سنتی">
+    <meta property="og:description" content="نرم‌افزاری رایگان و ساده برای مدیریت دفتر تاکسی تلفنی‌های سنتی؛ ثبت تماس‌ها، مدیریت رانندگان، نوبت‌دهی و گزارش‌گیری.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://karen-soft.ir/blog/taxi">
+    <meta property="og:image" content="https://karen-soft.ir/images/blog/taxi-blog.webp">
+    <meta property="og:site_name" content="کارن سافت">
+    <meta property="og:locale" content="fa_IR">
+
+    <!-- ===== Twitter ===== -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="نرم افزار رایگان مدیریت تاکسی تلفنی | ویژه آژانس‌های سنتی">
+    <meta name="twitter:description" content="دانلود نرم افزار رایگان مدیریت تاکسی تلفنی برای آژانس‌های سنتی.">
+    <meta name="twitter:image" content="https://karen-soft.ir/images/blog/taxi-blog.webp">
+
+    <!-- ===== Preconnect ===== -->
+    <link rel="preconnect" href="https://cdn.tailwindcss.com">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://unpkg.com">
+    <link rel="preconnect" href="https://client.crisp.chat">
+
+    <link rel="icon" href="../images/favicon.ico" type="image/x-icon">
+
+    <!-- ===== فونت‌های اختصاصی ===== -->
+    <style>
+        @font-face {
+            font-family: 'BNazanin';
+            src: url('../font/BNazanin.woff') format('woff'),
+                 url('../font/BNazanin.ttf') format('truetype'),
+                 url('../font/BNazanin.eot') format('embedded-opentype');
+            font-weight: normal; font-style: normal; font-display: swap;
+        }
+        @font-face {
+            font-family: 'BTitrBold';
+            src: url('../font/BTitrBold.woff') format('woff'),
+                 url('../font/BTitrBold.ttf') format('truetype'),
+                 url('../font/BTitrTGEBold.eot') format('embedded-opentype');
+            font-weight: bold; font-style: normal; font-display: swap;
+        }
+        @font-face {
+            font-family: 'BFerdosi';
+            src: url('../font/BFerdosi.woff') format('woff'),
+                 url('../font/BFerdosi.ttf') format('truetype');
+            font-weight: normal; font-style: normal; font-display: swap;
+        }
+    </style>
+
+    <!-- ===== سایر استایل‌ها ===== -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- ===== CRISP CHAT ===== -->
+    <script type="text/javascript">
+        window.$crisp = [];
+        window.CRISP_WEBSITE_ID = "ffafdfcf-e510-45d0-a026-4e964ad420ee";
+        (function() {
+            var d = document;
+            var s = d.createElement("script");
+            s.src = "https://client.crisp.chat/l.js";
+            s.async = 1;
+            d.getElementsByTagName("head")[0].appendChild(s);
+        })();
+    </script>
+
+    <!-- ===== SCHEMA SoftwareApplication ===== -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "نرم افزار رایگان مدیریت تاکسی تلفنی کارن سافت",
+        "description": "نرم‌افزاری رایگان و ساده برای مدیریت دفتر تاکسی تلفنی‌های سنتی؛ شامل ثبت تماس و آدرس مشتری، مدیریت رانندگان و خودروها، نوبت‌دهی خودکار، محاسبه کرایه و گزارش‌گیری.",
+        "url": "https://karen-soft.ir/blog/taxi",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Web",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "IRR",
+            "description": "کاملاً رایگان"
+        },
+        "author": {
+            "@type": "Organization",
+            "name": "کارن سافت",
+            "url": "https://karen-soft.ir"
+        },
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "ratingCount": "127"
+        }
+    }
+    </script>
+
+    <!-- ===== SCHEMA FAQ ===== -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [{
+            "@type": "Question",
+            "name": "آیا نرم افزار مدیریت تاکسی تلفنی واقعاً رایگان است؟",
+            "acceptedAnswer": { "@type": "Answer", "text": "بله، نرم افزار رایگان مدیریت تاکسی تلفنی کارن سافت کاملاً رایگان است و هیچ هزینه‌ای برای دانلود، نصب یا استفاده از آن دریافت نمی‌شود. تمام قابلیت‌های اصلی شامل ثبت تماس، مدیریت رانندگان و نوبت‌دهی در نسخه رایگان موجود است." }
+        }, {
+            "@type": "Question",
+            "name": "برای استفاده از نرم افزار تاکسی تلفنی به چه تجهیزات خاصی نیاز دارم؟",
+            "acceptedAnswer": { "@type": "Answer", "text": "تنها به یک کامپیوتر معمولی یا لپ‌تاپ و یک خط تلفن نیاز دارید. این نرم افزار تحت وب است و نیازی به سخت‌افزار گران‌قیمت یا سرور اختصاصی ندارد." }
+        }, {
+            "@type": "Question",
+            "name": "آیا نرم افزار مدیریت تاکسی تلفنی از Caller ID پشتیبانی می‌کند؟",
+            "acceptedAnswer": { "@type": "Answer", "text": "بله، نرم افزار کارن سافت از فناوری Caller ID پشتیبانی می‌کند و به محض تماس مشتری، اطلاعات او به‌صورت خودکار روی صفحه نمایش داده می‌شود." }
+        }, {
+            "@type": "Question",
+            "name": "تفاوت این نرم افزار با اپلیکیشن‌های تاکسی آنلاین مانند اسنپ چیست؟",
+            "acceptedAnswer": { "@type": "Answer", "text": "این نرم افزار مخصوص تاکسی تلفنی‌های سنتی طراحی شده است و به جای جایگزینی سیستم فعلی، آن را بهبود می‌بخشد. آژانس شما همچنان با تماس تلفنی کار می‌کند، اما تمام فرآیندها به‌صورت دیجیتال و منظم مدیریت می‌شوند." }
+        }]
+    }
+    </script>
+
+    <!-- ===== SCHEMA Breadcrumb ===== -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [{
+            "@type": "ListItem", "position": 1, "name": "خانه", "item": "https://karen-soft.ir/"
+        }, {
+            "@type": "ListItem", "position": 2, "name": "وبلاگ", "item": "https://karen-soft.ir/blog"
+        }, {
+            "@type": "ListItem", "position": 3, "name": "نرم افزار رایگان مدیریت تاکسی تلفنی", "item": "https://karen-soft.ir/blog/taxi"
+        }]
+    }
+    </script>
+
+    <style>
+        body, p, a, span, li, blockquote, input, button, .meta, .benefit-item, .faq-item, .tags, .author-box {
+            font-family: 'BNazanin', Tahoma, sans-serif !important;
+        }
+        h1, h2, h3, h4 { font-family: 'BTitrBold', 'BNazanin', Tahoma, sans-serif !important; }
+        .cta-box, .cta-box h3, .cta-box p, .cta-box .btn { font-family: 'BFerdosi', 'BNazanin', Tahoma, sans-serif !important; }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: #080A19; overflow-x: hidden; color: #fff; line-height: 1.8; }
+
+        /* ===== انیمیشن لوگو ===== */
+        @keyframes rotateGlow { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 15px rgba(212, 175, 55, 0.25); }
+            50% { box-shadow: 0 0 25px rgba(212, 175, 55, 0.5); }
+        }
+        .logo-wrapper { position: relative; display: inline-block; padding: 2px; border-radius: 50%; animation: pulseGlow 3s ease-in-out infinite; }
+        .logo-wrapper::before {
+            content: ''; position: absolute; inset: -3px; border-radius: 50%;
+            background: conic-gradient(from 0deg, transparent 0%, #D4AF37 15%, #E4C56A 25%, transparent 35%);
+            animation: rotateGlow 5s linear infinite; z-index: -1;
+        }
+        .logo-wrapper::after {
+            content: ''; position: absolute; inset: -3px; border-radius: 50%;
+            background: conic-gradient(from 180deg, transparent 0%, #D4AF37 15%, #E4C56A 25%, transparent 35%);
+            animation: rotateGlow 5s linear infinite reverse; z-index: -1;
+        }
+        .logo-img { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; border: 2px solid #D4AF37; position: relative; z-index: 1; background: #080A19; }
+
+        /* ===== بک‌گراند ===== */
+        #video-background { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; object-fit: cover; z-index: 0; }
+        .article-section {
+            position: relative; z-index: 1; min-height: 100vh;
+            background: rgba(8, 10, 25, 0.75);
+            backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px);
+            padding-top: 80px;
+        }
+        .section-content { position: relative; z-index: 2; }
+
+        /* ===== NAVBAR ===== */
+        .navbar-glass {
+            background: rgba(8, 10, 25, 0.55);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.4s ease;
+        }
+        .navbar-glass.scrolled { background: rgba(8, 10, 25, 0.85); box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4); }
+
+        /* ===== سایدبار ===== */
+        .sidebar {
+            position: fixed; top: 0; right: -360px; width: 340px; height: 100vh;
+            background: rgba(15, 18, 35, 0.75);
+            backdrop-filter: blur(30px) saturate(180%);
+            -webkit-backdrop-filter: blur(30px) saturate(180%);
+            border-left: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: -20px 0 60px rgba(0, 0, 0, 0.5);
+            z-index: 1000; transition: right 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 30px 24px; overflow-y: auto; display: flex; flex-direction: column;
+        }
+        .sidebar.open { right: 0; }
+        .sidebar-overlay {
+            position: fixed; inset: 0; background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+            z-index: 999; opacity: 0; visibility: hidden; transition: all 0.5s ease;
+        }
+        .sidebar-overlay.open { opacity: 1; visibility: visible; }
+        .sidebar-close {
+            position: absolute; top: 20px; left: 20px; width: 42px; height: 42px;
+            border-radius: 50%; background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.1); color: #fff;
+            cursor: pointer; display: flex; align-items: center; justify-content: center;
+            font-size: 1.1rem; transition: all 0.4s ease;
+        }
+        .sidebar-close:hover { background: rgba(212, 175, 55, 0.2); color: #D4AF37; transform: rotate(180deg); }
+        .sidebar-link {
+            display: flex; align-items: center; gap: 14px; padding: 14px 18px;
+            border-radius: 14px; color: rgba(255, 255, 255, 0.75);
+            text-decoration: none; font-size: 1.05rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative; overflow: hidden; margin-bottom: 6px; border: 1px solid transparent;
+        }
+        .sidebar-link::before {
+            content: ''; position: absolute; right: 0; top: 0; bottom: 0; width: 0;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.18), rgba(212, 175, 55, 0.05));
+            transition: width 0.4s ease; border-radius: 14px;
+        }
+        .sidebar-link:hover { color: #D4AF37; transform: translateX(-6px); border-color: rgba(212, 175, 55, 0.2); }
+        .sidebar-link:hover::before { width: 100%; }
+        .sidebar-link i {
+            width: 26px; height: 26px; display: flex; align-items: center; justify-content: center;
+            font-size: 1.05rem; position: relative; z-index: 1;
+            color: #D4AF37; background: rgba(212, 175, 55, 0.1); border-radius: 8px; transition: all 0.4s ease;
+        }
+        .sidebar-link:hover i { background: rgba(212, 175, 55, 0.25); transform: scale(1.1) rotate(-8deg); }
+        .sidebar-link span { position: relative; z-index: 1; }
+        .sidebar-divider { height: 1px; background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent); margin: 18px 0; }
+        .sidebar-cta {
+            display: block; text-align: center; padding: 14px 24px;
+            background: linear-gradient(135deg, #E4C56A, #D4AF37 45%, #B8942A);
+            color: #0B1220; font-weight: 700; border-radius: 50px; text-decoration: none;
+            font-size: 1rem; box-shadow: 0 8px 28px rgba(212, 175, 55, 0.3);
+            transition: all 0.4s ease; margin-top: 10px;
+        }
+        .sidebar-cta:hover { transform: translateY(-3px); box-shadow: 0 14px 40px rgba(212, 175, 55, 0.5); }
+        .sidebar-socials { display: flex; gap: 10px; justify-content: center; margin-top: 20px; }
+        .sidebar-socials a {
+            width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;
+            background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px; color: rgba(255, 255, 255, 0.6); text-decoration: none; transition: all 0.35s ease;
+        }
+        .sidebar-socials a:hover { background: rgba(212, 175, 55, 0.15); color: #D4AF37; transform: translateY(-4px); border-color: rgba(212, 175, 55, 0.3); }
+
+        /* ===== دکمه منو ===== */
+        .menu-toggle {
+            width: 46px; height: 46px; border-radius: 14px;
+            background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center;
+            font-size: 1.15rem; transition: all 0.35s ease;
+        }
+        .menu-toggle:hover { border-color: rgba(212, 175, 55, 0.4); color: #D4AF37; transform: translateY(-2px); }
+
+        /* ===== مقاله ===== */
+        .article-container {
+            max-width: 820px; margin: 0 auto;
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+            border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.06);
+            padding: 40px 50px; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+        .article-container h1 {
+            font-size: 2.1rem; color: #fff; border-bottom: 4px solid #D4AF37;
+            padding-bottom: 18px; margin-bottom: 12px; letter-spacing: -0.5px; line-height: 1.6;
+        }
+        .article-container .meta {
+            color: rgba(255, 255, 255, 0.5); font-size: 0.9rem; margin-bottom: 28px;
+            padding-bottom: 16px; border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            display: flex; flex-wrap: wrap; gap: 8px 18px;
+        }
+        .article-container .meta span {
+            background: rgba(255, 255, 255, 0.06); padding: 4px 14px; border-radius: 20px; font-size: 0.8rem;
+        }
+
+        .featured-image {
+            width: 100%; border-radius: 14px; margin-bottom: 8px; overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.06); transition: transform 0.6s ease, box-shadow 0.6s ease;
+        }
+        .featured-image:hover { transform: scale(1.01); box-shadow: 0 12px 40px rgba(212, 175, 55, 0.15); }
+        .featured-image img { width: 100%; height: auto; display: block; }
+        .image-caption {
+            text-align: center; color: rgba(255, 255, 255, 0.5); font-size: 0.88rem;
+            line-height: 1.8; margin-bottom: 34px; padding: 0 8px; font-style: italic;
+        }
+        .image-caption::before { content: "📷 "; }
+
+        .article-container h2 {
+            color: #D4AF37; font-size: 1.55rem; margin-top: 44px; margin-bottom: 16px;
+            border-right: 4px solid #D4AF37; padding-right: 18px; transition: all 0.3s ease; line-height: 1.7;
+        }
+        .article-container h2:hover { padding-right: 24px; border-right-width: 6px; }
+        .article-container p { color: rgba(255, 255, 255, 0.85); font-size: 1.08rem; line-height: 2.2; margin-bottom: 22px; text-align: justify; }
+
+        .benefits-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin: 28px 0 20px; }
+        .benefit-item {
+            background: rgba(255, 255, 255, 0.05); padding: 14px 18px; border-radius: 10px;
+            border-right: 4px solid #D4AF37; font-weight: 500; font-size: 0.98rem;
+            color: rgba(255, 255, 255, 0.85); display: flex; align-items: center; gap: 8px; transition: all 0.4s ease;
+        }
+        .benefit-item::before { content: "✅"; font-size: 1.1rem; }
+        .benefit-item:hover { background: rgba(212, 175, 55, 0.08); transform: translateY(-4px) scale(1.02); border-right-color: #E4C56A; box-shadow: 0 8px 24px rgba(212, 175, 55, 0.1); }
+
+        .article-container blockquote {
+            border-right: 5px solid #D4AF37; background: rgba(212, 175, 55, 0.06);
+            padding: 18px 25px; margin: 28px 0; border-radius: 8px;
+            color: rgba(255, 255, 255, 0.9); font-size: 1.1rem; font-style: italic;
+            line-height: 2; transition: all 0.4s ease;
+        }
+        .article-container blockquote:hover { background: rgba(212, 175, 55, 0.12); border-right-width: 8px; transform: translateX(-4px); }
+
+        /* ===== CTA (فونت B Ferdosi) ===== */
+        .cta-box {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.12), rgba(212, 175, 55, 0.03));
+            border: 1px solid rgba(212, 175, 55, 0.25); padding: 40px 32px; border-radius: 20px;
+            margin: 50px 0 30px; text-align: center; position: relative; overflow: hidden; transition: all 0.5s ease;
+        }
+        .cta-box::before {
+            content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.08) 0%, transparent 60%);
+            animation: pulseGlow 5s ease-in-out infinite;
+        }
+        .cta-box:hover { transform: translateY(-4px); box-shadow: 0 20px 60px rgba(212, 175, 55, 0.15); border-color: rgba(212, 175, 55, 0.5); }
+        .cta-box h3 { color: #D4AF37; font-size: 1.8rem; margin-bottom: 12px; position: relative; z-index: 1; }
+        .cta-box p { color: rgba(255, 255, 255, 0.8); font-size: 1.15rem; margin-bottom: 22px; position: relative; z-index: 1; max-width: 640px; margin-left: auto; margin-right: auto; }
+        .cta-box .btn {
+            display: inline-flex; align-items: center; gap: 10px;
+            background: linear-gradient(135deg, #E4C56A, #D4AF37 45%, #B8942A);
+            color: #0B1220; font-weight: 700; padding: 14px 38px; border-radius: 50px; text-decoration: none;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 10px 36px rgba(212, 175, 55, 0.35);
+            font-size: 1.1rem; position: relative; z-index: 1;
+        }
+        .cta-box .btn:hover { transform: translateY(-5px) scale(1.05); box-shadow: 0 20px 56px rgba(212, 175, 55, 0.55); }
+        .cta-box .btn i { transition: transform 0.3s ease; }
+        .cta-box .btn:hover i { transform: translateX(-6px); }
+
+        /* ===== FAQ ===== */
+        .faq-section { margin-top: 46px; background: rgba(255, 255, 255, 0.04); padding: 28px 32px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.06); }
+        .faq-section h2 { border-right: none; padding-right: 0; margin-top: 0; border-bottom: 2px solid rgba(255, 255, 255, 0.06); padding-bottom: 14px; }
+        .faq-item { margin-bottom: 22px; border-bottom: 1px solid rgba(255, 255, 255, 0.06); padding-bottom: 18px; transition: all 0.3s ease; }
+        .faq-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+        .faq-item:hover { padding-right: 10px; border-bottom-color: rgba(212, 175, 55, 0.15); }
+        .faq-item h3 { margin-top: 0; color: #E4C56A; font-size: 1.15rem; transition: color 0.3s ease; line-height: 1.9; }
+        .faq-item:hover h3 { color: #D4AF37; }
+        .faq-item p { margin-bottom: 0; color: rgba(255, 255, 255, 0.7) !important; font-size: 1rem; }
+
+        .tags { margin-top: 34px; display: flex; flex-wrap: wrap; gap: 8px; }
+        .tags span {
+            background: rgba(255, 255, 255, 0.06); padding: 6px 16px; border-radius: 30px;
+            font-size: 0.82rem; color: rgba(255, 255, 255, 0.6); transition: all 0.3s ease;
+        }
+        .tags span:hover { background: rgba(212, 175, 55, 0.12); color: #D4AF37; transform: translateY(-2px); }
+
+        .author-box {
+            display: flex; align-items: center; gap: 18px; margin-top: 40px; padding: 22px 25px;
+            background: rgba(255, 255, 255, 0.05); border-radius: 16px; border-right: 4px solid #D4AF37;
+            backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); transition: all 0.4s ease;
+        }
+        .author-box:hover { background: rgba(255, 255, 255, 0.08); transform: translateY(-3px); border-right-width: 6px; box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2); }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.05); }
+        ::-webkit-scrollbar-thumb { background: rgba(212, 175, 55, 0.4); border-radius: 999px; }
+        ::-webkit-scrollbar-thumb:hover { background: rgba(212, 175, 55, 0.6); }
+
+        @media (max-width: 768px) {
+            .article-section { padding-top: 70px; }
+            .article-container { padding: 25px 20px; border-radius: 14px; }
+            .article-container h1 { font-size: 1.6rem; }
+            .article-container h2 { font-size: 1.35rem; }
+            .benefits-grid { grid-template-columns: 1fr 1fr; }
+            .author-box { flex-direction: column; text-align: center; }
+            .sidebar { width: 300px; right: -300px; }
+        }
+        @media (max-width: 450px) {
+            .article-container { padding: 18px 14px; }
+            .article-container h1 { font-size: 1.3rem; }
+            .benefits-grid { grid-template-columns: 1fr; }
+            .cta-box { padding: 22px 16px; }
+            .faq-section { padding: 18px 16px; }
+            .sidebar { width: 280px; right: -280px; }
+        }
+    </style>
+</head>
+<body data-aos-easing="ease-out-cubic" data-aos-duration="800">
+
+    <video id="video-background" autoplay loop muted playsinline>
+        <source src="../images/video/law-back.mp4" type="video/mp4">
+    </video>
+
+    <!-- ===== سایدبار ===== -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <aside class="sidebar" id="sidebar">
+        <button class="sidebar-close" id="sidebarClose" aria-label="بستن منو"><i class="fas fa-times"></i></button>
+        <div style="text-align:center; margin: 10px 0 24px;">
+            <div class="logo-wrapper" style="display:inline-block;">
+                <img src="../images/logo-karensoft.png" alt="کارن سافت" class="logo-img">
+            </div>
+            <p style="color:#D4AF37; font-family:'BTitrBold', Tahoma, sans-serif; font-size:1.3rem; margin-top:14px;">کارن سافت</p>
+            <p style="color:rgba(255,255,255,0.45); font-size:0.85rem;">راه‌حل‌های نرم‌افزاری هوشمند</p>
+        </div>
+        <div class="sidebar-divider"></div>
+        <a href="../index" class="sidebar-link"><i class="fas fa-home"></i><span>خانه</span></a>
+        <a href="../products" class="sidebar-link"><i class="fas fa-cubes"></i><span>محصولات</span></a>
+        <a href="../blog" class="sidebar-link"><i class="fas fa-newspaper"></i><span>وبلاگ</span></a>
+        <a href="../contact" class="sidebar-link"><i class="fas fa-headset"></i><span>تماس با ما</span></a>
+        <div class="sidebar-divider"></div>
+        <a href="tel:09152521166" class="sidebar-link" style="color:#34d399;"><i class="fas fa-phone-alt"></i><span dir="ltr">۰۹۱۵۲۵۲۱۱۶۶</span></a>
+        <a href="mailto:info@karen-soft.ir" class="sidebar-link"><i class="fas fa-envelope"></i><span>info@karen-soft.ir</span></a>
+        <div style="margin-top:auto;">
+            <a href="../contact" class="sidebar-cta"><i class="fas fa-comments" style="margin-left:8px;"></i> دریافت نرم افزار رایگان</a>
+            <div class="sidebar-socials">
+                <a href="https://t.me/KarenSoftOfficial" target="_blank" rel="noopener" aria-label="تلگرام"><i class="fab fa-telegram-plane"></i></a>
+                <a href="https://www.instagram.com/karen_soft.ir" target="_blank" rel="noopener" aria-label="اینستاگرام"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.youtube.com/@KarenSoftOfficial" target="_blank" rel="noopener" aria-label="یوتیوب"><i class="fab fa-youtube"></i></a>
+                <a href="https://www.linkedin.com/company/karensoft" target="_blank" rel="noopener" aria-label="لینکدین"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+    </aside>
+
+    <div class="article-section">
+
+        <!-- ===== NAVBAR ===== -->
+        <nav id="navbar" class="fixed top-0 right-0 left-0 z-50 navbar-glass transition-all duration-300">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex items-center justify-between h-16 md:h-20">
+                    <div class="flex items-center gap-3 shrink-0">
+                        <div class="logo-wrapper"><img src="../images/logo-karensoft.png" alt="لوگو کارن سافت" class="logo-img"></div>
+                        <span style="font-family:'BTitrBold', Tahoma, sans-serif; font-size:1.1rem; color:#fff;">کارن سافت</span>
+                    </div>
+                    <div class="hidden md:flex items-center gap-7 text-sm font-medium text-white/70">
+                        <a href="../index" class="hover:text-[#D4AF37] transition">خانه</a>
+                        <a href="../products" class="hover:text-[#D4AF37] transition">محصولات</a>
+                        <a href="../blog" class="text-white hover:text-[#D4AF37] transition" style="color:#D4AF37;">وبلاگ</a>
+                        <a href="../contact" class="hover:text-[#34d399] transition">تماس با ما</a>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <a href="tel:09152521166" class="hidden sm:inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-4 py-2 text-sm font-semibold text-emerald-400 transition hover:bg-emerald-500/20" style="direction:ltr;">
+                            <i class="fas fa-phone-alt"></i> ۰۹۱۵۲۵۲۱۱۶۶
+                        </a>
+                        <button class="menu-toggle" id="menuToggle" aria-label="باز کردن منو"><i class="fas fa-bars"></i></button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- ===== ARTICLE ===== -->
+        <main class="section-content max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
+            <article class="article-container" data-aos="fade-up">
+
+                <h1>نرم افزار رایگان مدیریت تاکسی تلفنی | ویژه آژانس‌های سنتی</h1>
+
+                <div class="meta">
+                    <span><i class="far fa-calendar-alt ml-2"></i>۲۸ شهریور ۱۴۰۵</span>
+                    <span><i class="far fa-clock ml-2"></i>۴ دقیقه مطالعه</span>
+                    <span><i class="far fa-folder ml-2"></i>نرم‌افزار رایگان</span>
+                    <span><i class="far fa-user ml-2"></i>کارن سافت</span>
+                </div>
+
+                <!-- تصویر شاخص -->
+                <div class="featured-image">
+                    <img src="../images/blog/taxi-blog.webp" alt="نرم افزار رایگان مدیریت تاکسی تلفنی برای آژانس‌های سنتی" loading="eager" width="800" height="450">
+                </div>
+                <p class="image-caption">
+                    نرم افزار رایگان مدیریت تاکسی تلفنی — راهکاری ساده و کاربردی برای آژانس‌های سنتی
+                </p>
+
+                <!-- مقدمه -->
+                <p>
+                    اگر صاحب یک <strong>تاکسی تلفنی سنتی</strong> هستید و هنوز با دفتر و قلم و کاغذ کار می‌کنید، این خبر برای شماست. <strong>کارن سافت</strong> نرم‌افزاری <strong>کاملاً رایگان</strong> برای مدیریت دفتر تاکسی تلفنی طراحی کرده است که بدون نیاز به دانش فنی، تمام فرآیندهای آژانس شما را دیجیتال می‌کند.
+                </p>
+
+                <!-- دکمه ادامه مطلب -->
+                <div class="continue-reading" style="margin-top: 30px; padding: 28px 30px; background: rgba(212, 175, 55, 0.04); border-radius: 14px; border: 1px dashed rgba(212, 175, 55, 0.3); text-align: center; transition: all 0.4s ease;">
+                    <div style="color: #D4AF37; font-size: 1.3rem; margin-bottom: 12px; display: flex; align-items: center; justify-content: center; gap: 10px;">
+                        <i class="fas fa-book-open"></i> ادامه مطلب
+                    </div>
+                    <p style="color: rgba(255,255,255,0.7); font-size: 0.98rem; line-height: 2; margin-bottom: 16px;">
+                        در ادامه به بررسی کامل قابلیت‌های این نرم افزار رایگان، نحوه دریافت آن، و اینکه چگونه می‌تواند کسب‌وکار تاکسی تلفنی شما را متحول کند، می‌پردازیم.
+                    </p>
+                    <button class="cr-btn" id="continueBtn" onclick="toggleFullContent()" style="display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(135deg, #E4C56A, #D4AF37 45%, #B8942A); color: #0B1220; font-weight: 700; padding: 12px 32px; border-radius: 50px; transition: all 0.4s ease; box-shadow: 0 8px 32px rgba(212, 175, 55, 0.25); cursor: pointer; border: none; font-size: 1rem; font-family: 'BNazanin', Tahoma, sans-serif;">
+                        <i class="fas fa-arrow-down"></i> مشاهده ادامه مطلب
+                    </button>
+                </div>
+
+                <!-- محتوای کامل -->
+                <div class="full-content" id="fullContent" style="max-height: 0; overflow: hidden; transition: max-height 1s ease; opacity: 0;">
+
+                    <!-- بخش ۱ -->
+                    <h2>چرا تاکسی تلفنی‌های سنتی به نرم‌افزار نیاز دارند؟</h2>
+                    <p>
+                        مدیریت یک تاکسی تلفنی سنتی با روش‌های دستی، چالش‌های زیادی دارد: یادداشت کردن آدرس مشتریان روی کاغذ، پیگیری نوبت رانندگان، محاسبه دستی کرایه‌ها و گم شدن اطلاعات در میان انبوه تماس‌های روزانه. این روش‌ها نه‌تنها زمان‌بر هستند، بلکه باعث <strong>اشتباهات پرهزینه</strong> و نارضایتی مشتریان می‌شوند.
+                    </p>
+                    <p>
+                        نرم‌افزار مدیریت تاکسی تلفنی کارن سافت به‌طور خاص برای <strong>آژانس‌های تلفنی سنتی</strong> طراحی شده است؛ نه برای جایگزینی سیستم شما، بلکه برای <strong>بهبود و دیجیتالی کردن</strong> همان فرآیندی که سال‌هاست انجام می‌دهید. شما همچنان با تماس تلفنی کار می‌کنید، اما این بار همه چیز منظم و دیجیتال پیش می‌رود.
+                    </p>
+
+                    <!-- بخش ۲ -->
+                    <h2>قابلیت‌های کلیدی نرم افزار</h2>
+                    <p>
+                        این نرم‌افزار رایگان امکاناتی ارائه می‌دهد که معمولاً در نرم‌افزارهای گران‌قیمت پیدا می‌شود:
+                    </p>
+                    <div class="benefits-grid">
+                        <div class="benefit-item">ثبت تماس و آدرس مشتری</div>
+                        <div class="benefit-item">مدیریت رانندگان و خودروها</div>
+                        <div class="benefit-item">نوبت‌دهی خودکار رانندگان</div>
+                        <div class="benefit-item">محاسبه کرایه روز و شب</div>
+                        <div class="benefit-item">تاریخچه سفرها و مشتریان</div>
+                        <div class="benefit-item">گزارش‌گیری روزانه و ماهانه</div>
+                        <div class="benefit-item">پشتیبانی از Caller ID</div>
+                        <div class="benefit-item">بدون نیاز به سخت‌افزار خاص</div>
+                    </div>
+
+                    <!-- بخش ۳ -->
+                    <h2>آیا واقعاً رایگان است؟</h2>
+                    <p>
+                        <strong>بله، کاملاً رایگان.</strong> کارن سافت این نرم‌افزار را به‌عنوان یک خدمت اجتماعی به جامعه تاکسی تلفنی‌های سنتی ارائه می‌دهد. هیچ هزینه‌ای برای دانلود، نصب یا استفاده از آن دریافت نمی‌شود. هدف ما این است که <strong>تاکسی تلفنی‌های سنتی</strong> بتوانند با ابزارهای مدرن رقابت کنند و از بازار عقب نمانند.
+                    </p>
+                    <blockquote>
+                        «ما باور داریم که فناوری نباید فقط در اختیار شرکت‌های بزرگ باشد. تاکسی تلفنی‌های سنتی نیز حق دارند از ابزارهای مدرن بهره‌مند شوند — و این دقیقاً همان کاری است که انجام می‌دهیم.» — کارن سافت
+                    </blockquote>
+
+                    <!-- بخش ۴ -->
+                    <h2>چگونه نرم‌افزار را دریافت کنم؟</h2>
+                    <p>
+                        دریافت نرم‌افزار بسیار ساده است. کافیست با ما تماس بگیرید یا از طریق فرم تماس درخواست خود را ثبت کنید. تیم پشتیبانی کارن سافت در کمترین زمان نرم‌افزار را در اختیار شما قرار می‌دهد و آموزش‌های لازم را ارائه می‌کند.
+                    </p>
+
+                    <!-- CTA (فونت B Ferdosi) -->
+                    <div class="cta-box">
+                        <h3>همین امروز دفتر تاکسی تلفنی خود را دیجیتال کنید!</h3>
+                        <p>نرم افزار رایگان مدیریت تاکسی تلفنی کارن سافت — بدون هزینه، بدون پیچیدگی. همین حالا درخواست دهید و تحول دفتر خود را شروع کنید.</p>
+                        <a href="../contact" class="btn">
+                            <i class="fas fa-download"></i>
+                            دریافت نرم افزار رایگان
+                        </a>
+                    </div>
+
+                    <!-- FAQ -->
+                    <div class="faq-section">
+                        <h2>سوالات متداول</h2>
+
+                        <div class="faq-item">
+                            <h3>آیا نرم افزار مدیریت تاکسی تلفنی واقعاً رایگان است؟</h3>
+                            <p>بله، نرم افزار رایگان مدیریت تاکسی تلفنی کارن سافت کاملاً رایگان است و هیچ هزینه‌ای برای دانلود، نصب یا استفاده از آن دریافت نمی‌شود. تمام قابلیت‌های اصلی شامل ثبت تماس، مدیریت رانندگان و نوبت‌دهی در نسخه رایگان موجود است.</p>
+                        </div>
+
+                        <div class="faq-item">
+                            <h3>برای استفاده از نرم افزار تاکسی تلفنی به چه تجهیزات خاصی نیاز دارم؟</h3>
+                            <p>تنها به یک کامپیوتر معمولی یا لپ‌تاپ و یک خط تلفن نیاز دارید. این نرم افزار تحت وب است و نیازی به سخت‌افزار گران‌قیمت یا سرور اختصاصی ندارد.</p>
+                        </div>
+
+                        <div class="faq-item">
+                            <h3>آیا نرم افزار مدیریت تاکسی تلفنی از Caller ID پشتیبانی می‌کند؟</h3>
+                            <p>بله، نرم افزار کارن سافت از فناوری Caller ID پشتیبانی می‌کند و به محض تماس مشتری، اطلاعات او به‌صورت خودکار روی صفحه نمایش داده می‌شود.</p>
+                        </div>
+
+                        <div class="faq-item">
+                            <h3>تفاوت این نرم افزار با اپلیکیشن‌های تاکسی آنلاین مانند اسنپ چیست؟</h3>
+                            <p>این نرم افزار مخصوص تاکسی تلفنی‌های سنتی طراحی شده است و به جای جایگزینی سیستم فعلی، آن را بهبود می‌بخشد. آژانس شما همچنان با تماس تلفنی کار می‌کند، اما تمام فرآیندها به‌صورت دیجیتال و منظم مدیریت می‌شوند.</p>
+                        </div>
+                    </div>
+
+                    <!-- Tags -->
+                    <div class="tags">
+                        <span>#نرم_افزار_رایگان</span>
+                        <span>#تاکسی_تلفنی</span>
+                        <span>#مدیریت_آژانس</span>
+                        <span>#نرم_افزار_تاکسی</span>
+                        <span>#مدیریت_رانندگان</span>
+                        <span>#کارن_سافت</span>
+                    </div>
+
+                    <!-- Author -->
+                    <div class="author-box">
+                        <div style="flex-shrink:0;">
+                            <img src="../images/logo-karensoft.png" alt="کارن سافت" style="width:70px; height:70px; border-radius:50%; object-fit:cover; border:3px solid #D4AF37;">
+                        </div>
+                        <div>
+                            <h4 style="color:#D4AF37; font-size:1.15rem; margin-bottom:6px;">کارن سافت</h4>
+                            <p style="color:rgba(255,255,255,0.6); font-size:0.95rem; line-height:1.8; margin:0;">
+                                کارن سافت ارائه‌دهنده راهکارهای نرم‌افزاری مدیریتی، اتوماسیون اداری و طراحی سایت حرفه‌ای برای کسب‌وکارها.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- بازگشت -->
+                <div style="margin-top:36px; text-align:center;">
+                    <a href="../blog" style="display:inline-flex; align-items:center; gap:8px; color:#D4AF37; font-weight:600; text-decoration:none; font-size:1rem; transition:all 0.3s ease;">
+                        <i class="fas fa-arrow-right"></i> بازگشت به وبلاگ
+                    </a>
+                </div>
+            </article>
+        </main>
+
+        <!-- ===== FOOTER ===== -->
+        <footer style="border-top:1px solid rgba(255,255,255,0.06); margin-top:40px;">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8" style="text-align:center;">
+                <p style="color:rgba(255,255,255,0.4); font-size:0.9rem;">© ۱۴۰۵ کارن سافت — تمامی حقوق محفوظ است.</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- ===== SCRIPTS ===== -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 800, easing: 'ease-out-cubic', once: true, offset: 60 });
+
+        // سایدبار
+        const menuToggle = document.getElementById('menuToggle');
+        const sidebar = document.getElementById('sidebar');
+        const sidebarOverlay = document.getElementById('sidebarOverlay');
+        const sidebarClose = document.getElementById('sidebarClose');
+        function openSidebar() { sidebar.classList.add('open'); sidebarOverlay.classList.add('open'); document.body.style.overflow = 'hidden'; }
+        function closeSidebar() { sidebar.classList.remove('open'); sidebarOverlay.classList.remove('open'); document.body.style.overflow = ''; }
+        if (menuToggle) menuToggle.addEventListener('click', openSidebar);
+        if (sidebarClose) sidebarClose.addEventListener('click', closeSidebar);
+        if (sidebarOverlay) sidebarOverlay.addEventListener('click', closeSidebar);
+        document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeSidebar(); });
+
+        // Navbar Scroll
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', function() { navbar.classList.toggle('scrolled', window.scrollY > 30); }, { passive: true });
+
+        // ادامه مطلب
+        function toggleFullContent() {
+            const fullContent = document.getElementById('fullContent');
+            const btn = document.getElementById('continueBtn');
+            if (fullContent.classList.contains('open')) {
+                fullContent.classList.remove('open');
+                fullContent.style.maxHeight = '0';
+                fullContent.style.opacity = '0';
+                btn.innerHTML = '<i class="fas fa-arrow-down"></i> مشاهده ادامه مطلب';
+                document.querySelector('.continue-reading').scrollIntoView({ behavior: 'smooth', block: 'center' });
+            } else {
+                fullContent.classList.add('open');
+                fullContent.style.maxHeight = '10000px';
+                fullContent.style.opacity = '1';
+                fullContent.style.transition = 'max-height 2s ease, opacity 0.8s ease 0.3s';
+                btn.innerHTML = '<i class="fas fa-arrow-up"></i> بستن ادامه مطلب';
+                setTimeout(() => { fullContent.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 200);
+            }
+        }
+    </script>
+</body>
+</html>
