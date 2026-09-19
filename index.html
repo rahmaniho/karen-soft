@@ -42,28 +42,32 @@
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     <link rel="preconnect" href="https://client.crisp.chat">
 
-    <!-- ===== 🎨 فونت‌های اختصاصی پروژه ===== -->
+    <!-- ===== 🎨 فونت‌های اختصاصی پروژه (از مخزن GitHub) ===== -->
     <style>
-        @font-face {
-            font-family: 'BTitr';
-            src: url('font/BTitr.woff') format('woff'),
-                 url('font/BTitr.ttf') format('truetype'),
-                 url('font/BTitr.eot') format('embedded-opentype');
-            font-weight: normal; font-style: normal; font-display: swap;
-        }
+        /* ===== BTitrBold - فونت تیترها (از مخزن پروژه) ===== */
         @font-face {
             font-family: 'BTitrBold';
-            src: url('font/BTitrBold.woff') format('woff'),
-                 url('font/BTitrBold.ttf') format('truetype'),
-                 url('font/BTitrTGEBold.eot') format('embedded-opentype');
-            font-weight: bold; font-style: normal; font-display: swap;
+            src: url('font/BTitrBold.eot');
+            src: url('font/BTitrBold.eot?#iefix') format('embedded-opentype'),
+                 url('font/BTitrBold.woff2') format('woff2'),
+                 url('font/BTitrBold.woff') format('woff'),
+                 url('font/BTitrBold.ttf') format('truetype');
+            font-weight: bold;
+            font-style: normal;
+            font-display: swap;
         }
+
+        /* ===== BZar - فونت متن اصلی (از مخزن پروژه) ===== */
         @font-face {
             font-family: 'BZar';
-            src: url('font/BZar.woff') format('woff'),
-                 url('font/BZar.ttf') format('truetype'),
-                 url('font/BZar.eot') format('embedded-opentype');
-            font-weight: normal; font-style: normal; font-display: swap;
+            src: url('font/BZar.eot');
+            src: url('font/BZar.eot?#iefix') format('embedded-opentype'),
+                 url('font/BZar.woff2') format('woff2'),
+                 url('font/BZar.woff') format('woff'),
+                 url('font/BZar.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
         }
     </style>
 
@@ -71,7 +75,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
-    <!-- ===== CRISP CHAT ===== -->
+    <!-- ===== CRISP CHAT (رفع باگ d=document) ===== -->
     <script type="text/javascript">
         window.$crisp = [];
         window.CRISP_WEBSITE_ID = "ffafdfcf-e510-45d0-a026-4e964ad420ee";
@@ -100,52 +104,46 @@
 
     <style>
         /* =====================================================
-           🎨 اعمال فونت‌ها
+           🎨 اعمال فونت‌ها (بهبود specificity)
            ===================================================== */
         h1, h2, h3, h4, h5, h6,
         .stat-number,
-        .loader-text,
-        .brand-name {
-            font-family: 'BTitrBold', 'BTitr', Tahoma, sans-serif !important;
+        .brand-name,
+        .hero-title {
+            font-family: 'BTitrBold', Tahoma, sans-serif;
         }
 
         body, p, a, span, li, div, input, textarea, select, button,
         label, form, footer, .about-typing, .contact-input {
-            font-family: 'BZar', Tahoma, sans-serif !important;
+            font-family: 'BZar', Tahoma, sans-serif;
         }
 
         body { font-size: 1.15rem; line-height: 2.2; }
         p { font-size: 1.2rem; line-height: 2.3; }
         a, span, li, label { font-size: 1.1rem; }
-        .contact-input, input, textarea, select { font-size: 1.1rem !important; }
-        .service-card p { font-size: 1.1rem !important; line-height: 2.2 !important; }
-        .about-typing { font-size: 1.25rem !important; line-height: 2.4rem !important; }
+        .contact-input, input, textarea, select { font-size: 1.1rem; }
+        .service-card p { font-size: 1.1rem; line-height: 2.2; }
+        .about-typing { font-size: 1.25rem; line-height: 2.4rem; }
 
         /* ===== RESET ===== */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { background: #080A19; overflow-x: hidden; color: #fff; }
 
         /* =====================================================
-           ✨ انیمیشن متن Hero (درخشان + حرف‌به‌حرف)
+           ✨ انیمیشن متن Hero (بهینه‌شده برای عملکرد)
            ===================================================== */
         @keyframes shineSlide {
             0%   { background-position: -200% center; }
             100% { background-position: 200% center; }
         }
-        @keyframes letterFadeIn {
-            0%   { opacity: 0; transform: translateY(30px) rotateX(-90deg); filter: blur(6px); }
-            60%  { opacity: 1; transform: translateY(-4px) rotateX(0deg); filter: blur(0); }
-            100% { opacity: 1; transform: translateY(0) rotateX(0deg); filter: blur(0); }
+        @keyframes wordFadeIn {
+            0%   { opacity: 0; transform: translateY(40px) scale(0.9); filter: blur(10px); }
+            60%  { opacity: 1; transform: translateY(-6px) scale(1.02); filter: blur(0); }
+            100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
         }
         @keyframes heroGlow {
-            0%, 100% {
-                filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.35))
-                        drop-shadow(0 0 25px rgba(212, 175, 55, 0.15));
-            }
-            50% {
-                filter: drop-shadow(0 0 20px rgba(228, 197, 106, 0.6))
-                        drop-shadow(0 0 45px rgba(212, 175, 55, 0.3));
-            }
+            0%, 100% { filter: drop-shadow(0 0 12px rgba(212, 175, 55, 0.35)); }
+            50%      { filter: drop-shadow(0 0 24px rgba(228, 197, 106, 0.6)); }
         }
         @keyframes underlineSlide {
             0%   { transform: scaleX(0); opacity: 0; }
@@ -153,36 +151,26 @@
         }
 
         .hero-title {
-            perspective: 1000px;
+            perspective: 1200px;
+            transform-style: preserve-3d;
         }
-        .hero-line {
-            display: block;
-            opacity: 0;
-            animation: letterFadeIn 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-            animation-delay: var(--d, 0s);
-        }
-        .hero-line .letter {
+        .hero-word {
             display: inline-block;
-            animation: letterFadeIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
-            animation-delay: var(--ld, 0s);
-            transition: transform 0.3s ease, text-shadow 0.3s ease;
+            opacity: 0;
+            animation: wordFadeIn 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            will-change: transform, opacity, filter;
         }
-        .hero-line .letter:hover {
-            transform: translateY(-6px) scale(1.1);
-            text-shadow: 0 0 20px rgba(212, 175, 55, 0.8);
+        .hero-word:hover {
+            transform: translateY(-8px) scale(1.08);
+            transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         /* گرادیان طلایی متحرک برای «کارن سافت» */
         .text-shine-gold {
             background: linear-gradient(
                 90deg,
-                #B8942A 0%,
-                #D4AF37 20%,
-                #FFF7CC 40%,
-                #F0D78C 50%,
-                #FFF7CC 60%,
-                #D4AF37 80%,
-                #B8942A 100%
+                #B8942A 0%, #D4AF37 20%, #FFF7CC 40%,
+                #F0D78C 50%, #FFF7CC 60%, #D4AF37 80%, #B8942A 100%
             );
             background-size: 200% auto;
             -webkit-background-clip: text;
@@ -192,15 +180,11 @@
             filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.3));
         }
 
-        /* گرادیان نقره‌ای متحرک برای متن سفید */
+        /* گرادیان نقره‌ای متحرک برای «اتوماسیون هوشمند» */
         .text-shine-white {
             background: linear-gradient(
                 90deg,
-                #8a8a9a 0%,
-                #ffffff 25%,
-                #f0f0ff 50%,
-                #ffffff 75%,
-                #8a8a9a 100%
+                #8a8a9a 0%, #ffffff 25%, #f0f0ff 50%, #ffffff 75%, #8a8a9a 100%
             );
             background-size: 200% auto;
             -webkit-background-clip: text;
@@ -209,14 +193,11 @@
             animation: shineSlide 5s linear infinite;
         }
 
+        /* گرادیان نرم برای «برای کسب‌وکار شما» */
         .text-shine-white-soft {
             background: linear-gradient(
                 90deg,
-                #555565 0%,
-                #d0d0e0 25%,
-                #f5f5ff 50%,
-                #d0d0e0 75%,
-                #555565 100%
+                #555565 0%, #d0d0e0 25%, #f5f5ff 50%, #d0d0e0 75%, #555565 100%
             );
             background-size: 200% auto;
             -webkit-background-clip: text;
@@ -229,7 +210,6 @@
             animation: heroGlow 3.5s ease-in-out infinite;
         }
 
-        /* خط زیر تیتر */
         .hero-underline {
             height: 3px;
             width: 180px;
@@ -242,7 +222,7 @@
         }
 
         /* =====================================================
-           ⚡ هاله الکتریسیته مغناطیسی دور لوگو
+           ⚡ هاله الکتریسیته مغناطیسی (بهینه‌شده)
            ===================================================== */
         @keyframes magnetRotate1 {
             0%   { transform: rotate(0deg); }
@@ -257,8 +237,8 @@
             100% { transform: rotate(360deg); }
         }
         @keyframes sparkFlash {
-            0%, 100% { opacity: 0; transform: scale(0.5); }
-            15%      { opacity: 1; transform: scale(1.4); }
+            0%, 100% { opacity: 0; transform: scale(0.4); }
+            15%      { opacity: 1; transform: scale(1.3); }
             30%      { opacity: 0.3; transform: scale(0.9); }
             50%      { opacity: 0.95; transform: scale(1.2); }
             70%      { opacity: 0.15; transform: scale(0.7); }
@@ -289,7 +269,6 @@
             100% { transform: scale(1.6); opacity: 0; }
         }
 
-        /* ===== Wrapper لوگو - ۲ برابر بزرگ‌تر ===== */
         .logo-wrapper {
             position: relative;
             display: inline-flex;
@@ -309,7 +288,6 @@
         }
         .logo-wrapper:hover { transform: scale(1.08); }
 
-        /* حلقه الکتریسیته ۱ - آبی روشن چرخان */
         .logo-wrapper::before {
             content: '';
             position: absolute;
@@ -328,10 +306,9 @@
             );
             animation: magnetRotate1 3s linear infinite;
             z-index: -1;
-            filter: blur(0.8px);
+            will-change: transform;
         }
 
-        /* حلقه الکتریسیته ۲ - آبی عمیق چرخان خلاف جهت */
         .logo-wrapper::after {
             content: '';
             position: absolute;
@@ -350,11 +327,10 @@
             );
             animation: magnetRotate2 4.5s linear infinite;
             z-index: -1;
-            filter: blur(1.6px);
             opacity: 0.9;
+            will-change: transform;
         }
 
-        /* حلقه سوم - مغناطیسی نرم */
         .logo-wrapper .magnet-ring-3 {
             position: absolute;
             inset: -12px;
@@ -370,10 +346,9 @@
             );
             animation: magnetRotate3 6s linear infinite;
             z-index: -2;
-            filter: blur(3px);
+            will-change: transform;
         }
 
-        /* هاله نرم بیرونی */
         .logo-halo {
             position: absolute;
             inset: -20px;
@@ -386,9 +361,9 @@
             animation: haloBreath 3.2s ease-in-out infinite;
             z-index: -3;
             pointer-events: none;
+            will-change: opacity, transform;
         }
 
-        /* موج‌های میدان مغناطیسی */
         .field-wave {
             position: absolute;
             inset: 0;
@@ -396,11 +371,11 @@
             border: 1.5px solid rgba(0, 200, 255, 0.5);
             animation: fieldWave 2.5s ease-out infinite;
             pointer-events: none;
+            will-change: transform, opacity;
         }
         .field-wave.w2 { animation-delay: 0.8s; }
         .field-wave.w3 { animation-delay: 1.6s; }
 
-        /* جرقه‌های الکتریکی */
         .logo-spark {
             position: absolute;
             width: 5px;
@@ -413,6 +388,7 @@
             animation: sparkFlash 2.4s ease-in-out infinite;
             z-index: 2;
             pointer-events: none;
+            will-change: transform, opacity;
         }
         .logo-spark.s1 { top: -6px; right: 25%; animation-delay: 0s; }
         .logo-spark.s2 { top: 20%; left: -6px; animation-delay: 0.4s; }
@@ -420,7 +396,6 @@
         .logo-spark.s4 { bottom: 22%; right: -6px; animation-delay: 1.4s; }
         .logo-spark.s5 { top: 45%; left: 48%; animation-delay: 1.8s; width: 3px; height: 3px; }
 
-        /* تصویر لوگو - پس‌زمینه سفید */
         .logo-img {
             width: 100%;
             height: 100%;
@@ -438,7 +413,6 @@
             transform: scale(1.05);
         }
 
-        /* نسخه کوچک برای فوتر */
         .logo-wrapper.small { width: 56px; height: 56px; padding: 3px; }
         .logo-wrapper.small::before,
         .logo-wrapper.small::after { inset: -4px; }
@@ -468,7 +442,7 @@
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-            transition: all 0.3s ease;
+            transition: box-shadow 0.3s ease;
         }
         .navbar-scrolled { box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3); }
 
@@ -479,8 +453,9 @@
             background: rgba(16, 185, 129, 0.08);
             color: #34d399; font-weight: 600;
             padding: 0.7rem 1.5rem;
-            transition: all 0.3s ease;
+            transition: transform 0.3s ease, background-color 0.3s ease;
             text-decoration: none; font-size: 0.95rem; direction: ltr;
+            will-change: transform;
         }
         .btn-phone:hover {
             background: rgba(16, 185, 129, 0.18);
@@ -494,9 +469,10 @@
             color: #0B1220; font-weight: 700;
             padding: 0.85rem 2.2rem;
             box-shadow: 0 8px 32px rgba(212, 175, 55, 0.3);
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
             text-decoration: none; border: none; cursor: pointer;
             font-size: 1.05rem;
+            will-change: transform;
         }
         .btn-glow:hover {
             transform: translateY(-3px) scale(1.02);
@@ -518,7 +494,9 @@
             width: 40px; height: 40px; border-radius: 999px;
             border: 1px solid rgba(255, 255, 255, 0.15);
             color: rgba(255, 255, 255, 0.6);
-            transition: all 0.3s ease; text-decoration: none; font-size: 1.05rem;
+            transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+            text-decoration: none; font-size: 1.05rem;
+            will-change: transform;
         }
         .social-link:hover {
             background: rgba(212, 175, 55, 0.2);
@@ -539,10 +517,10 @@
             50% { opacity: 0; }
         }
 
-        .animate-fade-rise { animation: fade-rise 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards; opacity: 0; }
-        .animate-fade-rise-delay { animation: fade-rise 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.25s forwards; opacity: 0; }
-        .animate-fade-rise-delay-2 { animation: fade-rise 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards; opacity: 0; }
-        .animate-fade-scale { animation: fade-scale 1s cubic-bezier(0.16, 1, 0.3, 1) 0.7s forwards; opacity: 0; }
+        .animate-fade-rise { animation: fade-rise 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards; opacity: 0; will-change: transform, opacity; }
+        .animate-fade-rise-delay { animation: fade-rise 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.25s forwards; opacity: 0; will-change: transform, opacity; }
+        .animate-fade-rise-delay-2 { animation: fade-rise 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards; opacity: 0; will-change: transform, opacity; }
+        .animate-fade-scale { animation: fade-scale 1s cubic-bezier(0.16, 1, 0.3, 1) 0.7s forwards; opacity: 0; will-change: transform, opacity; }
 
         /* ===== SERVICES ===== */
         .service-card {
@@ -552,7 +530,8 @@
             border: 1px solid rgba(255, 255, 255, 0.06);
             border-radius: 1.25rem;
             padding: 1.75rem 1.5rem;
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease, box-shadow 0.4s ease, background-color 0.4s ease;
+            will-change: transform;
         }
         .service-card:hover {
             transform: translateY(-6px);
@@ -603,7 +582,7 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
             background: rgba(255, 255, 255, 0.05);
             color: #fff; padding: 0.85rem 1.1rem;
-            outline: none; transition: all 0.3s ease;
+            outline: none; transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
         }
         .contact-input::placeholder { color: rgba(255, 255, 255, 0.4); }
         .contact-input:focus {
@@ -618,7 +597,8 @@
             padding: 1.15rem 1.35rem; border-radius: 1rem;
             background: rgba(255, 255, 255, 0.04);
             border: 1px solid rgba(255, 255, 255, 0.06);
-            transition: all 0.3s ease;
+            transition: transform 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
+            will-change: transform;
         }
         .contact-info-card:hover {
             transform: translateY(-3px);
@@ -645,15 +625,24 @@
         @media (max-width: 768px) {
             body { font-size: 1.05rem; }
             p { font-size: 1.1rem; }
-            .hero-title { font-size: 2.6rem !important; }
-            h2 { font-size: 2rem !important; }
+            .hero-title { font-size: 2.6rem; }
+            h2 { font-size: 2rem; }
             .logo-wrapper { width: 66px; height: 66px; }
         }
         @media (max-width: 450px) {
             body { font-size: 1rem; }
             p { font-size: 1.05rem; }
-            .hero-title { font-size: 2.1rem !important; }
+            .hero-title { font-size: 2.1rem; }
             .logo-wrapper { width: 58px; height: 58px; }
+        }
+
+        /* ===== Reduced Motion (دسترس‌پذیری) ===== */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
         }
     </style>
 </head>
@@ -672,7 +661,7 @@
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="flex items-center justify-between h-20 md:h-24">
 
-                    <!-- Logo (۲ برابر بزرگ‌تر + هاله الکتریسیته مغناطیسی) -->
+                    <!-- Logo با هاله الکتریسیته -->
                     <a href="index" class="flex items-center gap-3 shrink-0" style="text-decoration:none;">
                         <div class="logo-wrapper">
                             <span class="logo-halo"></span>
@@ -729,33 +718,28 @@
         <section class="relative min-h-screen flex items-center justify-center text-center px-6 pt-32 pb-20">
             <div class="max-w-7xl mx-auto">
 
-                <!-- تیتر با انیمیشن حرف‌به‌حرف + گرادیان درخشان -->
-                <h1 class="hero-title hero-title-glow max-w-6xl mx-auto" style="font-size:4rem; line-height:1.2; font-family:'BTitrBold', Tahoma, sans-serif;">
+                <!-- تیتر با انیمیشن کلمه‌به‌کلمه (بهینه‌شده) -->
+                <h1 class="hero-title hero-title-glow max-w-6xl mx-auto" style="font-size:4rem; line-height:1.2;">
 
-                    <span class="hero-line" style="--d:0.1s;">
-                        <span class="letter text-shine-gold" style="--ld:0.1s;">ک</span><span class="letter text-shine-gold" style="--ld:0.15s;">ا</span><span class="letter text-shine-gold" style="--ld:0.2s;">ر</span><span class="letter text-shine-gold" style="--ld:0.25s;">ن</span>
-                        <span>&nbsp;</span>
-                        <span class="letter text-shine-gold" style="--ld:0.3s;">س</span><span class="letter text-shine-gold" style="--ld:0.35s;">ا</span><span class="letter text-shine-gold" style="--ld:0.4s;">ف</span><span class="letter text-shine-gold" style="--ld:0.45s;">ت</span>
-                    </span>
+                    <span class="hero-word text-shine-gold" style="animation-delay:0.1s;">کارن</span>
+                    <span>&nbsp;</span>
+                    <span class="hero-word text-shine-gold" style="animation-delay:0.2s;">سافت</span>
 
-                    <span class="hero-line" style="--d:0.6s;">
-                        <span class="letter text-shine-white" style="--ld:0.6s;">ا</span><span class="letter text-shine-white" style="--ld:0.64s;">ت</span><span class="letter text-shine-white" style="--ld:0.68s;">و</span><span class="letter text-shine-white" style="--ld:0.72s;">م</span><span class="letter text-shine-white" style="--ld:0.76s;">ا</span><span class="letter text-shine-white" style="--ld:0.80s;">س</span><span class="letter text-shine-white" style="--ld:0.84s;">ی</span><span class="letter text-shine-white" style="--ld:0.88s;">و</span><span class="letter text-shine-white" style="--ld:0.92s;">ن</span>
-                        <span>&nbsp;</span>
-                        <span class="letter text-shine-white" style="--ld:0.96s;">ه</span><span class="letter text-shine-white" style="--ld:1s;">و</span><span class="letter text-shine-white" style="--ld:1.04s;">ش</span><span class="letter text-shine-white" style="--ld:1.08s;">م</span><span class="letter text-shine-white" style="--ld:1.12s;">ن</span><span class="letter text-shine-white" style="--ld:1.16s;">د</span>
-                    </span>
+                    <br />
 
-                    <span class="hero-line" style="--d:1.3s;">
-                        <span class="letter text-shine-white-soft" style="--ld:1.3s;">ب</span><span class="letter text-shine-white-soft" style="--ld:1.34s;">ر</span><span class="letter text-shine-white-soft" style="--ld:1.38s;">ا</span>
-                        <span>&nbsp;</span>
-                        <span class="letter text-shine-white-soft" style="--ld:1.42s;">ک</span><span class="letter text-shine-white-soft" style="--ld:1.46s;">س</span><span class="letter text-shine-white-soft" style="--ld:1.5s;">ب</span>
-                        <span>&zwj;</span>
-                        <span class="letter text-shine-white-soft" style="--ld:1.54s;">و</span><span class="letter text-shine-white-soft" style="--ld:1.58s;">ک</span><span class="letter text-shine-white-soft" style="--ld:1.62s;">ا</span><span class="letter text-shine-white-soft" style="--ld:1.66s;">ر</span>
-                        <span>&nbsp;</span>
-                        <span class="letter text-shine-white-soft" style="--ld:1.7s;">ش</span><span class="letter text-shine-white-soft" style="--ld:1.74s;">م</span><span class="letter text-shine-white-soft" style="--ld:1.78s;">ا</span>
-                    </span>
+                    <span class="hero-word text-shine-white" style="animation-delay:0.4s;">اتوماسیون</span>
+                    <span>&nbsp;</span>
+                    <span class="hero-word text-shine-white" style="animation-delay:0.55s;">هوشمند</span>
+
+                    <br />
+
+                    <span class="hero-word text-shine-white-soft" style="animation-delay:0.75s;">برای</span>
+                    <span>&nbsp;</span>
+                    <span class="hero-word text-shine-white-soft" style="animation-delay:0.9s;">کسب‌وکار</span>
+                    <span>&nbsp;</span>
+                    <span class="hero-word text-shine-white-soft" style="animation-delay:1.05s;">شما</span>
                 </h1>
 
-                <!-- خط زیر تیتر -->
                 <div class="hero-underline"></div>
 
                 <p class="text-white/55 max-w-2xl mx-auto mt-10 animate-fade-rise-delay">
@@ -813,37 +797,37 @@
                     <p class="mt-3 text-white/60">ما با تخصص و تجربه، راه‌حل‌های نرم‌افزاری سفارشی برای کسب‌وکار شما طراحی و پیاده‌سازی می‌کنیم.</p>
                 </div>
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
-                    <div class="service-card animate-fade-rise" style="animation-delay:0.05s; opacity:0;">
+                    <div class="service-card animate-fade-rise" style="animation-delay:0.05s;">
                         <div class="icon-wrap"><i class="fas fa-code"></i></div>
                         <h3>طراحی سایت حرفه‌ای</h3>
                         <p>وب‌سایت‌های مدرن، ریسپانسیو و بهینه‌شده برای موتورهای جستجو.</p>
                     </div>
-                    <div class="service-card animate-fade-rise" style="animation-delay:0.12s; opacity:0;">
+                    <div class="service-card animate-fade-rise" style="animation-delay:0.12s;">
                         <div class="icon-wrap"><i class="fas fa-store"></i></div>
                         <h3>فروشگاه آنلاین</h3>
                         <p>ایجاد فروشگاه‌های اینترنتی قدرتمند با سیستم‌های پرداخت پیشرفته.</p>
                     </div>
-                    <div class="service-card animate-fade-rise" style="animation-delay:0.19s; opacity:0;">
+                    <div class="service-card animate-fade-rise" style="animation-delay:0.19s;">
                         <div class="icon-wrap"><i class="fas fa-robot"></i></div>
                         <h3>اتوماسیون سفارشی</h3>
                         <p>سیستم‌های اتوماسیون اداری و نرم‌افزارهای اختصاصی متناسب با نیاز شما.</p>
                     </div>
-                    <div class="service-card animate-fade-rise" style="animation-delay:0.26s; opacity:0;">
+                    <div class="service-card animate-fade-rise" style="animation-delay:0.26s;">
                         <div class="icon-wrap"><i class="fas fa-mobile-alt"></i></div>
                         <h3>اپلیکیشن موبایل</h3>
                         <p>توسعه اپلیکیشن‌های اندروید و iOS برای دسترسی آسان‌تر مشتریان.</p>
                     </div>
-                    <div class="service-card animate-fade-rise" style="animation-delay:0.33s; opacity:0;">
+                    <div class="service-card animate-fade-rise" style="animation-delay:0.33s;">
                         <div class="icon-wrap"><i class="fas fa-chart-line"></i></div>
                         <h3>مشاوره دیجیتال مارکتینگ</h3>
                         <p>استراتژی‌های بازاریابی دیجیتال، سئو و شبکه‌های اجتماعی.</p>
                     </div>
-                    <div class="service-card animate-fade-rise" style="animation-delay:0.40s; opacity:0;">
+                    <div class="service-card animate-fade-rise" style="animation-delay:0.40s;">
                         <div class="icon-wrap"><i class="fas fa-cloud"></i></div>
                         <h3>میزبانی و پشتیبانی</h3>
                         <p>میزبانی امن، پشتیبانی فنی ۲۴/۷ و نگهداری مداوم.</p>
                     </div>
-                    <div class="service-card animate-fade-rise" style="animation-delay:0.47s; opacity:0;">
+                    <div class="service-card animate-fade-rise" style="animation-delay:0.47s;">
                         <div class="icon-wrap"><i class="fas fa-microchip"></i></div>
                         <h3>طراحی و سفارشی‌سازی سیستم‌های سخت‌افزاری</h3>
                         <p>مشاوره، طراحی و پیاده‌سازی سیستم‌های سخت‌افزاری متناسب با نیاز کسب‌وکار.</p>
@@ -1034,10 +1018,19 @@
                 '<i class="fas fa-bars"></i>';
         });
 
-        // ===== NAVBAR SCROLL =====
+        // ===== NAVBAR SCROLL (با requestAnimationFrame برای عملکرد بهتر) =====
         const navbar = document.getElementById('navbar');
+        let lastScroll = 0;
+        let ticking = false;
         window.addEventListener('scroll', function() {
-            navbar.classList.toggle('navbar-scrolled', window.scrollY > 20);
+            lastScroll = window.scrollY;
+            if (!ticking) {
+                window.requestAnimationFrame(function() {
+                    navbar.classList.toggle('navbar-scrolled', lastScroll > 20);
+                    ticking = false;
+                });
+                ticking = true;
+            }
         }, { passive: true });
 
         // ===== COUNTERS =====
