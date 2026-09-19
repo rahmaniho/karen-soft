@@ -4,46 +4,89 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- ===== تایتل سئو شده ===== -->
+    <!-- ===== حذف .html از نوار آدرس ===== -->
+    <script>
+        if (window.location.pathname.endsWith('.html')) {
+            window.location.href = window.location.pathname.replace('.html', '');
+        }
+    </script>
+
+    <!-- ===== سئو ===== -->
     <title>کارن سافت | اتوماسیون هوشمند کسب‌وکار و نرم‌افزارهای مدیریتی</title>
-
-    <!-- ===== متا دیسکریپشن ===== -->
     <meta name="description" content="کارن سافت ارائه‌دهنده راه‌حل‌های نرم‌افزاری سفارشی برای کسب‌وکارها: طراحی سایت، فروشگاه آنلاین، اتوماسیون اداری و مدیریت هوشمند. پشتیبانی ۲۴ ساعته و تحویل ضمانتی." />
-
-    <!-- ===== کلمات کلیدی ===== -->
     <meta name="keywords" content="کارن سافت, اتوماسیون اداری, طراحی سایت, فروشگاه آنلاین, نرم افزار مدیریت, راهکارهای نرم افزاری" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
 
-    <!-- ===== تگ Open Graph ===== -->
+    <!-- ===== Open Graph ===== -->
     <meta property="og:title" content="کارن سافت | اتوماسیون هوشمند کسب‌وکار" />
     <meta property="og:description" content="ارائه‌دهنده راه‌حل‌های نرم‌افزاری سفارشی برای کسب‌وکارها." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://karen-soft.ir/" />
     <meta property="og:image" content="https://karen-soft.ir/images/logo.png" />
+    <meta property="og:site_name" content="کارن سافت" />
+    <meta property="og:locale" content="fa_IR" />
 
-    <!-- ===== تگ Twitter Card ===== -->
+    <!-- ===== Twitter Card ===== -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="کارن سافت | اتوماسیون هوشمند کسب‌وکار" />
     <meta name="twitter:description" content="ارائه‌دهنده راه‌حل‌های نرم‌افزاری سفارشی برای کسب‌وکارها." />
+    <meta name="twitter:image" content="https://karen-soft.ir/images/logo.png" />
 
-    <!-- ===== لینک کنونیکال ===== -->
     <link rel="canonical" href="https://karen-soft.ir/" />
-
-    <!-- ===== FAVICON (آیکون کنار عنوان در تب مرورگر) ===== -->
     <link rel="icon" href="images/logo.png" type="image/png" />
     <link rel="shortcut icon" href="images/logo.png" type="image/png" />
 
-    <!-- ===== استایل‌ها و اسکریپت‌ها ===== -->
+    <!-- ===== Preconnect ===== -->
+    <link rel="preconnect" href="https://cdn.tailwindcss.com">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://client.crisp.chat">
+
+    <!-- ===== فونت‌های اختصاصی (محلی) ===== -->
+    <style>
+        /* ===== B Lotus - فونت تیترها ===== */
+        @font-face {
+            font-family: 'BLotus';
+            src: url('font/BLotus.woff') format('woff'),
+                 url('font/BLotus.ttf') format('truetype'),
+                 url('font/BLotus.eot') format('embedded-opentype');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        /* ===== B Nazanin - فونت متن اصلی ===== */
+        @font-face {
+            font-family: 'BNazanin';
+            src: url('font/BNazanin.woff') format('woff'),
+                 url('font/BNazanin.ttf') format('truetype'),
+                 url('font/BNazanin.eot') format('embedded-opentype');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        /* ===== B Ferdosi - فونت CTA ===== */
+        @font-face {
+            font-family: 'BFerdosi';
+            src: url('font/BFerdosi.woff') format('woff'),
+                 url('font/BFerdosi.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+    </style>
+
+    <!-- ===== استایل‌ها ===== -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" />
 
     <!-- ===== CRISP CHAT ===== -->
     <script type="text/javascript">
         window.$crisp = [];
         window.CRISP_WEBSITE_ID = "ffafdfcf-e510-45d0-a026-4e964ad420ee";
         (function() {
-            d = document;
-            s = d.createElement("script");
+            var d = document;
+            var s = d.createElement("script");
             s.src = "https://client.crisp.chat/l.js";
             s.async = 1;
             d.getElementsByTagName("head")[0].appendChild(s);
@@ -52,27 +95,91 @@
 
     <!-- ===== SCHEMA MARKUP ===== -->
     <script type="application/ld+json">
-        {
-            "@context": "https://schema.org",
-            "@type": "Organization",
-            "name": "کارن سافت",
-            "url": "https://karen-soft.ir",
-            "logo": "https://karen-soft.ir/images/logo.png",
-            "description": "ارائه‌دهنده راه‌حل‌های نرم‌افزاری سفارشی برای کسب‌وکارها",
-            "address": {
-                "@type": "PostalAddress",
-                "addressLocality": "قزوین",
-                "addressCountry": "IR"
-            },
-            "contactPoint": {
-                "@type": "ContactPoint",
-                "telephone": "+989152521166",
-                "contactType": "sales"
-            }
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "کارن سافت",
+        "url": "https://karen-soft.ir",
+        "logo": "https://karen-soft.ir/images/logo.png",
+        "description": "ارائه‌دهنده راه‌حل‌های نرم‌افزاری سفارشی برای کسب‌وکارها",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "قزوین",
+            "addressCountry": "IR"
+        },
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+989152521166",
+            "contactType": "sales"
         }
+    }
     </script>
 
     <style>
+        /* =====================================================
+           🎨 اعمال فونت‌ها با سایز بزرگ‌تر
+           ===================================================== */
+
+        /* ===== فونت تیترها: B Lotus ===== */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'BLotus', Tahoma, sans-serif !important;
+        }
+
+        /* ===== فونت متن اصلی: B Nazanin با سایز ۲ برابر ===== */
+        body, p, a, span, li, div, input, textarea, select, button,
+        .service-card p, .contact-input, .about-typing, .stat-number + div,
+        footer, label, form {
+            font-family: 'BNazanin', Tahoma, sans-serif !important;
+        }
+
+        /* افزایش ۲ برابری سایز فونت اصلی */
+        body {
+            font-size: 1.15rem;
+            line-height: 2.2;
+        }
+        p {
+            font-size: 1.25rem !important;
+            line-height: 2.3 !important;
+        }
+        a, span, li, label {
+            font-size: 1.1rem;
+        }
+        .contact-input, input, textarea, select {
+            font-size: 1.15rem !important;
+            padding: 1rem 1.2rem !important;
+        }
+        .service-card p {
+            font-size: 1.15rem !important;
+            line-height: 2.2 !important;
+        }
+        .about-typing {
+            font-size: 1.3rem !important;
+            line-height: 2.4rem !important;
+        }
+        footer {
+            font-size: 1rem;
+        }
+
+        /* ===== فونت CTA: B Ferdosi ===== */
+        .btn-glow, .btn-phone, .btn-glow *, .btn-phone * {
+            font-family: 'BFerdosi', 'BNazanin', Tahoma, sans-serif !important;
+            font-size: 1.2rem !important;
+        }
+
+        /* ===== افزایش سایز تیترها ===== */
+        .hero h1, section h1 {
+            font-size: 4rem !important;
+            line-height: 1.2 !important;
+        }
+        h2 {
+            font-size: 2.6rem !important;
+            line-height: 1.4 !important;
+        }
+        h3 {
+            font-size: 1.6rem !important;
+            line-height: 1.5 !important;
+        }
+
         /* ===== RESET & BASE ===== */
         * {
             margin: 0;
@@ -80,7 +187,6 @@
             box-sizing: border-box;
         }
         body {
-            font-family: 'Vazirmatn', Tahoma, sans-serif;
             background: #080A19;
             overflow-x: hidden;
             color: #fff;
@@ -89,15 +195,12 @@
         /* ===== VIDEO BACKGROUND ===== */
         #video-background {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
             object-fit: cover;
             z-index: 0;
         }
 
-        /* ===== CONTENT OVERLAY ===== */
         #content-overlay {
             position: relative;
             z-index: 1;
@@ -107,9 +210,9 @@
             -webkit-backdrop-filter: blur(2px);
         }
 
-        /* ============================================ */
-        /* ====== صفحه لودینگ (Splash Screen) ====== */
-        /* ============================================ */
+        /* ============================================
+           صفحه لودینگ
+           ============================================ */
         #loader {
             position: fixed;
             inset: 0;
@@ -118,13 +221,11 @@
             align-items: center;
             justify-content: center;
             direction: rtl;
-            font-family: 'Vazirmatn', Tahoma, sans-serif;
+            font-family: 'BNazanin', Tahoma, sans-serif;
             background: #080A19;
             transition: opacity 0.9s ease, visibility 0.9s ease;
             overflow: hidden;
         }
-
-        /* لایه‌ی تیره روی ویدیو (در صورت استفاده) */
         .loader-overlay {
             position: absolute;
             inset: 0;
@@ -133,8 +234,6 @@
             -webkit-backdrop-filter: blur(4px);
             z-index: 1;
         }
-
-        /* محتوای لودینگ */
         .loader-content {
             position: relative;
             z-index: 2;
@@ -146,8 +245,6 @@
             padding: 2rem;
             max-width: 90%;
         }
-
-        /* SVG لودینگ (همان فایل hearts.svg) */
         .loader-svg {
             width: 140px;
             height: 64px;
@@ -155,24 +252,12 @@
             animation: logoPulse 2s ease-in-out infinite;
         }
         .loader-svg svg {
-            width: 100%;
-            height: 100%;
-            display: block;
+            width: 100%; height: 100%; display: block;
         }
-
         @keyframes logoPulse {
-            0%,
-            100% {
-                transform: scale(1);
-                opacity: 1;
-            }
-            50% {
-                transform: scale(1.05);
-                opacity: 0.85;
-            }
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.05); opacity: 0.85; }
         }
-
-        /* متن تایپ‌رایتر */
         .loader-text-wrapper {
             display: flex;
             align-items: center;
@@ -182,18 +267,19 @@
         }
         .loader-text {
             color: #D4AF37;
-            font-size: 2rem;
+            font-size: 2.4rem;
             font-weight: 700;
             letter-spacing: 1px;
             text-shadow: 0 0 40px rgba(212, 175, 55, 0.1);
             white-space: nowrap;
             overflow: hidden;
             direction: rtl;
+            font-family: 'BLotus', Tahoma, sans-serif;
         }
         .loader-cursor {
             display: inline-block;
             width: 3px;
-            height: 2.2rem;
+            height: 2.5rem;
             background: #D4AF37;
             margin-right: 4px;
             animation: blink 0.8s step-end infinite;
@@ -201,19 +287,12 @@
             flex-shrink: 0;
         }
         @keyframes blink {
-            0%,
-            100% {
-                opacity: 1;
-            }
-            50% {
-                opacity: 0;
-            }
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
         }
-
-        /* زیرنویس */
         .loader-sub {
-            color: rgba(255, 255, 255, 0.25);
-            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 1.05rem;
             letter-spacing: 3px;
             margin-top: 4px;
             margin-bottom: 28px;
@@ -221,17 +300,9 @@
             animation: fadeSub 1s ease 1.8s forwards;
         }
         @keyframes fadeSub {
-            0% {
-                opacity: 0;
-                transform: translateY(12px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            0% { opacity: 0; transform: translateY(12px); }
+            100% { opacity: 1; transform: translateY(0); }
         }
-
-        /* نقطه‌های لودینگ */
         .loader-dots {
             display: flex;
             gap: 12px;
@@ -239,85 +310,33 @@
             animation: fadeDots 0.8s ease 2.2s forwards;
         }
         .loader-dots span {
-            width: 10px;
-            height: 10px;
+            width: 10px; height: 10px;
             background: #D4AF37;
             border-radius: 50%;
             animation: bounce 1.2s infinite ease-in-out;
             box-shadow: 0 0 20px rgba(212, 175, 55, 0.12);
         }
-        .loader-dots span:nth-child(1) {
-            animation-delay: 0s;
-        }
-        .loader-dots span:nth-child(2) {
-            animation-delay: 0.2s;
-        }
-        .loader-dots span:nth-child(3) {
-            animation-delay: 0.4s;
-        }
+        .loader-dots span:nth-child(1) { animation-delay: 0s; }
+        .loader-dots span:nth-child(2) { animation-delay: 0.2s; }
+        .loader-dots span:nth-child(3) { animation-delay: 0.4s; }
         @keyframes fadeDots {
-            0% {
-                opacity: 0;
-                transform: scale(0.8);
-            }
-            100% {
-                opacity: 1;
-                transform: scale(1);
-            }
+            0% { opacity: 0; transform: scale(0.8); }
+            100% { opacity: 1; transform: scale(1); }
         }
         @keyframes bounce {
-            0%,
-            80%,
-            100% {
-                transform: scale(0.3);
-                opacity: 0.3;
-            }
-            40% {
-                transform: scale(1);
-                opacity: 1;
-            }
+            0%, 80%, 100% { transform: scale(0.3); opacity: 0.3; }
+            40% { transform: scale(1); opacity: 1; }
         }
-
-        /* حالت مخفی */
         #loader.loader-hidden {
             opacity: 0;
             visibility: hidden;
             pointer-events: none;
         }
-
-        /* ===== واکنش‌گرا ===== */
         @media (max-width: 600px) {
-            .loader-text {
-                font-size: 1.4rem;
-            }
-            .loader-cursor {
-                height: 1.8rem;
-            }
-            .loader-svg {
-                width: 100px;
-                height: 46px;
-                margin-bottom: 24px;
-            }
-            .loader-sub {
-                font-size: 0.7rem;
-            }
-            .loader-dots span {
-                width: 8px;
-                height: 8px;
-            }
-        }
-        @media (max-width: 400px) {
-            .loader-text {
-                font-size: 1.1rem;
-            }
-            .loader-cursor {
-                height: 1.5rem;
-            }
-            .loader-svg {
-                width: 80px;
-                height: 36px;
-                margin-bottom: 18px;
-            }
+            .loader-text { font-size: 1.7rem; }
+            .loader-cursor { height: 1.9rem; }
+            .loader-svg { width: 100px; height: 46px; margin-bottom: 24px; }
+            .loader-sub { font-size: 0.9rem; }
         }
 
         /* ===== NAVBAR ===== */
@@ -328,9 +347,7 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.06);
             transition: all 0.3s ease;
         }
-        .navbar-scrolled {
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-        }
+        .navbar-scrolled { box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3); }
 
         .btn-phone {
             display: inline-flex;
@@ -344,7 +361,6 @@
             padding: 0.7rem 1.5rem;
             transition: all 0.3s ease;
             text-decoration: none;
-            font-size: 0.9rem;
             direction: ltr;
         }
         .btn-phone:hover {
@@ -360,25 +376,20 @@
             background: linear-gradient(135deg, #E4C56A, #D4AF37 45%, #B8942A);
             color: #0B1220;
             font-weight: 700;
-            padding: 0.85rem 2.2rem;
+            padding: 0.9rem 2.4rem;
             box-shadow: 0 8px 32px rgba(212, 175, 55, 0.3);
             transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
             text-decoration: none;
             border: none;
             cursor: pointer;
-            font-size: 1rem;
         }
         .btn-glow:hover {
             transform: translateY(-3px) scale(1.02);
             box-shadow: 0 16px 48px rgba(212, 175, 55, 0.45);
         }
 
-        .theme-toggle {
-            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .theme-toggle:hover {
-            transform: rotate(60deg) scale(1.1);
-        }
+        .theme-toggle { transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+        .theme-toggle:hover { transform: rotate(60deg) scale(1.1); }
 
         .mobile-menu {
             max-height: 0;
@@ -386,22 +397,19 @@
             transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
             opacity: 0;
         }
-        .mobile-menu.open {
-            max-height: 500px;
-            opacity: 1;
-        }
+        .mobile-menu.open { max-height: 500px; opacity: 1; }
 
         .social-link {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 38px;
-            height: 38px;
+            width: 42px; height: 42px;
             border-radius: 999px;
             border: 1px solid rgba(255, 255, 255, 0.15);
             color: rgba(255, 255, 255, 0.6);
             transition: all 0.3s ease;
             text-decoration: none;
+            font-size: 1.05rem;
         }
         .social-link:hover {
             background: rgba(212, 175, 55, 0.2);
@@ -412,35 +420,13 @@
 
         /* ===== KEYFRAMES ===== */
         @keyframes fade-rise {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         @keyframes fade-scale {
-            from {
-                opacity: 0;
-                transform: scale(0.95);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
         }
-        @keyframes blink {
-            0%,
-            100% {
-                opacity: 1;
-            }
-            50% {
-                opacity: 0;
-            }
-        }
-
         .animate-fade-rise {
             animation: fade-rise 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
             opacity: 0;
@@ -465,14 +451,14 @@
             background-clip: text;
         }
 
-        /* ===== SERVICES ===== */
+        /* ===== SERVICE CARDS ===== */
         .service-card {
             background: rgba(255, 255, 255, 0.04);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.06);
             border-radius: 1.25rem;
-            padding: 1.75rem 1.5rem;
+            padding: 2rem 1.75rem;
             transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
             cursor: default;
         }
@@ -486,13 +472,12 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 52px;
-            height: 52px;
-            border-radius: 14px;
+            width: 60px; height: 60px;
+            border-radius: 16px;
             background: rgba(212, 175, 55, 0.12);
             color: #D4AF37;
-            font-size: 1.4rem;
-            margin-bottom: 1rem;
+            font-size: 1.6rem;
+            margin-bottom: 1.25rem;
             transition: transform 0.4s ease;
         }
         .service-card:hover .icon-wrap {
@@ -500,27 +485,18 @@
         }
         .service-card h3 {
             color: #fff;
-            font-size: 1.05rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-        }
-        .service-card p {
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 0.9rem;
-            line-height: 1.8;
+            margin-bottom: 0.65rem;
         }
 
         /* ===== STATS ===== */
         .stat-number {
-            font-size: 2.6rem;
+            font-size: 3rem;
             font-weight: 900;
             line-height: 1.1;
-            font-family: 'Vazirmatn', Tahoma, sans-serif;
+            font-family: 'BLotus', Tahoma, sans-serif;
         }
         @media (min-width: 640px) {
-            .stat-number {
-                font-size: 3.2rem;
-            }
+            .stat-number { font-size: 3.8rem; }
         }
 
         /* ===== ABOUT ===== */
@@ -530,39 +506,32 @@
             -webkit-backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.06);
             border-radius: 1.25rem;
-            padding: 2rem;
+            padding: 2.5rem;
         }
         .about-typing {
-            font-size: 1.05rem;
-            line-height: 2.2rem;
-            min-height: 200px;
+            min-height: 220px;
             color: rgba(255, 255, 255, 0.85);
         }
         .about-typing .typing-cursor-about {
             display: inline-block;
             width: 3px;
-            height: 1.2em;
+            height: 1.3em;
             background: #D4AF37;
             animation: blink 0.9s step-end infinite;
             vertical-align: text-bottom;
         }
 
-        /* ===== CONTACT ===== */
+        /* ===== CONTACT FORM ===== */
         .contact-input {
             width: 100%;
             border-radius: 0.9rem;
             border: 1px solid rgba(255, 255, 255, 0.1);
             background: rgba(255, 255, 255, 0.05);
             color: #fff;
-            padding: 0.75rem 1rem;
-            font-size: 0.9rem;
             outline: none;
             transition: all 0.3s ease;
-            font-family: inherit;
         }
-        .contact-input::placeholder {
-            color: rgba(255, 255, 255, 0.4);
-        }
+        .contact-input::placeholder { color: rgba(255, 255, 255, 0.4); }
         .contact-input:focus {
             border-color: rgba(212, 175, 55, 0.5);
             box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
@@ -577,7 +546,7 @@
             display: flex;
             align-items: center;
             gap: 1rem;
-            padding: 1rem 1.25rem;
+            padding: 1.2rem 1.5rem;
             border-radius: 1rem;
             background: rgba(255, 255, 255, 0.04);
             border: 1px solid rgba(255, 255, 255, 0.06);
@@ -589,13 +558,12 @@
             background: rgba(255, 255, 255, 0.07);
         }
         .contact-info-card .ci-icon {
-            width: 44px;
-            height: 44px;
-            border-radius: 12px;
+            width: 52px; height: 52px;
+            border-radius: 14px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.2rem;
+            font-size: 1.35rem;
             flex-shrink: 0;
             background: rgba(212, 175, 55, 0.1);
             color: #D4AF37;
@@ -614,33 +582,38 @@
         }
 
         /* ===== SCROLLBAR ===== */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: rgba(255, 255, 255, 0.05);
-        }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.05); }
         ::-webkit-scrollbar-thumb {
             background: rgba(212, 175, 55, 0.4);
             border-radius: 999px;
         }
-        ::-webkit-scrollbar-thumb:hover {
-            background: rgba(212, 175, 55, 0.6);
+        ::-webkit-scrollbar-thumb:hover { background: rgba(212, 175, 55, 0.6); }
+
+        /* ===== Responsive font sizes ===== */
+        @media (max-width: 768px) {
+            .hero h1, section h1 { font-size: 2.6rem !important; }
+            h2 { font-size: 2rem !important; }
+            h3 { font-size: 1.4rem !important; }
+            p { font-size: 1.15rem !important; }
+            body { font-size: 1.05rem; }
+        }
+        @media (max-width: 450px) {
+            .hero h1, section h1 { font-size: 2.1rem !important; }
+            h2 { font-size: 1.7rem !important; }
+            h3 { font-size: 1.25rem !important; }
+            p { font-size: 1.1rem !important; }
         }
     </style>
 </head>
 <body>
 
-    <!-- ============================================ -->
-    <!-- ====== صفحه لودینگ (Splash Screen) ====== -->
-    <!-- ============================================ -->
+    <!-- ============================================
+         صفحه لودینگ
+         ============================================ -->
     <div id="loader">
-        <!-- لایه‌ی تیره -->
         <div class="loader-overlay"></div>
-
-        <!-- محتوای لودینگ -->
         <div class="loader-content">
-            <!-- SVG لودینگ (hearts.svg) -->
             <div class="loader-svg">
                 <svg width="140" height="64" viewBox="0 0 140 64" xmlns="http://www.w3.org/2000/svg" fill="#fff">
                     <path d="M30.262 57.02L7.195 40.723c-5.84-3.976-7.56-12.06-3.842-18.063 3.715-6 11.467-7.65 17.306-3.68l4.52 3.76 2.6-5.274c3.717-6.002 11.47-7.65 17.305-3.68 5.84 3.97 7.56 12.054 3.842 18.062L34.49 56.118c-.897 1.512-2.793 1.915-4.228.9z" fill-opacity=".5">
@@ -652,21 +625,13 @@
                     <path d="M67.408 57.834l-23.01-24.98c-5.864-6.15-5.864-16.108 0-22.248 5.86-6.14 15.37-6.14 21.234 0L70 16.168l4.368-5.562c5.863-6.14 15.375-6.14 21.235 0 5.863 6.14 5.863 16.098 0 22.247l-23.007 24.98c-1.43 1.556-3.757 1.556-5.188 0z" />
                 </svg>
             </div>
-
-            <!-- متن تایپ‌رایتر -->
             <div class="loader-text-wrapper">
                 <span class="loader-text" id="loaderText"></span>
                 <span class="loader-cursor"></span>
             </div>
-
-            <!-- زیرنویس -->
             <p class="loader-sub">کارن سافت | راه‌حل‌های نرم‌افزاری هوشمند</p>
-
-            <!-- نقطه‌های لودینگ -->
             <div class="loader-dots">
-                <span></span>
-                <span></span>
-                <span></span>
+                <span></span><span></span><span></span>
             </div>
         </div>
     </div>
@@ -682,43 +647,36 @@
         <!-- ===== NAVBAR ===== -->
         <nav id="navbar" class="fixed top-0 right-0 left-0 z-50 navbar-glass transition-all duration-300">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="flex items-center justify-between h-16 md:h-20">
-                    <!-- Logo -->
-                    <div class="flex items-center gap-2 shrink-0">
-                        <img src="images/logo.png" alt="لوگو کارن سافت" class="h-9 w-9 rounded-xl object-cover" />
-                        <span class="font-bold text-sm md:text-lg text-white whitespace-nowrap">کارن سافت</span>
+                <div class="flex items-center justify-between h-20 md:h-24">
+                    <a href="index" class="flex items-center gap-2 shrink-0" style="text-decoration:none;">
+                        <img src="images/logo.png" alt="لوگو کارن سافت" class="h-11 w-11 rounded-xl object-cover" />
+                        <span style="font-family:'BLotus', Tahoma, sans-serif; font-size:1.3rem; color:#fff;" class="font-bold whitespace-nowrap">کارن سافت</span>
+                    </a>
+                    <div class="hidden md:flex items-center gap-8 font-medium text-white/70" style="font-size:1.1rem;">
+                        <a href="index" class="text-white hover:text-[#D4AF37] transition">خانه</a>
+                        <a href="products" class="hover:text-[#D4AF37] transition">محصولات</a>
+                        <a href="blog" class="hover:text-[#D4AF37] transition">وبلاگ</a>
+                        <a href="contact" class="hover:text-emerald-400 transition" style="color:#34d399;">تماس</a>
                     </div>
-
-                    <!-- Desktop Nav -->
-                    <div class="hidden md:flex items-center gap-8 text-sm font-medium text-white/60">
-                        <a href="index.html" class="text-white hover:text-gold-400 transition">خانه</a>
-                        <a href="products.html" class="hover:text-gold-400 transition">محصولات</a>
-                        <a href="blog.html" class="hover:text-gold-400 transition">وبلاگ</a>
-                        <a href="contact.html" class="hover:text-emerald-400 transition" style="color:#34d399;">تماس</a>
-                    </div>
-
-                    <!-- Right Actions -->
                     <div class="flex items-center gap-2">
-                        <a href="tel:09152521166" class="btn-phone text-xs sm:text-sm px-3 sm:px-4 py-1.5 sm:py-2">
+                        <a href="tel:09152521166" class="btn-phone text-xs sm:text-sm px-3 sm:px-4 py-2">
                             <i class="fas fa-phone"></i> <span class="hidden sm:inline">۰۹۱۵۲۵۲۱۱۶۶</span>
                         </a>
-                        <button id="themeToggle" class="theme-toggle w-10 h-10 rounded-xl border border-white/10 bg-white/5 text-white/70 flex items-center justify-center hover:border-gold-400 transition">
+                        <button id="themeToggle" class="theme-toggle w-11 h-11 rounded-xl border border-white/10 bg-white/5 text-white/70 flex items-center justify-center hover:border-[#D4AF37] transition" style="font-size:1.1rem;">
                             <i id="themeIcon" class="fas fa-moon"></i>
                         </button>
-                        <button id="mobileMenuBtn" class="md:hidden w-10 h-10 rounded-xl border border-white/10 bg-white/5 text-white/70 flex items-center justify-center">
+                        <button id="mobileMenuBtn" class="md:hidden w-11 h-11 rounded-xl border border-white/10 bg-white/5 text-white/70 flex items-center justify-center" style="font-size:1.1rem;">
                             <i class="fas fa-bars"></i>
                         </button>
                     </div>
                 </div>
             </div>
-
-            <!-- Mobile Menu -->
             <div id="mobileMenu" class="mobile-menu md:hidden bg-[#080A19]/95 backdrop-blur-xl border-t border-white/10">
-                <div class="px-4 py-4 space-y-3 text-sm font-medium text-white/70">
-                    <a href="index.html" class="block hover:text-gold-400 transition">خانه</a>
-                    <a href="products.html" class="block hover:text-gold-400 transition">محصولات</a>
-                    <a href="blog.html" class="block hover:text-gold-400 transition">وبلاگ</a>
-                    <a href="contact.html" class="block hover:text-emerald-400 transition" style="color:#34d399;">تماس</a>
+                <div class="px-4 py-4 space-y-3 font-medium text-white/70" style="font-size:1.1rem;">
+                    <a href="index" class="block hover:text-[#D4AF37] transition">خانه</a>
+                    <a href="products" class="block hover:text-[#D4AF37] transition">محصولات</a>
+                    <a href="blog" class="block hover:text-[#D4AF37] transition">وبلاگ</a>
+                    <a href="contact" class="block hover:text-emerald-400 transition" style="color:#34d399;">تماس</a>
                     <a href="tel:09152521166" class="block text-emerald-400 font-bold"><i class="fas fa-phone"></i> ۰۹۱۵۲۵۲۱۱۶۶</a>
                 </div>
             </div>
@@ -727,7 +685,7 @@
         <!-- ===== HERO SECTION ===== -->
         <section class="relative min-h-screen flex items-center justify-center text-center px-6 pt-32 pb-20">
             <div class="max-w-7xl mx-auto">
-                <h1 class="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl leading-[0.95] tracking-tight max-w-6xl mx-auto animate-fade-rise">
+                <h1 class="hero-title max-w-6xl mx-auto animate-fade-rise" style="font-family:'BLotus', Tahoma, sans-serif;">
                     <span class="text-gradient-gold">کارن سافت</span>
                     <br class="hidden sm:block" />
                     <span class="text-white">اتوماسیون هوشمند</span>
@@ -735,21 +693,21 @@
                     <span class="text-white/80">برای کسب‌وکار شما</span>
                 </h1>
 
-                <p class="text-white/50 text-base sm:text-lg max-w-2xl mx-auto mt-6 leading-relaxed animate-fade-rise-delay">
+                <p class="text-white/55 max-w-3xl mx-auto mt-8 animate-fade-rise-delay" style="font-size:1.35rem; line-height:2.3;">
                     از طراحی سایت و فروشگاه آنلاین تا اتوماسیون‌های سفارشی اداری و مدیریت هوشمند —
                     ما به شما کمک می‌کنیم تا کسب‌وکارتان را به سطح بعدی ببرید.
                 </p>
 
-                <div class="flex flex-wrap justify-center gap-4 mt-10 animate-fade-rise-delay-2">
-                    <a href="products.html" class="btn-glow text-base px-8 py-3">
+                <div class="flex flex-wrap justify-center gap-4 mt-12 animate-fade-rise-delay-2">
+                    <a href="products" class="btn-glow px-9 py-4">
                         <i class="fas fa-arrow-left"></i> مشاهده محصولات
                     </a>
-                    <a href="tel:09152521166" class="btn-phone text-base px-6 py-3">
+                    <a href="tel:09152521166" class="btn-phone px-7 py-4">
                         <i class="fas fa-phone"></i> مشاوره رایگان
                     </a>
                 </div>
 
-                <div class="flex flex-wrap justify-center gap-6 text-sm text-white/40 mt-8 animate-fade-scale">
+                <div class="flex flex-wrap justify-center gap-6 text-white/50 mt-10 animate-fade-scale" style="font-size:1.15rem;">
                     <span class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-400"></i> پشتیبانی ۲۴ ساعته</span>
                     <span class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-400"></i> تحویل ضمانتی</span>
                     <span class="flex items-center gap-2"><i class="fas fa-check-circle text-emerald-400"></i> پشتیبانی پس از فروش</span>
@@ -762,20 +720,20 @@
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-4 bg-white/5 backdrop-blur-xl rounded-2xl border border-white/5 p-6 md:p-8">
                     <div class="text-center">
-                        <div class="stat-number text-gold-400" data-count="150">۰</div>
-                        <div class="text-xs text-white/40 mt-1">پروژه موفق</div>
+                        <div class="stat-number text-gold-400" data-count="150" style="color:#D4AF37;">۰</div>
+                        <div class="text-white/50 mt-2" style="font-size:1.1rem;">پروژه موفق</div>
                     </div>
                     <div class="text-center">
-                        <div class="stat-number text-gold-400" data-count="98">۰</div>
-                        <div class="text-xs text-white/40 mt-1">رضایت مشتریان</div>
+                        <div class="stat-number text-gold-400" data-count="98" style="color:#D4AF37;">۰</div>
+                        <div class="text-white/50 mt-2" style="font-size:1.1rem;">رضایت مشتریان</div>
                     </div>
                     <div class="text-center">
-                        <div class="stat-number text-gold-400" data-count="12">۰</div>
-                        <div class="text-xs text-white/40 mt-1">محصول فعال</div>
+                        <div class="stat-number text-gold-400" data-count="12" style="color:#D4AF37;">۰</div>
+                        <div class="text-white/50 mt-2" style="font-size:1.1rem;">محصول فعال</div>
                     </div>
                     <div class="text-center">
-                        <div class="stat-number text-gold-400" data-count="24">۰</div>
-                        <div class="text-xs text-white/40 mt-1">پشتیبانی شبانه‌روز</div>
+                        <div class="stat-number text-gold-400" data-count="24" style="color:#D4AF37;">۰</div>
+                        <div class="text-white/50 mt-2" style="font-size:1.1rem;">پشتیبانی شبانه‌روز</div>
                     </div>
                 </div>
             </div>
@@ -784,10 +742,10 @@
         <!-- ===== SERVICES ===== -->
         <section id="services" class="py-16 md:py-24">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center max-w-2xl mx-auto mb-12">
-                    <span class="inline-block text-xs font-bold text-gold-400 bg-gold-500/10 rounded-full px-4 py-1.5 border border-gold-500/20">خدمات ما</span>
-                    <h2 class="text-3xl md:text-4xl font-black mt-4 text-white">چه خدماتی ارائه می‌دهیم؟</h2>
-                    <p class="mt-3 text-white/50 leading-7">ما با تخصص و تجربه، راه‌حل‌های نرم‌افزاری سفارشی برای کسب‌وکار شما طراحی و پیاده‌سازی می‌کنیم.</p>
+                <div class="text-center max-w-3xl mx-auto mb-14">
+                    <span class="inline-block text-[#D4AF37] bg-yellow-500/10 rounded-full px-5 py-2 border border-yellow-500/20" style="font-size:1.05rem;">خدمات ما</span>
+                    <h2 class="mt-5 text-white">چه خدماتی ارائه می‌دهیم؟</h2>
+                    <p class="mt-4 text-white/60" style="font-size:1.25rem;">ما با تخصص و تجربه، راه‌حل‌های نرم‌افزاری سفارشی برای کسب‌وکار شما طراحی و پیاده‌سازی می‌کنیم.</p>
                 </div>
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
                     <div class="service-card animate-fade-rise" style="animation-delay:0.05s; opacity:0;">
@@ -829,20 +787,20 @@
             </div>
         </section>
 
-        <!-- ===== ABOUT (با عکس حسین رحمانی به جای لوگو) ===== -->
+        <!-- ===== ABOUT ===== -->
         <section id="about" class="py-16 md:py-24 bg-white/5">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center max-w-2xl mx-auto mb-12">
-                    <span class="inline-block text-xs font-bold text-gold-400 bg-gold-500/10 rounded-full px-4 py-1.5 border border-gold-500/20">درباره ما</span>
-                    <h2 class="text-3xl md:text-4xl font-black mt-4 text-white">داستان کارن سافت</h2>
+                <div class="text-center max-w-3xl mx-auto mb-14">
+                    <span class="inline-block text-[#D4AF37] bg-yellow-500/10 rounded-full px-5 py-2 border border-yellow-500/20" style="font-size:1.05rem;">درباره ما</span>
+                    <h2 class="mt-5 text-white">داستان کارن سافت</h2>
                 </div>
                 <div class="max-w-4xl mx-auto">
                     <div class="about-card">
-                        <div class="flex items-center gap-4 mb-6">
-                            <img src="images/Hosein-rahmani.jpg" alt="حسین رحمانی، بنیان‌گذار کارن سافت" class="h-16 w-16 rounded-2xl object-cover border-2 border-gold-400" />
+                        <div class="flex items-center gap-5 mb-7">
+                            <img src="images/Hosein-rahmani.jpg" alt="حسین رحمانی، بنیان‌گذار کارن سافت" class="h-20 w-20 rounded-2xl object-cover border-2 border-[#D4AF37]" />
                             <div>
-                                <div class="text-lg font-bold text-white">کارن سافت</div>
-                                <div class="text-sm text-white/40">ساخت راه‌حل‌های واقعی برای آینده‌ای هوشمندتر</div>
+                                <div style="font-family:'BLotus', Tahoma, sans-serif; font-size:1.4rem; color:#fff;" class="font-bold">کارن سافت</div>
+                                <div class="text-white/50 mt-1" style="font-size:1.05rem;">ساخت راه‌حل‌های واقعی برای آینده‌ای هوشمندتر</div>
                             </div>
                         </div>
                         <div id="aboutTypingContainer" class="about-typing">
@@ -857,27 +815,27 @@
         <!-- ===== CONTACT ===== -->
         <section id="contact" class="py-16 md:py-24">
             <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center max-w-2xl mx-auto mb-10">
-                    <span class="inline-block text-xs font-bold text-gold-400 bg-gold-500/10 rounded-full px-4 py-1.5 border border-gold-500/20">تماس با ما</span>
-                    <h2 class="text-3xl md:text-4xl font-black mt-4 text-white">سوالی دارید؟ با ما در میان بگذارید</h2>
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <span class="inline-block text-[#D4AF37] bg-yellow-500/10 rounded-full px-5 py-2 border border-yellow-500/20" style="font-size:1.05rem;">تماس با ما</span>
+                    <h2 class="mt-5 text-white">سوالی دارید؟ با ما در میان بگذارید</h2>
                 </div>
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
                     <div>
-                        <form id="contactForm" class="space-y-4">
+                        <form id="contactForm" class="space-y-5">
                             <div>
-                                <label class="text-xs font-bold text-white/60 block mb-1.5">نام و نام خانوادگی</label>
+                                <label class="text-white/70 block mb-2" style="font-size:1.1rem;">نام و نام خانوادگی</label>
                                 <input type="text" id="name" name="name" class="contact-input" placeholder="نام خود را وارد کنید" required />
                             </div>
                             <div>
-                                <label class="text-xs font-bold text-white/60 block mb-1.5">ایمیل</label>
+                                <label class="text-white/70 block mb-2" style="font-size:1.1rem;">ایمیل</label>
                                 <input type="email" id="email" name="email" class="contact-input" placeholder="example@email.com" required />
                             </div>
                             <div>
-                                <label class="text-xs font-bold text-white/60 block mb-1.5">شماره تماس</label>
+                                <label class="text-white/70 block mb-2" style="font-size:1.1rem;">شماره تماس</label>
                                 <input type="tel" id="phone" name="phone" class="contact-input" placeholder="۰۹۱۲ XXX XXXX" />
                             </div>
                             <div>
-                                <label class="text-xs font-bold text-white/60 block mb-1.5">موضوع</label>
+                                <label class="text-white/70 block mb-2" style="font-size:1.1rem;">موضوع</label>
                                 <select id="subject" name="subject" class="contact-input">
                                     <option value="درخواست مشاوره و خرید">درخواست مشاوره و خرید</option>
                                     <option value="نظرات و پیشنهادات">نظرات و پیشنهادات</option>
@@ -887,43 +845,43 @@
                                 </select>
                             </div>
                             <div>
-                                <label class="text-xs font-bold text-white/60 block mb-1.5">پیام شما</label>
+                                <label class="text-white/70 block mb-2" style="font-size:1.1rem;">پیام شما</label>
                                 <textarea rows="4" id="message" name="message" class="contact-input" placeholder="سوال یا درخواست خود را بنویسید..."></textarea>
                             </div>
-                            <button type="submit" class="btn-glow w-full justify-center py-3">
+                            <button type="submit" class="btn-glow w-full justify-center py-4">
                                 <i class="fas fa-paper-plane"></i> ارسال پیام
                             </button>
-                            <div id="formStatus" class="text-sm text-center font-bold mt-2"></div>
+                            <div id="formStatus" class="text-center font-bold mt-3" style="font-size:1.1rem;"></div>
                         </form>
                     </div>
-                    <div class="flex flex-col justify-center space-y-4">
+                    <div class="flex flex-col justify-center space-y-5">
                         <div class="contact-info-card">
                             <div class="ci-icon green"><i class="fas fa-phone-volume"></i></div>
                             <div>
-                                <div class="text-sm font-bold text-white">تماس مستقیم</div>
-                                <a href="tel:09152521166" class="text-lg font-black text-emerald-400 hover:underline" dir="ltr">۰۹۱۵۲۵۲۱۱۶۶</a>
-                                <div class="text-xs text-white/40">شنبه تا پنجشنبه ۹ الی ۲۰</div>
+                                <div class="font-bold text-white" style="font-size:1.15rem;">تماس مستقیم</div>
+                                <a href="tel:09152521166" class="font-black text-emerald-400 hover:underline" style="font-size:1.4rem;" dir="ltr">۰۹۱۵۲۵۲۱۱۶۶</a>
+                                <div class="text-white/50" style="font-size:1rem;">شنبه تا پنجشنبه ۹ الی ۲۰</div>
                             </div>
                         </div>
                         <div class="contact-info-card">
                             <div class="ci-icon"><i class="fas fa-envelope"></i></div>
                             <div>
-                                <div class="text-sm font-bold text-white">ایمیل</div>
-                                <a href="mailto:info@karen-soft.ir" class="text-sm text-white/60 hover:text-gold-400 transition">info@karen-soft.ir</a>
+                                <div class="font-bold text-white" style="font-size:1.15rem;">ایمیل</div>
+                                <a href="mailto:info@karen-soft.ir" class="text-white/70 hover:text-[#D4AF37] transition" style="font-size:1.1rem;">info@karen-soft.ir</a>
                             </div>
                         </div>
                         <div class="contact-info-card">
                             <div class="ci-icon blue"><i class="fas fa-map-marker-alt"></i></div>
                             <div>
-                                <div class="text-sm font-bold text-white">آدرس</div>
-                                <div class="text-sm text-white/60">قزوین، زیباشهر کارن سافت</div>
+                                <div class="font-bold text-white" style="font-size:1.15rem;">آدرس</div>
+                                <div class="text-white/70" style="font-size:1.1rem;">قزوین، زیباشهر کارن سافت</div>
                             </div>
                         </div>
                         <div class="contact-info-card">
                             <div class="ci-icon teal"><i class="fas fa-clock"></i></div>
                             <div>
-                                <div class="text-sm font-bold text-white">ساعات کاری</div>
-                                <div class="text-sm text-white/60">شنبه تا چهارشنبه ۹ تا ۱۸</div>
+                                <div class="font-bold text-white" style="font-size:1.15rem;">ساعات کاری</div>
+                                <div class="text-white/70" style="font-size:1.1rem;">شنبه تا چهارشنبه ۹ تا ۱۸</div>
                             </div>
                         </div>
                     </div>
@@ -932,27 +890,26 @@
         </section>
 
         <!-- ===== FOOTER ===== -->
-        <footer class="border-t border-white/5 bg-[#080A19]/80 text-white/40 mt-8">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-                <div class="flex flex-col md:flex-row items-center justify-between gap-4">
-                    <div class="flex items-center gap-2">
-                        <img src="images/logo.png" alt="لوگو کارن سافت" class="h-8 w-8 rounded-xl object-cover" />
-                        <span class="font-bold text-white">کارن سافت</span>
-                        <span class="text-xs text-white/40 mr-2">راه‌حل‌های نرم‌افزاری هوشمند</span>
+        <footer class="border-t border-white/5 bg-[#080A19]/80 text-white/50 mt-8">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+                <div class="flex flex-col md:flex-row items-center justify-between gap-5">
+                    <div class="flex items-center gap-3">
+                        <img src="images/logo.png" alt="لوگو کارن سافت" class="h-10 w-10 rounded-xl object-cover" />
+                        <span style="font-family:'BLotus', Tahoma, sans-serif; font-size:1.2rem;" class="text-white">کارن سافت</span>
+                        <span class="text-white/50" style="font-size:1rem;">راه‌حل‌های نرم‌افزاری هوشمند</span>
                     </div>
-                    <div class="flex flex-wrap items-center gap-4 text-xs">
-                        <a href="index.html" class="hover:text-gold-400 transition">خانه</a>
-                        <a href="products.html" class="hover:text-gold-400 transition">محصولات</a>
-                        <a href="blog.html" class="hover:text-gold-400 transition">وبلاگ</a>
-                        <a href="contact.html" class="hover:text-gold-400 transition">تماس</a>
+                    <div class="flex flex-wrap items-center gap-5" style="font-size:1.05rem;">
+                        <a href="index" class="hover:text-[#D4AF37] transition">خانه</a>
+                        <a href="products" class="hover:text-[#D4AF37] transition">محصولات</a>
+                        <a href="blog" class="hover:text-[#D4AF37] transition">وبلاگ</a>
+                        <a href="contact" class="hover:text-[#D4AF37] transition">تماس</a>
                         <a href="tel:09152521166" class="hover:text-emerald-400 transition font-bold text-emerald-400" dir="ltr"><i class="fas fa-phone"></i> ۰۹۱۵۲۵۲۱۱۶۶</a>
-                        <a href="mailto:info@karen-soft.ir" class="hover:text-gold-400 transition"><i class="fas fa-envelope"></i> info@karen-soft.ir</a>
-                        <span>تولید شده توسط <span class="text-white font-semibold">کارن سافت</span></span>
+                        <a href="mailto:info@karen-soft.ir" class="hover:text-[#D4AF37] transition"><i class="fas fa-envelope"></i> info@karen-soft.ir</a>
                     </div>
-                    <div class="text-[10px]"><i class="fas fa-copyright"></i> ۱۴۰۴ تمامی حقوق محفوظ است</div>
+                    <div style="font-size:0.95rem;"><i class="fas fa-copyright"></i> ۱۴۰۴ تمامی حقوق محفوظ است</div>
                 </div>
-                <div class="flex flex-wrap items-center justify-center gap-3 mt-4 pt-4 border-t border-white/5">
-                    <span class="text-xs">ما را دنبال کنید:</span>
+                <div class="flex flex-wrap items-center justify-center gap-4 mt-6 pt-6 border-t border-white/5">
+                    <span style="font-size:1.05rem;">ما را دنبال کنید:</span>
                     <a href="https://t.me/KarenSoftOfficial" target="_blank" class="social-link"><i class="fab fa-telegram-plane"></i></a>
                     <a href="https://www.instagram.com/karen_soft.ir" target="_blank" class="social-link"><i class="fab fa-instagram"></i></a>
                     <a href="https://www.youtube.com/@KarenSoftOfficial" target="_blank" class="social-link"><i class="fab fa-youtube"></i></a>
@@ -966,199 +923,174 @@
 
     <!-- ===== SCRIPTS ===== -->
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function() {
 
-            // ==========================================
-            // ====== اسکریپت لودینگ (تایپ‌رایتر) ======
-            // ==========================================
-            var text = 'هیچ اتفاقی، اتفاقی نیست...';
-            var index = 0;
-            var loaderText = document.getElementById('loaderText');
-            var cursor = document.querySelector('.loader-cursor');
-
-            function typeWriter() {
-                if (index < text.length) {
-                    loaderText.textContent += text.charAt(index);
-                    index++;
-                    setTimeout(typeWriter, 45 + Math.random() * 30);
-                } else {
-                    // پس از اتمام تایپ، کورسور را مخفی کن
-                    setTimeout(function() {
-                        cursor.style.display = 'none';
-                    }, 600);
-                }
-            }
-
-            // شروع تایپ با تأخیر ۳۰۰ms
-            setTimeout(typeWriter, 300);
-
-            // ===== مخفی کردن لودینگ پس از ۴ ثانیه =====
-            setTimeout(function() {
-                var loader = document.getElementById('loader');
-                loader.classList.add('loader-hidden');
-            }, 4000);
-
-            // ==========================================
-            // ====== اسکریپت‌های اصلی سایت ======
-            // ==========================================
-
-            // ===== THEME =====
-            const themeToggle = document.getElementById('themeToggle');
-            const themeIcon = document.getElementById('themeIcon');
-            const root = document.documentElement;
-            const saved = localStorage.getItem('theme');
-            if (saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-                root.classList.add('dark');
-                themeIcon.className = 'fas fa-sun';
+        // ===== TYPING LOADER =====
+        var text = 'هیچ اتفاقی، اتفاقی نیست...';
+        var index = 0;
+        var loaderText = document.getElementById('loaderText');
+        var cursor = document.querySelector('.loader-cursor');
+        function typeWriter() {
+            if (index < text.length) {
+                loaderText.textContent += text.charAt(index);
+                index++;
+                setTimeout(typeWriter, 45 + Math.random() * 30);
             } else {
-                themeIcon.className = 'fas fa-moon';
+                setTimeout(function() { cursor.style.display = 'none'; }, 600);
             }
-            themeToggle.addEventListener('click', function() {
-                const dark = root.classList.toggle('dark');
-                localStorage.setItem('theme', dark ? 'dark' : 'light');
-                themeIcon.className = dark ? 'fas fa-sun' : 'fas fa-moon';
-            });
+        }
+        setTimeout(typeWriter, 300);
+        setTimeout(function() {
+            document.getElementById('loader').classList.add('loader-hidden');
+        }, 4000);
 
-            // ===== MOBILE MENU =====
-            const mobileBtn = document.getElementById('mobileMenuBtn');
-            const mobileMenu = document.getElementById('mobileMenu');
-            mobileBtn.addEventListener('click', function() {
-                mobileMenu.classList.toggle('open');
-                this.innerHTML = mobileMenu.classList.contains('open') ?
-                    '<i class="fas fa-times"></i>' :
-                    '<i class="fas fa-bars"></i>';
-            });
-
-            // ===== NAVBAR SCROLL =====
-            const navbar = document.getElementById('navbar');
-            window.addEventListener('scroll', function() {
-                navbar.classList.toggle('navbar-scrolled', window.scrollY > 20);
-            });
-
-            // ===== COUNTERS =====
-            const statNums = document.querySelectorAll('.stat-number');
-            const statObserver = new IntersectionObserver(function(entries) {
-                entries.forEach(function(entry) {
-                    if (entry.isIntersecting) {
-                        const el = entry.target;
-                        const target = parseInt(el.dataset.count);
-                        let cur = 0;
-                        const inc = Math.ceil(target / 50);
-                        const interval = setInterval(function() {
-                            cur += inc;
-                            if (cur >= target) {
-                                cur = target;
-                                clearInterval(interval);
-                            }
-                            const persian = String(cur).replace(/\d/g, function(d) {
-                                return '۰۱۲۳۴۵۶۷۸۹'[parseInt(d)];
-                            });
-                            el.textContent = persian;
-                        }, 20);
-                        statObserver.unobserve(el);
-                    }
-                });
-            }, { threshold: 0.3 });
-            statNums.forEach(function(el) { statObserver.observe(el); });
-
-            // ===== ABOUT TYPING (متن جدید بدون نام فردی) =====
-            const aboutFrames = [
-                "کارن سافت با تیمی متخصص و با تجربه، راه‌حل‌های نرم‌افزاری هوشمند را برای کسب‌وکارهای ایرانی طراحی و پیاده‌سازی می‌کند.",
-                "ما با درک عمیق از نیازهای کسب‌وکارها، از طراحی سایت و فروشگاه آنلاین تا اتوماسیون‌های پیچیده اداری و مدیریتی،",
-                "نرم‌افزارهایی می‌سازیم که واقعاً مشکل کسب‌وکارها را حل کنند.",
-                "کارن سافت یعنی دقت، سرعت، امنیت و پشتیبانی همیشگی برای رشد و توسعه کسب‌وکار شما."
-            ];
-            let frameIdx = 0,
-                charIdx = 0,
-                isDeleting = false;
-            const aboutTextEl = document.getElementById('aboutTypingText');
-
-            function typeAbout() {
-                if (frameIdx >= aboutFrames.length) return;
-                const current = aboutFrames[frameIdx];
-                if (isDeleting) {
-                    aboutTextEl.textContent = current.substring(0, charIdx - 1);
-                    charIdx--;
-                    if (charIdx === 0) {
-                        isDeleting = false;
-                        frameIdx++;
-                        if (frameIdx < aboutFrames.length) setTimeout(typeAbout, 400);
-                        return;
-                    }
-                    setTimeout(typeAbout, 20);
-                } else {
-                    aboutTextEl.textContent = current.substring(0, charIdx + 1);
-                    charIdx++;
-                    if (charIdx === current.length) {
-                        isDeleting = true;
-                        setTimeout(typeAbout, 1400);
-                        return;
-                    }
-                    setTimeout(typeAbout, 55);
-                }
-            }
-            const aboutObserver = new IntersectionObserver(function(entries) {
-                entries.forEach(function(entry) {
-                    if (entry.isIntersecting && frameIdx === 0) {
-                        setTimeout(typeAbout, 300);
-                        aboutObserver.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.2 });
-            const aboutContainer = document.getElementById('aboutTypingContainer');
-            if (aboutContainer) aboutObserver.observe(aboutContainer);
-
-            // ===== CONTACT FORM =====
-            document.getElementById('contactForm').addEventListener('submit', function(e) {
-                e.preventDefault();
-                const btn = this.querySelector('button[type="submit"]');
-                const statusDiv = document.getElementById('formStatus');
-                const orig = btn.innerHTML;
-                btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> در حال ارسال...';
-                btn.disabled = true;
-                statusDiv.textContent = '';
-                const formData = new FormData(this);
-                const subject = document.getElementById('subject').value;
-                const message = document.getElementById('message').value;
-                formData.set('message', 'موضوع: ' + subject + '\n\n' + message);
-
-                fetch('/api/contact', { method: 'POST', body: formData })
-                    .then(function(response) { return response.text(); })
-                    .then(function(result) {
-                        statusDiv.innerHTML = '✅ پیام شما با موفقیت ارسال شد! به زودی پاسخ می‌دهیم.';
-                        statusDiv.style.color = '#34d399';
-                        btn.innerHTML = '<i class="fas fa-check-circle"></i> ارسال شد!';
-                        btn.className = 'btn-glow w-full justify-center py-3 bg-emerald-500 hover:bg-emerald-600';
-                        document.getElementById('contactForm').reset();
-                    })['catch'](function(error) {
-                        statusDiv.textContent = '❌ خطا در ارسال';
-                        statusDiv.style.color = '#ef4444';
-                        btn.innerHTML = orig;
-                        btn.className = 'btn-glow w-full justify-center py-3';
-                    })['finally'](function() { btn.disabled = false; });
-            });
-
-            // ===== SMOOTH SCROLL =====
-            document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
-                anchor.addEventListener('click', function(e) {
-                    const href = this.getAttribute('href');
-                    if (href === '#') return;
-                    const target = document.querySelector(href);
-                    if (target) {
-                        e.preventDefault();
-                        window.scrollTo({
-                            top: target.getBoundingClientRect().top + window.pageYOffset - 80,
-                            behavior: 'smooth'
-                        });
-                        if (mobileMenu.classList.contains('open')) {
-                            mobileMenu.classList.remove('open');
-                            mobileBtn.innerHTML = '<i class="fas fa-bars"></i>';
-                        }
-                    }
-                });
-            });
-
+        // ===== THEME =====
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('themeIcon');
+        const root = document.documentElement;
+        const saved = localStorage.getItem('theme');
+        if (saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            root.classList.add('dark');
+            themeIcon.className = 'fas fa-sun';
+        } else {
+            themeIcon.className = 'fas fa-moon';
+        }
+        themeToggle.addEventListener('click', function() {
+            const dark = root.classList.toggle('dark');
+            localStorage.setItem('theme', dark ? 'dark' : 'light');
+            themeIcon.className = dark ? 'fas fa-sun' : 'fas fa-moon';
         });
+
+        // ===== MOBILE MENU =====
+        const mobileBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        mobileBtn.addEventListener('click', function() {
+            mobileMenu.classList.toggle('open');
+            this.innerHTML = mobileMenu.classList.contains('open') ?
+                '<i class="fas fa-times"></i>' :
+                '<i class="fas fa-bars"></i>';
+        });
+
+        // ===== NAVBAR SCROLL =====
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', function() {
+            navbar.classList.toggle('navbar-scrolled', window.scrollY > 20);
+        }, { passive: true });
+
+        // ===== COUNTERS =====
+        const statNums = document.querySelectorAll('.stat-number');
+        const statObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    const el = entry.target;
+                    const target = parseInt(el.dataset.count);
+                    let cur = 0;
+                    const inc = Math.ceil(target / 50);
+                    const interval = setInterval(function() {
+                        cur += inc;
+                        if (cur >= target) { cur = target; clearInterval(interval); }
+                        el.textContent = String(cur).replace(/\d/g, function(d) {
+                            return '۰۱۲۳۴۵۶۷۸۹'[parseInt(d)];
+                        });
+                    }, 20);
+                    statObserver.unobserve(el);
+                }
+            });
+        }, { threshold: 0.3 });
+        statNums.forEach(function(el) { statObserver.observe(el); });
+
+        // ===== ABOUT TYPING =====
+        const aboutFrames = [
+            "کارن سافت با تیمی متخصص و با تجربه، راه‌حل‌های نرم‌افزاری هوشمند را برای کسب‌وکارهای ایرانی طراحی و پیاده‌سازی می‌کند.",
+            "ما با درک عمیق از نیازهای کسب‌وکارها، از طراحی سایت و فروشگاه آنلاین تا اتوماسیون‌های پیچیده اداری و مدیریتی،",
+            "نرم‌افزارهایی می‌سازیم که واقعاً مشکل کسب‌وکارها را حل کنند.",
+            "کارن سافت یعنی دقت، سرعت، امنیت و پشتیبانی همیشگی برای رشد و توسعه کسب‌وکار شما."
+        ];
+        let frameIdx = 0, charIdx = 0, isDeleting = false;
+        const aboutTextEl = document.getElementById('aboutTypingText');
+        function typeAbout() {
+            if (frameIdx >= aboutFrames.length) return;
+            const current = aboutFrames[frameIdx];
+            if (isDeleting) {
+                aboutTextEl.textContent = current.substring(0, charIdx - 1);
+                charIdx--;
+                if (charIdx === 0) {
+                    isDeleting = false;
+                    frameIdx++;
+                    if (frameIdx < aboutFrames.length) setTimeout(typeAbout, 400);
+                    return;
+                }
+                setTimeout(typeAbout, 20);
+            } else {
+                aboutTextEl.textContent = current.substring(0, charIdx + 1);
+                charIdx++;
+                if (charIdx === current.length) {
+                    isDeleting = true;
+                    setTimeout(typeAbout, 1400);
+                    return;
+                }
+                setTimeout(typeAbout, 55);
+            }
+        }
+        const aboutObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting && frameIdx === 0) {
+                    setTimeout(typeAbout, 300);
+                    aboutObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.2 });
+        const aboutContainer = document.getElementById('aboutTypingContainer');
+        if (aboutContainer) aboutObserver.observe(aboutContainer);
+
+        // ===== CONTACT FORM =====
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const btn = this.querySelector('button[type="submit"]');
+            const statusDiv = document.getElementById('formStatus');
+            const orig = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> در حال ارسال...';
+            btn.disabled = true;
+            statusDiv.textContent = '';
+            const formData = new FormData(this);
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+            formData.set('message', 'موضوع: ' + subject + '\n\n' + message);
+            fetch('/api/contact', { method: 'POST', body: formData })
+                .then(function(response) { return response.text(); })
+                .then(function() {
+                    statusDiv.innerHTML = '✅ پیام شما با موفقیت ارسال شد!';
+                    statusDiv.style.color = '#34d399';
+                    btn.innerHTML = '<i class="fas fa-check-circle"></i> ارسال شد!';
+                    document.getElementById('contactForm').reset();
+                })['catch'](function() {
+                    statusDiv.textContent = '❌ خطا در ارسال';
+                    statusDiv.style.color = '#ef4444';
+                    btn.innerHTML = orig;
+                })['finally'](function() { btn.disabled = false; });
+        });
+
+        // ===== SMOOTH SCROLL =====
+        document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href === '#') return;
+                const target = document.querySelector(href);
+                if (target) {
+                    e.preventDefault();
+                    window.scrollTo({
+                        top: target.getBoundingClientRect().top + window.pageYOffset - 90,
+                        behavior: 'smooth'
+                    });
+                    if (mobileMenu.classList.contains('open')) {
+                        mobileMenu.classList.remove('open');
+                        mobileBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                    }
+                }
+            });
+        });
+
+    });
     </script>
 </body>
 </html>
