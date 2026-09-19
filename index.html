@@ -41,35 +41,11 @@
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     <link rel="preconnect" href="https://client.crisp.chat">
 
-    <!-- ===== فونت‌های اختصاصی (محلی) ===== -->
+    <!-- ===== فونت اختصاصی BDavat ===== -->
     <style>
-        /* ===== B Lotus - فونت تیترها ===== */
         @font-face {
-            font-family: 'BLotus';
-            src: url('font/BLotus.woff') format('woff'),
-                 url('font/BLotus.ttf') format('truetype'),
-                 url('font/BLotus.eot') format('embedded-opentype');
-            font-weight: normal;
-            font-style: normal;
-            font-display: swap;
-        }
-
-        /* ===== B Nazanin - فونت متن اصلی ===== */
-        @font-face {
-            font-family: 'BNazanin';
-            src: url('font/BNazanin.woff') format('woff'),
-                 url('font/BNazanin.ttf') format('truetype'),
-                 url('font/BNazanin.eot') format('embedded-opentype');
-            font-weight: normal;
-            font-style: normal;
-            font-display: swap;
-        }
-
-        /* ===== B Ferdosi - فونت CTA ===== */
-        @font-face {
-            font-family: 'BFerdosi';
-            src: url('font/BFerdosi.woff') format('woff'),
-                 url('font/BFerdosi.ttf') format('truetype');
+            font-family: 'BDavat';
+            src: url('font/BDavat.ttf') format('truetype');
             font-weight: normal;
             font-style: normal;
             font-display: swap;
@@ -117,19 +93,16 @@
 
     <style>
         /* =====================================================
-           🎨 اعمال فونت‌ها با سایز بزرگ‌تر
+           🎨 اعمال فونت BDavat روی کل صفحه
            ===================================================== */
 
-        /* ===== فونت تیترها: B Lotus ===== */
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'BLotus', Tahoma, sans-serif !important;
-        }
-
-        /* ===== فونت متن اصلی: B Nazanin با سایز ۲ برابر ===== */
+        /* ===== فونت سراسری ===== */
+        h1, h2, h3, h4, h5, h6,
         body, p, a, span, li, div, input, textarea, select, button,
         .service-card p, .contact-input, .about-typing, .stat-number + div,
-        footer, label, form {
-            font-family: 'BNazanin', Tahoma, sans-serif !important;
+        footer, label, form,
+        .btn-glow, .btn-phone, .btn-glow *, .btn-phone * {
+            font-family: 'BDavat', Tahoma, sans-serif !important;
         }
 
         /* افزایش ۲ برابری سایز فونت اصلی */
@@ -160,9 +133,8 @@
             font-size: 1rem;
         }
 
-        /* ===== فونت CTA: B Ferdosi ===== */
+        /* ===== سایز دکمه‌های CTA ===== */
         .btn-glow, .btn-phone, .btn-glow *, .btn-phone * {
-            font-family: 'BFerdosi', 'BNazanin', Tahoma, sans-serif !important;
             font-size: 1.2rem !important;
         }
 
@@ -221,7 +193,7 @@
             align-items: center;
             justify-content: center;
             direction: rtl;
-            font-family: 'BNazanin', Tahoma, sans-serif;
+            font-family: 'BDavat', Tahoma, sans-serif;
             background: #080A19;
             transition: opacity 0.9s ease, visibility 0.9s ease;
             overflow: hidden;
@@ -274,7 +246,7 @@
             white-space: nowrap;
             overflow: hidden;
             direction: rtl;
-            font-family: 'BLotus', Tahoma, sans-serif;
+            font-family: 'BDavat', Tahoma, sans-serif;
         }
         .loader-cursor {
             display: inline-block;
@@ -493,7 +465,7 @@
             font-size: 3rem;
             font-weight: 900;
             line-height: 1.1;
-            font-family: 'BLotus', Tahoma, sans-serif;
+            font-family: 'BDavat', Tahoma, sans-serif;
         }
         @media (min-width: 640px) {
             .stat-number { font-size: 3.8rem; }
@@ -650,7 +622,7 @@
                 <div class="flex items-center justify-between h-20 md:h-24">
                     <a href="index" class="flex items-center gap-2 shrink-0" style="text-decoration:none;">
                         <img src="images/logo.png" alt="لوگو کارن سافت" class="h-11 w-11 rounded-xl object-cover" />
-                        <span style="font-family:'BLotus', Tahoma, sans-serif; font-size:1.3rem; color:#fff;" class="font-bold whitespace-nowrap">کارن سافت</span>
+                        <span style="font-family:'BDavat', Tahoma, sans-serif; font-size:1.3rem; color:#fff;" class="font-bold whitespace-nowrap">کارن سافت</span>
                     </a>
                     <div class="hidden md:flex items-center gap-8 font-medium text-white/70" style="font-size:1.1rem;">
                         <a href="index" class="text-white hover:text-[#D4AF37] transition">خانه</a>
@@ -676,7 +648,7 @@
                     <a href="index" class="block hover:text-[#D4AF37] transition">خانه</a>
                     <a href="products" class="block hover:text-[#D4AF37] transition">محصولات</a>
                     <a href="blog" class="block hover:text-[#D4AF37] transition">وبلاگ</a>
-                    <a href="contact" class="block hover:text-emerald-400 transition" style="color:#34d399;">تماس</a>
+                    <a href="contact" class="hover:text-emerald-400 transition" style="color:#34d399;">تماس</a>
                     <a href="tel:09152521166" class="block text-emerald-400 font-bold"><i class="fas fa-phone"></i> ۰۹۱۵۲۵۲۱۱۶۶</a>
                 </div>
             </div>
@@ -685,7 +657,7 @@
         <!-- ===== HERO SECTION ===== -->
         <section class="relative min-h-screen flex items-center justify-center text-center px-6 pt-32 pb-20">
             <div class="max-w-7xl mx-auto">
-                <h1 class="hero-title max-w-6xl mx-auto animate-fade-rise" style="font-family:'BLotus', Tahoma, sans-serif;">
+                <h1 class="hero-title max-w-6xl mx-auto animate-fade-rise" style="font-family:'BDavat', Tahoma, sans-serif;">
                     <span class="text-gradient-gold">کارن سافت</span>
                     <br class="hidden sm:block" />
                     <span class="text-white">اتوماسیون هوشمند</span>
@@ -799,7 +771,7 @@
                         <div class="flex items-center gap-5 mb-7">
                             <img src="images/Hosein-rahmani.jpg" alt="حسین رحمانی، بنیان‌گذار کارن سافت" class="h-20 w-20 rounded-2xl object-cover border-2 border-[#D4AF37]" />
                             <div>
-                                <div style="font-family:'BLotus', Tahoma, sans-serif; font-size:1.4rem; color:#fff;" class="font-bold">کارن سافت</div>
+                                <div style="font-family:'BDavat', Tahoma, sans-serif; font-size:1.4rem; color:#fff;" class="font-bold">کارن سافت</div>
                                 <div class="text-white/50 mt-1" style="font-size:1.05rem;">ساخت راه‌حل‌های واقعی برای آینده‌ای هوشمندتر</div>
                             </div>
                         </div>
@@ -895,7 +867,7 @@
                 <div class="flex flex-col md:flex-row items-center justify-between gap-5">
                     <div class="flex items-center gap-3">
                         <img src="images/logo.png" alt="لوگو کارن سافت" class="h-10 w-10 rounded-xl object-cover" />
-                        <span style="font-family:'BLotus', Tahoma, sans-serif; font-size:1.2rem;" class="text-white">کارن سافت</span>
+                        <span style="font-family:'BDavat', Tahoma, sans-serif; font-size:1.2rem;" class="text-white">کارن سافت</span>
                         <span class="text-white/50" style="font-size:1rem;">راه‌حل‌های نرم‌افزاری هوشمند</span>
                     </div>
                     <div class="flex flex-wrap items-center gap-5" style="font-size:1.05rem;">
