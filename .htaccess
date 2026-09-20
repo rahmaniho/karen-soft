@@ -1,0 +1,61 @@
+# ============================================================
+# .htaccess — حذف پسوند .html از URL
+# ============================================================
+
+RewriteEngine On
+
+# اگر URL با .html درخواست شود، به نسخه بدون پسوند ریدایرکت کن (301)
+RewriteCond %{THE_REQUEST} \s/+(.+?)\.html[\s?] [NC]
+RewriteRule ^ /%1 [R=301,L,NE]
+
+# اگر فایل .html موجود است، بدون نمایش پسوند سرو کن
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.html -f
+RewriteRule ^(.+?)/?$ $1.html [L]
+
+# ============================================================
+# امنیت — جلوگیری از لیست شدن دایرکتوری
+# ============================================================
+Options -Indexes
+
+# ============================================================
+# کش فایل‌های استاتیک (بهبود عملکرد)
+# ============================================================
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/jpg "access plus 1 year"
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 year"
+  ExpiresByType font/ttf "access plus 1 year"
+  ExpiresByType font/otf "access plus 1 year"
+  ExpiresByType text/css "access plus 1 month"
+  ExpiresByType application/javascript "access plus 1 month"
+</IfModule>
+
+# ============================================================
+# فشرده‌سازی GZIP
+# ============================================================
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/javascript application/javascript application/json image/svg+xml font/ttf font/otf
+</IfModule>
+
+# ============================================================
+# هدرهای امنیتی
+# ============================================================
+<IfModule mod_headers.c>
+  Header set X-Content-Type-Options "nosniff"
+  Header set X-Frame-Options "SAMEORIGIN"
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+  Header set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+</IfModule>
+
+# ============================================================
+# هدر CORS برای فونت‌ها (اختیاری)
+# ============================================================
+<FilesMatch "\.(ttf|otf|woff|woff2)$">
+  <IfModule mod_headers.c>
+    Header set Access-Control-Allow-Origin "*"
+  </IfModule>
+</FilesMatch>
