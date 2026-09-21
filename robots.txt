@@ -1,10 +1,129 @@
+# ============================================================
+# robots.txt — کارن سافت
+# آخرین به‌روزرسانی: 2026-09-21
+# ============================================================
+
+# ---------- همه ربات‌ها ----------
 User-agent: *
 Allow: /
 
-# Disallow admin/private areas
+# ---------- مسیرهای خصوصی و ممنوع ----------
 Disallow: /api/
 Disallow: /admin/
-Disallow: /*?*
+Disallow: /panel/
+Disallow: /login/
+Disallow: /logout/
+Disallow: /private/
+Disallow: /tmp/
+Disallow: /cache/
+Disallow: /includes/
+Disallow: /vendor/
 
-# Sitemap location
+# ---------- فایل‌های حساس ----------
+Disallow: /*.env$
+Disallow: /*.sql$
+Disallow: /*.log$
+Disallow: /*.bak$
+Disallow: /*.old$
+Disallow: /*.config$
+Disallow: /config.php
+Disallow: /wp-config.php
+Disallow: /database.php
+Disallow: /.git/
+Disallow: /.htaccess
+Disallow: /.htpasswd
+
+# ---------- فایل‌های سیستمی ----------
+Disallow: /cgi-bin/
+Disallow: /install/
+Disallow: /setup/
+
+# ---------- صفحات جستجوی داخلی (جلوگیری از محتوای تکراری) ----------
+Disallow: /search
+Disallow: /search/
+Disallow: /*?s=
+Disallow: /*&s=
+
+# ---------- فایل‌های نتیجه فیلتر (جلوگیری از صفحات تکراری) ----------
+Disallow: /*?sort=
+Disallow: /*?filter=
+Disallow: /*?order=
+Disallow: /*?page=
+
+# ---------- پارامترهای Tracking ----------
+Disallow: /*?utm_
+Disallow: /*?fbclid=
+Disallow: /*?gclid=
+
+# ============================================================
+# ---------- ربات‌های خاص ----------
+# ============================================================
+
+# ---------- Googlebot ----------
+User-agent: Googlebot
+Allow: /
+Allow: /print
+Allow: /products
+Allow: /blog
+Allow: /contact
+Crawl-delay: 1
+
+# ---------- Googlebot-Image ----------
+User-agent: Googlebot-Image
+Allow: /
+Allow: /images/
+Allow: /font/
+
+# ---------- Bingbot ----------
+User-agent: Bingbot
+Allow: /
+Allow: /print
+Allow: /products
+Allow: /blog
+Crawl-delay: 2
+
+# ---------- Yandex ----------
+User-agent: Yandex
+Allow: /
+Crawl-delay: 2
+Host: https://karen-soft.ir
+
+# ---------- ربات‌های مخرب و مزاحم ----------
+User-agent: AhrefsBot
+Crawl-delay: 10
+
+User-agent: SemrushBot
+Crawl-delay: 10
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+User-agent: BLEXBot
+Disallow: /
+
+# ---------- AI Crawlers (اختیاری — اگر می‌خواهید محتوای شما در AI استفاده بشه) ----------
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+# ============================================================
+# ---------- Sitemap ----------
+# ============================================================
 Sitemap: https://karen-soft.ir/sitemap.xml
