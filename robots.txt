@@ -1,5 +1,10 @@
 User-agent: *
 Allow: /
+
+# Disallow admin/private areas
 Disallow: /api/
 Disallow: /admin/
+Disallow: /*?*
+
+# Sitemap location
 Sitemap: https://karen-soft.ir/sitemap.xml
