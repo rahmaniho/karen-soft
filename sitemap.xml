@@ -4,16 +4,16 @@
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
-        xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
+        xmlns:news="http://www.google.com/schemas/sitemap-news/0.9"
+        xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0"
+        xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
 
-    <!-- ============================================ -->
-    <!-- ====== صفحات اصلی (Main Pages) ====== -->
-    <!-- ============================================ -->
-
-    <!-- صفحه اصلی | Home -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- 🏠 صفحه اصلی (Homepage)                                    -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
     <url>
         <loc>https://karen-soft.ir/</loc>
-        <lastmod>2026-09-19</lastmod>
+        <lastmod>2026-09-21</lastmod>
         <changefreq>daily</changefreq>
         <priority>1.0</priority>
         <image:image>
@@ -21,12 +21,59 @@
             <image:title>لوگو کارن سافت</image:title>
             <image:caption>کارن سافت | راه‌حل‌های نرم‌افزاری هوشمند</image:caption>
         </image:image>
+        <image:image>
+            <image:loc>https://karen-soft.ir/images/karenchap.png</image:loc>
+            <image:title>کارن چاپ — زیرمجموعه تخصصی کارن سافت</image:title>
+            <image:caption>خدمات چاپ، ساخت مهر و صحافی حرفه‌ای</image:caption>
+        </image:image>
     </url>
 
-    <!-- محصولات | Products -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- 🖨️ کارن چاپ (Karen Chap) — صفحه تخصصی جدید                -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
     <url>
-        <loc>https://karen-soft.ir/products.html</loc>
-        <lastmod>2026-09-19</lastmod>
+        <loc>https://karen-soft.ir/print</loc>
+        <lastmod>2026-09-21</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.95</priority>
+        <image:image>
+            <image:loc>https://karen-soft.ir/images/karenchap.png</image:loc>
+            <image:title>کارن چاپ — چاپ، مهر و صحافی حرفه‌ای در قزوین</image:title>
+            <image:caption>خدمات تخصصی چاپ دیجیتال و افست، ساخت مهر لیزری و ژلاتینی، و صحافی حرفه‌ای کتاب و پایان‌نامه</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://karen-soft.ir/images/ads.png</image:loc>
+            <image:title>ست اداری تبلیغاتی کارن چاپ</image:title>
+            <image:caption>پکیج کامل ست اداری تبلیغاتی شامل کارت ویزیت، ماگ، خودکار و تیشرت</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://karen-soft.ir/images/chapkhaneh.png</image:loc>
+            <image:title>چاپخانه حرفه‌ای کارن چاپ</image:title>
+            <image:caption>تجهیزات مدرن چاپ دیجیتال و افست با کیفیت بالا</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://karen-soft.ir/images/sohafi.jpg</image:loc>
+            <image:title>صحافی حرفه‌ای کتاب با جلد گالینگور</image:title>
+            <image:caption>پروژه صحافی گالینگور و فنری کتاب و پایان‌نامه</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://karen-soft.ir/images/T-shirt.png</image:loc>
+            <image:title>چاپ تیشرت تبلیغاتی با تکنیک سابلیمیشن</image:title>
+            <image:caption>نمونه چاپ تیشرت تبلیغاتی با کیفیت بالا و رنگ‌های ماندگار</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://karen-soft.ir/images/Mug.png</image:loc>
+            <image:title>چاپ ماگ سفارشی با طرح دلخواه</image:title>
+            <image:caption>چاپ اختصاصی روی ماگ سرامیکی با کیفیت پریمیوم</image:caption>
+        </image:image>
+    </url>
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- 📦 محصولات (Products)                                       -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <url>
+        <loc>https://karen-soft.ir/products</loc>
+        <lastmod>2026-09-21</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
         <image:image>
@@ -36,10 +83,12 @@
         </image:image>
     </url>
 
-    <!-- دانلود نرم‌افزار وکالت | Download Law Software -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- ⚖️ نرم‌افزار وکالت (Law Software)                          -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
     <url>
-        <loc>https://karen-soft.ir/download-law-software.html</loc>
-        <lastmod>2026-09-19</lastmod>
+        <loc>https://karen-soft.ir/download-law-software</loc>
+        <lastmod>2026-09-21</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
         <image:image>
@@ -49,10 +98,12 @@
         </image:image>
     </url>
 
-    <!-- نرم‌افزار تاکسی تلفنی | Taxi Software -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- 🚕 نرم‌افزار تاکسی تلفنی (Taxi Software)                   -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
     <url>
-        <loc>https://karen-soft.ir/taxi.html</loc>
-        <lastmod>2026-09-19</lastmod>
+        <loc>https://karen-soft.ir/taxi</loc>
+        <lastmod>2026-09-21</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
         <image:image>
@@ -62,37 +113,41 @@
         </image:image>
     </url>
 
-    <!-- وبلاگ | Blog -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- 📝 وبلاگ (Blog)                                            -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
     <url>
-        <loc>https://karen-soft.ir/blog.html</loc>
-        <lastmod>2026-09-19</lastmod>
+        <loc>https://karen-soft.ir/blog</loc>
+        <lastmod>2026-09-21</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
 
-    <!-- تماس با ما | Contact -->
+    <!-- آرشیو وبلاگ -->
     <url>
-        <loc>https://karen-soft.ir/contact.html</loc>
-        <lastmod>2026-09-19</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-
-    <!-- آرشیو وبلاگ | Blog Archive -->
-    <url>
-        <loc>https://karen-soft.ir/blog/archive.html</loc>
-        <lastmod>2026-09-19</lastmod>
+        <loc>https://karen-soft.ir/blog/archive</loc>
+        <lastmod>2026-09-21</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.7</priority>
     </url>
 
-    <!-- ============================================ -->
-    <!-- ====== مقالات وبلاگ (Blog Posts) ====== -->
-    <!-- ============================================ -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- 📞 تماس با ما (Contact)                                    -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <url>
+        <loc>https://karen-soft.ir/contact</loc>
+        <lastmod>2026-09-21</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- ════════════ مقالات وبلاگ (Blog Posts) ════════════         -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
 
     <!-- مقاله ۱: مدیریت هوشمند پرونده‌های حقوقی -->
     <url>
-        <loc>https://karen-soft.ir/blog/smart-case-management.html</loc>
+        <loc>https://karen-soft.ir/blog/smart-case-management</loc>
         <lastmod>2026-09-19</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
@@ -113,7 +168,7 @@
 
     <!-- مقاله ۲: چرا هر وکیلی به یک سایت حرفه‌ای نیاز دارد؟ -->
     <url>
-        <loc>https://karen-soft.ir/blog/why-lawyer-needs-website.html</loc>
+        <loc>https://karen-soft.ir/blog/why-lawyer-needs-website</loc>
         <lastmod>2026-09-19</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
@@ -126,7 +181,7 @@
 
     <!-- مقاله ۳: اتوماسیون اداری -->
     <url>
-        <loc>https://karen-soft.ir/blog/automation.html</loc>
+        <loc>https://karen-soft.ir/blog/automation</loc>
         <lastmod>2026-09-19</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
@@ -139,7 +194,7 @@
 
     <!-- مقاله ۴: فروشگاه آنلاین -->
     <url>
-        <loc>https://karen-soft.ir/blog/online-store.html</loc>
+        <loc>https://karen-soft.ir/blog/online-store</loc>
         <lastmod>2026-09-19</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
@@ -152,7 +207,7 @@
 
     <!-- مقاله ۵: امنیت اطلاعات -->
     <url>
-        <loc>https://karen-soft.ir/blog/security.html</loc>
+        <loc>https://karen-soft.ir/blog/security</loc>
         <lastmod>2026-09-19</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
@@ -165,7 +220,7 @@
 
     <!-- مقاله ۶: رشد کسب‌وکار -->
     <url>
-        <loc>https://karen-soft.ir/blog/growth-strategies.html</loc>
+        <loc>https://karen-soft.ir/blog/growth-strategies</loc>
         <lastmod>2026-09-19</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.6</priority>
@@ -178,7 +233,7 @@
 
     <!-- مقاله ۷: مدیریت تیم‌های دورکار -->
     <url>
-        <loc>https://karen-soft.ir/blog/remote-teams.html</loc>
+        <loc>https://karen-soft.ir/blog/remote-teams</loc>
         <lastmod>2026-09-19</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.6</priority>
@@ -191,7 +246,7 @@
 
     <!-- مقاله ۸: تماس ماهواره‌ای استارلینک (Direct to Cell) -->
     <url>
-        <loc>https://karen-soft.ir/blog/direct_to_cell.html</loc>
+        <loc>https://karen-soft.ir/blog/direct_to_cell</loc>
         <lastmod>2026-09-19</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
@@ -212,7 +267,7 @@
 
     <!-- مقاله ۹: نرم افزار رایگان مدیریت تاکسی تلفنی -->
     <url>
-        <loc>https://karen-soft.ir/blog/taxi.html</loc>
+        <loc>https://karen-soft.ir/blog/taxi</loc>
         <lastmod>2026-09-19</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
@@ -229,6 +284,58 @@
             <image:title>نرم افزار رایگان مدیریت تاکسی تلفنی</image:title>
             <image:caption>نرم افزار مدیریت تاکسی تلفنی کارن سافت — راهکاری ساده و کاربردی برای آژانس‌های تاکسی</image:caption>
         </image:image>
+    </url>
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- 🆕 مقالات جدید پیشنهادی (New Blog Posts — Ready to publish) -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+
+    <!-- مقاله: راهنمای انتخاب مهر مناسب برای کسب‌وکار -->
+    <url>
+        <loc>https://karen-soft.ir/blog/choosing-business-stamp</loc>
+        <lastmod>2026-09-21</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.75</priority>
+        <news:news>
+            <news:publication>
+                <news:name>کارن سافت</news:name>
+                <news:language>fa</news:language>
+            </news:publication>
+            <news:publication_date>2026-09-21</news:publication_date>
+            <news:title>راهنمای کامل انتخاب مهر مناسب برای کسب‌وکار شما</news:title>
+        </news:news>
+    </url>
+
+    <!-- مقاله: تفاوت صحافی گالینگور و فنری -->
+    <url>
+        <loc>https://karen-soft.ir/blog/binding-types-guide</loc>
+        <lastmod>2026-09-21</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.75</priority>
+        <news:news>
+            <news:publication>
+                <news:name>کارن سافت</news:name>
+                <news:language>fa</news:language>
+            </news:publication>
+            <news:publication_date>2026-09-21</news:publication_date>
+            <news:title>تفاوت صحافی گالینگور و فنری — کدام را انتخاب کنیم؟</news:title>
+        </news:news>
+    </url>
+
+    <!-- مقاله: چاپ دیجیتال یا افست -->
+    <url>
+        <loc>https://karen-soft.ir/blog/digital-vs-offset-printing</loc>
+        <lastmod>2026-09-21</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.75</priority>
+        <news:news>
+            <news:publication>
+                <news:name>کارن سافت</news:name>
+                <news:language>fa</news:language>
+            </news:publication>
+            <news:publication_date>2026-09-21</news:publication_date>
+            <news:title>چاپ دیجیتال یا افست؟ راهنمای انتخاب بهترین روش چاپ</news:title>
+        </news:news>
     </url>
 
 </urlset>
