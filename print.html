@@ -1594,6 +1594,23 @@ var IMG = {
 };
 
 /* ============================================================
+   ۲.۵) آیکون‌های محصولات (بخش سفارش)
+   ============================================================ */
+var PRODUCT_ICONS = {
+  tract:      "https://karen-soft.ir/images/icon/Tracket.png",
+  bizcard:    "https://karen-soft.ir/images/icon/Visitcart.png",
+  brochure:   "https://karen-soft.ir/images/icon/Catalogue.png",
+  stationery: "https://karen-soft.ir/images/icon/Setoffice.png",
+  poster:     "https://karen-soft.ir/images/icon/Pooster.png",
+  sticker:    "https://karen-soft.ir/images/icon/Label.png",
+  banner:     "https://karen-soft.ir/images/icon/Banner.png",
+  mug:        "https://karen-soft.ir/images/icon/Mug.jpeg",
+  book:       "https://karen-soft.ir/images/icon/book.jpeg",
+  binding:    "https://karen-soft.ir/images/icon/Notebook.png",
+  thesis:     "https://karen-soft.ir/images/icon/book.jpeg"
+};
+
+/* ============================================================
    ۳) آیکون‌های SVG
    ============================================================ */
 var ICO = {
@@ -3543,8 +3560,14 @@ function renderOrderPicker(){
       var a = el("a", "card hover-lift");
       a.href = "#/order/" + p.id;
       a.style.cssText = "padding:20px;display:flex;gap:16px;align-items:flex-start;animation:fieldIn .5s var(--ease-out) both;animation-delay:" + Math.min(i, 8) * 45 + "ms";
+
+      var iconUrl = PRODUCT_ICONS[p.id];
+      var iconHtml = iconUrl
+        ? '<img src="' + iconUrl + '" alt="' + p.name + '" loading="lazy" style="width:100%;height:100%;object-fit:contain;padding:6px" onerror="this.onerror=null;this.style.display=\'none\';this.parentNode.textContent=\'' + p.emoji + '\'">'
+        : p.emoji;
+
       a.innerHTML =
-        '<span style="display:grid;place-items:center;width:56px;height:56px;border-radius:18px;background:var(--paper-200);font-size:28px;flex:none">' + p.emoji + '</span>' +
+        '<span style="display:grid;place-items:center;width:56px;height:56px;border-radius:18px;background:var(--paper-200);flex:none;overflow:hidden;font-size:28px">' + iconHtml + '</span>' +
         '<span style="min-width:0;flex:1">' +
           '<span style="display:flex;justify-content:space-between;gap:8px">' +
             '<b style="color:var(--ink-900)">' + p.name + '</b>' +
@@ -3862,6 +3885,11 @@ function renderConfigurator(p){
     fields: DELIVERY_F.concat(CONTACT_F)
   });
 
+  var iconUrl = PRODUCT_ICONS[p.id];
+  var iconHtml = iconUrl
+    ? '<img src="' + iconUrl + '" alt="' + p.name + '" loading="lazy" style="width:100%;height:100%;object-fit:contain;padding:8px" onerror="this.onerror=null;this.style.display=\'none\';this.parentNode.innerHTML=\'<span style=&quot;font-size:32px&quot;>' + p.emoji + '</span>\'">'
+    : '<span style="font-size:32px">' + p.emoji + '</span>';
+
   $("orderRoot").innerHTML =
     '<nav style="display:flex;align-items:center;gap:6px;font-size:.875rem;color:var(--ink-400)">' +
       '<a href="#/order">ثبت سفارش</a> › ' +
@@ -3870,7 +3898,7 @@ function renderConfigurator(p){
     '</nav>' +
     '<div style="margin-top:20px;display:flex;flex-wrap:wrap;gap:20px;align-items:flex-end;justify-content:space-between">' +
       '<div style="display:flex;gap:16px;align-items:flex-start">' +
-        '<span style="display:grid;place-items:center;width:64px;height:64px;border-radius:24px;background:#fff;box-shadow:var(--shadow-soft);font-size:32px;flex:none">' + p.emoji + '</span>' +
+        '<span style="display:grid;place-items:center;width:64px;height:64px;border-radius:24px;background:#fff;box-shadow:var(--shadow-soft);flex:none;overflow:hidden;font-size:32px">' + iconHtml + '</span>' +
         '<div>' +
           '<h1 style="font-family:var(--font-display);font-size:1.8rem">سفارش ' + p.name + '</h1>' +
           '<p class="lead" style="margin-top:6px;max-width:560px">' + p.desc + '</p>' +
