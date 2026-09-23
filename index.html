@@ -49,13 +49,6 @@
     <meta name="locality" content="قزوین، ایران" />
 
     <!-- =====================================================
-         🎯 SEO - Verification (کدها را با کدهای خودتان جایگزین کنید)
-         ===================================================== -->
-    <!-- <meta name="google-site-verification" content="YOUR_GOOGLE_CODE" /> -->
-    <!-- <meta name="msvalidate.01" content="YOUR_BING_CODE" /> -->
-    <!-- <meta name="yandex-verification" content="YOUR_YANDEX_CODE" /> -->
-
-    <!-- =====================================================
          🎯 Open Graph / Facebook / LinkedIn
          ===================================================== -->
     <meta property="og:type" content="website" />
@@ -89,7 +82,6 @@
     <link rel="alternate" hreflang="fa-IR" href="https://karen-soft.ir/" />
     <link rel="alternate" hreflang="x-default" href="https://karen-soft.ir/" />
     <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
-    <link rel="robots" href="/robots.txt" />
 
     <!-- =====================================================
          🎯 Icons & PWA
@@ -105,7 +97,7 @@
     <meta name="msapplication-TileImage" content="images/logo.png" />
 
     <!-- =====================================================
-         ⚡ Performance - Preconnect & DNS Prefetch
+         ⚡ Performance
          ===================================================== -->
     <link rel="preconnect" href="https://cdn.tailwindcss.com" crossorigin />
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
@@ -113,9 +105,6 @@
     <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
     <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
 
-    <!-- =====================================================
-         ⚡ Preload Critical Assets
-         ===================================================== -->
     <link rel="preload" as="image" href="images/logo.png" />
     <link rel="preload" as="font" type="font/ttf" href="font/BTitrTGEBold.ttf" crossorigin />
     <link rel="preload" as="font" type="font/ttf" href="font/BZar.ttf" crossorigin />
@@ -151,10 +140,10 @@
          📦 External Resources
          ===================================================== -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" media="print" onload="this.media='all'" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
     <!-- =====================================================
-         🤖 SCHEMA.ORG - Structured Data (GEO + SEO)
+         🤖 SCHEMA.ORG - Structured Data
          ===================================================== -->
 
     <!-- 1️⃣ Organization + LocalBusiness -->
@@ -165,7 +154,6 @@
         "@id": "https://karen-soft.ir/#organization",
         "name": "کارن سافت",
         "alternateName": ["Karen Soft", "KarenSoft", "کارن سافت قزوین"],
-        "legalName": "کارن سافت",
         "url": "https://karen-soft.ir",
         "logo": {
             "@type": "ImageObject",
@@ -197,7 +185,6 @@
         },
         "telephone": "+989152521166",
         "email": "info@karen-soft.ir",
-        "url": "https://karen-soft.ir",
         "openingHoursSpecification": [
             {
                 "@type": "OpeningHoursSpecification",
@@ -220,13 +207,6 @@
                 "contactType": "sales",
                 "areaServed": "IR",
                 "availableLanguage": ["Persian", "fa"]
-            },
-            {
-                "@type": "ContactPoint",
-                "telephone": "+989152521166",
-                "contactType": "technical support",
-                "areaServed": "IR",
-                "availableLanguage": ["Persian", "fa"]
             }
         ],
         "sameAs": [
@@ -235,20 +215,6 @@
             "https://www.youtube.com/@KarenSoftOfficial",
             "https://www.linkedin.com/company/karensoft",
             "https://twitter.com/KarenSoft_ir"
-        ],
-        "knowsAbout": [
-            "طراحی سایت",
-            "فروشگاه آنلاین",
-            "اتوماسیون اداری",
-            "نرم‌افزار مدیریتی",
-            "اپلیکیشن موبایل",
-            "دیجیتال مارکتینگ",
-            "سئو",
-            "خدمات چاپ",
-            "چاپ دیجیتال",
-            "چاپ افست",
-            "بسته‌بندی",
-            "هدایای تبلیغاتی"
         ],
         "aggregateRating": {
             "@type": "AggregateRating",
@@ -260,7 +226,7 @@
     }
     </script>
 
-    <!-- 2️⃣ WebSite + SearchAction (برای Sitelinks Searchbox) -->
+    <!-- 2️⃣ WebSite -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -318,7 +284,7 @@
     }
     </script>
 
-    <!-- 5️⃣ Services (Service Schema) -->
+    <!-- 5️⃣ Services -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -407,7 +373,7 @@
     }
     </script>
 
-    <!-- 6️⃣ FAQPage (برای Google FAQ Rich Snippet + GEO) -->
+    <!-- 6️⃣ FAQPage -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -465,7 +431,7 @@
     }
     </script>
 
-    <!-- 7️⃣ HowTo (برای فرآیند دریافت خدمات) -->
+    <!-- 7️⃣ HowTo -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -474,36 +440,11 @@
         "description": "مراحل دریافت مشاوره و سفارش خدمات نرم‌افزاری از کارن سافت",
         "totalTime": "P7D",
         "step": [
-            {
-                "@type": "HowToStep",
-                "position": 1,
-                "name": "تماس و مشاوره",
-                "text": "با شماره ۰۹۱۵۲۵۲۱۱۶۶ تماس بگیرید یا از فرم تماس استفاده کنید"
-            },
-            {
-                "@type": "HowToStep",
-                "position": 2,
-                "name": "تحلیل نیاز",
-                "text": "تیم کارن سافت نیازهای کسب‌وکار شما را تحلیل می‌کند"
-            },
-            {
-                "@type": "HowToStep",
-                "position": 3,
-                "name": "ارائه پیشنهاد",
-                "text": "پیشنهاد فنی و قیمت به شما ارائه می‌شود"
-            },
-            {
-                "@type": "HowToStep",
-                "position": 4,
-                "name": "اجرای پروژه",
-                "text": "پروژه با تیم متخصص پیاده‌سازی می‌شود"
-            },
-            {
-                "@type": "HowToStep",
-                "position": 5,
-                "name": "تحویل و پشتیبانی",
-                "text": "پروژه تحویل داده شده و پشتیبانی مستمر آغاز می‌شود"
-            }
+            { "@type": "HowToStep", "position": 1, "name": "تماس و مشاوره", "text": "با شماره ۰۹۱۵۲۵۲۱۱۶۶ تماس بگیرید" },
+            { "@type": "HowToStep", "position": 2, "name": "تحلیل نیاز", "text": "تیم کارن سافت نیازهای کسب‌وکار شما را تحلیل می‌کند" },
+            { "@type": "HowToStep", "position": 3, "name": "ارائه پیشنهاد", "text": "پیشنهاد فنی و قیمت به شما ارائه می‌شود" },
+            { "@type": "HowToStep", "position": 4, "name": "اجرای پروژه", "text": "پروژه با تیم متخصص پیاده‌سازی می‌شود" },
+            { "@type": "HowToStep", "position": 5, "name": "تحویل و پشتیبانی", "text": "پروژه تحویل داده شده و پشتیبانی مستمر آغاز می‌شود" }
         ]
     }
     </script>
@@ -515,8 +456,6 @@
             --bg-secondary: rgba(8, 10, 25, 0.6);
             --bg-card: rgba(255, 255, 255, 0.04);
             --bg-card-hover: rgba(255, 255, 255, 0.07);
-            --bg-navbar: rgba(8, 10, 25, 0.7);
-            --bg-navbar-scrolled: rgba(8, 10, 25, 0.95);
             --bg-input: rgba(255, 255, 255, 0.05);
             --bg-input-focus: rgba(255, 255, 255, 0.08);
             --bg-section-alt: rgba(255, 255, 255, 0.02);
@@ -536,8 +475,6 @@
             --bg-secondary: rgba(240, 242, 247, 0.85);
             --bg-card: rgba(255, 255, 255, 0.75);
             --bg-card-hover: rgba(255, 255, 255, 0.95);
-            --bg-navbar: rgba(255, 255, 255, 0.85);
-            --bg-navbar-scrolled: rgba(255, 255, 255, 0.98);
             --bg-input: rgba(255, 255, 255, 0.8);
             --bg-input-focus: #ffffff;
             --bg-section-alt: rgba(0, 0, 0, 0.02);
@@ -576,15 +513,6 @@
         a, span, li, label { font-size: 1.1rem; }
         img { max-width: 100%; height: auto; }
 
-        /* visually hidden برای دسترس‌پذیری و SEO */
-        .visually-hidden {
-            position: absolute !important;
-            width: 1px; height: 1px;
-            padding: 0; margin: -1px;
-            overflow: hidden; clip: rect(0, 0, 0, 0);
-            white-space: nowrap; border: 0;
-        }
-
         /* ===== لودینگ ===== */
         @keyframes loadSpin { to { transform: rotate(360deg); } }
         @keyframes loadSpinReverse { to { transform: rotate(-360deg); } }
@@ -617,7 +545,7 @@
         .loading-logo-wrap::before {
             content: ''; position: absolute; inset: -12px;
             border-radius: 50%;
-            background: conic-gradient(from 0deg, transparent 0deg, rgba(0,200,255,0.9) 60deg, rgba(212,175,55,1) 120deg, rgba(236,0,140,0.8) 180deg, transparent 240deg, transparent 360deg);
+            background: conic-gradient(from 0deg, transparent 0deg, rgba(0,200,255,0.9) 60deg, rgba(212,175,55,1) 120deg, rgba(236,0,140,0.8) 180deg, transparent 240deg);
             animation: loadSpin 2.5s linear infinite;
             filter: blur(6px); z-index: -1;
         }
@@ -833,116 +761,295 @@
             -webkit-backdrop-filter: blur(3px);
         }
 
-        /* ===== Dock Nav ===== */
+        /* =====================================================
+           🎯 GLASS DOCK NAV - موس ذره‌بینی + شیشه‌ای
+           ===================================================== */
         .dock-nav-wrapper {
-            position: fixed; top: 1.5rem;
-            left: 50%; transform: translateX(-50%);
+            position: fixed;
+            top: 1.5rem;
+            left: 50%;
+            transform: translateX(-50%);
             z-index: 100;
-            display: flex; justify-content: center;
-            width: 100%; padding: 0 1rem;
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            padding: 0 1rem;
             pointer-events: none;
             transition: top 0.4s ease;
         }
         .dock-nav-wrapper.scrolled { top: 1rem; }
+
         .dock-nav {
             position: relative;
-            display: flex; align-items: center;
-            background: rgba(20,22,34,0.85);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255,255,255,0.08);
+            display: flex;
+            align-items: flex-end;
+            background: linear-gradient(
+                135deg,
+                rgba(255, 255, 255, 0.10) 0%,
+                rgba(255, 255, 255, 0.03) 45%,
+                rgba(255, 255, 255, 0.06) 100%
+            );
+            backdrop-filter: blur(30px) saturate(200%);
+            -webkit-backdrop-filter: blur(30px) saturate(200%);
+            border: 1px solid rgba(255, 255, 255, 0.18);
             border-radius: 9999px;
-            padding: 0.5rem;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.02) inset;
+            padding: 0.65rem 0.85rem;
+            height: 78px;
+            box-shadow:
+                0 24px 70px rgba(0, 0, 0, 0.55),
+                0 0 0 1px rgba(255, 255, 255, 0.04) inset,
+                0 1px 0 rgba(255, 255, 255, 0.15) inset,
+                0 -1px 0 rgba(0, 0, 0, 0.2) inset,
+                0 10px 30px rgba(0, 170, 255, 0.08);
             pointer-events: auto;
-            gap: 0.25rem;
+            gap: 0.15rem;
+            transition: box-shadow 0.4s ease, background 0.4s ease;
+            overflow: visible;
         }
+
+        .dock-nav::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 10%;
+            right: 10%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.5) 50%, transparent 100%);
+            border-radius: 9999px;
+            pointer-events: none;
+        }
+
+        .dock-nav::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 9999px;
+            background: radial-gradient(ellipse at top, rgba(255, 255, 255, 0.08) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        /* تم روشن */
         body.light-theme .dock-nav {
-            background: rgba(255,255,255,0.9);
-            border: 1px solid rgba(0,0,0,0.06);
-            box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+            background: linear-gradient(
+                135deg,
+                rgba(255, 255, 255, 0.75) 0%,
+                rgba(255, 255, 255, 0.55) 50%,
+                rgba(255, 255, 255, 0.7) 100%
+            );
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            box-shadow:
+                0 24px 70px rgba(100, 120, 160, 0.25),
+                0 0 0 1px rgba(0, 0, 0, 0.04) inset,
+                0 1px 0 rgba(255, 255, 255, 1) inset,
+                0 -1px 0 rgba(0, 0, 0, 0.04) inset,
+                0 10px 30px rgba(0, 170, 255, 0.06);
         }
+        body.light-theme .dock-nav::before {
+            background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 1) 50%, transparent 100%);
+        }
+
+        /* آیتم‌ها */
         .dock-item {
             position: relative;
-            display: flex; flex-direction: column;
-            align-items: center; justify-content: center;
-            gap: 2px;
-            padding: 0.85rem 1.4rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 4px;
+            padding: 0.5rem 1.1rem 0.6rem;
             border-radius: 9999px;
-            color: rgba(255,255,255,0.55);
+            color: rgba(255, 255, 255, 0.55);
             text-decoration: none;
-            font-size: 0.78rem;
+            font-size: 0.72rem;
             font-weight: 600;
-            transition: color 0.3s ease, transform 0.3s ease;
             cursor: pointer;
+            white-space: nowrap;
+            min-width: 68px;
             z-index: 2;
-            min-width: 70px;
+            transform-origin: center bottom;
+            transition:
+                transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+                color 0.3s ease;
+            will-change: transform;
         }
-        body.light-theme .dock-item { color: rgba(10,10,31,0.55); }
-        .dock-item i { font-size: 1.15rem; transition: transform 0.3s ease; }
-        .dock-item:hover, .dock-item:focus-visible { color: var(--gold); transform: translateY(-2px); }
-        .dock-item:hover i { transform: scale(1.15); }
+        body.light-theme .dock-item { color: rgba(10, 10, 31, 0.6); }
+
+        .dock-item i {
+            font-size: 1.15rem;
+            transition:
+                transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+                color 0.3s ease,
+                filter 0.3s ease;
+        }
+        .dock-item span {
+            font-size: 0.72rem;
+            transition: opacity 0.3s ease;
+        }
+
+        /* اثر ذره‌بین */
+        .dock-item:hover {
+            transform: translateY(-16px) scale(1.35);
+            color: #D4AF37;
+            z-index: 10;
+        }
+        .dock-item:hover i {
+            transform: scale(1.15);
+            color: #D4AF37;
+            filter: drop-shadow(0 0 14px rgba(212, 175, 55, 0.95))
+                    drop-shadow(0 0 28px rgba(212, 175, 55, 0.6));
+            text-shadow: 0 0 20px rgba(212, 175, 55, 1);
+        }
+        .dock-item:hover span {
+            text-shadow: 0 0 12px rgba(212, 175, 55, 0.8);
+        }
+
+        /* همسایه‌ها */
+        .dock-item.magnify-1 {
+            transform: translateY(-7px) scale(1.15);
+            color: rgba(255, 255, 255, 0.85);
+        }
+        .dock-item.magnify-2 {
+            transform: translateY(-3px) scale(1.06);
+        }
+        body.light-theme .dock-item.magnify-1 { color: rgba(10, 10, 31, 0.9); }
+
+        /* فعال */
         .dock-item.active { color: #ffffff; }
         body.light-theme .dock-item.active { color: #0a0a1f; }
+        .dock-item.active i {
+            color: #D4AF37;
+            filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.7));
+        }
+        .dock-item.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: #D4AF37;
+            box-shadow: 0 0 10px rgba(212, 175, 55, 1);
+        }
+
+        /* حباب متحرک */
         .dock-indicator {
-            position: absolute; top: 50%; left: 0;
+            position: absolute;
+            top: 50%;
+            left: 0;
             transform: translateY(-50%);
-            height: calc(100% - 0.5rem);
-            background: linear-gradient(135deg, #1a1d2e, #0d0f1a);
+            height: calc(100% - 1rem);
             border-radius: 9999px;
+            background: linear-gradient(135deg, rgba(26, 29, 46, 0.9) 0%, rgba(13, 15, 26, 0.95) 100%);
+            backdrop-filter: blur(10px);
             z-index: 1;
-            transition: transform 0.5s cubic-bezier(0.34,1.56,0.64,1),
-                        width 0.5s cubic-bezier(0.34,1.56,0.64,1),
-                        right 0.5s cubic-bezier(0.34,1.56,0.64,1);
-            box-shadow: 0 0 0 2px rgba(212,175,55,0.7), 0 0 20px rgba(212,175,55,0.4);
+            transition:
+                transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1),
+                width 0.5s cubic-bezier(0.34, 1.56, 0.64, 1),
+                right 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow:
+                0 0 0 1px rgba(212, 175, 55, 0.6),
+                0 0 25px rgba(212, 175, 55, 0.35),
+                0 0 50px rgba(0, 200, 255, 0.15),
+                inset 0 1px 4px rgba(255, 255, 255, 0.1);
         }
         .dock-indicator::before {
-            content: ''; position: absolute; inset: -3px;
+            content: '';
+            position: absolute;
+            inset: -2px;
             border-radius: 9999px;
-            background: conic-gradient(from 0deg, transparent 0deg, rgba(0,200,255,0.85) 40deg, rgba(212,175,55,1) 90deg, rgba(255,240,200,1) 100deg, rgba(212,175,55,1) 110deg, rgba(0,200,255,0.85) 160deg, transparent 200deg);
+            background: conic-gradient(
+                from 0deg,
+                transparent 0deg,
+                rgba(0, 200, 255, 0.8) 60deg,
+                rgba(212, 175, 55, 1) 100deg,
+                rgba(255, 240, 200, 1) 115deg,
+                rgba(212, 175, 55, 1) 130deg,
+                rgba(0, 200, 255, 0.8) 170deg,
+                transparent 220deg,
+                transparent 360deg
+            );
             z-index: -1;
-            animation: dockSpin 4s linear infinite;
+            animation: dockSpin 5s linear infinite;
+            filter: blur(0.5px);
+            opacity: 0.9;
         }
         @keyframes dockSpin { to { transform: rotate(360deg); } }
-        body.light-theme .dock-indicator { background: linear-gradient(135deg, #0a0a1f, #1a1d2e); }
+
+        body.light-theme .dock-indicator {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(240, 242, 247, 0.9) 100%);
+            box-shadow:
+                0 0 0 1px rgba(212, 175, 55, 0.7),
+                0 0 25px rgba(212, 175, 55, 0.4),
+                0 4px 15px rgba(100, 120, 160, 0.2),
+                inset 0 1px 4px rgba(255, 255, 255, 1);
+        }
+
+        /* دکمه‌های اکشن */
         .dock-action {
-            display: flex; align-items: center; justify-content: center;
-            width: 48px; height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
             border-radius: 9999px;
-            border: 1px solid rgba(255,255,255,0.08);
-            background: rgba(255,255,255,0.04);
-            color: rgba(255,255,255,0.65);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%);
+            color: rgba(255, 255, 255, 0.7);
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
             text-decoration: none;
-            font-size: 1rem;
+            font-size: 0.95rem;
             z-index: 2;
+            backdrop-filter: blur(10px);
+            align-self: center;
         }
         body.light-theme .dock-action {
-            background: rgba(0,0,0,0.04);
-            border: 1px solid rgba(0,0,0,0.06);
-            color: rgba(10,10,31,0.65);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.7) 100%);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            color: rgba(10, 10, 31, 0.7);
+            box-shadow: 0 2px 8px rgba(100, 120, 160, 0.1);
         }
-        .dock-action:hover, .dock-action:focus-visible {
-            background: rgba(212,175,55,0.18);
-            border-color: rgba(212,175,55,0.5);
-            color: var(--gold);
-            transform: translateY(-2px) rotate(8deg);
+        .dock-action:hover {
+            transform: translateY(-6px) scale(1.15);
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.3), rgba(212, 175, 55, 0.15));
+            border-color: rgba(212, 175, 55, 0.6);
+            color: #D4AF37;
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
         }
         .dock-action.phone {
-            background: rgba(16,185,129,0.12);
-            border-color: rgba(16,185,129,0.3);
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(16, 185, 129, 0.08));
+            border-color: rgba(16, 185, 129, 0.35);
             color: #34d399;
         }
-        .dock-action.phone:hover { background: rgba(16,185,129,0.25); border-color: rgba(16,185,129,0.6); transform: translateY(-2px) rotate(0); }
-        .dock-sep { width: 1px; height: 32px; background: rgba(255,255,255,0.08); margin: 0 0.35rem; z-index: 2; }
-        body.light-theme .dock-sep { background: rgba(0,0,0,0.08); }
+        .dock-action.phone:hover {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.4), rgba(16, 185, 129, 0.2));
+            border-color: rgba(16, 185, 129, 0.8);
+            color: #6ee7b7;
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.5);
+        }
+        .dock-sep {
+            width: 1px;
+            height: 28px;
+            background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.2), transparent);
+            margin: 0 0.4rem;
+            z-index: 2;
+            align-self: center;
+        }
+        body.light-theme .dock-sep {
+            background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.1), transparent);
+        }
 
+        /* موبایل */
         @media (max-width: 767px) {
-            .dock-nav { padding: 0.4rem; }
-            .dock-item { padding: 0.7rem 1rem; min-width: 58px; font-size: 0.72rem; }
+            .dock-nav { padding: 0.45rem 0.5rem; height: 64px; }
+            .dock-item { padding: 0.4rem 0.75rem 0.5rem; min-width: 54px; font-size: 0.68rem; }
             .dock-item i { font-size: 1rem; }
-            .dock-action { width: 42px; height: 42px; font-size: 0.9rem; }
+            .dock-item:hover { transform: translateY(-10px) scale(1.2); }
+            .dock-item.magnify-1 { transform: translateY(-4px) scale(1.08); }
+            .dock-item.magnify-2 { transform: translateY(-1px) scale(1.02); }
+            .dock-action { width: 38px; height: 38px; font-size: 0.85rem; }
             .dock-desktop-only { display: none !important; }
         }
 
@@ -1067,10 +1174,11 @@
 
         .site-footer {
             border-top: 1px solid var(--border-color);
-            background: var(--bg-navbar);
+            background: rgba(8,10,25,0.7);
             color: var(--text-muted);
             position: relative; z-index: 2;
         }
+        body.light-theme .site-footer { background: rgba(255,255,255,0.85); }
         .site-footer a { color: var(--text-secondary); }
         .site-footer a:hover { color: var(--gold); }
         .footer-note { font-family: 'BNazanin', Tahoma, sans-serif; font-size: 1.05rem; }
@@ -1110,6 +1218,56 @@
             line-height: 2;
         }
 
+        .social-link {
+            display: inline-flex; align-items: center; justify-content: center;
+            width: 40px; height: 40px;
+            border-radius: 999px;
+            border: 1px solid var(--border-input);
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
+        }
+        .social-link:hover {
+            background: rgba(212,175,55,0.2);
+            border-color: var(--gold);
+            color: var(--gold);
+            transform: translateY(-3px);
+        }
+
+        /* btn */
+        .btn-glow {
+            display: inline-flex; align-items: center; justify-content: center;
+            gap: 0.5rem;
+            border-radius: 9999px;
+            background: linear-gradient(135deg, #E4C56A, #D4AF37 45%, #B8942A);
+            color: #0B1220;
+            font-weight: 700;
+            padding: 0.85rem 2.2rem;
+            box-shadow: 0 8px 32px rgba(212,175,55,0.3);
+            border: none; cursor: pointer;
+            font-family: inherit;
+            font-size: 1.05rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        .btn-glow:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 16px 48px rgba(212,175,55,0.5);
+        }
+        .btn-phone {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            border-radius: 9999px;
+            border: 1px solid rgba(16,185,129,0.3);
+            background: rgba(16,185,129,0.08);
+            color: #34d399;
+            font-weight: 600;
+            padding: 0.7rem 1.5rem;
+            font-size: 0.95rem;
+            direction: ltr;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        .btn-phone:hover { background: rgba(16,185,129,0.2); transform: translateY(-2px); }
+
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: var(--bg-card); }
         ::-webkit-scrollbar-thumb { background: rgba(212,175,55,0.4); border-radius: 999px; }
@@ -1147,7 +1305,7 @@
     <!-- ===== Loading Screen ===== -->
     <div id="loading-screen" role="status" aria-live="polite" aria-label="در حال بارگذاری">
         <div class="loading-logo-wrap">
-            <img src="images/logo.png" alt="لوگوی کارن سافت - شرکت نرم‌افزاری قزوین" class="loading-logo" width="130" height="130" />
+            <img src="images/logo.png" alt="لوگوی کارن سافت" class="loading-logo" width="130" height="130" />
         </div>
         <div class="loading-brand">کارن سافت</div>
         <div class="loading-bar-container">
@@ -1168,7 +1326,7 @@
     <!-- ===== محتوای اصلی ===== -->
     <div id="content-overlay">
 
-        <!-- ===== Dock Navigation ===== -->
+        <!-- ===== Glass Dock Navigation ===== -->
         <div class="dock-nav-wrapper" id="dockWrapper">
             <nav class="dock-nav" id="dockNav" aria-label="منوی اصلی سایت">
                 <div class="dock-indicator" id="dockIndicator" aria-hidden="true"></div>
@@ -1352,7 +1510,7 @@
             </div>
         </section>
 
-        <!-- ===== FAQ (GEO Friendly) ===== -->
+        <!-- ===== FAQ ===== -->
         <section id="faq" class="py-16 md:py-24" aria-labelledby="faq-heading">
             <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
                 <header class="text-center max-w-2xl mx-auto mb-12">
@@ -1558,7 +1716,9 @@
         document.body.style.overflow = 'hidden';
         requestAnimationFrame(updateLoading);
 
-        // 🎯 DOCK NAV
+        // =====================================================
+        // 🎯 DOCK NAVIGATION - موس ذره‌بینی
+        // =====================================================
         const dockNav = document.getElementById('dockNav');
         const dockIndicator = document.getElementById('dockIndicator');
         const dockItems = dockNav.querySelectorAll('.dock-item');
@@ -1589,12 +1749,27 @@
             if (initialActive) moveIndicator(initialActive);
         }, 100);
 
-        dockItems.forEach(function(item) {
-            item.addEventListener('mouseenter', function() { moveIndicator(item); });
-            item.addEventListener('focus', function() { moveIndicator(item); });
+        // 🔍 افکت ذره‌بین
+        dockItems.forEach(function(item, idx) {
+            item.addEventListener('mouseenter', function() {
+                moveIndicator(item);
+
+                dockItems.forEach(function(el, i) {
+                    el.classList.remove('magnify-1', 'magnify-2');
+                    const distance = Math.abs(i - idx);
+                    if (distance === 1) el.classList.add('magnify-1');
+                    else if (distance === 2) el.classList.add('magnify-2');
+                });
+            });
+            item.addEventListener('focus', function() {
+                moveIndicator(item);
+            });
         });
 
         dockNav.addEventListener('mouseleave', function() {
+            dockItems.forEach(function(el) {
+                el.classList.remove('magnify-1', 'magnify-2');
+            });
             const currentActive = dockNav.querySelector('.dock-item.active');
             if (currentActive) moveIndicator(currentActive);
         });
