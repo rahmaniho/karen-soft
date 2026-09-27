@@ -108,6 +108,7 @@
     <link rel="preload" as="image" href="images/logo.png" />
     <link rel="preload" as="font" type="font/ttf" href="font/BTitrTGEBold.ttf" crossorigin />
     <link rel="preload" as="font" type="font/ttf" href="font/BZar.ttf" crossorigin />
+    <link rel="preload" as="font" type="font/woff" href="font/BNazanin.woff" crossorigin />
 
     <!-- =====================================================
          🎨 فونت‌های اختصاصی پروژه
@@ -129,8 +130,18 @@
         }
         @font-face {
             font-family: 'BNazanin';
-            src: url('font/BNazanin.ttf') format('truetype');
+            src: url('font/BNazanin.woff') format('woff'),
+                 url('font/BNazanin.ttf') format('truetype');
             font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+        /* تیتر دوم برای عناوین فرعی و تأکیدها */
+        @font-face {
+            font-family: 'BTitrBold';
+            src: url('font/BTitrBold.woff') format('woff'),
+                 url('font/BTitrBold.ttf') format('truetype');
+            font-weight: bold;
             font-style: normal;
             font-display: swap;
         }
@@ -1298,6 +1309,315 @@
                 transition-duration: 0.01ms !important;
             }
         }
+
+        /* =====================================================================
+           ✨ لایه ارتقای تایپوگرافی و زیبایی‌سازی — نسخه ۲
+           فونت عناوین: BTitrTGEBold / BTitrBold   |   فونت متن: BNazanin
+           ===================================================================== */
+
+        :root {
+            --font-display: 'BTitrTGEBold', 'BTitrBold', Tahoma, sans-serif;
+            --font-display-alt: 'BTitrBold', 'BTitrTGEBold', Tahoma, sans-serif;
+            --font-body: 'BNazanin', 'BZar', Tahoma, sans-serif;
+
+            /* مقیاس تایپوگرافی سیال */
+            --fs-body: clamp(1.08rem, 0.98rem + 0.42vw, 1.32rem);
+            --fs-lead: clamp(1.2rem, 1.05rem + 0.7vw, 1.55rem);
+            --fs-h2: clamp(1.85rem, 1.3rem + 2.3vw, 3.05rem);
+            --fs-h3: clamp(1.2rem, 1.05rem + 0.75vw, 1.6rem);
+            --fs-eyebrow: clamp(0.95rem, 0.9rem + 0.2vw, 1.1rem);
+
+            --lh-tight: 1.45;
+            --lh-body: 2.05;
+            --measure: 68ch;
+        }
+
+        /* ---------- پایه متن ---------- */
+        body,
+        p, a, span, li, div, input, textarea, select, button,
+        label, form, footer, .about-typing, .contact-input, .nav-link,
+        .founder-title, .footer-note, .cmyk-badge, .print-mini-card p {
+            font-family: var(--font-body);
+        }
+
+        body {
+            font-size: var(--fs-body);
+            line-height: var(--lh-body);
+            text-rendering: optimizeLegibility;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            font-kerning: normal;
+        }
+
+        p {
+            font-size: var(--fs-body);
+            line-height: var(--lh-body);
+            text-wrap: pretty;
+            hanging-punctuation: first last;
+        }
+
+        /* عرض بهینه خطوط برای خوانایی بهتر متن فارسی */
+        section p:not([class*="text-"]):not(.founder-title) {
+            max-width: var(--measure);
+        }
+        .text-center p, header p { margin-inline: auto; }
+
+        a, span, li, label { font-size: inherit; }
+
+        /* ---------- عناوین ---------- */
+        h1, h2, h3, h4, h5, h6,
+        .stat-number, .brand-name, .hero-title,
+        .loading-number, .loading-brand {
+            font-family: var(--font-display);
+            text-wrap: balance;
+            letter-spacing: 0;
+        }
+
+        h2, h3, h4 { line-height: var(--lh-tight); }
+
+        /* عنوان بخش‌ها: گرادیان ملایم + خط تزئینی */
+        section > div > header > h2,
+        h2[id$="-heading"] {
+            font-size: var(--fs-h2) !important;
+            line-height: 1.5 !important;
+            margin-top: 0.6rem !important;
+            background: linear-gradient(105deg,
+                        var(--text-primary) 0%,
+                        var(--text-primary) 45%,
+                        var(--gold-light) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: transparent;
+            padding-bottom: 0.1em;
+        }
+
+        section > div > header > h2::after,
+        h2[id$="-heading"]::after {
+            content: "";
+            display: block;
+            width: 96px;
+            height: 3px;
+            margin: 0.75rem auto 0;
+            border-radius: 999px;
+            background: linear-gradient(90deg,
+                        transparent 0%,
+                        var(--gold-deep) 20%,
+                        var(--gold) 50%,
+                        var(--gold-deep) 80%,
+                        transparent 100%);
+            opacity: 0.9;
+        }
+
+        /* ---------- برچسب بالای عنوان (Eyebrow) ---------- */
+        header > span.inline-block.rounded-full {
+            font-family: var(--font-display-alt) !important;
+            font-size: var(--fs-eyebrow) !important;
+            letter-spacing: 0.5px;
+            line-height: 1.9;
+            padding: 0.4rem 1.25rem !important;
+            background: linear-gradient(135deg, rgba(212,175,55,0.16), rgba(212,175,55,0.05)) !important;
+            border: 1px solid rgba(212,175,55,0.32) !important;
+            box-shadow: 0 6px 22px rgba(212,175,55,0.10), inset 0 1px 0 rgba(255,255,255,0.08);
+            backdrop-filter: blur(6px);
+        }
+
+        /* ---------- هیرو ---------- */
+        .hero-title {
+            font-size: clamp(2.6rem, 1.6rem + 5.2vw, 6.2rem);
+            line-height: 1.38;
+            letter-spacing: 0;
+            word-spacing: 0.06em;
+        }
+
+        .hero-title .hero-word { padding-inline: 0.06em; }
+
+        #hero p.animate-fade-rise-delay,
+        section#hero p {
+            font-size: var(--fs-lead);
+            line-height: 2.05;
+            max-width: 46rem;
+            text-wrap: pretty;
+        }
+
+        /* ---------- آمار ---------- */
+        .stat-number {
+            font-size: clamp(2.2rem, 1.6rem + 2vw, 3.2rem) !important;
+            line-height: 1.25;
+            background: linear-gradient(140deg, var(--gold-light) 0%, var(--gold) 45%, var(--gold-deep) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: transparent;
+            filter: drop-shadow(0 6px 18px rgba(212,175,55,0.22));
+        }
+
+        .stats-box > div > div:last-child {
+            font-family: var(--font-display-alt);
+            font-size: clamp(0.95rem, 0.9rem + 0.2vw, 1.1rem) !important;
+            letter-spacing: 0.2px;
+            line-height: 1.9;
+        }
+
+        /* ---------- کارت خدمات ---------- */
+        .service-card { position: relative; overflow: hidden; }
+
+        .service-card h3 {
+            font-size: var(--fs-h3);
+            line-height: 1.6;
+            margin-bottom: 0.45rem;
+        }
+
+        .service-card p {
+            font-size: clamp(1rem, 0.95rem + 0.25vw, 1.18rem);
+            line-height: 1.95;
+            color: var(--text-secondary);
+        }
+
+        /* درخشش ملایم روی کارت هنگام هاور */
+        .service-card::after {
+            content: "";
+            position: absolute;
+            inset-block-start: 0;
+            inset-inline-start: -60%;
+            width: 45%;
+            height: 100%;
+            background: linear-gradient(100deg, transparent, rgba(255,255,255,0.07), transparent);
+            transform: skewX(-18deg);
+            transition: inset-inline-start 0.75s ease;
+            pointer-events: none;
+        }
+        .service-card:hover::after { inset-inline-start: 115%; }
+
+        /* خط طلایی بالای کارت */
+        .service-card::before {
+            content: "";
+            position: absolute;
+            inset-inline: 18%;
+            inset-block-start: 0;
+            height: 2px;
+            border-radius: 999px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            opacity: 0;
+            transition: opacity 0.35s ease;
+        }
+        .service-card:hover::before { opacity: 0.95; }
+
+        /* ---------- درباره ما ---------- */
+        .about-typing {
+            font-size: clamp(1.05rem, 0.98rem + 0.4vw, 1.3rem);
+            line-height: 2.25;
+        }
+
+        .brand-name { letter-spacing: 0.3px; }
+
+        .founder-title {
+            font-size: clamp(1rem, 0.95rem + 0.25vw, 1.18rem) !important;
+            line-height: 1.95;
+        }
+
+        /* ---------- سوالات متداول ---------- */
+        .faq-item summary {
+            font-family: var(--font-display-alt);
+            font-size: clamp(1.05rem, 1rem + 0.35vw, 1.28rem);
+            line-height: 1.85;
+            letter-spacing: 0.1px;
+        }
+
+        .faq-item p {
+            font-size: clamp(1rem, 0.95rem + 0.28vw, 1.2rem);
+            line-height: 2.1;
+        }
+
+        /* ---------- دکمه‌ها ---------- */
+        .btn-glow, .btn-phone, button[type="submit"] {
+            font-family: var(--font-display-alt);
+            font-size: clamp(1rem, 0.95rem + 0.25vw, 1.15rem);
+            letter-spacing: 0.3px;
+        }
+
+        /* ---------- ناوبری ---------- */
+        .dock-item span {
+            font-family: var(--font-display-alt);
+            letter-spacing: 0.2px;
+        }
+
+        /* ---------- فوتر ---------- */
+        footer .footer-note {
+            font-size: clamp(0.95rem, 0.9rem + 0.2vw, 1.1rem) !important;
+            line-height: 1.95;
+        }
+
+        /* ---------- جزئیات ظریف ---------- */
+        ::selection {
+            background: rgba(212, 175, 55, 0.3);
+            color: var(--text-primary);
+        }
+
+        :focus-visible {
+            outline: 2px solid var(--gold);
+            outline-offset: 3px;
+            border-radius: 6px;
+        }
+
+        strong, b { font-family: var(--font-display-alt); font-weight: normal; }
+
+        /* اعداد و متن لاتین با فونت مناسب خودشان */
+        [dir="ltr"], .ltr-num, time, code, kbd {
+            font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+            font-variant-numeric: tabular-nums;
+        }
+
+        /* ---------- نشانگر اسکرول در انتهای هیرو ---------- */
+        .scroll-cue {
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.6rem;
+            margin-top: 3.2rem;
+            text-decoration: none;
+            color: var(--text-muted);
+            font-family: var(--font-display-alt);
+            font-size: 0.98rem;
+            letter-spacing: 0.4px;
+            opacity: 0;
+            animation: cueIn 1s ease 1.8s forwards;
+            transition: color 0.3s ease;
+        }
+        .scroll-cue:hover { color: var(--gold); }
+
+        @keyframes cueIn { to { opacity: 1; } }
+
+        .scroll-cue-mouse {
+            width: 26px;
+            height: 42px;
+            border: 2px solid currentColor;
+            border-radius: 999px;
+            display: flex;
+            justify-content: center;
+            padding-top: 7px;
+            opacity: 0.7;
+        }
+        .scroll-cue-mouse > span {
+            width: 4px;
+            height: 8px;
+            border-radius: 999px;
+            background: currentColor;
+            animation: cueDot 1.8s ease-in-out infinite;
+        }
+        @keyframes cueDot {
+            0%   { transform: translateY(0);    opacity: 1; }
+            70%  { transform: translateY(14px); opacity: 0; }
+            100% { transform: translateY(0);    opacity: 0; }
+        }
+
+        @media (max-width: 640px) {
+            :root { --lh-body: 1.95; --measure: 100%; }
+            section > div > header > h2::after,
+            h2[id$="-heading"]::after { width: 72px; }
+            .scroll-cue { margin-top: 2.2rem; }
+            .scroll-cue-mouse { width: 22px; height: 36px; }
+        }
     </style>
 </head>
 <body>
@@ -1368,7 +1688,7 @@
         </div>
 
         <!-- ===== HERO ===== -->
-        <section class="relative min-h-screen flex items-center justify-center text-center px-6 pt-32 pb-20" aria-labelledby="main-heading">
+        <section id="hero" class="relative min-h-screen flex items-center justify-center text-center px-6 pt-32 pb-20" aria-labelledby="main-heading">
             <div class="max-w-7xl mx-auto w-full">
 
                 <h1 id="main-heading" class="hero-title">
@@ -1406,6 +1726,11 @@
                     <li class="flex items-center gap-2"><i class="fas fa-check-circle" style="color:#34d399;" aria-hidden="true"></i> تحویل ضمانتی</li>
                     <li class="flex items-center gap-2"><i class="fas fa-check-circle" style="color:#34d399;" aria-hidden="true"></i> پشتیبانی پس از فروش</li>
                 </ul>
+
+                <a href="#services" class="scroll-cue" aria-label="رفتن به بخش خدمات">
+                    <span>کمی پایین‌تر</span>
+                    <span class="scroll-cue-mouse" aria-hidden="true"><span></span></span>
+                </a>
             </div>
         </section>
 
