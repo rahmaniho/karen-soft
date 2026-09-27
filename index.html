@@ -1568,6 +1568,122 @@
             font-variant-numeric: tabular-nums;
         }
 
+        /* ---------- کارت نمونه کار (Portfolio) ---------- */
+        .work-card {
+            display: flex;
+            flex-direction: column;
+            background: var(--bg-card);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--border-color);
+            border-radius: 1.5rem;
+            overflow: hidden;
+            transition: transform 0.45s cubic-bezier(0.16,1,0.3,1),
+                        border-color 0.4s ease,
+                        box-shadow 0.4s ease,
+                        background-color 0.4s ease;
+        }
+        .work-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(212,175,55,0.38);
+            box-shadow: 0 26px 70px var(--shadow-card);
+            background: var(--bg-card-hover);
+        }
+
+        .work-shot {
+            position: relative;
+            display: block;
+            aspect-ratio: 16 / 10;
+            overflow: hidden;
+            background: #0b0e20;
+        }
+        .work-shot img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top center;
+            transition: transform 0.75s cubic-bezier(0.16,1,0.3,1);
+        }
+        .work-card:hover .work-shot img { transform: scale(1.06); }
+        .work-shot::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 40%, rgba(8,10,25,0.85) 100%);
+            pointer-events: none;
+        }
+        body.light-theme .work-shot::after {
+            background: linear-gradient(180deg, transparent 55%, rgba(240,242,247,0.85) 100%);
+        }
+
+        .work-tag {
+            position: absolute;
+            top: 14px;
+            inset-inline-start: 14px;
+            z-index: 2;
+            font-family: var(--font-display-alt);
+            font-size: 0.92rem;
+            line-height: 1.8;
+            padding: 0.25rem 0.95rem;
+            border-radius: 999px;
+            color: var(--gold-light);
+            background: rgba(8,10,25,0.72);
+            border: 1px solid rgba(212,175,55,0.35);
+            backdrop-filter: blur(8px);
+        }
+
+        .work-body { padding: 1.5rem 1.5rem 1.6rem; }
+
+        .work-body h3 {
+            font-size: var(--fs-h3);
+            line-height: 1.6;
+            color: var(--text-primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .work-client {
+            font-family: var(--font-display-alt);
+            font-size: 0.95rem !important;
+            color: var(--gold);
+            margin-bottom: 0.7rem !important;
+            opacity: 0.9;
+        }
+
+        .work-body p {
+            color: var(--text-secondary);
+            font-size: clamp(1rem, 0.95rem + 0.25vw, 1.18rem);
+            line-height: 1.95;
+        }
+
+        .work-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1rem 0 1.15rem;
+        }
+        .work-chip {
+            font-size: 0.9rem;
+            line-height: 1.8;
+            padding: 0.2rem 0.85rem;
+            border-radius: 999px;
+            color: var(--text-secondary);
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--border-input);
+        }
+        body.light-theme .work-chip { background: rgba(0,0,0,0.035); }
+
+        .work-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: var(--font-display-alt);
+            font-size: 1.02rem;
+            color: var(--gold);
+            text-decoration: none;
+            transition: gap 0.3s ease, color 0.3s ease;
+        }
+        .work-link:hover { gap: 0.85rem; color: var(--gold-light); }
+
         /* ---------- نشانگر اسکرول در انتهای هیرو ---------- */
         .scroll-cue {
             display: inline-flex;
@@ -1803,6 +1919,67 @@
                         <h3 itemprop="name">طراحی و سفارشی‌سازی سیستم‌های سخت‌افزاری</h3>
                         <p itemprop="description">مشاوره، طراحی و پیاده‌سازی سیستم‌های سخت‌افزاری متناسب با نیاز کسب‌وکار.</p>
                     </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== PORTFOLIO / نمونه کارها ===== -->
+        <section id="portfolio" class="py-16 md:py-24" style="background: var(--bg-section-alt);" aria-labelledby="portfolio-heading">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <header class="text-center max-w-2xl mx-auto mb-12">
+                    <span class="inline-block rounded-full px-4 py-1.5" style="color:var(--gold); background:rgba(212,175,55,0.1); border:1px solid rgba(212,175,55,0.2); font-size:1rem;">نمونه کارها</span>
+                    <h2 id="portfolio-heading" class="mt-4" style="color:var(--text-primary); font-size:2.4rem;">نمونه‌هایی از طراحی سایت ما</h2>
+                    <p class="mt-3" style="color:var(--text-secondary);">هر پروژه اختصاصی کدنویسی می‌شود — بدون قالب آماده. چند نمونهٔ زندهٔ زیر را ببینید.</p>
+                </header>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+
+                    <article class="work-card animate-fade-rise" style="animation-delay:0.05s;">
+                        <a class="work-shot" href="najafisahar" aria-label="مشاهده نمونه کار سالن زیبایی و آکادمی سحر نجفی">
+                            <span class="work-tag">سالن زیبایی و آکادمی</span>
+                            <img src="images/hero-sahar.png"
+                                 alt="نمونه کار طراحی سایت سالن زیبایی و آکادمی سحر نجفی در قزوین"
+                                 width="1200" height="750" loading="lazy" decoding="async" />
+                        </a>
+                        <div class="work-body">
+                            <h3>سالن زیبایی و آکادمی سحر نجفی</h3>
+                            <p class="work-client">قزوین — چهارراه محمد رسول‌الله</p>
+                            <p>وب‌سایت تک‌صفحه‌ای برای معرفی خدمات میکاپ عروس، شنیون و کاشت ناخن به‌همراه بخش آکادمی آموزشی، با تمرکز بر جذب مشتری محلی و رزرو سریع نوبت.</p>
+                            <div class="work-chips">
+                                <span class="work-chip">طراحی One-Page</span>
+                                <span class="work-chip">سئوی محلی</span>
+                                <span class="work-chip">گالری تصاویر</span>
+                            </div>
+                            <a href="najafisahar" class="work-link">مشاهده سایت <i class="fas fa-arrow-left" aria-hidden="true"></i></a>
+                        </div>
+                    </article>
+
+                    <article class="work-card animate-fade-rise" style="animation-delay:0.14s;">
+                        <a class="work-shot" href="saharnajafi" aria-label="مشاهده نمونه کار سالن و آکادمی تخصصی ناخن سحر نجفی">
+                            <span class="work-tag">سالن تخصصی ناخن</span>
+                            <img src="images/saharnajafi.png"
+                                 alt="نمونه کار طراحی سایت سالن و آکادمی تخصصی ناخن سحر نجفی در قزوین"
+                                 width="1200" height="750" loading="lazy" decoding="async" />
+                        </a>
+                        <div class="work-body">
+                            <h3>آکادمی تخصصی ناخن سحر نجفی</h3>
+                            <p class="work-client">قزوین — چهارراه محمد رسول‌الله</p>
+                            <p>نسخهٔ توسعه‌یافته با تمرکز بر مانیکور روسی و پلی‌ژل بدون اسید، شامل تعرفهٔ خدمات، معرفی دوره‌های آکادمی و انیمیشن‌های اسکرول مدرن.</p>
+                            <div class="work-chips">
+                                <span class="work-chip">تعرفه خدمات</span>
+                                <span class="work-chip">دوره‌های آموزشی</span>
+                                <span class="work-chip">انیمیشن اسکرول</span>
+                            </div>
+                            <a href="saharnajafi" class="work-link">مشاهده سایت <i class="fas fa-arrow-left" aria-hidden="true"></i></a>
+                        </div>
+                    </article>
+
+                </div>
+
+                <div class="text-center mt-10">
+                    <a href="portfolio" class="btn-glow px-8 py-3" aria-label="مشاهده همه نمونه کارهای کارن سافت">
+                        <i class="fas fa-images" aria-hidden="true"></i> مشاهده همه نمونه کارها
+                    </a>
                 </div>
             </div>
         </section>
