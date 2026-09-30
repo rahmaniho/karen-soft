@@ -1,0 +1,246 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ────────────────────────────────────────────────
+   FONTS — Vazirmatn Variable (primary) + legacy B*
+   ──────────────────────────────────────────────── */
+@font-face {
+  font-family: "Vazirmatn";
+  src: url("/fonts/vazirmatn-var.woff2") format("woff2-variations");
+  font-weight: 100 900;
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: "BYekan";
+  src: url("/fonts/legacy/BYekan.woff") format("woff");
+  font-weight: 400 700;
+  font-display: swap;
+}
+@font-face {
+  font-family: "BBadr";
+  src: url("/fonts/legacy/BBadr.woff") format("woff");
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "BNazanin";
+  src: url("/fonts/legacy/BNazanin.woff") format("woff");
+  font-weight: 400;
+  font-display: swap;
+}
+
+/* ────────────────────────────────────────────────
+   DESIGN TOKENS
+   ──────────────────────────────────────────────── */
+@theme {
+  /* Brand */
+  --color-brand-50: #eef4ff;
+  --color-brand-100: #dbe6ff;
+  --color-brand-200: #bcd0ff;
+  --color-brand-300: #93b4ff;
+  --color-brand-400: #6690fb;
+  --color-brand-500: #3b6df6;
+  --color-brand-600: #2551e0;
+  --color-brand-700: #1b3bb5;
+  --color-brand-800: #162f8a;
+  --color-brand-900: #0f1e5c;
+
+  /* Ink */
+  --color-ink-950: #05070d;
+  --color-ink-900: #0a0e18;
+  --color-ink-800: #121826;
+  --color-ink-700: #1c2433;
+  --color-ink-600: #2b3445;
+  --color-ink-400: #64748b;
+  --color-ink-200: #dfe4ec;
+  --color-ink-100: #eef1f6;
+  --color-ink-50: #f7f8fb;
+
+  /* Accents */
+  --color-accent-cyan: #22d3ee;
+  --color-accent-violet: #8b5cf6;
+  --color-success: #10b981;
+  --color-warning: #f59e0b;
+  --color-danger: #ef4444;
+
+  /* Vertical accents */
+  --color-legal-warm: #c9a96e;
+  --color-printing-ink: #4b5563;
+  --color-restaurant-amber: #f59e0b;
+  --color-gym-lime: #84cc16;
+  --color-realestate-sage: #84a98c;
+  --color-transport-blue: #0ea5e9;
+  --color-building-slate: #64748b;
+  --color-retail-rose: #f43f5e;
+
+  /* Typography */
+  --font-sans: "Vazirmatn", "BYekan", system-ui, Tahoma, sans-serif;
+  --font-mono: ui-monospace, "Geist Mono", SFMono-Regular, monospace;
+  --font-legacy: "BBadr", "BNazanin", "Vazirmatn", serif;
+
+  /* Radius */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-2xl: 28px;
+
+  /* Motion */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-quint: cubic-bezier(0.83, 0, 0.17, 1);
+  --duration-fast: 150ms;
+  --duration-base: 250ms;
+  --duration-slow: 450ms;
+  --duration-scene: 800ms;
+
+  /* Shadows */
+  --shadow-soft: 0 24px 70px rgba(6, 20, 42, 0.12);
+  --shadow-lift: 0 18px 44px rgba(10, 35, 70, 0.14);
+}
+
+/* Semantic surface variables (theme aware) */
+:root {
+  --surface: var(--color-ink-50);
+  --surface-raised: #ffffff;
+  --surface-sunken: var(--color-ink-100);
+  --border-subtle: var(--color-ink-200);
+  --text-primary: var(--color-ink-900);
+  --text-secondary: #56637a;
+  --glass: rgba(255, 255, 255, 0.72);
+}
+
+.dark {
+  --surface: var(--color-ink-950);
+  --surface-raised: var(--color-ink-900);
+  --surface-sunken: #070b13;
+  --border-subtle: #1d2636;
+  --text-primary: #eef2f8;
+  --text-secondary: #94a3b8;
+  --glass: rgba(10, 14, 24, 0.72);
+}
+
+@layer base {
+  * {
+    border-color: var(--border-subtle);
+  }
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 6rem;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    background: var(--surface);
+    color: var(--text-primary);
+    font-family: var(--font-sans);
+    line-height: 1.85;
+    -webkit-font-smoothing: antialiased;
+    font-feature-settings: "ss02";
+  }
+  h1, h2, h3, h4, h5, h6 {
+    line-height: 1.35;
+    letter-spacing: -0.01em;
+    font-weight: 800;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-brand-500);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+  ::selection {
+    background: var(--color-brand-500);
+    color: #fff;
+  }
+}
+
+@layer components {
+  .container-page {
+    width: 100%;
+    max-width: 80rem;
+    margin-inline: auto;
+    padding-inline: 1rem;
+  }
+  @media (min-width: 640px) {
+    .container-page { padding-inline: 1.5rem; }
+  }
+  @media (min-width: 1024px) {
+    .container-page { padding-inline: 2rem; }
+  }
+  .section-y {
+    padding-block: 5rem;
+  }
+  @media (min-width: 1024px) {
+    .section-y { padding-block: 8rem; }
+  }
+  .surface-card {
+    background: var(--surface-raised);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-xl);
+  }
+  .glass-panel {
+    background: var(--glass);
+    backdrop-filter: blur(18px) saturate(160%);
+    border: 1px solid var(--border-subtle);
+  }
+  .text-muted {
+    color: var(--text-secondary);
+  }
+  .grid-backdrop {
+    background-image:
+      linear-gradient(rgba(91, 112, 148, 0.09) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(91, 112, 148, 0.09) 1px, transparent 1px);
+    background-size: 56px 56px;
+    mask-image: linear-gradient(to bottom, #000, transparent 78%);
+  }
+  .persian-num {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+@layer utilities {
+  /* Industry showcase display fonts */
+  .font-display-serif { font-family: "BNazanin", "Vazirmatn", serif; letter-spacing: 0; }
+  .font-display-sans { font-family: "Vazirmatn", system-ui, sans-serif; letter-spacing: -0.015em; }
+  .font-display-legacy { font-family: "BYekan", "Vazirmatn", sans-serif; }
+
+  /* Industry motion personalities — drive transition feel per mini-site */
+  .motion-calm { --ind-duration: 520ms; --ind-ease: cubic-bezier(0.4, 0, 0.2, 1); }
+  .motion-energetic { --ind-duration: 220ms; --ind-ease: cubic-bezier(0.34, 1.56, 0.64, 1); }
+  .motion-elegant { --ind-duration: 680ms; --ind-ease: cubic-bezier(0.16, 1, 0.3, 1); }
+  .motion-playful { --ind-duration: 300ms; --ind-ease: cubic-bezier(0.68, -0.55, 0.27, 1.55); }
+  .motion-precise { --ind-duration: 180ms; --ind-ease: cubic-bezier(0.2, 0, 0, 1); }
+  .motion-calm a, .motion-energetic a, .motion-elegant a, .motion-playful a, .motion-precise a,
+  .motion-calm button, .motion-energetic button, .motion-elegant button, .motion-playful button, .motion-precise button {
+    transition-duration: var(--ind-duration);
+    transition-timing-function: var(--ind-ease);
+  }
+
+  .animate-reveal {
+    animation: reveal var(--duration-scene) var(--ease-out-expo) both;
+  }
+  .scrollbar-thin::-webkit-scrollbar { height: 6px; width: 6px; }
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background: var(--border-subtle);
+    border-radius: 999px;
+  }
+}
+
+@keyframes reveal {
+  from { opacity: 0; transform: translateY(22px); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
