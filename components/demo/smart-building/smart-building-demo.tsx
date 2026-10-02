@@ -62,7 +62,7 @@ export function SmartBuildingDemo() {
                 style={{ width: `${((units.length - unpaid.length) / units.length) * 100}%`, background: ACCENT }}
               />
             </div>
-            <p className="mt-2 text-[12px] font-bold persian-num">
+            <p className="mt-2 text-2xs font-bold persian-num">
               {toPersianDigits(Math.round(((units.length - unpaid.length) / units.length) * 100))}٪ از واحدها شارژ خود را پرداخت کرده‌اند.
             </p>
           </DemoPanel>
@@ -79,7 +79,7 @@ export function SmartBuildingDemo() {
             <div className="space-y-2">
               {[6, 5, 4, 3, 2, 1].map((floor) => (
                 <div key={floor} className="flex items-center gap-2">
-                  <span className="w-16 text-[11px] font-bold text-muted persian-num">طبقه {toPersianDigits(floor)}</span>
+                  <span className="w-16 text-3xs font-bold text-muted persian-num">طبقه {toPersianDigits(floor)}</span>
                   <div className="grid flex-1 grid-cols-4 gap-2">
                     {units
                       .filter((u) => u.floor === floor)
@@ -90,7 +90,7 @@ export function SmartBuildingDemo() {
                           onClick={() => setSelected(item.id)}
                           aria-pressed={selected === item.id}
                           className={cn(
-                            "rounded-[var(--radius-sm)] border p-3 text-[11px] font-bold transition-colors",
+                            "rounded-[var(--radius-sm)] border p-3 text-3xs font-bold transition-colors",
                             selected === item.id ? "text-white" : "bg-[var(--surface-sunken)]",
                           )}
                           style={{
@@ -99,7 +99,7 @@ export function SmartBuildingDemo() {
                           }}
                         >
                           <span className="block persian-num">واحد {toPersianDigits(item.number)}</span>
-                          <span className="block text-[9px] opacity-75">{item.paid ? "تسویه" : "بدهکار"}</span>
+                          <span className="block text-5xs opacity-75">{item.paid ? "تسویه" : "بدهکار"}</span>
                         </button>
                       ))}
                   </div>
@@ -108,7 +108,7 @@ export function SmartBuildingDemo() {
             </div>
           </DemoPanel>
           <DemoPanel title={`واحد ${toPersianDigits(unit.number)}`}>
-            <dl className="space-y-2 text-[12px]">
+            <dl className="space-y-2 text-2xs">
               {[
                 ["مالک", unit.owner],
                 ["متراژ", `${toPersianDigits(unit.area)} متر`],
@@ -126,7 +126,7 @@ export function SmartBuildingDemo() {
               <button
                 type="button"
                 onClick={() => setUnits((prev) => prev.map((u) => (u.id === unit.id ? { ...u, paid: true } : u)))}
-                className="mt-4 h-10 w-full rounded-[var(--radius-sm)] text-[12px] font-extrabold text-white"
+                className="mt-4 h-10 w-full rounded-[var(--radius-sm)] text-2xs font-extrabold text-white"
                 style={{ background: ACCENT }}
               >
                 ثبت پرداخت شارژ
@@ -144,7 +144,7 @@ export function SmartBuildingDemo() {
         <DemoPanel title="وضعیت پرداخت واحدها">
           <ul className="grid gap-2 sm:grid-cols-2">
             {units.map((item) => (
-              <li key={item.id} className="flex items-center justify-between rounded-[var(--radius-sm)] bg-[var(--surface-sunken)] p-3 text-[12px]">
+              <li key={item.id} className="flex items-center justify-between rounded-[var(--radius-sm)] bg-[var(--surface-sunken)] p-3 text-2xs">
                 <span className="persian-num font-bold">واحد {toPersianDigits(item.number)} — {item.owner}</span>
                 <span className={cn("persian-num", item.paid ? "text-emerald-600" : "text-rose-500 font-extrabold")}>
                   {item.paid ? "پرداخت شده" : formatToman(item.charge)}
@@ -163,9 +163,9 @@ export function SmartBuildingDemo() {
         <div className="space-y-5">
           <DemoPanel title="ثبت درخواست جدید">
             <form onSubmit={addTicket} className="grid gap-3 sm:grid-cols-4">
-              <input name="title" required placeholder="شرح مشکل" aria-label="شرح مشکل" className="h-10 rounded-[var(--radius-sm)] border border-[var(--border-subtle)] bg-[var(--surface-sunken)] px-3 text-[12px] sm:col-span-2" />
-              <input name="unit" placeholder="واحد / مشاعات" aria-label="واحد" className="h-10 rounded-[var(--radius-sm)] border border-[var(--border-subtle)] bg-[var(--surface-sunken)] px-3 text-[12px]" />
-              <button type="submit" className="h-10 rounded-[var(--radius-sm)] text-[12px] font-extrabold text-white" style={{ background: ACCENT }}>
+              <input name="title" required placeholder="شرح مشکل" aria-label="شرح مشکل" className="h-10 rounded-[var(--radius-sm)] border border-[var(--border-subtle)] bg-[var(--surface-sunken)] px-3 text-2xs sm:col-span-2" />
+              <input name="unit" placeholder="واحد / مشاعات" aria-label="واحد" className="h-10 rounded-[var(--radius-sm)] border border-[var(--border-subtle)] bg-[var(--surface-sunken)] px-3 text-2xs" />
+              <button type="submit" className="h-10 rounded-[var(--radius-sm)] text-2xs font-extrabold text-white" style={{ background: ACCENT }}>
                 ثبت درخواست
               </button>
             </form>
@@ -176,11 +176,11 @@ export function SmartBuildingDemo() {
                 <li key={ticket.id} className="rounded-[var(--radius-md)] bg-[var(--surface-sunken)] p-4">
                   <div className="flex flex-wrap items-center justify-between gap-3">
                     <div>
-                      <p className="flex items-center gap-2 text-[12px] font-extrabold">
+                      <p className="flex items-center gap-2 text-2xs font-extrabold">
                         <Wrench className="size-3.5" style={{ color: ACCENT }} aria-hidden />
                         {ticket.title}
                       </p>
-                      <p className="text-[10px] text-muted persian-num">
+                      <p className="text-4xs text-muted persian-num">
                         {ticket.id} · واحد {ticket.unit} · {ticket.createdAt}
                         {ticket.assignee ? ` · ${ticket.assignee}` : ""}
                       </p>
@@ -195,7 +195,7 @@ export function SmartBuildingDemo() {
                               prev.map((t) => (t.id === ticket.id ? { ...t, assignee: event.target.value, status: "در حال انجام" } : t)),
                             )
                           }
-                          className="h-9 rounded-[var(--radius-sm)] border border-[var(--border-subtle)] bg-[var(--surface-raised)] px-2 text-[11px]"
+                          className="h-9 rounded-[var(--radius-sm)] border border-[var(--border-subtle)] bg-[var(--surface-raised)] px-2 text-3xs"
                         >
                           <option value="" disabled>
                             تخصیص پیمانکار
@@ -209,13 +209,13 @@ export function SmartBuildingDemo() {
                         <button
                           type="button"
                           onClick={() => setTickets((prev) => prev.map((t) => (t.id === ticket.id ? { ...t, status: "بسته‌شده" } : t)))}
-                          className="h-9 rounded-[var(--radius-sm)] px-3 text-[11px] font-extrabold text-white"
+                          className="h-9 rounded-[var(--radius-sm)] px-3 text-3xs font-extrabold text-white"
                           style={{ background: ACCENT }}
                         >
                           بستن درخواست
                         </button>
                       ) : null}
-                      <span className="rounded-full bg-[var(--surface-raised)] px-3 py-1 text-[10px] font-bold">{ticket.status}</span>
+                      <span className="rounded-full bg-[var(--surface-raised)] px-3 py-1 text-4xs font-bold">{ticket.status}</span>
                     </div>
                   </div>
                 </li>
@@ -241,22 +241,22 @@ export function SmartBuildingDemo() {
             }}
             className="flex gap-2"
           >
-            <input name="text" placeholder="متن اعلان برای همه ساکنان…" aria-label="متن اعلان" className="h-11 flex-1 rounded-[var(--radius-sm)] border border-[var(--border-subtle)] bg-[var(--surface-sunken)] px-3 text-[12px]" />
-            <button type="submit" className="inline-flex h-11 items-center gap-1.5 rounded-[var(--radius-sm)] px-4 text-[12px] font-extrabold text-white" style={{ background: ACCENT }}>
+            <input name="text" placeholder="متن اعلان برای همه ساکنان…" aria-label="متن اعلان" className="h-11 flex-1 rounded-[var(--radius-sm)] border border-[var(--border-subtle)] bg-[var(--surface-sunken)] px-3 text-2xs" />
+            <button type="submit" className="inline-flex h-11 items-center gap-1.5 rounded-[var(--radius-sm)] px-4 text-2xs font-extrabold text-white" style={{ background: ACCENT }}>
               <Bell className="size-4" aria-hidden />
               ارسال
             </button>
           </form>
           <ul aria-live="polite" className="mt-4 space-y-2">
             {announcements.map((item, index) => (
-              <li key={index} className="rounded-[var(--radius-sm)] bg-[var(--surface-sunken)] p-3 text-[12px]">
+              <li key={index} className="rounded-[var(--radius-sm)] bg-[var(--surface-sunken)] p-3 text-2xs">
                 {item.text}
-                <span className="mt-1 block text-[10px] text-muted persian-num">
+                <span className="mt-1 block text-4xs text-muted persian-num">
                   ارسال به {toPersianDigits(units.length)} واحد · {item.at}
                 </span>
               </li>
             ))}
-            {announcements.length === 0 ? <li className="p-4 text-center text-[11px] text-muted">اعلانی ثبت نشده است.</li> : null}
+            {announcements.length === 0 ? <li className="p-4 text-center text-3xs text-muted">اعلانی ثبت نشده است.</li> : null}
           </ul>
         </DemoPanel>
       ),
@@ -269,12 +269,12 @@ export function SmartBuildingDemo() {
         <DemoPanel title="دفتر ورود">
           <ul className="space-y-2">
             {VISITORS.map((visitor) => (
-              <li key={visitor.id} className="flex items-center justify-between rounded-[var(--radius-sm)] bg-[var(--surface-sunken)] p-3 text-[12px]">
+              <li key={visitor.id} className="flex items-center justify-between rounded-[var(--radius-sm)] bg-[var(--surface-sunken)] p-3 text-2xs">
                 <span className="flex items-center gap-2 font-bold">
                   <DoorOpen className="size-4" style={{ color: ACCENT }} aria-hidden />
                   {visitor.name}
                 </span>
-                <span className="text-[11px] text-muted persian-num">
+                <span className="text-3xs text-muted persian-num">
                   واحد {visitor.unit} · {visitor.time} · {visitor.type}
                 </span>
               </li>

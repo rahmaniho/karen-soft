@@ -61,7 +61,7 @@ export function AutoPartsDemo() {
           <DemoPanel title="اقلام زیر نقطه سفارش">
             <ul className="space-y-2">
               {lowStock.slice(0, 8).map((part) => (
-                <li key={part.id} className="flex items-center justify-between rounded-[var(--radius-sm)] bg-[var(--surface-sunken)] p-3 text-[12px]">
+                <li key={part.id} className="flex items-center justify-between rounded-[var(--radius-sm)] bg-[var(--surface-sunken)] p-3 text-2xs">
                   <span className="font-bold">
                     {part.name} — {part.model}
                   </span>
@@ -81,7 +81,7 @@ export function AutoPartsDemo() {
         <div className="space-y-5">
           <DemoPanel title="فیلتر آبشاری">
             <div className="grid gap-3 sm:grid-cols-3">
-              <label className="text-[12px] font-bold">
+              <label className="text-2xs font-bold">
                 برند
                 <select
                   value={brand}
@@ -89,19 +89,19 @@ export function AutoPartsDemo() {
                     setBrand(e.target.value);
                     setModel(CAR_MODELS[e.target.value]![0]!);
                   }}
-                  className="mt-2 h-10 w-full rounded-[var(--radius-sm)] border border-[var(--border-subtle)] bg-[var(--surface-sunken)] px-3 text-[12px]"
+                  className="mt-2 h-10 w-full rounded-[var(--radius-sm)] border border-[var(--border-subtle)] bg-[var(--surface-sunken)] px-3 text-2xs"
                 >
                   {CAR_BRANDS.map((item) => (
                     <option key={item}>{item}</option>
                   ))}
                 </select>
               </label>
-              <label className="text-[12px] font-bold">
+              <label className="text-2xs font-bold">
                 مدل
                 <select
                   value={model}
                   onChange={(e) => setModel(e.target.value)}
-                  className="mt-2 h-10 w-full rounded-[var(--radius-sm)] border border-[var(--border-subtle)] bg-[var(--surface-sunken)] px-3 text-[12px]"
+                  className="mt-2 h-10 w-full rounded-[var(--radius-sm)] border border-[var(--border-subtle)] bg-[var(--surface-sunken)] px-3 text-2xs"
                 >
                   {(CAR_MODELS[brand] ?? []).map((item) => (
                     <option key={item}>{item}</option>
@@ -117,17 +117,17 @@ export function AutoPartsDemo() {
             <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
               {matches.map((part) => (
                 <article key={part.id} className="rounded-[var(--radius-md)] bg-[var(--surface-sunken)] p-4">
-                  <h3 className="text-[12px] font-extrabold">{part.name}</h3>
-                  <p className="text-[10px] text-muted" dir="ltr">{part.code}</p>
-                  <p className="mt-2 text-[12px] font-bold persian-num" style={{ color: ACCENT }}>
+                  <h3 className="text-2xs font-extrabold">{part.name}</h3>
+                  <p className="text-4xs text-muted" dir="ltr">{part.code}</p>
+                  <p className="mt-2 text-2xs font-bold persian-num" style={{ color: ACCENT }}>
                     {formatToman(part.price)}
                   </p>
-                  <p className={cn("mt-1 text-[10px] persian-num", part.stock <= part.reorder ? "text-rose-500" : "text-muted")}>
+                  <p className={cn("mt-1 text-4xs persian-num", part.stock <= part.reorder ? "text-rose-500" : "text-muted")}>
                     موجودی: {toPersianDigits(part.stock)} عدد
                   </p>
                 </article>
               ))}
-              {matches.length === 0 ? <p className="p-6 text-[12px] text-muted">برای این ترکیب قطعه‌ای یافت نشد.</p> : null}
+              {matches.length === 0 ? <p className="p-6 text-2xs text-muted">برای این ترکیب قطعه‌ای یافت نشد.</p> : null}
             </div>
           </DemoPanel>
         </div>
@@ -145,16 +145,16 @@ export function AutoPartsDemo() {
               type="button"
               onClick={() => void scan()}
               disabled={scanning}
-              className="mt-4 h-10 rounded-[var(--radius-sm)] px-5 text-[12px] font-extrabold text-white disabled:opacity-50"
+              className="mt-4 h-10 rounded-[var(--radius-sm)] px-5 text-2xs font-extrabold text-white disabled:opacity-50"
               style={{ background: ACCENT }}
             >
               {scanning ? "در حال اسکن…" : "اسکن بارکد"}
             </button>
           </div>
           {scannedPart ? (
-            <div aria-live="polite" className="mt-4 rounded-[var(--radius-md)] bg-[var(--surface-sunken)] p-4 text-[12px]">
+            <div aria-live="polite" className="mt-4 rounded-[var(--radius-md)] bg-[var(--surface-sunken)] p-4 text-2xs">
               <strong className="block">{scannedPart.name}</strong>
-              <span className="text-[11px] text-muted">
+              <span className="text-3xs text-muted">
                 {scannedPart.brand} {scannedPart.model} · <span dir="ltr">{scannedPart.code}</span>
               </span>
               <p className="mt-2 font-extrabold persian-num" style={{ color: ACCENT }}>
@@ -203,14 +203,14 @@ export function AutoPartsDemo() {
         <DemoPanel title="سفارش‌های اخیر">
           <ul className="space-y-2">
             {PART_ORDERS.map((order) => (
-              <li key={order.id} className="flex items-center justify-between rounded-[var(--radius-md)] bg-[var(--surface-sunken)] p-4 text-[12px]">
+              <li key={order.id} className="flex items-center justify-between rounded-[var(--radius-md)] bg-[var(--surface-sunken)] p-4 text-2xs">
                 <span>
                   <strong className="block persian-num">{order.id} — {order.customer}</strong>
-                  <span className="text-[10px] text-muted persian-num">{toPersianDigits(order.items)} قلم کالا</span>
+                  <span className="text-4xs text-muted persian-num">{toPersianDigits(order.items)} قلم کالا</span>
                 </span>
                 <span className="text-end">
                   <strong className="block persian-num">{formatToman(order.total)}</strong>
-                  <span className="text-[10px] text-muted">{order.status}</span>
+                  <span className="text-4xs text-muted">{order.status}</span>
                 </span>
               </li>
             ))}
@@ -227,7 +227,7 @@ export function AutoPartsDemo() {
           <RangeField label="حاشیه سود" value={margin} min={5} max={60} suffix="٪" accent={ACCENT} onChange={setMargin} />
           <ul className="mt-5 space-y-2">
             {PARTS.slice(0, 8).map((part) => (
-              <li key={part.id} className="flex items-center justify-between rounded-[var(--radius-sm)] bg-[var(--surface-sunken)] p-3 text-[12px]">
+              <li key={part.id} className="flex items-center justify-between rounded-[var(--radius-sm)] bg-[var(--surface-sunken)] p-3 text-2xs">
                 <span className="font-bold">{part.name} — {part.model}</span>
                 <span className="persian-num">
                   خرید {formatToman(part.price)} ← فروش{" "}

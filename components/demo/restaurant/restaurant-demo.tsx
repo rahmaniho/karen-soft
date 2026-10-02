@@ -96,22 +96,22 @@ export function RestaurantDemo() {
                   className="flex items-center justify-between rounded-[var(--radius-md)] bg-[var(--surface-sunken)] p-3 text-start transition-colors hover:bg-amber-500/10 disabled:opacity-40"
                 >
                   <span>
-                    <span className="block text-[12px] font-extrabold">{item.name}</span>
-                    <span className="text-[10px] text-muted">{item.category} · {toPersianDigits(item.prepMinutes)} دقیقه</span>
+                    <span className="block text-2xs font-extrabold">{item.name}</span>
+                    <span className="text-4xs text-muted">{item.category} · {toPersianDigits(item.prepMinutes)} دقیقه</span>
                   </span>
-                  <span className="text-[11px] font-bold persian-num">{formatNumber(item.price)}</span>
+                  <span className="text-3xs font-bold persian-num">{formatNumber(item.price)}</span>
                 </button>
               ))}
             </div>
           </DemoPanel>
 
           <DemoPanel title="سفارش جاری">
-            <label className="block text-[12px] font-bold">
+            <label className="block text-2xs font-bold">
               میز
               <select
                 value={selectedTable}
                 onChange={(e) => setSelectedTable(e.target.value)}
-                className="mt-2 h-10 w-full rounded-[var(--radius-sm)] border border-[var(--border-subtle)] bg-[var(--surface-sunken)] px-3 text-[12px]"
+                className="mt-2 h-10 w-full rounded-[var(--radius-sm)] border border-[var(--border-subtle)] bg-[var(--surface-sunken)] px-3 text-2xs"
               >
                 {tables.map((table) => (
                   <option key={table.id} value={table.id}>
@@ -125,7 +125,7 @@ export function RestaurantDemo() {
               {Object.entries(cart).filter(([, qty]) => qty > 0).map(([id, qty]) => {
                 const item = MENU.find((m) => m.id === id)!;
                 return (
-                  <li key={id} className="flex items-center justify-between rounded-[var(--radius-sm)] bg-[var(--surface-sunken)] p-2.5 text-[12px]">
+                  <li key={id} className="flex items-center justify-between rounded-[var(--radius-sm)] bg-[var(--surface-sunken)] p-2.5 text-2xs">
                     <span className="font-bold">{item.name}</span>
                     <span className="flex items-center gap-2">
                       <button type="button" aria-label={`کم کردن ${item.name}`} onClick={() => setCart((prev) => ({ ...prev, [id]: Math.max(0, qty - 1) }))} className="grid size-6 place-items-center rounded border border-[var(--border-subtle)]">
@@ -139,10 +139,10 @@ export function RestaurantDemo() {
                   </li>
                 );
               })}
-              {cartTotal === 0 ? <li className="p-4 text-center text-[11px] text-muted">هنوز آیتمی انتخاب نشده است.</li> : null}
+              {cartTotal === 0 ? <li className="p-4 text-center text-3xs text-muted">هنوز آیتمی انتخاب نشده است.</li> : null}
             </ul>
 
-            <div className="mt-4 flex items-center justify-between text-[13px] font-extrabold">
+            <div className="mt-4 flex items-center justify-between text-xs font-extrabold">
               <span>جمع کل</span>
               <span className="persian-num">{formatToman(cartTotal)}</span>
             </div>
@@ -150,7 +150,7 @@ export function RestaurantDemo() {
               type="button"
               onClick={submitOrder}
               disabled={cartTotal === 0}
-              className="mt-3 h-11 w-full rounded-[var(--radius-sm)] text-[12px] font-extrabold text-white disabled:opacity-40"
+              className="mt-3 h-11 w-full rounded-[var(--radius-sm)] text-2xs font-extrabold text-white disabled:opacity-40"
               style={{ background: ACCENT }}
             >
               ارسال به آشپزخانه
@@ -178,7 +178,7 @@ export function RestaurantDemo() {
                 key: "available",
                 header: "وضعیت",
                 render: (row) => (
-                  <span className={cn("rounded-full px-2 py-1 text-[10px] font-bold", row.available ? "bg-emerald-500/15 text-emerald-600" : "bg-rose-500/15 text-rose-600")}>
+                  <span className={cn("rounded-full px-2 py-1 text-4xs font-bold", row.available ? "bg-emerald-500/15 text-emerald-600" : "bg-rose-500/15 text-rose-600")}>
                     {row.available ? "موجود" : "ناموجود"}
                   </span>
                 ),
@@ -214,9 +214,9 @@ export function RestaurantDemo() {
                   background: table.status === "مشغول" ? `${ACCENT}1a` : "transparent",
                 }}
               >
-                <span className="block text-[13px] font-extrabold">{table.name}</span>
-                <span className="block text-[10px] text-muted persian-num">{toPersianDigits(table.seats)} نفره</span>
-                <span className="mt-2 block text-[10px] font-bold">{table.status}</span>
+                <span className="block text-xs font-extrabold">{table.name}</span>
+                <span className="block text-4xs text-muted persian-num">{toPersianDigits(table.seats)} نفره</span>
+                <span className="mt-2 block text-4xs font-bold">{table.status}</span>
               </button>
             ))}
           </div>
@@ -230,7 +230,7 @@ export function RestaurantDemo() {
       content: (
         <DemoPanel title="نمایشگر آشپزخانه">
           {tickets.length === 0 ? (
-            <p className="p-8 text-center text-[12px] text-muted">
+            <p className="p-8 text-center text-2xs text-muted">
               سفارشی در آشپزخانه نیست. از ماژول «سفارش‌گیری» یک سفارش ثبت کنید.
             </p>
           ) : (
@@ -241,13 +241,13 @@ export function RestaurantDemo() {
                 return (
                   <li key={ticket.id} className="rounded-[var(--radius-md)] border-2 p-4" style={{ borderColor: late ? "#ef4444" : ACCENT }}>
                     <div className="flex items-center justify-between">
-                      <strong className="text-[12px]">{ticket.table}</strong>
-                      <span className={cn("flex items-center gap-1 text-[11px] font-extrabold persian-num", late && "text-rose-500")}>
+                      <strong className="text-2xs">{ticket.table}</strong>
+                      <span className={cn("flex items-center gap-1 text-3xs font-extrabold persian-num", late && "text-rose-500")}>
                         <Timer className="size-3.5" aria-hidden />
                         {toPersianDigits(Math.floor(seconds / 60))}:{toPersianDigits(String(seconds % 60).padStart(2, "0"))}
                       </span>
                     </div>
-                    <ul className="mt-3 space-y-1 text-[11px]">
+                    <ul className="mt-3 space-y-1 text-3xs">
                       {ticket.items.map((item) => (
                         <li key={item.name} className="flex justify-between">
                           <span>{item.name}</span>
@@ -267,7 +267,7 @@ export function RestaurantDemo() {
                         )
                       }
                       disabled={ticket.status === "آماده"}
-                      className="mt-3 h-9 w-full rounded-[var(--radius-sm)] text-[11px] font-extrabold text-white disabled:opacity-40"
+                      className="mt-3 h-9 w-full rounded-[var(--radius-sm)] text-3xs font-extrabold text-white disabled:opacity-40"
                       style={{ background: ticket.status === "آماده" ? "#10b981" : ACCENT }}
                     >
                       {ticket.status === "آماده" ? "آماده سرو" : ticket.status === "در صف" ? "شروع آماده‌سازی" : "اعلام آماده"}
@@ -277,7 +277,7 @@ export function RestaurantDemo() {
               })}
             </ul>
           )}
-          <p className="mt-4 flex items-center gap-2 text-[11px] text-muted">
+          <p className="mt-4 flex items-center gap-2 text-3xs text-muted">
             <ChefHat className="size-3.5" aria-hidden />
             در نسخه کامل، KDS روی نمایشگر آشپزخانه با هشدار صوتی تأخیر نصب می‌شود.
           </p>
@@ -294,7 +294,7 @@ export function RestaurantDemo() {
             {STOCK.map((item) => {
               const low = item.stock <= item.reorder;
               return (
-                <li key={item.id} className="flex items-center justify-between rounded-[var(--radius-sm)] bg-[var(--surface-sunken)] p-3 text-[12px]">
+                <li key={item.id} className="flex items-center justify-between rounded-[var(--radius-sm)] bg-[var(--surface-sunken)] p-3 text-2xs">
                   <span className="font-bold">{item.name}</span>
                   <span className={cn("persian-num", low && "font-extrabold text-rose-500")}>
                     {toPersianDigits(item.stock)} {item.unit}
@@ -319,7 +319,7 @@ export function RestaurantDemo() {
                 const percent = [88, 72, 61, 48, 34][index]!;
                 return (
                   <li key={item.id}>
-                    <div className="flex justify-between text-[11px] font-bold">
+                    <div className="flex justify-between text-3xs font-bold">
                       <span>{item.name}</span>
                       <span className="persian-num">{toPersianDigits(percent)} پرس</span>
                     </div>

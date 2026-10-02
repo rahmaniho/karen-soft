@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Hero } from "@/components/sections/hero";
+import { ChapPromoSection } from "@/components/sections/chap-promo";
 import {
   ContactSection,
   DemoSpotlight,
@@ -31,6 +32,7 @@ export default function HomePage() {
       <DemoSpotlight />
       <ProductsSection />
       <IndustryShowcase />
+      <ChapPromoSection />
       <PortfolioSection />
       <ProcessSection />
       <TestimonialSection />

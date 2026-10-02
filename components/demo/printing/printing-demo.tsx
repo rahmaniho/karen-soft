@@ -130,8 +130,8 @@ export function PrintingDemo() {
                 <li key={machine.id} className="flex items-center gap-3 rounded-[var(--radius-md)] bg-[var(--surface-sunken)] p-4">
                   <Gauge className="size-5" style={{ color: ACCENT }} aria-hidden />
                   <div className="min-w-0 flex-1">
-                    <p className="truncate text-[12px] font-extrabold">{machine.name}</p>
-                    <p className="text-[10px] text-muted persian-num">
+                    <p className="truncate text-2xs font-extrabold">{machine.name}</p>
+                    <p className="text-4xs text-muted persian-num">
                       ظرفیت {formatNumber(machine.capacityPerHour)} متر بر ساعت
                     </p>
                     <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-[var(--surface-raised)]">
@@ -141,7 +141,7 @@ export function PrintingDemo() {
                       />
                     </div>
                   </div>
-                  <span className="text-[11px] font-extrabold persian-num">{toPersianDigits([86, 72, 64, 91][index]!)}٪</span>
+                  <span className="text-3xs font-extrabold persian-num">{toPersianDigits([86, 72, 64, 91][index]!)}٪</span>
                 </li>
               ))}
             </ul>
@@ -178,7 +178,7 @@ export function PrintingDemo() {
                   key: "stage",
                   header: "مرحله",
                   render: (row) => (
-                    <span className="rounded-full px-2 py-1 text-[10px] font-bold" style={{ background: `${ACCENT}1f`, color: ACCENT }}>
+                    <span className="rounded-full px-2 py-1 text-4xs font-bold" style={{ background: `${ACCENT}1f`, color: ACCENT }}>
                       {PRINT_STAGES.find((s) => s.id === row.stage)?.title}
                     </span>
                   ),
@@ -198,7 +198,7 @@ export function PrintingDemo() {
           title="تایم‌لاین هفتگی"
           action={
             <div className="flex items-center gap-2">
-              <span className="text-[11px] text-muted">بزرگ‌نمایی</span>
+              <span className="text-3xs text-muted">بزرگ‌نمایی</span>
               <input
                 type="range"
                 min={1}
@@ -214,7 +214,7 @@ export function PrintingDemo() {
         >
           <div className="scrollbar-thin overflow-x-auto">
             <div style={{ width: `${zoom * 100}%`, minWidth: "640px" }}>
-              <div className="mb-2 grid grid-cols-6 text-[10px] text-muted">
+              <div className="mb-2 grid grid-cols-6 text-4xs text-muted">
                 {["شنبه", "یکشنبه", "دوشنبه", "سه‌شنبه", "چهارشنبه", "پنجشنبه"].map((day) => (
                   <span key={day} className="border-s border-[var(--border-subtle)] ps-2">{day}</span>
                 ))}
@@ -222,7 +222,7 @@ export function PrintingDemo() {
               <ul className="space-y-2">
                 {PRINT_MACHINES.map((machine, machineIndex) => (
                   <li key={machine.id} className="rounded-[var(--radius-md)] bg-[var(--surface-sunken)] p-2">
-                    <p className="mb-1.5 text-[11px] font-extrabold">{machine.name}</p>
+                    <p className="mb-1.5 text-3xs font-extrabold">{machine.name}</p>
                     <div className="relative h-9 rounded bg-[var(--surface-raised)]">
                       {orders
                         .filter((order) => order.machine === machine.name && order.stage !== "delivered")
@@ -231,7 +231,7 @@ export function PrintingDemo() {
                           <span
                             key={order.id}
                             title={`${order.id} — ${order.customer}`}
-                            className="absolute top-1 flex h-7 items-center rounded px-2 text-[9px] font-bold text-white"
+                            className="absolute top-1 flex h-7 items-center rounded px-2 text-5xs font-bold text-white"
                             style={{
                               insetInlineStart: `${(index * 30 + machineIndex * 4) % 70}%`,
                               width: `${18 + (order.colors * 2)}%`,
@@ -258,7 +258,7 @@ export function PrintingDemo() {
         <div className="grid gap-5 lg:grid-cols-2">
           <DemoPanel title={`چک‌لیست کنترل کیفی (${toPersianDigits(qcPassed)}/${toPersianDigits(QC_CHECKLIST.length)} تأیید)`}>
             <Checklist items={QC_CHECKLIST} state={qc} onToggle={(id, value) => setQc((prev) => ({ ...prev, [id]: value }))} accent={ACCENT} />
-            <p aria-live="polite" className="mt-4 rounded-[var(--radius-sm)] bg-[var(--surface-sunken)] p-3 text-[11px] font-bold">
+            <p aria-live="polite" className="mt-4 rounded-[var(--radius-sm)] bg-[var(--surface-sunken)] p-3 text-3xs font-bold">
               {qcPassed === QC_CHECKLIST.length
                 ? "✅ کار آماده تحویل به انبار است."
                 : Object.values(qc).includes("fail")
@@ -272,7 +272,7 @@ export function PrintingDemo() {
                 value={wasteReason}
                 onChange={(e) => setWasteReason(e.target.value)}
                 aria-label="علت ضایعات"
-                className="h-10 flex-1 rounded-[var(--radius-sm)] border border-[var(--border-subtle)] bg-[var(--surface-sunken)] px-3 text-[12px]"
+                className="h-10 flex-1 rounded-[var(--radius-sm)] border border-[var(--border-subtle)] bg-[var(--surface-sunken)] px-3 text-2xs"
               >
                 {WASTE_REASONS.map((reason) => (
                   <option key={reason}>{reason}</option>
@@ -284,12 +284,12 @@ export function PrintingDemo() {
                 value={wasteMeters}
                 onChange={(e) => setWasteMeters(Number(e.target.value))}
                 aria-label="متراژ ضایعات"
-                className="h-10 w-28 rounded-[var(--radius-sm)] border border-[var(--border-subtle)] bg-[var(--surface-sunken)] px-3 text-[12px]"
+                className="h-10 w-28 rounded-[var(--radius-sm)] border border-[var(--border-subtle)] bg-[var(--surface-sunken)] px-3 text-2xs"
               />
               <button
                 type="button"
                 onClick={() => setWaste((prev) => [...prev, { reason: wasteReason, meters: wasteMeters }])}
-                className="h-10 rounded-[var(--radius-sm)] px-4 text-[12px] font-extrabold text-white"
+                className="h-10 rounded-[var(--radius-sm)] px-4 text-2xs font-extrabold text-white"
                 style={{ background: ACCENT }}
               >
                 ثبت
@@ -297,7 +297,7 @@ export function PrintingDemo() {
             </div>
             <ul className="mt-4 space-y-2">
               {waste.map((item, index) => (
-                <li key={`${item.reason}-${index}`} className="flex items-center justify-between rounded-[var(--radius-sm)] bg-[var(--surface-sunken)] p-3 text-[12px]">
+                <li key={`${item.reason}-${index}`} className="flex items-center justify-between rounded-[var(--radius-sm)] bg-[var(--surface-sunken)] p-3 text-2xs">
                   <span className="flex items-center gap-2">
                     <AlertTriangle className="size-3.5 text-amber-500" aria-hidden />
                     {item.reason}
@@ -305,9 +305,9 @@ export function PrintingDemo() {
                   <span className="persian-num font-bold">{formatNumber(item.meters)} متر</span>
                 </li>
               ))}
-              {waste.length === 0 ? <li className="p-3 text-center text-[11px] text-muted">ضایعاتی ثبت نشده است.</li> : null}
+              {waste.length === 0 ? <li className="p-3 text-center text-3xs text-muted">ضایعاتی ثبت نشده است.</li> : null}
             </ul>
-            <p className="mt-3 text-[12px] font-extrabold persian-num">جمع ضایعات: {formatNumber(totalWaste)} متر</p>
+            <p className="mt-3 text-2xs font-extrabold persian-num">جمع ضایعات: {formatNumber(totalWaste)} متر</p>
           </DemoPanel>
         </div>
       ),
@@ -345,16 +345,16 @@ export function PrintingDemo() {
           <DemoPanel title="محاسبه بهای تمام‌شده">
             <ul className="space-y-2">
               {costBreakdown.rows.map((row) => (
-                <li key={row.label} className="flex items-center justify-between rounded-[var(--radius-sm)] bg-[var(--surface-sunken)] p-3 text-[12px]">
+                <li key={row.label} className="flex items-center justify-between rounded-[var(--radius-sm)] bg-[var(--surface-sunken)] p-3 text-2xs">
                   <span>{row.label}</span>
                   <span className="persian-num font-bold">{formatToman(Math.round(row.value))}</span>
                 </li>
               ))}
             </ul>
             <div className="mt-4 rounded-[var(--radius-md)] p-4 text-white" style={{ background: ACCENT }}>
-              <p className="text-[11px] opacity-80">بهای تمام‌شده کل</p>
+              <p className="text-3xs opacity-80">بهای تمام‌شده کل</p>
               <strong className="block text-2xl persian-num">{formatToman(Math.round(costBreakdown.total))}</strong>
-              <p className="mt-1 text-[11px] persian-num opacity-80">
+              <p className="mt-1 text-3xs persian-num opacity-80">
                 هر متر: {formatToman(Math.round(costBreakdown.perMeter))}
               </p>
             </div>
@@ -391,7 +391,7 @@ export function PrintingDemo() {
                   const percent = [38, 24, 18, 12, 8][index]!;
                   return (
                     <li key={reason}>
-                      <div className="flex justify-between text-[11px] font-bold">
+                      <div className="flex justify-between text-3xs font-bold">
                         <span>{reason}</span>
                         <span className="persian-num">{toPersianDigits(percent)}٪</span>
                       </div>
@@ -414,7 +414,7 @@ export function PrintingDemo() {
                 <div key={item.title} className="flex items-center gap-3 rounded-[var(--radius-md)] bg-[var(--surface-sunken)] p-4">
                   <item.icon className="size-5" style={{ color: ACCENT }} aria-hidden />
                   <div>
-                    <p className="text-[10px] text-muted">{item.title}</p>
+                    <p className="text-4xs text-muted">{item.title}</p>
                     <strong className="text-base persian-num">{item.value}</strong>
                   </div>
                 </div>
@@ -446,7 +446,7 @@ function StockList({ items }: { items: { id: string; name: string; stock: number
         const ratio = Math.min(100, (item.stock / (item.reorder * 3)) * 100);
         return (
           <li key={item.id} className="rounded-[var(--radius-sm)] bg-[var(--surface-sunken)] p-3">
-            <div className="flex items-center justify-between text-[12px] font-bold">
+            <div className="flex items-center justify-between text-2xs font-bold">
               <span>{item.name}</span>
               <span className={low ? "text-rose-500 persian-num" : "persian-num"}>
                 {formatNumber(item.stock)} {item.unit}
@@ -455,7 +455,7 @@ function StockList({ items }: { items: { id: string; name: string; stock: number
             <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-[var(--surface-raised)]">
               <span className="block h-full rounded-full" style={{ width: `${ratio}%`, background: low ? "#ef4444" : ACCENT }} />
             </div>
-            {low ? <p className="mt-1 text-[10px] font-bold text-rose-500">زیر نقطه سفارش — نیاز به خرید</p> : null}
+            {low ? <p className="mt-1 text-4xs font-bold text-rose-500">زیر نقطه سفارش — نیاز به خرید</p> : null}
           </li>
         );
       })}

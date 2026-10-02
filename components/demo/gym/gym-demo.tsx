@@ -97,8 +97,8 @@ export function GymDemo() {
               {expiring.map((member) => (
                 <li key={member.id} className="flex items-center justify-between rounded-[var(--radius-md)] bg-[var(--surface-sunken)] p-3">
                   <div>
-                    <p className="text-[12px] font-extrabold">{member.name}</p>
-                    <p className="text-[10px] text-muted persian-num">
+                    <p className="text-2xs font-extrabold">{member.name}</p>
+                    <p className="text-4xs text-muted persian-num">
                       {member.plan} — {toPersianDigits(member.expiresIn)} روز مانده
                     </p>
                   </div>
@@ -108,7 +108,7 @@ export function GymDemo() {
                       setMembers((prev) => prev.map((m) => (m.id === member.id ? { ...m, expiresIn: m.expiresIn + 30 } : m)));
                       setLog((prev) => [`اشتراک ${member.name} به مدت ۳۰ روز تمدید شد.`, ...prev]);
                     }}
-                    className="inline-flex h-9 items-center gap-1.5 rounded-[var(--radius-sm)] px-3 text-[11px] font-extrabold text-white"
+                    className="inline-flex h-9 items-center gap-1.5 rounded-[var(--radius-sm)] px-3 text-3xs font-extrabold text-white"
                     style={{ background: ACCENT }}
                   >
                     <RefreshCw className="size-3.5" aria-hidden />
@@ -116,13 +116,13 @@ export function GymDemo() {
                   </button>
                 </li>
               ))}
-              {expiring.length === 0 ? <li className="p-4 text-center text-[11px] text-muted">همه اشتراک‌ها معتبرند.</li> : null}
+              {expiring.length === 0 ? <li className="p-4 text-center text-3xs text-muted">همه اشتراک‌ها معتبرند.</li> : null}
             </ul>
           </DemoPanel>
           <DemoPanel title="پلن‌ها">
             <ul className="space-y-2">
               {Object.entries(PLAN_PRICES).map(([plan, price]) => (
-                <li key={plan} className="flex items-center justify-between rounded-[var(--radius-sm)] bg-[var(--surface-sunken)] p-3 text-[12px]">
+                <li key={plan} className="flex items-center justify-between rounded-[var(--radius-sm)] bg-[var(--surface-sunken)] p-3 text-2xs">
                   <span className="font-bold">{plan}</span>
                   <span className="persian-num">{formatToman(price)} / ماهانه</span>
                 </li>
@@ -140,9 +140,9 @@ export function GymDemo() {
         <div className="grid gap-4 sm:grid-cols-2">
           {WORKOUT_TEMPLATES.map((template) => (
             <article key={template.id} className="surface-card p-5">
-              <h3 className="text-[13px] font-extrabold">{template.name}</h3>
-              <p className="mt-1 text-[11px] text-muted">{template.sessions} · {template.focus}</p>
-              <label className="mt-4 block text-[11px] font-bold">
+              <h3 className="text-xs font-extrabold">{template.name}</h3>
+              <p className="mt-1 text-3xs text-muted">{template.sessions} · {template.focus}</p>
+              <label className="mt-4 block text-3xs font-bold">
                 تخصیص به عضو
                 <select
                   defaultValue=""
@@ -153,7 +153,7 @@ export function GymDemo() {
                     setLog((prev) => [`برنامه «${template.name}» به ${members.find((m) => m.id === id)?.name} تخصیص یافت.`, ...prev]);
                     event.target.value = "";
                   }}
-                  className="mt-2 h-10 w-full rounded-[var(--radius-sm)] border border-[var(--border-subtle)] bg-[var(--surface-sunken)] px-3 text-[12px]"
+                  className="mt-2 h-10 w-full rounded-[var(--radius-sm)] border border-[var(--border-subtle)] bg-[var(--surface-sunken)] px-3 text-2xs"
                 >
                   <option value="">انتخاب عضو…</option>
                   {members.map((member) => (
@@ -177,7 +177,7 @@ export function GymDemo() {
           <DemoPanel title="ایستگاه ورود">
             <div className="grid place-items-center rounded-[var(--radius-lg)] bg-[var(--surface-sunken)] p-8">
               <QrCode className={cn("size-24", scanning && "animate-pulse")} style={{ color: ACCENT }} aria-hidden />
-              <p aria-live="polite" className="mt-3 text-[12px] font-bold">
+              <p aria-live="polite" className="mt-3 text-2xs font-bold">
                 {scanning ? "در حال اسکن کد عضو…" : "کد QR عضو را اسکن کنید"}
               </p>
             </div>
@@ -188,7 +188,7 @@ export function GymDemo() {
                     type="button"
                     disabled={member.checkedIn}
                     onClick={() => void checkIn(member)}
-                    className="h-10 w-full rounded-[var(--radius-sm)] border border-[var(--border-subtle)] text-[11px] font-bold transition-colors hover:border-current disabled:opacity-40"
+                    className="h-10 w-full rounded-[var(--radius-sm)] border border-[var(--border-subtle)] text-3xs font-bold transition-colors hover:border-current disabled:opacity-40"
                     style={{ color: member.checkedIn ? "#10b981" : undefined }}
                   >
                     {member.checkedIn ? `✔ ${member.name}` : `اسکن ${member.name}`}
@@ -200,11 +200,11 @@ export function GymDemo() {
           <DemoPanel title="گزارش رویدادها">
             <ul aria-live="polite" className="space-y-2">
               {log.map((entry, index) => (
-                <li key={index} className="rounded-[var(--radius-sm)] bg-[var(--surface-sunken)] p-3 text-[11px]">
+                <li key={index} className="rounded-[var(--radius-sm)] bg-[var(--surface-sunken)] p-3 text-3xs">
                   {entry}
                 </li>
               ))}
-              {log.length === 0 ? <li className="p-4 text-center text-[11px] text-muted">رویدادی ثبت نشده است.</li> : null}
+              {log.length === 0 ? <li className="p-4 text-center text-3xs text-muted">رویدادی ثبت نشده است.</li> : null}
             </ul>
           </DemoPanel>
         </div>
@@ -220,11 +220,11 @@ export function GymDemo() {
             const students = members.filter((m) => m.coach === coach);
             return (
               <article key={coach} className="surface-card p-5">
-                <h3 className="text-[13px] font-extrabold">{coach}</h3>
-                <p className="mt-1 text-[11px] text-muted persian-num">{toPersianDigits(students.length)} شاگرد فعال</p>
+                <h3 className="text-xs font-extrabold">{coach}</h3>
+                <p className="mt-1 text-3xs text-muted persian-num">{toPersianDigits(students.length)} شاگرد فعال</p>
                 <ul className="mt-3 flex flex-wrap gap-1.5">
                   {students.map((student) => (
-                    <li key={student.id} className="rounded-full px-2.5 py-1 text-[10px] font-bold" style={{ background: `${ACCENT}22`, color: "#4d7c0f" }}>
+                    <li key={student.id} className="rounded-full px-2.5 py-1 text-4xs font-bold" style={{ background: `${ACCENT}22`, color: "#4d7c0f" }}>
                       {student.name}
                     </li>
                   ))}

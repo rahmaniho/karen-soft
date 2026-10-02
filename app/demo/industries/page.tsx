@@ -23,14 +23,14 @@ export default function IndustriesGalleryPage() {
         <section className="relative overflow-hidden py-16 lg:py-20">
           <div className="grid-backdrop pointer-events-none absolute inset-0" aria-hidden />
           <div className="container-page relative text-center">
-            <span className="inline-flex items-center gap-2 rounded-full border border-[var(--border-subtle)] bg-[var(--surface-raised)]/80 px-3.5 py-2 text-[11px] font-extrabold">
+            <span className="inline-flex items-center gap-2 rounded-full border border-[var(--border-subtle)] bg-[var(--surface-raised)]/80 px-3.5 py-2 text-3xs font-extrabold">
               <Palette className="size-3.5 text-brand-500" aria-hidden />
               گالری نمونه طراحی
             </span>
             <h1 className="mx-auto mt-6 max-w-3xl text-4xl font-extrabold leading-tight text-balance sm:text-5xl">
               برای هر صنعت، یک <span className="text-brand-600 dark:text-brand-400">زبان بصری</span> متفاوت
             </h1>
-            <p className="mx-auto mt-5 max-w-xl text-[15px] leading-loose text-muted">
+            <p className="mx-auto mt-5 max-w-xl text-md leading-loose text-muted">
               دوازده نمونه‌سایت کامل و قابل مرور. رنگ، فونت و ریتم حرکتی هرکدام متناسب با مخاطب همان صنعت طراحی شده است.
             </p>
           </div>

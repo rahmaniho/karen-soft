@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ChevronDown, Menu, Phone, X } from "lucide-react";
-import { NAV_LINKS, SITE } from "@/lib/constants";
+import { CHAP_LINKS, NAV_LINKS, SITE } from "@/lib/constants";
 import { SOLUTIONS } from "@/lib/solutions";
 import { PRODUCTS } from "@/lib/products";
 import { INDUSTRIES } from "@/lib/industries";
@@ -60,8 +60,8 @@ export function SiteHeader() {
         <Link href="/" className="flex shrink-0 items-center gap-2.5" aria-label="صفحه اصلی کارن سافت">
           <Image src="/images/logo.png" alt="لوگوی کارن سافت" width={44} height={44} className="size-11 object-contain" priority />
           <span className="flex flex-col leading-tight">
-            <strong className="text-[15px]">{SITE.name}</strong>
-            <small className="text-[8px] font-extrabold tracking-[3px] text-brand-600">KAREN SOFT</small>
+            <strong className="text-md">{SITE.name}</strong>
+            <small className="text-6xs font-extrabold tracking-[3px] text-brand-600">KAREN SOFT</small>
           </span>
         </Link>
 
@@ -73,12 +73,17 @@ export function SiteHeader() {
                 aria-haspopup={link.mega ? "true" : undefined}
                 aria-expanded={link.mega ? openMega === link.mega : undefined}
                 className={cn(
-                  "relative flex items-center gap-1 rounded-[var(--radius-sm)] px-3 py-2 text-[13px] font-bold transition-colors duration-[150ms]",
+                  "relative flex items-center gap-1 rounded-[var(--radius-sm)] px-3 py-2 text-xs font-bold transition-colors duration-[150ms]",
                   isActive(link.href) ? "text-brand-600 dark:text-brand-300" : "text-[color:var(--text-secondary)] hover:text-brand-600",
                   link.highlight && "text-brand-600 dark:text-brand-300",
                 )}
               >
                 {link.label}
+                {link.badge ? (
+                  <span className="rounded-full bg-ink-900 px-1.5 py-0.5 text-6xs font-bold uppercase tracking-wide text-white dark:bg-white dark:text-ink-900">
+                    {link.badge}
+                  </span>
+                ) : null}
                 {link.highlight ? <span className="size-1.5 rounded-full bg-emerald-500" aria-hidden /> : null}
                 {link.mega ? <ChevronDown className="size-3.5 opacity-60" aria-hidden /> : null}
                 {isActive(link.href) ? (
@@ -96,7 +101,7 @@ export function SiteHeader() {
         <div className="flex items-center gap-2">
           <a
             href={`tel:${SITE.phone}`}
-            className="hidden items-center gap-1.5 rounded-full border border-[var(--border-subtle)] px-3 py-2 text-[12px] font-extrabold text-muted transition-colors hover:border-brand-400 hover:text-brand-600 xl:inline-flex"
+            className="hidden items-center gap-1.5 rounded-full border border-[var(--border-subtle)] px-3 py-2 text-2xs font-extrabold text-muted transition-colors hover:border-brand-400 hover:text-brand-600 xl:inline-flex"
           >
             <Phone className="size-3.5" aria-hidden />
             {SITE.phoneDisplay}
@@ -189,7 +194,7 @@ function MobileNav({ onNavigate }: { onNavigate: () => void }) {
                   <Link
                     href={item.href}
                     onClick={onNavigate}
-                    className="block rounded-[var(--radius-sm)] px-3 py-2.5 text-[13px] font-bold text-muted hover:bg-[var(--surface-sunken)]"
+                    className="block rounded-[var(--radius-sm)] px-3 py-2.5 text-xs font-bold text-muted hover:bg-[var(--surface-sunken)]"
                   >
                     {item.label}
                   </Link>
@@ -199,6 +204,12 @@ function MobileNav({ onNavigate }: { onNavigate: () => void }) {
           ) : null}
         </div>
       ))}
+      {CHAP_LINKS[0] ? (
+        <Link href="/print" onClick={onNavigate} className="mt-2 flex items-center justify-between rounded-[var(--radius-md)] border border-[var(--border-subtle)] p-4 text-sm font-bold">
+          <span>کارن چاپ <span className="text-3xs text-muted">· چاپ، مهر و صحافی</span></span>
+          <span aria-hidden>↩</span>
+        </Link>
+      ) : null}
       {[
         { label: "نمونه‌کارها", href: "/portfolio" },
         { label: "مجله", href: "/blog" },

@@ -49,7 +49,7 @@ export function Tabs({ items, className }: { items: TabItem[]; className?: strin
             tabIndex={active === index ? 0 : -1}
             onClick={() => setActive(index)}
             className={cn(
-              "shrink-0 rounded-full border px-4 py-2 text-[13px] font-bold transition-all duration-[250ms]",
+              "shrink-0 rounded-full border px-4 py-2 text-xs font-bold transition-all duration-[250ms]",
               active === index
                 ? "border-brand-500 bg-brand-500 text-white"
                 : "border-[var(--border-subtle)] text-muted hover:border-brand-300 hover:text-brand-600",

@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Instagram, Mail, MapPin, Phone, Send } from "lucide-react";
-import { FOOTER_LEGAL, FOOTER_RESOURCES, SERVICES, SITE } from "@/lib/constants";
+import { CHAP_LINKS, FOOTER_LEGAL, FOOTER_RESOURCES, SERVICES, SITE } from "@/lib/constants";
 import { SOLUTIONS } from "@/lib/solutions";
 import { PRODUCTS } from "@/lib/products";
 import { NewsletterForm } from "@/components/sections/newsletter-form";
@@ -9,13 +9,13 @@ import { NewsletterForm } from "@/components/sections/newsletter-form";
 export function SiteFooter() {
   return (
     <footer className="border-t border-[var(--border-subtle)] bg-ink-950 text-white">
-      <div className="container-page grid gap-12 py-16 lg:grid-cols-[1.4fr_1fr_1fr_1fr] lg:py-20">
+      <div className="container-page grid gap-12 py-16 lg:grid-cols-[1.4fr_1fr_1fr_1fr_1fr] lg:py-20">
         <div>
           <Link href="/" className="flex items-center gap-2.5" aria-label="صفحه اصلی کارن سافت">
             <Image src="/images/logo.png" alt="لوگوی کارن سافت" width={44} height={44} className="size-11 object-contain" />
             <span className="flex flex-col leading-tight">
-              <strong className="text-[15px]">{SITE.name}</strong>
-              <small className="text-[8px] font-extrabold tracking-[3px] text-brand-300">KAREN SOFT</small>
+              <strong className="text-md">{SITE.name}</strong>
+              <small className="text-6xs font-extrabold tracking-[3px] text-brand-300">KAREN SOFT</small>
             </span>
           </Link>
           <p className="mt-5 max-w-sm text-xs leading-loose text-white/60">
@@ -74,6 +74,17 @@ export function SiteFooter() {
           <FooterLink href="/demo/industries" accent>گالری صنایع</FooterLink>
         </FooterColumn>
 
+        <FooterColumn title="کارن چاپ">
+          {CHAP_LINKS.map((item) => (
+            <FooterLink key={item.href} href={item.href}>
+              {item.label}
+            </FooterLink>
+          ))}
+          <li className="pt-2 text-[11px] leading-relaxed text-white/40">
+            چاپ، مهر و صحافی در قزوین — زیرمجموعۀ کارن سافت.
+          </li>
+        </FooterColumn>
+
         <div>
           <FooterColumn title="منابع">
             {FOOTER_RESOURCES.map((item) => (
@@ -91,7 +102,7 @@ export function SiteFooter() {
       </div>
 
       <div className="border-t border-white/10">
-        <div className="container-page flex flex-wrap items-center justify-between gap-3 py-5 text-[11px] text-white/45">
+        <div className="container-page flex flex-wrap items-center justify-between gap-3 py-5 text-3xs text-white/45">
           <span>© {SITE.name} — تمامی حقوق محفوظ است.</span>
           <span>
             ساعات کاری: شنبه تا چهارشنبه {SITE.workingHours.satWed} · پنجشنبه {SITE.workingHours.thu}
@@ -116,7 +127,7 @@ function FooterLink({ href, children, accent }: { href: string; children: React.
     <li>
       <Link
         href={href}
-        className={`block py-0.5 text-[11.5px] transition-colors hover:text-white ${accent ? "font-extrabold text-brand-300" : "text-white/55"}`}
+        className={`block py-0.5 text-3xs transition-colors hover:text-white ${accent ? "font-extrabold text-brand-300" : "text-white/55"}`}
       >
         {children}
       </Link>

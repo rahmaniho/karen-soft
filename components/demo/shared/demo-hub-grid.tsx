@@ -38,7 +38,7 @@ export function DemoHubGrid({ products }: { products: Product[] }) {
               onClick={() => setFilter(item.id)}
               aria-pressed={filter === item.id}
               className={cn(
-                "rounded-full border px-4 py-2 text-[12px] font-bold transition-colors duration-[150ms]",
+                "rounded-full border px-4 py-2 text-2xs font-bold transition-colors duration-[150ms]",
                 filter === item.id
                   ? "border-brand-500 bg-brand-500 text-white"
                   : "border-[var(--border-subtle)] text-muted hover:border-brand-300 hover:text-brand-600",
@@ -60,7 +60,7 @@ export function DemoHubGrid({ products }: { products: Product[] }) {
         </label>
       </div>
 
-      <p aria-live="polite" className="mb-4 text-[12px] text-muted persian-num">
+      <p aria-live="polite" className="mb-4 text-2xs text-muted persian-num">
         {toPersianDigits(visible.length)} دمو نمایش داده می‌شود.
       </p>
 
