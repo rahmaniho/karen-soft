@@ -29,7 +29,7 @@ export function IndustryCard({ industry }: { industry: Industry }) {
       </div>
 
       <div className="flex flex-1 flex-col p-6">
-        <span className="text-[10px] font-extrabold uppercase tracking-wide text-brand-600 dark:text-brand-300">
+        <span className="text-4xs font-extrabold uppercase tracking-wide text-brand-600 dark:text-brand-300">
           {industry.categoryLabel}
         </span>
         <h3 className="mt-2 text-lg font-extrabold">
@@ -37,9 +37,9 @@ export function IndustryCard({ industry }: { industry: Industry }) {
             {industry.name}
           </Link>
         </h3>
-        <p className="mt-2 text-[13px] leading-loose text-muted">{industry.description}</p>
-        <p className="mt-3 text-[11px] font-bold text-muted">{industry.aesthetic}</p>
-        <span className="mt-5 inline-flex items-center gap-1.5 text-[12px] font-extrabold text-brand-600 dark:text-brand-300">
+        <p className="mt-2 text-xs leading-loose text-muted">{industry.description}</p>
+        <p className="mt-3 text-3xs font-bold text-muted">{industry.aesthetic}</p>
+        <span className="mt-5 inline-flex items-center gap-1.5 text-2xs font-extrabold text-brand-600 dark:text-brand-300">
           مشاهده دموی کامل
           <ArrowLeft className="size-3.5 transition-transform group-hover:-translate-x-1" aria-hidden />
         </span>

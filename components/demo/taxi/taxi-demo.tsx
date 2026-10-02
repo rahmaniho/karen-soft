@@ -90,7 +90,7 @@ export function TaxiDemo() {
               {drivers.map((driver) => (
                 <span
                   key={driver.id}
-                  className="absolute grid size-9 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full text-[9px] font-extrabold text-white transition-all duration-[1200ms] ease-linear"
+                  className="absolute grid size-9 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full text-5xs font-extrabold text-white transition-all duration-[1200ms] ease-linear"
                   style={{
                     insetInlineStart: `${driver.x}%`,
                     top: `${driver.y}%`,
@@ -102,7 +102,7 @@ export function TaxiDemo() {
                 </span>
               ))}
             </div>
-            <ul className="mt-3 flex flex-wrap gap-3 text-[11px]">
+            <ul className="mt-3 flex flex-wrap gap-3 text-3xs">
               {[
                 { color: "#10b981", label: "آزاد" },
                 { color: ACCENT, label: "در سفر" },
@@ -118,12 +118,12 @@ export function TaxiDemo() {
           <DemoPanel title="پیامک‌های ارسال‌شده">
             <ul aria-live="polite" className="space-y-2">
               {log.map((entry, index) => (
-                <li key={index} className="flex gap-2 rounded-[var(--radius-sm)] bg-[var(--surface-sunken)] p-3 text-[11px] leading-loose">
+                <li key={index} className="flex gap-2 rounded-[var(--radius-sm)] bg-[var(--surface-sunken)] p-3 text-3xs leading-loose">
                   <MessageSquare className="size-3.5 shrink-0" style={{ color: ACCENT }} aria-hidden />
                   {entry}
                 </li>
               ))}
-              {log.length === 0 ? <li className="p-3 text-center text-[11px] text-muted">هنوز سفری تخصیص نیافته است.</li> : null}
+              {log.length === 0 ? <li className="p-3 text-center text-3xs text-muted">هنوز سفری تخصیص نیافته است.</li> : null}
             </ul>
           </DemoPanel>
         </div>
@@ -152,10 +152,10 @@ export function TaxiDemo() {
                   <li key={ride.id} className="rounded-[var(--radius-md)] bg-[var(--surface-sunken)] p-4">
                     <div className="flex flex-wrap items-center justify-between gap-3">
                       <div>
-                        <p className="text-[12px] font-extrabold persian-num">
+                        <p className="text-2xs font-extrabold persian-num">
                           {ride.id} — {ride.passenger}
                         </p>
-                        <p className="mt-1 text-[11px] text-muted">
+                        <p className="mt-1 text-3xs text-muted">
                           {ride.from} ← {ride.to} · <span className="persian-num">{toPersianDigits(ride.distanceKm)} کیلومتر</span> · {ride.requestedAt}
                         </p>
                       </div>
@@ -167,7 +167,7 @@ export function TaxiDemo() {
                             onChange={(event) => {
                               if (event.target.value) assign(ride.id, event.target.value);
                             }}
-                            className="h-9 rounded-[var(--radius-sm)] border border-[var(--border-subtle)] bg-[var(--surface-raised)] px-2 text-[11px]"
+                            className="h-9 rounded-[var(--radius-sm)] border border-[var(--border-subtle)] bg-[var(--surface-raised)] px-2 text-3xs"
                           >
                             <option value="" disabled>
                               انتخاب راننده
@@ -180,7 +180,7 @@ export function TaxiDemo() {
                           </select>
                         </div>
                       ) : (
-                        <span className="rounded-full px-3 py-1 text-[10px] font-extrabold text-white" style={{ background: ACCENT }}>
+                        <span className="rounded-full px-3 py-1 text-4xs font-extrabold text-white" style={{ background: ACCENT }}>
                           {driver ? `${driver.name} — ${ride.status}` : ride.status}
                         </span>
                       )}
@@ -216,7 +216,7 @@ export function TaxiDemo() {
                 header: "وضعیت",
                 render: (row) => (
                   <span
-                    className="rounded-full px-2 py-1 text-[10px] font-bold text-white"
+                    className="rounded-full px-2 py-1 text-4xs font-bold text-white"
                     style={{ background: row.status === "آزاد" ? "#10b981" : row.status === "در سفر" ? ACCENT : "#94a3b8" }}
                   >
                     {row.status}
@@ -236,12 +236,12 @@ export function TaxiDemo() {
         <div className="grid gap-4 sm:grid-cols-2">
           {TAXI_CUSTOMERS.map((customer) => (
             <article key={customer.id} className="surface-card p-5">
-              <h3 className="text-[13px] font-extrabold">{customer.name}</h3>
-              <p className="mt-1 flex items-center gap-1.5 text-[11px] text-muted persian-num">
+              <h3 className="text-xs font-extrabold">{customer.name}</h3>
+              <p className="mt-1 flex items-center gap-1.5 text-3xs text-muted persian-num">
                 <Phone className="size-3" aria-hidden />
                 {customer.phone}
               </p>
-              <dl className="mt-3 flex gap-6 text-[11px]">
+              <dl className="mt-3 flex gap-6 text-3xs">
                 <div>
                   <dt className="text-muted">تعداد سفر</dt>
                   <dd className="font-extrabold persian-num">{toPersianDigits(customer.trips)}</dd>
@@ -266,26 +266,26 @@ export function TaxiDemo() {
             <div className="space-y-5">
               <RangeField label="مسافت سفر" value={distance} min={1} max={40} suffix="کیلومتر" accent={ACCENT} onChange={setDistance} />
               <RangeField label="زمان انتظار" value={waitMinutes} min={0} max={30} suffix="دقیقه" accent={ACCENT} onChange={setWaitMinutes} />
-              <label className="flex items-center gap-2 text-[12px] font-bold">
+              <label className="flex items-center gap-2 text-2xs font-bold">
                 <input type="checkbox" checked={night} onChange={(e) => setNight(e.target.checked)} className="size-4" style={{ accentColor: ACCENT }} />
                 نرخ شب‌کاری (+{toPersianDigits(TARIFF.nightSurcharge)}٪)
               </label>
             </div>
             <div className="mt-6 rounded-[var(--radius-md)] p-4 text-white" style={{ background: ACCENT }}>
-              <p className="text-[11px] opacity-85">کرایه محاسبه‌شده</p>
+              <p className="text-3xs opacity-85">کرایه محاسبه‌شده</p>
               <strong className="text-2xl persian-num">{formatToman(fare)}</strong>
             </div>
           </DemoPanel>
           <DemoPanel title="حساب رانندگان">
             <ul className="space-y-2">
               {drivers.slice(0, 5).map((driver, index) => (
-                <li key={driver.id} className="flex items-center justify-between rounded-[var(--radius-sm)] bg-[var(--surface-sunken)] p-3 text-[12px]">
+                <li key={driver.id} className="flex items-center justify-between rounded-[var(--radius-sm)] bg-[var(--surface-sunken)] p-3 text-2xs">
                   <span className="font-bold">{driver.name}</span>
                   <span className="persian-num">{formatToman([4_820_000, 3_640_000, 5_110_000, 2_980_000, 6_240_000][index]!)}</span>
                 </li>
               ))}
             </ul>
-            <p className="mt-3 text-[11px] text-muted">کمیسیون آژانس ۱۵٪ به‌صورت خودکار از هر سفر کسر می‌شود.</p>
+            <p className="mt-3 text-3xs text-muted">کمیسیون آژانس ۱۵٪ به‌صورت خودکار از هر سفر کسر می‌شود.</p>
           </DemoPanel>
         </div>
       ),
@@ -309,7 +309,7 @@ export function TaxiDemo() {
             <BarChart data={TRIP_TREND} accent={ACCENT} unit="سفر" />
           </DemoPanel>
           <DemoPanel title="خلاصه">
-            <p className="flex items-center gap-2 text-[12px] text-muted">
+            <p className="flex items-center gap-2 text-2xs text-muted">
               <Navigation className="size-4" style={{ color: ACCENT }} aria-hidden />
               بیشترین تقاضا بین ساعت ۱۷ تا ۲۰ است؛ پیشنهاد می‌شود شیفت عصر با دو راننده بیشتر برنامه‌ریزی شود.
             </p>

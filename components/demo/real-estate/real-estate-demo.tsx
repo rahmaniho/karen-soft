@@ -61,7 +61,7 @@ export function RealEstateDemo() {
                 const count = properties.filter((p) => p.district === district).length;
                 return (
                   <li key={district}>
-                    <div className="flex justify-between text-[11px] font-bold">
+                    <div className="flex justify-between text-3xs font-bold">
                       <span>{district}</span>
                       <span className="persian-num">{toPersianDigits(count)} فایل</span>
                     </div>
@@ -87,10 +87,10 @@ export function RealEstateDemo() {
               <div className="h-28" style={{ background: `linear-gradient(140deg, ${ACCENT}55, ${ACCENT}15)` }} aria-hidden />
               <div className="p-4">
                 <div className="flex items-center justify-between">
-                  <span className="text-[10px] font-bold text-muted persian-num">{property.id}</span>
+                  <span className="text-4xs font-bold text-muted persian-num">{property.id}</span>
                   <span
                     className={cn(
-                      "rounded-full px-2 py-0.5 text-[9px] font-bold",
+                      "rounded-full px-2 py-0.5 text-5xs font-bold",
                       property.status === "فعال" && "bg-emerald-500/15 text-emerald-600",
                       property.status === "رزرو" && "bg-amber-500/15 text-amber-600",
                       property.status === "فروخته‌شده" && "bg-slate-500/15 text-slate-500",
@@ -99,11 +99,11 @@ export function RealEstateDemo() {
                     {property.status}
                   </span>
                 </div>
-                <h3 className="mt-1 text-[13px] font-extrabold">{property.title}</h3>
-                <p className="mt-1 text-[11px] text-muted persian-num">
+                <h3 className="mt-1 text-xs font-extrabold">{property.title}</h3>
+                <p className="mt-1 text-3xs text-muted persian-num">
                   {property.district} · {toPersianDigits(property.area)} متر · {toPersianDigits(property.rooms)} خواب
                 </p>
-                <p className="mt-2 text-[12px] font-extrabold persian-num" style={{ color: ACCENT }}>
+                <p className="mt-2 text-2xs font-extrabold persian-num" style={{ color: ACCENT }}>
                   {formatToman(property.price)}
                 </p>
               </div>
@@ -132,8 +132,8 @@ export function RealEstateDemo() {
                     )}
                     style={buyerId === item.id ? { background: ACCENT } : undefined}
                   >
-                    <span className="block text-[12px] font-extrabold">{item.name}</span>
-                    <span className="block text-[10px] persian-num opacity-80">
+                    <span className="block text-2xs font-extrabold">{item.name}</span>
+                    <span className="block text-4xs persian-num opacity-80">
                       بودجه {formatToman(item.budget)} · حداقل {toPersianDigits(item.minArea)} متر · {item.district}
                     </span>
                   </button>
@@ -146,13 +146,13 @@ export function RealEstateDemo() {
               {matches.map(({ property, score }) => (
                 <li key={property.id} className="rounded-[var(--radius-md)] bg-[var(--surface-sunken)] p-3">
                   <div className="flex items-center justify-between">
-                    <span className="text-[12px] font-extrabold">{property.title}</span>
-                    <span className="flex items-center gap-1 text-[11px] font-extrabold persian-num" style={{ color: ACCENT }}>
+                    <span className="text-2xs font-extrabold">{property.title}</span>
+                    <span className="flex items-center gap-1 text-3xs font-extrabold persian-num" style={{ color: ACCENT }}>
                       <Sparkles className="size-3.5" aria-hidden />
                       {toPersianDigits(score)}٪ تطابق
                     </span>
                   </div>
-                  <p className="mt-1 text-[10px] text-muted persian-num">
+                  <p className="mt-1 text-4xs text-muted persian-num">
                     {formatToman(property.price)} · {toPersianDigits(property.area)} متر · {property.district}
                   </p>
                   <div className="mt-2 flex gap-2">
@@ -164,7 +164,7 @@ export function RealEstateDemo() {
                           { id: `v-${prev.length + 1}`, property: property.title, buyer: buyer.name, date: "۱۴۰۵/۰۷/۲۰", agent: AGENTS[prev.length % AGENTS.length]!, result: "در انتظار" },
                         ])
                       }
-                      className="inline-flex h-8 items-center gap-1 rounded-[var(--radius-sm)] px-3 text-[10px] font-extrabold text-white"
+                      className="inline-flex h-8 items-center gap-1 rounded-[var(--radius-sm)] px-3 text-4xs font-extrabold text-white"
                       style={{ background: ACCENT }}
                     >
                       <CalendarPlus className="size-3" aria-hidden />
@@ -179,7 +179,7 @@ export function RealEstateDemo() {
                           { id: `q-${prev.length + 1}`, property: property.title, buyer: buyer.name, commission: Math.round(property.price * 0.005) },
                         ]);
                       }}
-                      className="inline-flex h-8 items-center gap-1 rounded-[var(--radius-sm)] border border-[var(--border-subtle)] px-3 text-[10px] font-extrabold"
+                      className="inline-flex h-8 items-center gap-1 rounded-[var(--radius-sm)] border border-[var(--border-subtle)] px-3 text-4xs font-extrabold"
                     >
                       <FileSignature className="size-3" aria-hidden />
                       تنظیم قرارداد
@@ -218,16 +218,16 @@ export function RealEstateDemo() {
       content: (
         <DemoPanel title="قراردادها">
           {contracts.length === 0 ? (
-            <p className="p-8 text-center text-[12px] text-muted">
+            <p className="p-8 text-center text-2xs text-muted">
               هنوز قراردادی ثبت نشده است. از ماژول «مشتریان و تطبیق» یک قرارداد بسازید.
             </p>
           ) : (
             <ul className="space-y-2">
               {contracts.map((contract) => (
-                <li key={contract.id} className="flex items-center justify-between rounded-[var(--radius-md)] bg-[var(--surface-sunken)] p-4 text-[12px]">
+                <li key={contract.id} className="flex items-center justify-between rounded-[var(--radius-md)] bg-[var(--surface-sunken)] p-4 text-2xs">
                   <span>
                     <strong className="block">{contract.property}</strong>
-                    <span className="text-[10px] text-muted">خریدار: {contract.buyer}</span>
+                    <span className="text-4xs text-muted">خریدار: {contract.buyer}</span>
                   </span>
                   <span className="persian-num font-extrabold" style={{ color: ACCENT }}>
                     کمیسیون {formatToman(contract.commission)}
@@ -247,11 +247,11 @@ export function RealEstateDemo() {
         <div className="grid gap-4 sm:grid-cols-2">
           {AGENTS.map((agent, index) => (
             <article key={agent} className="surface-card p-5">
-              <h3 className="text-[13px] font-extrabold">{agent}</h3>
-              <p className="mt-2 text-[11px] text-muted persian-num">
+              <h3 className="text-xs font-extrabold">{agent}</h3>
+              <p className="mt-2 text-3xs text-muted persian-num">
                 معاملات ماه: {toPersianDigits([4, 3, 2, 5][index]!)} · نرخ تبدیل {toPersianDigits([32, 28, 21, 39][index]!)}٪
               </p>
-              <p className="mt-2 text-[14px] font-extrabold persian-num" style={{ color: ACCENT }}>
+              <p className="mt-2 text-sm font-extrabold persian-num" style={{ color: ACCENT }}>
                 {formatToman([62_000_000, 48_500_000, 31_000_000, 74_200_000][index]!)}
               </p>
             </article>

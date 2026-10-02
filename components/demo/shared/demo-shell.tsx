@@ -67,14 +67,14 @@ export function DemoShell({ productSlug, productName, emoji, accent, modules, on
           </button>
 
           <span
-            className="inline-flex shrink-0 items-center gap-1.5 rounded-full px-3 py-1.5 text-[11px] font-extrabold text-white"
+            className="inline-flex shrink-0 items-center gap-1.5 rounded-full px-3 py-1.5 text-3xs font-extrabold text-white"
             style={{ background: accent }}
           >
             <span className="size-1.5 animate-pulse rounded-full bg-white" aria-hidden />
             دموی زنده
           </span>
 
-          <h1 className="truncate text-[13px] font-extrabold">
+          <h1 className="truncate text-xs font-extrabold">
             <span aria-hidden className="me-1">{emoji}</span>
             {productName}
           </h1>
@@ -87,7 +87,7 @@ export function DemoShell({ productSlug, productName, emoji, accent, modules, on
                 sessionStorage.removeItem(storageKey);
                 setActive(0);
               }}
-              className="hidden h-9 items-center gap-1.5 rounded-[var(--radius-sm)] border border-[var(--border-subtle)] px-3 text-[11px] font-bold text-muted transition-colors hover:border-brand-400 hover:text-brand-600 sm:inline-flex"
+              className="hidden h-9 items-center gap-1.5 rounded-[var(--radius-sm)] border border-[var(--border-subtle)] px-3 text-3xs font-bold text-muted transition-colors hover:border-brand-400 hover:text-brand-600 sm:inline-flex"
             >
               <RotateCcw className="size-3.5" aria-hidden />
               بازنشانی دمو
@@ -102,21 +102,21 @@ export function DemoShell({ productSlug, productName, emoji, accent, modules, on
             </button>
             <Link
               href={`/products/${productSlug}`}
-              className="hidden h-9 items-center gap-1.5 rounded-[var(--radius-sm)] border border-[var(--border-subtle)] px-3 text-[11px] font-bold transition-colors hover:border-brand-400 hover:text-brand-600 md:inline-flex"
+              className="hidden h-9 items-center gap-1.5 rounded-[var(--radius-sm)] border border-[var(--border-subtle)] px-3 text-3xs font-bold transition-colors hover:border-brand-400 hover:text-brand-600 md:inline-flex"
             >
               <ArrowRight className="size-3.5" aria-hidden />
               صفحه محصول
             </Link>
             <Link
               href="/contact"
-              className="inline-flex h-9 items-center rounded-[var(--radius-sm)] bg-brand-600 px-3 text-[11px] font-extrabold text-white transition-colors hover:bg-brand-500"
+              className="inline-flex h-9 items-center rounded-[var(--radius-sm)] bg-brand-600 px-3 text-3xs font-extrabold text-white transition-colors hover:bg-brand-500"
             >
               درخواست نسخه کامل
             </Link>
           </div>
         </div>
 
-        <nav aria-label="مسیر" className="flex items-center gap-1.5 border-t border-[var(--border-subtle)] px-4 py-2 text-[10px] text-muted">
+        <nav aria-label="مسیر" className="flex items-center gap-1.5 border-t border-[var(--border-subtle)] px-4 py-2 text-4xs text-muted">
           <Link href="/demo" className="hover:text-brand-600">هاب دموها</Link>
           <span aria-hidden>/</span>
           <Link href={`/products/${productSlug}`} className="hover:text-brand-600">{productName}</Link>
@@ -135,7 +135,7 @@ export function DemoShell({ productSlug, productName, emoji, accent, modules, on
             "lg:sticky lg:top-[97px] lg:h-[calc(100dvh-97px)] lg:translate-x-0 lg:overflow-y-auto",
           )}
         >
-          <p className="px-3 pb-2 pt-1 text-[10px] font-extrabold text-muted">ماژول‌ها</p>
+          <p className="px-3 pb-2 pt-1 text-4xs font-extrabold text-muted">ماژول‌ها</p>
           <ul className="space-y-1">
             {modules.map((module, index) => (
               <li key={module.id}>
@@ -147,7 +147,7 @@ export function DemoShell({ productSlug, productName, emoji, accent, modules, on
                   }}
                   aria-current={active === index ? "page" : undefined}
                   className={cn(
-                    "w-full rounded-[var(--radius-sm)] px-3 py-2.5 text-start text-[12px] font-bold transition-colors",
+                    "w-full rounded-[var(--radius-sm)] px-3 py-2.5 text-start text-2xs font-bold transition-colors",
                     active === index ? "text-white" : "text-muted hover:bg-[var(--surface-sunken)]",
                   )}
                   style={active === index ? { background: accent } : undefined}
@@ -166,7 +166,7 @@ export function DemoShell({ productSlug, productName, emoji, accent, modules, on
             <div key={current.id} className="animate-reveal">
               <div className="mb-5">
                 <h2 className="text-lg font-extrabold">{current.label}</h2>
-                <p className="mt-1 text-[12px] text-muted">{current.hint}</p>
+                <p className="mt-1 text-2xs text-muted">{current.hint}</p>
               </div>
               {current.content}
             </div>
@@ -177,7 +177,7 @@ export function DemoShell({ productSlug, productName, emoji, accent, modules, on
       {/* Bottom tour controls */}
       <div className="fixed inset-x-0 bottom-0 z-30 border-t border-[var(--border-subtle)] bg-[var(--surface-raised)]/95 backdrop-blur">
         <div className="flex items-center gap-3 px-4 py-3">
-          <span className="text-[11px] text-muted persian-num">
+          <span className="text-3xs text-muted persian-num">
             گام {active + 1} از {modules.length}
           </span>
           <div className="mx-2 hidden h-1.5 flex-1 overflow-hidden rounded-full bg-[var(--surface-sunken)] sm:block">
@@ -190,7 +190,7 @@ export function DemoShell({ productSlug, productName, emoji, accent, modules, on
             <button
               type="button"
               onClick={() => setActive(0)}
-              className="h-9 rounded-[var(--radius-sm)] border border-[var(--border-subtle)] px-3 text-[11px] font-bold text-muted hover:text-brand-600"
+              className="h-9 rounded-[var(--radius-sm)] border border-[var(--border-subtle)] px-3 text-3xs font-bold text-muted hover:text-brand-600"
             >
               شروع دوباره
             </button>
@@ -198,7 +198,7 @@ export function DemoShell({ productSlug, productName, emoji, accent, modules, on
               type="button"
               onClick={() => setActive((i) => Math.max(0, i - 1))}
               disabled={active === 0}
-              className="inline-flex h-9 items-center gap-1 rounded-[var(--radius-sm)] border border-[var(--border-subtle)] px-3 text-[11px] font-bold disabled:opacity-40"
+              className="inline-flex h-9 items-center gap-1 rounded-[var(--radius-sm)] border border-[var(--border-subtle)] px-3 text-3xs font-bold disabled:opacity-40"
             >
               <ChevronRight className="size-3.5" aria-hidden />
               قبلی
@@ -207,7 +207,7 @@ export function DemoShell({ productSlug, productName, emoji, accent, modules, on
               type="button"
               onClick={() => setActive((i) => Math.min(modules.length - 1, i + 1))}
               disabled={active === modules.length - 1}
-              className="inline-flex h-9 items-center gap-1 rounded-[var(--radius-sm)] px-4 text-[11px] font-extrabold text-white disabled:opacity-40"
+              className="inline-flex h-9 items-center gap-1 rounded-[var(--radius-sm)] px-4 text-3xs font-extrabold text-white disabled:opacity-40"
               style={{ background: accent }}
             >
               بعدی
@@ -233,7 +233,7 @@ export function DemoShell({ productSlug, productName, emoji, accent, modules, on
                 <X className="size-4" aria-hidden />
               </button>
             </div>
-            <div className="mt-5 space-y-4 text-[12px] leading-loose text-muted">
+            <div className="mt-5 space-y-4 text-2xs leading-loose text-muted">
               <p>
                 تمام داده‌های این صفحه نمونه و ساختگی هستند و هیچ اتصالی به سرور واقعی ندارند. تغییرات شما فقط در
                 همین مرورگر ذخیره می‌شود و با دکمه «بازنشانی دمو» پاک می‌گردد.
@@ -245,7 +245,7 @@ export function DemoShell({ productSlug, productName, emoji, accent, modules, on
               <ul className="space-y-2">
                 {modules.map((module) => (
                   <li key={module.id} className="rounded-[var(--radius-sm)] bg-[var(--surface-sunken)] p-3">
-                    <strong className="block text-[11px] text-[color:var(--text-primary)]">{module.label}</strong>
+                    <strong className="block text-3xs text-[color:var(--text-primary)]">{module.label}</strong>
                     {module.hint}
                   </li>
                 ))}
@@ -253,7 +253,7 @@ export function DemoShell({ productSlug, productName, emoji, accent, modules, on
             </div>
             <Link
               href="/contact"
-              className="mt-6 inline-flex h-11 w-full items-center justify-center gap-2 rounded-[var(--radius-sm)] text-[12px] font-extrabold text-white"
+              className="mt-6 inline-flex h-11 w-full items-center justify-center gap-2 rounded-[var(--radius-sm)] text-2xs font-extrabold text-white"
               style={{ background: accent }}
             >
               درخواست نسخه کامل

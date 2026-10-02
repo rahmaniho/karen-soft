@@ -33,11 +33,11 @@ export function ProductCard({ product }: { product: Product }) {
           {product.name}
         </Link>
       </h3>
-      <p className="mt-2 text-[13px] leading-loose text-muted">{product.short}</p>
+      <p className="mt-2 text-xs leading-loose text-muted">{product.short}</p>
 
       <div className="mt-4 flex flex-wrap gap-1.5">
         {product.chips.map((chip) => (
-          <span key={chip} className="rounded-full border border-[var(--border-subtle)] px-2.5 py-1 text-[10px] font-bold text-muted">
+          <span key={chip} className="rounded-full border border-[var(--border-subtle)] px-2.5 py-1 text-4xs font-bold text-muted">
             {chip}
           </span>
         ))}
@@ -46,14 +46,14 @@ export function ProductCard({ product }: { product: Product }) {
       <div className="relative z-10 mt-6 flex flex-wrap gap-2 pt-1">
         <Link
           href={`/demo/${product.demoSlug}`}
-          className="inline-flex h-10 items-center gap-1.5 rounded-[var(--radius-sm)] bg-brand-600 px-4 text-[12px] font-extrabold text-white transition-colors hover:bg-brand-500"
+          className="inline-flex h-10 items-center gap-1.5 rounded-[var(--radius-sm)] bg-brand-600 px-4 text-2xs font-extrabold text-white transition-colors hover:bg-brand-500"
         >
           <PlayCircle className="size-4" aria-hidden />
           مشاهده دمو
         </Link>
         <Link
           href={`/products/${product.slug}`}
-          className="inline-flex h-10 items-center gap-1.5 rounded-[var(--radius-sm)] border border-[var(--border-subtle)] px-4 text-[12px] font-extrabold transition-colors hover:border-brand-400 hover:text-brand-600"
+          className="inline-flex h-10 items-center gap-1.5 rounded-[var(--radius-sm)] border border-[var(--border-subtle)] px-4 text-2xs font-extrabold transition-colors hover:border-brand-400 hover:text-brand-600"
         >
           جزئیات
           <ArrowLeft className="size-3.5" aria-hidden />

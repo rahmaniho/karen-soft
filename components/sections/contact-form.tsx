@@ -106,7 +106,7 @@ export function ContactForm() {
           {status === "loading" ? <Loader2 className="size-4 animate-spin" aria-hidden /> : <Send className="size-4" aria-hidden />}
           ارسال پیام
         </Button>
-        <p className="text-[11px] text-muted">اطلاعات شما محرمانه است و در اختیار هیچ شخص ثالثی قرار نمی‌گیرد.</p>
+        <p className="text-3xs text-muted">اطلاعات شما محرمانه است و در اختیار هیچ شخص ثالثی قرار نمی‌گیرد.</p>
       </div>
 
       <p

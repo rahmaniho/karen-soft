@@ -97,10 +97,10 @@ export function OnlineStoreDemo() {
         <div className="space-y-5">
           <DemoPanel title="افزودن محصول">
             <form onSubmit={addProduct} className="grid gap-3 sm:grid-cols-5">
-              <input name="name" required placeholder="نام محصول" aria-label="نام محصول" className="h-10 rounded-[var(--radius-sm)] border border-[var(--border-subtle)] bg-[var(--surface-sunken)] px-3 text-[12px] sm:col-span-2" />
-              <input name="price" type="number" placeholder="قیمت (تومان)" aria-label="قیمت" className="h-10 rounded-[var(--radius-sm)] border border-[var(--border-subtle)] bg-[var(--surface-sunken)] px-3 text-[12px]" />
-              <input name="stock" type="number" placeholder="موجودی" aria-label="موجودی" className="h-10 rounded-[var(--radius-sm)] border border-[var(--border-subtle)] bg-[var(--surface-sunken)] px-3 text-[12px]" />
-              <button type="submit" className="h-10 rounded-[var(--radius-sm)] text-[12px] font-extrabold text-white" style={{ background: ACCENT }}>
+              <input name="name" required placeholder="نام محصول" aria-label="نام محصول" className="h-10 rounded-[var(--radius-sm)] border border-[var(--border-subtle)] bg-[var(--surface-sunken)] px-3 text-2xs sm:col-span-2" />
+              <input name="price" type="number" placeholder="قیمت (تومان)" aria-label="قیمت" className="h-10 rounded-[var(--radius-sm)] border border-[var(--border-subtle)] bg-[var(--surface-sunken)] px-3 text-2xs" />
+              <input name="stock" type="number" placeholder="موجودی" aria-label="موجودی" className="h-10 rounded-[var(--radius-sm)] border border-[var(--border-subtle)] bg-[var(--surface-sunken)] px-3 text-2xs" />
+              <button type="submit" className="h-10 rounded-[var(--radius-sm)] text-2xs font-extrabold text-white" style={{ background: ACCENT }}>
                 انتشار محصول
               </button>
             </form>
@@ -110,16 +110,16 @@ export function OnlineStoreDemo() {
               {products.map((product) => (
                 <article key={product.id} className="rounded-[var(--radius-md)] bg-[var(--surface-sunken)] p-4">
                   <div className="h-24 rounded-[var(--radius-sm)]" style={{ background: `linear-gradient(140deg, ${ACCENT}33, ${ACCENT}0d)` }} aria-hidden />
-                  <h3 className="mt-3 text-[12px] font-extrabold">{product.name}</h3>
-                  <p className="text-[10px] text-muted">{product.category}</p>
-                  <div className="mt-2 flex items-center justify-between text-[11px]">
+                  <h3 className="mt-3 text-2xs font-extrabold">{product.name}</h3>
+                  <p className="text-4xs text-muted">{product.category}</p>
+                  <div className="mt-2 flex items-center justify-between text-3xs">
                     <span className="persian-num font-bold">{formatToman(product.price)}</span>
                     <span className={cn("persian-num", product.stock < 10 && "text-rose-500")}>موجودی {toPersianDigits(product.stock)}</span>
                   </div>
                   <button
                     type="button"
                     onClick={() => setProducts((prev) => prev.map((p) => (p.id === product.id ? { ...p, published: !p.published } : p)))}
-                    className="mt-3 h-8 w-full rounded-[var(--radius-sm)] border border-[var(--border-subtle)] text-[10px] font-bold"
+                    className="mt-3 h-8 w-full rounded-[var(--radius-sm)] border border-[var(--border-subtle)] text-4xs font-bold"
                   >
                     {product.published ? "منتشر شده — پنهان کن" : "پیش‌نویس — منتشر کن"}
                   </button>
@@ -163,7 +163,7 @@ export function OnlineStoreDemo() {
                 key: "tier",
                 header: "سطح",
                 render: (row) => (
-                  <span className="rounded-full px-2 py-1 text-[10px] font-bold" style={{ background: `${ACCENT}1f`, color: ACCENT }}>
+                  <span className="rounded-full px-2 py-1 text-4xs font-bold" style={{ background: `${ACCENT}1f`, color: ACCENT }}>
                     {row.tier}
                   </span>
                 ),
@@ -190,16 +190,16 @@ export function OnlineStoreDemo() {
             }}
             className="grid gap-3 sm:grid-cols-4"
           >
-            <input name="code" placeholder="کد تخفیف" dir="ltr" aria-label="کد تخفیف" className="h-10 rounded-[var(--radius-sm)] border border-[var(--border-subtle)] bg-[var(--surface-sunken)] px-3 text-[12px]" />
-            <input name="percent" type="number" min={1} max={90} placeholder="درصد" aria-label="درصد تخفیف" className="h-10 rounded-[var(--radius-sm)] border border-[var(--border-subtle)] bg-[var(--surface-sunken)] px-3 text-[12px]" />
-            <input name="limit" type="number" placeholder="سقف استفاده" aria-label="سقف استفاده" className="h-10 rounded-[var(--radius-sm)] border border-[var(--border-subtle)] bg-[var(--surface-sunken)] px-3 text-[12px]" />
-            <button type="submit" className="h-10 rounded-[var(--radius-sm)] text-[12px] font-extrabold text-white" style={{ background: ACCENT }}>
+            <input name="code" placeholder="کد تخفیف" dir="ltr" aria-label="کد تخفیف" className="h-10 rounded-[var(--radius-sm)] border border-[var(--border-subtle)] bg-[var(--surface-sunken)] px-3 text-2xs" />
+            <input name="percent" type="number" min={1} max={90} placeholder="درصد" aria-label="درصد تخفیف" className="h-10 rounded-[var(--radius-sm)] border border-[var(--border-subtle)] bg-[var(--surface-sunken)] px-3 text-2xs" />
+            <input name="limit" type="number" placeholder="سقف استفاده" aria-label="سقف استفاده" className="h-10 rounded-[var(--radius-sm)] border border-[var(--border-subtle)] bg-[var(--surface-sunken)] px-3 text-2xs" />
+            <button type="submit" className="h-10 rounded-[var(--radius-sm)] text-2xs font-extrabold text-white" style={{ background: ACCENT }}>
               ساخت کد
             </button>
           </form>
           <ul className="mt-4 space-y-2">
             {codes.map((code) => (
-              <li key={code.code} className="flex items-center justify-between rounded-[var(--radius-sm)] bg-[var(--surface-sunken)] p-3 text-[12px]">
+              <li key={code.code} className="flex items-center justify-between rounded-[var(--radius-sm)] bg-[var(--surface-sunken)] p-3 text-2xs">
                 <span className="flex items-center gap-2 font-extrabold">
                   <Ticket className="size-4" style={{ color: ACCENT }} aria-hidden />
                   <span dir="ltr">{code.code}</span>
@@ -228,7 +228,7 @@ export function OnlineStoreDemo() {
                 const percent = [32, 24, 18, 15, 11][index]!;
                 return (
                   <li key={category}>
-                    <div className="flex justify-between text-[11px] font-bold">
+                    <div className="flex justify-between text-3xs font-bold">
                       <span>{category}</span>
                       <span className="persian-num">{toPersianDigits(percent)}٪</span>
                     </div>

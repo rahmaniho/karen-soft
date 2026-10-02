@@ -78,7 +78,7 @@ export function KarenNetDemo() {
             <ul className="space-y-3">
               {projects.map((project) => (
                 <li key={project.id}>
-                  <div className="flex justify-between text-[11px] font-bold">
+                  <div className="flex justify-between text-3xs font-bold">
                     <span>{project.client} — {project.service}</span>
                     <span className="persian-num">{toPersianDigits(project.progress)}٪</span>
                   </div>
@@ -100,27 +100,27 @@ export function KarenNetDemo() {
         <div className="grid gap-5 lg:grid-cols-2">
           <DemoPanel title="ثبت سفارش خدمت">
             <form onSubmit={createOrder} className="space-y-3">
-              <input name="client" required placeholder="نام کسب‌وکار" aria-label="نام کسب‌وکار" className="h-10 w-full rounded-[var(--radius-sm)] border border-[var(--border-subtle)] bg-[var(--surface-sunken)] px-3 text-[12px]" />
-              <select name="service" aria-label="خدمت" className="h-10 w-full rounded-[var(--radius-sm)] border border-[var(--border-subtle)] bg-[var(--surface-sunken)] px-3 text-[12px]">
+              <input name="client" required placeholder="نام کسب‌وکار" aria-label="نام کسب‌وکار" className="h-10 w-full rounded-[var(--radius-sm)] border border-[var(--border-subtle)] bg-[var(--surface-sunken)] px-3 text-2xs" />
+              <select name="service" aria-label="خدمت" className="h-10 w-full rounded-[var(--radius-sm)] border border-[var(--border-subtle)] bg-[var(--surface-sunken)] px-3 text-2xs">
                 {SERVICES_CATALOG.map((service) => (
                   <option key={service.id} value={service.id}>
                     {service.name} — {formatToman(service.price)}
                   </option>
                 ))}
               </select>
-              <textarea name="goal" rows={3} placeholder="هدف اصلی پروژه…" aria-label="هدف پروژه" className="w-full rounded-[var(--radius-sm)] border border-[var(--border-subtle)] bg-[var(--surface-sunken)] p-3 text-[12px]" />
-              <button type="submit" className="h-10 w-full rounded-[var(--radius-sm)] text-[12px] font-extrabold text-white" style={{ background: ACCENT }}>
+              <textarea name="goal" rows={3} placeholder="هدف اصلی پروژه…" aria-label="هدف پروژه" className="w-full rounded-[var(--radius-sm)] border border-[var(--border-subtle)] bg-[var(--surface-sunken)] p-3 text-2xs" />
+              <button type="submit" className="h-10 w-full rounded-[var(--radius-sm)] text-2xs font-extrabold text-white" style={{ background: ACCENT }}>
                 ثبت سفارش و تولید بریف
               </button>
             </form>
           </DemoPanel>
           <DemoPanel title="بریف تولیدشده">
             {brief ? (
-              <pre aria-live="polite" className="whitespace-pre-wrap rounded-[var(--radius-md)] bg-[var(--surface-sunken)] p-4 text-[12px] leading-loose">
+              <pre aria-live="polite" className="whitespace-pre-wrap rounded-[var(--radius-md)] bg-[var(--surface-sunken)] p-4 text-2xs leading-loose">
                 {brief}
               </pre>
             ) : (
-              <p className="p-8 text-center text-[12px] text-muted">پس از ثبت سفارش، بریف اولیه اینجا ساخته می‌شود.</p>
+              <p className="p-8 text-center text-2xs text-muted">پس از ثبت سفارش، بریف اولیه اینجا ساخته می‌شود.</p>
             )}
           </DemoPanel>
         </div>
@@ -160,18 +160,18 @@ export function KarenNetDemo() {
             {tickets.map((ticket) => (
               <li key={ticket.id} className="flex flex-wrap items-center justify-between gap-3 rounded-[var(--radius-md)] bg-[var(--surface-sunken)] p-4">
                 <div>
-                  <p className="flex items-center gap-2 text-[12px] font-extrabold">
+                  <p className="flex items-center gap-2 text-2xs font-extrabold">
                     <LifeBuoy className="size-3.5" style={{ color: ACCENT }} aria-hidden />
                     {ticket.subject}
                   </p>
-                  <p className="text-[10px] text-muted persian-num">
+                  <p className="text-4xs text-muted persian-num">
                     {ticket.id} · {ticket.client} · اولویت {ticket.priority}
                   </p>
                 </div>
                 <div className="flex items-center gap-2">
                   <span
                     className={cn(
-                      "rounded-full px-3 py-1 text-[10px] font-bold",
+                      "rounded-full px-3 py-1 text-4xs font-bold",
                       ticket.status === "باز" && "bg-rose-500/15 text-rose-600",
                       ticket.status === "در حال بررسی" && "bg-amber-500/15 text-amber-600",
                       ticket.status === "بسته" && "bg-emerald-500/15 text-emerald-600",
@@ -187,7 +187,7 @@ export function KarenNetDemo() {
                           prev.map((t) => (t.id === ticket.id ? { ...t, status: t.status === "باز" ? "در حال بررسی" : "بسته" } : t)),
                         )
                       }
-                      className="h-9 rounded-[var(--radius-sm)] px-3 text-[11px] font-extrabold text-white"
+                      className="h-9 rounded-[var(--radius-sm)] px-3 text-3xs font-extrabold text-white"
                       style={{ background: ACCENT }}
                     >
                       {ticket.status === "باز" ? "شروع بررسی" : "بستن تیکت"}
@@ -212,7 +212,7 @@ export function KarenNetDemo() {
                 <button
                   type="button"
                   onClick={() => setMilestones((prev) => prev.map((m, i) => (i === index ? { ...m, done: !m.done } : m)))}
-                  className="flex w-full items-center gap-3 rounded-[var(--radius-md)] bg-[var(--surface-sunken)] p-3 text-start text-[12px]"
+                  className="flex w-full items-center gap-3 rounded-[var(--radius-md)] bg-[var(--surface-sunken)] p-3 text-start text-2xs"
                 >
                   {milestone.done ? (
                     <CheckCircle2 className="size-4" style={{ color: ACCENT }} aria-hidden />
@@ -224,7 +224,7 @@ export function KarenNetDemo() {
               </li>
             ))}
           </ul>
-          <p className="mt-4 text-[12px] font-extrabold persian-num">
+          <p className="mt-4 text-2xs font-extrabold persian-num">
             پیشرفت کل: {toPersianDigits(Math.round((milestones.filter((m) => m.done).length / milestones.length) * 100))}٪
           </p>
         </DemoPanel>

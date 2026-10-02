@@ -119,8 +119,8 @@ export function LawOfficeDemo() {
                       {toPersianDigits(hearing.day)}
                     </span>
                     <div>
-                      <p className="text-[12px] font-bold">{hearing.title}</p>
-                      <p className="text-[10px] text-muted persian-num">مهر ۱۴۰۵ — ساعت {hearing.time}</p>
+                      <p className="text-2xs font-bold">{hearing.title}</p>
+                      <p className="text-4xs text-muted persian-num">مهر ۱۴۰۵ — ساعت {hearing.time}</p>
                     </div>
                   </li>
                 ))}
@@ -133,7 +133,7 @@ export function LawOfficeDemo() {
                   const percent = Math.round((count / cases.length) * 100);
                   return (
                     <li key={type}>
-                      <div className="flex justify-between text-[11px] font-bold">
+                      <div className="flex justify-between text-3xs font-bold">
                         <span>{type}</span>
                         <span className="persian-num">{toPersianDigits(count)} پرونده</span>
                       </div>
@@ -157,20 +157,20 @@ export function LawOfficeDemo() {
         <div className="space-y-5">
           <DemoPanel title="ایجاد پرونده جدید">
             <form onSubmit={addCase} className="grid gap-3 sm:grid-cols-5">
-              <input name="title" required placeholder="موضوع پرونده" className="h-10 rounded-[var(--radius-sm)] border border-[var(--border-subtle)] bg-[var(--surface-sunken)] px-3 text-[12px] sm:col-span-2" aria-label="موضوع پرونده" />
-              <input name="client" placeholder="نام موکل" className="h-10 rounded-[var(--radius-sm)] border border-[var(--border-subtle)] bg-[var(--surface-sunken)] px-3 text-[12px]" aria-label="نام موکل" />
-              <select name="lawyer" aria-label="وکیل پرونده" className="h-10 rounded-[var(--radius-sm)] border border-[var(--border-subtle)] bg-[var(--surface-sunken)] px-3 text-[12px]">
+              <input name="title" required placeholder="موضوع پرونده" className="h-10 rounded-[var(--radius-sm)] border border-[var(--border-subtle)] bg-[var(--surface-sunken)] px-3 text-2xs sm:col-span-2" aria-label="موضوع پرونده" />
+              <input name="client" placeholder="نام موکل" className="h-10 rounded-[var(--radius-sm)] border border-[var(--border-subtle)] bg-[var(--surface-sunken)] px-3 text-2xs" aria-label="نام موکل" />
+              <select name="lawyer" aria-label="وکیل پرونده" className="h-10 rounded-[var(--radius-sm)] border border-[var(--border-subtle)] bg-[var(--surface-sunken)] px-3 text-2xs">
                 {LAWYERS.map((lawyer) => (
                   <option key={lawyer}>{lawyer}</option>
                 ))}
               </select>
-              <select name="type" aria-label="موضوع" className="h-10 rounded-[var(--radius-sm)] border border-[var(--border-subtle)] bg-[var(--surface-sunken)] px-3 text-[12px]">
+              <select name="type" aria-label="موضوع" className="h-10 rounded-[var(--radius-sm)] border border-[var(--border-subtle)] bg-[var(--surface-sunken)] px-3 text-2xs">
                 {CASE_TYPES.map((type) => (
                   <option key={type}>{type}</option>
                 ))}
               </select>
-              <input name="hearing" placeholder="تاریخ جلسه ۱۴۰۵/۰۸/۰۱" className="h-10 rounded-[var(--radius-sm)] border border-[var(--border-subtle)] bg-[var(--surface-sunken)] px-3 text-[12px] sm:col-span-2" aria-label="تاریخ جلسه" />
-              <button type="submit" className="inline-flex h-10 items-center justify-center gap-1.5 rounded-[var(--radius-sm)] px-4 text-[12px] font-extrabold text-white sm:col-span-3" style={{ background: ACCENT }}>
+              <input name="hearing" placeholder="تاریخ جلسه ۱۴۰۵/۰۸/۰۱" className="h-10 rounded-[var(--radius-sm)] border border-[var(--border-subtle)] bg-[var(--surface-sunken)] px-3 text-2xs sm:col-span-2" aria-label="تاریخ جلسه" />
+              <button type="submit" className="inline-flex h-10 items-center justify-center gap-1.5 rounded-[var(--radius-sm)] px-4 text-2xs font-extrabold text-white sm:col-span-3" style={{ background: ACCENT }}>
                 <Plus className="size-4" aria-hidden />
                 ثبت پرونده و تخصیص وکیل
               </button>
@@ -218,11 +218,11 @@ export function LawOfficeDemo() {
                   <User className="size-5" aria-hidden />
                 </span>
                 <div>
-                  <h3 className="text-[13px] font-extrabold">{client.name}</h3>
-                  <p className="text-[10px] text-muted persian-num">موکل از سال {client.since}</p>
+                  <h3 className="text-xs font-extrabold">{client.name}</h3>
+                  <p className="text-4xs text-muted persian-num">موکل از سال {client.since}</p>
                 </div>
               </div>
-              <dl className="mt-4 space-y-1.5 text-[11px]">
+              <dl className="mt-4 space-y-1.5 text-3xs">
                 <div className="flex justify-between">
                   <dt className="text-muted">تلفن</dt>
                   <dd className="persian-num font-bold">{client.phone}</dd>
@@ -249,7 +249,7 @@ export function LawOfficeDemo() {
       hint: "تقویم شمسی مهر ۱۴۰۵ با اوقات رسیدگی.",
       content: (
         <DemoPanel title="مهر ۱۴۰۵">
-          <div className="grid grid-cols-7 gap-1.5 text-center text-[10px] text-muted">
+          <div className="grid grid-cols-7 gap-1.5 text-center text-4xs text-muted">
             {["ش", "ی", "د", "س", "چ", "پ", "ج"].map((day) => (
               <span key={day} className="py-1 font-bold">{day}</span>
             ))}
@@ -261,9 +261,9 @@ export function LawOfficeDemo() {
                   className="min-h-16 rounded-[var(--radius-sm)] border border-[var(--border-subtle)] p-1.5 text-start"
                   style={hearing ? { background: `${ACCENT}1a`, borderColor: ACCENT } : undefined}
                 >
-                  <span className="text-[10px] font-bold persian-num">{toPersianDigits(day)}</span>
+                  <span className="text-4xs font-bold persian-num">{toPersianDigits(day)}</span>
                   {hearing ? (
-                    <p className="mt-1 line-clamp-2 text-[8px] font-bold leading-tight" style={{ color: ACCENT }}>
+                    <p className="mt-1 line-clamp-2 text-6xs font-bold leading-tight" style={{ color: ACCENT }}>
                       {hearing.time} — {hearing.title}
                     </p>
                   ) : null}
@@ -271,7 +271,7 @@ export function LawOfficeDemo() {
               );
             })}
           </div>
-          <p className="mt-4 flex items-center gap-2 text-[11px] text-muted">
+          <p className="mt-4 flex items-center gap-2 text-3xs text-muted">
             <CalendarDays className="size-3.5" aria-hidden />
             یادآور پیامکی ۲۴ ساعت پیش از هر جلسه برای وکیل و موکل ارسال می‌شود.
           </p>
@@ -301,8 +301,8 @@ export function LawOfficeDemo() {
                   <li key={invoice.id} className="rounded-[var(--radius-md)] bg-[var(--surface-sunken)] p-4">
                     <div className="flex flex-wrap items-center justify-between gap-2">
                       <div>
-                        <p className="text-[12px] font-extrabold persian-num">{invoice.id} — {invoice.client}</p>
-                        <p className="text-[10px] text-muted persian-num">
+                        <p className="text-2xs font-extrabold persian-num">{invoice.id} — {invoice.client}</p>
+                        <p className="text-4xs text-muted persian-num">
                           {formatToman(invoice.paid)} از {formatToman(invoice.amount)}
                         </p>
                       </div>
@@ -318,13 +318,13 @@ export function LawOfficeDemo() {
                               ),
                             )
                           }
-                          className="h-9 rounded-[var(--radius-sm)] px-3 text-[11px] font-extrabold text-white"
+                          className="h-9 rounded-[var(--radius-sm)] px-3 text-3xs font-extrabold text-white"
                           style={{ background: ACCENT }}
                         >
                           ثبت پرداخت قسط
                         </button>
                       ) : (
-                        <span className="rounded-full bg-emerald-500/15 px-3 py-1 text-[10px] font-extrabold text-emerald-600">تسویه شده</span>
+                        <span className="rounded-full bg-emerald-500/15 px-3 py-1 text-4xs font-extrabold text-emerald-600">تسویه شده</span>
                       )}
                     </div>
                     <div className="mt-3 h-1.5 overflow-hidden rounded-full bg-[var(--surface-raised)]">
@@ -350,12 +350,12 @@ export function LawOfficeDemo() {
                 <span className="grid size-8 shrink-0 place-items-center rounded-full text-white" style={{ background: message.role === "ai" ? ACCENT : "#1f2937" }}>
                   {message.role === "ai" ? <Bot className="size-4" aria-hidden /> : <User className="size-4" aria-hidden />}
                 </span>
-                <p className={`max-w-lg rounded-[var(--radius-md)] p-3 text-[12px] leading-loose ${message.role === "ai" ? "bg-[var(--surface-sunken)]" : "bg-brand-600 text-white"}`}>
+                <p className={`max-w-lg rounded-[var(--radius-md)] p-3 text-2xs leading-loose ${message.role === "ai" ? "bg-[var(--surface-sunken)]" : "bg-brand-600 text-white"}`}>
                   {message.text}
                 </p>
               </div>
             ))}
-            {thinking ? <p aria-live="polite" className="text-[11px] text-muted">دستیار در حال تحلیل پرونده است…</p> : null}
+            {thinking ? <p aria-live="polite" className="text-3xs text-muted">دستیار در حال تحلیل پرونده است…</p> : null}
           </div>
           <div className="mt-4 flex flex-wrap gap-2">
             {AI_SUGGESTIONS.map((suggestion) => (
@@ -363,7 +363,7 @@ export function LawOfficeDemo() {
                 key={suggestion}
                 type="button"
                 onClick={() => ask(suggestion)}
-                className="rounded-full border border-[var(--border-subtle)] px-3 py-1.5 text-[11px] font-bold transition-colors hover:border-current"
+                className="rounded-full border border-[var(--border-subtle)] px-3 py-1.5 text-3xs font-bold transition-colors hover:border-current"
                 style={{ color: ACCENT }}
               >
                 {suggestion}
@@ -380,7 +380,7 @@ export function LawOfficeDemo() {
             }}
             className="mt-4 flex gap-2"
           >
-            <input name="q" placeholder="پرسش حقوقی خود را بنویسید…" aria-label="پرسش" className="h-11 flex-1 rounded-[var(--radius-sm)] border border-[var(--border-subtle)] bg-[var(--surface-sunken)] px-3 text-[12px]" />
+            <input name="q" placeholder="پرسش حقوقی خود را بنویسید…" aria-label="پرسش" className="h-11 flex-1 rounded-[var(--radius-sm)] border border-[var(--border-subtle)] bg-[var(--surface-sunken)] px-3 text-2xs" />
             <button type="submit" className="grid size-11 place-items-center rounded-[var(--radius-sm)] text-white" style={{ background: ACCENT }} aria-label="ارسال">
               <Send className="size-4" aria-hidden />
             </button>
@@ -404,7 +404,7 @@ export function LawOfficeDemo() {
                   ...prev,
                 ])
               }
-              className="h-9 rounded-[var(--radius-sm)] px-3 text-[11px] font-extrabold text-white"
+              className="h-9 rounded-[var(--radius-sm)] px-3 text-3xs font-extrabold text-white"
               style={{ background: ACCENT }}
             >
               شبیه‌سازی بارگذاری
@@ -415,9 +415,9 @@ export function LawOfficeDemo() {
             {docs.map((doc) => (
               <li key={doc.id} className="flex items-center gap-3 rounded-[var(--radius-md)] bg-[var(--surface-sunken)] p-3">
                 <FileText className="size-4" style={{ color: ACCENT }} aria-hidden />
-                <span className="flex-1 truncate text-[12px] font-bold">{doc.name}</span>
-                <span className="text-[10px] text-muted persian-num">{doc.size}</span>
-                <span className="rounded-full px-2 py-0.5 text-[9px] font-bold" style={{ background: `${ACCENT}22`, color: ACCENT }}>
+                <span className="flex-1 truncate text-2xs font-bold">{doc.name}</span>
+                <span className="text-4xs text-muted persian-num">{doc.size}</span>
+                <span className="rounded-full px-2 py-0.5 text-5xs font-bold" style={{ background: `${ACCENT}22`, color: ACCENT }}>
                   {doc.tag}
                 </span>
               </li>

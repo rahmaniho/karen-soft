@@ -27,14 +27,14 @@ export default function DemoHubPage() {
         <section className="relative overflow-hidden py-16 lg:py-24">
           <div className="grid-backdrop pointer-events-none absolute inset-0" aria-hidden />
           <div className="container-page relative text-center">
-            <span className="inline-flex items-center gap-2 rounded-full border border-[var(--border-subtle)] bg-[var(--surface-raised)]/80 px-3.5 py-2 text-[11px] font-extrabold">
+            <span className="inline-flex items-center gap-2 rounded-full border border-[var(--border-subtle)] bg-[var(--surface-raised)]/80 px-3.5 py-2 text-3xs font-extrabold">
               <Sparkles className="size-3.5 text-brand-500" aria-hidden />
               هاب دموهای کارن سافت
             </span>
             <h1 className="mx-auto mt-6 max-w-3xl text-4xl font-extrabold leading-tight text-balance sm:text-5xl lg:text-6xl">
               دموی زنده محصولات <span className="text-brand-600 dark:text-brand-400">کارن سافت</span>
             </h1>
-            <p className="mx-auto mt-5 max-w-xl text-[15px] leading-loose text-muted">
+            <p className="mx-auto mt-5 max-w-xl text-md leading-loose text-muted">
               بدون نصب، بدون ثبت‌نام — همه چیز را در مرورگر امتحان کنید. داده‌ها نمونه‌اند و هر لحظه قابل بازنشانی.
             </p>
           </div>

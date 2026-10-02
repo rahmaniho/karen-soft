@@ -58,7 +58,7 @@ export function NewsletterForm({ variant = "section" }: { variant?: "section" | 
       <p
         aria-live="polite"
         className={cn(
-          "mt-2 min-h-5 text-[11px] font-bold",
+          "mt-2 min-h-5 text-3xs font-bold",
           state === "error" ? "text-rose-400" : footer ? "text-emerald-300" : "text-emerald-600",
         )}
       >

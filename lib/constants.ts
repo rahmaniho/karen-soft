@@ -3,7 +3,7 @@ export const SITE = {
   nameEn: "Karen Soft",
   tagline: "فناوری پیچیده، رشد ساده.",
   description:
-    "طراحی سایت، فروشگاه اینترنتی و نرم‌افزارهای مدیریتی اختصاصی با دموی زنده برای امتحان قبل از خرید.",
+    "وب‌سایت، فروشگاه اینترنتی و نرم‌افزار مدیریتی اختصاصی — با دموی زنده‌ای که پیش از خرید امتحانش می‌کنید.",
   url: "https://karen-soft.ir",
   phone: "+989152521166",
   phoneDisplay: "۰۹۱۵۲۵۲۱۱۶۶",
@@ -22,15 +22,37 @@ export const SITE = {
   },
 } as const;
 
-export const NAV_LINKS = [
+export interface NavLink {
+  label: string;
+  href: string;
+  /** مگامنوی زیرمenu باز می‌شود */
+  mega?: "solutions" | "products" | "demo";
+  /** نقطۀ سبز «فعال بودن» */
+  highlight?: boolean;
+  /** برچسب کوچک کنار آیتم منو */
+  badge?: string;
+}
+
+export const NAV_LINKS: NavLink[] = [
   { label: "خدمات", href: "/services" },
   { label: "راهکارها", href: "/solutions", mega: "solutions" as const },
   { label: "محصولات", href: "/products", mega: "products" as const },
   { label: "دموی زنده", href: "/demo", mega: "demo" as const, highlight: true },
+  { label: "کارن چاپ", href: "/print", badge: "چاپخانه" as const },
   { label: "نمونه‌کارها", href: "/portfolio" },
   { label: "مجله", href: "/blog" },
   { label: "درباره ما", href: "/about" },
 ];
+
+/** پیوندهای بخش کارن چاپ (زیرمجموعۀ چاپ کارن سافت) */
+export const CHAP_LINKS = [
+  { label: "خانۀ کارن چاپ", href: "/print" },
+  { label: "خدمات چاپ و مهر", href: "/print/services" },
+  { label: "ثبت سفارش آنلاین", href: "/print/order" },
+  { label: "نمونه‌کارها", href: "/print/portfolio" },
+  { label: "سوالات متداول", href: "/print/faq" },
+  { label: "تماس با کارن چاپ", href: "/print/contact" },
+] as const;
 
 export const FOOTER_RESOURCES = [
   { label: "مستندات", href: "/docs" },

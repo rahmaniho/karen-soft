@@ -41,11 +41,11 @@ export function KpiGrid({
     <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
       {items.map((item) => (
         <div key={item.label} className="surface-card p-4">
-          <p className="text-[11px] text-muted">{item.label}</p>
+          <p className="text-3xs text-muted">{item.label}</p>
           <strong className="mt-1 block text-2xl persian-num" style={{ color: accent }}>
             {item.value}
           </strong>
-          {item.hint ? <span className="text-[10px] text-muted">{item.hint}</span> : null}
+          {item.hint ? <span className="text-4xs text-muted">{item.hint}</span> : null}
         </div>
       ))}
     </div>
@@ -69,7 +69,7 @@ export function BarChart({
       <div className="flex h-44 items-end gap-2" role="img" aria-label="نمودار ستونی">
         {data.map((item) => (
           <div key={item.label} className="flex flex-1 flex-col items-center gap-2">
-            <span className="text-[10px] font-bold text-muted persian-num">{formatNumber(item.value)}</span>
+            <span className="text-4xs font-bold text-muted persian-num">{formatNumber(item.value)}</span>
             <div
               className="w-full rounded-t-md transition-all duration-[450ms]"
               style={{ height: `${(item.value / max) * 100}%`, background: accent, opacity: 0.85 }}
@@ -79,12 +79,12 @@ export function BarChart({
       </div>
       <div className="mt-2 flex gap-2">
         {data.map((item) => (
-          <span key={item.label} className="flex-1 text-center text-[10px] text-muted">
+          <span key={item.label} className="flex-1 text-center text-4xs text-muted">
             {item.label}
           </span>
         ))}
       </div>
-      {unit ? <p className="mt-1 text-end text-[10px] text-muted">{unit}</p> : null}
+      {unit ? <p className="mt-1 text-end text-4xs text-muted">{unit}</p> : null}
     </div>
   );
 }
@@ -100,7 +100,7 @@ export function LineChart({ data, accent }: { data: { label: string; value: numb
         <polyline points={points} fill="none" stroke={accent} strokeWidth="2" vectorEffect="non-scaling-stroke" />
         <polygon points={`0,100 ${points} 100,100`} fill={accent} opacity="0.12" />
       </svg>
-      <div className="flex justify-between text-[10px] text-muted">
+      <div className="flex justify-between text-4xs text-muted">
         {data.map((d) => (
           <span key={d.label}>{d.label}</span>
         ))}
@@ -144,8 +144,8 @@ export function KanbanBoard({
           className="min-w-60 flex-1 rounded-[var(--radius-lg)] bg-[var(--surface-sunken)] p-3"
         >
           <header className="mb-3 flex items-center justify-between">
-            <h4 className="text-[12px] font-extrabold">{column.title}</h4>
-            <span className="rounded-full bg-[var(--surface-raised)] px-2 py-0.5 text-[10px] font-bold text-muted persian-num">
+            <h4 className="text-2xs font-extrabold">{column.title}</h4>
+            <span className="rounded-full bg-[var(--surface-raised)] px-2 py-0.5 text-4xs font-bold text-muted persian-num">
               {toPersianDigits((cards[column.id] ?? []).length)}
             </span>
           </header>
@@ -158,11 +158,11 @@ export function KanbanBoard({
                 onDragEnd={() => setDragging(null)}
                 className="surface-card cursor-grab p-3 active:cursor-grabbing"
               >
-                <p className="text-[12px] font-extrabold">{card.title}</p>
-                {card.meta ? <p className="mt-1 text-[10px] text-muted">{card.meta}</p> : null}
+                <p className="text-2xs font-extrabold">{card.title}</p>
+                {card.meta ? <p className="mt-1 text-4xs text-muted">{card.meta}</p> : null}
                 <div className="mt-2 flex items-center justify-between gap-2">
                   {card.tag ? (
-                    <span className="rounded-full px-2 py-0.5 text-[9px] font-bold" style={{ background: `${accent}22`, color: accent }}>
+                    <span className="rounded-full px-2 py-0.5 text-5xs font-bold" style={{ background: `${accent}22`, color: accent }}>
                       {card.tag}
                     </span>
                   ) : (
@@ -174,7 +174,7 @@ export function KanbanBoard({
                       disabled={columnIndex === 0}
                       onClick={() => onMove(card.id, column.id, columns[columnIndex - 1]!.id)}
                       aria-label={`انتقال ${card.title} به مرحله قبل`}
-                      className="grid size-6 place-items-center rounded border border-[var(--border-subtle)] text-[10px] disabled:opacity-30"
+                      className="grid size-6 place-items-center rounded border border-[var(--border-subtle)] text-4xs disabled:opacity-30"
                     >
                       ›
                     </button>
@@ -183,7 +183,7 @@ export function KanbanBoard({
                       disabled={columnIndex === columns.length - 1}
                       onClick={() => onMove(card.id, column.id, columns[columnIndex + 1]!.id)}
                       aria-label={`انتقال ${card.title} به مرحله بعد`}
-                      className="grid size-6 place-items-center rounded border border-[var(--border-subtle)] text-[10px] disabled:opacity-30"
+                      className="grid size-6 place-items-center rounded border border-[var(--border-subtle)] text-4xs disabled:opacity-30"
                     >
                       ‹
                     </button>
@@ -192,7 +192,7 @@ export function KanbanBoard({
               </li>
             ))}
             {(cards[column.id] ?? []).length === 0 ? (
-              <li className="rounded-[var(--radius-sm)] border border-dashed border-[var(--border-subtle)] p-4 text-center text-[10px] text-muted">
+              <li className="rounded-[var(--radius-sm)] border border-dashed border-[var(--border-subtle)] p-4 text-center text-4xs text-muted">
                 کارتی اینجا نیست — یک کارت را بکشید
               </li>
             ) : null}
@@ -248,7 +248,7 @@ export function DataTable<T extends { id: string }>({
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="جست‌وجو…"
-              className="h-10 w-full rounded-[var(--radius-sm)] border border-[var(--border-subtle)] bg-[var(--surface-sunken)] ps-9 pe-3 text-[13px] outline-none focus:border-brand-500"
+              className="h-10 w-full rounded-[var(--radius-sm)] border border-[var(--border-subtle)] bg-[var(--surface-sunken)] ps-9 pe-3 text-xs outline-none focus:border-brand-500"
             />
           </label>
         ) : null}
@@ -261,7 +261,7 @@ export function DataTable<T extends { id: string }>({
                 onClick={() => setFilter(item.id)}
                 aria-pressed={filter === item.id}
                 className={cn(
-                  "rounded-full border px-3 py-1.5 text-[11px] font-bold transition-colors",
+                  "rounded-full border px-3 py-1.5 text-3xs font-bold transition-colors",
                   filter === item.id
                     ? "border-brand-500 bg-brand-500 text-white"
                     : "border-[var(--border-subtle)] text-muted hover:border-brand-300",
@@ -275,7 +275,7 @@ export function DataTable<T extends { id: string }>({
       </div>
 
       <div className="scrollbar-thin overflow-x-auto">
-        <table className="w-full min-w-[640px] text-start text-[12px]">
+        <table className="w-full min-w-[640px] text-start text-2xs">
           <thead>
             <tr className="border-b border-[var(--border-subtle)] text-muted">
               {columns.map((column) => (
@@ -327,8 +327,8 @@ export function Checklist({
       {items.map((item) => (
         <li key={item.id} className="flex items-center justify-between gap-3 rounded-[var(--radius-md)] bg-[var(--surface-sunken)] p-3">
           <div>
-            <p className="text-[12px] font-bold">{item.label}</p>
-            {item.hint ? <p className="text-[10px] text-muted">{item.hint}</p> : null}
+            <p className="text-2xs font-bold">{item.label}</p>
+            {item.hint ? <p className="text-4xs text-muted">{item.hint}</p> : null}
           </div>
           <div className="flex shrink-0 gap-1.5">
             <button
@@ -386,7 +386,7 @@ export function RangeField({
 }) {
   return (
     <label className="block">
-      <span className="flex items-center justify-between text-[12px] font-bold">
+      <span className="flex items-center justify-between text-2xs font-bold">
         {label}
         <span className="persian-num" style={{ color: accent }}>
           {formatNumber(value)} {suffix}
@@ -408,7 +408,7 @@ export function RangeField({
 
 export function TransferHint() {
   return (
-    <p className="mt-3 flex items-center gap-1.5 text-[10px] text-muted">
+    <p className="mt-3 flex items-center gap-1.5 text-4xs text-muted">
       <ArrowLeftRight className="size-3" aria-hidden />
       کارت‌ها را بکشید و رها کنید یا از دکمه‌های جهت استفاده کنید.
     </p>

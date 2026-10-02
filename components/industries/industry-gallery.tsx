@@ -29,13 +29,13 @@ function Preview({ industry, device }: { industry: Industry; device: Device }) {
           <span className="size-1.5 rounded-full bg-emerald-400" aria-hidden />
         </div>
         <div className="p-3" style={{ background: p.gradient }}>
-          <span className="block text-[9px] font-extrabold" style={{ color: p.primary }}>
+          <span className="block text-5xs font-extrabold" style={{ color: p.primary }}>
             {industry.hero.badge}
           </span>
-          <strong className="mt-1.5 block text-[12px] leading-snug" style={{ color: p.text }}>
+          <strong className="mt-1.5 block text-2xs leading-snug" style={{ color: p.text }}>
             {industry.hero.title} {industry.hero.highlight}
           </strong>
-          <span className="mt-2 inline-block rounded-md px-2.5 py-1 text-[8px] font-bold" style={{ background: p.primary, color: p.onPrimary }}>
+          <span className="mt-2 inline-block rounded-md px-2.5 py-1 text-6xs font-bold" style={{ background: p.primary, color: p.onPrimary }}>
             {industry.hero.primaryCta}
           </span>
         </div>
@@ -69,7 +69,7 @@ export function IndustryGallery() {
               onClick={() => setCategory(item.id)}
               aria-pressed={category === item.id}
               className={cn(
-                "shrink-0 rounded-full border px-4 py-2 text-[12px] font-bold transition-colors duration-[150ms]",
+                "shrink-0 rounded-full border px-4 py-2 text-2xs font-bold transition-colors duration-[150ms]",
                 category === item.id
                   ? "border-brand-500 bg-brand-500 text-white"
                   : "border-[var(--border-subtle)] text-muted hover:border-brand-300 hover:text-brand-600",
@@ -88,7 +88,7 @@ export function IndustryGallery() {
               aria-pressed={device === item.id}
               title={item.label}
               className={cn(
-                "inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-[11px] font-bold transition-colors",
+                "inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-3xs font-bold transition-colors",
                 device === item.id ? "bg-brand-500 text-white" : "text-muted hover:text-brand-600",
               )}
             >
@@ -99,7 +99,7 @@ export function IndustryGallery() {
         </div>
       </div>
 
-      <p aria-live="polite" className="mb-5 text-[12px] text-muted persian-num">
+      <p aria-live="polite" className="mb-5 text-2xs text-muted persian-num">
         {toPersianDigits(visible.length)} نمونه طراحی نمایش داده می‌شود.
       </p>
 
@@ -108,12 +108,12 @@ export function IndustryGallery() {
           <article key={industry.slug} className="surface-card overflow-hidden p-4">
             <Preview industry={industry} device={device} />
             <div className="mt-4">
-              <span className="text-[10px] font-extrabold text-brand-600">{industry.categoryLabel}</span>
-              <h3 className="mt-1 text-[14px] font-extrabold">{industry.name}</h3>
-              <p className="mt-1.5 text-[11px] leading-loose text-muted">{industry.aesthetic}</p>
+              <span className="text-4xs font-extrabold text-brand-600">{industry.categoryLabel}</span>
+              <h3 className="mt-1 text-sm font-extrabold">{industry.name}</h3>
+              <p className="mt-1.5 text-3xs leading-loose text-muted">{industry.aesthetic}</p>
               <Link
                 href={`/demo/industries/${industry.slug}`}
-                className="mt-4 inline-flex h-10 w-full items-center justify-center gap-1.5 rounded-[var(--radius-sm)] bg-brand-500 text-[12px] font-extrabold text-white transition-colors hover:bg-brand-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500"
+                className="mt-4 inline-flex h-10 w-full items-center justify-center gap-1.5 rounded-[var(--radius-sm)] bg-brand-500 text-2xs font-extrabold text-white transition-colors hover:bg-brand-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500"
               >
                 مشاهده نمونه کامل
                 <ArrowLeft className="size-3.5" aria-hidden />
@@ -123,7 +123,7 @@ export function IndustryGallery() {
         ))}
       </div>
 
-      <p className="mt-8 flex items-center justify-center gap-2 text-[12px] text-muted">
+      <p className="mt-8 flex items-center justify-center gap-2 text-2xs text-muted">
         <Laptop className="size-4" aria-hidden />
         هر نمونه یک صفحه کامل و مستقل است؛ رنگ، تایپوگرافی و حس حرکتی آن مخصوص همان صنعت طراحی شده.
       </p>

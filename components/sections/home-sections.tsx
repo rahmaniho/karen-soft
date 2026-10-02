@@ -23,8 +23,10 @@ export function ServicesSection() {
       <div className="container-page">
         <SectionHeading
           eyebrow="خدمات"
+          eyebrowLatin="Services"
+          index="۰۱"
           title="آنچه برای شما می‌سازیم"
-          description="سه ستون اصلی خدمات کارن سافت که با هم، زیرساخت دیجیتال کامل کسب‌وکار شما را می‌سازند."
+          description="چهار خدمت، یک تیم فنی. از رابط کاربری تا زیرساخت؛ هرچه می‌سازیم با معیار قابل اندازه‌گیری تحویل داده می‌شود."
           action={
             <ButtonLink href="/services" variant="outline" size="sm">
               همه خدمات
@@ -40,10 +42,10 @@ export function ServicesSection() {
                   <Icon name={service.icon} className="size-5" />
                 </span>
                 <h3 className="mt-5 text-lg font-extrabold">{service.title}</h3>
-                <p className="mt-2 text-[13px] leading-loose text-muted">{service.desc}</p>
+                <p className="mt-2 text-xs leading-loose text-muted">{service.desc}</p>
                 <ul className="mt-5 space-y-2">
                   {service.bullets.map((bullet) => (
-                    <li key={bullet} className="flex items-center gap-2 text-[12px] font-bold text-muted">
+                    <li key={bullet} className="flex items-center gap-2 text-2xs font-bold text-muted">
                       <Check className="size-3.5 text-brand-500" aria-hidden />
                       {bullet}
                     </li>
@@ -65,6 +67,8 @@ export function DemoSpotlight() {
       <div className="container-page">
         <SectionHeading
           eyebrow="دموی زنده"
+          eyebrowLatin="Live demo"
+          index="۰۲"
           title="قبل از خرید، امتحان کنید"
           description="همه ۱۰ محصول ما دموی زنده دارند — بدون نصب، بدون ثبت‌نام."
           action={
@@ -97,12 +101,12 @@ export function DemoSpotlight() {
                 </div>
               </div>
               <div className="p-5">
-                <h3 className="flex items-center gap-2 text-[15px] font-extrabold">
+                <h3 className="flex items-center gap-2 text-md font-extrabold">
                   <span aria-hidden>{product.emoji}</span>
                   {product.name}
                 </h3>
-                <p className="mt-2 line-clamp-2 text-[12px] leading-loose text-muted">{product.short}</p>
-                <span className="mt-4 inline-flex items-center gap-1.5 text-[12px] font-extrabold text-brand-600 dark:text-brand-300">
+                <p className="mt-2 line-clamp-2 text-2xs leading-loose text-muted">{product.short}</p>
+                <span className="mt-4 inline-flex items-center gap-1.5 text-2xs font-extrabold text-brand-600 dark:text-brand-300">
                   <PlayCircle className="size-4" aria-hidden />
                   اجرای دمو
                 </span>
@@ -121,8 +125,10 @@ export function ProductsSection() {
       <div className="container-page">
         <SectionHeading
           eyebrow="محصولات"
+          eyebrowLatin="Products"
+          index="۰۳"
           title="۱۰ محصول آماده برای صنایع مختلف"
-          description="هر محصول حاصل ده‌ها پروژه واقعی است؛ قابل سفارشی‌سازی برای فرایندهای خاص کسب‌وکار شما."
+          description="هر محصول از دل ده‌ها پروژه بیرون آمده؛ برای فرایندهای خاص کسب‌وکار شما سفارشی می‌شود."
           action={
             <ButtonLink href="/products" variant="outline" size="sm">
               همه محصولات
@@ -153,6 +159,8 @@ export function IndustryShowcase() {
       <div className="container-page">
         <SectionHeading
           eyebrow="طراحی برای صنایع"
+          eyebrowLatin="Industries"
+          index="۰۴"
           title="هر کسب‌وکار، زبان بصری خودش را دارد"
           description="نمونه طراحی‌های کارن سافت برای صنایع مختلف؛ هر کدام با پالت، تایپوگرافی و ریتم چیدمان مخصوص خود."
           action={
@@ -181,6 +189,8 @@ export function PortfolioSection() {
       <div className="container-page">
         <SectionHeading
           eyebrow="نمونه‌کارها"
+          eyebrowLatin="Case studies"
+          index="۰۶"
           title="نتیجه‌هایی که قابل اندازه‌گیری‌اند"
           action={
             <ButtonLink href="/portfolio" variant="outline" size="sm">
@@ -207,9 +217,9 @@ export function PortfolioSection() {
               </div>
               <div className="flex items-start justify-between gap-6 p-6">
                 <div>
-                  <span className="text-[10px] font-extrabold text-brand-600">{item.category}</span>
+                  <span className="text-4xs font-extrabold text-brand-600">{item.category}</span>
                   <h3 className="mt-1 text-xl font-extrabold">{item.title}</h3>
-                  <p className="mt-2 max-w-md text-[13px] leading-loose text-muted">{item.summary}</p>
+                  <p className="mt-2 max-w-md text-xs leading-loose text-muted">{item.summary}</p>
                 </div>
                 <span className="grid size-11 shrink-0 place-items-center rounded-full border border-[var(--border-subtle)] transition-all group-hover:rotate-45 group-hover:border-brand-500 group-hover:text-brand-600">
                   <ArrowLeft className="size-4" aria-hidden />
@@ -231,8 +241,10 @@ export function ProcessSection() {
         <div className="lg:sticky lg:top-32 lg:self-start">
           <SectionHeading
             eyebrow="فرایند همکاری"
+            eyebrowLatin="Process"
+            index="۰۷"
             title="چهار گام تا محصول نهایی"
-            description="فرایندی شفاف که در آن همیشه می‌دانید در چه مرحله‌ای هستید و گام بعدی چیست."
+            description="فرایند شفاف: همیشه می‌دانید در کدام مرحله‌اید و گام بعدی دقیقاً چیست."
             className="mb-0"
           />
           <ButtonLink href="/contact" className="mt-8">
@@ -264,16 +276,16 @@ export function TestimonialSection() {
               sizes="(max-width: 1024px) 100vw, 30vw"
               className="object-cover"
             />
-            <span className="absolute bottom-5 end-5 rounded-full border border-white/30 px-3 py-1 text-[10px]">
+            <span className="absolute bottom-5 end-5 rounded-full border border-white/30 px-3 py-1 text-4xs">
               {SITE.founder} · بنیان‌گذار
             </span>
           </div>
           <div className="flex flex-col justify-center p-8 lg:p-16">
             <Quote className="size-10 text-brand-400" aria-hidden />
-            <blockquote className="mt-5 text-xl leading-loose lg:text-[28px]">{primary.quote}</blockquote>
+            <blockquote className="mt-5 text-xl leading-loose lg:display-3">{primary.quote}</blockquote>
             <div className="mt-8">
               <strong className="text-sm">{primary.name}</strong>
-              <small className="block text-[11px] text-white/55">{primary.role}</small>
+              <small className="block text-3xs text-white/55">{primary.role}</small>
             </div>
           </div>
         </div>
@@ -286,7 +298,8 @@ export function FaqSection() {
   return (
     <section className="section-y">
       <div className="container-page grid gap-14 lg:grid-cols-[0.75fr_1.25fr]">
-        <SectionHeading eyebrow="سؤالات پرتکرار" title="پاسخ شفاف، بدون ابهام" className="mb-0" />
+        <SectionHeading eyebrow="سؤالات پرتکرار"
+          eyebrowLatin="FAQ" title="پاسخ شفاف، بدون ابهام" className="mb-0" />
         <Accordion items={FAQS} />
       </div>
     </section>
@@ -314,13 +327,13 @@ export function ContactSection() {
               <li key={item.label} className="flex items-center gap-3 border-t border-white/10 pt-4">
                 <item.icon className="size-4 text-brand-300" aria-hidden />
                 <span className="flex flex-col">
-                  <small className="text-[10px] text-white/45">{item.label}</small>
+                  <small className="text-4xs text-white/45">{item.label}</small>
                   {item.href ? (
-                    <a href={item.href} className="text-[13px] font-bold hover:text-brand-300">
+                    <a href={item.href} className="text-xs font-bold hover:text-brand-300">
                       {item.value}
                     </a>
                   ) : (
-                    <span className="text-[13px] font-bold">{item.value}</span>
+                    <span className="text-xs font-bold">{item.value}</span>
                   )}
                 </span>
               </li>

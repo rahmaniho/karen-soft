@@ -17,7 +17,7 @@ export const buttonVariants = cva(
         soft: "bg-brand-50 text-brand-700 hover:bg-brand-100 dark:bg-brand-900/30 dark:text-brand-200 dark:hover:bg-brand-900/50",
       },
       size: {
-        sm: "h-10 rounded-[var(--radius-sm)] px-4 text-[13px]",
+        sm: "h-10 rounded-[var(--radius-sm)] px-4 text-xs",
         md: "h-12 rounded-[var(--radius-md)] px-5 text-sm",
         lg: "h-14 rounded-[var(--radius-md)] px-7 text-base",
         icon: "h-10 w-10 rounded-[var(--radius-sm)]",

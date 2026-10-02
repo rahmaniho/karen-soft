@@ -35,8 +35,8 @@ export function SolutionsMega({ onNavigate }: { onNavigate?: () => void }) {
             >
               <span aria-hidden className="text-lg leading-none">{solution.emoji}</span>
               <span className="min-w-0">
-                <span className="block text-[13px] font-extrabold">{solution.name}</span>
-                <span className="block truncate text-[11px] text-muted">{solution.tagline}</span>
+                <span className="block text-xs font-extrabold">{solution.name}</span>
+                <span className="block truncate text-3xs text-muted">{solution.tagline}</span>
               </span>
             </Link>
           </li>
@@ -52,7 +52,7 @@ export function SolutionsMega({ onNavigate }: { onNavigate?: () => void }) {
         <p className="mt-2 text-xs leading-loose text-muted">{active.short}</p>
         <ul className="mt-4 space-y-1.5">
           {active.features.slice(0, 3).map((feature) => (
-            <li key={feature.title} className="flex items-center gap-2 text-[11px] font-bold">
+            <li key={feature.title} className="flex items-center gap-2 text-3xs font-bold">
               <span className="size-1.5 rounded-full" style={{ background: active.accent }} aria-hidden />
               {feature.title}
             </li>
@@ -61,7 +61,7 @@ export function SolutionsMega({ onNavigate }: { onNavigate?: () => void }) {
         <Link
           href={`/demo/${active.demoSlug}`}
           onClick={onNavigate}
-          className="mt-4 inline-flex items-center gap-1.5 text-[11px] font-extrabold text-brand-700 hover:underline dark:text-brand-300"
+          className="mt-4 inline-flex items-center gap-1.5 text-3xs font-extrabold text-brand-700 hover:underline dark:text-brand-300"
         >
           <PlayCircle className="size-3.5" aria-hidden />
           مشاهده دموی زنده
@@ -108,11 +108,11 @@ export function ProductsMega({ onNavigate }: { onNavigate?: () => void }) {
             >
               <span className="flex min-w-0 items-center gap-2">
                 <span aria-hidden>{product.emoji}</span>
-                <span className="truncate text-[13px] font-extrabold">{product.name}</span>
+                <span className="truncate text-xs font-extrabold">{product.name}</span>
               </span>
               <span
                 className={cn(
-                  "shrink-0 rounded-full px-2 py-0.5 text-[9px] font-extrabold",
+                  "shrink-0 rounded-full px-2 py-0.5 text-5xs font-extrabold",
                   product.status === "active" && "bg-emerald-500/12 text-emerald-600 dark:text-emerald-300",
                   product.status === "beta" && "bg-amber-500/12 text-amber-600 dark:text-amber-300",
                   product.status === "development" && "bg-slate-500/12 text-slate-500 dark:text-slate-300",
@@ -133,7 +133,7 @@ export function ProductsMega({ onNavigate }: { onNavigate?: () => void }) {
           {active.chips.map((chip) => (
             <span
               key={chip}
-              className="rounded-full border border-[var(--border-subtle)] px-2.5 py-1 text-[10px] font-bold text-muted"
+              className="rounded-full border border-[var(--border-subtle)] px-2.5 py-1 text-4xs font-bold text-muted"
             >
               {chip}
             </span>
@@ -171,7 +171,7 @@ export function DemoMega({ onNavigate }: { onNavigate?: () => void }) {
               <Link
                 href={`/demo/${product.demoSlug}`}
                 onClick={onNavigate}
-                className="flex items-center gap-2 rounded-[var(--radius-sm)] p-2 text-[12px] font-bold transition-colors hover:bg-[var(--surface-sunken)]"
+                className="flex items-center gap-2 rounded-[var(--radius-sm)] p-2 text-2xs font-bold transition-colors hover:bg-[var(--surface-sunken)]"
               >
                 <span aria-hidden>{product.emoji}</span>
                 {product.name}
@@ -179,7 +179,7 @@ export function DemoMega({ onNavigate }: { onNavigate?: () => void }) {
             </li>
           ))}
         </ul>
-        <Link href="/demo" onClick={onNavigate} className="mt-2 inline-block text-[11px] font-extrabold text-brand-600 hover:underline">
+        <Link href="/demo" onClick={onNavigate} className="mt-2 inline-block text-3xs font-extrabold text-brand-600 hover:underline">
           مشاهده هر ۱۰ دمو →
         </Link>
       </div>
@@ -192,7 +192,7 @@ export function DemoMega({ onNavigate }: { onNavigate?: () => void }) {
               <Link
                 href={`/demo/industries/${industry.slug}`}
                 onClick={onNavigate}
-                className="block rounded-[var(--radius-sm)] p-2 text-[12px] font-bold transition-colors hover:bg-[var(--surface-sunken)]"
+                className="block rounded-[var(--radius-sm)] p-2 text-2xs font-bold transition-colors hover:bg-[var(--surface-sunken)]"
               >
                 {industry.name}
               </Link>
@@ -202,7 +202,7 @@ export function DemoMega({ onNavigate }: { onNavigate?: () => void }) {
         <Link
           href="/demo/industries"
           onClick={onNavigate}
-          className="mt-2 inline-block text-[11px] font-extrabold text-brand-600 hover:underline"
+          className="mt-2 inline-block text-3xs font-extrabold text-brand-600 hover:underline"
         >
           گالری کامل ۱۲ صنعت →
         </Link>
