@@ -1,3 +1,5 @@
+import { BLOG_POSTS } from "@/lib/blog";
+import { CASE_STUDIES } from "@/lib/portfolio";
 import type { MetadataRoute } from "next";
 import { SITE } from "@/lib/constants";
 import { INDUSTRIES } from "@/lib/industries";
@@ -23,6 +25,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     /* ── کارن چاپ (زیرمجموعه) ── */
     entry("/print", 0.98),
     entry("/print/order", 0.9),
+    ...PRINT_PRODUCTS.map(product => entry(`/print/order/${product.slug}`, 0.6, "monthly")),
     entry("/print/services", 0.86),
     ...PRINT_SERVICES.map((service) => entry(`/print/services/${service.slug}`, 0.82)),
     ...PRINT_PRODUCTS.map((product) => entry(`/print/products/${product.slug}`, 0.72, "monthly")),
@@ -32,6 +35,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     entry("/print/contact", 0.55, "monthly"),
 
     /* ── سایت اصلی ── */
+    ...["/solutions", "/docs", "/changelog", "/roadmap", "/status", "/privacy", "/terms", "/about/careers", "/download-law-software"].map(path => entry(path, 0.5, "monthly")),
+    ...BLOG_POSTS.map(post => entry(`/blog/${post.slug}`, 0.65, "monthly")),
+    ...CASE_STUDIES.map(post => entry(`/portfolio/${post.slug}`, 0.65, "monthly")),
     entry("/services", 0.9),
     entry("/products", 0.9),
     ...PRODUCTS.map((product) => entry(`/products/${product.slug}`, 0.85)),

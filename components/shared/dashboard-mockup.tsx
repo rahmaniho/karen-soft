@@ -60,7 +60,7 @@ export function DashboardMockup() {
                 <div key={kpi.label} className="rounded-[var(--radius-md)] border border-[var(--border-subtle)] bg-[var(--surface-raised)] p-3">
                   <p className="text-5xs text-muted">{kpi.label}</p>
                   <strong className="block text-base">{kpi.value}</strong>
-                  <span className="inline-flex items-center gap-0.5 text-5xs font-extrabold text-emerald-600">
+                  <span className="inline-flex items-center gap-0.5 text-5xs font-extrabold text-emerald-700 dark:text-emerald-400">
                     <ArrowUpLeft className="size-2.5" aria-hidden />
                     {kpi.trend}
                   </span>
@@ -95,7 +95,7 @@ export function DashboardMockup() {
 
       <div className="absolute -bottom-5 -start-4 hidden rounded-[var(--radius-md)] border border-[var(--border-subtle)] bg-[var(--surface-raised)] px-4 py-3 shadow-[var(--shadow-lift)] sm:block">
         <p className="text-5xs text-muted">زمان بارگذاری</p>
-        <strong className="text-sm text-emerald-600">۰.۹ ثانیه</strong>
+        <strong className="text-sm text-emerald-700 dark:text-emerald-400">۰.۹ ثانیه</strong>
       </div>
     </div>
   );

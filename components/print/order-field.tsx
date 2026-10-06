@@ -21,9 +21,9 @@ const shell =
 function Label({ field, filled }: { field: Field; filled?: boolean }) {
   return (
     <div className="mb-2 flex items-center gap-2">
-      <span className="text-2xs font-bold">{field.label}</span>
+      <span id={`label-${field.key}`} className="text-2xs font-bold">{field.label}</span>
       {field.required ? (
-        <span className={cn("text-5xs font-bold", filled ? "text-emerald-600" : "text-brand-600")}>
+        <span className={cn("text-5xs font-bold", filled ? "text-emerald-700 dark:text-emerald-400" : "text-brand-600")}>
           {filled ? "✓ انجام شد" : " الزامی"}
         </span>
       ) : null}
@@ -58,7 +58,7 @@ function OptionPills({
 }) {
   const options = optionsOf(field);
   return (
-    <div className="flex flex-wrap gap-2">
+    <div role={multiple ? "group" : "radiogroup"} aria-labelledby={`label-${field.key}`} className="flex flex-wrap gap-2">
       {options.map((option: FieldOption) => {
         const active = value.includes(option.id);
         return (
@@ -77,7 +77,7 @@ function OptionPills({
           >
             <span className="block text-2xs font-bold leading-none">{option.label}</span>
             {option.hint ? (
-              <span className={cn("mt-1 block text-5xs leading-snug", active ? "text-white/70" : "text-muted")}>
+              <span className={cn("mt-1 block text-5xs leading-snug", active ? "text-white/80 dark:text-ink-700" : "text-muted")}>
                 {option.hint}
               </span>
             ) : null}
@@ -94,12 +94,14 @@ function Stepper({
   min = 1,
   step = 1,
   unit,
+  label,
 }: {
   value: number;
   onChange: (n: number) => void;
   min?: number;
   step?: number;
   unit?: string;
+  label: string;
 }) {
   const set = (n: number) => onChange(Math.max(min, Number.isFinite(n) ? n : min));
   return (
@@ -114,6 +116,7 @@ function Stepper({
       </button>
       <div className="relative flex-1">
         <input
+          aria-label={label}
           type="number"
           inputMode="numeric"
           value={Number.isFinite(value) ? value : min}
@@ -159,6 +162,8 @@ export function OrderField({ field, value, error, onChange }: FieldProps) {
         <div>
           <Label field={field} />
           <select
+            aria-labelledby={`label-${field.key}`}
+            aria-invalid={Boolean(error)}
             value={typeof value === "string" ? value : ""}
             onChange={(e) => onChange(e.target.value)}
             className={cn(shell, "appearance-none bg-[length:0] pe-9")}
@@ -216,7 +221,7 @@ export function OrderField({ field, value, error, onChange }: FieldProps) {
               ))}
             </div>
             <div className="sm:w-52">
-              <Stepper value={n} min={field.min ?? 1} step={50} unit={field.unit} onChange={onChange} />
+              <Stepper label={field.label} value={n} min={field.min ?? 1} step={50} unit={field.unit} onChange={onChange} />
             </div>
           </div>
           <Hint field={field} />
@@ -230,7 +235,7 @@ export function OrderField({ field, value, error, onChange }: FieldProps) {
         <div>
           <Label field={field} />
           <div className="sm:max-w-[16rem]">
-            <Stepper value={n} min={field.min ?? 1} step={field.step ?? 1} unit={field.unit} onChange={onChange} />
+            <Stepper label={field.label} value={n} min={field.min ?? 1} step={field.step ?? 1} unit={field.unit} onChange={onChange} />
           </div>
           <Hint field={field} />
           <Error message={error} />
@@ -339,6 +344,8 @@ export function OrderField({ field, value, error, onChange }: FieldProps) {
         value: text,
         onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => onChange(e.target.value),
         placeholder: "placeholder" in field ? field.placeholder : undefined,
+        "aria-labelledby": `label-${field.key}`,
+        "aria-invalid": Boolean(error),
         name: field.key,
         id: `field-${field.key}`,
         className: cn(shell, error && "border-rose-400"),

@@ -9,7 +9,7 @@ export function NumberedCard({
 }) {
   return (
     <li className="grid grid-cols-[56px_1fr] gap-5 border-b border-[var(--border-subtle)] py-7 last:border-0">
-      <span className="grid size-12 place-items-center rounded-full border border-[var(--border-subtle)] text-xs font-extrabold text-brand-600 persian-num">
+      <span className="grid size-12 place-items-center rounded-full border border-[var(--border-subtle)] text-xs font-extrabold text-brand-600 dark:text-brand-300 persian-num">
         {index}
       </span>
       <div>

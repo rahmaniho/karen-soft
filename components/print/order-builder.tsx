@@ -18,6 +18,7 @@ import {
   type OrderErrors,
 } from "@/lib/print/order";
 import type { OrderValues, PrintProduct } from "@/lib/print/types";
+import { useFocusTrap } from "@/hooks/use-focus-trap";
 import { OrderField } from "@/components/print/order-field";
 import { toPersianDigits } from "@/lib/utils";
 
@@ -34,7 +35,18 @@ export function OrderBuilder({ product, serviceName }: { product: PrintProduct; 
   const [done, setDone] = useState<{ code: string; text: string } | null>(null);
   const [copied, setCopied] = useState(false);
   const [restored, setRestored] = useState(false);
+  const [ready, setReady] = useState(false);
   const rootRef = useRef<HTMLFormElement>(null);
+  const dialogRef = useRef<HTMLDivElement>(null);
+  useFocusTrap(dialogRef, Boolean(done));
+  useEffect(() => {
+    if (!done) return;
+    const close = (event: KeyboardEvent) => { if (event.key === "Escape") setDone(null); };
+    const previous = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", close);
+    return () => { document.body.style.overflow = previous; window.removeEventListener("keydown", close); };
+  }, [done]);
 
   /* بازیابی پیش‌نویس پیشین */
   useEffect(() => {
@@ -53,12 +65,12 @@ export function OrderBuilder({ product, serviceName }: { product: PrintProduct; 
       }
     } catch {
       /* localStorage در دسترس نیست */
-    }
+    } finally { setReady(true); }
   }, [product]);
 
   /* ذخیرۀ خودکار پیش‌نویس */
   useEffect(() => {
-    if (done) return;
+    if (!ready || done) return;
     const id = window.setTimeout(() => {
       try {
         localStorage.setItem(draftKey(product.slug), JSON.stringify({ values, savedAt: Date.now() }));
@@ -67,7 +79,7 @@ export function OrderBuilder({ product, serviceName }: { product: PrintProduct; 
       }
     }, 400);
     return () => window.clearTimeout(id);
-  }, [values, product.slug, done]);
+  }, [values, product.slug, done, ready]);
 
   const groups = useMemo(() => orderGroups(product), [product]);
   const progress = useMemo(() => filledCount(product, values), [product, values]);
@@ -90,6 +102,7 @@ export function OrderBuilder({ product, serviceName }: { product: PrintProduct; 
     const keys = Object.keys(found);
     if (keys.length) {
       const node = rootRef.current?.querySelector<HTMLElement>(`[data-field="${keys[0]}"]`);
+      node?.querySelector<HTMLElement>("input,select,textarea,button")?.focus({preventScroll:true});
       node?.scrollIntoView({ behavior: "smooth", block: "center" });
       return;
     }
@@ -124,7 +137,8 @@ export function OrderBuilder({ product, serviceName }: { product: PrintProduct; 
 
   return (
     <div className="grid gap-6 lg:grid-cols-[1.55fr_1fr] lg:items-start">
-      <form ref={rootRef} onSubmit={submit} noValidate className="space-y-5">
+      <form ref={rootRef} onSubmit={submit} aria-busy={!ready} noValidate>
+        <fieldset disabled={!ready} className="space-y-5 min-w-0">
         {restored ? (
           <motion.p
             initial={{ opacity: 0, y: -6 }}
@@ -174,7 +188,7 @@ export function OrderBuilder({ product, serviceName }: { product: PrintProduct; 
             className="inline-flex h-12 items-center gap-2 rounded-[var(--radius-md)] bg-ink-900 px-6 text-sm font-bold text-white transition-all duration-[200ms] hover:-translate-y-0.5 hover:bg-ink-800 dark:bg-white dark:text-ink-900 dark:hover:bg-ink-100"
           >
             <Send className="size-4" aria-hidden />
-            ثبت سفارش و دریافت کد پیگیری
+            آماده‌سازی سفارش برای ارسال
           </button>
           <button
             type="button"
@@ -194,6 +208,7 @@ export function OrderBuilder({ product, serviceName }: { product: PrintProduct; 
             </span>
           </a>
         </div>
+        </fieldset>
       </form>
 
       {/* خلاصۀ زنده */}
@@ -238,7 +253,7 @@ export function OrderBuilder({ product, serviceName }: { product: PrintProduct; 
             </p>
             <p className="mt-2 flex items-start gap-2 text-5xs leading-relaxed text-muted">
               <TriangleAlert className="mt-0.5 size-3.5 shrink-0 text-amber-500" aria-hidden />
-              فایل چاپی را بعد از ثبت، از طریق واتساپ یا ایمیل بفرستید.
+              فایل چاپی را بعد از ارسال درخواست، از طریق واتساپ یا ایمیل بفرستید.
             </p>
           </div>
         </div>
@@ -263,6 +278,7 @@ export function OrderBuilder({ product, serviceName }: { product: PrintProduct; 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
+            ref={dialogRef}
             className="fixed inset-0 z-[95] grid place-items-center overflow-y-auto bg-ink-950/85 p-4 backdrop-blur-sm"
             role="dialog"
             aria-modal="true"
@@ -276,13 +292,13 @@ export function OrderBuilder({ product, serviceName }: { product: PrintProduct; 
               className="w-full max-w-lg overflow-hidden rounded-[var(--radius-2xl)] bg-[var(--surface-raised)] shadow-[var(--shadow-lift)]"
             >
               <div className="border-b border-[var(--border-subtle)] p-6">
-                <p className="text-5xs font-bold uppercase tracking-[0.24em] text-emerald-600">آماده ارسال</p>
+                <p className="text-5xs font-bold uppercase tracking-[0.24em] text-emerald-700 dark:text-emerald-400">آماده ارسال</p>
                 <h2 className="mt-2 font-titr text-xl leading-snug">سفارش {product.name} آماده است</h2>
                 <p className="mt-2 text-3xs leading-loose text-muted">
-                  برای نهایی شدن، پیام زیر را با یکی از روش‌های زیر برای کارن چاپ بفرستید.
+                  این سفارش هنوز برای چاپخانه ارسال نشده است. پیام زیر را ارسال کنید؛ ثبت نهایی پس از تأیید کارن چاپ انجام می‌شود.
                 </p>
                 <p className="mt-4 inline-flex items-center gap-2 rounded-full bg-[var(--surface-sunken)] px-3 py-1.5 text-2xs font-bold">
-                  کد پیگیری
+                  شناسه پیش‌نویس
                   <span className="persian-num font-titr text-sm">{done.code}</span>
                 </p>
               </div>
@@ -298,7 +314,7 @@ export function OrderBuilder({ product, serviceName }: { product: PrintProduct; 
                   href={whatsappHref(done.text, CHAP.whatsapp)}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex h-11 items-center justify-center gap-2 rounded-[var(--radius-md)] bg-emerald-500 text-white transition-transform hover:-translate-y-0.5"
+                  className="inline-flex h-11 items-center justify-center gap-2 rounded-[var(--radius-md)] bg-emerald-700 text-white transition-transform hover:-translate-y-0.5"
                 >
                   <MessageCircle className="size-4" aria-hidden />
                   ارسال در واتساپ

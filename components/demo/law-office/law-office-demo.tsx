@@ -115,7 +115,7 @@ export function LawOfficeDemo() {
               <ul className="space-y-2">
                 {HEARINGS.map((hearing) => (
                   <li key={hearing.title} className="flex items-center gap-3 rounded-[var(--radius-md)] bg-[var(--surface-sunken)] p-3">
-                    <span className="grid size-11 shrink-0 place-items-center rounded-[var(--radius-sm)] text-sm font-extrabold text-white persian-num" style={{ background: ACCENT }}>
+                    <span className="grid size-11 shrink-0 place-items-center rounded-[var(--radius-sm)] text-sm font-extrabold text-white persian-num" style={{ background: ACCENT, color: "#05070d" }}>
                       {toPersianDigits(hearing.day)}
                     </span>
                     <div>
@@ -170,7 +170,7 @@ export function LawOfficeDemo() {
                 ))}
               </select>
               <input name="hearing" placeholder="تاریخ جلسه ۱۴۰۵/۰۸/۰۱" className="h-10 rounded-[var(--radius-sm)] border border-[var(--border-subtle)] bg-[var(--surface-sunken)] px-3 text-2xs sm:col-span-2" aria-label="تاریخ جلسه" />
-              <button type="submit" className="inline-flex h-10 items-center justify-center gap-1.5 rounded-[var(--radius-sm)] px-4 text-2xs font-extrabold text-white sm:col-span-3" style={{ background: ACCENT }}>
+              <button type="submit" className="inline-flex h-10 items-center justify-center gap-1.5 rounded-[var(--radius-sm)] px-4 text-2xs font-extrabold text-white sm:col-span-3" style={{ background: ACCENT, color: "#05070d" }}>
                 <Plus className="size-4" aria-hidden />
                 ثبت پرونده و تخصیص وکیل
               </button>
@@ -214,7 +214,7 @@ export function LawOfficeDemo() {
           {CLIENTS.map((client) => (
             <article key={client.id} className="surface-card p-5">
               <div className="flex items-center gap-3">
-                <span className="grid size-11 place-items-center rounded-full text-white" style={{ background: ACCENT }}>
+                <span className="grid size-11 place-items-center rounded-full text-white" style={{ background: ACCENT, color: "#05070d" }}>
                   <User className="size-5" aria-hidden />
                 </span>
                 <div>
@@ -319,7 +319,7 @@ export function LawOfficeDemo() {
                             )
                           }
                           className="h-9 rounded-[var(--radius-sm)] px-3 text-3xs font-extrabold text-white"
-                          style={{ background: ACCENT }}
+                          style={{ background: ACCENT, color: "#05070d" }}
                         >
                           ثبت پرداخت قسط
                         </button>
@@ -381,7 +381,7 @@ export function LawOfficeDemo() {
             className="mt-4 flex gap-2"
           >
             <input name="q" placeholder="پرسش حقوقی خود را بنویسید…" aria-label="پرسش" className="h-11 flex-1 rounded-[var(--radius-sm)] border border-[var(--border-subtle)] bg-[var(--surface-sunken)] px-3 text-2xs" />
-            <button type="submit" className="grid size-11 place-items-center rounded-[var(--radius-sm)] text-white" style={{ background: ACCENT }} aria-label="ارسال">
+            <button type="submit" className="grid size-11 place-items-center rounded-[var(--radius-sm)] text-white" style={{ background: ACCENT, color: "#05070d" }} aria-label="ارسال">
               <Send className="size-4" aria-hidden />
             </button>
           </form>
@@ -405,7 +405,7 @@ export function LawOfficeDemo() {
                 ])
               }
               className="h-9 rounded-[var(--radius-sm)] px-3 text-3xs font-extrabold text-white"
-              style={{ background: ACCENT }}
+              style={{ background: ACCENT, color: "#05070d" }}
             >
               شبیه‌سازی بارگذاری
             </button>

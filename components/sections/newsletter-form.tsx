@@ -3,7 +3,7 @@
 import { useState, type FormEvent } from "react";
 import { Check, Loader2 } from "lucide-react";
 import { newsletterSchema } from "@/lib/validations";
-import { cn, delay } from "@/lib/utils";
+import { cn } from "@/lib/utils";
 
 export function NewsletterForm({ variant = "section" }: { variant?: "section" | "footer" }) {
   const [email, setEmail] = useState("");
@@ -19,10 +19,13 @@ export function NewsletterForm({ variant = "section" }: { variant?: "section" | 
       return;
     }
     setState("loading");
-    await delay(600);
-    setState("done");
-    setMessage("عضویت شما ثبت شد. ماهی یک ایمیل، بدون تبلیغات.");
-    setEmail("");
+    try {
+      const response = await fetch("/api/newsletter", {method: "POST", headers: {"content-type":"application/json"}, body: JSON.stringify(parsed.data)});
+      const result = await response.json();
+      if (!response.ok) throw new Error(result.error ?? "ثبت عضویت ناموفق بود.");
+      setState("done"); setMessage("عضویت شما ثبت شد."); setEmail("");
+    } catch (error) {setState("error"); setMessage(error instanceof Error ? error.message : "ارسال ناموفق بود.");}
+
   }
 
   const footer = variant === "footer";

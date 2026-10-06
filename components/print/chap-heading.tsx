@@ -3,6 +3,7 @@ import { cn } from "@/lib/utils";
 
 /** سرآمدۀ بخش‌ها در کارن چاپ — برچسب لاتین، تیتر تیتری و لید */
 export function ChapHeading({
+  as: Heading = "h2",
   latin,
   fa,
   index,
@@ -12,6 +13,7 @@ export function ChapHeading({
   center,
   className,
 }: {
+  as?: "h1" | "h2";
   latin?: string;
   fa?: string;
   index?: string;
@@ -37,7 +39,7 @@ export function ChapHeading({
             {index ? <span className="sec-index ms-auto">{index}</span> : null}
           </div>
         ) : null}
-        <h2 className="display-2">{title}</h2>
+        <Heading className="display-2">{title}</Heading>
         {description ? <p className="lead mt-4">{description}</p> : null}
       </div>
       {action ? <div className="shrink-0">{action}</div> : null}

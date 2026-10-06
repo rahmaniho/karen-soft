@@ -1,0 +1,17 @@
+"use client";
+import { useEffect, useState } from "react";
+import Link from "next/link";
+import Image from "next/image";
+import { Search, ArrowLeft } from "lucide-react";
+import { PRODUCTS, PRODUCT_STATUS_LABEL } from "@/lib/products";
+import { ProductCard } from "@/components/shared/product-card";
+import { BLOG_POSTS } from "@/lib/blog";
+import { CASE_STUDIES } from "@/lib/portfolio";
+export function Catalog({ kind }: { kind: "products" | "blog" | "portfolio" }) {
+ const [query,setQuery]=useState(""); const [category,setCategory]=useState("همه");
+ const items = kind === "products" ? PRODUCTS.map(p=>({slug:p.slug,title:p.name,description:p.short,category:PRODUCT_STATUS_LABEL[p.status],image:p.image})) : kind === "blog" ? BLOG_POSTS.map(p=>({slug:p.slug,title:p.title,description:p.excerpt,category:p.category,image:p.cover})) : CASE_STUDIES.map(p=>({slug:p.slug,title:p.title,description:p.summary,category:p.category,image:p.cover}));
+ useEffect(()=>{setQuery(new URLSearchParams(window.location.search).get("q") ?? "");},[]);
+ const normalize=(s:string)=>s.replace(/ي/g,"ی").replace(/ك/g,"ک").toLocaleLowerCase();
+ const filtered=items.filter(x=>(category==="همه"||category===x.category)&&normalize(x.title+" "+x.description).includes(normalize(query.trim())));
+ return <div><div className="mb-8 flex flex-wrap items-center justify-between gap-5"><div className="flex flex-wrap gap-2">{["همه",...new Set(items.map(x=>x.category))].map(x=><button key={x} onClick={()=>setCategory(x)} aria-pressed={category===x} className={`rounded-full border px-4 py-2 text-xs transition-colors ${category===x?"bg-brand-600 text-white border-brand-600":"hover:border-brand-500"}`}>{x}</button>)}</div><label className="relative w-full sm:w-72"><span className="sr-only">جست‌وجو</span><Search className="absolute start-3 top-3 size-5 text-muted"/><input value={query} onChange={e=>setQuery(e.target.value)} placeholder="جست‌وجو…" className="w-full rounded-xl border bg-[var(--surface-raised)] py-3 ps-11 pe-4"/></label></div><p aria-live="polite" className="mb-5 text-xs text-muted">{filtered.length.toLocaleString("fa-IR")} نتیجه</p><div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">{filtered.map(x=>kind==="products"?<ProductCard key={x.slug} product={PRODUCTS.find(p=>p.slug===x.slug)!}/>:<article key={x.slug} className="surface-card overflow-hidden group">{x.image&&<Link href={`/${kind}/${x.slug}`} tabIndex={-1} aria-hidden><div className="relative aspect-[16/10] overflow-hidden bg-[var(--surface-sunken)]"><Image src={x.image} alt="" fill sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw" className="object-cover transition-transform duration-500 group-hover:scale-105"/></div></Link>}<div className="p-6"><span className="eyebrow">{x.category}</span><h3 className="mt-3"><Link href={`/${kind}/${x.slug}`}>{x.title}</Link></h3><p className="mt-3 text-muted text-sm">{x.description}</p><Link className="mt-6 inline-flex items-center gap-2 text-brand-600 dark:text-brand-300" href={`/${kind}/${x.slug}`}>مطالعه بیشتر <ArrowLeft className="size-4"/></Link></div></article>)}</div>{!filtered.length&&<div className="surface-card p-12 text-center"><h3>نتیجه‌ای پیدا نشد</h3><p className="text-muted my-3">عبارت دیگری جست‌وجو کنید یا فیلترها را بردارید.</p><button className="text-brand-600 dark:text-brand-300" onClick={()=>{setQuery("");setCategory("همه")}}>پاک کردن فیلترها</button></div>}</div>;
+}

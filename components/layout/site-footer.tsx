@@ -80,7 +80,7 @@ export function SiteFooter() {
               {item.label}
             </FooterLink>
           ))}
-          <li className="pt-2 text-[11px] leading-relaxed text-white/40">
+          <li className="pt-2 text-[11px] leading-relaxed text-white/60">
             چاپ، مهر و صحافی در قزوین — زیرمجموعۀ کارن سافت.
           </li>
         </FooterColumn>
@@ -102,7 +102,7 @@ export function SiteFooter() {
       </div>
 
       <div className="border-t border-white/10">
-        <div className="container-page flex flex-wrap items-center justify-between gap-3 py-5 text-3xs text-white/45">
+        <div className="container-page flex flex-wrap items-center justify-between gap-3 py-5 text-3xs text-white/60">
           <span>© {SITE.name} — تمامی حقوق محفوظ است.</span>
           <span>
             ساعات کاری: شنبه تا چهارشنبه {SITE.workingHours.satWed} · پنجشنبه {SITE.workingHours.thu}

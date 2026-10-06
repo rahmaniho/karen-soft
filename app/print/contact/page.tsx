@@ -48,7 +48,7 @@ export default function ChapContactPage() {
   return (
     <>
       <section className="container-page pt-12 lg:pt-16">
-        <ChapHeading
+        <ChapHeading as="h1"
           latin="Contact"
           fa="در تماس باشیم"
           title="برای مشاوره، قیمت یا پیگیری سفارش"

@@ -21,6 +21,7 @@ export function Accordion({ items, className }: { items: AccordionItem[]; classN
           <div key={item.q}>
             <h3>
               <button
+                id={`${baseId}-trigger-${index}`}
                 type="button"
                 aria-expanded={expanded}
                 aria-controls={`${baseId}-${index}`}
@@ -40,6 +41,7 @@ export function Accordion({ items, className }: { items: AccordionItem[]; classN
             <div
               id={`${baseId}-${index}`}
               role="region"
+              aria-labelledby={`${baseId}-trigger-${index}`}
               hidden={!expanded}
               className="pb-6 text-sm leading-loose text-muted"
             >

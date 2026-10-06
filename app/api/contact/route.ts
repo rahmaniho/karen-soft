@@ -1,24 +1,11 @@
 import { NextResponse } from "next/server";
 import { contactSchema } from "@/lib/validations";
 
-const WINDOW_MS = 60_000;
-const MAX_REQUESTS = 5;
-const hits = new Map<string, { count: number; reset: number }>();
-
-function rateLimited(ip: string): boolean {
-  const now = Date.now();
-  const entry = hits.get(ip);
-  if (!entry || entry.reset < now) {
-    hits.set(ip, { count: 1, reset: now + WINDOW_MS });
-    return false;
-  }
-  entry.count += 1;
-  return entry.count > MAX_REQUESTS;
-}
+import { rateLimited } from "@/lib/rate-limit";
 
 export async function POST(request: Request): Promise<NextResponse> {
   const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "anonymous";
-  if (rateLimited(ip)) {
+  if (rateLimited(`contact:${ip}`)) {
     return NextResponse.json({ ok: false, error: "تعداد درخواست‌ها بیش از حد مجاز است." }, { status: 429 });
   }
 
@@ -40,7 +27,8 @@ export async function POST(request: Request): Promise<NextResponse> {
   const apiKey = process.env.RESEND_API_KEY;
   if (apiKey) {
     try {
-      await fetch("https://api.resend.com/emails", {
+      const response = await fetch("https://api.resend.com/emails", {
+        signal: AbortSignal.timeout(10_000),
         method: "POST",
         headers: { authorization: `Bearer ${apiKey}`, "content-type": "application/json" },
         body: JSON.stringify({
@@ -50,11 +38,12 @@ export async function POST(request: Request): Promise<NextResponse> {
           text: `نام: ${parsed.data.name}\nتلفن: ${parsed.data.phone}\nایمیل: ${parsed.data.email ?? "-"}\n\n${parsed.data.message}`,
         }),
       });
+      if (!response.ok) throw new Error("Email provider rejected request");
     } catch {
       return NextResponse.json({ ok: false, error: "ارسال ایمیل ناموفق بود." }, { status: 502 });
     }
   } else {
-    console.info("[contact] پیام دریافت شد (حالت توسعه)");
+    return NextResponse.json({ ok: false, error: "ارسال آنلاین فعال نیست. لطفاً تلفنی یا با ایمیل تماس بگیرید." }, { status: 503 });
   }
 
   return NextResponse.json({ ok: true });

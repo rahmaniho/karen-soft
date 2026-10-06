@@ -13,7 +13,7 @@ export function pageMeta({ title, description, path = "/", images, noIndex }: Pa
   const url = `${SITE.url}${path}`;
   const image = images?.[0] ?? "/images/logo-karensoft.png";
   return {
-    title,
+    title: { absolute: title.includes(SITE.name) ? title : `${title} | ${SITE.name}` },
     description,
     alternates: { canonical: url },
     robots: noIndex ? { index: false, follow: false } : { index: true, follow: true },

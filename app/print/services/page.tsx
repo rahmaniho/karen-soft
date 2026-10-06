@@ -20,7 +20,7 @@ export default function ChapServicesPage() {
   return (
     <>
       <section className="container-page pt-12 lg:pt-16">
-        <ChapHeading
+        <ChapHeading as="h1"
           latin="All services"
           fa="همه خدمات"
           title="هفت خانوادۀ خدمت، یک استاندارد کیفیت"

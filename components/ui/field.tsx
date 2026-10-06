@@ -28,10 +28,10 @@ export function Select({ className, children, ...props }: ComponentProps<"select
   );
 }
 
-export function FieldError({ children }: { children?: ReactNode }) {
+export function FieldError({ children, id }: { children?: ReactNode; id?: string }) {
   if (!children) return null;
   return (
-    <p role="alert" className="mt-2 text-xs font-bold text-rose-600 dark:text-rose-400">
+    <p id={id} role="alert" className="mt-2 text-xs font-bold text-rose-600 dark:text-rose-400">
       {children}
     </p>
   );
