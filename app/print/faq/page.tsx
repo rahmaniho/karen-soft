@@ -20,7 +20,7 @@ export default function ChapFaqPage() {
   return (
     <>
       <section className="container-page pt-12 lg:pt-16">
-        <ChapHeading
+        <ChapHeading as="h1"
           latin="FAQ"
           fa="پاسخ‌های کوتاه"
           title="سؤالات پرتکرار کارن چاپ"

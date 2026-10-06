@@ -217,7 +217,7 @@ export function PortfolioSection() {
               </div>
               <div className="flex items-start justify-between gap-6 p-6">
                 <div>
-                  <span className="text-4xs font-extrabold text-brand-600">{item.category}</span>
+                  <span className="text-4xs font-extrabold text-brand-600 dark:text-brand-300">{item.category}</span>
                   <h3 className="mt-1 text-xl font-extrabold">{item.title}</h3>
                   <p className="mt-2 max-w-md text-xs leading-loose text-muted">{item.summary}</p>
                 </div>
@@ -327,7 +327,7 @@ export function ContactSection() {
               <li key={item.label} className="flex items-center gap-3 border-t border-white/10 pt-4">
                 <item.icon className="size-4 text-brand-300" aria-hidden />
                 <span className="flex flex-col">
-                  <small className="text-4xs text-white/45">{item.label}</small>
+                  <small className="text-4xs text-white/60">{item.label}</small>
                   {item.href ? (
                     <a href={item.href} className="text-xs font-bold hover:text-brand-300">
                       {item.value}

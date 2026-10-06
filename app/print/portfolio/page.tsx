@@ -17,7 +17,7 @@ export default function ChapPortfolioPage() {
   return (
     <>
       <section className="container-page pt-12 lg:pt-16">
-        <ChapHeading
+        <ChapHeading as="h1"
           latin="Portfolio"
           fa="گالری"
           title="نمونه‌کارهای کارن چاپ"

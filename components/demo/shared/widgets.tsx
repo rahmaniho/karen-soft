@@ -42,7 +42,7 @@ export function KpiGrid({
       {items.map((item) => (
         <div key={item.label} className="surface-card p-4">
           <p className="text-3xs text-muted">{item.label}</p>
-          <strong className="mt-1 block text-2xl persian-num" style={{ color: accent }}>
+          <strong className="mt-1 block text-2xl persian-num" style={{ color: "var(--text-primary)" }}>
             {item.value}
           </strong>
           {item.hint ? <span className="text-4xs text-muted">{item.hint}</span> : null}
@@ -162,7 +162,7 @@ export function KanbanBoard({
                 {card.meta ? <p className="mt-1 text-4xs text-muted">{card.meta}</p> : null}
                 <div className="mt-2 flex items-center justify-between gap-2">
                   {card.tag ? (
-                    <span className="rounded-full px-2 py-0.5 text-5xs font-bold" style={{ background: `${accent}22`, color: accent }}>
+                    <span className="rounded-full px-2 py-0.5 text-5xs font-bold" style={{ background: `${accent}22`, color: "var(--text-primary)" }}>
                       {card.tag}
                     </span>
                   ) : (
@@ -388,7 +388,7 @@ export function RangeField({
     <label className="block">
       <span className="flex items-center justify-between text-2xs font-bold">
         {label}
-        <span className="persian-num" style={{ color: accent }}>
+        <span className="persian-num" style={{ color: "var(--text-primary)" }}>
           {formatNumber(value)} {suffix}
         </span>
       </span>

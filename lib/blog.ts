@@ -1,6 +1,9 @@
+import legacyArticles from "./legacy-blog.json";
+
 export interface BlogSection {
   heading: string;
   paragraphs: string[];
+  blocks?: { type: string; text?: string; src?: string; items?: string[] }[];
   bullets?: string[];
 }
 
@@ -20,7 +23,7 @@ export interface BlogPost {
 
 const AUTHOR = "حسین رحمانی";
 
-export const BLOG_POSTS: BlogPost[] = [
+const EDITORIAL_POSTS: BlogPost[] = [
   {
     slug: "office-automation",
     title: "اتوماسیون اداری؛ نقطه شروع دیجیتالی‌شدن کسب‌وکار",
@@ -72,7 +75,7 @@ export const BLOG_POSTS: BlogPost[] = [
     date: "2025-05-02",
     readingMinutes: 6,
     author: AUTHOR,
-    cover: "/images/blog/direct-to-cell.jpg",
+    cover: "/images/blog/../logo-karensoft.png",
     legacyPath: "/blog/direct_to_cell.html",
     tags: ["ماهواره", "شبکه", "آینده‌پژوهی"],
     sections: [
@@ -184,7 +187,7 @@ export const BLOG_POSTS: BlogPost[] = [
     date: "2025-03-05",
     readingMinutes: 10,
     author: AUTHOR,
-    cover: "/images/blog/store.jpg",
+    cover: "/images/blog/online-store.jpg",
     legacyPath: "/blog/online-store.html",
     tags: ["فروشگاه", "تجارت الکترونیک", "سئو"],
     sections: [
@@ -298,7 +301,7 @@ export const BLOG_POSTS: BlogPost[] = [
     date: "2024-12-11",
     readingMinutes: 7,
     author: AUTHOR,
-    cover: "/images/blog/ai-law.jpg",
+    cover: "/images/blog/smart-case-management.jpg",
     legacyPath: "/blog/smart-case-management.html",
     tags: ["هوش مصنوعی", "وکالت", "بهره‌وری"],
     sections: [
@@ -333,7 +336,7 @@ export const BLOG_POSTS: BlogPost[] = [
     date: "2024-11-19",
     readingMinutes: 6,
     author: AUTHOR,
-    cover: "/images/blog/taxi.jpg",
+    cover: "/images/blog/Taxi-blog.webp",
     legacyPath: "/blog/taxi.html",
     tags: ["تاکسی", "دیسپچ", "حمل‌ونقل"],
     sections: [
@@ -369,7 +372,7 @@ export const BLOG_POSTS: BlogPost[] = [
     date: "2024-10-08",
     readingMinutes: 5,
     author: AUTHOR,
-    cover: "/images/blog/lawyer-site.jpg",
+    cover: "/images/blog/lawyer-website.jpg",
     legacyPath: "/blog/why-lawyer-needs-website.html",
     tags: ["وکالت", "برند شخصی", "سئو"],
     sections: [
@@ -405,7 +408,7 @@ export const BLOG_POSTS: BlogPost[] = [
     date: "2025-07-21",
     readingMinutes: 8,
     author: AUTHOR,
-    cover: "/images/blog/printing.jpg",
+    cover: "/images/blog/../karenchap.png",
     legacyPath: "/print.html",
     tags: ["چاپ", "بهای تمام‌شده", "تولید"],
     sections: [
@@ -435,6 +438,16 @@ export const BLOG_POSTS: BlogPost[] = [
     ],
   },
 ];
+
+// Legacy articles are the authoritative full text, not shortened replacements.
+export const BLOG_POSTS: BlogPost[] = EDITORIAL_POSTS.map(post => {
+  const original = (legacyArticles as Record<string, {title: string; sections: {heading: string; blocks: NonNullable<BlogSection["blocks"]>}[]}>)[post.legacyPath];
+  if (!original) return post;
+  const words = original.sections.reduce((n, s) => n + s.blocks.reduce((m, b) => m + (b.text ?? b.items?.join(" ") ?? "").split(/\s+/).length, 0), 0);
+  return {...post, title: original.title, readingMinutes: Math.max(1, Math.ceil(words / 180)),
+    ...(post.slug === "direct-to-cell" ? {date: "2026-09-18"} : {}),
+    sections: original.sections.map(s => ({...s, paragraphs: []}))};
+});
 
 export function getPost(slug: string): BlogPost | undefined {
   return BLOG_POSTS.find((p) => p.slug === slug);

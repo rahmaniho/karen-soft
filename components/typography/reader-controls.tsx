@@ -76,7 +76,8 @@ export function ReaderControls({ className }: { className?: string }) {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 8, scale: 0.98 }}
             transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
-            className="glass-panel w-[min(22rem,calc(100vw-2.5rem))] rounded-[var(--radius-xl)] p-5 shadow-[var(--shadow-lift)]"
+            className="glass-panel max-h-[calc(100dvh-7rem)] overflow-y-auto w-[min(22rem,calc(100vw-2.5rem))] rounded-[var(--radius-xl)] p-5 shadow-[var(--shadow-lift)]"
+            id="reader-panel"
             role="dialog"
             aria-label="تنظیم نوشتار"
           >
@@ -149,6 +150,7 @@ export function ReaderControls({ className }: { className?: string }) {
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
+        aria-controls="reader-panel"
         aria-expanded={open}
         aria-label="تنظیم اندازه و وزن نوشتار"
         className={cn(

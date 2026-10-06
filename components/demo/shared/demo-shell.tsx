@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState, type ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import {
   ArrowLeft,
   ArrowRight,
@@ -12,6 +12,8 @@ import {
   RotateCcw,
   X,
 } from "lucide-react";
+import { useFocusTrap } from "@/hooks/use-focus-trap";
+import { contrastText } from "@/lib/colors";
 import { cn } from "@/lib/utils";
 
 export interface DemoModule {
@@ -36,18 +38,27 @@ export function DemoShell({ productSlug, productName, emoji, accent, modules, on
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [navOpen, setNavOpen] = useState(false);
 
+  const [loadedKey, setLoadedKey] = useState<string | null>(null);
+  const infoRef = useRef<HTMLDivElement>(null);
+  useFocusTrap(infoRef, drawerOpen);
   useEffect(() => {
-    const stored = sessionStorage.getItem(storageKey);
-    if (stored) {
-      const index = modules.findIndex((m) => m.id === stored);
+    if (loadedKey === storageKey) return;
+    try {
+      const stored = sessionStorage.getItem(storageKey);
+      const index = modules.findIndex(m => m.id === stored);
       if (index >= 0) setActive(index);
-    }
-  }, [storageKey, modules]);
-
+    } catch { /* Storage is optional in private browsing. */ }
+    setLoadedKey(storageKey);
+  }, [storageKey, loadedKey, modules]);
   useEffect(() => {
-    const current = modules[active];
-    if (current) sessionStorage.setItem(storageKey, current.id);
-  }, [active, modules, storageKey]);
+    if (loadedKey !== storageKey) return;
+    try { if (modules[active]) sessionStorage.setItem(storageKey, modules[active].id); } catch {}
+  }, [active, modules, storageKey, loadedKey]);
+  useEffect(() => {
+    const close = (event: KeyboardEvent) => { if (event.key === "Escape") {setDrawerOpen(false);setNavOpen(false);} };
+    window.addEventListener("keydown", close);
+    return () => window.removeEventListener("keydown", close);
+  }, []);
 
   const current = modules[active]!;
 
@@ -68,7 +79,7 @@ export function DemoShell({ productSlug, productName, emoji, accent, modules, on
 
           <span
             className="inline-flex shrink-0 items-center gap-1.5 rounded-full px-3 py-1.5 text-3xs font-extrabold text-white"
-            style={{ background: accent }}
+            style={{ background: accent, color: contrastText(accent) }}
           >
             <span className="size-1.5 animate-pulse rounded-full bg-white" aria-hidden />
             دموی زنده
@@ -84,7 +95,7 @@ export function DemoShell({ productSlug, productName, emoji, accent, modules, on
               type="button"
               onClick={() => {
                 onReset?.();
-                sessionStorage.removeItem(storageKey);
+                try { sessionStorage.removeItem(storageKey); } catch {}
                 setActive(0);
               }}
               className="hidden h-9 items-center gap-1.5 rounded-[var(--radius-sm)] border border-[var(--border-subtle)] px-3 text-3xs font-bold text-muted transition-colors hover:border-brand-400 hover:text-brand-600 sm:inline-flex"
@@ -150,9 +161,9 @@ export function DemoShell({ productSlug, productName, emoji, accent, modules, on
                     "w-full rounded-[var(--radius-sm)] px-3 py-2.5 text-start text-2xs font-bold transition-colors",
                     active === index ? "text-white" : "text-muted hover:bg-[var(--surface-sunken)]",
                   )}
-                  style={active === index ? { background: accent } : undefined}
+                  style={active === index ? { background: accent, color: contrastText(accent) } : undefined}
                 >
-                  <span className="me-2 persian-num opacity-60">{index + 1}</span>
+                  <span className="me-2 persian-num opacity-90">{index + 1}</span>
                   {module.label}
                 </button>
               </li>
@@ -208,7 +219,7 @@ export function DemoShell({ productSlug, productName, emoji, accent, modules, on
               onClick={() => setActive((i) => Math.min(modules.length - 1, i + 1))}
               disabled={active === modules.length - 1}
               className="inline-flex h-9 items-center gap-1 rounded-[var(--radius-sm)] px-4 text-3xs font-extrabold text-white disabled:opacity-40"
-              style={{ background: accent }}
+              style={{ background: accent, color: contrastText(accent) }}
             >
               بعدی
               <ChevronLeft className="size-3.5" aria-hidden />
@@ -219,7 +230,7 @@ export function DemoShell({ productSlug, productName, emoji, accent, modules, on
 
       {/* Info drawer */}
       {drawerOpen ? (
-        <div className="fixed inset-0 z-40 flex" role="dialog" aria-modal="true" aria-label="راهنمای دمو">
+        <div ref={infoRef} className="fixed inset-0 z-40 flex" role="dialog" aria-modal="true" aria-label="راهنمای دمو">
           <button type="button" aria-label="بستن راهنما" className="flex-1 bg-black/40" onClick={() => setDrawerOpen(false)} />
           <div className="w-full max-w-sm overflow-y-auto border-s border-[var(--border-subtle)] bg-[var(--surface-raised)] p-6">
             <div className="flex items-center justify-between">
@@ -254,7 +265,7 @@ export function DemoShell({ productSlug, productName, emoji, accent, modules, on
             <Link
               href="/contact"
               className="mt-6 inline-flex h-11 w-full items-center justify-center gap-2 rounded-[var(--radius-sm)] text-2xs font-extrabold text-white"
-              style={{ background: accent }}
+              style={{ background: accent, color: contrastText(accent) }}
             >
               درخواست نسخه کامل
               <ArrowLeft className="size-4" aria-hidden />

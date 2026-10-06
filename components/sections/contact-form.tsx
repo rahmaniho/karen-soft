@@ -16,7 +16,9 @@ export function ContactForm() {
 
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const form = new FormData(event.currentTarget);
+    if (status === "loading") return;
+    const formElement = event.currentTarget;
+    const form = new FormData(formElement);
     const payload = {
       name: String(form.get("name") ?? ""),
       phone: String(form.get("phone") ?? ""),
@@ -33,6 +35,7 @@ export function ContactForm() {
         if (key && !next[key]) next[key] = issue.message;
       }
       setErrors(next);
+      requestAnimationFrame(() => document.getElementById(Object.keys(next)[0])?.focus());
       setStatus("error");
       setFeedback("لطفاً خطاهای فرم را برطرف کنید.");
       return;
@@ -46,39 +49,40 @@ export function ContactForm() {
         headers: { "content-type": "application/json" },
         body: JSON.stringify(parsed.data),
       });
-      if (!res.ok) throw new Error("request failed");
+      const result = await res.json();
+      if (!res.ok) throw new Error(result.error ?? "ارسال ناموفق بود؛ لطفاً تماس بگیرید.");
       setStatus("success");
       setFeedback("پیام شما ثبت شد. کمتر از یک روز کاری تماس می‌گیریم.");
-      (event.target as HTMLFormElement).reset();
-    } catch {
+      formElement.reset();
+    } catch (error) {
       setStatus("error");
-      setFeedback("ارسال پیام ناموفق بود. لطفاً تلفنی تماس بگیرید.");
+      setFeedback(error instanceof Error ? error.message : "ارسال پیام ناموفق بود. لطفاً تلفنی تماس بگیرید.");
     }
   }
 
   return (
-    <form onSubmit={onSubmit} noValidate className="rounded-[var(--radius-2xl)] bg-[var(--surface-raised)] p-6 text-[color:var(--text-primary)] sm:p-9">
+    <form onSubmit={onSubmit} aria-busy={status === "loading"} noValidate className="rounded-[var(--radius-2xl)] bg-[var(--surface-raised)] p-6 text-[color:var(--text-primary)] sm:p-9">
       <div className="grid gap-5 sm:grid-cols-2">
         <div>
           <Label htmlFor="name">نام و نام خانوادگی</Label>
-          <Input id="name" name="name" autoComplete="name" aria-invalid={Boolean(errors.name)} placeholder="مثلاً حسین رحمانی" />
-          <FieldError>{errors.name}</FieldError>
+          <Input id="name" name="name" aria-describedby={errors.name ? "name-error" : undefined} autoComplete="name" aria-invalid={Boolean(errors.name)} placeholder="مثلاً حسین رحمانی" />
+          <FieldError id="name-error">{errors.name}</FieldError>
         </div>
         <div>
           <Label htmlFor="phone">شماره تماس</Label>
-          <Input id="phone" name="phone" inputMode="tel" dir="ltr" autoComplete="tel" aria-invalid={Boolean(errors.phone)} placeholder="09123456789" />
-          <FieldError>{errors.phone}</FieldError>
+          <Input id="phone" name="phone" type="tel" aria-describedby={errors.phone ? "phone-error" : undefined} inputMode="tel" dir="ltr" autoComplete="tel" aria-invalid={Boolean(errors.phone)} placeholder="09123456789" />
+          <FieldError id="phone-error">{errors.phone}</FieldError>
         </div>
         <div>
           <Label htmlFor="email">
             ایمیل <span className="font-normal text-muted">(اختیاری)</span>
           </Label>
-          <Input id="email" name="email" type="email" dir="ltr" autoComplete="email" placeholder="you@example.com" />
-          <FieldError>{errors.email}</FieldError>
+          <Input id="email" name="email" aria-describedby={errors.email ? "email-error" : undefined} type="email" dir="ltr" autoComplete="email" placeholder="you@example.com" />
+          <FieldError id="email-error">{errors.email}</FieldError>
         </div>
         <div>
           <Label htmlFor="subject">موضوع</Label>
-          <Select id="subject" name="subject" defaultValue="">
+          <Select id="subject" name="subject" aria-describedby={errors.subject ? "subject-error" : undefined} defaultValue="">
             <option value="" disabled>
               انتخاب کنید
             </option>
@@ -91,14 +95,14 @@ export function ContactForm() {
             ))}
             <option value="other">سایر</option>
           </Select>
-          <FieldError>{errors.subject}</FieldError>
+          <FieldError id="subject-error">{errors.subject}</FieldError>
         </div>
       </div>
 
       <div className="mt-5">
         <Label htmlFor="message">توضیحات پروژه</Label>
-        <Textarea id="message" name="message" rows={5} aria-invalid={Boolean(errors.message)} placeholder="کوتاه درباره کسب‌وکار و نیازتان بنویسید…" />
-        <FieldError>{errors.message}</FieldError>
+        <Textarea id="message" name="message" aria-describedby={errors.message ? "message-error" : undefined} rows={5} aria-invalid={Boolean(errors.message)} placeholder="کوتاه درباره کسب‌وکار و نیازتان بنویسید…" />
+        <FieldError id="message-error">{errors.message}</FieldError>
       </div>
 
       <div className="mt-6 flex flex-wrap items-center gap-4">
@@ -111,7 +115,7 @@ export function ContactForm() {
 
       <p
         aria-live="polite"
-        className={`mt-3 min-h-5 text-xs font-bold ${status === "success" ? "text-emerald-600" : "text-rose-600"}`}
+        className={`mt-3 min-h-5 text-xs font-bold ${status === "success" ? "text-emerald-700 dark:text-emerald-400" : "text-rose-700 dark:text-rose-400"}`}
       >
         {feedback}
       </p>

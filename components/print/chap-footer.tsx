@@ -22,7 +22,7 @@ export function ChapFooter() {
             </span>
             <span className="flex flex-col leading-none">
               <strong className="font-titr text-[17px]">{CHAP.name}</strong>
-              <small className="mt-1 text-6xs tracking-[0.28em] text-white/45" dir="ltr">
+              <small className="mt-1 text-6xs tracking-[0.28em] text-white/60" dir="ltr">
                 {CHAP.motto}
               </small>
             </span>
@@ -76,28 +76,28 @@ export function ChapFooter() {
           <h3 className="mb-4 text-2xs font-bold text-white/85">تماس و آدرس</h3>
           <ul className="space-y-3 text-3xs text-white/70">
             <li className="flex items-start gap-2">
-              <Phone className="mt-0.5 size-3.5 shrink-0 text-white/40" aria-hidden />
+              <Phone className="mt-0.5 size-3.5 shrink-0 text-white/60" aria-hidden />
               <a href={`tel:${CHAP.tel}`} dir="ltr" className="persian-num hover:text-white">
                 {CHAP.phone}
               </a>
             </li>
             <li className="flex items-start gap-2">
-              <Mail className="mt-0.5 size-3.5 shrink-0 text-white/40" aria-hidden />
+              <Mail className="mt-0.5 size-3.5 shrink-0 text-white/60" aria-hidden />
               <a href={`mailto:${CHAP.email}`} className="hover:text-white" dir="ltr">
                 {CHAP.email}
               </a>
             </li>
             <li className="flex items-start gap-2">
-              <MapPin className="mt-0.5 size-3.5 shrink-0 text-white/40" aria-hidden />
+              <MapPin className="mt-0.5 size-3.5 shrink-0 text-white/60" aria-hidden />
               <span>{CHAP.address}</span>
             </li>
           </ul>
-          <p className="mt-4 text-6xs leading-loose text-white/40">{CHAP.hours}</p>
+          <p className="mt-4 text-6xs leading-loose text-white/60">{CHAP.hours}</p>
         </div>
       </div>
 
       <div className="border-t border-white/10">
-        <div className="container-page flex flex-wrap items-center justify-between gap-3 py-5 text-6xs text-white/45">
+        <div className="container-page flex flex-wrap items-center justify-between gap-3 py-5 text-6xs text-white/60">
           <span>
             © {new Date().getFullYear()} — تمامی حقوق برای {CHAP.name} محفوظ است.
           </span>

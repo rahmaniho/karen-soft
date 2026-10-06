@@ -34,3 +34,9 @@ yarn-error.log*
 # local env files
 .env
 .env*.local
+
+# local content migration tools
+/.venv/
+
+# local audit output
+/.cache/

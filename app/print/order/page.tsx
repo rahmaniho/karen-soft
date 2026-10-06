@@ -19,7 +19,7 @@ export default function ChapOrderHubPage() {
   return (
     <>
       <section className="container-page pt-12 lg:pt-16">
-        <ChapHeading
+        <ChapHeading as="h1"
           latin="Order builder"
           fa="پیکربند سفارش"
           title="اول محصول، بعد مشخصات"

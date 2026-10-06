@@ -65,7 +65,7 @@ export function isVisible(field: Field, values: OrderValues): boolean {
 }
 
 export function isFilled(field: Field, value: FieldValue | undefined): boolean {
-  if (value == null || value === "") return false;
+  if (value == null || (typeof value === "string" && !value.trim())) return false;
   if (field.type === "toggle") return true;
   if (Array.isArray(value)) return value.length > 0;
   if (typeof value === "object") {
@@ -140,8 +140,12 @@ export function validate(product: PrintProduct, values: OrderValues): OrderError
     if (field.key === "name" && typeof value === "string" && value.trim() && value.trim().length < 3) {
       errors.name = "نام را کامل وارد کنید.";
     }
-    if (field.type === "num" && typeof value === "number" && field.min != null && value < field.min) {
-      errors[field.key] = `حداقل ${toPersianDigits(field.min)}${field.unit ? ` ${field.unit}` : ""}`;
+    if ((field.type === "num" || field.type === "qty") && (typeof value !== "number" || !Number.isFinite(value) || value < (field.min ?? 1))) {
+      errors[field.key] = `حداقل ${toPersianDigits(field.min ?? 1)}${field.unit ? ` ${field.unit}` : ""}`;
+    }
+    if (field.type === "dims" && value && typeof value === "object") {
+      const dims = value as {w?: string; h?: string};
+      if (![dims.w, dims.h].every(v => {const n = Number(toLatinDigits(String(v ?? ""))); return Number.isFinite(n) && n > 0;})) errors[field.key] = "عرض و ارتفاع باید عدد مثبت باشند.";
     }
   }
   return errors;

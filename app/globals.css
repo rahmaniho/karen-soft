@@ -380,7 +380,7 @@ html[data-headings="sans"] {
     line-height: 1.45;
     letter-spacing: 0;
     /* کشیدگی کلمه‌ای، جایگزین سالم letter-spacing برای فارسی */
-    word-spacing: -0.14em;
+    word-spacing: normal;
     text-wrap: balance;
     font-feature-settings: "liga" 1;
   }
@@ -521,7 +521,7 @@ html[data-headings="sans"] {
   .display-3 {
     font-family: var(--reader-head);
     font-weight: 700;
-    word-spacing: -0.16em;
+    word-spacing: normal;
   }
   .display-1 {
     font-size: var(--text-display-1);
@@ -596,7 +596,7 @@ html[data-headings="sans"] {
     word-spacing: -0.12em;
   }
   .tighten {
-    word-spacing: -0.18em;
+    word-spacing: -0.03em;
   }
 
   /* ── نوار رنگ‌های چاپ ── */
@@ -734,5 +734,17 @@ html[data-headings="sans"] {
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
     scroll-behavior: auto !important;
+  }
+}
+
+/* Accessible controls and resilient Persian/Latin wrapping. */
+@layer base {
+  button:not(:disabled), summary, select { cursor: pointer; }
+  button:disabled { cursor: not-allowed; }
+  input, textarea, select { max-width: 100%; }
+  p, h1, h2, h3, a { overflow-wrap: anywhere; }
+  input[type="email"], input[type="tel"] { direction: ltr; text-align: start; }
+  @media (max-width: 639px) {
+    input, textarea, select { font-size: 16px; }
   }
 }

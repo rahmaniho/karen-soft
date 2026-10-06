@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ChevronDown, Menu, Phone, X } from "lucide-react";
 import { CHAP_LINKS, NAV_LINKS, SITE } from "@/lib/constants";
@@ -11,16 +11,19 @@ import { SOLUTIONS } from "@/lib/solutions";
 import { PRODUCTS } from "@/lib/products";
 import { INDUSTRIES } from "@/lib/industries";
 import { cn } from "@/lib/utils";
+import { useFocusTrap } from "@/hooks/use-focus-trap";
 import { useScrollState } from "@/hooks/use-scroll-state";
 import { ButtonLink } from "@/components/ui/button";
 import { ThemeToggle } from "./theme-toggle";
 import { DemoMega, ProductsMega, SolutionsMega } from "./mega-menus";
 
 export function SiteHeader() {
+  const headerRef = useRef<HTMLElement>(null);
   const pathname = usePathname();
   const { scrolled, hidden } = useScrollState();
   const [openMega, setOpenMega] = useState<string | null>(null);
   const [drawerOpen, setDrawerOpen] = useState(false);
+  useFocusTrap(headerRef, drawerOpen);
 
   useEffect(() => {
     setOpenMega(null);
@@ -48,20 +51,21 @@ export function SiteHeader() {
   const isActive = (href: string) => (href === "/" ? pathname === "/" : pathname.startsWith(href));
 
   return (
-    <header
+    <header ref={headerRef}
       className={cn(
         "fixed inset-x-0 top-0 z-50 transition-all duration-[250ms] ease-[cubic-bezier(0.16,1,0.3,1)]",
         scrolled ? "glass-panel border-x-0 border-t-0 py-2 shadow-[0_1px_0_rgba(10,30,50,.06)]" : "border-transparent py-4",
         hidden && !openMega && !drawerOpen && "-translate-y-full",
       )}
       onMouseLeave={() => setOpenMega(null)}
+      onBlur={(event) => { if (!event.currentTarget.contains(event.relatedTarget)) setOpenMega(null); }}
     >
       <div className="container-page flex items-center gap-4">
         <Link href="/" className="flex shrink-0 items-center gap-2.5" aria-label="صفحه اصلی کارن سافت">
           <Image src="/images/logo.png" alt="لوگوی کارن سافت" width={44} height={44} className="size-11 object-contain" priority />
           <span className="flex flex-col leading-tight">
             <strong className="text-md">{SITE.name}</strong>
-            <small className="text-6xs font-extrabold tracking-[3px] text-brand-600">KAREN SOFT</small>
+            <small className="text-6xs font-extrabold tracking-[3px] text-brand-600 dark:text-brand-300">KAREN SOFT</small>
           </span>
         </Link>
 
@@ -70,6 +74,9 @@ export function SiteHeader() {
             <div key={link.href} className="relative" onMouseEnter={() => setOpenMega(link.mega ?? null)}>
               <Link
                 href={link.href}
+                aria-current={isActive(link.href) ? "page" : undefined}
+                onFocus={() => setOpenMega(link.mega ?? null)}
+                onKeyDown={(event) => { if (link.mega && event.key === "ArrowDown") { event.preventDefault(); setOpenMega(link.mega); requestAnimationFrame(() => document.querySelector<HTMLAnchorElement>("#mega-menu a")?.focus()); } }}
                 aria-haspopup={link.mega ? "true" : undefined}
                 aria-expanded={link.mega ? openMega === link.mega : undefined}
                 className={cn(
@@ -98,7 +105,7 @@ export function SiteHeader() {
           ))}
         </nav>
 
-        <div className="flex items-center gap-2">
+        <div className="ms-auto flex shrink-0 items-center gap-2 lg:ms-0">
           <a
             href={`tel:${SITE.phone}`}
             className="hidden items-center gap-1.5 rounded-full border border-[var(--border-subtle)] px-3 py-2 text-2xs font-extrabold text-muted transition-colors hover:border-brand-400 hover:text-brand-600 xl:inline-flex"
@@ -114,6 +121,7 @@ export function SiteHeader() {
             type="button"
             className="grid size-10 place-items-center rounded-[var(--radius-sm)] bg-ink-900 text-white lg:hidden dark:bg-white dark:text-ink-900"
             aria-label={drawerOpen ? "بستن منو" : "باز کردن منو"}
+            aria-controls="mobile-menu"
             aria-expanded={drawerOpen}
             onClick={() => setDrawerOpen((v) => !v)}
           >
@@ -125,6 +133,7 @@ export function SiteHeader() {
       <AnimatePresence>
         {openMega ? (
           <motion.div
+            id="mega-menu"
             key={openMega}
             initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
@@ -145,7 +154,8 @@ export function SiteHeader() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 top-[68px] z-40 overflow-y-auto bg-[var(--surface)] px-4 pb-24 pt-4 lg:hidden"
+            id="mobile-menu"
+            className="absolute inset-x-0 top-full h-[calc(100dvh-76px)] z-40 overflow-y-auto bg-[var(--surface)] px-4 pb-24 pt-4 lg:hidden"
           >
             <MobileNav onNavigate={() => setDrawerOpen(false)} />
           </motion.div>

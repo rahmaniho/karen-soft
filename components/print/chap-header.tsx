@@ -25,6 +25,13 @@ export function ChapHeader() {
 
   useEffect(() => setDrawer(false), [pathname]);
 
+  useEffect(() => {
+    if (!drawer) return;
+    const close = (event: KeyboardEvent) => { if (event.key === "Escape") setDrawer(false); };
+    window.addEventListener("keydown", close);
+    return () => window.removeEventListener("keydown", close);
+  }, [drawer]);
+
   const isActive = (href: string) => (href === CHAP.path ? pathname === CHAP.path : pathname.startsWith(href));
 
   return (
@@ -43,14 +50,14 @@ export function ChapHeader() {
         <span style={{ background: "var(--color-cmyk-k)" }} />
       </div>
 
-      <div className="container-page flex items-center gap-4 py-3">
+      <div className="container-page flex items-center gap-2 sm:gap-4 py-3">
         <Link href={CHAP.path} className="flex shrink-0 items-center gap-3" aria-label={`${CHAP.name} — خانه`}>
           <span className="grid size-11 place-items-center overflow-hidden rounded-[var(--radius-md)] bg-ink-950 p-1">
             <Image src={CHAP.logo} alt="" width={64} height={64} className="size-9 object-contain" priority />
           </span>
           <span className="flex flex-col leading-none">
             <strong className="font-titr text-[17px] leading-tight">{CHAP.name}</strong>
-            <small className="mt-1 text-6xs font-bold tracking-[0.28em] text-muted" dir="ltr">
+            <small className="mt-1 text-6xs font-bold tracking-[0.12em] sm:tracking-[0.28em] text-muted" dir="ltr">
               {CHAP.motto}
             </small>
           </span>
@@ -61,6 +68,7 @@ export function ChapHeader() {
             <Link
               key={link.href}
               href={link.href}
+              aria-current={isActive(link.href) ? "page" : undefined}
               className={cn(
                 "relative rounded-[var(--radius-sm)] px-3 py-2 text-xs font-bold transition-colors duration-[150ms]",
                 isActive(link.href)
@@ -80,7 +88,7 @@ export function ChapHeader() {
           ))}
         </nav>
 
-        <div className="flex items-center gap-2">
+        <div className="ms-auto flex shrink-0 items-center gap-2 lg:ms-0">
           <a
             href={`tel:${CHAP.tel}`}
             className="hidden items-center gap-1.5 rounded-full border border-[var(--border-subtle)] px-3 py-2 text-2xs font-bold text-muted transition-colors hover:border-ink-900 hover:text-[color:var(--text-primary)] xl:inline-flex"
@@ -126,13 +134,14 @@ export function ChapHeader() {
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.24, ease: [0.16, 1, 0.3, 1] }}
             aria-label="منوی موبایل کارن چاپ"
-            className="overflow-hidden border-t border-[var(--border-subtle)] bg-[var(--surface-raised)] lg:hidden"
+            className="max-h-[calc(100dvh-76px)] overflow-y-auto border-t border-[var(--border-subtle)] bg-[var(--surface-raised)] lg:hidden"
           >
             <ul className="container-page grid gap-1 py-4">
               {CHAP_NAV.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
+              aria-current={isActive(link.href) ? "page" : undefined}
                     className={cn(
                       "block rounded-[var(--radius-md)] px-4 py-3 text-sm font-bold",
                       isActive(link.href) ? "bg-[var(--surface-sunken)]" : "hover:bg-[var(--surface-sunken)]",
