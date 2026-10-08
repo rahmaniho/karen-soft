@@ -1,6 +1,11 @@
 import { PageHero, ContentSection, InfoGrid, ContactCTA } from "@/components/site/page-parts";
 import { ButtonLink } from "@/components/ui/button";
 import { pageMeta } from "@/lib/seo";
-export const metadata=pageMeta({title:"نقشه راه محصولات",description:"وضعیت معرفی‌شده در مخزن؛ زمان انتشار قابلیت‌های آینده قطعی نیست.",path:"/roadmap"});
+export const metadata = pageMeta({
+  title: "نقشه راه محصولات کارن سافت",
+  description: "وضعیت کلی محصولات کارن سافت و تفاوت نسخه‌های فعال، آزمایشی و در حال توسعه؛ زمان‌بندی قابلیت‌های آینده قطعی نیست.",
+  path: "/roadmap",
+  noIndex: true,
+});
 const items=[{"title": "فعال", "desc": "محصولات دارای برچسب فعال برای بررسی و گفت‌وگو درباره استقرار معرفی شده‌اند. دامنه قابلیت‌های نسخه قابل تحویل باید در قرارداد تأیید شود."}, {"title": "آزمایشی", "desc": "برچسب تستی نشان‌دهنده مرحله آزمایش محصول است. برای بررسی محدودیت‌ها و امکان استفاده عملیاتی، با تیم تماس بگیرید."}, {"title": "در حال توسعه", "desc": "محصولات در حال توسعه ممکن است تغییر کنند. وجود دمو به معنای آماده بودن تمام امکانات برای محیط واقعی نیست."}];
 export default function Page(){return <><PageHero eyebrow="KAREN SOFT / INFORMATION" title="نقشه راه محصولات" description="وضعیت معرفی‌شده در مخزن؛ زمان انتشار قابلیت‌های آینده قطعی نیست."/><ContentSection title="آنچه باید بدانید"><InfoGrid items={items}/><div className="mt-8 flex flex-wrap gap-4"><ButtonLink href="/demo">بررسی دموها</ButtonLink><ButtonLink href="/products" variant="outline">همه محصولات</ButtonLink></div></ContentSection><ContactCTA/></>}

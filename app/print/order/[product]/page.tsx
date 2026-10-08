@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
-import { pageMeta } from "@/lib/seo";
+import { chapPageMeta } from "@/lib/seo";
 import { CHAP } from "@/lib/print/site";
 import { PRINT_PRODUCTS, PRINT_PRODUCT_BY_SLUG } from "@/lib/print/data/products";
 import { PRINT_SERVICE_BY_SLUG } from "@/lib/print/data/services";
@@ -16,12 +16,12 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ product: string }> }): Promise<Metadata> {
   const { product: slug } = await params;
   const product = PRINT_PRODUCT_BY_SLUG[slug];
-  if (!product) return {};
-  return pageMeta({
+  if (!product) notFound();
+  return chapPageMeta({
     title: `سفارش ${product.name} | ${CHAP.name}`,
     description: `پیکربند و ثبت آنلاین سفارش ${product.name}: ${product.description}`,
     path: `/print/order/${slug}`,
-    noIndex: false,
+    noIndex: true,
   });
 }
 

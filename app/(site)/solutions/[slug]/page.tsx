@@ -1,8 +1,90 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { SOLUTIONS } from "@/lib/solutions";
 import { pageMeta } from "@/lib/seo";
+import { breadcrumbSchema, serviceSchema } from "@/lib/schema";
+import { JsonLd } from "@/components/ui/json-ld";
 import { PageHero, ContentSection, InfoGrid, Points, ContactCTA } from "@/components/site/page-parts";
 import { ButtonLink } from "@/components/ui/button";
-export const generateStaticParams=()=>SOLUTIONS.map(s=>({slug:s.slug}));
-export async function generateMetadata({params}:{params:Promise<{slug:string}>}) {const {slug}=await params;const s=SOLUTIONS.find(s=>s.slug===slug);return s?pageMeta({title:s.name,description:s.short,path:`/solutions/${slug}`}):{};}
-export default async function Page({params}:{params:Promise<{slug:string}>}) {const {slug}=await params;const s=SOLUTIONS.find(s=>s.slug===slug);if(!s)notFound();return <><PageHero eyebrow="BUILT FOR YOUR INDUSTRY" title={s.tagline} description={s.hero}><ButtonLink href={`/demo/${s.demoSlug}`}>مشاهده دمو</ButtonLink><ButtonLink variant="outline" href={`/products/${s.productSlug}`}>معرفی محصول</ButtonLink></PageHero><ContentSection title="چالش‌هایی که می‌شناسیم"><InfoGrid items={s.pains}/></ContentSection><ContentSection title="پاسخ ما به نیازهای شما"><InfoGrid items={s.features}/></ContentSection><ContentSection title="ماژول‌های راهکار"><div className="grid gap-6 md:grid-cols-2">{s.modules.map(m=><article key={m.title} className="surface-card p-8"><h3>{m.title}</h3><p className="my-4 text-muted">{m.desc}</p><Points items={m.points}/></article>)}</div></ContentSection><ContentSection title="گردش کار، از ابتدا تا انتها"><ol className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">{s.workflow.map((w,i)=><li key={w} className="surface-card p-6"><span className="eyebrow">STEP {i+1}</span><p className="mt-4">{w}</p></li>)}</ol></ContentSection><ContentSection title="جزئیاتی که تفاوت می‌سازند"><Points items={s.specialization}/></ContentSection><ContentSection title="یکپارچه‌سازی‌ها"><Points items={s.integrations}/></ContentSection><ContentSection title={s.caseStudy.title}><p className="lead">{s.caseStudy.desc}</p><div className="grid gap-4 sm:grid-cols-3 mt-8">{s.caseStudy.stats.map(x=><div key={x.label} className="surface-card p-8"><p className="text-3xl text-brand-600 dark:text-brand-300 font-bold">{x.value}</p><p className="text-muted mt-3">{x.label}</p></div>)}</div></ContentSection><ContactCTA/></>}
+
+export const generateStaticParams = () => SOLUTIONS.map((solution) => ({ slug: solution.slug }));
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const solution = SOLUTIONS.find((item) => item.slug === slug);
+  if (!solution) notFound();
+
+  return pageMeta({
+    title: `${solution.name} | نرم‌افزار تخصصی صنعت`,
+    description: solution.hero,
+    path: `/solutions/${solution.slug}`,
+  });
+}
+
+export default async function SolutionPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const solution = SOLUTIONS.find((item) => item.slug === slug);
+  if (!solution) notFound();
+
+  return (
+    <>
+      <PageHero eyebrow="BUILT FOR YOUR INDUSTRY" title={solution.tagline} description={solution.hero}>
+        <ButtonLink href={`/demo/${solution.demoSlug}`}>مشاهده دمو</ButtonLink>
+        <ButtonLink variant="outline" href={`/products/${solution.productSlug}`}>معرفی محصول</ButtonLink>
+      </PageHero>
+
+      <ContentSection title="چالش‌هایی که می‌شناسیم"><InfoGrid items={solution.pains} /></ContentSection>
+      <ContentSection title="پاسخ ما به نیازهای شما"><InfoGrid items={solution.features} /></ContentSection>
+      <ContentSection title="ماژول‌های راهکار">
+        <div className="grid gap-6 md:grid-cols-2">
+          {solution.modules.map((module) => (
+            <article key={module.title} className="surface-card p-8">
+              <h3>{module.title}</h3>
+              <p className="my-4 text-muted">{module.desc}</p>
+              <Points items={module.points} />
+            </article>
+          ))}
+        </div>
+      </ContentSection>
+      <ContentSection title="گردش کار، از ابتدا تا انتها">
+        <ol className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {solution.workflow.map((step, index) => (
+            <li key={step} className="surface-card p-6">
+              <span className="eyebrow">STEP {index + 1}</span>
+              <p className="mt-4">{step}</p>
+            </li>
+          ))}
+        </ol>
+      </ContentSection>
+      <ContentSection title="جزئیاتی که تفاوت می‌سازند"><Points items={solution.specialization} /></ContentSection>
+      <ContentSection title="یکپارچه‌سازی‌ها"><Points items={solution.integrations} /></ContentSection>
+      <ContentSection title={solution.caseStudy.title}>
+        <p className="lead">{solution.caseStudy.desc}</p>
+        <div className="mt-8 grid gap-4 sm:grid-cols-3">
+          {solution.caseStudy.stats.map((stat) => (
+            <div key={stat.label} className="surface-card p-8">
+              <p className="text-3xl font-bold text-brand-600 dark:text-brand-300">{stat.value}</p>
+              <p className="mt-3 text-muted">{stat.label}</p>
+            </div>
+          ))}
+        </div>
+      </ContentSection>
+      <ContactCTA />
+      <JsonLd
+        data={[
+          serviceSchema({
+            name: solution.name,
+            description: solution.hero,
+            path: `/solutions/${solution.slug}`,
+            serviceType: `نرم‌افزار ${solution.name}`,
+          }),
+          breadcrumbSchema([
+            { name: "خانه", path: "/" },
+            { name: "راهکارهای صنایع", path: "/solutions" },
+            { name: solution.name, path: `/solutions/${solution.slug}` },
+          ]),
+        ]}
+      />
+    </>
+  );
+}

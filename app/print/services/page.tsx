@@ -1,18 +1,20 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
-import { pageMeta } from "@/lib/seo";
+import { chapPageMeta } from "@/lib/seo";
 import { CHAP } from "@/lib/print/site";
 import { PRINT_SERVICES } from "@/lib/print/data/services";
 import { productsOfService } from "@/lib/print/data/products";
 import { ChapHeading } from "@/components/print/chap-heading";
 import { ButtonLink } from "@/components/ui/button";
 import { Reveal } from "@/components/shared/reveal";
+import { JsonLd } from "@/components/ui/json-ld";
+import { breadcrumbSchema, itemListSchema } from "@/lib/schema";
 
-export const metadata = pageMeta({
+export const metadata = chapPageMeta({
   title: "خدمات کارن چاپ | چاپ افست و دیجیتال، مهر، صحافی و هدایای تبلیغاتی",
   description:
-    "هفت خانوادۀ خدمت در کارن چاپ: چاپ تبلیغاتی و اداری، بنر و چاپ بزرگ‌فرمت، ساخت مهر، صحافی و پایان‌نامه، هدایای تبلیغاتی، چاپ کتاب و تقدیرنامه — با گزینه‌های تخصصی هر محصول.",
+    "خدمات کارن چاپ در الوندِ قزوین: چاپ افست و دیجیتال، بنر، ساخت مهر، صحافی پایان‌نامه و کتاب و هدایای تبلیغاتی؛ همراه با مشخصات فنی و زمان تحویل هر سفارش.",
   path: "/print/services",
 });
 
@@ -104,6 +106,19 @@ export default function ChapServicesPage() {
           );
         })}
       </section>
+      <JsonLd
+        data={[
+          itemListSchema("خدمات چاپ، مهر و صحافی کارن چاپ", PRINT_SERVICES.map((service) => ({
+            name: service.title,
+            url: `/print/services/${service.slug}`,
+          }))),
+          breadcrumbSchema([
+            { name: "خانه", path: "/" },
+            { name: "کارن چاپ", path: "/print" },
+            { name: "خدمات", path: "/print/services" },
+          ]),
+        ]}
+      />
     </>
   );
 }

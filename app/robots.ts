@@ -8,7 +8,13 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "*",
         allow: "/",
-        disallow: ["/api/", "/demo/*?*"],
+        disallow: ["/api/"],
+      },
+      // Explicitly keep public, indexable pages accessible to answer-engine search crawlers.
+      {
+        userAgent: ["OAI-SearchBot", "ChatGPT-User", "Claude-SearchBot", "PerplexityBot"],
+        allow: "/",
+        disallow: ["/api/"],
       },
     ],
     sitemap: `${base}/sitemap.xml`,

@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, Check, Phone } from "lucide-react";
-import { pageMeta } from "@/lib/seo";
+import { chapPageMeta } from "@/lib/seo";
 import { CHAP } from "@/lib/print/site";
 import { PRINT_SERVICES, PRINT_SERVICE_BY_SLUG } from "@/lib/print/data/services";
 import { productsOfService } from "@/lib/print/data/products";
@@ -14,7 +14,7 @@ import { ChapIcon } from "@/components/print/chap-icon";
 import { ProductCard } from "@/components/print/product-card";
 import { WorkGallery } from "@/components/print/work-gallery";
 import { JsonLd } from "@/components/ui/json-ld";
-import { faqSchema } from "@/lib/schema";
+import { breadcrumbSchema, chapServiceSchema, faqSchema, itemListSchema } from "@/lib/schema";
 
 export function generateStaticParams() {
   return PRINT_SERVICES.map((service) => ({ slug: service.slug }));
@@ -23,10 +23,10 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
   const service = PRINT_SERVICE_BY_SLUG[slug];
-  if (!service) return {};
-  return pageMeta({
+  if (!service) notFound();
+  return chapPageMeta({
     title: `${service.title} | ${CHAP.name}`,
-    description: `${service.description} ${service.short}.`,
+    description: `${service.title} در کارن چاپِ الوند، قزوین؛ ${service.short}. امکان ارسال سفارش به سراسر ایران.`,
     path: `/print/services/${slug}`,
     images: [service.image],
   });
@@ -160,7 +160,27 @@ export default async function ChapServicePage({ params }: { params: Promise<{ sl
         </section>
       ) : null}
 
-      <JsonLd data={faqSchema(service.faqs)} />
+      <JsonLd
+        data={[
+          chapServiceSchema({
+            name: service.title,
+            description: service.description,
+            path: `/print/services/${service.slug}`,
+            serviceType: service.short,
+          }),
+          itemListSchema(`${service.title} — محصولات قابل سفارش`, products.map((product) => ({
+            name: product.name,
+            url: `/print/products/${product.slug}`,
+          }))),
+          faqSchema(service.faqs),
+          breadcrumbSchema([
+            { name: "خانه", path: "/" },
+            { name: "کارن چاپ", path: "/print" },
+            { name: "خدمات", path: "/print/services" },
+            { name: service.title, path: `/print/services/${service.slug}` },
+          ]),
+        ]}
+      />
     </>
   );
 }

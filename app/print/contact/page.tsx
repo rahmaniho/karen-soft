@@ -1,11 +1,14 @@
 import Link from "next/link";
 import { ArrowLeft, Clock, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
-import { pageMeta } from "@/lib/seo";
+import { chapPageMeta } from "@/lib/seo";
 import { CHAP } from "@/lib/print/site";
 import { ChapHeading } from "@/components/print/chap-heading";
 import { ChapContactForm } from "@/components/print/chap-contact-form";
+import { SITE } from "@/lib/constants";
+import { JsonLd } from "@/components/ui/json-ld";
+import { breadcrumbSchema, webPageSchema } from "@/lib/schema";
 
-export const metadata = pageMeta({
+export const metadata = chapPageMeta({
   title: `تماس با ${CHAP.name} | مشاوره، استعلام قیمت و پیگیری سفارش`,
   description: `${CHAP.name} در قزوین، شهرصنعتی البرز (الوند). تماس ${CHAP.phone} — ${CHAP.hours}`,
   path: "/print/contact",
@@ -127,6 +130,22 @@ export default function ChapContactPage() {
           </p>
         </div>
       </section>
+      <JsonLd
+        data={[
+          webPageSchema({
+            type: "ContactPage",
+            name: `تماس با ${CHAP.name}`,
+            description: `شماره تماس، نشانی، ساعت کاری و راه‌های پیگیری سفارش ${CHAP.name} در ${CHAP.locality}، ${CHAP.region}.`,
+            path: "/print/contact",
+            mainEntity: { "@id": `${SITE.url}/#karen-chap` },
+          }),
+          breadcrumbSchema([
+            { name: "خانه", path: "/" },
+            { name: "کارن چاپ", path: "/print" },
+            { name: "تماس با کارن چاپ", path: "/print/contact" },
+          ]),
+        ]}
+      />
     </>
   );
 }

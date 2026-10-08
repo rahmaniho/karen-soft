@@ -8,34 +8,46 @@ import { localBusinessSchema, organizationSchema, websiteSchema } from "@/lib/sc
 import { JsonLd } from "@/components/ui/json-ld";
 import { ThemeProvider } from "@/components/layout/theme-provider";
 
+const homeTitle = `${SITE.name} | طراحی وب‌سایت و نرم‌افزار مدیریتی در قزوین`;
+const socialImage = "/images/logo-karensoft.png";
+
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
   title: {
-    default: `${SITE.name} | طراحی و توسعه نرم‌افزار برای کسب‌وکارها`,
+    default: homeTitle,
     template: `%s | ${SITE.name}`,
   },
   description: SITE.description,
   applicationName: SITE.name,
   authors: [{ name: SITE.founder }],
-  keywords: [
-    "طراحی سایت قزوین",
-    "نرم افزار اختصاصی",
-    "نرم افزار دفتر وکالت",
-    "مدیریت چاپخانه",
-    "اتوماسیون اداری",
-    "کارن سافت",
-  ],
-  icons: { icon: "/images/logo.png", apple: "/images/logo.png" },
+  creator: SITE.name,
+  publisher: SITE.name,
+  icons: {
+    icon: "/images/logo.png",
+    apple: "/images/logo.png",
+  },
   openGraph: {
     type: "website",
     locale: "fa_IR",
     siteName: SITE.name,
     url: SITE.url,
-    title: `${SITE.name} | شریک فنی رشد کسب‌وکار شما`,
+    title: homeTitle,
     description: SITE.description,
-    images: ["/images/logo-karensoft.png"],
+    images: [{ url: socialImage, alt: `${SITE.name} — طراحی وب و نرم‌افزار` }],
   },
-  alternates: { canonical: "/", types: { "application/rss+xml": "/rss.xml" } },
+  twitter: {
+    card: "summary_large_image",
+    title: homeTitle,
+    description: SITE.description,
+    images: [socialImage],
+  },
+  alternates: {
+    types: { "application/rss+xml": "/rss.xml" },
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export const viewport: Viewport = {
@@ -50,7 +62,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="fa" dir="rtl" suppressHydrationWarning>
+    <html lang="fa-IR" dir="rtl" suppressHydrationWarning>
       <body>
         {/* بارگذاری زودِ دو فونت اصلی: ایران‌سنس (متن) و تیتر (تیترها) */}
         <link rel="preload" href="/fonts/iransans/IRANSans-Regular.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />

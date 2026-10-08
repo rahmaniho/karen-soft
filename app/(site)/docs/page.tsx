@@ -1,6 +1,10 @@
 import { PageHero, ContentSection, InfoGrid, ContactCTA } from "@/components/site/page-parts";
 import { ButtonLink } from "@/components/ui/button";
 import { pageMeta } from "@/lib/seo";
-export const metadata=pageMeta({title:"راهنمای استفاده",description:"شروع کار با محصولات و دموهای کارن سافت.",path:"/docs"});
+export const metadata = pageMeta({
+  title: "راهنمای استفاده از محصولات و دموهای کارن سافت",
+  description: "راهنمای شروع کار با دموی آنلاین محصولات کارن سافت، بررسی ماژول‌ها و آماده‌سازی نیازمندی‌های پیش از استقرار.",
+  path: "/docs",
+});
 const items=[{"title": "شروع بدون نصب", "desc": "از بخش دموی زنده، محصول موردنظر را انتخاب کنید. دموها در مرورگر اجرا می‌شوند و داده‌های آن‌ها آزمایشی است؛ اطلاعات شخصی یا محرمانه واقعی را وارد نکنید."}, {"title": "بررسی ماژول‌ها", "desc": "از منوی هر دمو به بخش‌های سفارش، مشتریان، گزارش‌ها و تنظیمات بروید. امکانات هر محصول در صفحه معرفی آن فهرست شده است."}, {"title": "از دمو تا استقرار", "desc": "پس از بررسی دمو، فرایندهای موردنیاز، تعداد کاربران و یکپارچه‌سازی‌ها را برای تیم ارسال کنید. آموزش و شرایط پشتیبانی در پیشنهاد پروژه مشخص می‌شود."}];
 export default function Page(){return <><PageHero eyebrow="KAREN SOFT / INFORMATION" title="راهنمای استفاده" description="شروع کار با محصولات و دموهای کارن سافت."/><ContentSection title="آنچه باید بدانید"><InfoGrid items={items}/><div className="mt-8 flex flex-wrap gap-4"><ButtonLink href="/demo">بررسی دموها</ButtonLink><ButtonLink href="/products" variant="outline">همه محصولات</ButtonLink></div></ContentSection><ContactCTA/></>}

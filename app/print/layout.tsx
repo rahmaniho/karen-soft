@@ -1,6 +1,8 @@
 import type { ReactNode } from "react";
 import { ChapHeader } from "@/components/print/chap-header";
 import { ChapFooter } from "@/components/print/chap-footer";
+import { JsonLd } from "@/components/ui/json-ld";
+import { chapBusinessSchema } from "@/lib/schema";
 
 export default function PrintLayout({ children }: { children: ReactNode }) {
   return (
@@ -16,6 +18,7 @@ export default function PrintLayout({ children }: { children: ReactNode }) {
         {children}
       </main>
       <ChapFooter />
+      <JsonLd data={chapBusinessSchema()} />
     </div>
   );
 }

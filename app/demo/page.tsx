@@ -14,7 +14,7 @@ import { IndustryCard } from "@/components/shared/industry-card";
 
 export const metadata: Metadata = pageMeta({
   title: "دموی زنده محصولات | کارن سافت",
-  description: "بدون نصب، بدون ثبت‌نام — همه ۱۰ محصول کارن سافت را در مرورگر امتحان کنید.",
+  description: "دموی زنده ۱۰ نرم‌افزار کارن سافت را رایگان و بدون ثبت‌نام در مرورگر بررسی کنید؛ اطلاعات دمو نمونه است و هر زمان قابل بازنشانی است.",
   path: "/demo",
 });
 

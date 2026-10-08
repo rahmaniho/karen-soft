@@ -1,6 +1,11 @@
 import { PageHero, ContentSection, InfoGrid, ContactCTA } from "@/components/site/page-parts";
 import { ButtonLink } from "@/components/ui/button";
 import { pageMeta } from "@/lib/seo";
-export const metadata=pageMeta({title:"همکاری با کارن سافت",description:"برای ساخت تجربه‌های بهتر، از آشنایی با متخصصان استقبال می‌کنیم.",path:"/about/careers"});
+export const metadata = pageMeta({
+  title: "همکاری با کارن سافت",
+  description: "در حال حاضر موقعیت شغلی باز اعلام نشده است؛ متخصصان می‌توانند معرفی کوتاه و نمونه‌کار خود را برای بررسی همکاری‌های آینده بفرستند.",
+  path: "/about/careers",
+  noIndex: true,
+});
 const items=[{"title": "معرفی توانمندی", "desc": "حوزه تخصص، نمونه‌کار و شیوه همکاری موردنظرتان را از طریق ایمیل ارسال کنید."}, {"title": "فرصت‌های فعلی", "desc": "در این نسخه فهرست تأییدشده‌ای از موقعیت‌های شغلی باز منتشر نشده است. ارسال رزومه به معنی وجود موقعیت یا تضمین استخدام نیست."}, {"title": "گام بعدی", "desc": "پس از بررسی تناسب تخصص با نیاز پروژه‌ها، در صورت امکان همکاری با شما تماس گرفته می‌شود."}];
 export default function Page(){return <><PageHero eyebrow="KAREN SOFT / INFORMATION" title="همکاری با کارن سافت" description="برای ساخت تجربه‌های بهتر، از آشنایی با متخصصان استقبال می‌کنیم."/><ContentSection title="آنچه باید بدانید"><InfoGrid items={items}/><div className="mt-8 flex flex-wrap gap-4"><ButtonLink href="/demo">بررسی دموها</ButtonLink><ButtonLink href="/products" variant="outline">همه محصولات</ButtonLink></div></ContentSection><ContactCTA/></>}

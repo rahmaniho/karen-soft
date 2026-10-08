@@ -14,12 +14,12 @@ import {
   TestimonialSection,
 } from "@/components/sections/home-sections";
 import { JsonLd } from "@/components/ui/json-ld";
-import { faqSchema } from "@/lib/schema";
+import { faqSchema, webPageSchema } from "@/lib/schema";
 import { FAQS, SITE } from "@/lib/constants";
 import { pageMeta } from "@/lib/seo";
 
 export const metadata: Metadata = pageMeta({
-  title: `${SITE.name} | طراحی و توسعه نرم‌افزار برای کسب‌وکارها`,
+  title: `طراحی وب‌سایت و نرم‌افزار مدیریتی در قزوین | ${SITE.name}`,
   description: SITE.description,
   path: "/",
 });
@@ -39,7 +39,17 @@ export default function HomePage() {
       <FaqSection />
       <ContactSection />
       <NewsletterSection />
-      <JsonLd data={faqSchema(FAQS)} />
+      <JsonLd
+        data={[
+          faqSchema(FAQS),
+          webPageSchema({
+            name: `${SITE.name} | طراحی وب‌سایت و نرم‌افزار مدیریتی در قزوین`,
+            description: SITE.description,
+            path: "/",
+            mainEntity: { "@id": `${SITE.url}/#organization` },
+          }),
+        ]}
+      />
     </>
   );
 }
