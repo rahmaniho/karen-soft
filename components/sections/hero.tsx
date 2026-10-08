@@ -20,7 +20,7 @@ export function Hero() {
       <div className="container-page relative grid items-center gap-14 lg:grid-cols-[0.92fr_1.08fr]">
         <div>
           <div className="flex flex-wrap items-center gap-x-4 gap-y-3">
-            <span className="eyebrow">Karen Soft · Est. 1395</span>
+            <span className="eyebrow">Karen Soft · Est. 1404</span>
             <span className="inline-flex items-center gap-2 rounded-full border border-[var(--border-subtle)] bg-[var(--surface-raised)]/80 px-3 py-1.5 text-3xs font-bold">
               <span className="relative flex size-2">
                 <span className="absolute inline-flex size-full animate-ping rounded-full bg-emerald-400 opacity-60" />

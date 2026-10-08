@@ -53,7 +53,7 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#f7f8fb" },
+    { media: "(prefers-color-scheme: light)", color: "#050505" },
     { media: "(prefers-color-scheme: dark)", color: "#05070d" },
   ],
   width: "device-width",
@@ -65,10 +65,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="fa-IR" dir="rtl" suppressHydrationWarning>
       <body>
-        {/* بارگذاری زودِ دو فونت اصلی: ایران‌سنس (متن) و تیتر (تیترها) */}
-        <link rel="preload" href="/fonts/iransans/IRANSans-Regular.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
-        <link rel="preload" href="/fonts/iransans/IRANSans-Medium.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
-        <link rel="preload" href="/fonts/titr/Titr.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
+        <link rel="preload" href="/fonts/vazirmatn-var.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
         {/* تنظیمات نوشتار کاربر، پیش از نقاشی اول اعمال می‌شود تا متن پرش نکند */}
         <script dangerouslySetInnerHTML={{ __html: READER_BOOT_SCRIPT }} />
         <ThemeProvider>{children}</ThemeProvider>

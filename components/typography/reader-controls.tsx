@@ -68,7 +68,7 @@ export function ReaderControls({ className }: { className?: string }) {
   if (pathname.startsWith("/demo")) return null;
 
   return (
-    <div ref={rootRef} className={cn("fixed bottom-5 start-5 z-[60] flex flex-col items-start gap-3", className)}>
+    <div ref={rootRef} className={cn("fixed bottom-5 start-5 z-[60] flex flex-col items-start gap-3", !pathname.startsWith("/print") && "ks-reader-site", className)}>
       <AnimatePresence initial={false}>
         {open ? (
           <motion.div

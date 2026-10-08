@@ -1,124 +1,48 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
-import { Loader2, Send } from "lucide-react";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+import { ArrowUpLeft, LoaderCircle } from "lucide-react";
 import { contactSchema } from "@/lib/validations";
 import { PRODUCTS } from "@/lib/products";
-import { FieldError, Input, Label, Select, Textarea } from "@/components/ui/field";
-import { Button } from "@/components/ui/button";
 
-type Errors = Partial<Record<"name" | "phone" | "email" | "subject" | "message", string>>;
+type Input = z.input<typeof contactSchema>;
+type Output = z.output<typeof contactSchema>;
 
 export function ContactForm() {
-  const [errors, setErrors] = useState<Errors>({});
-  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [feedback, setFeedback] = useState("");
+  const [sent, setSent] = useState(false);
+  const { register, handleSubmit, reset, setError, formState: { errors, isSubmitting } } = useForm<Input, unknown, Output>({
+    resolver: zodResolver(contactSchema), mode: "onChange", defaultValues: { name: "", phone: "", email: "", subject: "", message: "" },
+  });
 
-  async function onSubmit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    if (status === "loading") return;
-    const formElement = event.currentTarget;
-    const form = new FormData(formElement);
-    const payload = {
-      name: String(form.get("name") ?? ""),
-      phone: String(form.get("phone") ?? ""),
-      email: String(form.get("email") ?? ""),
-      subject: String(form.get("subject") ?? ""),
-      message: String(form.get("message") ?? ""),
-    };
-
-    const parsed = contactSchema.safeParse(payload);
-    if (!parsed.success) {
-      const next: Errors = {};
-      for (const issue of parsed.error.issues) {
-        const key = issue.path[0] as keyof Errors;
-        if (key && !next[key]) next[key] = issue.message;
-      }
-      setErrors(next);
-      requestAnimationFrame(() => document.getElementById(Object.keys(next)[0])?.focus());
-      setStatus("error");
-      setFeedback("لطفاً خطاهای فرم را برطرف کنید.");
-      return;
-    }
-
-    setErrors({});
-    setStatus("loading");
+  const submit = handleSubmit(async values => {
+    setFeedback(""); setSent(false);
     try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify(parsed.data),
-      });
-      const result = await res.json();
-      if (!res.ok) throw new Error(result.error ?? "ارسال ناموفق بود؛ لطفاً تماس بگیرید.");
-      setStatus("success");
-      setFeedback("پیام شما ثبت شد. کمتر از یک روز کاری تماس می‌گیریم.");
-      formElement.reset();
-    } catch (error) {
-      setStatus("error");
-      setFeedback(error instanceof Error ? error.message : "ارسال پیام ناموفق بود. لطفاً تلفنی تماس بگیرید.");
-    }
-  }
+      const response = await fetch("/api/contact", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(values) });
+      const result: { ok: boolean; error?: string; errors?: { path: string; message: string }[] } = await response.json();
+      if (!response.ok) {
+        if (result.errors) result.errors.forEach(issue => { if (issue.path in contactSchema.shape) setError(issue.path as keyof Input, { message: issue.message }); });
+        throw new Error(result.error ?? "ارسال پیام ناموفق بود. لطفاً دوباره تلاش کنید.");
+      }
+      reset(); setSent(true); setFeedback("پیام شما با موفقیت ارسال شد. به زودی با شما تماس می‌گیریم.");
+      window.dispatchEvent(new Event("karen:success"));
+    } catch (error) { setFeedback(error instanceof Error ? error.message : "خطایی رخ داد. لطفاً دوباره تلاش کنید."); }
+  }, () => { setFeedback("لطفاً فیلدهای مشخص‌شده را بررسی کنید."); setSent(false); });
 
-  return (
-    <form onSubmit={onSubmit} aria-busy={status === "loading"} noValidate className="rounded-[var(--radius-2xl)] bg-[var(--surface-raised)] p-6 text-[color:var(--text-primary)] sm:p-9">
-      <div className="grid gap-5 sm:grid-cols-2">
-        <div>
-          <Label htmlFor="name">نام و نام خانوادگی</Label>
-          <Input id="name" name="name" aria-describedby={errors.name ? "name-error" : undefined} autoComplete="name" aria-invalid={Boolean(errors.name)} placeholder="مثلاً حسین رحمانی" />
-          <FieldError id="name-error">{errors.name}</FieldError>
-        </div>
-        <div>
-          <Label htmlFor="phone">شماره تماس</Label>
-          <Input id="phone" name="phone" type="tel" aria-describedby={errors.phone ? "phone-error" : undefined} inputMode="tel" dir="ltr" autoComplete="tel" aria-invalid={Boolean(errors.phone)} placeholder="09123456789" />
-          <FieldError id="phone-error">{errors.phone}</FieldError>
-        </div>
-        <div>
-          <Label htmlFor="email">
-            ایمیل <span className="font-normal text-muted">(اختیاری)</span>
-          </Label>
-          <Input id="email" name="email" aria-describedby={errors.email ? "email-error" : undefined} type="email" dir="ltr" autoComplete="email" placeholder="you@example.com" />
-          <FieldError id="email-error">{errors.email}</FieldError>
-        </div>
-        <div>
-          <Label htmlFor="subject">موضوع</Label>
-          <Select id="subject" name="subject" aria-describedby={errors.subject ? "subject-error" : undefined} defaultValue="">
-            <option value="" disabled>
-              انتخاب کنید
-            </option>
-            <option value="website">طراحی وب‌سایت</option>
-            <option value="custom">نرم‌افزار اختصاصی</option>
-            {PRODUCTS.map((product) => (
-              <option key={product.slug} value={product.slug}>
-                {product.name}
-              </option>
-            ))}
-            <option value="other">سایر</option>
-          </Select>
-          <FieldError id="subject-error">{errors.subject}</FieldError>
-        </div>
-      </div>
-
-      <div className="mt-5">
-        <Label htmlFor="message">توضیحات پروژه</Label>
-        <Textarea id="message" name="message" aria-describedby={errors.message ? "message-error" : undefined} rows={5} aria-invalid={Boolean(errors.message)} placeholder="کوتاه درباره کسب‌وکار و نیازتان بنویسید…" />
-        <FieldError id="message-error">{errors.message}</FieldError>
-      </div>
-
-      <div className="mt-6 flex flex-wrap items-center gap-4">
-        <Button type="submit" size="lg" disabled={status === "loading"}>
-          {status === "loading" ? <Loader2 className="size-4 animate-spin" aria-hidden /> : <Send className="size-4" aria-hidden />}
-          ارسال پیام
-        </Button>
-        <p className="text-3xs text-muted">اطلاعات شما محرمانه است و در اختیار هیچ شخص ثالثی قرار نمی‌گیرد.</p>
-      </div>
-
-      <p
-        aria-live="polite"
-        className={`mt-3 min-h-5 text-xs font-bold ${status === "success" ? "text-emerald-700 dark:text-emerald-400" : "text-rose-700 dark:text-rose-400"}`}
-      >
-        {feedback}
-      </p>
-    </form>
-  );
+  return <form onSubmit={submit} noValidate aria-busy={isSubmitting} className="ks-form">
+    <div className="ks-form-row">
+      <div className={`ks-field ${errors.name ? "has-error" : ""}`}><input id="name" placeholder=" " autoComplete="name" aria-invalid={!!errors.name} aria-describedby={errors.name ? "name-error" : undefined} {...register("name")} /><label htmlFor="name">نام و نام خانوادگی *</label>{errors.name && <span role="alert" id="name-error">{errors.name.message}</span>}</div>
+      <div className={`ks-field ${errors.phone ? "has-error" : ""}`}><input id="phone" placeholder=" " type="tel" inputMode="tel" dir="ltr" autoComplete="tel" aria-invalid={!!errors.phone} aria-describedby={errors.phone ? "phone-error" : undefined} {...register("phone")} /><label htmlFor="phone">شماره تماس *</label>{errors.phone && <span role="alert" id="phone-error">{errors.phone.message}</span>}</div>
+    </div>
+    <div className="ks-form-row">
+      <div className={`ks-field ${errors.email ? "has-error" : ""}`}><input id="email" placeholder=" " type="email" dir="ltr" autoComplete="email" aria-invalid={!!errors.email} aria-describedby={errors.email ? "email-error" : undefined} {...register("email")} /><label htmlFor="email">ایمیل (اختیاری)</label>{errors.email && <span role="alert" id="email-error">{errors.email.message}</span>}</div>
+      <div className={`ks-field ${errors.subject ? "has-error" : ""}`}><select id="subject" aria-invalid={!!errors.subject} aria-describedby={errors.subject ? "subject-error" : undefined} defaultValue="" {...register("subject")}><option value="" disabled>موضوع همکاری را انتخاب کنید</option><option value="website">طراحی وب‌سایت</option><option value="custom">نرم‌افزار اختصاصی</option><option value="print">کارن چاپ</option>{PRODUCTS.map(p => <option key={p.slug} value={p.slug}>{p.name}</option>)}<option value="other">سایر موارد</option></select><label className="ks-select-label" htmlFor="subject">موضوع همکاری *</label>{errors.subject && <span role="alert" id="subject-error">{errors.subject.message}</span>}</div>
+    </div>
+    <div className={`ks-field ks-field-message ${errors.message ? "has-error" : ""}`}><textarea id="message" placeholder=" " rows={4} aria-invalid={!!errors.message} aria-describedby={errors.message ? "message-error" : undefined} {...register("message")} /><label htmlFor="message">کمی از پروژه‌تان بگویید *</label>{errors.message && <span role="alert" id="message-error">{errors.message.message}</span>}</div>
+    <div className="ks-form-submit"><button type="submit" disabled={isSubmitting} className="ks-button ks-button-primary">{isSubmitting ? <LoaderCircle className="animate-spin" size={18} /> : <ArrowUpLeft size={18} />} ارسال پیام</button><span>اطلاعات شما نزد ما محفوظ می‌ماند.</span></div>
+    <p className={`ks-form-feedback ${sent ? "success" : ""}`} role="status" aria-live="polite">{feedback}</p>
+  </form>;
 }
