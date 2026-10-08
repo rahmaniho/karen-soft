@@ -7,7 +7,7 @@ import { pageMeta } from "@/lib/seo";
 
 export const metadata = pageMeta({
   title: "نمونه‌کارهای طراحی وب و نرم‌افزار | کارن سافت",
-  description: "مطالعه موردی پروژه‌های کارن سافت؛ از طراحی وب‌سایت و رزرو آنلاین تا توسعه نرم‌افزارهای تخصصی و مدیریت تولید.",
+  description: "پروژه‌های واقعی و نسخه‌های نمایشی کارن سافت؛ از وب‌سایت و نرم‌افزار سازمانی تا لندینگ‌پیج و داشبورد صنعتی. هر نمونه را داخل همین سایت امتحان کنید.",
   path: "/portfolio",
 });
 
@@ -16,8 +16,8 @@ export default function PortfolioPage() {
     <>
       <PageHero
         eyebrow="SELECTED WORK"
-        title="از مسئله تا نتیجه."
-        description="نگاهی نزدیک به پروژه‌ها، چالش‌ها و راه‌حل‌های کارن سافت."
+        title="از ایده تا نمونهٔ زنده."
+        description="نمونه‌های واقعی و نمایشی کارن سافت؛ هر کدام با هدف، امکانات و نسخهٔ زندهٔ داخل سایت."
       />
       <ContentSection title="پروژه‌های منتخب"><Catalog kind="portfolio" /></ContentSection>
       <ContactCTA />

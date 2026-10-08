@@ -1,0 +1,44 @@
+{
+  "name": "خانه وکلا | باشگاه تخصصی و کافه حقوقی وکلا",
+  "short_name": "خانه وکلا",
+  "description": "کافه و باشگاه تخصصی وکلا در قزوین؛ عضویت، اتاق‌های مشاوره و نشست‌های علمی.",
+  "start_url": "/demos/vokalahome/",
+  "scope": "/demos/vokalahome/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#F5F6F8",
+  "theme_color": "#0B1F3A",
+  "dir": "rtl",
+  "lang": "fa-IR",
+  "categories": [
+    "business",
+    "lifestyle",
+    "food"
+  ],
+  "icons": [
+    {
+      "src": "/demos/vokalahome/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/demos/vokalahome/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/demos/vokalahome/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/demos/vokalahome/icons/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

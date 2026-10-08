@@ -7,6 +7,7 @@ import { ReaderControls } from "@/components/typography/reader-controls";
 import { localBusinessSchema, organizationSchema, websiteSchema } from "@/lib/schema";
 import { JsonLd } from "@/components/ui/json-ld";
 import { ThemeProvider } from "@/components/layout/theme-provider";
+import { CrispChat } from "@/components/layout/crisp-chat";
 
 const homeTitle = `${SITE.name} | طراحی وب‌سایت و نرم‌افزار مدیریتی در قزوین`;
 const socialImage = "/images/logo-karensoft.png";
@@ -72,6 +73,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <script dangerouslySetInnerHTML={{ __html: READER_BOOT_SCRIPT }} />
         <ThemeProvider>{children}</ThemeProvider>
         <ReaderControls />
+        <CrispChat />
         <JsonLd data={[organizationSchema(), websiteSchema(), localBusinessSchema()]} />
       </body>
     </html>

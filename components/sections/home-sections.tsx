@@ -191,7 +191,7 @@ export function PortfolioSection() {
           eyebrow="نمونه‌کارها"
           eyebrowLatin="Case studies"
           index="۰۶"
-          title="نتیجه‌هایی که قابل اندازه‌گیری‌اند"
+          title="نمونه‌کارهایی که می‌توانید امتحان کنید"
           action={
             <ButtonLink href="/portfolio" variant="outline" size="sm">
               همه پروژه‌ها
