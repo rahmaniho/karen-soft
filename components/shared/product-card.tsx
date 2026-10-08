@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowLeft, PlayCircle } from "lucide-react";
 import { PRODUCT_STATUS_LABEL, type Product } from "@/lib/products";
 import { Badge } from "@/components/ui/badge";
@@ -14,13 +15,22 @@ export function ProductCard({ product }: { product: Product }) {
         style={{ background: product.accent }}
       />
       <div className="flex items-start justify-between gap-3">
-        <span
-          aria-hidden
-          className="grid size-12 place-items-center rounded-[var(--radius-md)] text-xl"
-          style={{ background: `${product.accent}1f` }}
-        >
-          {product.emoji}
-        </span>
+        {product.image ? (
+          <span
+            aria-hidden
+            className="relative block size-12 shrink-0 overflow-hidden rounded-[var(--radius-md)] border border-[var(--border-subtle)] bg-white"
+          >
+            <Image src={product.image} alt="" fill sizes="48px" className="object-cover" />
+          </span>
+        ) : (
+          <span
+            aria-hidden
+            className="grid size-12 place-items-center rounded-[var(--radius-md)] text-xl"
+            style={{ background: `${product.accent}1f` }}
+          >
+            {product.emoji}
+          </span>
+        )}
         <div className="flex flex-wrap items-center justify-end gap-1.5">
           {product.featured ? <Badge tone="violet">ویژه</Badge> : null}
           {product.popular ? <Badge tone="brand">محبوب</Badge> : null}

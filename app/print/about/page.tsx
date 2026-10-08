@@ -17,7 +17,7 @@ export const metadata = chapPageMeta({
   description:
     "کارن چاپ، چاپخانه‌ای در الوندِ استان قزوین، خدمات چاپ افست و دیجیتال، ساخت مهر و صحافی را با بیش از ۱۲ سال تجربه ارائه می‌دهد؛ زیرمجموعۀ کارن سافت.",
   path: "/print/about",
-  images: ["/images/print/house.jpg"],
+  images: ["/images/chapkhaneh.png"],
 });
 
 const TIMELINE = [
@@ -70,18 +70,40 @@ export default function ChapAboutPage() {
               </ButtonLink>
             </div>
           </div>
-          <figure className="overflow-hidden rounded-[var(--radius-2xl)] border border-[var(--border-subtle)]">
-            <div className="relative aspect-[4/3]">
-              <Image
-                src={CHAP.heroImage}
-                alt="چاپخانۀ کارن چاپ"
-                fill
-                priority
-                sizes="(min-width: 1024px) 45vw, 100vw"
-                className="object-cover"
-              />
+          <div>
+            <figure className="overflow-hidden rounded-[var(--radius-2xl)] border border-[var(--border-subtle)]">
+              <div className="relative aspect-[4/3]">
+                <Image
+                  src={CHAP.heroImage}
+                  alt="نمای داخلی چاپخانۀ کارن چاپ؛ دستگاه‌های چاپ دیجیتال و هدایای تبلیغاتی"
+                  fill
+                  priority
+                  sizes="(min-width: 1024px) 45vw, 100vw"
+                  className="object-cover"
+                />
+              </div>
+            </figure>
+            <div className="mt-4 grid grid-cols-2 gap-4">
+              <figure className="relative aspect-[4/3] overflow-hidden rounded-[var(--radius-lg)] border border-[var(--border-subtle)]">
+                <Image
+                  src="/images/print/house.jpg"
+                  alt="ساختمان چاپخانۀ کارن چاپ در شهرصنعتی البرز"
+                  fill
+                  sizes="(min-width: 1024px) 22vw, 50vw"
+                  className="object-cover"
+                />
+              </figure>
+              <figure className="relative aspect-[4/3] overflow-hidden rounded-[var(--radius-lg)] border border-[var(--border-subtle)]">
+                <Image
+                  src="/images/Cover.jpg"
+                  alt="تابوی نورانی لوگوی کارن چاپ"
+                  fill
+                  sizes="(min-width: 1024px) 22vw, 50vw"
+                  className="object-cover"
+                />
+              </figure>
             </div>
-          </figure>
+          </div>
         </div>
       </section>
 

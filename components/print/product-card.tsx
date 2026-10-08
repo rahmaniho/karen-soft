@@ -2,10 +2,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft, Timer } from "lucide-react";
 import type { PrintProduct } from "@/lib/print/types";
+import { PRINT_TILE_ICONS } from "@/lib/print/data/products";
 import { cn } from "@/lib/utils";
 
 export function ProductCard({ product, href }: { product: PrintProduct; href?: string }) {
   const target = href ?? `/print/products/${product.slug}`;
+  const tileIcon = PRINT_TILE_ICONS[product.slug];
   return (
     <Link
       href={target}
@@ -23,6 +25,11 @@ export function ProductCard({ product, href }: { product: PrintProduct; href?: s
         ) : (
           <span className="grid h-full place-items-center text-3xl">{product.emoji}</span>
         )}
+        {tileIcon ? (
+          <span className="absolute bottom-2 start-2 size-12 overflow-hidden rounded-[var(--radius-md)] border border-white/40 bg-white/90 shadow-[var(--shadow-soft)] transition-transform duration-300 group-hover:scale-110">
+            <Image src={tileIcon} alt="" fill sizes="48px" className="object-contain p-1" />
+          </span>
+        ) : null}
       </span>
       <span className="flex flex-1 flex-col p-4">
         <span className="flex items-center gap-2">

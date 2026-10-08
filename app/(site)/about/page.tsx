@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { SITE, PROCESS_STEPS } from "@/lib/constants";
 import { PageHero, ContentSection, InfoGrid, ContactCTA } from "@/components/site/page-parts";
 import { ButtonLink } from "@/components/ui/button";
@@ -32,6 +33,55 @@ export default function AboutPage() {
             </p>
             <ButtonLink href="/demo" variant="soft">ورود به دموها</ButtonLink>
           </div>
+        </div>
+      </ContentSection>
+      <ContentSection title="چهره‌های کارن سافت">
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <figure className="surface-card group overflow-hidden">
+            <div className="relative aspect-[4/3] overflow-hidden bg-[var(--surface-sunken)]">
+              <Image
+                src="/images/Hosein-rahmani.jpg"
+                alt="حسین رحمانی، بنیان‌گذار کارن سافت"
+                fill
+                sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                className="object-cover transition-transform duration-500 group-hover:scale-105"
+              />
+            </div>
+            <figcaption className="p-4">
+              <span className="block text-sm font-extrabold">حسین رحمانی</span>
+              <span className="mt-1 block text-3xs text-muted">بنیان‌گذار و مدیر فنی کارن سافت</span>
+            </figcaption>
+          </figure>
+          <figure className="surface-card group overflow-hidden">
+            <div className="relative aspect-[4/3] overflow-hidden bg-[var(--surface-sunken)]">
+              <Image
+                src="/images/chapkhaneh.png"
+                alt="نمای داخلی چاپخانه کارن چاپ"
+                fill
+                sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                className="object-cover transition-transform duration-500 group-hover:scale-105"
+              />
+            </div>
+            <figcaption className="p-4">
+              <span className="block text-sm font-extrabold">چاپخانه کارن چاپ</span>
+              <span className="mt-1 block text-3xs text-muted">الوند، شهرصنعتی البرز؛ چاپ دیجیتال و افست</span>
+            </figcaption>
+          </figure>
+          <figure className="surface-card group overflow-hidden sm:col-span-2 lg:col-span-1">
+            <div className="relative aspect-[4/3] overflow-hidden bg-[var(--surface-sunken)]">
+              <Image
+                src="/images/Cover.jpg"
+                alt="تابوی نورانی لوگوی کارن چاپ"
+                fill
+                sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                className="object-cover transition-transform duration-500 group-hover:scale-105"
+              />
+            </div>
+            <figcaption className="p-4">
+              <span className="block text-sm font-extrabold">نشانی برند ما</span>
+              <span className="mt-1 block text-3xs text-muted">کارن چاپ؛ زیرمجموعۀ چاپ و تولید کارن سافت</span>
+            </figcaption>
+          </figure>
         </div>
       </ContentSection>
       <ContentSection title="روش کار ما"><InfoGrid items={PROCESS_STEPS} /></ContentSection>

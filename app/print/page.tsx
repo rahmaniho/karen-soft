@@ -24,7 +24,7 @@ export const metadata = chapPageMeta({
   title: `${CHAP.name} | ${CHAP.tagline} در قزوین`,
   description: CHAP.description,
   path: "/print",
-  images: ["/images/print/house.jpg"],
+  images: ["/images/chapkhaneh.png"],
 });
 
 const HERO_POINTS = [

@@ -23,7 +23,7 @@ export const CHAP = {
   maps:
     "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent("قزوین، شهرصنعتی البرز، الوند، میدان لاله"),
   logo: "/images/print/logo-chap.png",
-  heroImage: "/images/print/house.jpg",
+  heroImage: "/images/chapkhaneh.png",
 } as const;
 
 export const CHAP_STATS = [

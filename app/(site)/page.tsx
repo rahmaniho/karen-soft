@@ -40,7 +40,7 @@ export default function HomePage() {
       <div className="ks-hero-art" aria-label="نمای گرافیکی از زیرساخت دیجیتال کارن سافت">
         <div className="ks-orbit ks-orbit-1" /><div className="ks-orbit ks-orbit-2" /><div className="ks-orbit ks-orbit-3" />
         <div className="ks-orbit-halo" />
-        <div className="ks-core"><div className="ks-core-inner"><span className="ks-core-letter">K<span>.</span></span><span className="ks-core-caption">KAREN / CORE</span></div></div>
+        <div className="ks-core"><div className="ks-core-inner"><Image src="/images/logo.png" alt="" width={501} height={501} className="ks-core-logo" priority /><span className="ks-core-caption">KAREN SOFT / CORE</span></div></div>
         <div className="ks-orbit-node node-one"><span><Code2 size={18} /></span><small>SOFTWARE</small></div>
         <div className="ks-orbit-node node-two"><span><Box size={18} /></span><small>PRODUCT</small></div>
         <div className="ks-orbit-node node-three"><span><Printer size={18} /></span><small>PRINT</small></div>
@@ -75,7 +75,7 @@ export default function HomePage() {
 
     <section className="ks-section ks-print" id="karen-chap"><div className="ks-print-inner">
       <div className="ks-print-copy"><div className="ks-section-kicker"><span>03 / KAREN PRINT</span></div><div className="ks-cmyk-dots"><i /><i /><i /><i /></div><h2>ایده‌ها وقتی<br /><em>ملموس</em> می‌شوند.</h2><h3>کارن چاپ؛ چاپ، مهر و صحافی</h3><p>از اولین طرح روی کاغذ تا آخرین جزئیات چاپ. در کارن چاپ، خلاقیت دیجیتال را به تجربه‌ای واقعی و لمس‌کردنی تبدیل می‌کنیم.</p><Link href="/print" className="ks-button ks-button-light">کشف دنیای کارن چاپ <ArrowUpLeft size={18} /></Link><span className="ks-print-label">CYAN / MAGENTA / YELLOW / KEY</span></div>
-      <div className="ks-print-visual"><Image src="/images/print/cards.jpg" alt="نمونه چاپ کارت ویزیت کارن چاپ" fill sizes="(min-width: 1024px) 38vw, 100vw" className="ks-print-photo" /><div className="ks-print-image-overlay" /><div className="ks-print-sticker"><Printer size={27} /><span>PRINT<br />WITH<br />PURPOSE.</span></div><span className="ks-print-visual-caption">KAREN PRINT ® — MADE TO BE FELT</span></div>
+      <div className="ks-print-visual"><Image src="/images/print/cards.jpg" alt="نمونه چاپ کارت ویزیت کارن چاپ" fill sizes="(min-width: 1024px) 38vw, 100vw" className="ks-print-photo" /><div className="ks-print-image-overlay" /><div className="ks-print-polaroid"><span className="ks-print-polaroid-frame"><Image src="/images/Tracket.jpg" alt="تابوی نورانی لوگوی کارن چاپ در چاپخانه" fill sizes="150px" className="object-cover" /></span><small>KAREN CHAP ®</small></div><div className="ks-print-sticker"><Printer size={27} /><span>PRINT<br />WITH<br />PURPOSE.</span></div><span className="ks-print-visual-caption">KAREN PRINT ® — MADE TO BE FELT</span></div>
     </div></section>
 
     <section className="ks-section ks-portfolio" id="work"><div className="ks-heading-row"><Heading number="04" label="SELECTED WORK" title="از ایده تا اثر." sub="چند قاب از آنچه با فکر، جزئیات و عشق به ساختن خلق کرده‌ایم. روی هر پروژه بزنید و در همین صفحه تجربه‌اش کنید." /><Link href="/portfolio" className="ks-text-link">تمام نمونه‌کارها <ArrowUpLeft size={17} /></Link></div><PortfolioGallery cases={cases} /></section>
