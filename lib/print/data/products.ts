@@ -1694,6 +1694,21 @@ export const PRINT_PRODUCT_BY_SLUG: Record<string, PrintProduct> = Object.fromEn
   PRINT_PRODUCTS.map((product) => [product.slug, product]),
 );
 
+/** آیکون‌های براق هر محصول از نسخۀ قدیمی کارن چاپ (public/images/icon) */
+export const PRINT_TILE_ICONS: Record<string, string> = {
+  tract: "/images/icon/Tracket.png",
+  bizcard: "/images/icon/Visitcart.png",
+  brochure: "/images/icon/Catalogue.png",
+  stationery: "/images/icon/Setoffice.png",
+  poster: "/images/icon/Pooster.png",
+  sticker: "/images/icon/Label.png",
+  banner: "/images/icon/Banner.png",
+  mug: "/images/icon/Mug.jpeg",
+  book: "/images/icon/book.jpeg",
+  binding: "/images/icon/Notebook.png",
+  thesis: "/images/icon/book.jpeg",
+};
+
 export function productsOfService(slug: string): PrintProduct[] {
   return PRINT_PRODUCTS.filter((product) => product.service === slug);
 }

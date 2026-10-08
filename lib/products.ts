@@ -24,6 +24,14 @@ export interface Product {
   modules: ProductModule[];
   pricingFrom: number;
   image?: string;
+  /** نماهای واقعی محیط نرم‌افزار برای گالری صفحۀ محصول */
+  screenshots?: ProductScreenshot[];
+}
+
+export interface ProductScreenshot {
+  src: string;
+  label: string;
+  caption: string;
 }
 
 export const PRODUCT_STATUS_LABEL: Record<ProductStatus, string> = {
@@ -102,6 +110,18 @@ export const PRODUCTS: Product[] = [
     ],
     pricingFrom: 65_000_000,
     image: "/images/app-icon-law-office.jpg",
+    screenshots: [
+      { src: "/images/slider/dashboard/1.jpg", label: "داشبورد", caption: "نمای کلی پرونده‌های فعال، جلسات نزدیک و مطالبات دفتر" },
+      { src: "/images/slider/cases/1.jpg", label: "پرونده‌ها", caption: "کانبان مراحل دادرسی با فیلتر و جست‌وجوی پیشرفته" },
+      { src: "/images/slider/clients/1.jpg", label: "موکلین", caption: "کارت‌های CRM موکلین با تاریخچۀ پرونده‌ها و مالی" },
+      { src: "/images/slider/calendar/1.jpg", label: "تقویم جلسات", caption: "تقویم شمسی جلسات دادگاه و قرارهای مشاوره" },
+      { src: "/images/slider/hearings/1.jpg", label: "جلسات رسیدگی", caption: "مدیریت جلسات رسیدگی با یادآور پیامکی" },
+      { src: "/images/slider/contracts/1.jpg", label: "قراردادها", caption: "صدور قرارداد وکالت، اقساط و ثبت پرداخت" },
+      { src: "/images/slider/finance/1.jpg", label: "امور مالی", caption: "ماده مطالبات، کارکرد نزدیک و گزارش درآمد" },
+      { src: "/images/slider/reports/1.jpg", label: "گزارش‌ها", caption: "گزارش‌های تحلیلی عملکرد دفتر و پرونده‌ها" },
+      { src: "/images/slider/tasks/1.jpg", label: "کارها", caption: "پیگیری کارهای محول‌شده به تیم دفتر" },
+      { src: "/images/slider/login/1.jpg", label: "ورود امن", caption: "ورود امن با نقش‌های دسترسی متفاوت" },
+    ],
   },
   {
     slug: "taxi-management",

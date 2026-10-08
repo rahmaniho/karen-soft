@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 import { ArrowLeft, Check, Lightbulb, Timer, Zap } from "lucide-react";
 import { chapPageMeta } from "@/lib/seo";
 import { CHAP } from "@/lib/print/site";
-import { PRINT_PRODUCT_BY_SLUG, PRINT_PRODUCTS, productsOfService } from "@/lib/print/data/products";
+import { PRINT_PRODUCT_BY_SLUG, PRINT_PRODUCTS, PRINT_TILE_ICONS, productsOfService } from "@/lib/print/data/products";
 import { PRINT_SERVICE_BY_SLUG } from "@/lib/print/data/services";
 import { optionsOf } from "@/lib/print/order";
 import { ButtonLink } from "@/components/ui/button";
@@ -127,7 +127,7 @@ export default async function ChapProductPage({ params }: { params: Promise<{ sl
 
           <div className="lg:sticky lg:top-28">
             {product.image ? (
-              <figure className="overflow-hidden rounded-[var(--radius-2xl)] border border-[var(--border-subtle)]">
+              <figure className="relative overflow-hidden rounded-[var(--radius-2xl)] border border-[var(--border-subtle)]">
                 <div className="relative aspect-[4/3]">
                   <Image
                     src={product.image}
@@ -138,6 +138,11 @@ export default async function ChapProductPage({ params }: { params: Promise<{ sl
                     className="object-cover"
                   />
                 </div>
+                {PRINT_TILE_ICONS[product.slug] ? (
+                  <span className="absolute bottom-3 start-3 size-16 overflow-hidden rounded-[var(--radius-lg)] border border-white/50 bg-white/90 shadow-[var(--shadow-lift)]">
+                    <Image src={PRINT_TILE_ICONS[product.slug]} alt="" fill sizes="64px" className="object-contain p-1.5" />
+                  </span>
+                ) : null}
               </figure>
             ) : null}
 

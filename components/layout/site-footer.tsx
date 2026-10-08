@@ -11,12 +11,14 @@ export function SiteFooter() {
     <footer className="border-t border-[var(--border-subtle)] bg-ink-950 text-white">
       <div className="container-page grid gap-12 py-16 lg:grid-cols-[1.4fr_1fr_1fr_1fr_1fr] lg:py-20">
         <div>
-          <Link href="/" className="flex items-center gap-2.5" aria-label="صفحه اصلی کارن سافت">
-            <Image src="/images/logo.png" alt="لوگوی کارن سافت" width={44} height={44} className="size-11 object-contain" />
-            <span className="flex flex-col leading-tight">
-              <strong className="text-md">{SITE.name}</strong>
-              <small className="text-6xs font-extrabold tracking-[3px] text-brand-300">KAREN SOFT</small>
-            </span>
+          <Link href="/" className="inline-flex items-center" aria-label="صفحه اصلی کارن سافت">
+            <Image
+              src="/images/logo.png"
+              alt="لوگوی کارن سافت"
+              width={501}
+              height={501}
+              className="h-16 w-auto object-contain brightness-0 invert"
+            />
           </Link>
           <p className="mt-5 max-w-sm text-xs leading-loose text-white/60">
             شریک فنی رشد کسب‌وکار شما در قزوین؛ طراحی وب، نرم‌افزار اختصاصی، اتوماسیون و امنیت سایبری.

@@ -62,7 +62,7 @@ export function SiteHeader() {
     >
       <div className="container-page flex items-center gap-4">
         <Link href="/" className="flex shrink-0 items-center gap-2.5" aria-label="صفحه اصلی کارن سافت">
-          <Image src="/images/logo.png" alt="لوگوی کارن سافت" width={44} height={44} className="size-11 object-contain" priority />
+          <Image src="/images/logo.png" alt="لوگوی کارن سافت" width={44} height={44} className="size-11 object-contain dark:brightness-0 dark:invert" priority />
           <span className="flex flex-col leading-tight">
             <strong className="text-md">{SITE.name}</strong>
             <small className="text-6xs font-extrabold tracking-[3px] text-brand-600 dark:text-brand-300">KAREN SOFT</small>

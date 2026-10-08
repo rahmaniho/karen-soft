@@ -4,6 +4,7 @@ import { PRODUCTS, PRODUCT_STATUS_LABEL } from "@/lib/products";
 import { pageMeta } from "@/lib/seo";
 import { breadcrumbSchema, faqSchema, softwareAppSchema } from "@/lib/schema";
 import { PageHero, ContentSection, InfoGrid, Points, ContactCTA } from "@/components/site/page-parts";
+import { ProductScreenshots } from "@/components/site/product-screenshots";
 import { ButtonLink } from "@/components/ui/button";
 import { Accordion } from "@/components/ui/accordion";
 import { FAQS } from "@/lib/constants";
@@ -57,6 +58,16 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
       {product.slug === "law-office" ? (
         <ContentSection title="دریافت نرم‌افزار دفتر وکالت">
           <ButtonLink href="/download-law-software" variant="outline">راهنمای دریافت و نصب</ButtonLink>
+        </ContentSection>
+      ) : null}
+
+      {product.screenshots?.length ? (
+        <ContentSection title="نمای واقعی محیط نرم‌افزار">
+          <p className="mb-6 text-sm leading-loose text-muted">
+            آنچه پیش رو می‌بینید عکس‌هایی از خودِ نرم‌افزار است، نه طرح تبلیغاتی؛ ماژول به ماژول بررسی کنید تا
+            جریان کار روزانۀ دفترتان را در آن تصور کنید.
+          </p>
+          <ProductScreenshots screenshots={product.screenshots} appName={product.name} />
         </ContentSection>
       ) : null}
 
