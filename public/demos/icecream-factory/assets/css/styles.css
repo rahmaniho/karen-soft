@@ -1,0 +1,358 @@
+/* ============================================================
+   استایل‌های سفارشی لندینگ «زعفرونی»
+   (کلاس‌های کامپوننتی که با @apply از تیل‌ویند ساخته شده‌اند
+   در بخش <style> نیستند؛ چون از CDN استفاده می‌کنیم، اینجا با
+   CSS خالص نوشته شده‌اند تا بدون بیلد هم کار کنند)
+============================================================ */
+
+/* ---------- پایه ---------- */
+html {
+  scroll-padding-top: 6rem; /* فاصله از بالای صفحه هنگام اسکرول به بخش‌ها */
+}
+
+::selection {
+  background: #f5c75b;
+  color: #2e1b14;
+}
+
+/* اسکرول‌بار سفارشی گرم */
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: #fbf0da; }
+::-webkit-scrollbar-thumb { background: #c9a683; border-radius: 8px; }
+::-webkit-scrollbar-thumb:hover { background: #b5855c; }
+
+/* ---------- کلاس‌های مشترک بخش‌ها ---------- */
+
+/* برچسب کوچک بالای تیتر هر بخش */
+.section-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  background: #fef9ec;
+  border: 1px solid #f9de8b;
+  color: #a26012;
+  font-size: .78rem;
+  font-weight: 700;
+  padding: .45rem 1.1rem;
+  border-radius: 9999px;
+}
+
+/* تیتر اصلی هر بخش */
+.section-title {
+  font-size: clamp(1.7rem, 1.2rem + 2.2vw, 2.6rem);
+  font-weight: 900;
+  line-height: 1.4;
+  color: #2e1b14;
+}
+
+/* ---------- کارت محصول ---------- */
+.product-card {
+  background: #fff;
+  border: 1px solid #f0e6da;
+  border-radius: 1.75rem;
+  overflow: hidden;
+  box-shadow: 0 6px 24px -8px rgba(110, 64, 22, .14);
+  transition: transform .4s cubic-bezier(.2,.7,.3,1), box-shadow .4s;
+}
+.product-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 24px 48px -16px rgba(110, 64, 22, .28);
+}
+.product-img {
+  width: 100%;
+  height: 15rem;
+  object-fit: cover;
+  transition: transform .7s cubic-bezier(.2,.7,.3,1);
+}
+.product-card:hover .product-img { transform: scale(1.07); }
+
+/* برچسب روی تصویر محصول */
+.product-badge {
+  position: absolute;
+  top: .9rem;
+  right: .9rem;
+  color: #fff;
+  font-size: .7rem;
+  font-weight: 700;
+  padding: .35rem .9rem;
+  border-radius: 9999px;
+  box-shadow: 0 4px 12px rgba(46, 27, 20, .25);
+}
+
+/* برچسب قیمت */
+.price-tag {
+  font-size: .95rem;
+  font-weight: 900;
+  color: #7f4e33;
+}
+
+/* دکمه افزودن به سفارش */
+.add-btn {
+  background: #fef9ec;
+  border: 1.5px solid #e39a17;
+  color: #a26012;
+  font-size: .78rem;
+  font-weight: 700;
+  padding: .55rem 1.1rem;
+  border-radius: 9999px;
+  transition: all .25s;
+  white-space: nowrap;
+}
+.add-btn:hover { background: #e39a17; color: #fff; transform: translateY(-2px); }
+.add-btn:active { transform: translateY(0) scale(.97); }
+
+/* ---------- کارت‌های «چرا ما؟» ---------- */
+.why-card {
+  background: #fffdf8;
+  border: 1px solid #f0e6da;
+  border-radius: 1.75rem;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  transition: transform .35s, box-shadow .35s, border-color .35s;
+}
+.why-card:hover {
+  transform: translateY(-6px);
+  border-color: #f5c75b;
+  box-shadow: 0 24px 48px -16px rgba(110, 64, 22, .22);
+}
+.why-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 4.5rem;
+  height: 4.5rem;
+  border-radius: 1.4rem;
+  background: linear-gradient(140deg, #fcefc7, #f9de8b);
+  color: #a26012;
+  transition: transform .35s;
+}
+.why-card:hover .why-icon { transform: rotate(-6deg) scale(1.08); }
+.why-icon svg { width: 2.4rem; height: 2.4rem; }
+
+/* ---------- کارت نظرات ---------- */
+.testimonial-card {
+  background: #fff;
+  border: 1px solid #f0e6da;
+  border-radius: 1.75rem;
+  padding: 2rem;
+  box-shadow: 0 6px 24px -8px rgba(110, 64, 22, .12);
+  display: flex;
+  flex-direction: column;
+  transition: transform .35s, box-shadow .35s;
+}
+.testimonial-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 24px 48px -16px rgba(110, 64, 22, .22);
+}
+.stars { color: #e39a17; letter-spacing: .2em; font-size: 1.05rem; }
+.avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.9rem;
+  height: 2.9rem;
+  border-radius: 9999px;
+  font-weight: 800;
+  font-size: .9rem;
+  flex-shrink: 0;
+}
+
+/* ---------- کارت‌های تماس ---------- */
+.contact-card {
+  background: rgba(255, 253, 248, .06);
+  border: 1px solid rgba(245, 227, 192, .16);
+  border-radius: 1.75rem;
+  padding: 2rem;
+  backdrop-filter: blur(6px);
+  transition: transform .35s, background .35s, border-color .35s;
+}
+.contact-card:hover {
+  transform: translateY(-6px);
+  background: rgba(255, 253, 248, .1);
+  border-color: rgba(245, 199, 91, .4);
+}
+.contact-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.2rem;
+  height: 3.2rem;
+  border-radius: 1.1rem;
+  background: rgba(227, 154, 23, .18);
+  color: #f5c75b;
+}
+.contact-icon svg { width: 1.6rem; height: 1.6rem; }
+
+/* ---------- فرم سفارش ---------- */
+.field-label {
+  display: block;
+  font-size: .82rem;
+  font-weight: 700;
+  color: #68422e;
+  margin-bottom: .45rem;
+}
+.field-input {
+  width: 100%;
+  background: #fffdf8;
+  border: 1.5px solid #dfc9b2;
+  border-radius: 1rem;
+  padding: .8rem 1.1rem;
+  font-size: .9rem;
+  color: #2e1b14;
+  outline: none;
+  transition: border-color .25s, box-shadow .25s;
+}
+.field-input::placeholder { color: #c9a683; }
+.field-input:focus {
+  border-color: #e39a17;
+  box-shadow: 0 0 0 4px rgba(227, 154, 23, .15);
+}
+.field-input.input-error {
+  border-color: #ef4444;
+  box-shadow: 0 0 0 4px rgba(239, 68, 68, .12);
+  animation: shake .35s;
+}
+.field-error {
+  display: none;
+  font-size: .72rem;
+  color: #dc2626;
+  margin-top: .35rem;
+}
+.field-error.visible { display: block; }
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(5px); }
+  50% { transform: translateX(-5px); }
+  75% { transform: translateX(3px); }
+}
+
+/* ---------- ردیف سبد خرید ---------- */
+.cart-row {
+  display: flex;
+  align-items: center;
+  gap: .9rem;
+  background: #fff;
+  border: 1px solid #f0e6da;
+  border-radius: 1.2rem;
+  padding: .7rem .9rem;
+  animation: pop-in .3s cubic-bezier(.2,.7,.3,1.2);
+}
+@keyframes pop-in {
+  from { opacity: 0; transform: translateY(8px) scale(.97); }
+  to { opacity: 1; transform: none; }
+}
+.cart-row img {
+  width: 3.2rem;
+  height: 3.2rem;
+  border-radius: .9rem;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+.qty-btn {
+  width: 1.9rem;
+  height: 1.9rem;
+  border-radius: .6rem;
+  background: #fef9ec;
+  border: 1.5px solid #f5c75b;
+  color: #a26012;
+  font-weight: 800;
+  line-height: 1;
+  transition: all .2s;
+}
+.qty-btn:hover { background: #e39a17; color: #fff; }
+
+/* ---------- انیمیشن ظهور هنگام اسکرول ---------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity .8s cubic-bezier(.2,.7,.3,1), transform .8s cubic-bezier(.2,.7,.3,1);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---------- شناور بودن برچسب‌ها ---------- */
+.float-slow  { animation: floaty 5s ease-in-out infinite; }
+.float-slower{ animation: floaty 7s ease-in-out infinite; }
+@keyframes floaty {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* ---------- نوار سفارش چسبان موبایل ---------- */
+#mobile-order-bar {
+  transform: translateY(110%);
+  transition: transform .35s cubic-bezier(.2,.7,.3,1);
+}
+#mobile-order-bar.show { transform: none; }
+/* وقتی نوار سفارش باز است، دکمه‌های شناور بالاتر می‌روند تا تداخل نکنند */
+body.cart-open #whatsapp-float { bottom: 5.75rem; }
+body.cart-open #to-top { bottom: 5.75rem; }
+#whatsapp-float, #to-top { transition: transform .25s, bottom .35s, opacity .3s, background-color .25s; }
+
+/* ---------- ضربان دکمه شناور واتساپ ---------- */
+.wa-pulse { animation: wa-pulse 2.6s infinite; }
+@keyframes wa-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, .45); }
+  70% { box-shadow: 0 0 0 18px rgba(37, 211, 102, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+}
+
+/* ---------- توست (اعلان) ---------- */
+.toast {
+  background: #2e1b14;
+  color: #fff8ec;
+  font-size: .82rem;
+  font-weight: 700;
+  padding: .8rem 1.4rem;
+  border-radius: 9999px;
+  box-shadow: 0 12px 32px rgba(46, 27, 20, .35);
+  animation: toast-in .35s cubic-bezier(.2,.7,.3,1.2);
+  max-width: 90vw;
+  text-align: center;
+}
+.toast.leaving { animation: toast-out .3s forwards; }
+@keyframes toast-in {
+  from { opacity: 0; transform: translateY(16px) scale(.95); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes toast-out {
+  to { opacity: 0; transform: translateY(10px) scale(.95); }
+}
+
+/* ---------- دکمه‌های شبکه اجتماعی فوتر ---------- */
+.social-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.6rem;
+  height: 2.6rem;
+  border-radius: .9rem;
+  border: 1px solid rgba(245, 227, 192, .2);
+  color: #f5e3c0;
+  transition: all .25s;
+}
+.social-btn:hover {
+  background: #e39a17;
+  border-color: #e39a17;
+  color: #2e1b14;
+  transform: translateY(-3px);
+}
+.social-btn svg { width: 1.25rem; height: 1.25rem; }
+
+/* ---------- لینک فعال منو ---------- */
+.nav-link.nav-active {
+  color: #a26012;
+  background: #fcefc7;
+}
+
+/* ---------- احترام به تنظیم کاهش حرکت ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .float-slow, .float-slower, .wa-pulse { animation: none; }
+  html { scroll-behavior: auto; }
+}

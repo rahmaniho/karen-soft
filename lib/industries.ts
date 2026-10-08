@@ -119,7 +119,7 @@ export const INDUSTRIES: Industry[] = [
     name: "سالن زیبایی و اسپا",
     category: "beauty",
     categoryLabel: "زیبایی",
-    brandName: "سالن زیبایی سحر",
+    brandName: "سالن زیبایی نمونه",
     tagline: "زیبایی، آرامش، اصالت",
     description: "طراحی لطیف با صورتی‌های پودری و طلایی، تایپوگرافی سریف و ویجت رزرو نوبت.",
     aesthetic: "صورتی پودری · طلایی · سریف ظریف",
@@ -139,7 +139,7 @@ export const INDUSTRIES: Industry[] = [
     },
     blocks: ["hero", "services", "gallery", "team", "testimonials", "booking", "contact"],
     hero: {
-      badge: "۱۲ سال تجربه در قزوین",
+      badge: "نمونهٔ فرضی برای نمایش طراحی",
       title: "آرامش و زیبایی،",
       highlight: "در یک قرار ملاقات",
       subtitle:
@@ -175,7 +175,7 @@ export const INDUSTRIES: Industry[] = [
     ],
     teamHeading: "متخصصان ما",
     team: [
-      { name: "سحر نجفی", role: "مدیر و متخصص مو", meta: "۱۲ سال تجربه" },
+      { name: "زهرا کریمی", role: "مدیر و متخصص مو", meta: "۱۲ سال تجربه" },
       { name: "مریم کاظمی", role: "متخصص پوست", meta: "۸ سال تجربه" },
       { name: "الهام رستمی", role: "طراح ناخن", meta: "۶ سال تجربه" },
       { name: "نگین صادقی", role: "میکاپ آرتیست", meta: "۹ سال تجربه" },

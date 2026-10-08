@@ -145,3 +145,11 @@ export const STATS = [
   { value: "۹۸٪", label: "رضایت مشتریان" },
   { value: "۹ سال", label: "تجربه اجرایی" },
 ];
+
+/**
+ * شناسهٔ وب‌سایت Crisp برای گفت‌وگوی آنلاین (عمومی و غیرمحرمانه).
+ * با NEXT_PUBLIC_CRISP_WEBSITE_ID می‌توان آن را تغییر داد؛ مقدار خالی، چت را غیرفعال می‌کند.
+ */
+export const CRISP_WEBSITE_ID: string = (
+  process.env.NEXT_PUBLIC_CRISP_WEBSITE_ID ?? "ffafdfcf-e510-45d0-a026-4e964ad420ee"
+).trim();

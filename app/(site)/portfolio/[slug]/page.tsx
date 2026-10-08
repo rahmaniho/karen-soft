@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import { CASE_STUDIES } from "@/lib/portfolio";
+import { CASE_KIND_COPY, CASE_STUDIES } from "@/lib/portfolio";
 import { pageMeta } from "@/lib/seo";
 import { breadcrumbSchema, caseStudySchema } from "@/lib/schema";
 import { PageHero, ContentSection, Points, ContactCTA } from "@/components/site/page-parts";
-import { ButtonLink } from "@/components/ui/button";
+import { DemoFrame } from "@/components/site/demo-frame";
 import { JsonLd } from "@/components/ui/json-ld";
 
 export const generateStaticParams = () => CASE_STUDIES.map((study) => ({ slug: study.slug }));
@@ -30,39 +30,61 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
   const { slug } = await params;
   const study = CASE_STUDIES.find((item) => item.slug === slug);
   if (!study) notFound();
+  const copy = CASE_KIND_COPY[study.kind];
 
   return (
     <>
-      <PageHero eyebrow="CASE STUDY" title={study.title} description={study.summary}>
+      <PageHero eyebrow={copy.eyebrow} title={study.title} description={study.summary}>
         <p>{study.client} · {study.category} · {study.year}</p>
       </PageHero>
 
-      <div className="container-page py-12">
-        <figure className="relative aspect-[16/9] overflow-hidden rounded-2xl bg-[var(--surface-sunken)]">
-          <Image
-            src={study.cover}
-            alt={study.title}
-            fill
-            sizes="(max-width: 767px) 100vw, 900px"
-            className="object-contain"
-            priority
-          />
-          <figcaption className="sr-only">مطالعه موردی: {study.title}</figcaption>
-        </figure>
-      </div>
-
-      <ContentSection title="چالش پروژه"><Points items={study.challenge} /></ContentSection>
-      <ContentSection title="راه‌حل و اجرا"><Points items={study.solution} /></ContentSection>
-      <ContentSection title="نتایج ثبت‌شده پروژه">
-        <div className="grid gap-5 sm:grid-cols-3">
-          {study.results.map((result) => (
-            <div className="surface-card p-8" key={result.label}>
-              <p className="text-4xl text-brand-600 dark:text-brand-300">{result.value}</p>
-              <p className="mt-3 text-muted">{result.label}</p>
-            </div>
-          ))}
+      {study.note ? (
+        <div className="container-page pt-12" role="note">
+          <p className="rounded-2xl border border-[var(--hairline)] bg-[var(--surface-sunken)] p-5 leading-8 text-muted">
+            {study.note}
+          </p>
         </div>
-      </ContentSection>
+      ) : null}
+
+      {study.demo ? (
+        <ContentSection title={copy.demo}>
+          <DemoFrame
+            src={study.demo.src}
+            scope={study.demo.scope}
+            title={study.demo.title}
+            fullPageHref={study.demo.fullPageHref}
+          />
+        </ContentSection>
+      ) : (
+        <div className="container-page py-12">
+          <figure className="relative aspect-[16/9] overflow-hidden rounded-2xl bg-[var(--surface-sunken)]">
+            <Image
+              src={study.cover}
+              alt={study.title}
+              fill
+              sizes="(max-width: 767px) 100vw, 900px"
+              className="object-contain"
+              priority
+            />
+            <figcaption className="sr-only">مطالعه موردی: {study.title}</figcaption>
+          </figure>
+        </div>
+      )}
+
+      <ContentSection title={copy.challenge}><Points items={study.challenge} /></ContentSection>
+      <ContentSection title={copy.solution}><Points items={study.solution} /></ContentSection>
+      {study.results ? (
+        <ContentSection title="نتایج ثبت‌شده پروژه">
+          <div className="grid gap-5 sm:grid-cols-3">
+            {study.results.map((result) => (
+              <div className="surface-card p-8" key={result.label}>
+                <p className="text-4xl text-brand-600 dark:text-brand-300">{result.value}</p>
+                <p className="mt-3 text-muted">{result.label}</p>
+              </div>
+            ))}
+          </div>
+        </ContentSection>
+      ) : null}
       <ContentSection title="خدمات و فناوری‌ها">
         <Points items={study.services} />
         <ul className="mt-8 flex flex-wrap gap-2" aria-label="فناوری‌های استفاده‌شده">
@@ -77,11 +99,6 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
             «{study.quote.text}»
             <footer className="mt-5 text-sm text-muted">{study.quote.author}</footer>
           </blockquote>
-        </ContentSection>
-      ) : null}
-      {study.industryDemo ? (
-        <ContentSection title="یک تجربه مشابه را امتحان کنید">
-          <ButtonLink href={`/demo/industries/${study.industryDemo}`}>مشاهده دموی صنعت</ButtonLink>
         </ContentSection>
       ) : null}
       <ContactCTA />

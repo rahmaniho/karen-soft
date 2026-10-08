@@ -7,8 +7,10 @@ export const legacyRedirects = [
   ["/law-office.html", "/products/law-office"],
   ["/taxi.html", "/demo/taxi-management"],
   ["/download-law-software.html", "/download-law-software"],
-  ["/najafisahar.html", "/portfolio/najafisahar"],
-  ["/saharnajafi.html", "/portfolio/sahar-najafi-nails"],
+  // نمونه‌کارهای حذف‌شده (سالن زیبایی قبلی) به فهرست نمونه‌کارها هدایت می‌شوند.
+  ["/najafisahar.html", "/portfolio"], ["/saharnajafi.html", "/portfolio"],
+  ["/najafisahar", "/portfolio"], ["/saharnajafi", "/portfolio"],
+  ["/portfolio/najafisahar", "/portfolio"], ["/portfolio/sahar-najafi-nails", "/portfolio"],
   ["/blog/automation.html", "/blog/office-automation"],
   ["/blog/direct_to_cell.html", "/blog/direct-to-cell"],
   ["/blog/growth-strategies.html", "/blog/growth-strategies"],
