@@ -1,18 +1,18 @@
 import Link from "next/link";
 import { ArrowLeft, MessageCircle } from "lucide-react";
-import { pageMeta } from "@/lib/seo";
+import { chapPageMeta } from "@/lib/seo";
 import { CHAP } from "@/lib/print/site";
 import { PRINT_FAQS } from "@/lib/print/data/content";
 import { PRINT_SERVICES } from "@/lib/print/data/services";
-import { faqSchema } from "@/lib/schema";
+import { breadcrumbSchema, faqSchema } from "@/lib/schema";
 import { Accordion } from "@/components/ui/accordion";
 import { JsonLd } from "@/components/ui/json-ld";
 import { ChapHeading } from "@/components/print/chap-heading";
 
-export const metadata = pageMeta({
+export const metadata = chapPageMeta({
   title: `سوالات متداول ${CHAP.name} | زمان تحویل، فایل چاپی و ارسال`,
   description:
-    "پاسخ پرسش‌های پرتکرار درباره زمان تحویل سفارش، فرمت فایل‌های چاپی، ارسال به شهرستان، طراحی مهر و روش‌های پرداخت در کارن چاپ.",
+    "پاسخ پرسش‌های پرتکرار کارن چاپ در الوند قزوین درباره زمان تحویل، فایل چاپی، ارسال سفارش، طراحی مهر و روش پرداخت.",
   path: "/print/faq",
 });
 
@@ -81,7 +81,16 @@ export default function ChapFaqPage() {
         </aside>
       </section>
 
-      <JsonLd data={faqSchema(PRINT_FAQS)} />
+      <JsonLd
+        data={[
+          faqSchema(PRINT_FAQS),
+          breadcrumbSchema([
+            { name: "خانه", path: "/" },
+            { name: "کارن چاپ", path: "/print" },
+            { name: "سؤالات متداول", path: "/print/faq" },
+          ]),
+        ]}
+      />
     </>
   );
 }

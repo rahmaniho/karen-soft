@@ -1,12 +1,14 @@
 import { ArrowLeft } from "lucide-react";
-import { pageMeta } from "@/lib/seo";
+import { chapPageMeta } from "@/lib/seo";
 import { CHAP } from "@/lib/print/site";
 import { PRINT_WORKS } from "@/lib/print/data/works";
 import { ButtonLink } from "@/components/ui/button";
 import { ChapHeading } from "@/components/print/chap-heading";
 import { WorkGallery } from "@/components/print/work-gallery";
+import { JsonLd } from "@/components/ui/json-ld";
+import { breadcrumbSchema, imageGallerySchema } from "@/lib/schema";
 
-export const metadata = pageMeta({
+export const metadata = chapPageMeta({
   title: `نمونه‌کارها | ${CHAP.name}`,
   description: "گزیده‌ای از پروژه‌های چاپ، مهر، صحافی و هدایای تبلیغاتی کارن چاپ در قزوین؛ با امکان بزرگ‌نمایی هر اثر.",
   path: "/print/portfolio",
@@ -62,6 +64,16 @@ export default function ChapPortfolioPage() {
           </div>
         </div>
       </section>
+      <JsonLd
+        data={[
+          imageGallerySchema("نمونه‌کارهای چاپ، مهر و صحافی کارن چاپ", "/print/portfolio", PRINT_WORKS),
+          breadcrumbSchema([
+            { name: "خانه", path: "/" },
+            { name: "کارن چاپ", path: "/print" },
+            { name: "نمونه‌کارها", path: "/print/portfolio" },
+          ]),
+        ]}
+      />
     </>
   );
 }

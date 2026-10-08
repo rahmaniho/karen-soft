@@ -1,12 +1,149 @@
-import { JsonLd } from "@/components/ui/json-ld";
-import { articleSchema } from "@/lib/schema";
-import { ArticleBlocks } from "@/components/site/article-blocks";
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { BLOG_POSTS } from "@/lib/blog";
-import { pageMeta } from "@/lib/seo";
+import { JsonLd } from "@/components/ui/json-ld";
+import { ArticleBlocks } from "@/components/site/article-blocks";
 import { PageHero, ContentSection, ContactCTA } from "@/components/site/page-parts";
-export const generateStaticParams=()=>BLOG_POSTS.map(p=>({slug:p.slug}));
-export async function generateMetadata({params}:{params:Promise<{slug:string}>}){const {slug}=await params;const p=BLOG_POSTS.find(p=>p.slug===slug);return p?pageMeta({title:p.title,description:p.excerpt,path:`/blog/${slug}`,images:[p.cover]}):{};}
-export default async function Page({params}:{params:Promise<{slug:string}>}){const {slug}=await params;const p=BLOG_POSTS.find(p=>p.slug===slug);if(!p)notFound();return <><PageHero eyebrow="KAREN JOURNAL" title={p.title} description={p.excerpt}><p className="text-xs text-muted">{p.author} · {new Date(p.date).toLocaleDateString("fa-IR")} · {p.readingMinutes.toLocaleString("fa-IR")} دقیقه مطالعه</p></PageHero><div className="container-page py-12 grid gap-12 lg:grid-cols-[240px_1fr]"><aside><nav aria-label="فهرست مقاله" className="surface-card p-6 lg:sticky lg:top-28"><h2 className="text-lg mb-5">در این مقاله</h2>{p.sections.map((s,i)=><a key={s.heading} className="block border-b py-3 text-sm text-muted hover:text-brand-600" href={`#section-${i}`}>{s.heading}</a>)}<Link className="inline-block mt-6 text-brand-600 dark:text-brand-300" href="/blog">همه مقاله‌ها ←</Link></nav></aside><article className="min-w-0 max-w-3xl">{p.sections.some(s=>s.blocks) && <aside className="surface-card p-5 mb-8 text-xs text-muted">این مطلب از آرشیو کارن سافت منتقل شده است. اشاره به قیمت، رایگان بودن یا قابلیت‌ها مربوط به نسخه زمان نگارش است؛ برای شرایط فعلی، صفحه محصول را بررسی کنید. <a className="text-brand-600 dark:text-brand-300 underline" href={`https://github.com/rahmaniho/karen-soft/blob/main/legacy${p.legacyPath}`}>نسخه اصلی در مخزن</a></aside>}<div className="relative aspect-video overflow-hidden rounded-2xl mb-10"><Image src={p.cover} alt={p.title} fill sizes="(max-width: 767px) 100vw, 900px" className="object-cover" priority/></div>{p.sections.map((s,i)=><section key={s.heading} id={`section-${i}`} className="mb-12"><h2 className="text-2xl mb-5">{s.heading}</h2>{s.blocks && <ArticleBlocks blocks={s.blocks}/>} {s.paragraphs.map(t=><p key={t} className="text-base leading-loose text-muted mb-4">{t}</p>)}{s.bullets&&<ul className="list-disc ps-6 space-y-3 text-muted leading-loose">{s.bullets.map(t=><li key={t}>{t}</li>)}</ul>}</section>)}<div className="flex flex-wrap gap-2">{p.tags.map(t=><span key={t} className="rounded-full border px-4 py-2 text-xs">{t}</span>)}</div></article></div><ContentSection title="برای مطالعه بیشتر"><div className="grid gap-5 md:grid-cols-3">{BLOG_POSTS.filter(x=>x.slug!==slug).slice(0,3).map(x=><Link className="surface-card p-6" key={x.slug} href={`/blog/${x.slug}`}><p className="text-xs text-brand-600 dark:text-brand-300">{x.category}</p><h3 className="mt-3">{x.title}</h3></Link>)}</div></ContentSection><ContactCTA/><JsonLd data={articleSchema(p)}/></>}
+import { BLOG_POSTS } from "@/lib/blog";
+import { articleSchema, breadcrumbSchema } from "@/lib/schema";
+import { pageMeta } from "@/lib/seo";
+
+export const generateStaticParams = () => BLOG_POSTS.map((post) => ({ slug: post.slug }));
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const post = BLOG_POSTS.find((item) => item.slug === slug);
+  if (!post) notFound();
+
+  return pageMeta({
+    title: post.title,
+    description: post.excerpt,
+    path: `/blog/${post.slug}`,
+    images: [post.cover],
+    openGraphType: "article",
+    publishedTime: post.date,
+    authors: [post.author],
+    section: post.category,
+    tags: post.tags,
+  });
+}
+
+export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const post = BLOG_POSTS.find((item) => item.slug === slug);
+  if (!post) notFound();
+
+  const publishedDate = new Date(`${post.date}T12:00:00Z`).toLocaleDateString("fa-IR", {
+    dateStyle: "long",
+    timeZone: "UTC",
+  });
+
+  return (
+    <>
+      <PageHero eyebrow="KAREN JOURNAL" title={post.title} description={post.excerpt}>
+        <p className="text-xs text-muted">
+          <span>{post.author}</span>
+          <span aria-hidden> · </span>
+          <time dateTime={post.date}>{publishedDate}</time>
+          <span aria-hidden> · </span>
+          <span>{post.readingMinutes.toLocaleString("fa-IR")} دقیقه مطالعه</span>
+        </p>
+      </PageHero>
+
+      <div className="container-page grid gap-12 py-12 lg:grid-cols-[240px_1fr]">
+        <aside>
+          <nav aria-label="فهرست مقاله" className="surface-card p-6 lg:sticky lg:top-28">
+            <h2 className="mb-5 text-lg">در این مقاله</h2>
+            {post.sections.map((section, index) => (
+              <a
+                key={section.heading}
+                className="block border-b py-3 text-sm text-muted hover:text-brand-600"
+                href={`#section-${index}`}
+              >
+                {section.heading}
+              </a>
+            ))}
+            <Link className="mt-6 inline-block text-brand-600 dark:text-brand-300" href="/blog">
+              همه مقاله‌ها ←
+            </Link>
+          </nav>
+        </aside>
+
+        <article className="min-w-0 max-w-3xl">
+          {post.sections.some((section) => section.blocks) ? (
+            <aside className="surface-card mb-8 p-5 text-xs text-muted">
+              این مطلب از آرشیو کارن سافت منتقل شده است. اشاره به قیمت، رایگان بودن یا قابلیت‌ها مربوط به زمان نگارش است؛
+              برای شرایط فعلی، صفحه محصول را بررسی کنید.{" "}
+              <a
+                className="text-brand-600 underline dark:text-brand-300"
+                href={`https://github.com/rahmaniho/karen-soft/blob/main/legacy${post.legacyPath}`}
+                rel="noopener noreferrer"
+              >
+                نسخۀ اصلی در مخزن
+              </a>
+            </aside>
+          ) : null}
+
+          <figure className="relative mb-10 aspect-video overflow-hidden rounded-2xl">
+            <Image
+              src={post.cover}
+              alt={post.title}
+              fill
+              sizes="(max-width: 767px) 100vw, 900px"
+              className="object-cover"
+              priority
+            />
+            <figcaption className="sr-only">تصویر مقاله: {post.title}</figcaption>
+          </figure>
+
+          {post.sections.map((section, index) => (
+            <section key={section.heading} id={`section-${index}`} className="mb-12 scroll-mt-28">
+              <h2 className="mb-5 text-2xl">{section.heading}</h2>
+              {section.blocks ? <ArticleBlocks blocks={section.blocks} /> : null}
+              {section.paragraphs.map((paragraph) => (
+                <p key={paragraph} className="mb-4 text-base leading-loose text-muted">
+                  {paragraph}
+                </p>
+              ))}
+              {section.bullets ? (
+                <ul className="list-disc space-y-3 ps-6 leading-loose text-muted">
+                  {section.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}
+                </ul>
+              ) : null}
+            </section>
+          ))}
+
+          <ul aria-label="موضوع‌های مقاله" className="flex flex-wrap gap-2">
+            {post.tags.map((tag) => (
+              <li key={tag} className="rounded-full border px-4 py-2 text-xs">{tag}</li>
+            ))}
+          </ul>
+        </article>
+      </div>
+
+      <ContentSection title="برای مطالعه بیشتر">
+        <div className="grid gap-5 md:grid-cols-3">
+          {BLOG_POSTS.filter((item) => item.slug !== slug).slice(0, 3).map((item) => (
+            <Link className="surface-card p-6" key={item.slug} href={`/blog/${item.slug}`}>
+              <p className="text-xs text-brand-600 dark:text-brand-300">{item.category}</p>
+              <h3 className="mt-3">{item.title}</h3>
+            </Link>
+          ))}
+        </div>
+      </ContentSection>
+
+      <ContactCTA />
+      <JsonLd
+        data={[
+          articleSchema(post),
+          breadcrumbSchema([
+            { name: "خانه", path: "/" },
+            { name: "مجله", path: "/blog" },
+            { name: post.title, path: `/blog/${post.slug}` },
+          ]),
+        ]}
+      />
+    </>
+  );
+}

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
-import { pageMeta } from "@/lib/seo";
+import { chapPageMeta } from "@/lib/seo";
 import { CHAP } from "@/lib/print/site";
 import { PRINT_PRODUCTS } from "@/lib/print/data/products";
 import { PRINT_SERVICES } from "@/lib/print/data/services";
@@ -8,11 +8,12 @@ import { ChapHeading } from "@/components/print/chap-heading";
 import { ChapIcon } from "@/components/print/chap-icon";
 import { ProductCard } from "@/components/print/product-card";
 
-export const metadata = pageMeta({
+export const metadata = chapPageMeta({
   title: `ثبت سفارش آنلاین | ${CHAP.name}`,
   description:
     "محصول موردنظر را انتخاب کنید و با پیکربند دقیق (کاغذ، سایز، تیراژ، روکش، تحویل) سفارش را ثبت کنید؛ کد پیگیری می‌گیرید و با واتساپ یا پیامک می‌فرستید.",
   path: "/print/order",
+  noIndex: true,
 });
 
 export default function ChapOrderHubPage() {

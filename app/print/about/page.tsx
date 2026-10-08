@@ -1,18 +1,21 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft, Award, MapPin, Users } from "lucide-react";
-import { pageMeta } from "@/lib/seo";
+import { chapPageMeta } from "@/lib/seo";
 import { CHAP, CHAP_STATS, CHAP_WHY } from "@/lib/print/site";
 import { ChapHeading } from "@/components/print/chap-heading";
 import { ChapIcon } from "@/components/print/chap-icon";
 import { ChapStats } from "@/components/print/chap-stats";
 import { ButtonLink } from "@/components/ui/button";
 import { PRINT_STEPS } from "@/lib/print/data/content";
+import { SITE } from "@/lib/constants";
+import { JsonLd } from "@/components/ui/json-ld";
+import { breadcrumbSchema, webPageSchema } from "@/lib/schema";
 
-export const metadata = pageMeta({
-  title: `درباره ${CHAP.name} | زیرمجموعۀ چاپ کارن سافت`,
+export const metadata = chapPageMeta({
+  title: `درباره ${CHAP.name} در الوند قزوین | تاریخچه و آدرس`,
   description:
-    "کارن چاپ با بیش از ۱۲ سال تجربه، چاپ دیجیتال و افست، ساخت مهر و صحافی حرفه‌ای را در قزوین ارائه می‌دهد؛ زیرمجموعۀ کارن سافت که نرم‌افزار و گرافیک را کنار چاپ آورده است.",
+    "کارن چاپ، چاپخانه‌ای در الوندِ استان قزوین، خدمات چاپ افست و دیجیتال، ساخت مهر و صحافی را با بیش از ۱۲ سال تجربه ارائه می‌دهد؛ زیرمجموعۀ کارن سافت.",
   path: "/print/about",
   images: ["/images/print/house.jpg"],
 });
@@ -172,6 +175,23 @@ export default function ChapAboutPage() {
           </div>
         </div>
       </section>
+      <JsonLd
+        data={[
+          webPageSchema({
+            type: "AboutPage",
+            name: `درباره ${CHAP.name}`,
+            description: CHAP.description,
+            path: "/print/about",
+            mainEntity: { "@id": `${SITE.url}/#karen-chap` },
+            about: { "@id": `${SITE.url}/#karen-chap` },
+          }),
+          breadcrumbSchema([
+            { name: "خانه", path: "/" },
+            { name: "کارن چاپ", path: "/print" },
+            { name: "درباره کارن چاپ", path: "/print/about" },
+          ]),
+        ]}
+      />
     </>
   );
 }

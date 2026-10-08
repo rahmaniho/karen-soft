@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, Check, Lightbulb, Timer, Zap } from "lucide-react";
-import { pageMeta } from "@/lib/seo";
+import { chapPageMeta } from "@/lib/seo";
 import { CHAP } from "@/lib/print/site";
 import { PRINT_PRODUCT_BY_SLUG, PRINT_PRODUCTS, productsOfService } from "@/lib/print/data/products";
 import { PRINT_SERVICE_BY_SLUG } from "@/lib/print/data/services";
@@ -11,6 +11,8 @@ import { optionsOf } from "@/lib/print/order";
 import { ButtonLink } from "@/components/ui/button";
 import { ProductCard } from "@/components/print/product-card";
 import { ChapIcon } from "@/components/print/chap-icon";
+import { JsonLd } from "@/components/ui/json-ld";
+import { breadcrumbSchema, printProductServiceSchema } from "@/lib/schema";
 
 export function generateStaticParams() {
   return PRINT_PRODUCTS.map((product) => ({ slug: product.slug }));
@@ -19,8 +21,8 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
   const product = PRINT_PRODUCT_BY_SLUG[slug];
-  if (!product) return {};
-  return pageMeta({
+  if (!product) notFound();
+  return chapPageMeta({
     title: `چاپ ${product.name} در قزوین | ${CHAP.name}`,
     description: `${product.description} زمان تحویل: ${product.turnaround}.`,
     path: `/print/products/${slug}`,
@@ -185,6 +187,18 @@ export default async function ChapProductPage({ params }: { params: Promise<{ sl
           </div>
         </section>
       ) : null}
+      <JsonLd
+        data={[
+          printProductServiceSchema(product, service),
+          breadcrumbSchema([
+            { name: "خانه", path: "/" },
+            { name: "کارن چاپ", path: "/print" },
+            { name: "خدمات", path: "/print/services" },
+            ...(service ? [{ name: service.title, path: `/print/services/${service.slug}` }] : []),
+            { name: product.name, path: `/print/products/${product.slug}` },
+          ]),
+        ]}
+      />
     </>
   );
 }

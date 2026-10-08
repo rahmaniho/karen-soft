@@ -1,13 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft, Check, MessageCircle, Phone, Sparkles } from "lucide-react";
-import { pageMeta } from "@/lib/seo";
+import { chapPageMeta } from "@/lib/seo";
 import { CHAP, CHAP_SOFTWARE_HOOK, CHAP_STATS, CHAP_WHY } from "@/lib/print/site";
 import { PRINT_SERVICES } from "@/lib/print/data/services";
 import { PRINT_PRODUCTS } from "@/lib/print/data/products";
 import { PRINT_WORKS } from "@/lib/print/data/works";
 import { PRINT_FAQS, PRINT_QUOTES, PRINT_STEPS } from "@/lib/print/data/content";
-import { faqSchema } from "@/lib/schema";
+import { breadcrumbSchema, faqSchema, itemListSchema } from "@/lib/schema";
 import { JsonLd } from "@/components/ui/json-ld";
 import { ButtonLink } from "@/components/ui/button";
 import { Accordion } from "@/components/ui/accordion";
@@ -20,7 +20,7 @@ import { ProductCard } from "@/components/print/product-card";
 import { WorkGallery } from "@/components/print/work-gallery";
 import { Reveal } from "@/components/shared/reveal";
 
-export const metadata = pageMeta({
+export const metadata = chapPageMeta({
   title: `${CHAP.name} | ${CHAP.tagline} در قزوین`,
   description: CHAP.description,
   path: "/print",
@@ -54,8 +54,8 @@ export default function ChapHome() {
             </h1>
 
             <p className="lead mt-6">
-              از کارت ویزیت و تراکت تا مهر لیزری، ماگ و تیشرت، پایان‌نامه و کتاب. سفارش را آنلاین پیکربندی می‌کنید،
-              پیش‌فاکتور شفاف می‌گیرید و تحویل به‌موقع تحویل می‌شود.
+              در چاپخانۀ کارن چاپ در الوندِ قزوین، از کارت ویزیت و تراکت تا مهر لیزری، ماگ و تیشرت، پایان‌نامه و کتاب چاپ
+              می‌کنیم. سفارش را آنلاین پیکربندی کنید و پیش‌فاکتور شفاف بگیرید؛ پس از تأیید، برای تحویل حضوری آماده می‌کنیم یا به نشانی شما می‌فرستیم.
             </p>
 
             <ul className="mt-6 space-y-2">
@@ -407,7 +407,23 @@ export default function ChapHome() {
         </div>
       </section>
 
-      <JsonLd data={faqSchema(PRINT_FAQS)} />
+      <JsonLd
+        data={[
+          faqSchema(PRINT_FAQS),
+          itemListSchema("خدمات کارن چاپ", PRINT_SERVICES.map((service) => ({
+            name: service.title,
+            url: `/print/services/${service.slug}`,
+          }))),
+          itemListSchema("محصولات چاپی کارن چاپ", PRINT_PRODUCTS.map((product) => ({
+            name: product.name,
+            url: `/print/products/${product.slug}`,
+          }))),
+          breadcrumbSchema([
+            { name: "خانه", path: "/" },
+            { name: "کارن چاپ", path: "/print" },
+          ]),
+        ]}
+      />
     </>
   );
 }

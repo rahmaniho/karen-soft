@@ -13,11 +13,12 @@ export function generateStaticParams(): { industry: string }[] {
 export async function generateMetadata({ params }: { params: Promise<{ industry: string }> }): Promise<Metadata> {
   const { industry: slug } = await params;
   const industry = getIndustry(slug);
-  if (!industry) return pageMeta({ title: "نمونه یافت نشد", description: "این نمونه در دسترس نیست.", noIndex: true });
+  if (!industry) notFound();
   return pageMeta({
     title: `نمونه طراحی ${industry.name} | کارن سافت`,
-    description: industry.description,
+    description: `${industry.description} این صفحه یک نمونۀ تعاملی برای نمایش طراحی سایت است و محتوای آن داده آزمایشی دارد.`,
     path: `/demo/industries/${industry.slug}`,
+    noIndex: true,
   });
 }
 
