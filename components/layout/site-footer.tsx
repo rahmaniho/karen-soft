@@ -17,7 +17,8 @@ export function SiteFooter() {
               alt="لوگوی کارن سافت"
               width={501}
               height={501}
-              className="h-16 w-auto object-contain brightness-0 invert"
+              sizes="80px"
+              className="size-20 object-contain brightness-0 invert"
             />
           </Link>
           <p className="mt-5 max-w-sm text-xs leading-loose text-white/60">

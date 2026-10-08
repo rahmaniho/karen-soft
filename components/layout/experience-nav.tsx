@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
@@ -66,7 +67,7 @@ export function ExperienceNav() {
     <>
       <motion.aside layout={!reduce} className={`ks-sidebar ${collapsed ? "is-collapsed" : ""}`} aria-label="ناوبری اصلی">
         <Link href="/" onClick={() => click()} className="ks-brand" aria-label="کارن سافت؛ صفحه اصلی">
-          <span className="ks-brand-mark">K<span>.</span></span>
+          <Image src="/images/logo-symbol.png" alt="" width={512} height={512} className="ks-brand-logo" />
           {!collapsed && <span className="ks-brand-name"><strong>کارن سافت</strong><small>KAREN SOFT®</small></span>}
         </Link>
         <div className="ks-side-meta">{!collapsed ? "فناوری، با نگاه آینده" : "•••"}</div>
@@ -92,7 +93,7 @@ export function ExperienceNav() {
         </div>
       </motion.aside>
 
-      <div className="ks-mobile-top"><Link href="/" className="ks-mobile-logo" aria-label="کارن سافت؛ صفحه اصلی"><span className="ks-brand-mark">K<span>.</span></span><span>کارن سافت<small>KAREN SOFT</small></span></Link><span className="ks-mobile-index">DIGITAL ENGINEERING / 01</span></div>
+      <div className="ks-mobile-top"><Link href="/" className="ks-mobile-logo" aria-label="کارن سافت؛ صفحه اصلی"><Image src="/images/logo-symbol.png" alt="" width={512} height={512} className="ks-mobile-logo-image" /><span>کارن سافت<small>KAREN SOFT</small></span></Link><span className="ks-mobile-index">DIGITAL ENGINEERING / 01</span></div>
       <AnimatePresence>
         {open && <>
           <motion.button className="ks-sheet-backdrop" aria-label="بستن منو" type="button" onClick={toggleOpen} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} />
