@@ -86,7 +86,7 @@ export const LAW_HIERARCHY: { id: LawHierarchy; title: string; description: stri
   { id: "statute", title: "قوانین عادی", description: "مصوبات مجلس شورای اسلامی" },
   { id: "regulation", title: "مقررات دولتی", description: "آیین‌نامه‌ها و مصوبات هیئت وزیران" },
   { id: "council", title: "مصوبات شوراها", description: "مصوبات شوراهای اسلامی محلی" },
-  { id: "precedent", title: "آرای وحدت رویه", description: "تصمیمات دیوان عالی کشور"advisory", title: "نظریات مشورتی", description: "نظرات مشورتی مراجع رسمی" },
+  { id: "precedent", title: "آرای وحدت رویه", description: "تصمیمات دیوان عالی کشور" },
   { id: "treaty", title: "معاهدات و کنوانسیون‌های بین‌المللی", description: "اسناد بین‌المللی" },
 ];
 

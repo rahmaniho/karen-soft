@@ -180,7 +180,7 @@ export function DemoMega({ onNavigate }: { onNavigate?: () => void }) {
           ))}
         </ul>
         <Link href="/demo" onClick={onNavigate} className="mt-2 inline-block text-3xs font-extrabold text-brand-600 hover:underline">
-          مشاهده هر ۱۰ دمو →
+          مشاهده هر ۱۱ دمو →
         </Link>
       </div>
 

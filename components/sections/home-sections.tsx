@@ -70,7 +70,7 @@ export function DemoSpotlight() {
           eyebrowLatin="Live demo"
           index="۰۲"
           title="قبل از خرید، امتحان کنید"
-          description="همه ۱۰ محصول ما دموی زنده دارند — بدون نصب، بدون ثبت‌نام."
+          description="همه ۱۱ محصول ما دموی زنده دارند — بدون نصب، بدون ثبت‌نام."
           action={
             <ButtonLink href="/demo" size="sm">
               مشاهده همه دموها
@@ -127,7 +127,7 @@ export function ProductsSection() {
           eyebrow="محصولات"
           eyebrowLatin="Products"
           index="۰۳"
-          title="۱۰ محصول آماده برای صنایع مختلف"
+          title="۱۱ محصول آماده برای صنایع مختلف"
           description="هر محصول از دل ده‌ها پروژه بیرون آمده؛ برای فرایندهای خاص کسب‌وکار شما سفارشی می‌شود."
           action={
             <ButtonLink href="/products" variant="outline" size="sm">
