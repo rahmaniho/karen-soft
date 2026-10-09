@@ -1,4 +1,5 @@
 import {
+  BookOpen,
   Boxes,
   Building2,
   Car,
@@ -18,6 +19,7 @@ import {
 } from "lucide-react";
 
 const ICONS: Record<string, LucideIcon> = {
+  BookOpen,
   Boxes,
   Building2,
   Car,
