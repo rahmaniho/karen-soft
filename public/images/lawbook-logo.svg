@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">نشان کتابچه قانون</title>
+  <desc id="desc">کتاب باز با صفحات روشن و نشان طلایی روی زمینه سبز تیره</desc>
+  <defs>
+    <linearGradient id="bg" x1="56" y1="40" x2="454" y2="474" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#174f43" />
+      <stop offset="1" stop-color="#0b2825" />
+    </linearGradient>
+    <linearGradient id="page" x1="103" y1="155" x2="411" y2="364" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#fffdf7" />
+      <stop offset="1" stop-color="#e8e3d6" />
+    </linearGradient>
+    <filter id="shadow" x="67" y="111" width="378" height="315" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="14" stdDeviation="13" flood-color="#061a17" flood-opacity=".34" />
+    </filter>
+  </defs>
+  <rect x="24" y="24" width="464" height="464" rx="120" fill="url(#bg)" />
+  <circle cx="256" cy="254" r="173" fill="#d6b46f" fill-opacity=".055" />
+  <g filter="url(#shadow)">
+    <path d="M95 160c59-18 111-8 161 26v202c-47-30-101-39-161-21V160Z" fill="url(#page)" />
+    <path d="M417 160c-59-18-111-8-161 26v202c47-30 101-39 161-21V160Z" fill="#f3efe5" />
+    <path d="M95 160c59-18 111-8 161 26v202c-47-30-101-39-161-21V160Z" fill="none" stroke="#fffdf7" stroke-linejoin="round" stroke-width="8" />
+    <path d="M417 160c-59-18-111-8-161 26v202c47-30 101-39 161-21V160Z" fill="none" stroke="#fffdf7" stroke-linejoin="round" stroke-width="8" />
+    <path d="M256 185v202" stroke="#b9954e" stroke-linecap="round" stroke-width="8" />
+    <path d="M126 207c37-9 71-4 99 10M126 237c37-9 71-4 99 10M126 267c37-9 71-4 99 10" stroke="#6f8a7d" stroke-linecap="round" stroke-width="7" />
+    <path d="M287 217c28-14 62-19 99-10M287 247c28-14 62-19 99-10M287 277c28-14 62-19 99-10" stroke="#6f8a7d" stroke-linecap="round" stroke-width="7" />
+  </g>
+  <path d="M256 94v49" stroke="#d6b46f" stroke-linecap="round" stroke-width="8" />
+  <circle cx="256" cy="81" r="14" fill="#d6b46f" />
+  <path d="m256 414 12 20-12 20-12-20 12-20Z" fill="#d6b46f" />
+</svg>

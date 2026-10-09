@@ -1,7 +1,6 @@
 /**
- * داده‌های دموی «کتابچه قانون» — برگرفته از مخزن
- * https://github.com/rahmaniho/Lawbook (data/curated + public/data)
- * متن مواد و آراء، عيناً از فايل‌های دادهٔ واقعی پروژه کپی شده‌اند.
+ * داده‌های نمونهٔ دموی «کتابچه قانون» برای نمایش قابلیت‌های جست‌وجو و مطالعه.
+ * پیش از استناد حقوقی، متن منبع رسمی را بررسی کنید.
  */
 
 export interface LawCategory {
@@ -140,7 +139,7 @@ export const LAWS: LawDocument[] = [
   { id: "aggravated-punishment-bribery-embezzlement-fraud-law", title: "قانون تشدید مجازات مرتکبین ارتشاء، اختلاس و کلاهبرداری", shortTitle: "ارتشاء، اختلاس و کلاهبرداری", category: "keyfari", hierarchy: "statute", documentType: "قانون", approvalDate: "۱۳۶۷/۰۹/۱۵", articleCount: 8 },
 ];
 
-/** متن‌های واقعی مواد — کپی‌شده از فایل‌های public/data مخزن Lawbook */
+/** نمونه‌های متن ماده برای نمایش نتیجه‌های جست‌وجوی دموی محصول */
 export const ARTICLES: LawArticle[] = [
   {
     id: "civil-code-1",
@@ -367,7 +366,7 @@ export const CASES: CourtCase[] = [
   },
 ];
 
-/** کسرهای پرکاربرد دیه — از src/lib/calc/diyyeh.ts در مخزن Lawbook */
+/** کسرهای پرکاربرد دیه برای محاسبۀ آزمایشی در دموی محصول */
 export const DIYAH_PRESETS: DiyyehPreset[] = [
   { id: "full", label: "دیه کامل", num: 1, den: 1, basis: "ماده ۵۴۶ قانون مجازات اسلامی" },
   { id: "half", label: "نصف دیه", num: 1, den: 2, basis: "مواد ۵۶۳ به بعد قانون مجازات اسلامی" },

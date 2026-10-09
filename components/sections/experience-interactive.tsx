@@ -83,7 +83,7 @@ export function PortfolioGallery({ cases }: { cases: CaseStudy[] }) {
     </button>)}</div>
     <Dialog.Root open={selected !== null} onOpenChange={open => { if (!open) setSelected(null); }}>
       <Dialog.Portal><Dialog.Overlay className="ks-dialog-overlay" /><Dialog.Content className="ks-dialog" dir="rtl" aria-describedby="ks-dialog-description">
-        <div className="ks-dialog-top"><div><span>INTERNAL PREVIEW / نمونه‌کار</span><Dialog.Title>{selected?.title}</Dialog.Title></div><Dialog.Close className="ks-dialog-close" aria-label="بستن پیش‌نمایش"><X size={22} /></Dialog.Close></div>
+        <div className="ks-dialog-top"><div><span>LIVE PREVIEW / نمونه‌کار</span><Dialog.Title>{selected?.title}</Dialog.Title></div><Dialog.Close className="ks-dialog-close" aria-label="بستن پیش‌نمایش"><X size={22} /></Dialog.Close></div>
         <Dialog.Description id="ks-dialog-description" className="ks-dialog-description">{selected?.note ?? selected?.summary}</Dialog.Description>
         {selected?.demo ? <iframe key={selected.slug} ref={frameRef} onLoad={() => { /* re-attach guards when a demo navigates within its scope */ setSelected(current => current ? { ...current } : null); }} src={selected.demo.src} title={selected.demo.title} className="ks-dialog-frame" loading="lazy" sandbox="allow-scripts allow-same-origin" referrerPolicy="same-origin" /> : <div className="ks-dialog-fallback"><Image src={selected?.cover ?? "/images/logo.png"} alt={selected?.title ?? "نمونه کار"} fill sizes="90vw" className="object-contain" /></div>}
         <div className="ks-dialog-bottom"><span>پیش‌نمایش در همین سایت نمایش داده می‌شود.</span><Dialog.Close className="ks-dialog-done">بستن پیش‌نمایش <ArrowUpLeft size={16} /></Dialog.Close></div>

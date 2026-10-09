@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -14,9 +14,22 @@ type Output = z.output<typeof contactSchema>;
 export function ContactForm() {
   const [feedback, setFeedback] = useState("");
   const [sent, setSent] = useState(false);
-  const { register, handleSubmit, reset, setError, formState: { errors, isSubmitting } } = useForm<Input, unknown, Output>({
+  const { register, handleSubmit, reset, setError, setValue, formState: { errors, isSubmitting } } = useForm<Input, unknown, Output>({
     resolver: zodResolver(contactSchema), mode: "onChange", defaultValues: { name: "", phone: "", email: "", subject: "", message: "" },
   });
+
+  useEffect(() => {
+    const requestedProduct = new URLSearchParams(window.location.search).get("product");
+    if (requestedProduct !== "law-book") return;
+    const product = PRODUCTS.find((item) => item.slug === requestedProduct);
+    if (!product) return;
+    setValue("subject", product.slug, { shouldValidate: true });
+    setValue(
+      "message",
+      `سلام، برای خرید نسخۀ کامل «${product.name}» با قیمت ${product.pricingFrom.toLocaleString("fa-IR")} تومان درخواست دارم. لطفاً برای هماهنگی با من تماس بگیرید.`,
+      { shouldValidate: true },
+    );
+  }, [setValue]);
 
   const submit = handleSubmit(async values => {
     setFeedback(""); setSent(false);

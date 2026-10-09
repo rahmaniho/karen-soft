@@ -73,15 +73,8 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         <article className="min-w-0 max-w-3xl">
           {post.sections.some((section) => section.blocks) ? (
             <aside className="surface-card mb-8 p-5 text-xs text-muted">
-              این مطلب از آرشیو کارن سافت منتقل شده است. اشاره به قیمت، رایگان بودن یا قابلیت‌ها مربوط به زمان نگارش است؛
-              برای شرایط فعلی، صفحه محصول را بررسی کنید.{" "}
-              <a
-                className="text-brand-600 underline dark:text-brand-300"
-                href={`https://github.com/rahmaniho/karen-soft/blob/main/legacy${post.legacyPath}`}
-                rel="noopener noreferrer"
-              >
-                نسخۀ اصلی در مخزن
-              </a>
+              این مقاله از آرشیو محتوایی کارن سافت بازبینی و منتشر شده است. اشاره به قیمت یا قابلیت‌ها ممکن است مربوط به زمان نگارش باشد؛
+              برای اطلاعات و قیمت فعلی، صفحۀ محصول را بررسی کنید.
             </aside>
           ) : null}
 
