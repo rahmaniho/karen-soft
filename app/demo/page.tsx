@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowLeft, Sparkles } from "lucide-react";
-import { PRODUCTS } from "@/lib/products";
+import { DEMO_PRODUCTS } from "@/lib/products";
 import { INDUSTRIES } from "@/lib/industries";
 import { pageMeta } from "@/lib/seo";
 import { itemListSchema, breadcrumbSchema } from "@/lib/schema";
@@ -14,7 +14,7 @@ import { IndustryCard } from "@/components/shared/industry-card";
 
 export const metadata: Metadata = pageMeta({
   title: "دموی زنده محصولات | کارن سافت",
-  description: "دموی زنده ۱۱ نرم‌افزار کارن سافت را رایگان و بدون ثبت‌نام در مرورگر بررسی کنید؛ اطلاعات دمو نمونه است و هر زمان قابل بازنشانی است.",
+  description: "دموی زنده ۱۰ نرم‌افزار مدیریتی کارن سافت را رایگان و بدون ثبت‌نام در مرورگر بررسی کنید؛ اطلاعات دمو نمونه است و هر زمان قابل بازنشانی است.",
   path: "/demo",
 });
 
@@ -42,7 +42,7 @@ export default function DemoHubPage() {
 
         <section className="pb-20">
           <div className="container-page">
-            <DemoHubGrid products={PRODUCTS} />
+            <DemoHubGrid products={DEMO_PRODUCTS} />
           </div>
         </section>
 
@@ -97,7 +97,7 @@ export default function DemoHubPage() {
         data={[
           itemListSchema(
             "دموهای زنده کارن سافت",
-            PRODUCTS.map((product) => ({ name: product.name, url: `/demo/${product.demoSlug}` })),
+            DEMO_PRODUCTS.map((product) => ({ name: product.name, url: `/demo/${product.demoSlug}` })),
           ),
           breadcrumbSchema([
             { name: "خانه", path: "/" },

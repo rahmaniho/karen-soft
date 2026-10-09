@@ -2,7 +2,8 @@ import { describe, expect, it } from "vitest";
 import { existsSync, readFileSync, readdirSync } from "node:fs";
 import { resolve } from "node:path";
 import { BLOG_POSTS } from "../lib/blog";
-import { PRODUCTS } from "../lib/products";
+import { DEMO_PRODUCTS, PRODUCTS } from "../lib/products";
+import { APP_STATS, LAW_CATEGORIES, LAWS } from "../lib/demos/law-book.data";
 import { SOLUTIONS } from "../lib/solutions";
 import { CASE_STUDIES } from "../lib/portfolio";
 import { legacyRedirects } from "../lib/legacy-redirects";
@@ -29,19 +30,26 @@ describe("legacy content migration",()=>{
   for(const item of [...BLOG_POSTS,...CASE_STUDIES])expect(existsSync(resolve('public',item.cover.slice(1))),item.cover).toBe(true);
  });
  it("resolves product and solution relationships",()=>{
-  for(const s of SOLUTIONS){expect(PRODUCTS.some(p=>p.slug===s.productSlug),s.slug).toBe(true);expect(PRODUCTS.some(p=>p.demoSlug===s.demoSlug),s.slug).toBe(true);}
+  for(const s of SOLUTIONS){expect(PRODUCTS.some(p=>p.slug===s.productSlug),s.slug).toBe(true);expect(DEMO_PRODUCTS.some(p=>p.demoSlug===s.demoSlug),s.slug).toBe(true);}
   for(const p of PRODUCTS)if(p.solution)expect(SOLUTIONS.some(s=>s.slug===p.solution),p.slug).toBe(true);
  });
   it("has no duplicate slugs",()=>{
   for(const items of [BLOG_POSTS, PRODUCTS, SOLUTIONS, CASE_STUDIES])expect(new Set(items.map(x=>x.slug)).size).toBe(items.length);
  });
- it("presents Lawbook as a priced product with its own logo and live site",()=>{
+ it("presents the Lawbook topic catalogue without an interactive live demo",()=>{
   const lawBook=PRODUCTS.find(product=>product.slug==='law-book');
   expect(lawBook).toBeTruthy();
   expect(lawBook!.pricingFrom).toBe(950_000);
-  expect(lawBook!.liveUrl).toBe('https://rahmaniho.github.io/Lawbook/');
+  expect(lawBook!.demoSlug).toBeUndefined();
+  expect(lawBook!.liveUrl).toBeUndefined();
+  expect(DEMO_PRODUCTS.map(product=>product.slug)).not.toContain('law-book');
+  expect(DEMO_PRODUCTS).toHaveLength(10);
   expect(lawBook!.logo).toBe('/images/lawbook-logo.svg');
   expect(existsSync(resolve('public',lawBook!.logo!.slice(1)))).toBe(true);
+  expect(APP_STATS).toMatchObject({documents:46,articles:7278,cases:1998,categories:10});
+  expect(LAW_CATEGORIES).toHaveLength(APP_STATS.categories);
+  expect(LAWS).toHaveLength(APP_STATS.documents);
+  for(const category of LAW_CATEGORIES)expect(LAWS.some(law=>law.category===category.id),category.id).toBe(true);
  });
  it("keeps repository links out of public marketing pages",()=>{
   const files=[

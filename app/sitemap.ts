@@ -2,7 +2,7 @@ import { BLOG_POSTS } from "@/lib/blog";
 import { CASE_STUDIES } from "@/lib/portfolio";
 import type { MetadataRoute } from "next";
 import { SITE } from "@/lib/constants";
-import { PRODUCTS } from "@/lib/products";
+import { DEMO_PRODUCTS, PRODUCTS } from "@/lib/products";
 import { SOLUTIONS } from "@/lib/solutions";
 import { PRINT_SERVICES } from "@/lib/print/data/services";
 import { PRINT_PRODUCTS } from "@/lib/print/data/products";
@@ -47,7 +47,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     entry("/solutions", 0.84, "monthly"),
     ...SOLUTIONS.map((solution) => entry(`/solutions/${solution.slug}`, 0.78, "monthly")),
     entry("/demo", 0.82, "weekly"),
-    ...PRODUCTS.map((product) => entry(`/demo/${product.demoSlug}`, 0.68, "monthly")),
+    ...DEMO_PRODUCTS.map((product) => entry(`/demo/${product.demoSlug}`, 0.68, "monthly")),
     entry("/demo/industries", 0.68, "monthly"),
     entry("/portfolio", 0.7, "monthly"),
     ...CASE_STUDIES.map((study) => entry(`/portfolio/${study.slug}`, 0.68, "monthly")),

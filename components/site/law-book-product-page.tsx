@@ -3,10 +3,8 @@ import Link from "next/link";
 import {
   ArrowDown,
   ArrowLeft,
-  ArrowUpLeft,
   BookOpen,
   Check,
-  ExternalLink,
   FileText,
   LockKeyhole,
   Phone,
@@ -15,7 +13,7 @@ import {
   WifiOff,
 } from "lucide-react";
 import { Accordion } from "@/components/ui/accordion";
-import { APP_STATS } from "@/lib/demos/law-book.data";
+import { APP_STATS, LAW_CATEGORIES, LAWS } from "@/lib/demos/law-book.data";
 import { SITE } from "@/lib/constants";
 import type { Product } from "@/lib/products";
 
@@ -40,11 +38,11 @@ export const LAWBOOK_FAQS = [
 
 const number = (value: number) => value.toLocaleString("fa-IR");
 
-function LawBookSectionTitle({ eyebrow, title, description }: { eyebrow: string; title: string; description?: string }) {
+function LawBookSectionTitle({ eyebrow, title, description, id }: { eyebrow: string; title: string; description?: string; id?: string }) {
   return (
     <div className="lb-section-title">
       <span>{eyebrow}</span>
-      <h2>{title}</h2>
+      <h2 id={id}>{title}</h2>
       {description ? <p>{description}</p> : null}
     </div>
   );
@@ -52,7 +50,6 @@ function LawBookSectionTitle({ eyebrow, title, description }: { eyebrow: string;
 
 export function LawBookProductPage({ product }: { product: Product }) {
   const price = number(product.pricingFrom);
-  const liveUrl = product.liveUrl ?? `/demo/${product.demoSlug}`;
 
   return (
     <div className="lawbook-page" dir="rtl">
@@ -73,8 +70,8 @@ export function LawBookProductPage({ product }: { product: Product }) {
             </p>
             <div className="lb-audience">برای وکلا، کارآموزان وکالت، دانشجویان حقوق و پژوهشگران</div>
             <div className="lb-hero-actions">
-              <a className="lb-button lb-button-primary" href={liveUrl} target={product.liveUrl ? "_blank" : undefined} rel={product.liveUrl ? "noopener noreferrer" : undefined}>
-                مشاهدهٔ نسخهٔ زنده <ExternalLink size={16} aria-hidden />
+              <a className="lb-button lb-button-primary" href="#book-topics">
+                فهرست موضوعات کتاب <BookOpen size={16} aria-hidden />
               </a>
               <Link className="lb-button lb-button-outline" href="/contact?product=law-book">
                 ثبت درخواست خرید <ArrowLeft size={17} aria-hidden />
@@ -101,7 +98,7 @@ export function LawBookProductPage({ product }: { product: Product }) {
             <div className="lb-float-offline"><WifiOff size={15} aria-hidden /> همیشه در دسترس</div>
           </div>
         </div>
-        <a className="lb-scroll-cue" href="#overview"><span>آشنایی با امکانات</span><ArrowDown size={15} aria-hidden /></a>
+        <a className="lb-scroll-cue" href="#overview"><span>آشنایی با کتابچه</span><ArrowDown size={15} aria-hidden /></a>
       </section>
 
       <section id="overview" className="lb-overview">
@@ -144,20 +141,50 @@ export function LawBookProductPage({ product }: { product: Product }) {
         </div>
       </section>
 
-      <section className="lb-modules">
-        <div className="container-page lb-modules-grid">
-          <div>
-            <LawBookSectionTitle eyebrow="محتوای کاربردی" title="کتابخانه‌ای که برای کار روزمره ساخته شده." description="موضوع را انتخاب کنید، قانون را باز کنید یا مستقیم سراغ ابزار موردنیازتان بروید." />
-            <Link href="/demo/law-book" className="lb-text-link">دیدن پیش‌نمایش تعاملی <ArrowUpLeft size={16} aria-hidden /></Link>
+      <section id="book-topics" className="lb-modules" aria-labelledby="book-topics-title">
+        <div className="container-page">
+          <LawBookSectionTitle
+            id="book-topics-title"
+            eyebrow="فهرست مطالب"
+            title="چه موضوعاتی در کتابچه قانون هست؟"
+            description={`از حقوق مدنی و خانواده تا کیفری، تجارت، مالیات و آیین دادرسی؛ ${number(APP_STATS.documents)} سند حقوقی در ${number(APP_STATS.categories)} دستهٔ موضوعی.`}
+          />
+          <div className="lb-topic-grid">
+            {LAW_CATEGORIES.map((category, index) => {
+              const documents = LAWS.filter((law) => law.category === category.id);
+              return (
+                <article className="lb-topic-card" key={category.id}>
+                  <div className="lb-topic-card-heading">
+                    <span
+                      className="lb-topic-index"
+                      style={{ color: category.color, background: `${category.color}14` }}
+                      aria-hidden="true"
+                    >
+                      {number(index + 1).padStart(2, "۰")}
+                    </span>
+                    <div className="lb-topic-heading-copy">
+                      <div className="lb-topic-title-row">
+                        <h3>{category.title}</h3>
+                        <span className="lb-topic-count">{number(documents.length)} سند</span>
+                      </div>
+                      <p>{category.description}</p>
+                    </div>
+                  </div>
+                  <div className="lb-topic-documents">
+                    <span>اسناد این بخش</span>
+                    <ul aria-label={`اسناد ${category.title}`}>
+                      {documents.map((law) => <li key={law.id}>{law.shortTitle}</li>)}
+                    </ul>
+                  </div>
+                </article>
+              );
+            })}
           </div>
-          <div className="lb-module-list">
-            {product.modules.slice(1, 7).map((module, index) => (
-              <article key={module.title}>
-                <span>{number(index + 1).padStart(2, "۰")}</span>
-                <div><h3>{module.title}</h3><p>{module.desc}</p></div>
-                <ArrowLeft size={16} aria-hidden />
-              </article>
-            ))}
+          <div className="lb-topic-note">
+            <BookOpen size={19} aria-hidden="true" />
+            <p>
+              علاوه بر اسناد بالا، {number(APP_STATS.cases)} رأی قضایی منتخب در موضوعات حقوقی، کیفری و اداری نیز در کتابخانه گردآوری شده است.
+            </p>
           </div>
         </div>
       </section>
@@ -183,8 +210,8 @@ export function LawBookProductPage({ product }: { product: Product }) {
           <div className="lb-pricing-copy">
             <span className="lb-pricing-kicker">دسترسی به نسخۀ کامل</span>
             <h2>کتابخانهٔ حقوقی‌تان<br /><em>همیشه دمِ دست.</em></h2>
-            <p>پیش از تصمیم، نسخۀ زنده را ببینید و جست‌وجو و تجربهٔ مطالعه را بررسی کنید.</p>
-            <div className="lb-pricing-assurances"><span><Check size={14} aria-hidden /> پیش‌نمایش زنده</span><span><Check size={14} aria-hidden /> نصب روی موبایل و دسکتاپ</span><span><Check size={14} aria-hidden /> جست‌وجو و مطالعهٔ آفلاین</span></div>
+            <p>پیش از تهیه، فهرست موضوعات و اسناد گردآوری‌شده را در همین صفحه بررسی کنید.</p>
+            <div className="lb-pricing-assurances"><span><Check size={14} aria-hidden /> {number(APP_STATS.documents)} سند حقوقی</span><span><Check size={14} aria-hidden /> نصب روی موبایل و دسکتاپ</span><span><Check size={14} aria-hidden /> جست‌وجو و مطالعهٔ آفلاین</span></div>
           </div>
           <div className="lb-price-card">
             <Image src={product.logo ?? "/images/lawbook-logo.svg"} alt="" width={52} height={52} />
@@ -193,7 +220,6 @@ export function LawBookProductPage({ product }: { product: Product }) {
             <p>برای هماهنگی خرید، اطلاعات تماس‌تان را ثبت کنید.</p>
             <Link href="/contact?product=law-book" className="lb-button lb-button-gold">ثبت درخواست خرید <ArrowLeft size={16} aria-hidden /></Link>
             <a className="lb-phone-link" href={`tel:${SITE.phone}`}><Phone size={14} aria-hidden /> خرید تلفنی: <span dir="ltr">{SITE.phoneDisplay}</span></a>
-            <a className="lb-live-link" href={liveUrl} target={product.liveUrl ? "_blank" : undefined} rel={product.liveUrl ? "noopener noreferrer" : undefined}>اول نسخۀ زنده را ببینید <ExternalLink size={13} aria-hidden /></a>
           </div>
         </div>
       </section>

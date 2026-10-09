@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { ArrowLeft, PlayCircle, Sparkles, Star } from "lucide-react";
 import { SOLUTIONS } from "@/lib/solutions";
-import { PRODUCTS, PRODUCT_STATUS_LABEL } from "@/lib/products";
+import { DEMO_PRODUCTS, PRODUCTS, PRODUCT_STATUS_LABEL } from "@/lib/products";
 import { INDUSTRIES } from "@/lib/industries";
 import { Badge } from "@/components/ui/badge";
 import { ButtonLink } from "@/components/ui/button";
@@ -139,10 +139,16 @@ export function ProductsMega({ onNavigate }: { onNavigate?: () => void }) {
             </span>
           ))}
         </div>
-        <ButtonLink href={`/demo/${active.demoSlug}`} size="sm" variant="soft" className="mt-4 w-full" onClick={onNavigate}>
-          <PlayCircle className="size-4" aria-hidden />
-          مشاهده دمو زنده
-        </ButtonLink>
+        {active.demoSlug ? (
+          <ButtonLink href={`/demo/${active.demoSlug}`} size="sm" variant="soft" className="mt-4 w-full" onClick={onNavigate}>
+            <PlayCircle className="size-4" aria-hidden />
+            مشاهده دمو زنده
+          </ButtonLink>
+        ) : (
+          <Link href={`/products/${active.slug}#book-topics`} onClick={onNavigate} className="mt-4 inline-flex w-full items-center justify-center rounded-[var(--radius-sm)] bg-[var(--surface-raised)] px-4 py-2.5 text-2xs font-extrabold text-brand-700 hover:underline dark:text-brand-300">
+            فهرست موضوعات کتاب
+          </Link>
+        )}
       </div>
 
       <div className="flex flex-col justify-between rounded-[var(--radius-xl)] bg-gradient-to-br from-brand-600 to-brand-800 p-5 text-white">
@@ -166,7 +172,7 @@ export function DemoMega({ onNavigate }: { onNavigate?: () => void }) {
       <div>
         <h3 className="mb-3 text-xs font-extrabold text-muted">دموی محصولات</h3>
         <ul className="space-y-1">
-          {PRODUCTS.slice(0, 6).map((product) => (
+          {DEMO_PRODUCTS.slice(0, 6).map((product) => (
             <li key={product.slug}>
               <Link
                 href={`/demo/${product.demoSlug}`}
@@ -180,7 +186,7 @@ export function DemoMega({ onNavigate }: { onNavigate?: () => void }) {
           ))}
         </ul>
         <Link href="/demo" onClick={onNavigate} className="mt-2 inline-block text-3xs font-extrabold text-brand-600 hover:underline">
-          مشاهده هر ۱۱ دمو →
+          مشاهده هر ۱۰ دمو →
         </Link>
       </div>
 
