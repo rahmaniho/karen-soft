@@ -1,8 +1,6 @@
 "use client";
 
-import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { MessageCircle } from "lucide-react";
 import { useEffect } from "react";
 import { CRISP_WEBSITE_ID } from "@/lib/constants";
 
@@ -33,6 +31,7 @@ function updateSessionData(path: string) {
   ]);
 }
 
+/** Crisp supplies its own launcher; do not render a second floating chat button. */
 export function CrispChat() {
   const path = usePathname();
 
@@ -55,23 +54,5 @@ export function CrispChat() {
     if (websiteId) updateSessionData(path);
   }, [path]);
 
-  const openChat = () => {
-    if (!websiteId) return;
-    updateSessionData(path);
-    window.$crisp?.push(["do", "chat:open"]);
-  };
-
-  return websiteId ? (
-    <button type="button" className="ks-chat-trigger" onClick={openChat} aria-label="باز کردن چت پشتیبانی">
-      <MessageCircle size={21} />
-      <span>گفت‌وگو با ما</span>
-      <i />
-    </button>
-  ) : (
-    <Link href="/contact" className="ks-chat-trigger" aria-label="تماس با پشتیبانی">
-      <MessageCircle size={21} />
-      <span>گفت‌وگو با ما</span>
-      <i />
-    </Link>
-  );
+  return null;
 }

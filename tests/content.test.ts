@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { existsSync, readdirSync } from "node:fs";
+import { existsSync, readFileSync, readdirSync } from "node:fs";
 import { resolve } from "node:path";
 import { BLOG_POSTS } from "../lib/blog";
 import { PRODUCTS } from "../lib/products";
@@ -32,8 +32,29 @@ describe("legacy content migration",()=>{
   for(const s of SOLUTIONS){expect(PRODUCTS.some(p=>p.slug===s.productSlug),s.slug).toBe(true);expect(PRODUCTS.some(p=>p.demoSlug===s.demoSlug),s.slug).toBe(true);}
   for(const p of PRODUCTS)if(p.solution)expect(SOLUTIONS.some(s=>s.slug===p.solution),p.slug).toBe(true);
  });
- it("has no duplicate slugs",()=>{
+  it("has no duplicate slugs",()=>{
   for(const items of [BLOG_POSTS, PRODUCTS, SOLUTIONS, CASE_STUDIES])expect(new Set(items.map(x=>x.slug)).size).toBe(items.length);
+ });
+ it("presents Lawbook as a priced product with its own logo and live site",()=>{
+  const lawBook=PRODUCTS.find(product=>product.slug==='law-book');
+  expect(lawBook).toBeTruthy();
+  expect(lawBook!.pricingFrom).toBe(950_000);
+  expect(lawBook!.liveUrl).toBe('https://rahmaniho.github.io/Lawbook/');
+  expect(lawBook!.logo).toBe('/images/lawbook-logo.svg');
+  expect(existsSync(resolve('public',lawBook!.logo!.slice(1)))).toBe(true);
+ });
+ it("keeps repository links out of public marketing pages",()=>{
+  const files=[
+   'app/(site)/blog/[slug]/page.tsx',
+   'app/(site)/changelog/page.tsx',
+   'app/(site)/roadmap/page.tsx',
+   'app/(site)/download-law-software/page.tsx',
+  ];
+  for(const file of files){
+   const content=readFileSync(resolve(file),'utf8');
+   expect(content,file).not.toMatch(/github\.com\/rahmaniho/i);
+   expect(content,file).not.toContain('نسخۀ اصلی در مخزن');
+  }
  });
  it("normalizes Persian telephone digits",()=>{
   const result=contactSchema.safeParse({name:'کاربر آزمایشی',phone:'۰۹۱۲۳۴۵۶۷۸۹',email:'',subject:'website',message:'درخواست طراحی وب‌سایت شرکتی'});

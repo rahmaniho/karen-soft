@@ -1041,6 +1041,9 @@ export function LawBookDemo() {
       emoji="📖"
       accent={ACCENT}
       modules={modules}
+      logoSrc="/images/lawbook-logo.svg"
+      orderHref="/contact?product=law-book"
+      orderLabel="ثبت درخواست خرید"
       onReset={reset}
     />
   );

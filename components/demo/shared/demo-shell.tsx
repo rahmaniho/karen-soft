@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import {
@@ -29,10 +30,13 @@ export interface DemoShellProps {
   emoji: string;
   accent: string;
   modules: DemoModule[];
+  logoSrc?: string;
+  orderHref?: string;
+  orderLabel?: string;
   onReset?: () => void;
 }
 
-export function DemoShell({ productSlug, productName, emoji, accent, modules, onReset }: DemoShellProps) {
+export function DemoShell({ productSlug, productName, emoji, accent, modules, logoSrc, orderHref, orderLabel, onReset }: DemoShellProps) {
   const storageKey = `karen-demo:${productSlug}:module`;
   const [active, setActive] = useState(0);
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -85,9 +89,13 @@ export function DemoShell({ productSlug, productName, emoji, accent, modules, on
             دموی زنده
           </span>
 
-          <h1 className="truncate text-xs font-extrabold">
-            <span aria-hidden className="me-1">{emoji}</span>
-            {productName}
+          <h1 className="flex min-w-0 items-center gap-2 truncate text-xs font-extrabold">
+            {logoSrc ? (
+              <Image src={logoSrc} alt="" width={30} height={30} className="size-7 shrink-0 rounded-md object-contain" />
+            ) : (
+              <span aria-hidden>{emoji}</span>
+            )}
+            <span className="truncate">{productName}</span>
           </h1>
 
           <div className="ms-auto flex items-center gap-2">
@@ -119,10 +127,10 @@ export function DemoShell({ productSlug, productName, emoji, accent, modules, on
               صفحه محصول
             </Link>
             <Link
-              href="/contact"
+              href={orderHref ?? "/contact"}
               className="inline-flex h-9 items-center rounded-[var(--radius-sm)] bg-brand-600 px-3 text-3xs font-extrabold text-white transition-colors hover:bg-brand-500"
             >
-              درخواست نسخه کامل
+              {orderLabel ?? "درخواست نسخه کامل"}
             </Link>
           </div>
         </div>

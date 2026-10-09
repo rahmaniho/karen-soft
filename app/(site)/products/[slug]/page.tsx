@@ -10,6 +10,7 @@ import { ButtonLink } from "@/components/ui/button";
 import { Accordion } from "@/components/ui/accordion";
 import { FAQS } from "@/lib/constants";
 import { JsonLd } from "@/components/ui/json-ld";
+import { LawBookProductPage, LAWBOOK_FAQS } from "@/components/site/law-book-product-page";
 
 export const generateStaticParams = () => PRODUCTS.map((product) => ({ slug: product.slug }));
 
@@ -19,8 +20,12 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   if (!product) notFound();
 
   return pageMeta({
-    title: `${product.name} | نرم‌افزار مدیریتی کسب‌وکار`,
-    description: `${product.short} دموی زنده را پیش از تصمیم‌گیری، بدون نصب در مرورگر بررسی کنید.`,
+    title: product.slug === "law-book"
+      ? "کتابچه قانون | مرجع حقوقی همراه، آنلاین و آفلاین"
+      : `${product.name} | نرم‌افزار مدیریتی کسب‌وکار`,
+    description: product.slug === "law-book"
+      ? `${product.short} قیمت نسخۀ کامل: ${product.pricingFrom.toLocaleString("fa-IR")} تومان؛ نسخۀ زنده را پیش از ثبت درخواست خرید بررسی کنید.`
+      : `${product.short} دموی زنده را پیش از تصمیم‌گیری، بدون نصب در مرورگر بررسی کنید.`,
     path: `/products/${product.slug}`,
     images: product.image ? [product.image] : undefined,
   });
@@ -30,6 +35,25 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
   const { slug } = await params;
   const product = PRODUCTS.find((item) => item.slug === slug);
   if (!product) notFound();
+
+  if (product.slug === "law-book") {
+    return (
+      <>
+        <LawBookProductPage product={product} />
+        <JsonLd
+          data={[
+            softwareAppSchema(product),
+            breadcrumbSchema([
+              { name: "خانه", path: "/" },
+              { name: "محصولات", path: "/products" },
+              { name: product.name, path: `/products/${product.slug}` },
+            ]),
+            faqSchema(LAWBOOK_FAQS),
+          ]}
+        />
+      </>
+    );
+  }
 
   return (
     <>
