@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft, Check, Mail, MapPin, Phone, PlayCircle, Quote } from "lucide-react";
 import { FAQS, PROCESS_STEPS, SERVICES, SITE, STATS, TESTIMONIALS } from "@/lib/constants";
-import { PRODUCTS } from "@/lib/products";
+import { DEMO_PRODUCTS, PRODUCTS } from "@/lib/products";
 import { INDUSTRIES } from "@/lib/industries";
 import { CASE_STUDIES } from "@/lib/portfolio";
 import { SectionHeading } from "@/components/ui/section-heading";
@@ -61,7 +61,7 @@ export function ServicesSection() {
 }
 
 export function DemoSpotlight() {
-  const featured = PRODUCTS.filter((p) => p.status === "active").slice(0, 4);
+  const featured = DEMO_PRODUCTS.filter((p) => p.status === "active").slice(0, 4);
   return (
     <section className="section-y">
       <div className="container-page">
@@ -70,7 +70,7 @@ export function DemoSpotlight() {
           eyebrowLatin="Live demo"
           index="۰۲"
           title="قبل از خرید، امتحان کنید"
-          description="همه ۱۱ محصول ما دموی زنده دارند — بدون نصب، بدون ثبت‌نام."
+          description="۱۰ محصول مدیریتی را بدون نصب و ثبت‌نام، در مرورگر امتحان کنید؛ فهرست موضوعات کتابچه قانون هم در صفحۀ محصول در دسترس است."
           action={
             <ButtonLink href="/demo" size="sm">
               مشاهده همه دموها

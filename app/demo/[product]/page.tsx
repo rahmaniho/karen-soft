@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { PRODUCTS, getProductByDemo } from "@/lib/products";
+import { DEMO_PRODUCTS, getProductByDemo } from "@/lib/products";
 import { pageMeta } from "@/lib/seo";
 import { breadcrumbSchema, softwareAppSchema } from "@/lib/schema";
 import { JsonLd } from "@/components/ui/json-ld";
@@ -11,7 +11,6 @@ import { JsonLd } from "@/components/ui/json-ld";
 const DEMOS: Record<string, React.ComponentType> = {
   "printing-management": dynamic(() => import("@/components/demo/printing/printing-demo").then((module) => module.PrintingDemo)),
   "law-office": dynamic(() => import("@/components/demo/law-office/law-office-demo").then((module) => module.LawOfficeDemo)),
-  "law-book": dynamic(() => import("@/components/demo/law-book/law-book-demo").then((module) => module.LawBookDemo)),
   "taxi-management": dynamic(() => import("@/components/demo/taxi/taxi-demo").then((module) => module.TaxiDemo)),
   "smart-building": dynamic(() => import("@/components/demo/smart-building/smart-building-demo").then((module) => module.SmartBuildingDemo)),
   "real-estate": dynamic(() => import("@/components/demo/real-estate/real-estate-demo").then((module) => module.RealEstateDemo)),
@@ -23,7 +22,7 @@ const DEMOS: Record<string, React.ComponentType> = {
 };
 
 export function generateStaticParams(): { product: string }[] {
-  return PRODUCTS.map((product) => ({ product: product.demoSlug }));
+  return DEMO_PRODUCTS.map((product) => ({ product: product.demoSlug }));
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ product: string }> }): Promise<Metadata> {

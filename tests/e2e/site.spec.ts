@@ -37,6 +37,21 @@ test('print draft is explicitly not a confirmed order',async({page})=>{
  await page.keyboard.press('Escape');await expect(page.getByRole('dialog',{name:'سفارش آماده ارسال است'})).not.toBeVisible();
 });
 
+test('law book page shows the topic catalogue instead of a live preview',async({page})=>{
+ await page.goto('/products/law-book');
+ await expect(page.getByRole('heading',{level:2,name:'چه موضوعاتی در کتابچه قانون هست؟'})).toBeVisible();
+ await expect(page.locator('.lb-topic-card')).toHaveCount(10);
+ await expect(page.getByText('حقوق مدنی',{exact:true})).toBeVisible();
+ await expect(page.getByText('قانون مدنی',{exact:true})).toBeVisible();
+ await expect(page.getByRole('link',{name:/نسخهٔ زنده|پیش‌نمایش/})).toHaveCount(0);
+});
+
+test('old law book demo URL leads to the contents list',async({page})=>{
+ await page.goto('/demo/law-book');
+ await expect(page).toHaveURL(/\/products\/law-book#book-topics$/);
+ await expect(page.locator('#book-topics')).toBeVisible();
+});
+
 test('demo keeps the selected module after reload',async({page})=>{
  await page.goto('/demo/law-office');await page.getByRole('button',{name:'بعدی',exact:true}).click();
  await expect(page.locator('aside button[aria-current="page"]')).toContainText('پرونده');
@@ -52,7 +67,7 @@ for(const theme of ['light','dark'])for(const path of ['/','/products','/blog','
  });
 }
 
-for(const product of ['printing-management','law-office','law-book','taxi-management','smart-building','real-estate','restaurant','auto-parts','gym','online-store','karen-net']){
+for(const product of ['printing-management','law-office','taxi-management','smart-building','real-estate','restaurant','auto-parts','gym','online-store','karen-net']){
  test(`all demo modules render: ${product}`,async({page})=>{
   const errors:string[]=[];page.on('pageerror',error=>errors.push(error.message));
   await page.setViewportSize({width:1440,height:900});await page.goto(`/demo/${product}`);

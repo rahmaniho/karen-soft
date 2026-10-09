@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowLeft, ExternalLink, PlayCircle } from "lucide-react";
+import { ArrowLeft, BookOpen, ExternalLink, PlayCircle } from "lucide-react";
 import { PRODUCT_STATUS_LABEL, type Product } from "@/lib/products";
 import { Badge } from "@/components/ui/badge";
 
@@ -62,7 +62,15 @@ export function ProductCard({ product }: { product: Product }) {
       </div>
 
       <div className="relative z-10 mt-6 flex flex-wrap gap-2 pt-1">
-        {product.liveUrl ? (
+        {product.slug === "law-book" ? (
+          <Link
+            href={`/products/${product.slug}#book-topics`}
+            className="inline-flex h-10 items-center gap-1.5 rounded-[var(--radius-sm)] bg-brand-600 px-4 text-2xs font-extrabold text-white transition-colors hover:bg-brand-500"
+          >
+            <BookOpen className="size-4" aria-hidden />
+            فهرست موضوعات
+          </Link>
+        ) : product.liveUrl ? (
           <a
             href={product.liveUrl}
             target="_blank"
@@ -72,7 +80,7 @@ export function ProductCard({ product }: { product: Product }) {
             <ExternalLink className="size-4" aria-hidden />
             نسخۀ زنده
           </a>
-        ) : (
+        ) : product.demoSlug ? (
           <Link
             href={`/demo/${product.demoSlug}`}
             className="inline-flex h-10 items-center gap-1.5 rounded-[var(--radius-sm)] bg-brand-600 px-4 text-2xs font-extrabold text-white transition-colors hover:bg-brand-500"
@@ -80,7 +88,7 @@ export function ProductCard({ product }: { product: Product }) {
             <PlayCircle className="size-4" aria-hidden />
             مشاهده دمو
           </Link>
-        )}
+        ) : null}
         <Link
           href={`/products/${product.slug}`}
           className="inline-flex h-10 items-center gap-1.5 rounded-[var(--radius-sm)] border border-[var(--border-subtle)] px-4 text-2xs font-extrabold transition-colors hover:border-brand-400 hover:text-brand-600"

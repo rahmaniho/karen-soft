@@ -7,7 +7,8 @@ export interface ProductModule {
 
 export interface Product {
   slug: string;
-  demoSlug: string;
+  /** نشانی دمو برای محصولاتی که محیط تعاملی دارند. */
+  demoSlug?: string;
   name: string;
   short: string;
   description: string;
@@ -37,6 +38,8 @@ export interface ProductScreenshot {
   label: string;
   caption: string;
 }
+
+export type DemoProduct = Product & { demoSlug: string };
 
 export const PRODUCT_STATUS_LABEL: Record<ProductStatus, string> = {
   active: "فعال",
@@ -129,7 +132,6 @@ export const PRODUCTS: Product[] = [
   },
   {
     slug: "law-book",
-    demoSlug: "law-book",
     name: "کتابچه قانون",
     short: "کتابخانه‌ای همیشه‌همراه برای جست‌وجو و مطالعۀ قوانین ایران؛ آفلاین، قابل نصب و آمادهٔ استفاده روی موبایل و دسکتاپ.",
     description:
@@ -161,7 +163,6 @@ export const PRODUCTS: Product[] = [
     ],
     pricingFrom: 950_000,
     logo: "/images/lawbook-logo.svg",
-    liveUrl: "https://rahmaniho.github.io/Lawbook/",
     image: "/images/app-icon-law-book.png",
   },
   {
@@ -424,10 +425,15 @@ export const PRODUCTS: Product[] = [
   },
 ];
 
+/** کتابچهٔ قانون به‌جای دموی زنده، فهرست محتوای کتاب را نمایش می‌دهد. */
+export const DEMO_PRODUCTS: DemoProduct[] = PRODUCTS.filter(
+  (product): product is DemoProduct => Boolean(product.demoSlug),
+);
+
 export function getProduct(slug: string): Product | undefined {
   return PRODUCTS.find((p) => p.slug === slug);
 }
 
-export function getProductByDemo(slug: string): Product | undefined {
-  return PRODUCTS.find((p) => p.demoSlug === slug);
+export function getProductByDemo(slug: string): DemoProduct | undefined {
+  return DEMO_PRODUCTS.find((p) => p.demoSlug === slug);
 }

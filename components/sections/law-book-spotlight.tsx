@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft, ArrowUpLeft, Check, ExternalLink, WifiOff } from "lucide-react";
+import { ArrowLeft, ArrowUpLeft, BookOpen, Check, WifiOff } from "lucide-react";
 import { APP_STATS } from "@/lib/demos/law-book.data";
 import { SITE } from "@/lib/constants";
 import { getProduct } from "@/lib/products";
@@ -41,9 +41,9 @@ export function LawBookSpotlight() {
         </div>
 
         <div className="ks-lawbook-actions">
-          <a href={product.liveUrl} target="_blank" rel="noopener noreferrer" className="ks-lawbook-button ks-lawbook-button-light">
-            مشاهدهٔ نسخهٔ زنده <ExternalLink size={16} aria-hidden />
-          </a>
+          <Link href="/products/law-book#book-topics" className="ks-lawbook-button ks-lawbook-button-light">
+            فهرست موضوعات کتاب <BookOpen size={16} aria-hidden />
+          </Link>
           <Link href="/contact?product=law-book" className="ks-lawbook-button ks-lawbook-button-dark">
             ثبت درخواست خرید <ArrowLeft size={17} aria-hidden />
           </Link>
