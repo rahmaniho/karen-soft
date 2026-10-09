@@ -14,7 +14,7 @@ test('mobile menu, Escape, theme persistence and no overflow',async({page})=>{
 test('catalog search has an empty state and can reset',async({page})=>{
  await page.goto('/products');await page.getByPlaceholder('جست‌وجو…').fill('هیچ محصولی با این نام نیست');
  await expect(page.getByRole('heading',{name:'نتیجه‌ای پیدا نشد'})).toBeVisible();
- await page.getByRole('button',{name:'پاک کردن فیلترها'}).click();await expect(page.locator('main article')).toHaveCount(10);
+ await page.getByRole('button',{name:'پاک کردن فیلترها'}).click();await expect(page.locator('main article')).toHaveCount(11);
 });
 
 test('contact validation focuses first error and preserves message on provider failure',async({page})=>{
@@ -52,7 +52,7 @@ for(const theme of ['light','dark'])for(const path of ['/','/products','/blog','
  });
 }
 
-for(const product of ['printing-management','law-office','taxi-management','smart-building','real-estate','restaurant','auto-parts','gym','online-store','karen-net']){
+for(const product of ['printing-management','law-office','law-book','taxi-management','smart-building','real-estate','restaurant','auto-parts','gym','online-store','karen-net']){
  test(`all demo modules render: ${product}`,async({page})=>{
   const errors:string[]=[];page.on('pageerror',error=>errors.push(error.message));
   await page.setViewportSize({width:1440,height:900});await page.goto(`/demo/${product}`);

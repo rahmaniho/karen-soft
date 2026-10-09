@@ -11,6 +11,7 @@ import { JsonLd } from "@/components/ui/json-ld";
 const DEMOS: Record<string, React.ComponentType> = {
   "printing-management": dynamic(() => import("@/components/demo/printing/printing-demo").then((module) => module.PrintingDemo)),
   "law-office": dynamic(() => import("@/components/demo/law-office/law-office-demo").then((module) => module.LawOfficeDemo)),
+  "law-book": dynamic(() => import("@/components/demo/law-book/law-book-demo").then((module) => module.LawBookDemo)),
   "taxi-management": dynamic(() => import("@/components/demo/taxi/taxi-demo").then((module) => module.TaxiDemo)),
   "smart-building": dynamic(() => import("@/components/demo/smart-building/smart-building-demo").then((module) => module.SmartBuildingDemo)),
   "real-estate": dynamic(() => import("@/components/demo/real-estate/real-estate-demo").then((module) => module.RealEstateDemo)),
