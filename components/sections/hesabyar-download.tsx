@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { Calculator, Download, Package, ShieldCheck, Smartphone, Users, Wallet, WifiOff } from "lucide-react";
 
 export const HESABYAR_APK_URL = "https://github.com/rahmaniho/KarenYar/releases/download/v1.2.5/app-debug.apk";
@@ -26,6 +27,7 @@ export function HesabyarDownload() {
           <Download size={21} aria-hidden="true" /> دانلود مستقیم نسخهٔ اندروید
         </a>
         <p className="ks-hesabyar-file">نسخهٔ <bdi>۱٫۲٫۵</bdi> · فایل APK · حدود ۷٫۳ مگابایت · اندروید ۷ و بالاتر</p>
+        <Link href="/blog/hesabyar-personal-budget" className="ks-hesabyar-guide">راهنمای مدیریت درآمد و هزینه با حساب‌یار ←</Link>
         <p className="ks-hesabyar-license">شروع با نسخهٔ رایگان: ماشین‌حساب کامل، ۱ کالا و ۱۰ تراکنش. امکانات نامحدود، خروجی PDF و پشتیبان‌گیری به فعال‌سازی نسخهٔ حرفه‌ای نیاز دارند.</p>
       </div>
       <div className="ks-hesabyar-details">

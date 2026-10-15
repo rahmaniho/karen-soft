@@ -1,4 +1,6 @@
 import React from "react";
+import Image from "next/image";
+import Link from "next/link";
 import { ArrowUpLeft, BookOpen, Calculator, Download, FlaskConical, Gamepad2, Heart, Sprout, Users } from "lucide-react";
 
 export const CLASS1_APK_URL = "https://github.com/rahmaniho/Class1/releases/download/v1.0.1/madrese-man-android.apk";
@@ -25,9 +27,11 @@ export function Class1Community() {
           <a href={CLASS1_APK_URL} className="ks-class1-link ks-class1-download"><Download size={19} aria-hidden="true" /> دانلود مستقیم نسخهٔ اندروید</a>
         </div>
         <p className="ks-class1-note">نسخهٔ اندروید ۱٫۰٫۱ · فایل APK</p>
+        <Link href="/blog/class1-learning-at-home" className="ks-class1-guide">راهنمای والدین برای تمرین کلاس اول ←</Link>
         <p className="ks-class1-note">یک قدم در مسیر مسئولیت اجتماعی ما؛ برای همراهی خانواده‌ها در آغاز مسیر یادگیری کودکان.</p>
       </div>
       <div className="ks-class1-content">
+        <Image src="/images/blog/class1-learning.jpg" alt="تصویرسازی یادگیری کودکان کلاس اول در کنار والدین با کتاب و ابزار شمارش" width={1536} height={864} sizes="(max-width: 900px) 100vw, 50vw" className="ks-class1-image" />
         <div className="ks-class1-subjects">{subjects.map(({ icon: Icon, title, text }) => <article key={title}><Icon size={24} aria-hidden="true" /><div><h3>{title}</h3><p>{text}</p></div></article>)}</div>
         <div className="ks-class1-extras">
           <div><Gamepad2 size={20} aria-hidden="true" /><h3>تمرین در لباس بازی</h3><p>باغ شمارش، شکارچی حروف، سازنده‌ی الگو و کارآگاه طبیعت؛ چهار بازی برای یادگیری تعاملی.</p></div>

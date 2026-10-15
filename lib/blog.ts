@@ -1,3 +1,4 @@
+import { COMMUNITY_POSTS } from "./community-posts";
 import legacyArticles from "./legacy-blog.json";
 
 export interface BlogSection {
@@ -19,6 +20,7 @@ export interface BlogPost {
   legacyPath: string;
   tags: string[];
   sections: BlogSection[];
+  relatedLinks?: { label: string; href: string }[];
 }
 
 const AUTHOR = "حسین رحمانی";
@@ -497,14 +499,14 @@ const EDITORIAL_POSTS: BlogPost[] = [
 ];
 
 // Legacy articles are the authoritative full text, not shortened replacements.
-export const BLOG_POSTS: BlogPost[] = EDITORIAL_POSTS.map(post => {
+export const BLOG_POSTS: BlogPost[] = [...COMMUNITY_POSTS, ...EDITORIAL_POSTS.map(post => {
   const original = (legacyArticles as Record<string, {title: string; sections: {heading: string; blocks: NonNullable<BlogSection["blocks"]>}[]}>)[post.legacyPath];
   if (!original) return post;
   const words = original.sections.reduce((n, s) => n + s.blocks.reduce((m, b) => m + (b.text ?? b.items?.join(" ") ?? "").split(/\s+/).length, 0), 0);
   return {...post, title: original.title, readingMinutes: Math.max(1, Math.ceil(words / 180)),
     ...(post.slug === "direct-to-cell" ? {date: "2026-09-18"} : {}),
     sections: original.sections.map(s => ({...s, paragraphs: []}))};
-});
+})].sort((a, b) => b.date.localeCompare(a.date));
 
 export function getPost(slug: string): BlogPost | undefined {
   return BLOG_POSTS.find((p) => p.slug === slug);

@@ -1294,3 +1294,7 @@ html[data-headings="sans"] {
 .ks-class1-actions { display: flex; flex-wrap: wrap; gap: 12px; }
 .ks-class1-download { background: #faf5e8; color: #315748; border: 1px solid #315748; }
 .ks-class1-download:hover { background: #e7edde; color: #214236; }
+.ks-class1-image { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; border: 1px solid #e6dfcc; border-radius: 14px; margin-bottom: 18px; }
+.ks-class1-guide { display: inline-block; margin-top: 16px; color: #315748; text-decoration: underline; font-size: 12px; line-height: 2; }
+.ks-class1-guide:focus-visible { outline: 3px solid #96662b; outline-offset: 4px; }
+.ks-hesabyar-guide { display: inline-block; margin: 8px 0; color: #83e9b1; font-size: 12px; line-height: 2; text-decoration: underline; }
