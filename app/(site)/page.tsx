@@ -11,6 +11,8 @@ import { CountUp, ExperienceEffects, PortfolioGallery } from "@/components/secti
 import { ContactForm } from "@/components/sections/contact-form";
 import { LawBookSpotlight } from "@/components/sections/law-book-spotlight";
 
+import { HesabyarDownload } from "@/components/sections/hesabyar-download";
+
 export const metadata: Metadata = {
   title: "کارن سافت | مهندسی نرم‌افزار برای فردا",
   description: "کارن سافت؛ شریک فناوری کسب‌وکارهای ایرانی در طراحی وب و نرم‌افزار. کتابچه قانون، مرجع حقوقی همراه با ۴۶ سند، ۱۰ دسته موضوعی و نسخۀ کامل ۹۵۰٬۰۰۰ تومان.",
@@ -72,6 +74,7 @@ export default function HomePage() {
         <div className="ks-product-visual" aria-hidden="true"><span className="ks-product-visual-ring" /><span className="ks-product-symbol">{["§", "↗", "◎", "▦"][i]}</span><span className="ks-visual-grid" /></div>
         <div className="ks-product-info"><span className="ks-product-tag">{["حقوقی و وکالت", "حمل‌ونقل", "چاپ و تولید", "مدیریت ساختمان"][i]}</span><h3>{p.name}</h3><p>{p.short}</p><span className="ks-product-explore">مشاهده محصول <ArrowLeft size={16} /></span></div>
       </Link>)}</div>
+      <HesabyarDownload />
       <LawBookSpotlight />
     </section>
 
