@@ -1,3 +1,4 @@
+import { Class1Community } from "@/components/sections/class1-community";
 import { SERVICES, PROCESS_STEPS, FAQS } from "@/lib/constants";
 import { PageHero, ContentSection, InfoGrid, Points, ContactCTA } from "@/components/site/page-parts";
 import { Accordion } from "@/components/ui/accordion";
@@ -31,6 +32,7 @@ export default function ServicesPage() {
           </div>
         </ContentSection>
       ))}
+      <ContentSection title="مسئولیت اجتماعی؛ فناوری برای یادگیری"><Class1Community /></ContentSection>
       <ContentSection title="مسیر همکاری"><InfoGrid items={PROCESS_STEPS} /></ContentSection>
       <ContentSection title="پرسش‌های متداول"><Accordion items={FAQS} /></ContentSection>
       <ContactCTA />

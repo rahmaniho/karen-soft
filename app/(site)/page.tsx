@@ -1,3 +1,4 @@
+import { Class1Community } from "@/components/sections/class1-community";
 import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
@@ -77,6 +78,8 @@ export default function HomePage() {
       <HesabyarDownload />
       <LawBookSpotlight />
     </section>
+
+    <div className="ks-section"><Class1Community /></div>
 
     <section className="ks-section ks-print" id="karen-chap"><div className="ks-print-inner">
       <div className="ks-print-copy"><div className="ks-section-kicker"><span>03 / KAREN PRINT</span></div><div className="ks-cmyk-dots"><i /><i /><i /><i /></div><h2>ایده‌ها وقتی<br /><em>ملموس</em> می‌شوند.</h2><h3>کارن چاپ؛ چاپ، مهر و صحافی</h3><p>از اولین طرح روی کاغذ تا آخرین جزئیات چاپ. در کارن چاپ، خلاقیت دیجیتال را به تجربه‌ای واقعی و لمس‌کردنی تبدیل می‌کنیم.</p><Link href="/print" className="ks-button ks-button-light">کشف دنیای کارن چاپ <ArrowUpLeft size={18} /></Link><span className="ks-print-label">CYAN / MAGENTA / YELLOW / KEY</span></div>
