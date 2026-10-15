@@ -340,6 +340,14 @@ export default function ChapHome() {
       </section>
 
       {/* ── سؤالات پرتکرار ── */}
+      <section className="container-page pb-16" aria-labelledby="chap-guides-title">
+        <h2 id="chap-guides-title" className="mb-6 text-2xl">راهنمای سفارش و آماده‌سازی چاپ</h2>
+        <div className="grid gap-5 md:grid-cols-2">
+          <Link href="/blog/business-card-print-guide" className="surface-card p-6"><h3>راهنمای چاپ کارت ویزیت</h3><p className="mt-3 text-sm text-muted">انتخاب کاغذ، خوانایی طرح و کنترل فایل قبل از چاپ.</p></Link>
+          <Link href="/blog/tract-print-checklist" className="surface-card p-6"><h3>چک‌لیست چاپ تراکت مؤثر</h3><p className="mt-3 text-sm text-muted">از پیام و طراحی تا مشخصات سفارش و ارزیابی نتیجه.</p></Link>
+        </div>
+      </section>
+
       <section className="pb-16 lg:pb-24" id="faq">
         <div className="container-page grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
           <div>

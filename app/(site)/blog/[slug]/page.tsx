@@ -107,6 +107,13 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             </section>
           ))}
 
+          {post.relatedLinks?.length ? (
+            <nav aria-label="راهنماها و خدمات مرتبط" className="surface-card mb-8 p-6">
+              <h2 className="mb-4 text-xl">قدم بعدی و راهنماهای مرتبط</h2>
+              <ul className="space-y-3">{post.relatedLinks.map((link) => <li key={link.href}><Link href={link.href} className="text-brand-600 underline dark:text-brand-300">{link.label}</Link></li>)}</ul>
+            </nav>
+          ) : null}
+
           <ul aria-label="موضوع‌های مقاله" className="flex flex-wrap gap-2">
             {post.tags.map((tag) => (
               <li key={tag} className="rounded-full border px-4 py-2 text-xs">{tag}</li>
@@ -117,7 +124,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
       <ContentSection title="برای مطالعه بیشتر">
         <div className="grid gap-5 md:grid-cols-3">
-          {BLOG_POSTS.filter((item) => item.slug !== slug).slice(0, 3).map((item) => (
+          {BLOG_POSTS.filter((item) => item.slug !== slug).sort((a, b) => Number(b.category === post.category) - Number(a.category === post.category)).slice(0, 3).map((item) => (
             <Link className="surface-card p-6" key={item.slug} href={`/blog/${item.slug}`}>
               <p className="text-xs text-brand-600 dark:text-brand-300">{item.category}</p>
               <h3 className="mt-3">{item.title}</h3>

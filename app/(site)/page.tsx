@@ -1,7 +1,7 @@
 import { Class1Community } from "@/components/sections/class1-community";
 import Image from "next/image";
 import Link from "next/link";
-import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
 import { ArrowDownLeft, ArrowLeft, ArrowUpLeft, Box, Code2, Layers3, MoveUpLeft, Printer, ScanLine, ShieldCheck, Sparkles } from "lucide-react";
 import { PRODUCTS } from "@/lib/products";
 import { CASE_STUDIES } from "@/lib/portfolio";
@@ -14,11 +14,11 @@ import { LawBookSpotlight } from "@/components/sections/law-book-spotlight";
 
 import { HesabyarDownload } from "@/components/sections/hesabyar-download";
 
-export const metadata: Metadata = {
-  title: "کارن سافت | مهندسی نرم‌افزار برای فردا",
-  description: "کارن سافت؛ شریک فناوری کسب‌وکارهای ایرانی در طراحی وب و نرم‌افزار. کتابچه قانون، مرجع حقوقی همراه با ۴۶ سند، ۱۰ دسته موضوعی و نسخۀ کامل ۹۵۰٬۰۰۰ تومان.",
-  alternates: { canonical: "/" },
-};
+export const metadata = pageMeta({
+  title: "کارن سافت | طراحی نرم‌افزار، کارن چاپ و آموزش کلاس اول",
+  description: "خدمات طراحی سایت و نرم‌افزار کارن سافت، چاپ و صحافی کارن چاپ، دانلود حساب‌یار اندروید و مدرسه‌ی من؛ خدمت اجتماعی آموزش کلاس اول برای کودکان و والدین.",
+  path: "/",
+});
 
 const featured = ["law-office", "taxi-management", "printing-management", "smart-building"].map(slug => PRODUCTS.find(p => p.slug === slug)!);
 const cases = ["vokalahome", "dastmozd-payroll", "karensoft-hse"].map(slug => CASE_STUDIES.find(c => c.slug === slug)!);
@@ -92,6 +92,6 @@ export default function HomePage() {
 
     <section className="ks-contact" id="contact"><div className="ks-contact-intro"><span className="ks-section-kicker">LET&apos;S BUILD TOGETHER / 06</span><h2>پروژه بعدی<br />می‌تواند <em>مال شما</em> باشد.</h2><p>ایده‌ای دارید؟ درباره‌اش حرف بزنیم. از اولین گفت‌وگو تا آخرین خط کد، اینجا هستیم.</p><a href={`mailto:${SITE.email}`} dir="ltr" className="ks-contact-email">{SITE.email} <MoveUpLeft size={20} /></a><div className="ks-contact-ornament" aria-hidden>✳</div></div><div className="ks-contact-form"><span className="ks-form-eyebrow">/ START A CONVERSATION</span><h3>بگذارید از شما بشنویم.</h3><ContactForm /></div></section>
     <div className="ks-endnote"><span>کارن سافت © ۱۴۰۴ — امروز</span><span>با دقت ساخته شده، برای آینده.</span><a href="#main">بازگشت به بالا ↑</a></div>
-    <JsonLd data={webPageSchema({ name: "کارن سافت | مهندسی نرم‌افزار برای فردا", description: SITE.description, path: "/", mainEntity: { "@id": `${SITE.url}/#organization` } })} />
+    <JsonLd data={webPageSchema({ name: "کارن سافت | طراحی نرم‌افزار، کارن چاپ و آموزش کلاس اول", description: "خدمات طراحی سایت و نرم‌افزار، کارن چاپ، حساب‌یار اندروید و مدرسه‌ی من؛ آموزش کلاس اول در کنار خانواده", path: "/", mainEntity: { "@id": `${SITE.url}/#organization` } })} />
   </div>;
 }
