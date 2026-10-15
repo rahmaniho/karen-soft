@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 import { Calculator, Download, Package, ShieldCheck, Smartphone, Users, Wallet, WifiOff } from "lucide-react";
 
 export const HESABYAR_APK_URL = "https://github.com/rahmaniho/KarenYar/releases/download/v1.2.5/app-debug.apk";
@@ -28,6 +29,14 @@ export function HesabyarDownload() {
         <p className="ks-hesabyar-license">شروع با نسخهٔ رایگان: ماشین‌حساب کامل، ۱ کالا و ۱۰ تراکنش. امکانات نامحدود، خروجی PDF و پشتیبان‌گیری به فعال‌سازی نسخهٔ حرفه‌ای نیاز دارند.</p>
       </div>
       <div className="ks-hesabyar-details">
+        <Image
+          src="/images/hesabyar/hesabyar-android.jpg"
+          alt="تصویر معرفی حساب‌یار اندروید با لوگوی اصلی برنامه و نمای مفهومی ابزارهای مالی"
+          width={1536}
+          height={864}
+          sizes="(max-width: 900px) 100vw, 50vw"
+          className="ks-hesabyar-image"
+        />
         <div className="ks-hesabyar-features">
           {features.map(({ icon: Icon, title, text }) => (
             <article key={title}><Icon size={23} aria-hidden="true" /><h3>{title}</h3><p>{text}</p></article>

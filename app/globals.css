@@ -1264,3 +1264,5 @@ html[data-headings="sans"] {
 .ks-hesabyar-install ol { list-style: decimal; padding-inline-start: 22px; margin: 14px 0; }
 @media (max-width: 900px) { .ks-hesabyar { grid-template-columns: minmax(0, 1fr); gap: 24px; } }
 @media (max-width: 480px) { .ks-hesabyar { padding: 22px 16px; } .ks-hesabyar-features { grid-template-columns: minmax(0, 1fr); } .ks-hesabyar-download { width: 100%; padding-inline: 10px; font-size: 12px; } }
+.ks-hesabyar-details { min-width: 0; }
+.ks-hesabyar-image { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; border: 1px solid #29483d; border-radius: 12px; margin-bottom: 16px; }
