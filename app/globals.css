@@ -1241,3 +1241,26 @@ html[data-headings="sans"] {
 .ks-lawbook-order-note a:hover { text-decoration: underline; }
 .lb-phone-link { display: inline-flex; align-items: center; gap: 6px; margin-top: 12px; color: #577564; font-size: 8px; text-decoration: none; }
 .lb-phone-link:hover { color: #173f34; }
+
+/* Android download: shared by the home page and product catalogue. */
+.ks-hesabyar { margin-top: 36px; padding: clamp(24px, 4vw, 48px); display: grid; grid-template-columns: 1fr 1.15fr; gap: 38px; border: 1px solid #29483d; border-radius: 20px; background: #0b1b22; color: #edf7f1; scroll-margin-top: 100px; }
+.ks-hesabyar-eyebrow { display: inline-flex; align-items: center; gap: 8px; color: #83e9b1; font-size: 12px; }
+.ks-hesabyar h2 { margin: 18px 0; color: #f2fff7; font-size: clamp(25px, 3vw, 37px); line-height: 1.65; font-weight: 800; }
+.ks-hesabyar-intro > p { color: #b8ccc4; font-size: 13px; line-height: 2.1; }
+.ks-hesabyar-badges { display: flex; flex-wrap: wrap; gap: 12px; margin: 22px 0; }
+.ks-hesabyar-badges span { display: inline-flex; align-items: center; gap: 6px; color: #b8e1cb; font-size: 11px; }
+.ks-hesabyar-download { display: inline-flex; justify-content: center; align-items: center; gap: 10px; padding: 16px 22px; border-radius: 10px; background: #83e9b1; color: #092119; font-weight: 800; font-size: 14px; text-decoration: none; transition: background .2s; }
+.ks-hesabyar-download:hover { background: #adf6cd; }
+.ks-hesabyar a:focus-visible, .ks-hesabyar summary:focus-visible { outline: 3px solid #83e9b1; outline-offset: 5px; }
+.ks-hesabyar-intro > .ks-hesabyar-file { margin: 12px 0; font-size: 11px; }
+.ks-hesabyar-intro > .ks-hesabyar-license { font-size: 11px; color: #a6bcb2; }
+.ks-hesabyar-features { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.ks-hesabyar-features article { padding: 20px; border: 1px solid #294139; border-radius: 12px; background: #11282a; }
+.ks-hesabyar-features svg { color: #83e9b1; }
+.ks-hesabyar-features h3 { margin: 12px 0 8px; color: #edf7f1; font-size: 15px; font-weight: 750; }
+.ks-hesabyar-features p, .ks-hesabyar-install { color: #b8ccc4; font-size: 12px; line-height: 2; }
+.ks-hesabyar-install { margin-top: 18px; border-top: 1px solid #294139; padding-top: 16px; }
+.ks-hesabyar-install summary { cursor: pointer; color: #d6eddf; font-weight: 700; }
+.ks-hesabyar-install ol { list-style: decimal; padding-inline-start: 22px; margin: 14px 0; }
+@media (max-width: 900px) { .ks-hesabyar { grid-template-columns: minmax(0, 1fr); gap: 24px; } }
+@media (max-width: 480px) { .ks-hesabyar { padding: 22px 16px; } .ks-hesabyar-features { grid-template-columns: minmax(0, 1fr); } .ks-hesabyar-download { width: 100%; padding-inline: 10px; font-size: 12px; } }

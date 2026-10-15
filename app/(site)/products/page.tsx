@@ -5,6 +5,8 @@ import { breadcrumbSchema, itemListSchema } from "@/lib/schema";
 import { PRODUCTS } from "@/lib/products";
 import { pageMeta } from "@/lib/seo";
 
+import { HesabyarDownload } from "@/components/sections/hesabyar-download";
+
 export const metadata = pageMeta({
   title: "نرم‌افزارهای مدیریتی کسب‌وکار | محصولات کارن سافت",
   description: "محصولات کارن سافت را بررسی کنید؛ دموهای نرم‌افزارهای مدیریتی را امتحان کنید و فهرست موضوعات کتابچه قانون را ببینید.",
@@ -19,6 +21,7 @@ export default function ProductsPage() {
         title="نرم‌افزارهایی برای کار واقعی."
         description="محصول متناسب با کسب‌وکارتان را پیدا کنید؛ دموهای نرم‌افزارهای مدیریتی را امتحان کنید یا موضوعات کتابچه قانون را مرور کنید."
       />
+      <ContentSection title="دانلود اپلیکیشن اندروید"><HesabyarDownload /></ContentSection>
       <ContentSection title="همه محصولات"><Catalog kind="products" /></ContentSection>
       <ContactCTA />
       <JsonLd
