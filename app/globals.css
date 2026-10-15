@@ -1291,3 +1291,6 @@ html[data-headings="sans"] {
 .ks-class1-footnote svg { flex-shrink: 0; margin-top: 3px; }
 @media (max-width: 900px) { .ks-class1 { grid-template-columns: minmax(0, 1fr); gap: 28px; } }
 @media (max-width: 480px) { .ks-class1 { padding: 24px 18px; } .ks-class1-extras { grid-template-columns: minmax(0, 1fr); } .ks-class1-link { width: 100%; } }
+.ks-class1-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+.ks-class1-download { background: #faf5e8; color: #315748; border: 1px solid #315748; }
+.ks-class1-download:hover { background: #e7edde; color: #214236; }
