@@ -1,5 +1,7 @@
 import React from "react";
-import { ArrowUpLeft, BookOpen, Calculator, FlaskConical, Gamepad2, Heart, Sprout, Users } from "lucide-react";
+import { ArrowUpLeft, BookOpen, Calculator, Download, FlaskConical, Gamepad2, Heart, Sprout, Users } from "lucide-react";
+
+export const CLASS1_APK_URL = "https://github.com/rahmaniho/Class1/releases/download/v1.0.1/madrese-man-android.apk";
 
 export const CLASS1_URL = "http://class1.karen-soft.ir/";
 
@@ -18,7 +20,11 @@ export function Class1Community() {
         <p className="ks-class1-dedication">تقدیم به کودکان کلاس اول دبستان و والدین همراهشان</p>
         <p className="ks-class1-lead">یادگیری می‌تواند یک ماجراجویی شیرین باشد. «مدرسه‌ی من | کلاس اول» یک وب‌اپ فارسی و راست‌چین برای کودکان ۶ تا ۷ ساله است؛ همراهی برای تمرین ریاضی، فارسی و علوم، در کنار خانواده.</p>
         <div className="ks-class1-stats" aria-label="محتوای آموزشی"><span><strong>۳۹</strong> درس</span><span><strong>بیش از ۱۰۰</strong> تمرین</span><span><strong>۳</strong> موضوع آموزشی</span></div>
+        <div className="ks-class1-actions">
         <a href={CLASS1_URL} className="ks-class1-link" target="_blank" rel="noopener noreferrer">ورود به مدرسه‌ی من <ArrowUpLeft size={19} aria-hidden="true" /><span className="sr-only"> (در پنجرهٔ جدید)</span></a>
+          <a href={CLASS1_APK_URL} className="ks-class1-link ks-class1-download"><Download size={19} aria-hidden="true" /> دانلود مستقیم نسخهٔ اندروید</a>
+        </div>
+        <p className="ks-class1-note">نسخهٔ اندروید ۱٫۰٫۱ · فایل APK</p>
         <p className="ks-class1-note">یک قدم در مسیر مسئولیت اجتماعی ما؛ برای همراهی خانواده‌ها در آغاز مسیر یادگیری کودکان.</p>
       </div>
       <div className="ks-class1-content">
