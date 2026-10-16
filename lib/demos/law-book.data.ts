@@ -1,3 +1,4 @@
+import { LAWBOOK_INFO } from "../lawbook-info";
 /**
  * کاتالوگ حقوقی و داده‌های کتابچه قانون؛ برای استناد نهایی، متن منبع رسمی را بررسی کنید.
  * پیش از استناد حقوقی، متن منبع رسمی را بررسی کنید.
@@ -423,7 +424,7 @@ export const INSTALL_PLATFORMS = [
 
 export const SEARCH_SUGGESTIONS = ["نفقه", "مهریه", "حضانت", "قرارداد کار", "دیه", "ماده ۲ قانون مدنی"];
 
-export const LEGAL_CREDIT = "جمع‌آوری و تدوین: وکیل پایه یک دادگستری لیلا آبکه";
+export const LEGAL_CREDIT = LAWBOOK_INFO.credit;
 export const DEVELOPER_CREDIT = "توسعه نرم‌افزار: کارن سافت — karen-soft.ir";
 
 export const DISCLAIMER =
