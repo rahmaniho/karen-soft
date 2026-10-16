@@ -1,5 +1,5 @@
 import React from "react";
-import Image from "next/image";
+import { Class1Gallery } from "@/components/site/class1-gallery";
 import Link from "next/link";
 import { ArrowUpLeft, BookOpen, Calculator, Download, FlaskConical, Gamepad2, Heart, Sprout, Users } from "lucide-react";
 
@@ -31,7 +31,7 @@ export function Class1Community() {
         <p className="ks-class1-note">یک قدم در مسیر مسئولیت اجتماعی ما؛ برای همراهی خانواده‌ها در آغاز مسیر یادگیری کودکان.</p>
       </div>
       <div className="ks-class1-content">
-        <Image src="/images/blog/class1-learning.jpg" alt="تصویرسازی یادگیری کودکان کلاس اول در کنار والدین با کتاب و ابزار شمارش" width={1536} height={864} sizes="(max-width: 900px) 100vw, 50vw" className="ks-class1-image" />
+        <Class1Gallery />
         <div className="ks-class1-subjects">{subjects.map(({ icon: Icon, title, text }) => <article key={title}><Icon size={24} aria-hidden="true" /><div><h3>{title}</h3><p>{text}</p></div></article>)}</div>
         <div className="ks-class1-extras">
           <div><Gamepad2 size={20} aria-hidden="true" /><h3>تمرین در لباس بازی</h3><p>باغ شمارش، شکارچی حروف، سازنده‌ی الگو و کارآگاه طبیعت؛ چهار بازی برای یادگیری تعاملی.</p></div>

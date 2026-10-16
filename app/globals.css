@@ -1317,3 +1317,10 @@ html[data-headings="sans"] {
 .lb-gallery-controls button:focus-visible { outline: 3px solid #96662b; outline-offset: 3px; }
 .lb-gallery-choices { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; font-size: 12px; }
 @media (max-width: 480px) { .lb-gallery-controls { gap: 6px; } .lb-gallery-choices { gap: 6px; font-size: 10px; } .lb-gallery-choices button { flex: 1 1 40%; } .lb-gallery-note { font-size: 12px; } }
+
+.ks-class1-gallery { min-width: 0; margin-bottom: 24px; }
+.ks-class1-gallery > .ks-class1-gallery-note { margin: 10px 0 16px; font-size: 12px; }
+.ks-class1-screenshot { display: block; width: 100%; height: clamp(360px, 65svh, 680px); object-fit: contain; background: #f2ebdc; }
+.ks-class1-gallery .lb-gallery-frame figcaption { padding: 14px 16px; }
+.ks-class1-gallery .lb-gallery-choices { font-size: 10px; }
+.ks-class1-gallery .lb-gallery-controls { gap: 6px; }
