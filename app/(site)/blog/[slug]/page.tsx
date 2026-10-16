@@ -23,6 +23,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     images: [post.cover],
     openGraphType: "article",
     publishedTime: post.date,
+    modifiedTime: post.modifiedDate,
     authors: [post.author],
     section: post.category,
     tags: post.tags,
@@ -47,6 +48,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           <span aria-hidden> · </span>
           <time dateTime={post.date}>{publishedDate}</time>
           <span aria-hidden> · </span>
+          {post.modifiedDate ? <><span aria-hidden> · </span><span>به‌روزرسانی: <time dateTime={post.modifiedDate}>{new Date(`${post.modifiedDate}T12:00:00Z`).toLocaleDateString("fa-IR", { timeZone: "UTC" })}</time></span></> : null}
           <span>{post.readingMinutes.toLocaleString("fa-IR")} دقیقه مطالعه</span>
         </p>
       </PageHero>

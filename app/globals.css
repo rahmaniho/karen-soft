@@ -1298,3 +1298,22 @@ html[data-headings="sans"] {
 .ks-class1-guide { display: inline-block; margin-top: 16px; color: #315748; text-decoration: underline; font-size: 12px; line-height: 2; }
 .ks-class1-guide:focus-visible { outline: 3px solid #96662b; outline-offset: 4px; }
 .ks-hesabyar-guide { display: inline-block; margin: 8px 0; color: #83e9b1; font-size: 12px; line-height: 2; text-decoration: underline; }
+
+.lb-gallery { padding-top: 35px; padding-bottom: 50px; }
+.lb-gallery h2 { color: #254a3e; font-size: clamp(24px, 3vw, 36px); font-weight: 800; }
+.lb-gallery-note { max-width: 800px; margin: 14px 0 24px; color: #5b695e; font-size: 13px; line-height: 2; }
+.lb-gallery-frame { overflow: hidden; border: 1px solid #ded8c5; border-radius: 18px; background: #faf5e8; }
+.lb-gallery-image { width: 100%; height: clamp(420px, 78svh, 850px); object-fit: contain; display: block; background: #eeeae1; }
+.lb-gallery-full { width: fit-content; color: #315748; font-size: 12px; text-decoration: underline; }
+.lb-gallery-full:focus-visible { outline: 3px solid #96662b; outline-offset: 3px; }
+.lb-gallery-frame figcaption { display: grid; gap: 7px; padding: 18px 22px; color: #315748; border-top: 1px solid #ded8c5; }
+.lb-gallery-frame figcaption span { font-size: 13px; line-height: 2; }
+.lb-gallery-frame figcaption small { font-size: 11px; }
+.lb-gallery-controls { display: flex; align-items: center; justify-content: center; gap: 12px; margin-top: 18px; }
+.lb-gallery-controls button { min-width: 44px; min-height: 44px; border: 1px solid #b4c4b8; border-radius: 10px; color: #315748; background: #fffdf7; padding: 10px; cursor: pointer; }
+.lb-gallery-controls > button { display: grid; place-items: center; flex-shrink: 0; }
+.lb-gallery-controls button:hover { background: #e7edde; }
+.lb-gallery-controls button[aria-pressed="true"] { background: #315748; color: #fffdf7; }
+.lb-gallery-controls button:focus-visible { outline: 3px solid #96662b; outline-offset: 3px; }
+.lb-gallery-choices { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; font-size: 12px; }
+@media (max-width: 480px) { .lb-gallery-controls { gap: 6px; } .lb-gallery-choices { gap: 6px; font-size: 10px; } .lb-gallery-choices button { flex: 1 1 40%; } .lb-gallery-note { font-size: 12px; } }

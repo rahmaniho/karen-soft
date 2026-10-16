@@ -1,4 +1,3 @@
-import { Class1Community } from "@/components/sections/class1-community";
 import { SERVICES, PROCESS_STEPS, FAQS } from "@/lib/constants";
 import { PageHero, ContentSection, InfoGrid, Points, ContactCTA } from "@/components/site/page-parts";
 import { Accordion } from "@/components/ui/accordion";
@@ -9,7 +8,7 @@ import { pageMeta } from "@/lib/seo";
 
 export const metadata = pageMeta({
   title: "خدمات طراحی سایت و توسعه نرم‌افزار | کارن سافت",
-  description: "خدمات کارن سافت در قزوین؛ طراحی سایت، نرم‌افزار اختصاصی، اتوماسیون و پشتیبانی، همراه با مدرسه‌ی من؛ خدمت اجتماعی آموزش کلاس اول برای کودکان و والدین.",
+  description: "خدمات کارن سافت در قزوین؛ طراحی سایت، توسعه نرم‌افزار اختصاصی، اتوماسیون کسب‌وکار، امنیت و پشتیبانی فنی.",
   path: "/services",
 });
 
@@ -32,7 +31,6 @@ export default function ServicesPage() {
           </div>
         </ContentSection>
       ))}
-      <ContentSection title="مسئولیت اجتماعی؛ فناوری برای یادگیری"><Class1Community /></ContentSection>
       <ContentSection title="مسیر همکاری"><InfoGrid items={PROCESS_STEPS} /></ContentSection>
       <ContentSection title="پرسش‌های متداول"><Accordion items={FAQS} /></ContentSection>
       <ContactCTA />

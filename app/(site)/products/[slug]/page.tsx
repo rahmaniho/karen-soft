@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       ? "کتابچه قانون | مرجع حقوقی همراه، آنلاین و آفلاین"
       : `${product.name} | نرم‌افزار مدیریتی کسب‌وکار`,
     description: product.slug === "law-book"
-      ? `${product.short} شامل ۴۶ سند حقوقی در ۱۰ دستهٔ موضوعی و ۱٬۹۹۸ رأی منتخب است. قیمت نسخۀ کامل: ${product.pricingFrom.toLocaleString("fa-IR")} تومان.`
+      ? "کتابچه قانون با ۷۳ سند، ۱۱٬۱۳۲ ماده و ۱۰۰ آزمون اختبار؛ جست‌وجوی فارسی و مطالعه آفلاین، با دریافت اختیاری ۱٬۹۹۸ رأی قضایی."
       : `${product.short} دموی زنده را پیش از تصمیم‌گیری، بدون نصب در مرورگر بررسی کنید.`,
     path: `/products/${product.slug}`,
     images: product.image ? [product.image] : undefined,
