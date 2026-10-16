@@ -1,3 +1,4 @@
+import { LAWBOOK_INFO } from "@/lib/lawbook-info";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft, ArrowUpLeft, BookOpen, Check, WifiOff } from "lucide-react";
@@ -22,7 +23,7 @@ export function LawBookSpotlight() {
         </div>
         <h3 id="ks-lawbook-title">قانون را پیدا کنید؛<br /><em>نه میان تب‌های بی‌شمار.</em></h3>
         <p className="ks-lawbook-description">
-          ۷۳ سند و ۱۱٬۱۳۲ ماده در یک کتابخانهٔ حقوقی برای وکلا، کارآموزان و دانشجویان؛ با جست‌وجوی فارسی، مطالعهٔ آفلاین و ۱۰۰ آزمون اختبار در ۹ حوزه.
+          {LAWBOOK_INFO.summary}
         </p>
 
         <div className="ks-lawbook-stats" aria-label="محتوای کتابچه قانون">
@@ -31,6 +32,8 @@ export function LawBookSpotlight() {
           <div><strong>{number(APP_STATS.cases)}</strong><span>رأی قضایی اختیاری</span></div>
           <div><strong>{number(APP_STATS.categories)}</strong><span>دستهٔ موضوعی</span></div>
         </div>
+
+        <p className="ks-lawbook-description">آرای وحدت رویه و نظریات مشورتی در اسناد کتابخانه قرار دارند؛ مجموعهٔ جداگانهٔ آرای قضایی فقط با انتخاب شما دریافت می‌شود.</p>
 
         <div className="ks-lawbook-price">
           <div>

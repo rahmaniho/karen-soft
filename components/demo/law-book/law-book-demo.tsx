@@ -416,7 +416,7 @@ export function LawBookDemo() {
     {
       id: "library",
       label: "کتابخانهٔ قوانین",
-      hint: "۴۶ سند حقوقی را بر اساس دستهٔ موضوعی فیلتر کنید و تعداد مواد هر سند را ببینید.",
+      hint: "۷۳ سند حقوقی را بر اساس دستهٔ موضوعی فیلتر کنید و تعداد مواد هر سند را ببینید.",
       content: (
         <DemoPanel title={`فهرست اسناد — ${toPersianDigits(LAWS.length)} سند، ${toPersianDigits(APP_STATS.articles)} ماده`}>
           <DataTable

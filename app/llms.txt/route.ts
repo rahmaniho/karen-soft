@@ -1,3 +1,4 @@
+import { LAWBOOK_INFO } from "@/lib/lawbook-info";
 import { SITE, SERVICES } from "@/lib/constants";
 import { PRODUCTS } from "@/lib/products";
 import { SOLUTIONS } from "@/lib/solutions";
@@ -36,6 +37,13 @@ export function GET() {
     "",
     "### محصولات",
     ...PRODUCTS.map((product) => `${link(product.name, `/products/${product.slug}`)} — ${product.short}`),
+    "",
+    "### کتابچه قانون ایران",
+    LAWBOOK_INFO.summary,
+    LAWBOOK_INFO.credit,
+    LAWBOOK_INFO.optionalCases,
+    LAWBOOK_INFO.sources,
+    link("آزمون اختبار", "/products/law-book#lawbook-exams"),
     "",
     "### راهکارهای صنایع",
     ...SOLUTIONS.map((solution) => `${link(solution.name, `/solutions/${solution.slug}`)} — ${solution.short}`),

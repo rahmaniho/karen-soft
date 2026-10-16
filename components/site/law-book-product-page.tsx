@@ -1,3 +1,4 @@
+import { LAWBOOK_INFO } from "@/lib/lawbook-info";
 import { LawbookGallery } from "@/components/site/lawbook-gallery";
 import Image from "next/image";
 import Link from "next/link";
@@ -77,7 +78,7 @@ export function LawBookProductPage({ product }: { product: Product }) {
             <p className="lb-hero-lead">
               دسترسی به قوانین و مقررات ایران را ساده کنید؛ جست‌وجو کنید، ماده‌ها را کنار هم بخوانید و مرجع ضروری‌تان را حتی آفلاین همراه داشته باشید.
             </p>
-            <p className="lb-audience">جمع‌آوری و تدوین: لیلا آبکه، وکیل دادگستری و عضو رسمی کانون وکلای دادگستری قزوین · توسعه: کارن سافت</p>
+            <p className="lb-audience">{LAWBOOK_INFO.credit}</p>
             <div className="lb-audience">برای وکلا، کارآموزان وکالت، دانشجویان حقوق و پژوهشگران</div>
             <div className="lb-hero-actions">
               <a className="lb-button lb-button-primary" href="#book-topics">
@@ -137,11 +138,11 @@ export function LawBookProductPage({ product }: { product: Product }) {
           />
           <div className="lb-feature-grid">
             {[
-              { icon: Search, index: "۰۱", title: "جست‌وجوی فارسی", text: "در قوانین، مواد و آراء جست‌وجو کنید؛ با پشتیبانی از شکل‌های مختلف حروف و ارقام فارسی." },
+              { icon: Search, index: "۰۱", title: "جست‌وجوی فارسی", text: "جست‌وجو در قوانین و مواد با نرمال‌سازی ی/ك، نیم‌فاصله، ارقام فارسی و اعراب؛ نتایج در پردازشگر پس‌زمینه جست‌وجو آماده می‌شوند." },
               { icon: FileText, index: "۰۲", title: "مطالعۀ ماده‌به‌ماده", text: "در ساختار سند و فصل‌ها حرکت کنید، نشان بگذارید و اندازهٔ متن را متناسب با خود تنظیم کنید." },
               { icon: WifiOff, index: "۰۳", title: "دسترسی آفلاین", text: "پس از نصب و ذخیره‌شدن داده‌ها، محتوای کتابخانه را بدون اتکای دائمی به اینترنت بخوانید." },
-              { icon: BookOpen, index: "۰۵", title: "آزمون اختبار", text: "۱۰۰ آزمون در ۹ حوزه با بیش از ۲۰۰۰ سؤال، تایمر ۳۰ دقیقه‌ای، ادامه آزمون و کارنامه تحلیلی؛ قابل استفاده آفلاین." },
-              { icon: LockKeyhole, index: "۰۴", title: "یادداشت‌های شخصی", text: "نشان‌ها، یادداشت‌ها و تاریخچۀ جست‌وجوی شما روی همان دستگاه نگهداری می‌شوند." },
+              { icon: BookOpen, index: "۰۴", title: "آزمون اختبار", text: "۱۰۰ آزمون در ۹ حوزه با بیش از ۲۰۰۰ سؤال، تایمر ۳۰ دقیقه‌ای، ادامه آزمون و کارنامه تحلیلی؛ قابل استفاده آفلاین." },
+              { icon: LockKeyhole, index: "۰۵", title: "یادداشت‌های شخصی", text: LAWBOOK_INFO.privacy },
             ].map(({ icon: Icon, index, title, text }) => (
               <article className="lb-feature-card" key={index}>
                 <span className="lb-feature-index">{index}</span>
@@ -151,6 +152,14 @@ export function LawBookProductPage({ product }: { product: Product }) {
               </article>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="lb-features" id="lawbook-exams" aria-labelledby="lawbook-exams-title">
+        <div className="container-page">
+          <LawBookSectionTitle eyebrow="خودآزمایی آفلاین" title="برای مرور آموخته‌ها؛ آزمون اختبار" id="lawbook-exams-title" description={LAWBOOK_INFO.exams} />
+          <ul className="flex flex-wrap gap-3 mt-6" aria-label="حوزه‌های آزمون اختبار">{LAWBOOK_INFO.examSubjects.map(subject => <li key={subject} className="rounded-full border px-4 py-2 text-sm">{subject}</li>)}</ul>
+          <p className="mt-5 text-sm leading-loose">آزمون‌ها برای تمرین و خودآزمایی‌اند؛ نتیجهٔ آن‌ها تضمین موفقیت در آزمون حرفه‌ای نیست.</p>
         </div>
       </section>
 
