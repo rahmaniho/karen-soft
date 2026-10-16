@@ -19,6 +19,14 @@ import type { Product } from "@/lib/products";
 
 export const LAWBOOK_FAQS = [
   {
+    q: "آیا آرای قضایی به‌صورت خودکار دانلود می‌شوند؟",
+    a: "خیر. مجموعهٔ جداگانهٔ ۱٬۹۹۸ رأی قضایی (حدود ۱۲٫۸ مگابایت) در همگام‌سازی عادی دریافت نمی‌شود؛ آن را با انتخاب خود از صفحهٔ آراء قضایی یا تنظیمات دریافت کنید.",
+  },
+  {
+    q: "بخش آزمون اختبار چه امکاناتی دارد؟",
+    a: "۱۰۰ آزمون در ۹ حوزه با بیش از ۲۰۰۰ سؤال، انتخاب ۵ سؤال در هر آزمون، تایمر ۳۰ دقیقه‌ای، ادامه آزمون نیمه‌کاره و کارنامه تحلیلی؛ این بخش آفلاین است و برای خودآزمایی طراحی شده است.",
+  },
+  {
     q: "آیا کتابچه قانون بدون اینترنت هم کار می‌کند؟",
     a: "پس از نصب و دریافت داده‌های لازم، مطالعه و جست‌وجوی محتوای ذخیره‌شده به اینترنت وابسته نیست. برای دریافت به‌روزرسانی‌های جدید، اتصال به اینترنت لازم است.",
   },
@@ -68,6 +76,7 @@ export function LawBookProductPage({ product }: { product: Product }) {
             <p className="lb-hero-lead">
               دسترسی به قوانین و مقررات ایران را ساده کنید؛ جست‌وجو کنید، ماده‌ها را کنار هم بخوانید و مرجع ضروری‌تان را حتی آفلاین همراه داشته باشید.
             </p>
+            <p className="lb-audience">جمع‌آوری و تدوین: لیلا آبکه، وکیل دادگستری و عضو رسمی کانون وکلای دادگستری قزوین · توسعه: کارن سافت</p>
             <div className="lb-audience">برای وکلا، کارآموزان وکالت، دانشجویان حقوق و پژوهشگران</div>
             <div className="lb-hero-actions">
               <a className="lb-button lb-button-primary" href="#book-topics">
@@ -106,7 +115,7 @@ export function LawBookProductPage({ product }: { product: Product }) {
           <div className="lb-stat-grid" aria-label="آمار کتابخانه">
             <div><strong>{number(APP_STATS.documents)}</strong><span>سند حقوقی</span></div>
             <div><strong>{number(APP_STATS.articles)}</strong><span>مادهٔ قانون</span></div>
-            <div><strong>{number(APP_STATS.cases)}</strong><span>رأی قضایی</span></div>
+            <div><strong>{number(APP_STATS.cases)}</strong><span>رأی قضایی اختیاری</span></div>
             <div><strong>{number(APP_STATS.categories)}</strong><span>دستهٔ موضوعی</span></div>
           </div>
           <div className="lb-overview-copy">
@@ -128,6 +137,7 @@ export function LawBookProductPage({ product }: { product: Product }) {
               { icon: Search, index: "۰۱", title: "جست‌وجوی فارسی", text: "در قوانین، مواد و آراء جست‌وجو کنید؛ با پشتیبانی از شکل‌های مختلف حروف و ارقام فارسی." },
               { icon: FileText, index: "۰۲", title: "مطالعۀ ماده‌به‌ماده", text: "در ساختار سند و فصل‌ها حرکت کنید، نشان بگذارید و اندازهٔ متن را متناسب با خود تنظیم کنید." },
               { icon: WifiOff, index: "۰۳", title: "دسترسی آفلاین", text: "پس از نصب و ذخیره‌شدن داده‌ها، محتوای کتابخانه را بدون اتکای دائمی به اینترنت بخوانید." },
+              { icon: BookOpen, index: "۰۵", title: "آزمون اختبار", text: "۱۰۰ آزمون در ۹ حوزه با بیش از ۲۰۰۰ سؤال، تایمر ۳۰ دقیقه‌ای، ادامه آزمون و کارنامه تحلیلی؛ قابل استفاده آفلاین." },
               { icon: LockKeyhole, index: "۰۴", title: "یادداشت‌های شخصی", text: "نشان‌ها، یادداشت‌ها و تاریخچۀ جست‌وجوی شما روی همان دستگاه نگهداری می‌شوند." },
             ].map(({ icon: Icon, index, title, text }) => (
               <article className="lb-feature-card" key={index}>
@@ -183,7 +193,7 @@ export function LawBookProductPage({ product }: { product: Product }) {
           <div className="lb-topic-note">
             <BookOpen size={19} aria-hidden="true" />
             <p>
-              علاوه بر اسناد بالا، {number(APP_STATS.cases)} رأی قضایی منتخب در موضوعات حقوقی، کیفری و اداری نیز در کتابخانه گردآوری شده است.
+              علاوه بر اسناد بالا، {number(APP_STATS.cases)} رأی قضایی در موضوعات حقوقی، کیفری و اداری به‌صورت اختیاری قابل دریافت است (حدود ۱۲٫۸ مگابایت). این مجموعه در همگام‌سازی عادی دانلود نمی‌شود و از صفحهٔ آراء قضایی یا تنظیمات دریافت می‌گردد. مجموعه اسناد همچنین شامل ۱٬۹۲۱ رأی وحدت رویه و ۳۰۵ نظریه مشورتی است.
             </p>
           </div>
         </div>
@@ -232,7 +242,7 @@ export function LawBookProductPage({ product }: { product: Product }) {
       </section>
 
       <section className="lb-disclaimer">
-        <div className="container-page"><p><strong>یادآوری حقوقی:</strong> کتابچه قانون برای دسترسی و مطالعۀ منابع گردآوری‌شده طراحی شده و جایگزین متن رسمی قانون، مشاورۀ حقوقی یا نظر وکیل نیست. برای استناد نهایی، منبع رسمی را بررسی کنید.</p></div>
+        <div className="container-page"><p><strong>یادآوری حقوقی:</strong> کتابچه قانون برای دسترسی و مطالعۀ منابع گردآوری‌شده طراحی شده و جایگزین متن رسمی قانون، مشاورۀ حقوقی یا نظر وکیل نیست. مرجع رسمی، روزنامه رسمی جمهوری اسلامی ایران و سامانه ملی قوانین و مقررات (qavanin.ir) است؛ پیش از استناد قضایی یا اداری متن رسمی را بررسی کنید.</p></div>
       </section>
     </div>
   );

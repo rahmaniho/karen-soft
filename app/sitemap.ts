@@ -52,7 +52,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     entry("/portfolio", 0.7, "monthly"),
     ...CASE_STUDIES.map((study) => entry(`/portfolio/${study.slug}`, 0.68, "monthly")),
     entry("/blog", 0.72, "weekly", newestPost?.date),
-    ...BLOG_POSTS.map((post) => entry(`/blog/${post.slug}`, 0.66, "monthly", post.date)),
+    ...BLOG_POSTS.map((post) => entry(`/blog/${post.slug}`, 0.66, "monthly", post.modifiedDate ?? post.date)),
     entry("/about", 0.58, "monthly"),
     entry("/contact", 0.62, "monthly"),
     entry("/download-law-software", 0.48, "monthly"),

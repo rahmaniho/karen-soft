@@ -22,13 +22,13 @@ export function LawBookSpotlight() {
         </div>
         <h3 id="ks-lawbook-title">قانون را پیدا کنید؛<br /><em>نه میان تب‌های بی‌شمار.</em></h3>
         <p className="ks-lawbook-description">
-          یک کتابخانهٔ حقوقی خوش‌ساخت برای وکلا، کارآموزان و دانشجویان؛ با جست‌وجوی فارسی، مطالعهٔ آفلاین و ابزارهایی که هر روز به کار می‌آیند.
+          ۷۳ سند و ۱۱٬۱۳۲ ماده در یک کتابخانهٔ حقوقی برای وکلا، کارآموزان و دانشجویان؛ با جست‌وجوی فارسی، مطالعهٔ آفلاین و ۱۰۰ آزمون اختبار در ۹ حوزه.
         </p>
 
         <div className="ks-lawbook-stats" aria-label="محتوای کتابچه قانون">
           <div><strong>{number(APP_STATS.documents)}</strong><span>سند حقوقی</span></div>
           <div><strong>{number(APP_STATS.articles)}</strong><span>مادهٔ قانون</span></div>
-          <div><strong>{number(APP_STATS.cases)}</strong><span>رأی قضایی</span></div>
+          <div><strong>{number(APP_STATS.cases)}</strong><span>رأی قضایی اختیاری</span></div>
           <div><strong>{number(APP_STATS.categories)}</strong><span>دستهٔ موضوعی</span></div>
         </div>
 

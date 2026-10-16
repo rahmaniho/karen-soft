@@ -46,7 +46,7 @@ describe("legacy content migration",()=>{
   expect(DEMO_PRODUCTS).toHaveLength(10);
   expect(lawBook!.logo).toBe('/images/lawbook-logo.svg');
   expect(existsSync(resolve('public',lawBook!.logo!.slice(1)))).toBe(true);
-  expect(APP_STATS).toMatchObject({documents:46,articles:7278,cases:1998,categories:10});
+  expect(APP_STATS).toMatchObject({documents:73,articles:11132,cases:1998,categories:10});
   expect(LAW_CATEGORIES).toHaveLength(APP_STATS.categories);
   expect(LAWS).toHaveLength(APP_STATS.documents);
   for(const category of LAW_CATEGORIES)expect(LAWS.some(law=>law.category===category.id),category.id).toBe(true);
