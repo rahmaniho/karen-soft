@@ -1,3 +1,4 @@
+import { LawbookGallery } from "@/components/site/lawbook-gallery";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -124,6 +125,8 @@ export function LawBookProductPage({ product }: { product: Product }) {
           </div>
         </div>
       </section>
+
+      <LawbookGallery />
 
       <section id="features" className="lb-features">
         <div className="container-page">
