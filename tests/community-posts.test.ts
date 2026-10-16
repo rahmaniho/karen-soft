@@ -37,7 +37,7 @@ describe("new illustrated editorial guides", () => {
   });
   it("illustrates the shared school introduction and links to its parent guide", () => {
     const source = readFileSync("components/sections/class1-community.tsx", "utf8");
-    expect(source).toContain('/images/blog/class1-learning.jpg');
+    expect(source).toContain("<Class1Gallery />");
     expect(source).toContain('/blog/class1-learning-at-home');
   });
 });
