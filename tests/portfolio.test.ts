@@ -77,9 +77,20 @@ describe("portfolio samples", () => {
     expect(study?.stack).toEqual(expect.arrayContaining(["Astro", "TypeScript", "JavaScript", "HTML", "CSS"]));
     expect(study?.quote?.author).toBe("سعید امین‌زاده");
     expect(study?.quote?.role).toContain("مدیرعامل");
-    expect(study?.quote?.avatar).toBe("/images/clients/qazvin-tasvir/saeed-aminzadeh-avatar.webp");
+    expect(study?.quote?.avatar).toBe("/images/clients/qazvin-tasvir/saeed-aminzadeh.webp");
     expect(study?.quote?.text).toContain("اخلاق");
     expect(study?.quote?.text).toContain("کوتاه‌ترین زمان");
+  });
+
+  it("keeps hosting and static-site wording out of the Qazvin Tasvir case", () => {
+    const study = CASE_STUDIES.find((item) => item.slug === "qazvi-tasvir")!;
+    const text = [study.summary, study.note ?? "", ...study.services, ...study.challenge, ...study.solution]
+      .concat(study.stack)
+      .concat((study.specs ?? []).flatMap((spec) => [spec.label, spec.value]))
+      .join(" ");
+    expect(text).not.toMatch(/GitHub|github|Actions|Pages/i);
+    expect(text).not.toMatch(/ایستا|استاتیک|static/i);
+    expect(study.stack).not.toContain("GitHub Actions");
   });
 
   it("has explanatory copy for every case kind", () => {
