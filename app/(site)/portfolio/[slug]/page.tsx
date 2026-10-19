@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
+import { ExternalLink, Quote } from "lucide-react";
 import { CASE_KIND_COPY, CASE_STUDIES } from "@/lib/portfolio";
 import { pageMeta } from "@/lib/seo";
 import { breadcrumbSchema, caseStudySchema } from "@/lib/schema";
 import { PageHero, ContentSection, Points, ContactCTA } from "@/components/site/page-parts";
 import { DemoFrame } from "@/components/site/demo-frame";
+import { ButtonLink } from "@/components/ui/button";
 import { JsonLd } from "@/components/ui/json-ld";
 
 export const generateStaticParams = () => CASE_STUDIES.map((study) => ({ slug: study.slug }));
@@ -35,7 +37,31 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
   return (
     <>
       <PageHero eyebrow={copy.eyebrow} title={study.title} description={study.summary}>
-        <p>{study.client} · {study.category} · {study.year}</p>
+        {study.logo ? (
+          <span className="inline-flex items-center gap-3 rounded-full border border-[var(--border-subtle)] bg-[var(--surface-raised)] py-1 pe-5 ps-1">
+            <span className="relative size-11 shrink-0 overflow-hidden rounded-full bg-white">
+              <Image src={study.logo} alt={`لوگوی ${study.client}`} fill sizes="44px" className="object-contain p-1" />
+            </span>
+            <span className="text-sm font-extrabold">{study.client}</span>
+          </span>
+        ) : (
+          <span className="inline-flex items-center rounded-full border border-[var(--border-subtle)] bg-[var(--surface-raised)] px-4 py-2 text-xs font-bold">{study.client}</span>
+        )}
+        <span className="inline-flex items-center rounded-full border border-[var(--border-subtle)] px-4 py-2 text-xs text-muted">{study.category}</span>
+        <span className="inline-flex items-center rounded-full border border-[var(--border-subtle)] px-4 py-2 text-xs text-muted">{study.year}</span>
+        {study.liveUrl ? (
+          <ButtonLink
+            href={study.liveUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            variant="outline"
+            size="sm"
+            className="rounded-full"
+          >
+            مشاهدهٔ سایت واقعی
+            <ExternalLink className="size-3.5" aria-hidden />
+          </ButtonLink>
+        ) : null}
       </PageHero>
 
       {study.note ? (
@@ -71,6 +97,19 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
         </div>
       )}
 
+      {study.specs?.length ? (
+        <ContentSection title="مشخصات سایت">
+          <dl className="grid gap-px overflow-hidden rounded-[var(--radius-lg)] border border-[var(--hairline)] bg-[var(--hairline)] sm:grid-cols-2 lg:grid-cols-3">
+            {study.specs.map((spec) => (
+              <div key={spec.label} className="bg-[var(--surface-raised)] p-6">
+                <dt className="text-3xs font-bold text-muted">{spec.label}</dt>
+                <dd className="mt-2 text-sm font-extrabold">{spec.value}</dd>
+              </div>
+            ))}
+          </dl>
+        </ContentSection>
+      ) : null}
+
       <ContentSection title={copy.challenge}><Points items={study.challenge} /></ContentSection>
       <ContentSection title={copy.solution}><Points items={study.solution} /></ContentSection>
       {study.results ? (
@@ -87,7 +126,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
       ) : null}
       <ContentSection title="خدمات و فناوری‌ها">
         <Points items={study.services} />
-        <ul className="mt-8 flex flex-wrap gap-2" aria-label="فناوری‌های استفاده‌شده">
+        <ul className="mt-8 flex flex-wrap gap-2" aria-label="زبان‌ها و فناوری‌های استفاده‌شده">
           {study.stack.map((item) => (
             <li key={item} className="rounded-full border px-4 py-2">{item}</li>
           ))}
@@ -95,10 +134,38 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
       </ContentSection>
       {study.quote ? (
         <ContentSection title="از زبان مشتری">
-          <blockquote className="surface-card p-8 text-xl">
-            «{study.quote.text}»
-            <footer className="mt-5 text-sm text-muted">{study.quote.author}</footer>
-          </blockquote>
+          <figure
+            className={`grid overflow-hidden rounded-[var(--radius-2xl)] border border-[var(--hairline)] bg-[var(--surface-raised)] ${
+              study.quote.avatar ? "lg:grid-cols-[0.36fr_0.64fr]" : ""
+            }`}
+          >
+            {study.quote.avatar ? (
+              <div className="relative min-h-72 lg:min-h-full">
+                <Image
+                  src={study.quote.avatar}
+                  alt={`${study.quote.author}، ${study.quote.role ?? "مشتری"}`}
+                  fill
+                  sizes="(max-width: 1023px) 100vw, 380px"
+                  className="object-cover object-top"
+                />
+              </div>
+            ) : null}
+            <div className="flex flex-col justify-center p-8 lg:p-12">
+              <Quote className="size-9 text-brand-500/70" aria-hidden />
+              <blockquote className="mt-5 text-base leading-loose sm:text-lg">«{study.quote.text}»</blockquote>
+              <figcaption className="mt-8 flex items-center gap-4 border-t border-[var(--hairline)] pt-6">
+                {study.quote.logo ? (
+                  <span className="relative size-12 shrink-0 overflow-hidden rounded-full border border-[var(--hairline)] bg-white p-1.5">
+                    <Image src={study.quote.logo} alt="" fill sizes="48px" className="object-contain" />
+                  </span>
+                ) : null}
+                <span>
+                  <strong className="block text-sm">{study.quote.author}</strong>
+                  {study.quote.role ? <small className="mt-1 block text-3xs text-muted">{study.quote.role}</small> : null}
+                </span>
+              </figcaption>
+            </div>
+          </figure>
         </ContentSection>
       ) : null}
       <ContactCTA />
@@ -111,6 +178,8 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
             image: study.cover,
             category: study.category,
             services: study.services,
+            ...(study.kind === "client" ? { client: study.client } : {}),
+            logo: study.logo,
           }),
           breadcrumbSchema([
             { name: "خانه", path: "/" },

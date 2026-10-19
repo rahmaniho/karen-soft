@@ -18,6 +18,23 @@ export interface CaseStudyDemo {
   fullPageHref?: string;
 }
 
+/** یک ردیف مشخصهٔ فنی یا ویژگی سایت؛ در صفحهٔ نمونه‌کار در قالب شبکه نمایش داده می‌شود. */
+export interface CaseStudySpec {
+  label: string;
+  value: string;
+}
+
+/** نظر مشتری؛ عکس و لوگوی گوینده اختیاری است. */
+export interface CaseStudyQuote {
+  text: string;
+  author: string;
+  role?: string;
+  /** مسیر عکس گوینده (نسبت ۳:۴ یا ۴:۵ بهتر است). */
+  avatar?: string;
+  /** مسیر لوگوی شرکت گوینده. */
+  logo?: string;
+}
+
 export interface CaseStudy {
   slug: string;
   kind: CaseKind;
@@ -28,6 +45,12 @@ export interface CaseStudy {
   summary: string;
   cover: string;
   accent: string;
+  /** لوگوی مشتری یا محصول؛ روی کارت و بالای صفحهٔ نمونه‌کار نمایش داده می‌شود. */
+  logo?: string;
+  /** نشانی وب‌سایت واقعی مشتری؛ برای مطالعهٔ بیشتر و با rel امن. */
+  liveUrl?: string;
+  /** مشخصات کوتاه سایت یا محصول. */
+  specs?: CaseStudySpec[];
   /** یادداشت شفافیت که بالای نسخهٔ نمایشی یا صفحه نشان داده می‌شود. */
   note?: string;
   demo?: CaseStudyDemo;
@@ -36,19 +59,19 @@ export interface CaseStudy {
   solution: string[];
   results?: { value: string; label: string }[];
   stack: string[];
-  quote?: { text: string; author: string };
+  quote?: CaseStudyQuote;
 }
 
 /** برچسب‌ها و عنوان بخش‌ها بر اساس نوع نمونه‌کار. */
 export const CASE_KIND_COPY: Record<CaseKind, { eyebrow: string; challenge: string; solution: string; demo: string }> = {
-  client: { eyebrow: "CASE STUDY", challenge: "چالش پروژه", solution: "راه‌حل و اجرا", demo: "" },
+  client: { eyebrow: "CASE STUDY", challenge: "چالش پروژه", solution: "راه‌حل و اجرا", demo: "پیش‌نمایش سایت مشتری" },
   sample: { eyebrow: "LIVE DEMO", challenge: "هدف نمونه‌کار", solution: "امکانات پیاده‌سازی‌شده", demo: "نسخه نمایشی داخل سایت" },
   hypothetical: { eyebrow: "HYPOTHETICAL SAMPLE", challenge: "سناریوی فرضی", solution: "راه‌حل پیشنهادی", demo: "نسخه نمایشی فرضی" },
 };
 
 /**
- * ترتیب نمایش: ابتدا پروژهٔ واقعی، سپس نمونهٔ فرضی و بعد نمونه‌های نمایشی.
- * صفحهٔ اصلی دو مورد اول را نشان می‌دهد.
+ * ترتیب نمایش: پروژه‌های واقعی در ابتدا، سپس نمونهٔ فرضی و بعد نمونه‌های نمایشی.
+ * صفحهٔ اصلی برای حفظ تنوع، مورد اول و دوم را جداگانه انتخاب می‌کند.
  */
 export const CASE_STUDIES: CaseStudy[] = [
   {
@@ -117,6 +140,63 @@ export const CASE_STUDIES: CaseStudy[] = [
       "معرفی متخصصان و پرسش‌های متداول برای کاهش تماس‌های تکراری.",
     ],
     stack: ["Next.js", "React", "Tailwind CSS"],
+  },
+  {
+    slug: "qazvi-tasvir",
+    kind: "client",
+    title: "وب‌سایت شرکتی دوزبانهٔ قزوین تصویر",
+    client: "شرکت قزوین تصویر",
+    category: "شرکتی و بازرگانی",
+    year: "۱۴۰۵",
+    summary:
+      "بازطراحی کامل وب‌سایت شرکت قزوین تصویر؛ بیش از سی‌ویک سال تجربه در بازرگانی، ترابری و تأمین غذای پرسنل، در ۳۸ صفحهٔ فارسی و انگلیسی با معماری ایستا و سئوی فنی.",
+    cover: "/images/portfolio/qazvi-tasvir.jpg",
+    accent: "#0a2540",
+    logo: "/images/clients/qazvin-tasvir/qazvin-tasvir-mark.png",
+    liveUrl: "https://qazvintasvir.ir/",
+    note: "این نسخه، پیش‌نمایشی از بخش‌هایی از وب‌سایت واقعی قزوین تصویر است و برای نمایش داخل کارن سافت میزبانی می‌شود.",
+    demo: {
+      src: "/demos/qazvi-tasvir/index.html",
+      scope: "/demos/qazvi-tasvir/",
+      title: "پیش‌نمایش وب‌سایت قزوین تصویر",
+    },
+    specs: [
+      { label: "نوع سایت", value: "شرکتی و دوزبانه" },
+      { label: "زبان‌ها", value: "فارسی و انگلیسی" },
+      { label: "تعداد صفحات", value: "۳۸ صفحه" },
+      { label: "حوزه‌های خدمت", value: "۸ خدمت تخصصی" },
+      { label: "معماری", value: "ایستا، بدون پایگاه داده" },
+      { label: "میزبانی", value: "GitHub Pages با دامنهٔ اختصاصی" },
+    ],
+    services: [
+      "بازطراحی وب‌سایت",
+      "معماری اطلاعات",
+      "دوزبانه‌سازی فارسی و انگلیسی",
+      "سئوی فنی و داده‌های ساختاریافته",
+      "استقرار و انتشار خودکار",
+    ],
+    challenge: [
+      "معرفی هشت حوزهٔ خدمت، از بازرگانی بین‌الملل و ترخیص گمرکی تا ترابری پرسنل و تأمین غذای سازمانی، در یک مسیر روشن و بدون سردرگمی.",
+      "همراهی هم‌زمان مخاطب فارسی‌زبان و انگلیسی‌زبان، با همان دقت در چیدمان راست‌به‌چپ و چپ‌به‌راست.",
+      "ساختن اعتماد برای شرکتی با بیش از سی سال سابقه، در همان نگاه نخست.",
+      "تحویل در زمانی کوتاه، بی‌آنکه از خوانایی، دسترس‌پذیری و کیفیت بصری کاسته شود.",
+    ],
+    solution: [
+      "بازطراحی کامل با معماری اطلاعات تازه: خانه، دربارهٔ ما، خدمات، ناوگان، برندها، مشتریان و اطلاعات ثبتی.",
+      "نسخهٔ دوزبانهٔ فارسی و انگلیسی با مسیرهای مستقل، سوئیچ زبان و ساختار هم‌ارز در هر دو زبان.",
+      "هشت صفحهٔ خدمت تخصصی؛ هر کدام با محتوای یکتا، پرسش‌های متداول و مسیر درخواست مشاوره.",
+      "طراحی واکنش‌گرا با فونت‌های محلی، تصاویر بهینه و احترام به تنظیم کاهش حرکت.",
+      "داده‌های ساختاریافتهٔ Organization، Service، FAQ و Breadcrumb برای موتورهای جست‌وجو.",
+      "میزبانی ایستا روی GitHub Pages با دامنهٔ اختصاصی و انتشار خودکار به‌ازای هر تغییر.",
+    ],
+    stack: ["Astro", "TypeScript", "JavaScript", "HTML", "CSS", "Sharp", "GitHub Actions"],
+    quote: {
+      text: "پیش از آنکه قراردادی امضا شود، کارن سافت به حرف‌های ما گوش داد؛ و این، در روزگاری که همه از سرعت سخن می‌گویند، نشانهٔ حرفه‌ای‌گری است. وقت ما برای این پروژه به‌راستی کم بود، اما این تیم با برنامه‌ریزی دقیق و اخلاق حرفه‌ای چنان کار را پیش برد که نتیجه، از آنچه در ذهن می‌پروراندیم بهتر شد. وب‌سایت قزوین تصویر در کوتاه‌ترین زمان ممکن و بی‌آنکه از کیفیت کاسته شود تحویل داده شد؛ خوش‌قول، منظم و سرشار از احترام. سپاس از کارن سافت که به ما یادآوری کرد می‌توان هم سریع بود و هم با اخلاق.",
+      author: "سعید امین‌زاده",
+      role: "مدیرعامل و بنیان‌گذار شرکت قزوین تصویر",
+      avatar: "/images/clients/qazvin-tasvir/saeed-aminzadeh-avatar.webp",
+      logo: "/images/clients/qazvin-tasvir/qazvin-tasvir-mark.png",
+    },
   },
   {
     slug: "karensoft-hse",
@@ -300,36 +380,6 @@ export const CASE_STUDIES: CaseStudy[] = [
       "انیمیشن‌های اسکرول با IntersectionObserver و دو افکت Canvas.",
     ],
     stack: ["HTML5", "CSS3", "JavaScript", "Swiper"],
-  },
-  {
-    slug: "qazvi-tasvir",
-    kind: "sample",
-    title: "لندینگ‌پیج شرکتی بازرگانی و ترابری",
-    client: "شرکت بازرگانی و ترابری (قزوین)",
-    category: "شرکتی و بازرگانی",
-    year: "۱۴۰۵",
-    summary:
-      "لندینگ‌پیج تک‌صفحه‌ای یک شرکت بازرگانی و ترابری با بخش‌های خدمات، ناوگان، برندهای همکار و تماس سریع.",
-    cover: "/images/portfolio/qazvi-tasvir.jpg",
-    accent: "#1e40af",
-    demo: {
-      src: "/demos/qazvi-tasvir/index.html",
-      scope: "/demos/qazvi-tasvir/",
-      title: "نسخه نمایشی لندینگ‌پیج شرکتی بازرگانی و ترابری",
-    },
-    services: ["لندینگ‌پیج شرکتی", "نمایش ناوگان و خدمات", "شمارندهٔ آمار متحرک", "فرم درخواست"],
-    challenge: [
-      "معرفی گسترهٔ خدمات یک شرکت بازرگانی و ترابری در یک صفحه.",
-      "نشان دادن ناوگان و برندهای همکار با تصویر.",
-      "تبدیل بازدیدکننده به تماس یا درخواست مشاوره.",
-    ],
-    solution: [
-      "بخش قهرمان با شمارندهٔ آمار، بخش درباره‌ما و خدمات تخصصی.",
-      "کارت‌های تصویری ناوگان و نوار برندهای همکار.",
-      "دکمه‌های تماس و مشاوره در بالای صفحه و بخش پایانی.",
-      "طراحی واکنش‌گرا و داده‌های ساختاریافته برای سئو.",
-    ],
-    stack: ["HTML5", "CSS3", "JavaScript"],
   },
   {
     slug: "industrial-automation",

@@ -315,6 +315,10 @@ export function caseStudySchema(input: {
   image: string;
   category: string;
   services: string[];
+  /** نام مشتری؛ فقط برای پروژه‌های واقعی. */
+  client?: string;
+  /** لوگوی مشتری؛ در صورت وجود، هم به اثر و هم به سازمان مشتری نسبت داده می‌شود. */
+  logo?: string;
 }): Json {
   const url = absoluteUrl(input.path);
   return {
@@ -324,7 +328,17 @@ export function caseStudySchema(input: {
     name: input.title,
     abstract: input.summary,
     image: imageObject(input.image, input.title),
+    ...(input.logo ? { logo: imageObject(input.logo, input.client ?? input.title) } : {}),
     genre: input.category,
+    ...(input.client
+      ? {
+          about: {
+            "@type": "Organization",
+            name: input.client,
+            ...(input.logo ? { logo: absoluteUrl(input.logo) } : {}),
+          },
+        }
+      : {}),
     creator: { "@id": organizationId },
     publisher: { "@id": organizationId },
     mainEntityOfPage: url,

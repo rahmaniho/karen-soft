@@ -59,6 +59,29 @@ describe("portfolio samples", () => {
     }
   });
 
+  it("ships every client logo and testimonial photo from this site", () => {
+    for (const study of CASE_STUDIES) {
+      if (study.logo) expect(existsSync(join(root, "public", study.logo.slice(1))), study.slug).toBe(true);
+      if (study.quote?.avatar) expect(existsSync(join(root, "public", study.quote.avatar.slice(1))), study.slug).toBe(true);
+      if (study.quote?.logo) expect(existsSync(join(root, "public", study.quote.logo.slice(1))), study.slug).toBe(true);
+      if (study.liveUrl) expect(study.liveUrl, study.slug).toMatch(/^https:\/\//);
+    }
+  });
+
+  it("presents Qazvin Tasvir as a real client case with its own brand and CEO testimonial", () => {
+    const study = CASE_STUDIES.find((item) => item.slug === "qazvi-tasvir");
+    expect(study?.kind).toBe("client");
+    expect(study?.logo).toBe("/images/clients/qazvin-tasvir/qazvin-tasvir-mark.png");
+    expect(study?.liveUrl).toBe("https://qazvintasvir.ir/");
+    expect(study?.specs?.length).toBeGreaterThan(0);
+    expect(study?.stack).toEqual(expect.arrayContaining(["Astro", "TypeScript", "JavaScript", "HTML", "CSS"]));
+    expect(study?.quote?.author).toBe("سعید امین‌زاده");
+    expect(study?.quote?.role).toContain("مدیرعامل");
+    expect(study?.quote?.avatar).toBe("/images/clients/qazvin-tasvir/saeed-aminzadeh-avatar.webp");
+    expect(study?.quote?.text).toContain("اخلاق");
+    expect(study?.quote?.text).toContain("کوتاه‌ترین زمان");
+  });
+
   it("has explanatory copy for every case kind", () => {
     for (const copy of Object.values(CASE_KIND_COPY)) {
       expect(copy.challenge).toBeTruthy();
