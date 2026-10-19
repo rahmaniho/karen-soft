@@ -4027,3 +4027,58 @@ button, input, select, textarea {
     transition: none !important;
   }
 }
+
+/* ---------------------------------------------------------------------------
+   هویت بصری رسمی: لوگوی برند و عکس مدیرعامل
+   --------------------------------------------------------------------------- */
+.brand-logo__emblem {
+  background: #FFFFFF;
+  padding: 5px;
+  box-shadow: 0 4px 12px rgba(10, 37, 64, 0.14);
+  border: 1px solid rgba(10, 37, 64, 0.08);
+}
+
+.brand-logo__emblem img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.ceo-avatar {
+  padding: 0;
+  overflow: hidden;
+  background: var(--primary-navy);
+}
+
+.ceo-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 18%;
+  display: block;
+}
+
+/* عکس مدیرعامل در بلوک نقل‌قول */
+.quote-block__author {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.quote-block__avatar {
+  flex: 0 0 auto;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center 22%;
+  border: 2px solid rgba(245, 158, 11, 0.55);
+  background: #0A2540;
+}
+
+@media (max-width: 640px) {
+  .quote-block__author {
+    flex-direction: column;
+    gap: 8px;
+  }
+}
