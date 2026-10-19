@@ -79,7 +79,7 @@ export function PortfolioGallery({ cases }: { cases: CaseStudy[] }) {
   }, [selected]);
   return <>
     <div className="ks-portfolio-grid">{cases.map((item, i) => <button key={item.slug} type="button" className={`ks-portfolio-card portfolio-${i}`} onClick={() => setSelected(item)} aria-label={`نمایش پیش‌نمایش ${item.title}`}>
-      <div className="ks-portfolio-image"><Image src={item.cover} alt={item.title} fill sizes="(min-width: 1024px) 34vw, (min-width: 640px) 50vw, 100vw" className="object-cover" />{item.logo ? <span className="ks-portfolio-logo"><Image src={item.logo} alt={`لوگوی ${item.client}`} width={40} height={40} /></span> : null}<span className="ks-portfolio-view"><ArrowUpLeft size={23} /></span></div><div className="ks-portfolio-meta"><span>0{i + 1} / {item.category}</span><span>{item.year}</span></div><h3>{item.title}</h3><p>{item.summary}</p>
+      <div className="ks-portfolio-image"><Image src={item.cover} alt={item.title} fill sizes="(min-width: 1024px) 34vw, (min-width: 640px) 50vw, 100vw" className="object-cover" /><span className="ks-portfolio-view"><ArrowUpLeft size={23} /></span></div><div className="ks-portfolio-meta"><span>0{i + 1} / {item.category}</span><span>{item.year}</span></div><h3>{item.title}</h3><p>{item.summary}</p>
     </button>)}</div>
     <Dialog.Root open={selected !== null} onOpenChange={open => { if (!open) setSelected(null); }}>
       <Dialog.Portal><Dialog.Overlay className="ks-dialog-overlay" /><Dialog.Content className="ks-dialog" dir="rtl" aria-describedby="ks-dialog-description">

@@ -107,16 +107,18 @@ export function Catalog({ kind }: { kind: "products" | "blog" | "portfolio" }) {
                       sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw"
                       className="object-cover transition-transform duration-500 group-hover:scale-105"
                     />
-                    {x.logo ? (
-                      <span className="absolute start-3 top-3 grid size-11 place-items-center overflow-hidden rounded-xl border border-black/5 bg-white p-1.5 shadow-sm">
-                        <Image src={x.logo} alt="" width={44} height={44} className="size-full object-contain" />
-                      </span>
-                    ) : null}
                   </div>
                 </Link>
               )}
               <div className="p-6">
-                <span className="eyebrow">{x.category}</span>
+                <div className="flex items-center gap-2.5">
+                  {x.logo ? (
+                    <span className="grid size-9 shrink-0 place-items-center rounded-lg border border-[var(--hairline)] bg-white p-1">
+                      <Image src={x.logo} alt={`لوگوی ${x.title}`} width={32} height={32} className="size-full object-contain" />
+                    </span>
+                  ) : null}
+                  <span className="eyebrow">{x.category}</span>
+                </div>
                 <h3 className="mt-3">
                   <Link href={`/${kind}/${x.slug}`}>{x.title}</Link>
                 </h3>
