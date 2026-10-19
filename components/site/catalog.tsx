@@ -114,7 +114,7 @@ export function Catalog({ kind }: { kind: "products" | "blog" | "portfolio" }) {
                 <div className="flex items-center gap-2.5">
                   {x.logo ? (
                     <span className="grid size-9 shrink-0 place-items-center rounded-lg border border-[var(--hairline)] bg-white p-1">
-                      <Image src={x.logo} alt={`لوگوی ${x.title}`} width={32} height={32} className="size-full object-contain" />
+                      <Image src={x.logo} alt="" width={32} height={32} className="size-full object-contain" />
                     </span>
                   ) : null}
                   <span className="eyebrow">{x.category}</span>
