@@ -1324,3 +1324,47 @@ html[data-headings="sans"] {
 .ks-class1-gallery .lb-gallery-frame figcaption { padding: 14px 16px; }
 .ks-class1-gallery .lb-gallery-choices { font-size: 10px; }
 .ks-class1-gallery .lb-gallery-controls { gap: 6px; }
+
+/* ════════════════════════════════════════════════════════════
+   اتوماسیون هوشمند کارخانه — نقشهٔ تعاملی صفحهٔ نمونه‌کار صنعتی
+   رنگ‌ها داخل کامپوننت تعیین می‌شوند؛ این‌جا فقط حرکت و فوکوس.
+   ════════════════════════════════════════════════════════════ */
+.sf-dim { opacity: 0.3; transition: opacity var(--duration-base) ease; }
+.sf-on { transition: opacity var(--duration-base) ease; filter: drop-shadow(0 0 7px rgba(34, 211, 238, 0.16)); }
+.sf-flow { stroke-dasharray: 6 8; }
+.sf-packet { pointer-events: none; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .sf-flow { animation: sf-dash 1.8s linear infinite; }
+  .sf-belt { animation: sf-belt 1.5s linear infinite; }
+  .sf-ping {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: sf-ping 2.6s ease-out infinite;
+  }
+  .sf-live-ping { animation: sf-live-ping 1.8s ease-out infinite; }
+  .sf-agv { animation: sf-agv 18s ease-in-out infinite; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sf-packet { display: none; }
+}
+
+@keyframes sf-dash {
+  to { stroke-dashoffset: -28; }
+}
+@keyframes sf-belt {
+  to { stroke-dashoffset: -22; }
+}
+@keyframes sf-ping {
+  0% { transform: scale(1); opacity: 0.55; }
+  75%, 100% { transform: scale(2.7); opacity: 0; }
+}
+@keyframes sf-live-ping {
+  0% { transform: scale(1); opacity: 0.7; }
+  75%, 100% { transform: scale(2.2); opacity: 0; }
+}
+@keyframes sf-agv {
+  0%, 100% { transform: translate(470px, 0); }
+  50% { transform: translate(84px, 0); }
+}
