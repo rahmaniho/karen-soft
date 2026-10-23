@@ -2,6 +2,13 @@ import { describe, expect, it } from "vitest";
 import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
 import { join, relative, resolve } from "node:path";
 import { CASE_KIND_COPY, CASE_STUDIES } from "../lib/portfolio";
+import {
+  FACTORY_DISCLAIMER,
+  FACTORY_LAYERS,
+  FACTORY_PIPELINE,
+  FACTORY_STATIONS,
+  STATION_STATUS_COPY,
+} from "../lib/smart-factory";
 import { INDUSTRIES } from "../lib/industries";
 import { legacyRedirects } from "../lib/legacy-redirects";
 import nextConfig from "../next.config";
@@ -91,6 +98,43 @@ describe("portfolio samples", () => {
     expect(text).not.toMatch(/GitHub|github|Actions|Pages/i);
     expect(text).not.toMatch(/ایستا|استاتیک|static/i);
     expect(study.stack).not.toContain("GitHub Actions");
+  });
+
+  it("draws the smart factory automation on the industrial case", () => {
+    const study = CASE_STUDIES.find((item) => item.slug === "industrial-automation");
+    expect(study?.kind).toBe("sample");
+    expect(study?.visual).toBe("smart-factory");
+    expect(study?.title).toContain("اتوماسیون هوشمند");
+    expect(study?.summary).toContain("اتوماسیون هوشمند");
+    expect(study?.specs?.length).toBeGreaterThan(2);
+    expect(study?.stack).toEqual(expect.arrayContaining(["HTML", "CSS", "JavaScript", "SVG"]));
+    expect(study?.quote).toBeUndefined();
+    expect(study?.results).toBeUndefined();
+  });
+
+  it("describes the five automation layers from field to decision", () => {
+    expect(FACTORY_LAYERS).toHaveLength(5);
+    expect(FACTORY_LAYERS.map((layer) => layer.id)).toEqual([
+      "field",
+      "control",
+      "edge",
+      "erp",
+      "intelligence",
+    ]);
+    for (const layer of FACTORY_LAYERS) {
+      expect(layer.data.length, layer.id).toBeGreaterThan(2);
+      expect(layer.tech.length, layer.id).toBeGreaterThan(0);
+      expect(layer.outcome, layer.id).toBeTruthy();
+      expect(layer.scene.length, layer.id).toBeGreaterThan(0);
+    }
+    expect(FACTORY_DISCLAIMER).toContain("شبیه‌سازی");
+    expect(FACTORY_PIPELINE.map((step) => step.layer)).toEqual([0, 1, 2, 2, 3, 4]);
+    for (const step of FACTORY_PIPELINE) {
+      expect(FACTORY_LAYERS[step.layer], step.id).toBeTruthy();
+    }
+    for (const step of FACTORY_STATIONS) {
+      expect(STATION_STATUS_COPY[step.status], step.id).toBeTruthy();
+    }
   });
 
   it("has explanatory copy for every case kind", () => {

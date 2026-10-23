@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>طراحی و پیاده‌سازی اتوماسیون یکپارچه کارخانه — مستندات زنده</title>
-<meta name="description" content="مستندات طراحی تفصیلی اتوماسیون یکپارچه کارخانه: معماری Purdue/ISA-95، ۱۴ واحد، ماتریس یکپارچگی، ۱۲۰ شاخص، نقشهٔ راه و مدل مالی.">
+<title>اتوماسیون هوشمند کارخانه — مستندات زنده</title>
+<meta name="description" content="مستندات طراحی اتوماسیون هوشمند کارخانه: معماری Purdue/ISA-95، پنج لایه از سنسور تا داشبورد مدیر، ۱۴ واحد، ماتریس یکپارچگی، ۱۲۰ شاخص، نقشهٔ راه و مدل مالی.">
 <style>
   :root{
     --bg:#0f1115; --panel:#171a21; --panel2:#1d212a; --line:#2a2f3a;
@@ -135,10 +135,9 @@
 <header>
   <div class="brand">
     <div>
-      <h1>طراحی و پیاده‌سازی اتوماسیون یکپارچه کارخانه</h1>
-      <p class="sub">مستندِ طراحی تفصیلی (DDD) بر پایهٔ Purdue / ISA-95 — قابل اجرا، با عدد و سناریو</p>
+      <h1>اتوماسیون هوشمند کارخانه</h1>
+      <p class="sub">مستندِ طراحی تفصیلی بر پایهٔ Purdue / ISA-95؛ از سنسور تا داشبورد مدیر — قابل اجرا، با عدد و سناریو</p>
     </div>
-    <div class="repo" id="repoBox">در حال بارگذاری…</div>
   </div>
   <div class="kpis" id="kpis"><div class="kpi"><b>…</b><span>در حال خواندن داده‌ها</span></div></div>
 </header>
@@ -150,7 +149,6 @@
   <button data-sec="s-dash">داشبورد زنده</button>
   <button data-sec="s-how">چگونه استفاده کنیم</button>
   <span class="spacer"></span>
-  <button id="btnGithub">مخزن در گیت‌هاب ↗</button>
 </nav>
 
 <!-- ══════════════════════════ نمای کلی ══════════════════════════ -->
@@ -410,7 +408,6 @@ async function detectRoot(){
 }
 const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const N = v => { const n = parseFloat(v); return isNaN(n) ? 0 : n; };
-const REPO_URL = "https://github.com/rahmaniho/Industrial_factory";
 
 function parseCsv(text){
   const rows = []; let row = [], cur = "", q = false;
@@ -669,7 +666,6 @@ function show(id){
 }
 document.querySelectorAll("nav button[data-sec]").forEach(b =>
   b.addEventListener("click", () => { show(b.dataset.sec); if(location.hash) history.replaceState(null,""," "); }));
-document.getElementById("btnGithub").addEventListener("click", () => window.open(REPO_URL,"_blank"));
 document.addEventListener("click", e => {
   const t = e.target.closest("[data-go]");
   if(!t) return;
@@ -945,17 +941,13 @@ const BOOT = (async () => {
   const frame = document.getElementById("dashFrame");
   if(frame) frame.src = ROOT + frame.dataset.src;
 
-  document.getElementById("repoBox").innerHTML =
-    `<a href="${REPO_URL}" target="_blank" rel="noopener">rahmaniho/Industrial_factory ↗</a>`;
   buildSide("");
   buildDocMap();
 
   drawTargets();
 
   document.getElementById("footer").innerHTML =
-    `منبعِ یگانهٔ حقیقت: فایل‌های <code>data/*.csv</code> · مستندات با <code>tools/build_*.py</code>
-     تولید می‌شوند · کیفیت با <code>tools/test_build.py</code> پایش می‌شود ·
-     <a href="${REPO_URL}" target="_blank" rel="noopener">مخزن در گیت‌هاب ↗</a>`;
+    `منبعِ یگانهٔ حقیقت: فایل‌های <code>data/*.csv</code> · شاخص‌ها و اعداد همین صفحه از همان داده‌ها ساخته شده‌اند`;
 
   try{
     const [kpi, alarm, events, matrix, master, road, risk, ques, ben, fin, oz, oc,
