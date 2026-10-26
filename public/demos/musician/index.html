@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<!--
+  ════════════════════════════════════════════════════════════════
+    آکادمی و استودیو موسیقی «آوا» — نسخه‌ی ۲٫۰
+    بازنویسی فوق‌حرفه‌ای با صداهای ۱۰۰٪ واقعی:
+    • ۹ قطعه‌ی کامل موسیقی (داخل مخزن، MP3 واقعی)
+    • سمپلر پیانوی واقعی (Salamander Grand)
+    • سمپل واقعی تک‌تک سازها + درام‌پد
+    • دمو A/B میکس با زنجیره‌ی مسترینگ واقعی روی فایل صوتی
+  ════════════════════════════════════════════════════════════════
+-->
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#07070e" />
+
+<title>آوا | آکادمی و استودیو موسیقی — تولید، تنظیم، میکس و مسترینگ</title>
+<meta name="description" content="استودیو موسیقی آوا؛ تولید صفرتاصد موسیقی، تنظیم اختصاصی، میکس و مسترینگ حرفه‌ای برای هنرمندان، به‌همراه آموزش تخصصی ۱۶ ساز. به تولیدات واقعی ما گوش بدهید." />
+<meta name="keywords" content="استودیو موسیقی, تولید موسیقی, تنظیم آهنگ, میکس و مسترینگ, آهنگسازی, آموزش موسیقی, کلاس پیانو, کلاس گیتار, ضبط صدا, آوا" />
+<meta name="author" content="استودیو موسیقی آوا" />
+<link rel="canonical" href="https://ava-studio.example/" />
+
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="fa_IR" />
+<meta property="og:site_name" content="استودیو موسیقی آوا" />
+<meta property="og:title" content="آوا | استودیو تولید موسیقی — اینجا صدا شکل می‌گیرد" />
+<meta property="og:description" content="تولید، تنظیم، میکس و مسترینگ + آموزش ۱۶ ساز. ۹ قطعه‌ی واقعی را همین حالا بشنوید." />
+<meta property="og:url" content="https://ava-studio.example/" />
+<meta property="og:image" content="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&w=1200&q=70" />
+<meta name="twitter:card" content="summary_large_image" />
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2307070e'/%3E%3Cpath d='M40 12v26.5a8.5 8.5 0 1 1-4-7.2V20l-14 3.2v21.4a8.5 8.5 0 1 1-4-7.2V18l22-6z' fill='%23e9b949'/%3E%3C/svg%3E" />
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2307070e'/%3E%3Cpath d='M40 12v26.5a8.5 8.5 0 1 1-4-7.2V20l-14 3.2v21.4a8.5 8.5 0 1 1-4-7.2V18l22-6z' fill='%23e9b949'/%3E%3C/svg%3E" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,500;0,700;0,900;1,500&display=swap" />
+<link rel="stylesheet" href="assets/css/style.css" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MusicSchool",
+  "name": "آکادمی و استودیو موسیقی آوا",
+  "description": "تولید موسیقی، تنظیم، میکس و مسترینگ برای هنرمندان + آموزش تخصصی ساز.",
+  "url": "https://ava-studio.example/",
+  "telephone": "+98-21-0000-0000",
+  "address": { "@type": "PostalAddress", "addressLocality": "تهران", "addressCountry": "IR" }
+}
+</script>
+</head>
+
+<body class="gate-open">
+<a class="skip-link" href="#works">پرش به تولیدات</a>
+
+<div class="noise" aria-hidden="true"></div>
+<div class="vignette" aria-hidden="true"></div>
+<div class="ambient" aria-hidden="true"><span class="a1"></span><span class="a2"></span><span class="a3"></span></div>
+<div id="progress" aria-hidden="true"></div>
+<div id="cursor" aria-hidden="true"></div>
+
+<!-- ══════════════ صفحه‌ی ورود ══════════════ -->
+<div id="gate" role="dialog" aria-label="ورود به سایت استودیو آوا" aria-modal="true">
+  <div class="gate-notes" id="gateNotes" aria-hidden="true"></div>
+  <div class="gate-inner">
+    <p class="gate-brand">آکادمی و استودیو موسیقی</p>
+    <h2 class="gate-title">آوا</h2>
+    <p class="gate-latin pf-i">AVA — Studio &amp; Academy of Sound</p>
+    <div class="tuner" id="tuner" aria-hidden="true">
+      <span></span><span></span><span></span><span></span><span></span>
+      <p>در حال کوک کردن سالن…</p>
+    </div>
+    <div class="enter-wrap" id="enterWrap">
+      <button class="enter" id="enterBtn" aria-label="ورود به سایت و شنیدن پیانو">♪</button>
+      <p>برای ورود و شنیدن پیانوی واقعی، ضربه بزن</p>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ هدر ══════════════ -->
+<header id="header">
+  <div class="wrap nav">
+    <a href="#hero" class="logo" aria-label="آوا — صفحه اصلی">
+      <span class="logo-badge" aria-hidden="true">♪</span>
+      <span><span class="name">آوا</span><small class="pf">AVA STUDIO</small></span>
+    </a>
+    <nav class="menu" id="menu" aria-label="ناوبری اصلی">
+      <a href="#works">تولیدات</a>
+      <a href="#artists">هنرمندان</a>
+      <a href="#mix">میکس <span class="ab-tag">A/B</span></a>
+      <a href="#learn">آموزش</a>
+      <a href="#teachers">اساتید</a>
+      <a href="#contact">تماس</a>
+    </nav>
+    <div class="nav-acts">
+      <button class="icon-btn" id="themeBtn" aria-label="تغییر حالت روشن و تاریک" title="حالت روشن / تاریک">☾</button>
+      <a href="#contact" class="btn btn-gold btn-sm nav-cta">سفارش تولید</a>
+      <button class="icon-btn burger" id="burger" aria-label="باز کردن منو" aria-expanded="false" aria-controls="mobileMenu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+<nav class="mobile-menu" id="mobileMenu" aria-label="ناوبری موبایل">
+  <a href="#works">تولیدات</a>
+  <a href="#artists">هنرمندان</a>
+  <a href="#mix">میکس A/B</a>
+  <a href="#learn">آموزش</a>
+  <a href="#play">بنواز</a>
+  <a href="#teachers">اساتید</a>
+  <a href="#contact">تماس</a>
+</nav>
+
+<main>
+<!-- ══════════════ ۱) هیرو ══════════════ -->
+<section id="hero" aria-labelledby="heroTitle">
+  <canvas id="waveCanvas" aria-hidden="true"></canvas>
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <p class="hero-eyebrow reveal"><span class="live-dot" aria-hidden="true"></span> استودیو تولید موسیقی • تهران</p>
+      <h1 class="hero-title reveal d1" id="heroTitle" data-px="0.03">
+        اینجا <span class="grad">صدا</span> شکل می‌گیرد
+        <span class="pf hero-latin">Where sound takes shape</span>
+      </h1>
+      <p class="hero-sub reveal d2">
+        از جرقه‌ی یک ملودی تا قطعه‌ای آماده‌ی انتشار؛
+        <b>تولید صفرتاصد، تنظیم، میکس و مسترینگ</b> برای هنرمندان —
+        با ۹ قطعه‌ی واقعی که همین حالا می‌توانید بشنوید.
+      </p>
+      <div class="hero-cta reveal d3">
+        <button class="btn btn-gold btn-lg magnetic" id="ctaListen"><span aria-hidden="true">▶</span> شنیدن تولیدات</button>
+        <a href="#artists" class="btn btn-ghost btn-lg magnetic">سرویس هنرمندان</a>
+      </div>
+      <div class="hero-stats reveal d4">
+        <div><b><span data-count="9">۰</span></b><small>قطعه‌ی واقعی قابل پخش</small></div>
+        <div><b><span data-count="16">۰</span></b><small>ساز برای آموزش</small></div>
+        <div><b><span data-count="120">۰</span>+</b><small>پروژه‌ی تحویل‌شده</small></div>
+      </div>
+    </div>
+    <div class="hero-side reveal d3">
+      <div class="hero-card glass" id="heroCard">
+        <div class="hc-top">
+          <span class="hc-badge">در حال پخش از استودیو</span>
+          <div class="eq" id="heroEq" aria-hidden="true"></div>
+        </div>
+        <div class="hc-cover" id="heroCover" aria-hidden="true"></div>
+        <p class="hc-title" id="heroTrackTitle">فراخوان ماجراجویی</p>
+        <p class="hc-artist">Kevin MacLeod • حماسی</p>
+        <div class="hc-bar"><canvas id="heroWave" aria-hidden="true"></canvas></div>
+        <div class="hc-row">
+          <button class="btn btn-gold" id="heroPlay">پخش ♪</button>
+          <a class="btn btn-ghost" href="#works">همه‌ی تولیدات</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <a class="scroll-hint" href="#works" aria-label="اسکرول به بخش تولیدات"><span></span></a>
+</section>
+
+<!-- ══════════════ نوار متحرک ══════════════ -->
+<div class="marquee" aria-hidden="true">
+  <div class="mq-row" id="mq1"></div>
+  <div class="mq-row rev" id="mq2"></div>
+</div>
+
+<!-- ══════════════ ۲) تولیدات موسیقی ══════════════ -->
+<section id="works" aria-labelledby="worksTitle">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Productions</span>
+      <h2 class="sec-title" id="worksTitle">تولیدات <span class="grad">موسیقی</span></h2>
+      <p class="sec-sub">نه سمپل مصنوعی، نه لوپ تکراری — ۹ قطعه‌ی کامل و واقعی با کیفیت استودیویی. پخش کنید، ژانر را عوض کنید، شکل‌موج واقعی هر قطعه را ببینید.</p>
+      <div class="divider" aria-hidden="true"><i></i>♪<i></i></div>
+    </div>
+    <div class="works-tools reveal d1">
+      <div class="chips" id="filterChips" role="tablist" aria-label="فیلتر ژانر">
+        <button class="chip active" data-tag="all" role="tab" aria-selected="true">همه</button>
+        <button class="chip" data-tag="cinema" role="tab" aria-selected="false">سینمایی</button>
+        <button class="chip" data-tag="folk" role="tab" aria-selected="false">فولک</button>
+        <button class="chip" data-tag="classic" role="tab" aria-selected="false">کلاسیک</button>
+        <button class="chip" data-tag="electro" role="tab" aria-selected="false">الکترونیک</button>
+        <button class="chip" data-tag="perc" role="tab" aria-selected="false">کوبه‌ای</button>
+      </div>
+      <button class="btn btn-ghost btn-sm" id="playAllBtn">پخش پیاپی همه ♫</button>
+    </div>
+    <div class="works-grid" id="worksGrid"></div>
+    <p class="works-note reveal">پخش از پلیر سراسری پایین صفحه ادامه پیدا می‌کند؛ می‌توانید حین گشت‌وگذار در سایت به موسیقی گوش بدهید.</p>
+  </div>
+</section>
+
+<!-- ══════════════ ۳) سرویس هنرمندان ══════════════ -->
+<section id="artists" aria-labelledby="artTitle">
+  <span class="staff-bg" aria-hidden="true"></span>
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">For Artists</span>
+      <h2 class="sec-title" id="artTitle">برای <span class="grad-aurora">هنرمندان</span> و خوانندگان</h2>
+      <p class="sec-sub">دموی گوشی‌ات را بفرست، قطعه‌ی آماده‌ی انتشار تحویل بگیر. تنظیم، میکس و مسترینگ در سطح پخش جهانی.</p>
+      <div class="divider" aria-hidden="true"><i></i>♪<i></i></div>
+    </div>
+
+    <div class="artist-grid">
+      <article class="artist-card spot reveal">
+        <span class="a-num pf" aria-hidden="true">۰۱</span>
+        <div class="a-icon" aria-hidden="true">🎼</div>
+        <h3>تنظیم اختصاصی</h3>
+        <p>چیدمان سازها، ریتم و فضا؛ دقیقاً دور حسِ صدای تو.</p>
+        <ul>
+          <li>ارکستراسیون زنده و مجازی</li>
+          <li>طراحی گروو و ریتم‌سکشن</li>
+          <li>۲ راند بازبینی تنظیم</li>
+        </ul>
+        <button class="btn btn-ghost btn-sm plan-cta" data-plan="تنظیم اختصاصی">ثبت سفارش</button>
+      </article>
+      <article class="artist-card spot reveal d1">
+        <span class="a-num pf" aria-hidden="true">۰۲</span>
+        <div class="a-icon" aria-hidden="true">🎚</div>
+        <h3>میکس حرفه‌ای</h3>
+        <p>تعادل، عمق و وضوح؛ هر لاین در جای درست خودش.</p>
+        <ul>
+          <li>ادیت، تیون وکال و تمیزکاری</li>
+          <li>اتومیشن و فضاسازی سه‌بعدی</li>
+          <li>خروجی استم + نسخه‌ی بی‌کلام</li>
+        </ul>
+        <button class="btn btn-ghost btn-sm plan-cta" data-plan="میکس حرفه‌ای">ثبت سفارش</button>
+      </article>
+      <article class="artist-card spot reveal d2">
+        <span class="a-num pf" aria-hidden="true">۰۳</span>
+        <div class="a-icon" aria-hidden="true">💎</div>
+        <h3>مسترینگ انتشار</h3>
+        <p>بلندی استاندارد اسپاتیفای، اپل‌موزیک و رادیو.</p>
+        <ul>
+          <li>مستر استریو + نسخه‌ی اینسترومنتال</li>
+          <li>تست روی ۵ سیستم پخش واقعی</li>
+          <li>تحویل ۲۴ ساعته‌ی اکسپرس</li>
+        </ul>
+        <button class="btn btn-ghost btn-sm plan-cta" data-plan="مسترینگ انتشار">ثبت سفارش</button>
+      </article>
+      <article class="artist-card spot reveal d3 hot">
+        <span class="a-flag">پیشنهاد استودیو</span>
+        <span class="a-num pf" aria-hidden="true">۰۴</span>
+        <div class="a-icon" aria-hidden="true">🚀</div>
+        <h3>تولید صفر تا صد</h3>
+        <p>از ملودی زمزمه‌شده تا مستر نهایی؛ یک تیم کامل پشت تو.</p>
+        <ul>
+          <li>آهنگسازی + تنظیم + ضبط وکال</li>
+          <li>میکس و مسترینگ + کاور آرت</li>
+          <li>مشاوره‌ی انتشار و پخش</li>
+        </ul>
+        <button class="btn btn-gold btn-sm plan-cta" data-plan="تولید صفر تا صد">شروع پروژه</button>
+      </article>
+    </div>
+
+    <div class="process reveal">
+      <h3 class="proc-title">مسیر پروژه‌ی تو، شفاف و قدم‌به‌قدم</h3>
+      <ol class="proc-steps">
+        <li><span class="ps-dot" aria-hidden="true">۱</span><b>ارسال دمو</b><small>وویس یا فایل اولیه + توضیح حس قطعه</small></li>
+        <li><span class="ps-dot" aria-hidden="true">۲</span><b>مشاوره و پیش‌فاکتور</b><small>تماس ۲۰ دقیقه‌ای + قیمت و زمان دقیق</small></li>
+        <li><span class="ps-dot" aria-hidden="true">۳</span><b>تولید / میکس</b><small>شروع کار با گزارش مرحله‌ای</small></li>
+        <li><span class="ps-dot" aria-hidden="true">۴</span><b>بازبینی</b><small>۲ راند اصلاح تا رضایت کامل</small></li>
+        <li><span class="ps-dot" aria-hidden="true">۵</span><b>تحویل نهایی</b><small>WAV مستر + MP3 + استم‌ها + کاور</small></li>
+      </ol>
+    </div>
+
+    <div class="plans">
+      <article class="plan glass reveal">
+        <h4>میکس تک‌آهنگ</h4>
+        <p class="price">از ۶<small> میلیون تومان</small></p>
+        <ul><li>تا ۴۸ لاین</li><li>تیون و ادیت وکال</li><li>۲ راند بازبینی</li><li>تحویل ۷ روزه</li></ul>
+        <button class="btn btn-ghost plan-cta" data-plan="پلن میکس تک‌آهنگ">انتخاب پلن</button>
+      </article>
+      <article class="plan glass reveal d1 popular">
+        <span class="a-flag">پرفروش‌ترین</span>
+        <h4>میکس + مستر</h4>
+        <p class="price">از ۸.۵<small> میلیون تومان</small></p>
+        <ul><li>تا ۶۴ لاین + مستر انتشار</li><li>نسخه‌ی بی‌کلام و رادیویی</li><li>۳ راند بازبینی</li><li>تحویل ۱۰ روزه</li></ul>
+        <button class="btn btn-gold plan-cta" data-plan="پلن میکس + مستر">انتخاب پلن</button>
+      </article>
+      <article class="plan glass reveal d2">
+        <h4>تولید کامل</h4>
+        <p class="price">از ۲۵<small> میلیون تومان</small></p>
+        <ul><li>آهنگسازی + تنظیم + ضبط</li><li>میکس، مستر و کاور آرت</li><li>بازبینی نامحدود مرحله‌ای</li><li>مشاوره‌ی انتشار</li></ul>
+        <button class="btn btn-ghost plan-cta" data-plan="پلن تولید کامل">انتخاب پلن</button>
+      </article>
+    </div>
+
+    <div class="band-stats reveal">
+      <div><b><span data-count="120">۰</span>+</b><small>پروژه‌ی تحویل‌شده</small></div>
+      <div><b><span data-count="40">۰</span>+</b><small>هنرمند همکار</small></div>
+      <div><b><span data-count="9">۰</span></b><small>سال تجربه‌ی استودیویی</small></div>
+      <div><b><span data-count="98">۰</span>٪</b><small>رضایت از تحویل اول</small></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ ۴) دمو A/B میکس ══════════════ -->
+<section id="mix" aria-labelledby="mixTitle">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">A / B • Live DSP</span>
+      <h2 class="sec-title" id="mixTitle">تفاوت را <span class="grad">بشنوید</span>، نه بخوانید</h2>
+      <p class="sec-sub">یک قطعه‌ی واقعی، دو مسیر پردازش زنده؛ دسته را بکشید و زنجیره‌ی مسترینگ (EQ، کمپرسور، لیمیتر) را در لحظه روی صدا حس کنید.</p>
+      <div class="divider" aria-hidden="true"><i></i>♪<i></i></div>
+    </div>
+
+    <div class="ab-box glass reveal d1">
+      <div class="ab-chain" aria-hidden="true">
+        <span>HPF 30Hz</span><span>EQ حضور</span><span>هوای ۹k</span><span>کمپرسور Glue</span><span>لیمیتر</span><span class="on"> makeup +3dB</span>
+      </div>
+      <div class="ab-stage" id="abStage" role="slider" tabindex="0"
+           aria-label="مقایسه صدای خام و مستر شده" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+        <canvas id="abMaster" aria-hidden="true"></canvas>
+        <canvas id="abRaw" aria-hidden="true"></canvas>
+        <span class="ab-label raw">خام</span>
+        <span class="ab-label mst">مستر شده</span>
+        <div class="ab-handle" id="abHandle"><span class="grip" aria-hidden="true">⇄</span></div>
+      </div>
+      <div class="ab-foot">
+        <div class="ab-meta">
+          <p><span class="pf-i">Same song, two worlds.</span> — «فراخوان ماجراجویی»، حلقه‌ی ۴۰ ثانیه‌ای از میانه‌ی قطعه.</p>
+          <div class="ab-prog"><span id="abProgFill"></span></div>
+        </div>
+        <div class="ab-btns">
+          <span class="ab-time" id="abTime">۰:۰۰ / ۰:۴۰</span>
+          <button class="btn btn-gold" id="abPlay">پخش نمونه</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ ۵) آموزش سازها ══════════════ -->
+<section id="learn" aria-labelledby="learnTitle">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Academy</span>
+      <h2 class="sec-title" id="learnTitle">ساز خودت را <span class="grad">پیدا کن</span></h2>
+      <p class="sec-sub">روی هر ساز نگه دار یا ضربه بزن؛ صدایی که می‌شنوی سمپل واقعی همان ساز است — نه صدای مصنوعی.</p>
+      <div class="divider" aria-hidden="true"><i></i>♪<i></i></div>
+    </div>
+
+    <div class="tabs reveal d1" role="tablist" aria-label="دسته‌بندی سازها">
+      <button class="tab active" role="tab" aria-selected="true" aria-controls="p-keys" id="t-keys" data-panel="p-keys"><span>🎹 کیبوردی</span></button>
+      <button class="tab" role="tab" aria-selected="false" aria-controls="p-strings" id="t-strings" data-panel="p-strings"><span>🎻 زهی</span></button>
+      <button class="tab" role="tab" aria-selected="false" aria-controls="p-wind" id="t-wind" data-panel="p-wind"><span>🎷 بادی</span></button>
+      <button class="tab" role="tab" aria-selected="false" aria-controls="p-perc" id="t-perc" data-panel="p-perc"><span>🥁 ضربی</span></button>
+    </div>
+
+    <div class="panel active" id="p-keys" role="tabpanel" aria-labelledby="t-keys"><div class="cards"></div></div>
+    <div class="panel" id="p-strings" role="tabpanel" aria-labelledby="t-strings"><div class="cards"></div></div>
+    <div class="panel" id="p-wind" role="tabpanel" aria-labelledby="t-wind"><div class="cards"></div></div>
+    <div class="panel" id="p-perc" role="tabpanel" aria-labelledby="t-perc"><div class="cards"></div></div>
+  </div>
+</section>
+
+<!-- ══════════════ ۶) بنواز ══════════════ -->
+<section id="play" aria-labelledby="playTitle">
+  <span class="staff-bg" aria-hidden="true"></span>
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Playground</span>
+      <h2 class="sec-title" id="playTitle">بزن، <span class="grad">حس کن</span></h2>
+      <p class="sec-sub">پیانوی گرند واقعی (Salamander) در دو اکتاو کامل + درام‌پد با سمپل‌های آکوستیک. هدفون بزن و بازی کن.</p>
+      <div class="divider" aria-hidden="true"><i></i>♪<i></i></div>
+    </div>
+
+    <div class="play-tabs reveal d1" role="tablist" aria-label="انتخاب ساز تعاملی">
+      <button class="ptab active" data-ptab="panePiano" role="tab" aria-selected="true">🎹 پیانو</button>
+      <button class="ptab" data-ptab="panePads" role="tab" aria-selected="false">🥁 درام‌پد</button>
+    </div>
+
+    <div class="play-pane active glass reveal d1" id="panePiano" role="tabpanel">
+      <div class="piano-scroll"><div class="piano" id="pianoKeys" role="group" aria-label="پیانوی تعاملی با صدای واقعی"></div></div>
+      <p class="piano-hint">اکتاو اول با <b>Z تا M</b> و اکتاو دوم با <b>Q تا U</b> — کلیدهای سیاه روی همان ردیف‌ها (S، D، ۲، ۳ و …).</p>
+      <p class="piano-keys-note">سمپل: Salamander Grand Piano (ضبط واقعی) — با تکنیک pitch-shift کروماتیک.</p>
+    </div>
+
+    <div class="play-pane glass" id="panePads" role="tabpanel" hidden>
+      <div class="pad-grid" id="padGrid"></div>
+      <p class="piano-hint">با کلیک یا کلیدهای <b>۱ تا ۸</b> بنواز. سمپل‌ها: کیت آکوستیک واقعی.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ ۷) اساتید ══════════════ -->
+<section id="teachers" aria-labelledby="teaTitle">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Mentors</span>
+      <h2 class="sec-title" id="teaTitle">کسانی که <span class="grad">راه را رفته‌اند</span></h2>
+      <p class="sec-sub">نوازنده، آهنگساز و مهندس صدا؛ کنار هم تا تو زودتر به صدای خودت برسی.</p>
+      <div class="divider" aria-hidden="true"><i></i>♪<i></i></div>
+    </div>
+    <div class="inst-grid" id="teachersGrid"></div>
+  </div>
+</section>
+
+<!-- ══════════════ ۸) مسیر یادگیری ══════════════ -->
+<section id="road" aria-labelledby="roadTitle">
+  <span class="staff-bg" aria-hidden="true" style="top:auto; bottom:14%"></span>
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Roadmap</span>
+      <h2 class="sec-title" id="roadTitle">مسیر <span class="grad">یادگیری</span></h2>
+      <p class="sec-sub">چهار پله‌ی روشن؛ هر پله با هدف، تمرین و اجرای مشخص.</p>
+      <div class="divider" aria-hidden="true"><i></i>♪<i></i></div>
+    </div>
+    <div class="road">
+      <div class="step reveal">
+        <div class="step-dot" data-n="۱" aria-hidden="true">♪</div>
+        <h4>مبتدی</h4>
+        <p>آشنایی با ساز، کوک، ریتم پایه و خواندن نُت.</p>
+        <span class="lvl">۳ ماه نخست</span>
+      </div>
+      <div class="step reveal d1">
+        <div class="step-dot" data-n="۲" aria-hidden="true">♫</div>
+        <h4>متوسط</h4>
+        <p>تکنیک دست، گام‌ها و اجرای قطعات کوتاه.</p>
+        <span class="lvl">ماه ۴ تا ۹</span>
+      </div>
+      <div class="step reveal d2">
+        <div class="step-dot" data-n="۳" aria-hidden="true">♬</div>
+        <h4>پیشرفته</h4>
+        <p>بداهه‌نوازی، هارمونی و اجرای گروهی.</p>
+        <span class="lvl">سال دوم</span>
+      </div>
+      <div class="step reveal d3">
+        <div class="step-dot" data-n="۴" aria-hidden="true">♩</div>
+        <h4>حرفه‌ای</h4>
+        <p>ضبط استودیویی، اجرای صحنه و انتشار اثر.</p>
+        <span class="lvl">ورود به بازار</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ ۹) گالری ══════════════ -->
+<section id="gallery" aria-labelledby="galTitle">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Gallery</span>
+      <h2 class="sec-title" id="galTitle">قدم بزن در <span class="grad">استودیو</span></h2>
+      <p class="sec-sub">اتاق‌ها، سازها و لحظه‌هایی که ضبط می‌شوند.</p>
+      <div class="divider" aria-hidden="true"><i></i>♪<i></i></div>
+    </div>
+    <div class="gallery reveal d1" id="galleryGrid"></div>
+  </div>
+</section>
+
+<!-- ══════════════ ۱۰) نظرات ══════════════ -->
+<section id="voices" aria-labelledby="voiTitle">
+  <span class="staff-bg" aria-hidden="true"></span>
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Voices</span>
+      <h2 class="sec-title" id="voiTitle">از زبان <span class="grad">هنرجوها و هنرمندان</span></h2>
+      <p class="sec-sub">موسیقی، زبانی است که همه می‌فهمند؛ این‌ها روایتِ چند نفر از همین زبان است.</p>
+      <div class="divider" aria-hidden="true"><i></i>♪<i></i></div>
+    </div>
+    <div class="quotes">
+      <article class="quote spot reveal">
+        <span class="mark pf" aria-hidden="true">”</span>
+        <p>دموی ضبط‌شده با گوشی را فرستادم؛ سه هفته بعد قطعه با تنظیم کامل و مستر آماده‌ی انتشار تحویل گرفتم. برق از سرم پرید.</p>
+        <div class="q-person"><span class="q-ava" aria-hidden="true">ر</span><span><b>رضا کاویانی</b><small>خواننده و ترانه‌سرا</small></span></div>
+        <p class="stars" aria-label="امتیاز ۵ از ۵">★★★★★</p>
+      </article>
+      <article class="quote spot reveal d1">
+        <span class="mark pf" aria-hidden="true">”</span>
+        <p>شش ماه پیش حتی کوک کردن بلد نبودم؛ حالا قطعه‌ی خودم را در اتاق A ضبط کرده‌ام. تمرین‌ها کوتاه بود اما دقیق.</p>
+        <div class="q-person"><span class="q-ava" aria-hidden="true">س</span><span><b>سارا محمدی</b><small>هنرجوی پیانو</small></span></div>
+        <p class="stars" aria-label="امتیاز ۵ از ۵">★★★★★</p>
+      </article>
+      <article class="quote spot reveal d2">
+        <span class="mark pf" aria-hidden="true">”</span>
+        <p>مستر نهایی روی گوشی و ماشین و هدفون یک‌جور نفس می‌کشید. تست A/B سایت را جدی بگیرید؛ دقیقاً همان تفاوت را تحویل می‌دهند.</p>
+        <div class="q-person"><span class="q-ava" aria-hidden="true">م</span><span><b>مینا رستمی</b><small>آهنگساز مستقل</small></span></div>
+        <p class="stars" aria-label="امتیاز ۵ از ۵">★★★★★</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ ۱۱) سوالات پرتکرار ══════════════ -->
+<section id="faq" aria-labelledby="faqTitle">
+  <div class="wrap narrow">
+    <div class="sec-head reveal">
+      <span class="eyebrow">FAQ</span>
+      <h2 class="sec-title" id="faqTitle">سوال‌های <span class="grad">پرتکرار</span></h2>
+      <div class="divider" aria-hidden="true"><i></i>♪<i></i></div>
+    </div>
+    <div class="faq-list reveal d1" id="faqList">
+      <div class="faq"><button class="faq-q" aria-expanded="false">برای سفارش میکس چه فایل‌هایی لازم است؟<span aria-hidden="true">+</span></button><div class="faq-a"><p>استِم تک‌تک لاین‌ها با فرمت WAV ‎۲۴بیت، بدون هیچ افکتی روی مستر، به‌همراه یک رفرنس‌میکس (حتی زمزمه‌ی خودت) و ذکر BPM و گام قطعه. اگر چیزی کم باشد، خودمان راهنمایی‌ات می‌کنیم.</p></div></div>
+      <div class="faq"><button class="faq-q" aria-expanded="false">زمان تحویل پروژه چقدر است؟<span aria-hidden="true">+</span></button><div class="faq-a"><p>میکس تک‌آهنگ ۷ روز، میکس+مستر ۱۰ روز و تولید صفرتاصد بین ۳ تا ۶ هفته. برای انتشارهای فوری، سرویس اکسپرس با تحویل ۲۴ تا ۷۲ ساعته هم داریم.</p></div></div>
+      <div class="faq"><button class="faq-q" aria-expanded="false">اگر از نتیجه راضی نباشم چه؟<span aria-hidden="true">+</span></button><div class="faq-a"><p>هر پلن شامل راندهای بازبینی مشخص است و تا تأیید نهایی تو، فایل مستر واترمارک‌دار ارسال می‌شود. اگر در همان مرحله‌ی اول مسیر اشتباه تشخیص داده شود، بی‌قیدوشرط هزینه عودت داده می‌شود.</p></div></div>
+      <div class="faq"><button class="faq-q" aria-expanded="false">سفارش از شهرستان یا خارج از کشور ممکن است؟<span aria-hidden="true">+</span></button><div class="faq-a"><p>بله؛ بیش از نیمی از پروژه‌های ما کاملاً آنلاین انجام می‌شود: ارسال فایل، جلسه‌ی تصویری، بازبینی مرحله‌ای و تحویل نهایی — بدون نیاز به حضور.</p></div></div>
+      <div class="faq"><button class="faq-q" aria-expanded="false">کلاس‌ها حضوری‌اند یا آنلاین؟<span aria-hidden="true">+</span></button><div class="faq-a"><p>هر دو. کلاس حضوری در استودیو (تهران) و کلاس آنلاین زنده با کیفیت صدای استودیویی برگزار می‌شود؛ جلسه‌ی اول آشنایی در هر دو حالت رایگان است.</p></div></div>
+      <div class="faq"><button class="faq-q" aria-expanded="false">مالکیت اثر نهایی با کیست؟<span aria-hidden="true">+</span></button><div class="faq-a"><p>۱۰۰٪ با تو. تمام سورس‌ها، استم‌ها و سشن‌ها تحویل داده می‌شود و استودیو هیچ حقی روی اثر نگه نمی‌دارد؛ مگر با توافق جداگانه برای تهیه‌کنندگی.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ ۱۲) تماس ══════════════ -->
+<section id="contact" aria-labelledby="conTitle">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Contact</span>
+      <h2 class="sec-title" id="conTitle">بیا <span class="grad">شروع کنیم</span></h2>
+      <p class="sec-sub">فرم را پر کن؛ در کمتر از یک روز کاری با پیشنهاد مسیر و زمان جلسه پاسخ می‌دهیم.</p>
+      <div class="divider" aria-hidden="true"><i></i>♪<i></i></div>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-side reveal">
+        <h3>یک جلسه‌ی <span class="pf-i" style="color:var(--gold)">آشنایی</span> رایگان</h3>
+        <p>بیست دقیقه گفت‌وگو درباره‌ی هدف‌ها، سطح فعلی و سازی که می‌خواهی با آن شروع کنی — یا پروژه‌ای که می‌خواهی بسازی.</p>
+        <div class="c-item"><span class="ci" aria-hidden="true">✆</span><span><b>۰۲۱-۰۰۰۰۰۰۰۰</b><small>شنبه تا چهارشنبه، ۱۰ تا ۲۰</small></span></div>
+        <div class="c-item"><span class="ci" aria-hidden="true">✉</span><span><b>hello@ava-studio.example</b><small>پاسخ در کمتر از ۲۴ ساعت</small></span></div>
+        <div class="c-item"><span class="ci" aria-hidden="true">⌖</span><span><b>تهران، خیابان موسیقی، پلاک ۷</b><small>اتاق ضبط A و B</small></span></div>
+      </div>
+      <form class="form glass reveal d1" id="contactForm" novalidate>
+        <div class="two">
+          <div class="field">
+            <label for="nameI">نام و نام خانوادگی</label>
+            <input id="nameI" name="name" type="text" required placeholder="مثلاً نیلوفر احمدی" autocomplete="name" />
+          </div>
+          <div class="field">
+            <label for="mailI">ایمیل یا شماره تماس</label>
+            <input id="mailI" name="email" type="text" required placeholder="you@mail.com — ۰۹…" autocomplete="email" dir="ltr" />
+          </div>
+        </div>
+        <div class="field">
+          <label for="typeI">نوع درخواست</label>
+          <select id="typeI" name="type">
+            <option value="produce">تولید صفر تا صد موسیقی</option>
+            <option value="arrange">تنظیم اختصاصی</option>
+            <option value="mix">میکس حرفه‌ای</option>
+            <option value="master">مسترینگ انتشار</option>
+            <option value="learn">آموزش — ثبت‌نام در دوره</option>
+            <option value="studio">استودیو — اجاره اتاق ضبط</option>
+            <option value="other">موضوع دیگر</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="linkI">لینک دمو (اختیاری)</label>
+          <input id="linkI" name="demo" type="url" placeholder="لینک گوگل‌درایو، تلگرام، ساندکلاد…" dir="ltr" />
+        </div>
+        <div class="field">
+          <label for="msgI">توضیح پروژه</label>
+          <textarea id="msgI" name="message" required placeholder="سبک قطعه، حس موردنظر، ددلاین انتشار…"></textarea>
+        </div>
+        <button type="submit" class="btn btn-gold" style="width:100%">ارسال درخواست ♪</button>
+        <p class="form-note">با ارسال این فرم، با تماس تیم آوا موافقت می‌کنی.</p>
+        <p class="form-msg" id="formMsg" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ══════════════ فوتر ══════════════ -->
+<footer>
+  <div class="wrap">
+    <div class="f-grid">
+      <div class="f-about">
+        <a href="#hero" class="logo" aria-label="آوا">
+          <span class="logo-badge" aria-hidden="true">♪</span>
+          <span><span class="name">آوا</span><small class="pf">AVA STUDIO</small></span>
+        </a>
+        <p>آکادمی و استودیو موسیقی آوا؛ تولید، تنظیم، میکس و مسترینگ + آموزش تخصصی — با وسواس روی جزئیاتِ صدا.</p>
+        <div class="socials">
+          <a href="#" aria-label="اینستاگرام آوا" title="اینستاگرام">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          </a>
+          <a href="#" aria-label="یوتیوب آوا" title="یوتیوب">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="5"/><path d="M10 9.5l5 2.5-5 2.5z" fill="currentColor" stroke="none"/></svg>
+          </a>
+          <a href="#" aria-label="اسپاتیفای آوا" title="اسپاتیفای">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9.2"/><path d="M7.4 9.6c3-.8 6.2-.5 8.8.9M8 12.5c2.5-.6 5-.4 7.1.8M8.6 15.3c2-.5 4-.3 5.7.6"/></svg>
+          </a>
+        </div>
+      </div>
+      <nav class="f-col" aria-label="لینک‌های سریع">
+        <h4>استودیو</h4>
+        <a href="#works">تولیدات موسیقی</a>
+        <a href="#artists">سرویس هنرمندان</a>
+        <a href="#mix">دموی قبل و بعد میکس</a>
+        <a href="#contact">سفارش پروژه</a>
+      </nav>
+      <nav class="f-col" aria-label="آکادمی">
+        <h4>آکادمی</h4>
+        <a href="#learn">آموزش سازها</a>
+        <a href="#play">پیانو و درام‌پد</a>
+        <a href="#teachers">اساتید</a>
+        <a href="#road">مسیر یادگیری</a>
+      </nav>
+      <div class="f-col">
+        <h4>خبرنامه‌ی صدا</h4>
+        <p style="color:var(--muted); font-size:.86rem; margin-bottom:12px">ماهی یک ایمیل: تکنیک میکس، تمرین و تولید تازه.</p>
+        <form class="field" id="newsForm" style="gap:10px">
+          <label class="sr-only" for="newsI">ایمیل خبرنامه</label>
+          <input id="newsI" type="email" placeholder="ایمیل شما" dir="ltr" required />
+          <button class="btn btn-gold" type="submit">عضویت</button>
+        </form>
+      </div>
+    </div>
+    <p class="credits">موسیقی این صفحه: Kevin MacLeod ،Alexander Nakarada ،Scott Buckley و Jason Shaw — تحت لایسنس‌های CC-BY / Filmmusic Standard. سمپل پیانو: Salamander Grand (CC-BY 3.0). فهرست کامل در <span dir="ltr">assets/audio/CREDITS.md</span></p>
+    <div class="f-bottom">
+      <span>© <span id="yearNow">۱۴۰۴</span> استودیو موسیقی آوا — تمام حقوق محفوظ است.</span>
+      <span class="pf-i">Where sound takes shape.</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ══════════════ پلیر سراسری ══════════════ -->
+<div id="player" role="region" aria-label="پلیر تولیدات استودیو آوا">
+  <div class="p-cover" id="pCover" aria-hidden="true"></div>
+  <div class="p-meta"><b id="pTitle">فراخوان ماجراجویی</b><small id="pArtist">کوین مک‌لئود</small></div>
+  <div class="p-controls">
+    <button class="p-btn ghost" id="pPrev" aria-label="قطعه‌ی قبلی">⏮</button>
+    <button class="p-btn main" id="pPlay" aria-label="پخش یا توقف">▶</button>
+    <button class="p-btn ghost" id="pNext" aria-label="قطعه‌ی بعدی">⏭</button>
+  </div>
+  <div class="p-seek">
+    <span id="pCur">۰:۰۰</span>
+    <canvas id="pSeek" aria-hidden="true"></canvas>
+    <span id="pDur">۰:۰۰</span>
+  </div>
+  <canvas id="pViz" aria-hidden="true"></canvas>
+  <div class="p-vol">
+    <button class="p-btn ghost" id="pMute" aria-label="بی‌صدا">♪</button>
+    <input id="pVol" type="range" min="0" max="100" value="90" aria-label="بلندی صدا" />
+  </div>
+  <button class="p-btn ghost" id="pListBtn" aria-label="فهرست پخش" aria-expanded="false">☰</button>
+  <div class="playlist" id="playlist" hidden></div>
+</div>
+
+<!-- دکمه‌های شناور -->
+<div class="dock">
+  <button id="focusBtn" aria-label="حالت تمرکز: پخش صدای باران" title="حالت تمرکز (صدای باران)">☂</button>
+  <button id="toTop" aria-label="بازگشت به بالای صفحه" title="بالا">↑</button>
+</div>
+
+<div id="toast" role="status" aria-live="polite"></div>
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/engine.js"></script>
+<script src="assets/js/ui.js"></script>
+</body>
+</html>
