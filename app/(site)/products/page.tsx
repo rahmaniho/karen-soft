@@ -22,7 +22,7 @@ export default function ProductsPage() {
         title="نرم‌افزارهایی برای کار واقعی."
         description="محصول متناسب با کسب‌وکارتان را پیدا کنید؛ دموهای نرم‌افزارهای مدیریتی را امتحان کنید موضوعات کتابچه قانون را مرور کنید یا با مدرسه‌ی من، آموزش کلاس اول را در کنار خانواده تجربه کنید."
       />
-      <ContentSection title="دانلود اپلیکیشن اندروید"><HesabyarDownload /></ContentSection>
+      <ContentSection title="حساب‌یار؛ نسخهٔ اندروید و وب"><HesabyarDownload /></ContentSection>
       <ContentSection title="مدرسه‌ی من؛ محصول آموزشی با رویکرد اجتماعی"><Class1Community /></ContentSection>
       <ContentSection title="همه محصولات"><Catalog kind="products" /></ContentSection>
       <ContactCTA />
