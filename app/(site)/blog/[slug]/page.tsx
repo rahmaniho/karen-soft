@@ -47,8 +47,8 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           <span>{post.author}</span>
           <span aria-hidden> · </span>
           <time dateTime={post.date}>{publishedDate}</time>
-          <span aria-hidden> · </span>
           {post.modifiedDate ? <><span aria-hidden> · </span><span>به‌روزرسانی: <time dateTime={post.modifiedDate}>{new Date(`${post.modifiedDate}T12:00:00Z`).toLocaleDateString("fa-IR", { timeZone: "UTC" })}</time></span></> : null}
+          <span aria-hidden> · </span>
           <span>{post.readingMinutes.toLocaleString("fa-IR")} دقیقه مطالعه</span>
         </p>
       </PageHero>
