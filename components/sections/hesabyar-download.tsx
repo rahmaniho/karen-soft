@@ -31,7 +31,7 @@ export function HesabyarDownload() {
   return (
     <section id="hesabyar-download" className="ks-hesabyar" aria-labelledby="hesabyar-title">
       <div className="ks-hesabyar-intro">
-        <span className="ks-hesabyar-eyebrow"><Smartphone size={17} aria-hidden="true" /> اپلیکیشن اندروید کارن سافت</span>
+        <span className="ks-hesabyar-eyebrow"><Smartphone size={17} aria-hidden="true" /> اپلیکیشن اندروید و وب کارن سافت</span>
         <h2 id="hesabyar-title">حساب‌یار؛<br />حساب‌وکتاب، همیشه همراه شما.</h2>
         <p>از دخل‌وخرج روزانه تا صندوق فروش و حقوق کارکنان؛ ابزارهای مالی فارسی در یک برنامهٔ راست‌چین با تاریخ شمسی و حالت روشن و تاریک.</p>
         <p className="ks-hesabyar-new"><strong>تازه در نسخهٔ ۱٫۳:</strong> صندوق فروش با کسر خودکار موجودی و ثبت خودکار درآمد در دفتر مالی کسب‌وکار؛ بدون ورود دوبارهٔ اطلاعات.</p>
