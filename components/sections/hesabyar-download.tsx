@@ -1,13 +1,22 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { BookOpenCheck, Calculator, Download, Package, ShieldCheck, ShoppingCart, Smartphone, Users, Wallet, WifiOff } from "lucide-react";
+import { BookOpenCheck, Calculator, Download, Globe, KeyRound, Package, ShieldCheck, ShoppingCart, Smartphone, Users, Wallet, WifiOff } from "lucide-react";
 
 /** نسخهٔ آزمایشی ۱٫۳٫۰ حساب‌یار اندروید (بیلد تست) — هنگام انتشار نسخهٔ تازه این دو مقدار را هم به‌روز کنید. */
 export const HESABYAR_APK_URL = "https://github.com/rahmaniho/KarenYar/releases/download/android-test-v1.3.0-40718514579-1/hesabyar-1.3.0-test.apk";
 export const HESABYAR_VERSION = "۱٫۳٫۰";
 /** کد بازبینی SHA-256 فایل همین نسخه؛ هنگام به‌روزرسانی فایل، این مقدار را نیز عوض کنید. */
 export const HESABYAR_APK_SHA256 = "905ad9563d789ca13a34ee1caf8ca37bf95a74c2a3e4b4f5033ba899c2e6beb0";
+/** نسخهٔ تحت وب همان برنامه؛ همان داده‌ها روی مرورگر دستگاه و قابل نصب به‌صورت PWA. */
+export const HESABYAR_WEB_URL = "https://hesabyar.karen-soft.ir/";
+
+/** قیمت‌های لایسنس نسخهٔ حرفه‌ای؛ مبالغ به تومان و بدون جداکننده نگه داشته می‌شوند تا محاسبه/نمایش ساده بماند. */
+export const HESABYAR_PLANS = [
+  { id: "lifetime", title: "مادام‌العمر", price: 270_000, period: "پرداخت یک‌باره", note: "همهٔ امکانات نامحدود، خروجی PDF و پشتیبان‌گیری، بدون تمدید سالانه." },
+  { id: "yearly", title: "یک‌ساله", price: 130_000, period: "۱۲ ماه", note: "دسترسی حرفه‌ای برای یک سال؛ مناسب استفادهٔ سالانهٔ فروشگاه." },
+  { id: "half-year", title: "شش‌ماهه", price: 70_000, period: "۶ ماه", note: "کوتاه‌ترین دورهٔ حرفه‌ای برای شروع و آزمودن کامل امکانات." },
+] as const;
 
 const features = [
   { icon: ShoppingCart, title: "صندوق فروش", text: "کاتالوگ و جست‌وجوی نام یا بارکد، سبد فروش، تعداد اعشاری، قلم خدمات، تخفیف و مالیات، ثبت نقدی، کارت‌خوان، انتقال و نسیه با میان‌برهای صفحه‌کلید." },
@@ -30,10 +39,16 @@ export function HesabyarDownload() {
           <span><WifiOff size={15} aria-hidden="true" /> قابل استفاده آفلاین</span>
           <span><ShieldCheck size={15} aria-hidden="true" /> ذخیرهٔ داده‌ها روی دستگاه و قفل با پین</span>
         </div>
-        <a className="ks-hesabyar-download" href={HESABYAR_APK_URL}>
-          <Download size={21} aria-hidden="true" /> دانلود مستقیم نسخهٔ اندروید
-        </a>
+        <div className="ks-hesabyar-actions">
+          <a className="ks-hesabyar-download" href={HESABYAR_APK_URL}>
+            <Download size={21} aria-hidden="true" /> دانلود مستقیم نسخهٔ اندروید
+          </a>
+          <a className="ks-hesabyar-web" href={HESABYAR_WEB_URL}>
+            <Globe size={20} aria-hidden="true" /> ورود به نسخهٔ وب
+          </a>
+        </div>
         <p className="ks-hesabyar-file">نسخهٔ <bdi>{HESABYAR_VERSION}</bdi> · فایل APK · حدود ۷٫۳ مگابایت · اندروید ۷ و بالاتر</p>
+        <p className="ks-hesabyar-web-note">نسخهٔ وب همان برنامه در مرورگر است: بدون نصب، قابل افزودن به صفحهٔ اصلی (PWA) و آفلاین؛ داده‌ها روی همان دستگاه می‌مانند. کلید لایسنس در بخش تنظیمات برنامه فعال می‌شود.</p>
         <Link href="/blog/hesabyar-personal-budget" className="ks-hesabyar-guide">راهنمای مدیریت درآمد و هزینه با حساب‌یار ←</Link>
         <Link href="/blog/hesabyar-store-inventory" className="ks-hesabyar-guide">راهنمای صندوق فروش، موجودی و فاکتور ←</Link>
         <p className="ks-hesabyar-license">شروع با نسخهٔ رایگان: ماشین‌حساب کامل، ۱ کالا و ۱۰ تراکنش. امکانات نامحدود، خروجی PDF و پشتیبان‌گیری به فعال‌سازی نسخهٔ حرفه‌ای نیاز دارند.</p>
@@ -63,6 +78,24 @@ export function HesabyarDownload() {
           <p>روش‌های پرداخت در صندوق (نقدی، کارت‌خوان، انتقال و نسیه) ثبت حسابداری‌اند؛ برنامه به بانک یا پایانهٔ پرداخت متصل نمی‌شود و درآمد فروش فقط از طریق فاکتور اصلاح یا ابطال می‌شود.</p>
           <p className="ks-hesabyar-sha">کد بازبینی فایل (SHA-256): <code dir="ltr">{HESABYAR_APK_SHA256}</code></p>
         </details>
+      </div>
+      <div className="ks-hesabyar-pricing">
+        <div className="ks-hesabyar-pricing-head">
+          <span><KeyRound size={17} aria-hidden="true" /> لایسنس نسخهٔ حرفه‌ای</span>
+          <h3>یک‌بار بخرید، آفلاین فعال کنید.</h3>
+          <p>کلید لایسنس به‌صورت آفلاین در تنظیمات برنامه وارد می‌شود و به اینترنت وابسته نیست. دوره‌ها بدون تمدید خودکارند و قیمت‌ها به تومان است.</p>
+        </div>
+        <ul className="ks-hesabyar-plans">
+          {HESABYAR_PLANS.map((plan) => (
+            <li key={plan.id} className={plan.id === "lifetime" ? "is-featured" : undefined}>
+              <span className="ks-plan-title">{plan.title}{plan.id === "lifetime" ? <em>پیشنهاد ما</em> : null}</span>
+              <strong className="ks-plan-price"><bdi>{plan.price.toLocaleString("fa-IR")}</bdi> <small>تومان</small></strong>
+              <span className="ks-plan-period">{plan.period}</span>
+              <p>{plan.note}</p>
+            </li>
+          ))}
+        </ul>
+        <p className="ks-hesabyar-pricing-foot">لایسنس برای هر دو نسخهٔ اندروید و وب همان برنامه معتبر است. برای خرید یا تمدید، از <Link href="/contact">صفحهٔ تماس</Link> سفارش خود را ثبت کنید.</p>
       </div>
     </section>
   );
