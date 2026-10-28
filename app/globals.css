@@ -1297,7 +1297,10 @@ html[data-headings="sans"] {
 .ks-class1-image { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; border: 1px solid #e6dfcc; border-radius: 14px; margin-bottom: 18px; }
 .ks-class1-guide { display: inline-block; margin-top: 16px; color: #315748; text-decoration: underline; font-size: 12px; line-height: 2; }
 .ks-class1-guide:focus-visible { outline: 3px solid #96662b; outline-offset: 4px; }
-.ks-hesabyar-guide { display: inline-block; margin: 8px 0; color: #83e9b1; font-size: 12px; line-height: 2; text-decoration: underline; }
+.ks-hesabyar-intro > .ks-hesabyar-new { margin: 16px 0 0; padding: 14px 16px; border: 1px solid #2f5747; border-inline-start: 3px solid #83e9b1; border-radius: 10px; background: #10262a; color: #cfe6da; font-size: 12px; line-height: 2; }
+.ks-hesabyar-intro > .ks-hesabyar-new strong { color: #9cf3c3; }
+.ks-hesabyar-guide { display: block; width: fit-content; margin: 8px 0; color: #83e9b1; font-size: 12px; line-height: 2; text-decoration: underline; }
+.ks-hesabyar-guide + .ks-hesabyar-guide { margin-top: 0; }
 
 .lb-gallery { padding-top: 35px; padding-bottom: 50px; }
 .lb-gallery h2 { color: #254a3e; font-size: clamp(24px, 3vw, 36px); font-weight: 800; }
@@ -1368,3 +1371,6 @@ html[data-headings="sans"] {
   0%, 100% { transform: translate(470px, 0); }
   50% { transform: translate(84px, 0); }
 }
+
+.ks-hesabyar-install .ks-hesabyar-sha { overflow-wrap: anywhere; }
+.ks-hesabyar-install .ks-hesabyar-sha code { color: #b8e1cb; font-size: 10px; direction: ltr; unicode-bidi: embed; }
