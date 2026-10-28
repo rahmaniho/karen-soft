@@ -1251,6 +1251,10 @@ html[data-headings="sans"] {
 .ks-hesabyar-badges span { display: inline-flex; align-items: center; gap: 6px; color: #b8e1cb; font-size: 11px; }
 .ks-hesabyar-download { display: inline-flex; justify-content: center; align-items: center; gap: 10px; padding: 16px 22px; border-radius: 10px; background: #83e9b1; color: #092119; font-weight: 800; font-size: 14px; text-decoration: none; transition: background .2s; }
 .ks-hesabyar-download:hover { background: #adf6cd; }
+.ks-hesabyar-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+.ks-hesabyar-web { display: inline-flex; justify-content: center; align-items: center; gap: 10px; padding: 15px 20px; border: 1px solid #83e9b1; border-radius: 10px; background: transparent; color: #c8f5dc; font-weight: 800; font-size: 13px; text-decoration: none; transition: background .2s, color .2s; }
+.ks-hesabyar-web:hover { background: #163a33; color: #eafff3; }
+.ks-hesabyar-intro > .ks-hesabyar-web-note { margin: 8px 0 0; color: #9fb8ae; font-size: 11px; line-height: 2; }
 .ks-hesabyar a:focus-visible, .ks-hesabyar summary:focus-visible { outline: 3px solid #83e9b1; outline-offset: 5px; }
 .ks-hesabyar-intro > .ks-hesabyar-file { margin: 12px 0; font-size: 11px; }
 .ks-hesabyar-intro > .ks-hesabyar-license { font-size: 11px; color: #a6bcb2; }
@@ -1262,9 +1266,25 @@ html[data-headings="sans"] {
 .ks-hesabyar-install { margin-top: 18px; border-top: 1px solid #294139; padding-top: 16px; }
 .ks-hesabyar-install summary { cursor: pointer; color: #d6eddf; font-weight: 700; }
 .ks-hesabyar-install ol { list-style: decimal; padding-inline-start: 22px; margin: 14px 0; }
-@media (max-width: 900px) { .ks-hesabyar { grid-template-columns: minmax(0, 1fr); gap: 24px; } }
-@media (max-width: 480px) { .ks-hesabyar { padding: 22px 16px; } .ks-hesabyar-features { grid-template-columns: minmax(0, 1fr); } .ks-hesabyar-download { width: 100%; padding-inline: 10px; font-size: 12px; } }
+@media (max-width: 900px) { .ks-hesabyar { grid-template-columns: minmax(0, 1fr); gap: 24px; } .ks-hesabyar-plans { grid-template-columns: minmax(0, 1fr); } .ks-hesabyar-web { flex: 1 1 100%; } }
+@media (max-width: 480px) { .ks-hesabyar { padding: 22px 16px; } .ks-hesabyar-features { grid-template-columns: minmax(0, 1fr); } .ks-hesabyar-download, .ks-hesabyar-web { width: 100%; padding-inline: 10px; font-size: 12px; } }
 .ks-hesabyar-details { min-width: 0; }
+.ks-hesabyar-pricing { grid-column: 1 / -1; padding-top: 26px; border-top: 1px solid #294139; }
+.ks-hesabyar-pricing-head { display: grid; gap: 8px; max-width: 720px; }
+.ks-hesabyar-pricing-head > span { display: inline-flex; align-items: center; gap: 8px; color: #83e9b1; font-size: 12px; }
+.ks-hesabyar-pricing-head h3 { margin: 0; color: #f2fff7; font-size: clamp(19px, 2.2vw, 25px); font-weight: 800; line-height: 1.7; }
+.ks-hesabyar-pricing-head p { color: #b8ccc4; font-size: 12px; line-height: 2; }
+.ks-hesabyar-plans { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin: 18px 0 0; padding: 0; list-style: none; }
+.ks-hesabyar-plans li { display: grid; gap: 6px; align-content: start; padding: 18px; border: 1px solid #294139; border-radius: 12px; background: #11282a; }
+.ks-hesabyar-plans li.is-featured { border-color: #83e9b1; background: #12312f; }
+.ks-plan-title { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; color: #d6eddf; font-size: 13px; font-weight: 750; }
+.ks-plan-title em { padding: 2px 8px; border-radius: 999px; background: #83e9b1; color: #092119; font-size: 9px; font-style: normal; font-weight: 800; }
+.ks-plan-price { color: #f2fff7; font-size: clamp(20px, 2.4vw, 27px); font-weight: 850; line-height: 1.5; }
+.ks-plan-price small { color: #a6bcb2; font-size: 11px; font-weight: 600; }
+.ks-plan-period { color: #83e9b1; font-size: 11px; }
+.ks-hesabyar-plans p { color: #b8ccc4; font-size: 11px; line-height: 2; }
+.ks-hesabyar-pricing-foot { margin-top: 14px; color: #9fb8ae; font-size: 11px; line-height: 2; }
+.ks-hesabyar-pricing-foot a { color: #83e9b1; text-decoration: underline; }
 .ks-hesabyar-image { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; border: 1px solid #29483d; border-radius: 12px; margin-bottom: 16px; }
 
 /* Community initiative: intentionally distinct from commercial product offers. */
