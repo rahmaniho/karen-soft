@@ -1,4 +1,5 @@
 import { LAWBOOK_INFO } from "./lawbook-info";
+import { HESABYAR_PRODUCT } from "./hesabyar";
 export type ProductStatus = "active" | "beta" | "development";
 
 export interface ProductModule {
@@ -169,6 +170,7 @@ export const PRODUCTS: Product[] = [
     logo: "/images/lawbook-logo.svg",
     image: "/images/app-icon-law-book.png",
   },
+  HESABYAR_PRODUCT,
   {
     slug: "taxi-management",
     demoSlug: "taxi-management",

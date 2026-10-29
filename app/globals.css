@@ -1319,6 +1319,7 @@ html[data-headings="sans"] {
 .ks-class1-guide:focus-visible { outline: 3px solid #96662b; outline-offset: 4px; }
 .ks-hesabyar-intro > .ks-hesabyar-new { margin: 16px 0 0; padding: 14px 16px; border: 1px solid #2f5747; border-inline-start: 3px solid #83e9b1; border-radius: 10px; background: #10262a; color: #cfe6da; font-size: 12px; line-height: 2; }
 .ks-hesabyar-intro > .ks-hesabyar-new strong { color: #9cf3c3; }
+.ks-hesabyar-product-link { display: block; width: fit-content; margin: 10px 0 4px; color: #eafff3; font-size: 12px; font-weight: 800; line-height: 2; text-decoration: underline; }
 .ks-hesabyar-guide { display: block; width: fit-content; margin: 8px 0; color: #83e9b1; font-size: 12px; line-height: 2; text-decoration: underline; }
 .ks-hesabyar-guide + .ks-hesabyar-guide { margin-top: 0; }
 
