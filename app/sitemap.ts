@@ -24,7 +24,14 @@ function entry(
   } satisfies MetadataRoute.Sitemap[number];
 }
 
-const newestPost = [...BLOG_POSTS].sort((a, b) => b.date.localeCompare(a.date))[0];
+/**
+ * آخرین تغییر مجله = جدیدترین تاریخ انتشار یا به‌روزرسانی هر مقاله.
+ * اگر فقط `date` را مبنا بگیریم، مقالاتی که بعداً ویرایش می‌شوند lastmod کهنه اعلام می‌کنند.
+ */
+const latestPostUpdate = BLOG_POSTS.reduce<string | undefined>((latest, post) => {
+  const candidate = post.modifiedDate && post.modifiedDate > post.date ? post.modifiedDate : post.date;
+  return !latest || candidate > latest ? candidate : latest;
+}, undefined);
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
@@ -51,7 +58,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     entry("/demo/industries", 0.68, "monthly"),
     entry("/portfolio", 0.7, "monthly"),
     ...CASE_STUDIES.map((study) => entry(`/portfolio/${study.slug}`, 0.68, "monthly")),
-    entry("/blog", 0.72, "weekly", newestPost?.date),
+    entry("/blog", 0.72, "weekly", latestPostUpdate),
     ...BLOG_POSTS.map((post) => entry(`/blog/${post.slug}`, 0.66, "monthly", post.modifiedDate ?? post.date)),
     entry("/about", 0.58, "monthly"),
     entry("/contact", 0.62, "monthly"),

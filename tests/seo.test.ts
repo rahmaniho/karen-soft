@@ -6,6 +6,12 @@ import { SITE } from "../lib/constants";
 import { CHAP } from "../lib/print/site";
 import { chapBusinessSchema } from "../lib/schema";
 import { chapPageMeta, pageMeta } from "../lib/seo";
+import { BLOG_POSTS } from "../lib/blog";
+import { CASE_STUDIES } from "../lib/portfolio";
+import { DEMO_PRODUCTS, PRODUCTS } from "../lib/products";
+import { SOLUTIONS } from "../lib/solutions";
+import { PRINT_PRODUCTS } from "../lib/print/data/products";
+import { PRINT_SERVICES } from "../lib/print/data/services";
 
 const pathOf = (url: string) => new URL(url).pathname;
 
@@ -83,6 +89,43 @@ describe("technical SEO and GEO foundations", () => {
     expect(paths).not.toContain("/roadmap");
     expect(paths).not.toContain("/changelog");
     expect(entries.every((entry) => entry.lastModified === undefined || !Number.isNaN(new Date(entry.lastModified).getTime()))).toBe(true);
+  });
+
+  it("keeps the blog hub lastmod equal to the newest post update, not just the newest publication", () => {
+    const expected = BLOG_POSTS.map((post) => post.modifiedDate ?? post.date).sort().at(-1);
+    const hub = sitemap().find((entry) => pathOf(entry.url) === "/blog");
+    expect(hub?.lastModified).toEqual(new Date(`${expected}T00:00:00.000Z`));
+    for (const post of BLOG_POSTS) {
+      const entry = sitemap().find((item) => pathOf(item.url) === `/blog/${post.slug}`);
+      expect(entry?.lastModified).toEqual(new Date(`${post.modifiedDate ?? post.date}T00:00:00.000Z`));
+    }
+  });
+
+  it("maps every sitemap URL to a route and to published content or a known slug", () => {
+    const paths = sitemap().map((entry) => pathOf(entry.url));
+    const dynamic: Record<string, string[]> = {
+      "/print/services/": PRINT_SERVICES.map((service) => `/print/services/${service.slug}`),
+      "/print/products/": PRINT_PRODUCTS.map((product) => `/print/products/${product.slug}`),
+      "/products/": PRODUCTS.map((product) => `/products/${product.slug}`),
+      "/solutions/": SOLUTIONS.map((solution) => `/solutions/${solution.slug}`),
+      "/demo/": DEMO_PRODUCTS.map((product) => `/demo/${product.demoSlug}`),
+      "/portfolio/": CASE_STUDIES.map((study) => `/portfolio/${study.slug}`),
+      "/blog/": BLOG_POSTS.map((post) => `/blog/${post.slug}`),
+    };
+    const staticPaths = [
+      "/", "/print", "/print/services", "/print/portfolio", "/print/about", "/print/faq", "/print/contact",
+      "/services", "/products", "/solutions", "/demo", "/demo/industries", "/portfolio", "/blog",
+      "/about", "/contact", "/download-law-software", "/docs", "/privacy", "/terms",
+    ];
+
+    for (const path of paths) {
+      const known =
+        staticPaths.includes(path) ||
+        Object.entries(dynamic).some(([prefix, slugs]) => path.startsWith(prefix) && slugs.includes(path));
+      expect(known, `unmapped sitemap URL: ${path}`).toBe(true);
+    }
+    // همهٔ مسیرهای شناخته‌شده هم در نقشه آمده‌اند (بدون صفحهٔ noindex و فرم سفارش).
+    expect(paths.length).toBe(staticPaths.length + Object.values(dynamic).reduce((total, slugs) => total + slugs.length, 0));
   });
 
   it("points robots and answer engines to the canonical sitemap", () => {
