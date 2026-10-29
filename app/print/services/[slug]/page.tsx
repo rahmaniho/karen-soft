@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const service = PRINT_SERVICE_BY_SLUG[slug];
   if (!service) notFound();
   return chapPageMeta({
-    title: `${service.title} | ${CHAP.name}`,
+    title: `${service.title} در قزوین | ${CHAP.name}`,
     description: `${service.title} در کارن چاپِ الوند، قزوین؛ ${service.short}. امکان ارسال سفارش به سراسر ایران.`,
     path: `/print/services/${slug}`,
     images: [service.image],

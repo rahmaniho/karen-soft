@@ -24,3 +24,11 @@ jobs:
       - run: npm test
       - run: npm run build
       - run: npm run typecheck
+      - name: SEO audit on the built site
+        run: |
+          npm run start -- -p 3100 > /tmp/next-start.log 2>&1 &
+          for attempt in $(seq 1 40); do
+            if curl -sf http://127.0.0.1:3100/ > /dev/null; then break; fi
+            sleep 1
+          done
+          node scripts/seo-audit.ts --base http://127.0.0.1:3100

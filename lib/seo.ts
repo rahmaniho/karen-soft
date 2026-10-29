@@ -1,96 +1,42 @@
 import type { Metadata } from "next";
 import { SITE } from "./constants";
+import { buildMetadata, inspectMetadata, type SeoMetaInput } from "./seo-kit/index.ts";
 
-export interface PageMetaInput {
-  title: string;
-  description: string;
-  path?: string;
-  images?: string[];
-  /** Defaults to the primary site brand. Use for distinct sub-brands such as Karen Chap. */
-  brand?: string;
-  /** Used when a page has no dedicated social preview image. */
-  defaultImage?: string;
-  noIndex?: boolean;
-  openGraphType?: "website" | "article";
-  publishedTime?: string;
-  modifiedTime?: string;
-  authors?: string[];
-  section?: string;
-  tags?: string[];
+export type PageMetaInput = SeoMetaInput;
+
+/**
+ * متادیتای استاندارد همهٔ صفحه‌های عمومی.
+ * منطق ساخت در `lib/seo-kit` است تا نقشهٔ سایت، داده‌ساخت‌یافته و گزارش سئو نیز از همان قاعده پیروی کنند.
+ */
+export interface PageMetaOptions {
+  /** سقف طول عنوان مرورگر؛ برای تیترهای بلند مجله استفاده می‌شود. */
+  maxTitle?: number;
 }
 
-function absoluteUrl(value: string): string {
-  return new URL(value, `${SITE.url}/`).toString();
+export function pageMeta(
+  { brand = SITE.name, defaultImage = "/images/logo-karensoft.png", ...input }: PageMetaInput,
+  options: PageMetaOptions = {},
+): Metadata {
+  return buildMetadata(
+    { ...input, brand },
+    { baseUrl: SITE.url, brand, defaultImage, maxTitle: options.maxTitle },
+  ) as Metadata;
 }
 
-/** Centralized, canonical metadata for all public page types. */
-export function pageMeta({
-  title,
-  description,
-  path = "/",
-  images,
-  brand = SITE.name,
-  defaultImage = "/images/logo-karensoft.png",
-  noIndex = false,
-  openGraphType = "website",
-  publishedTime,
-  modifiedTime,
-  authors,
-  section,
-  tags,
-}: PageMetaInput): Metadata {
-  const pageTitle = title.includes(brand) ? title : `${title} | ${brand}`;
-  const canonical = absoluteUrl(path);
-  const socialImages = (images?.length ? images : [defaultImage]).map((image) => ({
-    url: absoluteUrl(image),
-    alt: pageTitle,
-  }));
-
-  const openGraph = openGraphType === "article"
-    ? {
-        type: "article" as const,
-        locale: "fa_IR",
-        siteName: brand,
-        title: pageTitle,
-        description,
-        url: canonical,
-        images: socialImages,
-        ...(publishedTime ? { publishedTime } : {}),
-        ...(modifiedTime ? { modifiedTime } : {}),
-        ...(authors?.length ? { authors } : {}),
-        ...(section ? { section } : {}),
-        ...(tags?.length ? { tags } : {}),
-      }
-    : {
-        type: "website" as const,
-        locale: "fa_IR",
-        siteName: brand,
-        title: pageTitle,
-        description,
-        url: canonical,
-        images: socialImages,
-      };
-
-  return {
-    title: { absolute: pageTitle },
-    description,
-    ...(noIndex ? {} : { alternates: { canonical } }),
-    robots: noIndex ? { index: false, follow: true } : { index: true, follow: true },
-    openGraph,
-    twitter: {
-      card: "summary_large_image",
-      title: pageTitle,
-      description,
-      images: socialImages.map((image) => image.url),
-    },
-  };
-}
-
-/** Metadata defaults that keep Karen Chap distinct while connecting it to Karen Soft. */
+/** متادیتای کارن چاپ؛ برند مستقل با تصویر پیش‌فرض خودش. */
 export function chapPageMeta(input: Omit<PageMetaInput, "brand" | "defaultImage">): Metadata {
-  return pageMeta({
-    ...input,
-    brand: "کارن چاپ",
-    defaultImage: "/images/print/logo-chap.png",
-  });
+  return buildMetadata(
+    { ...input, brand: "کارن چاپ" },
+    { baseUrl: SITE.url, brand: "کارن چاپ", defaultImage: "/images/print/logo-chap.png" },
+  ) as Metadata;
+}
+
+/** بازرسی متادیتای یک صفحه برای استفاده در تست‌ها و گزارش سئو. */
+export function auditPageMeta(input: PageMetaInput): string[] {
+  const brand = input.brand ?? SITE.name;
+  const meta = buildMetadata(
+    { ...input, brand },
+    { baseUrl: SITE.url, brand, defaultImage: "/images/logo-karensoft.png" },
+  );
+  return inspectMetadata(meta);
 }

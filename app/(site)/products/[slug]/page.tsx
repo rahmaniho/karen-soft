@@ -11,7 +11,11 @@ import { FAQS } from "@/lib/constants";
 import { JsonLd } from "@/components/ui/json-ld";
 import { LawBookProductPage, LAWBOOK_FAQS } from "@/components/site/law-book-product-page";
 
-export const generateStaticParams = () => PRODUCTS.map((product) => ({ slug: product.slug }));
+/** محصولات با صفحهٔ اختصاصی، مسیر ایستای خودشان را دارند و این‌جا ساخته نمی‌شوند. */
+const DEDICATED_PAGES = new Set(["hesabyar"]);
+
+export const generateStaticParams = () =>
+  PRODUCTS.filter((product) => !DEDICATED_PAGES.has(product.slug)).map((product) => ({ slug: product.slug }));
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;

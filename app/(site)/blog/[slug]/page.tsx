@@ -17,7 +17,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   if (!post) notFound();
 
   return pageMeta({
-    title: post.title,
+    title: post.metaTitle ?? post.title,
     description: post.excerpt,
     path: `/blog/${post.slug}`,
     images: [post.cover],
@@ -27,7 +27,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     authors: [post.author],
     section: post.category,
     tags: post.tags,
-  });
+  }, { maxTitle: 65 });
 }
 
 export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {

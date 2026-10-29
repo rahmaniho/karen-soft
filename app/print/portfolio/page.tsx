@@ -9,7 +9,7 @@ import { JsonLd } from "@/components/ui/json-ld";
 import { breadcrumbSchema, imageGallerySchema } from "@/lib/schema";
 
 export const metadata = chapPageMeta({
-  title: `نمونه‌کارها | ${CHAP.name}`,
+  title: `نمونه‌کارهای چاپ، مهر و صحافی در قزوین | ${CHAP.name}`,
   description: "گزیده‌ای از پروژه‌های چاپ، مهر، صحافی و هدایای تبلیغاتی کارن چاپ در قزوین؛ با امکان بزرگ‌نمایی هر اثر.",
   path: "/print/portfolio",
   images: [PRINT_WORKS[0]?.image ?? "/images/print/house.jpg"],

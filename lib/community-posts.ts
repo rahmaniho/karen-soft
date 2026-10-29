@@ -3,7 +3,7 @@ import type { BlogPost } from "./blog";
 /** Editorial guides, separate from the preserved legacy archive. */
 export const COMMUNITY_POSTS: BlogPost[] = [
   {
-    slug: "business-card-print-guide", title: "راهنمای چاپ کارت ویزیت؛ از انتخاب کاغذ تا آماده‌سازی فایل", category: "کارن چاپ",
+    slug: "business-card-print-guide", title: "راهنمای چاپ کارت ویزیت؛ از کاغذ تا فایل آماده", category: "کارن چاپ",
     excerpt: "برای سفارش کارت ویزیت چه چیزهایی را مشخص کنیم؟ راهنمای انتخاب جنس، خوانایی، حاشیه امن و بررسی فایل پیش از چاپ در کارن چاپ.",
     cover: "/images/print/cards.jpg", tags: ["چاپ کارت ویزیت", "کارن چاپ", "طراحی چاپ"],
     relatedLinks: [{ label: "مشخصات و سفارش کارت ویزیت", href: "/print/products/bizcard" }, { label: "راهنمای آماده‌سازی تراکت", href: "/blog/tract-print-checklist" }],
@@ -39,7 +39,7 @@ export const COMMUNITY_POSTS: BlogPost[] = [
     ],
   },
   {
-    slug: "class1-learning-games", title: "بازی‌های آموزشی کلاس اول؛ از شمارش تا کشف طبیعت در مدرسه‌ی من", category: "مدرسه‌ی من",
+    slug: "class1-learning-games", title: "بازی‌های آموزشی کلاس اول؛ از شمارش تا کشف طبیعت", category: "مدرسه‌ی من",
     excerpt: "چهار بازی مدرسه‌ی من را بشناسید و ببینید چگونه والدین می‌توانند تمرین شمارش، حروف، الگوها و مشاهده طبیعت را به فعالیت روزمره پیوند دهند.",
     cover: "/images/blog/class1-games.jpg", tags: ["بازی آموزشی", "کلاس اول دبستان", "یادگیری تعاملی"],
     relatedLinks: [{ label: "شروع بازی در مدرسه‌ی من", href: "http://class1.karen-soft.ir/" }, { label: "راهنمای همراهی والدین", href: "/blog/class1-learning-at-home" }],
@@ -51,10 +51,10 @@ export const COMMUNITY_POSTS: BlogPost[] = [
     ],
   },
   {
-    slug: "hesabyar-personal-budget", title: "مدیریت درآمد و هزینه با حساب‌یار؛ راهنمای بودجه‌بندی شخصی", category: "حساب‌یار",
+    slug: "hesabyar-personal-budget", title: "مدیریت درآمد و هزینه با حساب‌یار؛ بودجه‌بندی شخصی", category: "حساب‌یار",
     excerpt: "با ثبت تراکنش، دسته‌بندی هزینه‌ها و بودجه ماهانه در حساب‌یار، تصویری روشن‌تر از دخل‌وخرج و اقساط خود بسازید و تفاوت دفتر شخصی با دفتر کسب‌وکار را بشناسید.",
     cover: "/images/blog/hesabyar-budget.jpg", tags: ["حساب‌یار", "بودجه‌بندی", "مدیریت هزینه"],
-    relatedLinks: [{ label: "معرفی، دانلود اندروید و نسخهٔ وب حساب‌یار", href: "/#hesabyar-download" }, { label: "راهنمای صندوق فروش، موجودی و فاکتور", href: "/blog/hesabyar-store-inventory" }],
+    relatedLinks: [{ label: "صفحهٔ حساب‌یار: نسخهٔ اندروید و وب و قیمت لایسنس", href: "/products/hesabyar" }, { label: "دانلود مستقیم نسخهٔ اندروید", href: "/#hesabyar-download" }, { label: "راهنمای صندوق فروش، موجودی و فاکتور", href: "/blog/hesabyar-store-inventory" }],
     modifiedDate: "2026-10-28",
     sections: [
       { heading: "اول ثبت منظم، بعد تصمیم مالی", paragraphs: ["برای فهمیدن وضعیت مالی، لازم نیست از روز اول دسته‌بندی پیچیده‌ای بسازید. ثبت منظم درآمد و هزینه با چند گروه روشن، معمولاً نقطه شروع عملی‌تری است. کرایه، خوراک، خرید خانه و هزینه‌های متفرقه را طوری نام‌گذاری کنید که ماه بعد نیز همان معنا را داشته باشند.", "بخش شخصی حساب‌یار ثبت درآمد و هزینه، دسته‌بندی سفارشی و فیلتر ماه شمسی را ارائه می‌کند. هدف از این ثبت، ساختن یک تصویر قابل بررسی است؛ خود نرم‌افزار به‌تنهایی باعث پس‌انداز یا کاهش بدهی نمی‌شود. نتیجه به کامل بودن داده و تصمیم‌های کاربر وابسته است."] },
@@ -65,10 +65,10 @@ export const COMMUNITY_POSTS: BlogPost[] = [
     ],
   },
   {
-    slug: "hesabyar-store-inventory", title: "صندوق فروش و مدیریت موجودی با حساب‌یار؛ راهنمای فروشگاه کوچک", category: "حساب‌یار",
+    slug: "hesabyar-store-inventory", title: "صندوق فروش و انبار با حساب‌یار؛ راهنمای فروشگاه کوچک", category: "حساب‌یار",
     excerpt: "برای شروع حسابداری فروشگاه با حساب‌یار، کالاها را منظم ثبت کنید، صندوق فروش و فاکتور را کنترل کنید و گزارش سود را با شناخت محدودیت‌های آن بخوانید.",
     cover: "/images/hesabyar/hesabyar-android.jpg", tags: ["مدیریت موجودی", "فاکتور فروش", "صندوق فروش", "حساب‌یار فروشگاهی"],
-    relatedLinks: [{ label: "دریافت نسخهٔ ۱٫۳ اندروید و نسخهٔ وب حساب‌یار", href: "/#hesabyar-download" }, { label: "راهنمای بودجه و دفتر مالی شخصی", href: "/blog/hesabyar-personal-budget" }],
+    relatedLinks: [{ label: "صفحهٔ حساب‌یار: نسخهٔ اندروید و وب و قیمت لایسنس", href: "/products/hesabyar" }, { label: "دانلود مستقیم نسخهٔ اندروید", href: "/#hesabyar-download" }, { label: "راهنمای بودجه و دفتر مالی شخصی", href: "/blog/hesabyar-personal-budget" }],
     modifiedDate: "2026-10-28",
     sections: [
       { heading: "ثبت دقیق کالا، پایه گزارش قابل اعتماد", paragraphs: ["برای یک فروشگاه کوچک، تفاوت نام و واحد کالا می‌تواند منشأ خطا شود. پیش از ورود اطلاعات، برای نام، بارکد، دسته و واحد قاعده مشخصی تعیین کنید. بسته و عدد را به‌جای هم استفاده نکنید و موجودی اولیه را با شمارش واقعی تطبیق دهید.", "حساب‌یار امکان ثبت قیمت خرید و فروش، موجودی و واحد را دارد. در محاسبه قیمت تمام‌شده، هزینه‌هایی مانند حمل و سربار هم قابل لحاظ شدن‌اند. اگر این داده‌ها ناقص باشند، سود نمایش‌داده‌شده نیز تصویری کامل از واقعیت نخواهد بود."] },
