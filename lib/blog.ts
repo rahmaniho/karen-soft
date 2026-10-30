@@ -32,6 +32,7 @@ const AUTHOR = "حسین رحمانی";
 const EDITORIAL_POSTS: BlogPost[] = [
   {
     slug: "office-automation",
+    relatedLinks: [{ label: "خدمات اتوماسیون کسب‌وکار", href: "/services#automation" }, { label: "نرم‌افزارهای مدیریتی کارن سافت", href: "/products" }],
     title: "اتوماسیون اداری؛ نقطه شروع دیجیتالی‌شدن کسب‌وکار",
     excerpt: "چگونه با حذف کارهای تکراری، تیم کوچک شما بازدهی یک تیم بزرگ را پیدا می‌کند.",
     category: "اتوماسیون",
@@ -75,6 +76,7 @@ const EDITORIAL_POSTS: BlogPost[] = [
   },
   {
     slug: "direct-to-cell",
+    relatedLinks: [{ label: "خدمات امنیت و زیرساخت", href: "/services#security" }, { label: "محصول کارن نت", href: "/products/karen-net" }],
     title: "اینترنت ماهواره‌ای مستقیم به موبایل؛ فرصت یا تهدید",
     metaTitle: "دایرکت-تو-سل؛ اینترنت ماهواره‌ای روی موبایل",
     excerpt: "فناوری Direct-to-Cell یعنی اتصال گوشی معمولی به ماهواره؛ چه چیزی تغییر می‌کند و چه تأثیری بر کسب‌وکارهای آنلاین و اینترنت ایران دارد.",
@@ -112,6 +114,7 @@ const EDITORIAL_POSTS: BlogPost[] = [
   },
   {
     slug: "growth-strategies",
+    relatedLinks: [{ label: "خدمات کارن سافت", href: "/services" }, { label: "نمونه‌کارهای واقعی", href: "/portfolio" }],
     title: "۷ استراتژی رشد برای کسب‌وکارهای کوچک ایرانی",
     excerpt: "راهکارهایی عملی و کم‌هزینه برای رشد پایدار در بازار رقابتی امروز؛ از تمرکز بر مشتری فعلی و ساده‌سازی مسیر خرید تا اندازه‌گیری نتیجه.",
     category: "کسب‌وکار",
@@ -151,6 +154,7 @@ const EDITORIAL_POSTS: BlogPost[] = [
   },
   {
     slug: "legal-case-management",
+    relatedLinks: [{ label: "نرم‌افزار مدیریت دفتر وکالت", href: "/products/law-office" }, { label: "راهکار حقوقی و دفتر وکالت", href: "/solutions/legal" }],
     title: "مدیریت پرونده‌های حقوقی؛ از کاغذ تا سامانه یکپارچه",
     excerpt: "چرا دفاتر وکالت بیشترین سود را از دیجیتالی‌شدن می‌برند؛ پرونده، تقویم جلسات و حساب‌های دفتر در یک جا و حذف کار تکراری روزانه.",
     category: "حقوقی",
@@ -188,6 +192,7 @@ const EDITORIAL_POSTS: BlogPost[] = [
   },
   {
     slug: "online-store",
+    relatedLinks: [{ label: "نرم‌افزار مدیریت فروشگاه", href: "/products/online-store" }, { label: "حساب‌یار؛ صندوق فروش و انبار", href: "/products/hesabyar" }],
     title: "راه‌اندازی فروشگاه اینترنتی؛ راهنمای گام‌به‌گام",
     excerpt: "از انتخاب پلتفرم تا اولین فروش؛ نقشه راه عملی برای فروشگاه‌های ایرانی، از عکاسی محصول و قیمت‌گذاری تا ارسال و بازگشت کالا.",
     category: "فروشگاه",
@@ -224,6 +229,7 @@ const EDITORIAL_POSTS: BlogPost[] = [
   },
   {
     slug: "remote-teams",
+    relatedLinks: [{ label: "خدمات توسعه نرم‌افزار", href: "/services#software" }, { label: "اتوماسیون فرایندهای تیمی", href: "/services#automation" }],
     title: "مدیریت تیم‌های دورکار؛ ابزارها و عادت‌ها",
     excerpt: "چگونه بدون جلسه‌های بی‌پایان، تیم دورکار منسجم بسازیم؛ نوشتن تصمیم‌ها، ساعت کاری مشترک و بازبینی کوتاه هفتگی به‌جای هماهنگی مداوم.",
     category: "تیم",
@@ -260,6 +266,7 @@ const EDITORIAL_POSTS: BlogPost[] = [
   },
   {
     slug: "security",
+    relatedLinks: [{ label: "خدمات امنیت سایبری", href: "/services#security" }, { label: "کارن نت؛ زیرساخت شبکه", href: "/products/karen-net" }],
     title: "امنیت سایبری برای کسب‌وکارهای کوچک؛ ۱۰ اقدام ضروری",
     excerpt: "اقدامات کم‌هزینه‌ای که ۹۰٪ حملات رایج را خنثی می‌کنند؛ رمز یکتا برای هر سرویس، به‌روزرسانی منظم و پشتیبان‌گیری قابل بازیابی.",
     category: "امنیت",
@@ -302,6 +309,7 @@ const EDITORIAL_POSTS: BlogPost[] = [
   },
   {
     slug: "smart-case-management",
+    relatedLinks: [{ label: "نرم‌افزار دفتر وکالت هوشمند", href: "/products/law-office" }, { label: "راهکار حقوقی و دفتر وکالت", href: "/solutions/legal" }],
     title: "مدیریت هوشمند پرونده با کمک هوش مصنوعی",
     excerpt: "کاربردهای واقعی هوش مصنوعی در دفاتر حقوقی؛ از جست‌وجوی متن قراردادها و خلاصه‌سازی پرونده تا پیش‌بینی زمان کار، فراتر از هیاهو.",
     category: "هوش مصنوعی",
@@ -337,6 +345,7 @@ const EDITORIAL_POSTS: BlogPost[] = [
   },
   {
     slug: "taxi-management",
+    relatedLinks: [{ label: "نرم‌افزار مدیریت آژانس تاکسی تلفنی", href: "/products/taxi-management" }, { label: "راهکار حمل‌ونقل", href: "/solutions/transport" }],
     title: "مدیریت آژانس تاکسی؛ از دفترچه تا دیسپچ دیجیتال",
     metaTitle: "نرم‌افزار مدیریت تاکسی تلفنی؛ دیسپچ و کرایه",
     excerpt: "چگونه یک آژانس سنتی با سامانه دیسپچ، کرایه‌ی هوشمند و حساب رانندگان، ظرفیت سفرهای خود را حدود ۲۰٪ افزایش داد و لغو سفر را کم کرد.",
@@ -374,6 +383,7 @@ const EDITORIAL_POSTS: BlogPost[] = [
   },
   {
     slug: "why-lawyer-needs-website",
+    relatedLinks: [{ label: "نمونه‌کار وب‌سایت دفتر وکالت لیلا آبکه", href: "/portfolio/leyla-abkeh" }, { label: "طراحی سایت و نرم‌افزار در قزوین", href: "/qazvin" }],
     title: "چرا هر وکیل به وب‌سایت اختصاصی نیاز دارد؟",
     excerpt: "اعتبار حرفه‌ای، جذب موکل هدفمند و کنترل روایت برند شخصی؛ کدام بخش‌های یک سایت وکالت واقعاً به جذب موکل کمک می‌کند.",
     category: "حقوقی",
@@ -410,6 +420,7 @@ const EDITORIAL_POSTS: BlogPost[] = [
   },
   {
     slug: "printing-cost-control",
+    relatedLinks: [{ label: "راهکار چاپخانه و کنترل تولید", href: "/solutions/printing" }, { label: "نرم‌افزار مدیریت چاپ روتوگراور", href: "/products/printing-management" }],
     title: "کنترل بهای تمام‌شده در چاپخانه‌های روتوگراور",
     excerpt: "چرا بدون داده دقیق ضایعات، سود واقعی هر سفارش را نمی‌دانید؛ محاسبهٔ بهای تمام‌شده بر پایهٔ متراژ، رنگ و ضایعات واقعی چاپخانه.",
     category: "چاپ",

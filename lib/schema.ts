@@ -10,6 +10,7 @@ const organizationId = `${SITE.url}/#organization`;
 const businessId = `${SITE.url}/#business`;
 const chapBusinessId = `${SITE.url}/#karen-chap`;
 const websiteId = `${SITE.url}/#website`;
+const founderId = `${SITE.url}/#founder`;
 
 function absoluteUrl(path: string): string {
   return new URL(path, `${SITE.url}/`).toString();
@@ -36,7 +37,20 @@ export function organizationSchema(): Json {
     logo: imageObject("/images/logo-karensoft.png", SITE.name),
     email: SITE.email,
     telephone: SITE.phone,
-    founder: { "@type": "Person", name: SITE.founder },
+    founder: { "@id": founderId },
+    foundingDate: "2024",
+    knowsAbout: [
+      "طراحی وب‌سایت",
+      "توسعه نرم‌افزار اختصاصی",
+      "اتوماسیون فرآیندهای کسب‌وکار",
+      "امنیت سامانه‌های اطلاعاتی",
+      "سئوی فنی",
+    ],
+    areaServed: [
+      { "@type": "City", name: SITE.city },
+      { "@type": "AdministrativeArea", name: "استان قزوین" },
+      { "@type": "Country", name: "ایران" },
+    ],
     address: {
       "@type": "PostalAddress",
       addressLocality: SITE.city,
@@ -53,6 +67,25 @@ export function organizationSchema(): Json {
       areaServed: "IR",
     }],
     sameAs: [SITE.socials.telegram, SITE.socials.instagram],
+  };
+}
+
+/**
+ * گرهٔ بنیان‌گذار؛ یک نهاد مستقل که Organization و صفحهٔ «درباره» به آن ارجاع می‌دهند
+ * تا اطلاعات شخص با برند یکی نباشد و تکرار متناقض ساخته نشود.
+ */
+export function founderSchema(): Json {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "@id": founderId,
+    name: SITE.founder,
+    jobTitle: "بنیان‌گذار و مدیر فنی",
+    worksFor: { "@id": organizationId },
+    url: absoluteUrl("/about"),
+    image: imageObject("/images/Hosein-rahmani.jpg", SITE.founder),
+    email: SITE.email,
+    knowsAbout: ["توسعه نرم‌افزار", "طراحی وب", "اتوماسیون کسب‌وکار"],
   };
 }
 
@@ -223,6 +256,8 @@ export function serviceSchema(input: {
   serviceType?: string;
   providerId?: string;
   areaServed?: string[];
+  /** شهرهای هدف که به‌صورت City اعلام می‌شوند (برای صفحه‌های محلی). */
+  cities?: string[];
   id?: string;
 }): Json {
   const url = new URL(absoluteUrl(input.path));
@@ -236,14 +271,17 @@ export function serviceSchema(input: {
     serviceType: input.serviceType ?? input.name,
     url: url.toString(),
     provider: { "@id": input.providerId ?? organizationId },
-    areaServed: (input.areaServed ?? ["ایران"]).map((area) => ({
-      "@type": area === "ایران"
-        ? "Country"
-        : area === CHAP.locality || area === SITE.city
-          ? "City"
-          : "AdministrativeArea",
-      name: area,
-    })),
+    areaServed: [
+      ...(input.areaServed ?? ["ایران"]).map((area) => ({
+        "@type": area === "ایران"
+          ? "Country"
+          : area === CHAP.locality || area === SITE.city
+            ? "City"
+            : "AdministrativeArea",
+        name: area,
+      })),
+      ...(input.cities ?? []).map((city) => ({ "@type": "City", name: city })),
+    ],
     inLanguage: "fa-IR",
   };
 }

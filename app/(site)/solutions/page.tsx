@@ -16,7 +16,7 @@ export default function SolutionsPage() {
     <>
       <PageHero
         eyebrow="INDUSTRY SOLUTIONS"
-        title="هر صنعت، راهکار خودش را دارد."
+        title="هر صنعت، راهکار خودش را دارد؛ راهکارهای نرم‌افزاری تخصصی صنایع"
         description="از چاپخانه تا دفتر وکالت؛ ابزارهایی که با زبان کسب‌وکار شما صحبت می‌کنند."
       />
       <ContentSection title="صنعت خود را انتخاب کنید">

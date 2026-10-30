@@ -4,12 +4,12 @@ import "./globals.css";
 import { SITE } from "@/lib/constants";
 import { READER_BOOT_SCRIPT } from "@/lib/reader";
 import { ReaderControls } from "@/components/typography/reader-controls";
-import { localBusinessSchema, organizationSchema, websiteSchema } from "@/lib/schema";
+import { founderSchema, localBusinessSchema, organizationSchema, websiteSchema } from "@/lib/schema";
 import { JsonLd } from "@/components/ui/json-ld";
 import { ThemeProvider } from "@/components/layout/theme-provider";
 import { CrispChat } from "@/components/layout/crisp-chat";
 
-const homeTitle = `${SITE.name} | طراحی وب‌سایت و نرم‌افزار مدیریتی در قزوین`;
+const homeTitle = `${SITE.name} | طراحی سایت و نرم‌افزار اختصاصی در قزوین`;
 const socialImage = "/images/logo-karensoft.png";
 
 export const metadata: Metadata = {
@@ -74,7 +74,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <ThemeProvider>{children}</ThemeProvider>
         <ReaderControls />
         <CrispChat />
-        <JsonLd data={[organizationSchema(), websiteSchema(), localBusinessSchema()]} />
+        <JsonLd data={[organizationSchema(), websiteSchema(), localBusinessSchema(), founderSchema()]} />
       </body>
     </html>
   );

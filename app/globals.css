@@ -801,7 +801,9 @@ html[data-headings="sans"] {
 .ks-mobile-top,.ks-fab,.ks-sheet-backdrop,.ks-sheet { display:none; }
 .ks-home { overflow:hidden; background:#050505; color:#f3f4f6; font-family:"Vazirmatn",sans-serif; }
 .ks-topline { height:54px; display:flex; align-items:center; justify-content:space-between; padding:0 clamp(24px,5vw,88px); border-bottom:1px solid #1c232d; color:#8894a1; font:10px/1.4 "Vazirmatn",sans-serif; }
-.ks-topline > span:nth-child(2) { font-family:"JetBrains Mono",ui-monospace,monospace; letter-spacing:1px; }
+.ks-topline > span:nth-child(2),.ks-topline-link { font-family:"JetBrains Mono",ui-monospace,monospace; letter-spacing:1px; }
+.ks-topline-link { color:inherit; transition:color .2s; }
+.ks-topline-link:hover { color:#00f0ff; }
 .ks-topline b { color:#00f0ff; }
 .ks-topline > span:last-child { display:flex; align-items:center; gap:10px; direction:ltr; font:9px "JetBrains Mono",ui-monospace,monospace; letter-spacing:1px; }
 .ks-hero { position:relative; min-height:min(760px, calc(100svh - 54px)); display:grid; grid-template-columns:minmax(0,1fr) minmax(0,.94fr); align-items:center; padding:75px clamp(24px,5vw,88px) 92px; overflow:hidden; isolation:isolate; background:radial-gradient(ellipse 60% 70% at 74% 50%,#0b1a28 0%,#070b12 62%,#050505 100%); }

@@ -16,7 +16,7 @@ export default function PortfolioPage() {
     <>
       <PageHero
         eyebrow="SELECTED WORK"
-        title="از ایده تا نمونهٔ زنده."
+        title="از ایده تا نمونهٔ زنده؛ نمونه‌کارهای طراحی سایت و نرم‌افزار"
         description="نمونه‌های واقعی و نمایشی کارن سافت؛ هر کدام با هدف، امکانات و نسخهٔ زندهٔ داخل سایت."
       />
       <ContentSection title="پروژه‌های منتخب"><Catalog kind="portfolio" /></ContentSection>

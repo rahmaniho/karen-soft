@@ -10,8 +10,12 @@ export const SEO_LIMITS = {
   h1Count: 1,
 } as const;
 
-/** ارقام و نیم‌فاصله در فارسی «کاراکتر» حساب می‌شوند اما در پیکسل باریک‌اند؛ حذفشان طول واقعی را بهتر نشان می‌دهد. */
-const ZERO_WIDTH = /[\u200b-\u200f\u202a-\u202e\u2060\ufeff]/g;
+/**
+ * فقط نویسه‌های نامرئیِ کنترلی حذف می‌شوند. نیم‌فاصله (U+200C) و اتصال‌دهنده
+ * (U+200D) بخشی از املای فارسی‌اند و نباید پاک شوند؛ وگرنه «می‌سازیم» به
+ * «میسازیم» تبدیل می‌شود.
+ */
+const ZERO_WIDTH = /[\u200b\u200e\u200f\u202a-\u202e\u2060\ufeff]/g;
 
 export function cleanText(value: string): string {
   return value.replace(ZERO_WIDTH, "").replace(/\s+/g, " ").trim();

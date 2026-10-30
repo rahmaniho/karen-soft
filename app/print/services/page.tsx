@@ -12,7 +12,7 @@ import { JsonLd } from "@/components/ui/json-ld";
 import { breadcrumbSchema, itemListSchema } from "@/lib/schema";
 
 export const metadata = chapPageMeta({
-  title: "خدمات کارن چاپ | چاپ افست و دیجیتال، مهر، صحافی و هدایای تبلیغاتی",
+  title: "خدمات چاپ، مهر، صحافی و هدایای تبلیغاتی | کارن چاپ",
   description:
     "خدمات کارن چاپ در الوندِ قزوین: چاپ افست و دیجیتال، بنر، ساخت مهر، صحافی پایان‌نامه و کتاب و هدایای تبلیغاتی؛ همراه با مشخصات فنی و زمان تحویل هر سفارش.",
   path: "/print/services",
@@ -25,7 +25,7 @@ export default function ChapServicesPage() {
         <ChapHeading as="h1"
           latin="All services"
           fa="همه خدمات"
-          title="هفت خانوادۀ خدمت، یک استاندارد کیفیت"
+          title="خدمات چاپ، مهر، صحافی و هدایای تبلیغاتی در قزوین"
           description="هر خدمت صفحۀ اختصاصی خودش را دارد؛ با معرفی محصولات، گزینه‌های قابل انتخاب و زمان تحویل."
         />
       </section>

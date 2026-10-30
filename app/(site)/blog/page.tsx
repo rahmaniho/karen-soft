@@ -16,7 +16,7 @@ export default function BlogIndexPage() {
     <>
       <PageHero
         eyebrow="JOURNAL"
-        title="مجله کارن سافت"
+        title="مجله کارن سافت؛ مقالات نرم‌افزار، اتوماسیون و چاپ"
         description="راهنماهای کاربردی چاپ، یادگیری کلاس اول و مدیریت مالی؛ در کنار مقاله‌های فناوری و رشد کسب‌وکار."
       />
       <ContentSection title="آخرین مقاله‌ها"><Catalog kind="blog" /></ContentSection>

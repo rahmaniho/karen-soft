@@ -48,7 +48,7 @@ export default function ChapHome() {
             </div>
 
             <h1 className="display-1 mt-5">
-              چاپ، مهر و صحافی
+              چاپ، مهر و صحافی در قزوین
               <br />
               <em className="text-brand-600 not-italic dark:text-brand-300">با استاندارد استودیویی.</em>
             </h1>

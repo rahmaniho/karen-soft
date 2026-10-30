@@ -19,7 +19,7 @@ export default function ProductsPage() {
     <>
       <PageHero
         eyebrow="KAREN SOFT PRODUCTS"
-        title="نرم‌افزارهایی برای کار واقعی."
+        title="نرم‌افزارهایی برای کار واقعی؛ سامانه‌های مدیریتی اختصاصی کسب‌وکار"
         description="محصول متناسب با کسب‌وکارتان را پیدا کنید؛ امکانات نرم‌افزارهای مدیریتی را ببینید، موضوعات کتابچه قانون را مرور کنید یا با مدرسه‌ی من، آموزش کلاس اول را در کنار خانواده تجربه کنید."
       />
       <ContentSection title="حساب‌یار؛ نسخهٔ اندروید و وب"><HesabyarDownload /></ContentSection>
