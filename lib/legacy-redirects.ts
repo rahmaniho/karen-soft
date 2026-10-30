@@ -11,6 +11,9 @@ export const legacyRedirects = [
   ["/najafisahar.html", "/portfolio"], ["/saharnajafi.html", "/portfolio"],
   ["/najafisahar", "/portfolio"], ["/saharnajafi", "/portfolio"],
   ["/portfolio/najafisahar", "/portfolio"], ["/portfolio/sahar-najafi-nails", "/portfolio"],
+  // نمونه‌کارهایی که از فهرست حذف شده‌اند؛ نشانی‌های ایندکس‌شده به فهرست نمونه‌کارها می‌روند.
+  ["/portfolio/beauty-salon-hypothetical", "/portfolio"], ["/portfolio/dastmozd-payroll", "/portfolio"],
+  ["/portfolio/karen-chap", "/portfolio"], ["/portfolio/industrial-automation", "/portfolio"],
   ["/blog/automation.html", "/blog/office-automation"],
   ["/blog/direct_to_cell.html", "/blog/direct-to-cell"],
   ["/blog/growth-strategies.html", "/blog/growth-strategies"],

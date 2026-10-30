@@ -8,7 +8,6 @@ import { breadcrumbSchema, caseStudySchema } from "@/lib/schema";
 import { PageHero, ContentSection, Points, ContactCTA } from "@/components/site/page-parts";
 import { DemoFrame } from "@/components/site/demo-frame";
 import { DemoTabs } from "@/components/site/demo-tabs";
-import { SmartFactorySection } from "@/components/site/smart-factory";
 import { ButtonLink } from "@/components/ui/button";
 import { JsonLd } from "@/components/ui/json-ld";
 
@@ -72,34 +71,6 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
             {study.note}
           </p>
         </div>
-      ) : null}
-
-      {study.visual === "smart-factory" ? (
-        <section
-          id="smart-factory"
-          aria-labelledby="smart-factory-title"
-          className="relative overflow-hidden border-y border-[#12212e] bg-[#060a12] py-14 text-white sm:py-20"
-        >
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_85%_-10%,rgba(34,211,238,0.12),transparent_58%)]"
-          />
-          <div className="container-page relative">
-            <header className="max-w-3xl">
-              <span className="eyebrow !text-[#22d3ee]">SMART FACTORY / DIGITAL THREAD</span>
-              <h2 id="smart-factory-title" className="display-3 mt-4 text-white">
-                اتوماسیون هوشمند کارخانه، در یک نگاه
-              </h2>
-              <p className="mt-4 text-sm leading-loose text-white/60">
-                از سنسور روی یاتاقان تا تصمیمی که مدیر می‌گیرد: پنج لایهٔ داده، یک مسیر پیوسته.
-                روی هر لایه بزنید تا ببینید چه داده‌ای می‌آید، با چه فناوری پردازش می‌شود و چه تصمیمی را ممکن می‌کند.
-              </p>
-            </header>
-            <div className="mt-8">
-              <SmartFactorySection />
-            </div>
-          </div>
-        </section>
       ) : null}
 
       {study.demoVariants?.length ? (

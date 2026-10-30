@@ -21,7 +21,7 @@ export const metadata = pageMeta({
 });
 
 const featured = ["law-office", "taxi-management", "printing-management", "smart-building"].map(slug => PRODUCTS.find(p => p.slug === slug)!);
-const cases = ["vokalahome", "dastmozd-payroll", "karensoft-hse"].map(slug => CASE_STUDIES.find(c => c.slug === slug)!);
+const cases = ["vokalahome", "qazvi-tasvir", "karensoft-hse"].map(slug => CASE_STUDIES.find(c => c.slug === slug)!);
 
 function Heading({ number, label, title, sub }: { number: string; label: string; title: string; sub?: string }) {
   return <div className="ks-section-heading"><div className="ks-section-kicker"><span>{number} / {label}</span><span className="ks-kicker-rule" /></div><h2>{title}</h2>{sub && <p>{sub}</p>}</div>;
