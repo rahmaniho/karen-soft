@@ -66,6 +66,44 @@ describe("portfolio samples", () => {
     }
   });
 
+  it("serves every demo variant of a case from this site too", () => {
+    let variants = 0;
+    for (const study of CASE_STUDIES) {
+      for (const variant of study.demoVariants ?? []) {
+        variants += 1;
+        expect(variant.label.trim().length, study.slug).toBeGreaterThan(0);
+        expect(variant.demo.src.startsWith("/"), study.slug).toBe(true);
+        expect(variant.demo.src.startsWith(variant.demo.scope), study.slug).toBe(true);
+        expect(variant.demo.src, study.slug).not.toMatch(/https?:|github\.io|vercel\.app/);
+        const file = variant.demo.src.split("?")[0];
+        expect(existsSync(join(root, "public", file)), study.slug).toBe(true);
+      }
+    }
+    expect(variants).toBeGreaterThan(0);
+  });
+
+  it("opens the Digikaren storefront and its admin dashboard from one case page", () => {
+    const study = CASE_STUDIES.find((item) => item.slug === "digikaren");
+    expect(study?.kind).toBe("sample");
+    expect(study?.title).toContain("دیجی‌کارن");
+    expect(study?.title).toContain("پنل مدیریت");
+    expect(study?.cover).toBe("/images/portfolio/digikaren.jpg");
+    expect(study?.logo).toBe("/images/clients/digikaren/digikaren-mark.png");
+    expect(study?.note).toContain("ساختگی");
+    expect(study?.results).toBeUndefined();
+    expect(study?.quote).toBeUndefined();
+
+    const labels = (study?.demoVariants ?? []).map((variant) => variant.label);
+    expect(labels).toEqual(["فروشگاه", "داشبورد ادمین"]);
+    expect(study?.demoVariants?.[0]?.demo.src).toBe("/demos/digikaren/index.html");
+    expect(study?.demoVariants?.[1]?.demo.src).toBe("/demos/digikaren/index.html?admin=overview");
+    for (const variant of study?.demoVariants ?? []) {
+      expect(variant.demo.scope).toBe("/demos/digikaren/");
+      expect(existsSync(join(root, "public/demos/digikaren/index.html"))).toBe(true);
+      expect(existsSync(join(root, "public/demos/digikaren/assets"))).toBe(true);
+    }
+  });
+
   it("ships every client logo and testimonial photo from this site", () => {
     for (const study of CASE_STUDIES) {
       if (study.logo) expect(existsSync(join(root, "public", study.logo.slice(1))), study.slug).toBe(true);
