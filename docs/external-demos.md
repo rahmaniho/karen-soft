@@ -1,6 +1,6 @@
 # نسخه‌های نمایشی خودمیزبان (`/demos/`)
 
-هشت پروژهٔ نمونه‌کار، به‌صورت فایل ایستا روی **همین دامنه** میزبانی می‌شوند و از
+نه پروژهٔ نمونه‌کار، به‌صورت فایل ایستا روی **همین دامنه** میزبانی می‌شوند و از
 صفحهٔ «نمونه‌کارها» (`/portfolio`) داخل قاب پیش‌نمایش هم‌مبدأ اجرا می‌شوند.
 بازدیدکننده هیچ‌وقت به مخزن، نسخهٔ خارجی یا دامنهٔ دیگری فرستاده نمی‌شود و در
 رابط کاربری هیچ پیوند خروجی به این پروژه‌ها وجود ندارد.
@@ -17,11 +17,12 @@
 | Gym (آیرون آرنا) | `/demos/gym/` | `/portfolio/gym` | HTML/CSS/JS خالص، بدون build |
 | Karenwood (هلدینگ چوب) | `/demos/karenwood/` | `/portfolio/karenwood` | Next.js با خروجی ایستا؛ `REPO_NAME=demos/karenwood` تا `basePath` و `assetPrefix` روی `/demos/karenwood/` قرار گیرد |
 | musician (استودیو آوا) | `/demos/musician/` | `/portfolio/musician` | HTML/CSS/JS خالص، بدون build |
+| Digikaren (فروشگاه + پنل ادمین) | `/demos/digikaren/` | `/portfolio/digikaren` | Vite با `--mode pages` و `--base=/demos/digikaren/`؛ service worker حذف می‌شود |
 
 ## بازتولید
 
 ```bash
-# کلون هر هشت مخزن در /tmp/repos (نام پوشه‌ها: Demo3 afshin RedLine Demo Demo1 Gym Karenwood musician)
+# کلون هر نه مخزن در /tmp/repos (نام پوشه‌ها: Demo3 afshin RedLine Demo Demo1 Gym Karenwood musician Digikaren)
 DEMO_SRC_DIR=/tmp/repos npm run build:demos
 ```
 
@@ -50,3 +51,25 @@ DEMO_SRC_DIR=/tmp/repos npm run build:demos
   استفاده می‌کنند؛ پوستهٔ پیش‌نمایش و فایل‌های اصلی همگی هم‌مبدأند و نبود آن‌ها
   فقط فونت/تصویر جایگزین نشان می‌دهد. پیوندهای بیرونی داخل دموها (شبکه‌های
   اجتماعی، پیام‌رسان و…) توسط قاب پیش‌نمایش غیرفعال می‌شوند.
+
+## دیجی‌کارن: یک نمونه‌کار، دو نمای نمایشی
+
+دیجی‌کارن فقط یک سایت فروشگاهی نیست؛ پنل مدیریت همان فروشگاه هم بخشی از نمونه‌کار است.
+برای همین در `lib/portfolio.ts` فیلد `demoVariants` اضافه شد و
+`components/site/demo-tabs.tsx` آن‌ها را با تب نشان می‌دهد:
+
+| تب | نشانی داخل قاب |
+|---|---|
+| فروشگاه | `/demos/digikaren/index.html` |
+| داشبورد ادمین | `/demos/digikaren/index.html?admin=overview` |
+
+نکته‌های ساخت:
+
+- پروژه با `--mode pages` ساخته می‌شود تا پنل مدیریت در حالت «sandbox» مرورگر اجرا شود؛
+  در حالت پیش‌فرض (`production`) پنل منتظر سرور `/api/admin` و رمز ورود می‌ماند و در
+  نمایش ایستا کار نمی‌کند.
+- `sw.js` حذف و ثبت service worker در بستهٔ JS خنثی می‌شود؛ وگرنه کش آفلاین پروژه
+  روی دامنهٔ کارن سافت باقی می‌ماند. پیوند `manifest` هم برداشته می‌شود.
+- عبارت «گیت‌هاب پیجز» در متن‌های حالت ایستا با «نسخهٔ نمایشی» جایگزین شده است.
+- تصویر شاخص (`/images/portfolio/digikaren.jpg`) و آیکون (`/images/clients/digikaren/digikaren-mark.png`)
+  از فایل‌های برند خود پروژه ساخته شده‌اند.

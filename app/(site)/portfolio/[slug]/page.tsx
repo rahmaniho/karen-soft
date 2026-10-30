@@ -7,6 +7,7 @@ import { pageMeta } from "@/lib/seo";
 import { breadcrumbSchema, caseStudySchema } from "@/lib/schema";
 import { PageHero, ContentSection, Points, ContactCTA } from "@/components/site/page-parts";
 import { DemoFrame } from "@/components/site/demo-frame";
+import { DemoTabs } from "@/components/site/demo-tabs";
 import { SmartFactorySection } from "@/components/site/smart-factory";
 import { ButtonLink } from "@/components/ui/button";
 import { JsonLd } from "@/components/ui/json-ld";
@@ -101,7 +102,11 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
         </section>
       ) : null}
 
-      {study.demo ? (
+      {study.demoVariants?.length ? (
+        <ContentSection title={copy.demo}>
+          <DemoTabs variants={study.demoVariants} />
+        </ContentSection>
+      ) : study.demo ? (
         <ContentSection title={copy.demo}>
           <DemoFrame
             src={study.demo.src}
