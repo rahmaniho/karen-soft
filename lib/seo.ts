@@ -2,6 +2,17 @@ import type { Metadata } from "next";
 import { SITE } from "./constants";
 import { buildMetadata, inspectMetadata, type SeoMetaInput } from "./seo-kit/index.ts";
 
+/**
+ * سقف‌های پیش‌فرض متادیتا؛ اگر عنوان یا توضیح صفحه از این حد بلندتر باشد،
+ * پیش از انتشار کوتاه می‌شود تا در نتایج گوگل بریده نشود.
+ */
+/**
+ * سقف عنوان در نتایج گوگل حدود ۶۰ کاراکتر است؛ اگر عنوان با نام برند از این
+ * حد بگذرد، برند حذف می‌شود (گوگل نام سایت را خودش زیر نتیجه نشان می‌دهد).
+ */
+const DEFAULT_MAX_TITLE = 60;
+const DEFAULT_MAX_DESCRIPTION = 158;
+
 export type PageMetaInput = SeoMetaInput;
 
 /**
@@ -19,7 +30,13 @@ export function pageMeta(
 ): Metadata {
   return buildMetadata(
     { ...input, brand },
-    { baseUrl: SITE.url, brand, defaultImage, maxTitle: options.maxTitle },
+    {
+      baseUrl: SITE.url,
+      brand,
+      defaultImage,
+      maxTitle: options.maxTitle ?? DEFAULT_MAX_TITLE,
+      maxDescription: DEFAULT_MAX_DESCRIPTION,
+    },
   ) as Metadata;
 }
 
@@ -27,7 +44,13 @@ export function pageMeta(
 export function chapPageMeta(input: Omit<PageMetaInput, "brand" | "defaultImage">): Metadata {
   return buildMetadata(
     { ...input, brand: "کارن چاپ" },
-    { baseUrl: SITE.url, brand: "کارن چاپ", defaultImage: "/images/print/logo-chap.png" },
+    {
+      baseUrl: SITE.url,
+      brand: "کارن چاپ",
+      defaultImage: "/images/print/logo-chap.png",
+      maxTitle: DEFAULT_MAX_TITLE,
+      maxDescription: DEFAULT_MAX_DESCRIPTION,
+    },
   ) as Metadata;
 }
 

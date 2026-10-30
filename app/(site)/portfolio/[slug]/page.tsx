@@ -136,6 +136,11 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
             <li key={item} className="rounded-full border px-4 py-2">{item}</li>
           ))}
         </ul>
+        <nav aria-label="صفحه‌های مرتبط" className="mt-8 flex flex-wrap gap-3">
+          <ButtonLink href="/services" variant="soft" size="sm">خدمات طراحی و توسعه</ButtonLink>
+          <ButtonLink href="/products" variant="soft" size="sm">نرم‌افزارهای مدیریتی</ButtonLink>
+          <ButtonLink href="/portfolio" variant="outline" size="sm">نمونه‌کارهای بیشتر</ButtonLink>
+        </nav>
       </ContentSection>
       {study.quote ? (
         <ContentSection title={copy.quote}>

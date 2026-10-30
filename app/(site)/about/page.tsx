@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { SITE, PROCESS_STEPS } from "@/lib/constants";
 import { PageHero, ContentSection, InfoGrid, ContactCTA } from "@/components/site/page-parts";
 import { ButtonLink } from "@/components/ui/button";
@@ -17,7 +18,7 @@ export default function AboutPage() {
     <>
       <PageHero
         eyebrow="ABOUT KAREN SOFT"
-        title="فناوری پیچیده، رشد ساده."
+        title="فناوری پیچیده، رشد ساده؛ دربارهٔ کارن سافت و تیم نرم‌افزار در قزوین"
         description="ما نرم‌افزار را برای حل مسائل واقعی کسب‌وکار می‌سازیم؛ ابزاری که کار روزمره را ساده‌تر و تصمیم‌گیری را روشن‌تر کند."
       />
       <ContentSection title="از شناخت مسئله شروع می‌کنیم">
@@ -25,6 +26,11 @@ export default function AboutPage() {
           <p className="lead">
             کارن سافت در سال ۱۴۰۴ (2024) در {SITE.city} بنیان‌گذاری شد. {SITE.founder} — بنیان‌گذار کارن سافت —
             فعالیت مجموعه را با تمرکز بر طراحی وب‌سایت، نرم‌افزارهای مدیریتی و اتوماسیون آغاز کرد. مجموعه محصولات و نمونه‌کارهای سایت، تصویری از حوزه‌های کاری و رویکرد اجرایی ماست.
+            جزئیات همکاری برای کسب‌وکارهای استان در{" "}
+            <Link href="/qazvin" className="font-bold text-brand-600 underline dark:text-brand-300">
+              صفحهٔ طراحی سایت و نرم‌افزار در قزوین
+            </Link>{" "}
+            آمده است.
           </p>
           <div className="surface-card p-8">
             <h3>پیش از تصمیم، تجربه کنید</h3>

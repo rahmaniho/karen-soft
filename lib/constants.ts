@@ -54,6 +54,8 @@ export const CHAP_LINKS = [
 ] as const;
 
 export const FOOTER_RESOURCES = [
+  { label: "طراحی سایت و نرم‌افزار در قزوین", href: "/qazvin" },
+  { label: "مجله کارن سافت", href: "/blog" },
   { label: "مستندات", href: "/docs" },
   { label: "تغییرات محصول", href: "/changelog" },
   { label: "نقشه راه", href: "/roadmap" },

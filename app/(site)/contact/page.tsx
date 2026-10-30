@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { SITE } from "@/lib/constants";
 import { ContactForm } from "@/components/sections/contact-form";
 import { PageHero, ContentSection } from "@/components/site/page-parts";
@@ -16,7 +17,7 @@ export default function ContactPage() {
     <>
       <PageHero
         eyebrow="LET’S TALK"
-        title="برای ایده بعدی‌تان، اینجاییم."
+        title="برای ایده بعدی‌تان، اینجاییم؛ تماس با کارن سافت"
         description="درباره کسب‌وکار، چالش‌ها و انتظارتان بنویسید. برای شروع لازم نیست همه جزئیات فنی را بدانید."
       />
       <ContentSection title="راه‌های ارتباط">
@@ -35,6 +36,11 @@ export default function ContactPage() {
             <div>
               <h3>نشانی</h3>
               <p className="text-muted">{SITE.address}</p>
+              <p className="mt-2 text-sm">
+                <Link href="/qazvin" className="text-brand-600 dark:text-brand-300">
+                  خدمات ما برای کسب‌وکارهای قزوین ←
+                </Link>
+              </p>
             </div>
             <div>
               <h3>ساعات پاسخ‌گویی</h3>

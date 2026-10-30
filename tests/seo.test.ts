@@ -113,7 +113,7 @@ describe("technical SEO and GEO foundations", () => {
     };
     const staticPaths = [
       "/", "/print", "/print/services", "/print/portfolio", "/print/about", "/print/faq", "/print/contact",
-      "/services", "/products", "/solutions", "/portfolio", "/blog",
+      "/services", "/qazvin", "/products", "/solutions", "/portfolio", "/blog",
       "/about", "/contact", "/download-law-software", "/docs", "/privacy", "/terms",
     ];
 

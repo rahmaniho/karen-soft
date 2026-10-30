@@ -17,9 +17,13 @@ export default function ServicesPage() {
     <>
       <PageHero
         eyebrow="OUR EXPERTISE"
-        title="از ایده تا یک محصول قابل اتکا."
+        title="از ایده تا یک محصول قابل اتکا؛ خدمات طراحی سایت و نرم‌افزار اختصاصی"
         description="طراحی، توسعه و پشتیبانی را یکپارچه پیش می‌بریم؛ با دامنه روشن و تحویل مرحله‌ای."
-      />
+      >
+        <ButtonLink href="/qazvin" variant="outline">
+          خدمات ما برای کسب‌وکارهای قزوین
+        </ButtonLink>
+      </PageHero>
       {SERVICES.map((service) => (
         <ContentSection key={service.slug} id={service.slug} title={service.title}>
           <div className="grid gap-8 md:grid-cols-2">

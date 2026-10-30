@@ -27,7 +27,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     authors: [post.author],
     section: post.category,
     tags: post.tags,
-  }, { maxTitle: 65 });
+  }, { maxTitle: 60 });
 }
 
 export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {

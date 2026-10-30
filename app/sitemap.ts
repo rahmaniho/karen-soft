@@ -36,6 +36,7 @@ function publicRoutes(): SitemapRouteInput[] {
 
     /* کارن سافت: صفحه‌های تجاری، تحریریه و اعتماد. */
     { path: "/services", priority: 0.9 },
+    { path: "/qazvin", priority: 0.88, changeFrequency: "monthly" },
     { path: "/products", priority: 0.9, changeFrequency: "weekly" },
     ...PRODUCTS.map((product) => ({
       path: `/products/${product.slug}`,

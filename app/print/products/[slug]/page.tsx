@@ -76,7 +76,7 @@ export default async function ChapProductPage({ params }: { params: Promise<{ sl
               </Link>
             ) : null}
             <h1 className="display-1 mt-3">
-              <span aria-hidden>{product.emoji}</span> {product.name}
+              <span aria-hidden>{product.emoji}</span> چاپ {product.name} در قزوین
             </h1>
             <p className="text-md mt-4 leading-loose text-muted">{product.description}</p>
 

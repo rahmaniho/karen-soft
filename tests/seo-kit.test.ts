@@ -74,7 +74,9 @@ describe("seo-kit metadata builder", () => {
     expect(normalizePath("https://karen-soft.ir/blog/")).toBe("/blog");
     expect(normalizePath("/")).toBe("/");
     expect(normalizePath("//print/products/tract?x=1")).toBe("/print/products/tract");
-    expect(textLength("سلام\u200cدنیا")).toBe(8);
+    // نیم‌فاصله حذف نمی‌شود؛ فقط نویسه‌های کنترلیِ نامرئی پاک می‌شوند.
+    expect(textLength("سلام\u200cدنیا")).toBe(9);
+    expect(truncateText("می\u200cسازیم", 20)).toBe("می\u200cسازیم");
     expect(truncateText("کوتاه", 20)).toBe("کوتاه");
   });
 });

@@ -15,8 +15,8 @@ import { LawBookSpotlight } from "@/components/sections/law-book-spotlight";
 import { HesabyarDownload } from "@/components/sections/hesabyar-download";
 
 export const metadata = pageMeta({
-  title: "کارن سافت | طراحی نرم‌افزار، کارن چاپ و آموزش کلاس اول",
-  description: "خدمات طراحی سایت و نرم‌افزار کارن سافت، چاپ و صحافی کارن چاپ، دانلود حساب‌یار اندروید و مدرسه‌ی من؛ خدمت اجتماعی آموزش کلاس اول برای کودکان و والدین.",
+  title: "کارن سافت | طراحی سایت و نرم‌افزار اختصاصی در قزوین",
+  description: "کارن سافت در قزوین وب‌سایت و نرم‌افزار اختصاصی می‌سازد؛ طراحی سایت و فروشگاه، سامانه‌های مدیریتی، اتوماسیون کسب‌وکار و نمونه‌کارهای زندهٔ داخل سایت.",
   path: "/",
 });
 
@@ -30,13 +30,13 @@ function Heading({ number, label, title, sub }: { number: string; label: string;
 export default function HomePage() {
   return <div className="ks-home">
     <ExperienceEffects />
-    <div className="ks-topline"><span><i /> سیستم‌های ما آنلاین‌اند</span><span dir="ltr">QAZVIN, IRAN <b> / </b> 36°16′ N</span><span>SCROLL TO EXPLORE <ArrowDownLeft size={13} /></span></div>
+    <div className="ks-topline"><span><i /> سیستم‌های ما آنلاین‌اند</span><Link href="/qazvin" dir="ltr" className="ks-topline-link">QAZVIN, IRAN <b> / </b> 36°16′ N</Link><span>SCROLL TO EXPLORE <ArrowDownLeft size={13} /></span></div>
 
     <section className="ks-hero" aria-labelledby="ks-hero-title">
       <div className="ks-hero-grid" aria-hidden="true" />
       <div className="ks-hero-copy">
         <div className="ks-eyebrow"><span className="ks-eyebrow-line" /> استودیو مهندسی دیجیتال <span className="ks-eyebrow-en">/ EST. 1404</span></div>
-        <h1 id="ks-hero-title">فردا را<br /><span>امروز</span> می‌سازیم<span className="ks-period">.</span><span className="ks-hero-subtitle">شریک فناوری کسب‌وکارهای ایرانی از سال <strong>۱۴۰۴ (2024)</strong></span></h1>
+        <h1 id="ks-hero-title">فردا را<br /><span>امروز</span> می‌سازیم<span className="ks-period">.</span><span className="ks-hero-subtitle">طراحی نرم‌افزار اختصاصی و وب‌سایت برای کسب‌وکارهای ایران، از <strong>۱۴۰۴ (2024)</strong></span></h1>
         <p className="ks-hero-desc">از یک ایده جسورانه تا محصولی که هر روز کار می‌کند. ما نرم‌افزار، تجربه دیجیتال و زیرساختی می‌سازیم که کسب‌وکار شما را یک قدم جلوتر می‌برد.</p>
         <div className="ks-hero-actions"><Link href="/contact" className="ks-button ks-button-primary">شروع یک همکاری <ArrowUpLeft size={19} /></Link><Link href="#work" className="ks-button ks-button-outline">کشف کارهای ما <ArrowDownLeft size={18} /></Link></div>
         <div className="ks-hero-proof"><div className="ks-proof-icons"><span><Code2 size={15} /></span><span><Layers3 size={15} /></span><span><ShieldCheck size={15} /></span></div><span>ایده‌های پیچیده. راه‌حل‌های ساده.<br /><strong>طراحی شده برای دنیای واقعی.</strong></span></div>
@@ -88,10 +88,10 @@ export default function HomePage() {
 
     <section className="ks-section ks-portfolio" id="work"><div className="ks-heading-row"><Heading number="04" label="SELECTED WORK" title="از ایده تا اثر." sub="چند قاب از آنچه با فکر، جزئیات و عشق به ساختن خلق کرده‌ایم. روی هر پروژه بزنید و در همین صفحه تجربه‌اش کنید." /><Link href="/portfolio" className="ks-text-link">تمام نمونه‌کارها <ArrowUpLeft size={17} /></Link></div><PortfolioGallery cases={cases} /></section>
 
-    <section className="ks-section ks-about" id="about"><div className="ks-about-copy"><Heading number="05" label="THE STORY" title="پشت هر خط کد، یک باور است." /><p>کارن سافت در سال <strong>۱۴۰۴ (2024)</strong> با یک ایده ساده شکل گرفت: فناوری باید مسائل واقعی را حل کند، نه اینکه پیچیدگی تازه بسازد.</p><p>امروز، با هدایت <strong>حسین رحمانی — بنیان‌گذار کارن سافت</strong>، از محصول نرم‌افزاری تا تجربه وب و چاپ، هر پروژه را با همان کنجکاوی روز اول می‌سازیم.</p><Link href="/about" className="ks-text-link">بیشتر درباره ما <ArrowUpLeft size={17} /></Link></div><div className="ks-about-visual"><div className="ks-about-image"><Image src="/images/Hosein-rahmani.jpg" alt="حسین رحمانی، بنیان‌گذار کارن سافت" fill sizes="(min-width: 1024px) 35vw, 100vw" className="object-cover" /></div><div className="ks-timeline"><span className="ks-time-dot" /><div><small>۱۴۰۴ / 2024</small><strong>شروع کارن سافت</strong><p>از یک چشم‌انداز تا نخستین محصول.</p></div><span className="ks-time-dot" /><div><small>امروز / TODAY</small><strong>همچنان در حال ساختن</strong><p>با همان اشتیاق روز اول، رو به آینده.</p></div></div></div></section>
+    <section className="ks-section ks-about" id="about"><div className="ks-about-copy"><Heading number="05" label="THE STORY" title="پشت هر خط کد، یک باور است." /><p>کارن سافت در سال <strong>۱۴۰۴ (2024)</strong> با یک ایده ساده شکل گرفت: فناوری باید مسائل واقعی را حل کند، نه اینکه پیچیدگی تازه بسازد.</p><p>امروز، با هدایت <strong>حسین رحمانی — بنیان‌گذار کارن سافت</strong>، از محصول نرم‌افزاری تا تجربه وب و چاپ، هر پروژه را با همان کنجکاوی روز اول می‌سازیم.</p><Link href="/about" className="ks-text-link">بیشتر درباره ما <ArrowUpLeft size={17} /></Link><Link href="/blog" className="ks-text-link">مجله و راهنماهای کارن سافت <ArrowUpLeft size={17} /></Link></div><div className="ks-about-visual"><div className="ks-about-image"><Image src="/images/Hosein-rahmani.jpg" alt="حسین رحمانی، بنیان‌گذار کارن سافت" fill sizes="(min-width: 1024px) 35vw, 100vw" className="object-cover" /></div><div className="ks-timeline"><span className="ks-time-dot" /><div><small>۱۴۰۴ / 2024</small><strong>شروع کارن سافت</strong><p>از یک چشم‌انداز تا نخستین محصول.</p></div><span className="ks-time-dot" /><div><small>امروز / TODAY</small><strong>همچنان در حال ساختن</strong><p>با همان اشتیاق روز اول، رو به آینده.</p></div></div></div></section>
 
     <section className="ks-contact" id="contact"><div className="ks-contact-intro"><span className="ks-section-kicker">LET&apos;S BUILD TOGETHER / 06</span><h2>پروژه بعدی<br />می‌تواند <em>مال شما</em> باشد.</h2><p>ایده‌ای دارید؟ درباره‌اش حرف بزنیم. از اولین گفت‌وگو تا آخرین خط کد، اینجا هستیم.</p><a href={`mailto:${SITE.email}`} dir="ltr" className="ks-contact-email">{SITE.email} <MoveUpLeft size={20} /></a><div className="ks-contact-ornament" aria-hidden>✳</div></div><div className="ks-contact-form"><span className="ks-form-eyebrow">/ START A CONVERSATION</span><h3>بگذارید از شما بشنویم.</h3><ContactForm /></div></section>
     <div className="ks-endnote"><span>کارن سافت © ۱۴۰۴ — امروز</span><span>با دقت ساخته شده، برای آینده.</span><a href="#main">بازگشت به بالا ↑</a></div>
-    <JsonLd data={webPageSchema({ name: "کارن سافت | طراحی نرم‌افزار، کارن چاپ و آموزش کلاس اول", description: "خدمات طراحی سایت و نرم‌افزار، کارن چاپ، حساب‌یار اندروید و مدرسه‌ی من؛ آموزش کلاس اول در کنار خانواده", path: "/", mainEntity: { "@id": `${SITE.url}/#organization` } })} />
+    <JsonLd data={webPageSchema({ name: "کارن سافت | طراحی سایت و نرم‌افزار اختصاصی در قزوین", description: "وب‌سایت و نرم‌افزار اختصاصی برای کسب‌وکارهای ایران؛ طراحی سایت، سامانه‌های مدیریتی و اتوماسیون فرایندها از قزوین.", path: "/", mainEntity: { "@id": `${SITE.url}/#organization` } })} />
   </div>;
 }

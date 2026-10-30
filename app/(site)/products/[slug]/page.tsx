@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { PRODUCTS, PRODUCT_STATUS_LABEL } from "@/lib/products";
 import { pageMeta } from "@/lib/seo";
@@ -10,6 +11,7 @@ import { Accordion } from "@/components/ui/accordion";
 import { FAQS } from "@/lib/constants";
 import { JsonLd } from "@/components/ui/json-ld";
 import { LawBookProductPage, LAWBOOK_FAQS } from "@/components/site/law-book-product-page";
+import { relatedPostsForProduct } from "@/lib/related";
 
 /** محصولات با صفحهٔ اختصاصی، مسیر ایستای خودشان را دارند و این‌جا ساخته نمی‌شوند. */
 const DEDICATED_PAGES = new Set(["hesabyar"]);
@@ -25,7 +27,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return pageMeta({
     title: product.slug === "law-book"
       ? "کتابچه قانون | مرجع حقوقی همراه، آنلاین و آفلاین"
-      : `${product.name} | نرم‌افزار مدیریتی کسب‌وکار`,
+      : `نرم‌افزار ${product.name} | کارن سافت`,
     description: product.slug === "law-book"
       ? "کتابچه قانون با ۷۳ سند، ۱۱٬۱۳۲ ماده و ۱۰۰ آزمون اختبار؛ جست‌وجوی فارسی و مطالعه آفلاین، با دریافت اختیاری ۱٬۹۹۸ رأی قضایی."
       : `${product.short} امکانات، ماژول‌ها، نمونه‌های واقعی و شرایط شروع را در همین صفحه بررسی کنید.`,
@@ -38,6 +40,8 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
   const { slug } = await params;
   const product = PRODUCTS.find((item) => item.slug === slug);
   if (!product) notFound();
+
+  const relatedPosts = relatedPostsForProduct(product.slug);
 
   if (product.slug === "law-book") {
     return (
@@ -108,6 +112,19 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
       ) : null}
 
       <ContentSection title="پیش از شروع بدانید"><Accordion items={FAQS} /></ContentSection>
+      {relatedPosts.length ? (
+        <ContentSection title="مقالات مرتبط با این محصول">
+          <div className="grid gap-5 md:grid-cols-3">
+            {relatedPosts.map((post) => (
+              <Link key={post.slug} className="surface-card p-6" href={`/blog/${post.slug}`}>
+                <p className="text-xs text-brand-600 dark:text-brand-300">{post.category}</p>
+                <h3 className="mt-3">{post.title}</h3>
+                <p className="mt-3 text-sm leading-loose text-muted">{post.excerpt}</p>
+              </Link>
+            ))}
+          </div>
+        </ContentSection>
+      ) : null}
       <ContactCTA />
       <JsonLd
         data={[
