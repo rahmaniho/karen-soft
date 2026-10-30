@@ -1,6 +1,6 @@
 # نسخه‌های نمایشی خودمیزبان (`/demos/`)
 
-نه پروژهٔ نمونه‌کار، به‌صورت فایل ایستا روی **همین دامنه** میزبانی می‌شوند و از
+ده پروژهٔ نمونه‌کار، به‌صورت فایل ایستا روی **همین دامنه** میزبانی می‌شوند و از
 صفحهٔ «نمونه‌کارها» (`/portfolio`) داخل قاب پیش‌نمایش هم‌مبدأ اجرا می‌شوند.
 بازدیدکننده هیچ‌وقت به مخزن، نسخهٔ خارجی یا دامنهٔ دیگری فرستاده نمی‌شود و در
 رابط کاربری هیچ پیوند خروجی به این پروژه‌ها وجود ندارد.
@@ -17,12 +17,13 @@
 | Gym (آیرون آرنا) | `/demos/gym/` | `/portfolio/gym` | HTML/CSS/JS خالص، بدون build |
 | Karenwood (هلدینگ چوب) | `/demos/karenwood/` | `/portfolio/karenwood` | Next.js با خروجی ایستا؛ `REPO_NAME=demos/karenwood` تا `basePath` و `assetPrefix` روی `/demos/karenwood/` قرار گیرد |
 | musician (استودیو آوا) | `/demos/musician/` | `/portfolio/musician` | HTML/CSS/JS خالص، بدون build |
+| Academy_Hanis (آکادمی زیبایی هانیس) | `/demos/hanis/` | `/portfolio/hanis` | HTML/CSS/JS خالص + ویدیو و چند زیرپوشهٔ صفحه |
 | Digikaren (فروشگاه + پنل ادمین) | `/demos/digikaren/` | `/portfolio/digikaren` | Vite با `--mode pages` و `--base=/demos/digikaren/`؛ service worker حذف می‌شود |
 
 ## بازتولید
 
 ```bash
-# کلون هر نه مخزن در /tmp/repos (نام پوشه‌ها: Demo3 afshin RedLine Demo Demo1 Gym Karenwood musician Digikaren)
+# کلون هر ده مخزن در /tmp/repos (نام پوشه‌ها: Demo3 afshin RedLine Demo Demo1 Gym Karenwood musician Digikaren Academy_Hanis)
 DEMO_SRC_DIR=/tmp/repos npm run build:demos
 ```
 
@@ -73,3 +74,21 @@ DEMO_SRC_DIR=/tmp/repos npm run build:demos
 - عبارت «گیت‌هاب پیجز» در متن‌های حالت ایستا با «نسخهٔ نمایشی» جایگزین شده است.
 - تصویر شاخص (`/images/portfolio/digikaren.jpg`) و آیکون (`/images/clients/digikaren/digikaren-mark.png`)
   از فایل‌های برند خود پروژه ساخته شده‌اند.
+
+## هانیس: نمونه‌کار چندصفحه‌ای
+
+آکادمی زیبایی هانیس یک سایت تک‌صفحه‌ای ساده نیست؛ ۲۵ فایل HTML در پوشه‌های
+`courses/`، `magazine/`، `portfolio/` و `services/` دارد و همه با مسیرهای نسبی
+(`courses/`, `assets/…`) به هم لینک شده‌اند. برای همین بدون build و بدون تغییر مسیرها
+داخل `public/demos/hanis/` کپی می‌شود:
+
+- نشانی‌های مطلق `https://rahmaniho.github.io/Academy_Hanis/` در همهٔ HTML/JS/CSS
+  با `/demos/hanis/` جایگزین می‌شوند (canonical، OG، JSON-LD، sitemap و `data-base`).
+- `robots.txt` و `sitemap.xml` خود پروژه کپی نمی‌شوند؛ هدر `X-Robots-Tag: noindex`
+  سایت روی کل `/demos/` اعمال است و متای robots صفحه‌ها هم `noindex, nofollow` شد.
+- پوشهٔ صفحه‌ها با بازنویسی موجود `next.config.ts` (`/demos/:path*` → `index.html`)
+  کار می‌کند، بنابراین `/demos/hanis/courses/makeup/` همان صفحهٔ دوره را می‌دهد.
+- سه ویدیوی پس‌زمینه (`assets/InShot_*.mp4`، حدود ۱۴ مگابایت) دست‌نخورده ماندند
+  تا حس واقعی سایت حفظ شود؛ حجم کل پوشه حدود ۱۸ مگابایت است.
+- تصویر شاخص `/images/portfolio/hanis.jpg` و آیکون `/images/clients/hanis/hanis-mark.png`
+  از هیرو و لوگوی خود پروژه ساخته شده‌اند.

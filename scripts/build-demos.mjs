@@ -3,7 +3,7 @@
  * ساخت نسخه‌های نمایشی خودمیزبان در public/demos/<slug>/
  *
  * ورودی: کلون محلی هر مخزن در DEMO_SRC_DIR (پیش‌فرض ‎/tmp/repos‎):
- *   Demo3  afshin  RedLine  Demo  Demo1  Gym  Karenwood  musician  Digikaren
+ *   Demo3  afshin  RedLine  Demo  Demo1  Gym  Karenwood  musician  Digikaren  Academy_Hanis
  *
  * خروجی هر پروژه فقط فایل ایستا است و با مسیر نسبی یا پایهٔ ‎/demos/<slug>/‎
  * ساخته می‌شود تا روی همان دامنهٔ karen-soft.ir و داخل iframe هم‌مبدأ اجرا شود.
@@ -28,6 +28,7 @@ const PROJECTS = [
   { repo: "Karenwood", slug: "karenwood", kind: "next" },
   { repo: "musician", slug: "musician", kind: "static" },
   { repo: "Digikaren", slug: "digikaren", kind: "vite-static" },
+  { repo: "Academy_Hanis", slug: "hanis", kind: "static" },
 ];
 
 const SKIP = new Set([".git", ".github", "node_modules", "tools", "README.md", "LICENSE", "sitemap.xml", "robots.txt"]);

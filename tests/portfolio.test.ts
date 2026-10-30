@@ -104,7 +104,31 @@ describe("portfolio samples", () => {
     }
   });
 
-  it("ships every client logo and testimonial photo from this site", () => {
+  it("previews the Hanis beauty academy site with its own pages inside the showcase", () => {
+    const study = CASE_STUDIES.find((item) => item.slug === "hanis");
+    expect(study?.kind).toBe("sample");
+    expect(study?.title).toContain("هانیس");
+    expect(study?.cover).toBe("/images/portfolio/hanis.jpg");
+    expect(study?.logo).toBe("/images/clients/hanis/hanis-mark.png");
+    expect(study?.results).toBeUndefined();
+    expect(study?.quote).toBeUndefined();
+    expect(study?.demo?.src).toBe("/demos/hanis/index.html");
+    expect(study?.demo?.scope).toBe("/demos/hanis/");
+
+    // چندصفحه‌ای بودن نمونه‌کار: صفحه‌های دوره، گالری، مجله و خدمات باید موجود باشند.
+    for (const page of [
+      "index.html",
+      "courses/index.html",
+      "courses/makeup/index.html",
+      "portfolio/index.html",
+      "magazine/index.html",
+      "services/index.html",
+    ]) {
+      expect(existsSync(join(root, "public/demos/hanis", page)), page).toBe(true);
+    }
+  });
+
+  it("serves every client logo and testimonial photo from this site", () => {
     for (const study of CASE_STUDIES) {
       if (study.logo) expect(existsSync(join(root, "public", study.logo.slice(1))), study.slug).toBe(true);
       if (study.quote?.avatar) expect(existsSync(join(root, "public", study.quote.avatar.slice(1))), study.slug).toBe(true);
