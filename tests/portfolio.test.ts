@@ -65,6 +65,9 @@ describe("portfolio samples", () => {
       if (study.demo.fullPageHref) expect(study.demo.fullPageHref.startsWith("/"), study.slug).toBe(true);
       if (study.demo.src.endsWith(".html")) {
         expect(existsSync(join(root, "public", study.demo.src)), study.slug).toBe(true);
+      } else if (study.demo.src.endsWith("/")) {
+        // نسخه‌های چندصفحه‌ای با مسیر پوشه سرو می‌شوند؛ صفحهٔ ورود باید موجود باشد.
+        expect(existsSync(join(root, "public", study.demo.src, "index.html")), study.slug).toBe(true);
       }
     }
   });

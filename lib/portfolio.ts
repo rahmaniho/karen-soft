@@ -306,9 +306,12 @@ export const CASE_STUDIES: CaseStudy[] = [
     logo: "/images/clients/leyla-abkeh/leyla-abkeh-mark.png",
     note: "این نسخهٔ نمایشی کامل داخل همین سایت میزبانی می‌شود؛ نام و نشان دفتر وکیل روی آن است. فرم مشاوره در این نسخه فقط نمایشی است و چیزی ارسال نمی‌شود.",
     demo: {
-      src: "/demos/leyla-abkeh/index.html",
+      // مسیر باید با «/» تمام شود؛ مسیریابی سمت کلاینت سایت با نشانی
+      // «.../index.html» صفحهٔ ۴۰۴ نشان می‌دهد.
+      src: "/demos/leyla-abkeh/",
       scope: "/demos/leyla-abkeh/",
       title: "پیش‌نمایش زندهٔ وب‌سایت دفتر وکالت لیلا آبکه",
+      fullPageHref: "/demos/leyla-abkeh/",
     },
     specs: [
       { label: "وکیل", value: "لیلا آبکه، وکیل پایه یک دادگستری" },
