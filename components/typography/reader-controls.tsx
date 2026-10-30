@@ -64,8 +64,6 @@ export function ReaderControls({ className }: { className?: string }) {
 
   const isDirty = GROUPS.some((g) => prefs[g] !== READER_DEFAULTS[g]);
 
-  // روی صفحۀ دموها نمایش داده نمی‌شود؛ آنجا رابط کاربریِ محصول شبیه‌سازی شده است
-  if (pathname.startsWith("/demo")) return null;
 
   return (
     <div ref={rootRef} className={cn("fixed bottom-5 start-5 z-[60] flex flex-col items-start gap-3", !pathname.startsWith("/print") && "ks-reader-site", className)}>

@@ -61,7 +61,6 @@ for (const path of [
   "/status",
   "/roadmap",
   "/changelog",
-  "/demo/industries/beauty-salon",
 ]) {
   const html = await (await fetch(base + path)).text();
   const robots = html.match(/<meta name="robots" content="([^"]*)"/i)?.[1] ?? "";

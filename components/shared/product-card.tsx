@@ -80,14 +80,6 @@ export function ProductCard({ product }: { product: Product }) {
             <ExternalLink className="size-4" aria-hidden />
             نسخۀ زنده
           </a>
-        ) : product.demoSlug ? (
-          <Link
-            href={`/demo/${product.demoSlug}`}
-            className="inline-flex h-10 items-center gap-1.5 rounded-[var(--radius-sm)] bg-brand-600 px-4 text-2xs font-extrabold text-white transition-colors hover:bg-brand-500"
-          >
-            <PlayCircle className="size-4" aria-hidden />
-            مشاهده دمو
-          </Link>
         ) : null}
         <Link
           href={`/products/${product.slug}`}

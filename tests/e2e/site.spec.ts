@@ -46,19 +46,21 @@ test('law book page shows the topic catalogue instead of a live preview',async({
  await expect(page.getByRole('link',{name:/نسخهٔ زنده|پیش‌نمایش/})).toHaveCount(0);
 });
 
-test('old law book demo URL leads to the contents list',async({page})=>{
- await page.goto('/demo/law-book');
- await expect(page).toHaveURL(/\/products\/law-book#book-topics$/);
- await expect(page.locator('#book-topics')).toBeVisible();
+test('removed demo hub redirects to the portfolio',async({page})=>{
+ await page.goto('/demo');
+ await expect(page).toHaveURL(/\/portfolio$/);
+ await page.goto('/demo/law-office');
+ await expect(page).toHaveURL(/\/portfolio$/);
 });
 
-test('demo keeps the selected module after reload',async({page})=>{
- await page.goto('/demo/law-office');await page.getByRole('button',{name:'بعدی',exact:true}).click();
- await expect(page.locator('aside button[aria-current="page"]')).toContainText('پرونده');
- await page.reload();await expect(page.locator('aside button[aria-current="page"]')).toContainText('پرونده');
+test('law firm portfolio case opens its own hosted preview',async({page})=>{
+ await page.goto('/portfolio/leyla-abkeh');
+ const frame=page.locator('iframe[title*="لیلا آبکه"]');
+ await expect(frame).toBeVisible();
+ await expect(frame).toHaveAttribute('src','/demos/leyla-abkeh/index.html');
 });
 
-for(const theme of ['light','dark'])for(const path of ['/','/products','/blog','/contact','/print','/print/order/bizcard','/demo/law-office']){
+for(const theme of ['light','dark'])for(const path of ['/','/products','/blog','/contact','/print','/print/order/bizcard','/portfolio/leyla-abkeh']){
  test(`accessibility ${theme} ${path}`,async({page})=>{
   await page.addInitScript(theme=>localStorage.setItem('theme',theme),theme);
   await page.goto(path);await page.evaluate(()=>document.fonts.ready);
@@ -67,15 +69,12 @@ for(const theme of ['light','dark'])for(const path of ['/','/products','/blog','
  });
 }
 
-for(const product of ['printing-management','law-office','taxi-management','smart-building','real-estate','restaurant','auto-parts','gym','online-store','karen-net']){
- test(`all demo modules render: ${product}`,async({page})=>{
+for(const slug of ['leyla-abkeh','hanis','digikaren']){
+ test(`portfolio preview renders without page errors: ${slug}`,async({page})=>{
   const errors:string[]=[];page.on('pageerror',error=>errors.push(error.message));
-  await page.setViewportSize({width:1440,height:900});await page.goto(`/demo/${product}`);
-  const modules=page.locator('aside li button');const count=await modules.count();expect(count).toBeGreaterThan(0);
-  for(let i=0;i<count;i++){
-   await modules.nth(i).click();await expect(modules.nth(i)).toHaveAttribute('aria-current','page');
-   await expect(page.getByRole('heading',{level:2}).first()).toBeVisible();
-  }
+  await page.setViewportSize({width:1440,height:900});await page.goto(`/portfolio/${slug}`);
+  await expect(page.getByRole('heading',{level:1})).toBeVisible();
+  await expect(page.locator('iframe').first()).toBeVisible();
   expect(errors).toEqual([]);
  });
 }

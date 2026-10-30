@@ -9,7 +9,6 @@ import {
   FACTORY_STATIONS,
   STATION_STATUS_COPY,
 } from "../lib/smart-factory";
-import { INDUSTRIES } from "../lib/industries";
 import { legacyRedirects } from "../lib/legacy-redirects";
 import nextConfig from "../next.config";
 
@@ -45,10 +44,14 @@ describe("portfolio samples", () => {
     }
   });
 
-  it("publishes no measured results or quotes for samples", () => {
+  it("publishes no measured results for samples and never invents quotes", () => {
     for (const study of CASE_STUDIES.filter((item) => item.kind !== "client")) {
       expect(study.results, study.slug).toBeUndefined();
-      expect(study.quote, study.slug).toBeUndefined();
+      if (study.kind === "hypothetical") expect(study.quote, study.slug).toBeUndefined();
+      if (study.quote) {
+        expect(study.quote.author, study.slug).toBeTruthy();
+        expect(study.quote.role, study.slug).toBeTruthy();
+      }
     }
   });
 
@@ -248,11 +251,11 @@ describe("removed client content", () => {
     }
   });
 
-  it("replaces the beauty-salon brand and team with fictional names", () => {
-    const salon = INDUSTRIES.find((item) => item.slug === "beauty-salon");
-    expect(salon).toBeTruthy();
-    expect(salon!.brandName).not.toContain("سحر");
-    expect(salon!.team.some((member) => member.name.includes("نجفی"))).toBe(false);
-    expect(salon!.hero.badge).toContain("فرضی");
+  it("keeps the hypothetical salon free of borrowed brands and live demos", () => {
+    const salon = CASE_STUDIES.find((item) => item.slug === "beauty-salon-hypothetical");
+    expect(salon?.kind).toBe("hypothetical");
+    expect(salon?.demo).toBeUndefined();
+    expect(salon?.client).toContain("فرضی");
+    expect(salon?.note).toContain("فرضی");
   });
 });

@@ -167,7 +167,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
         </ul>
       </ContentSection>
       {study.quote ? (
-        <ContentSection title="از زبان مشتری">
+        <ContentSection title={copy.quote}>
           <figure
             className={`grid overflow-hidden rounded-[var(--radius-2xl)] border border-[var(--hairline)] bg-[var(--surface-raised)] ${
               study.quote.avatar ? "lg:grid-cols-[0.36fr_0.64fr]" : ""

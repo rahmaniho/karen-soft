@@ -8,7 +8,7 @@ import { chapBusinessSchema } from "../lib/schema";
 import { chapPageMeta, pageMeta } from "../lib/seo";
 import { BLOG_POSTS } from "../lib/blog";
 import { CASE_STUDIES } from "../lib/portfolio";
-import { DEMO_PRODUCTS, PRODUCTS } from "../lib/products";
+import { PRODUCTS } from "../lib/products";
 import { SOLUTIONS } from "../lib/solutions";
 import { PRINT_PRODUCTS } from "../lib/print/data/products";
 import { PRINT_SERVICES } from "../lib/print/data/services";
@@ -83,7 +83,7 @@ describe("technical SEO and GEO foundations", () => {
     expect(paths).toContain("/blog");
     expect(paths).not.toContain("/print/order");
     expect(paths.some((path) => path.startsWith("/print/order/"))).toBe(false);
-    expect(paths.some((path) => path.startsWith("/demo/industries/"))).toBe(false);
+    expect(paths.some((path) => path === "/demo" || path.startsWith("/demo/"))).toBe(false);
     expect(paths).not.toContain("/about/careers");
     expect(paths).not.toContain("/status");
     expect(paths).not.toContain("/roadmap");
@@ -108,13 +108,12 @@ describe("technical SEO and GEO foundations", () => {
       "/print/products/": PRINT_PRODUCTS.map((product) => `/print/products/${product.slug}`),
       "/products/": PRODUCTS.map((product) => `/products/${product.slug}`),
       "/solutions/": SOLUTIONS.map((solution) => `/solutions/${solution.slug}`),
-      "/demo/": DEMO_PRODUCTS.map((product) => `/demo/${product.demoSlug}`),
       "/portfolio/": CASE_STUDIES.map((study) => `/portfolio/${study.slug}`),
       "/blog/": BLOG_POSTS.map((post) => `/blog/${post.slug}`),
     };
     const staticPaths = [
       "/", "/print", "/print/services", "/print/portfolio", "/print/about", "/print/faq", "/print/contact",
-      "/services", "/products", "/solutions", "/demo", "/demo/industries", "/portfolio", "/blog",
+      "/services", "/products", "/solutions", "/portfolio", "/blog",
       "/about", "/contact", "/download-law-software", "/docs", "/privacy", "/terms",
     ];
 
@@ -150,6 +149,6 @@ describe("technical SEO and GEO foundations", () => {
     expect(content).toContain("/print/contact");
     expect(content).toContain("/products/printing-management");
     expect(content).toContain(CHAP.address);
-    expect(content).toContain("داده‌های نمونه");
+    expect(content).toContain("نمونه‌کارهای زندهٔ سایت");
   });
 });

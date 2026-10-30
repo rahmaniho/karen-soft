@@ -29,6 +29,9 @@ const nextConfig: NextConfig = {
     return [
       // نشانی‌های سایت بدون «/» پایانی‌اند؛ همان رفتار قبلی Next برای بقیهٔ مسیرها.
       {source: "/:path((?!demos/).+)/", destination: "/:path", permanent: true},
+      // بخش «دموی زنده» حذف شده است؛ نشانی‌های قدیمی به نمونه‌کارها منتقل می‌شوند.
+      {source: "/demo", destination: "/portfolio", permanent: true},
+      {source: "/demo/:path*", destination: "/portfolio", permanent: true},
       {source: "/:path*", has: [{type: "host" as const, value: "www.karen-soft.ir"}], destination: "https://karen-soft.ir/:path*", permanent: true},
       ...legacyRedirects.map(([source, destination]) => ({source, destination, permanent: true})),
     ];

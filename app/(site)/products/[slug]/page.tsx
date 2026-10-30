@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       : `${product.name} | نرم‌افزار مدیریتی کسب‌وکار`,
     description: product.slug === "law-book"
       ? "کتابچه قانون با ۷۳ سند، ۱۱٬۱۳۲ ماده و ۱۰۰ آزمون اختبار؛ جست‌وجوی فارسی و مطالعه آفلاین، با دریافت اختیاری ۱٬۹۹۸ رأی قضایی."
-      : `${product.short} دموی زنده را پیش از تصمیم‌گیری، بدون نصب در مرورگر بررسی کنید.`,
+      : `${product.short} امکانات، ماژول‌ها، نمونه‌های واقعی و شرایط شروع را در همین صفحه بررسی کنید.`,
     path: `/products/${product.slug}`,
     images: product.image ? [product.image] : undefined,
   });
@@ -61,7 +61,6 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
   return (
     <>
       <PageHero eyebrow="PRODUCT / KAREN SOFT" title={product.name} description={product.description}>
-        {product.demoSlug ? <ButtonLink href={`/demo/${product.demoSlug}`}>تجربه دموی زنده</ButtonLink> : null}
         <ButtonLink href="/contact" variant="outline">درخواست مشاوره</ButtonLink>
       </PageHero>
 
@@ -77,8 +76,8 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
             <p className="mt-2 text-xs text-muted">قیمت نهایی پس از بررسی دامنه و تأیید پیشنهاد تعیین می‌شود.</p>
           </div>
           <div>
-            <p className="text-muted">امکان بررسی پیش از خرید</p>
-            <h3>دموی مرورگری با داده نمونه</h3>
+            <p className="text-muted">پیش از خرید</p>
+            <h3>مشاورهٔ فنی و پیشنهاد دامنهٔ پروژه</h3>
           </div>
         </div>
       </ContentSection>

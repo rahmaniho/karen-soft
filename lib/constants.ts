@@ -3,7 +3,7 @@ export const SITE = {
   nameEn: "Karen Soft",
   tagline: "فناوری پیچیده، رشد ساده.",
   description:
-    "کارن سافت در قزوین وب‌سایت و نرم‌افزار مدیریتی اختصاصی برای کسب‌وکارها طراحی می‌کند؛ خدمات توسعه، اتوماسیون و دموهای زنده پیش از همکاری.",
+    "کارن سافت در قزوین وب‌سایت و نرم‌افزار مدیریتی اختصاصی برای کسب‌وکارها طراحی می‌کند؛ خدمات توسعه، اتوماسیون و نمونه‌کارهای زنده پیش از همکاری.",
   url: "https://karen-soft.ir",
   phone: "+989152521166",
   phoneDisplay: "۰۹۱۵۲۵۲۱۱۶۶",
@@ -26,7 +26,7 @@ export interface NavLink {
   label: string;
   href: string;
   /** مگامنوی زیرمenu باز می‌شود */
-  mega?: "solutions" | "products" | "demo";
+  mega?: "solutions" | "products";
   /** نقطۀ سبز «فعال بودن» */
   highlight?: boolean;
   /** برچسب کوچک کنار آیتم منو */
@@ -37,9 +37,8 @@ export const NAV_LINKS: NavLink[] = [
   { label: "خدمات", href: "/services" },
   { label: "راهکارها", href: "/solutions", mega: "solutions" as const },
   { label: "محصولات", href: "/products", mega: "products" as const },
-  { label: "دموی زنده", href: "/demo", mega: "demo" as const, highlight: true },
+  { label: "نمونه‌کارها", href: "/portfolio", highlight: true },
   { label: "کارن چاپ", href: "/print", badge: "چاپخانه" as const },
-  { label: "نمونه‌کارها", href: "/portfolio" },
   { label: "مجله", href: "/blog" },
   { label: "درباره ما", href: "/about" },
 ];
@@ -113,7 +112,7 @@ export const FAQS = [
   },
   {
     q: "آیا می‌توانم قبل از خرید محصول را امتحان کنم؟",
-    a: "ده نرم‌افزار مدیریتی کارن سافت دموی زنده دارند؛ بدون نصب و ثبت‌نام آن‌ها را در مرورگر بررسی کنید. برای کتابچه قانون هم فهرست دسته‌ها و اسناد داخل کتاب در صفحۀ محصول آمده است.",
+    a: "برای هر محصول مدیریتی، صفحهٔ اختصاصی با امکانات، ماژول‌ها و نمونه‌های واقعی در دسترس است. برای کتابچه قانون هم فهرست دسته‌ها و اسناد داخل کتاب در صفحۀ محصول آمده است.",
   },
   {
     q: "پشتیبانی بعد از تحویل چگونه است؟",

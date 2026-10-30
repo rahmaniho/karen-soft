@@ -5,7 +5,7 @@ export const legacyRedirects = [
   ["/print.html", "/print"], ["/blog.html", "/blog"],
   ["/blog/index.html", "/blog"], ["/blog/archive.html", "/blog"],
   ["/law-office.html", "/products/law-office"],
-  ["/taxi.html", "/demo/taxi-management"],
+  ["/taxi.html", "/products/taxi-management"],
   ["/download-law-software.html", "/download-law-software"],
   // نمونه‌کارهای حذف‌شده (سالن زیبایی قبلی) به فهرست نمونه‌کارها هدایت می‌شوند.
   ["/najafisahar.html", "/portfolio"], ["/saharnajafi.html", "/portfolio"],

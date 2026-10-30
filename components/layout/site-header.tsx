@@ -9,13 +9,12 @@ import { ChevronDown, Menu, Phone, X } from "lucide-react";
 import { CHAP_LINKS, NAV_LINKS, SITE } from "@/lib/constants";
 import { SOLUTIONS } from "@/lib/solutions";
 import { PRODUCTS } from "@/lib/products";
-import { INDUSTRIES } from "@/lib/industries";
 import { cn } from "@/lib/utils";
 import { useFocusTrap } from "@/hooks/use-focus-trap";
 import { useScrollState } from "@/hooks/use-scroll-state";
 import { ButtonLink } from "@/components/ui/button";
 import { ThemeToggle } from "./theme-toggle";
-import { DemoMega, ProductsMega, SolutionsMega } from "./mega-menus";
+import { ProductsMega, SolutionsMega } from "./mega-menus";
 
 export function SiteHeader() {
   const headerRef = useRef<HTMLElement>(null);
@@ -143,7 +142,6 @@ export function SiteHeader() {
           >
             {openMega === "solutions" ? <SolutionsMega onNavigate={() => setOpenMega(null)} /> : null}
             {openMega === "products" ? <ProductsMega onNavigate={() => setOpenMega(null)} /> : null}
-            {openMega === "demo" ? <DemoMega onNavigate={() => setOpenMega(null)} /> : null}
           </motion.div>
         ) : null}
       </AnimatePresence>
@@ -170,15 +168,6 @@ function MobileNav({ onNavigate }: { onNavigate: () => void }) {
   const groups = [
     { id: "solutions", label: "راهکارها", items: SOLUTIONS.map((s) => ({ label: `${s.emoji} ${s.name}`, href: `/solutions/${s.slug}` })) },
     { id: "products", label: "محصولات", items: PRODUCTS.map((p) => ({ label: `${p.emoji} ${p.name}`, href: `/products/${p.slug}` })) },
-    {
-      id: "demo",
-      label: "دموی زنده",
-      items: [
-        { label: "هاب دموها", href: "/demo" },
-        { label: "گالری صنایع", href: "/demo/industries" },
-        ...INDUSTRIES.slice(0, 6).map((i) => ({ label: i.name, href: `/demo/industries/${i.slug}` })),
-      ],
-    },
   ];
 
   return (
@@ -230,8 +219,8 @@ function MobileNav({ onNavigate }: { onNavigate: () => void }) {
           {link.label}
         </Link>
       ))}
-      <ButtonLink href="/demo" size="lg" className="mt-4 w-full" onClick={onNavigate}>
-        مشاهده دموی زنده
+      <ButtonLink href="/portfolio" size="lg" className="mt-4 w-full" onClick={onNavigate}>
+        دیدن نمونه‌کارها
       </ButtonLink>
     </nav>
   );
