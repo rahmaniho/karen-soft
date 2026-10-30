@@ -2,13 +2,6 @@ import { describe, expect, it } from "vitest";
 import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
 import { join, relative, resolve } from "node:path";
 import { CASE_KIND_COPY, CASE_STUDIES } from "../lib/portfolio";
-import {
-  FACTORY_DISCLAIMER,
-  FACTORY_LAYERS,
-  FACTORY_PIPELINE,
-  FACTORY_STATIONS,
-  STATION_STATUS_COPY,
-} from "../lib/smart-factory";
 import { legacyRedirects } from "../lib/legacy-redirects";
 import nextConfig from "../next.config";
 
@@ -29,18 +22,21 @@ function textFiles(folders: string[]): string[] {
 }
 
 describe("portfolio samples", () => {
-  it("shows the real project first and the hypothetical salon second on the home page", () => {
-    expect(CASE_STUDIES[0].slug).toBe("karen-chap");
+  it("shows a real client project first", () => {
     expect(CASE_STUDIES[0].kind).toBe("client");
-    expect(CASE_STUDIES[1].kind).toBe("hypothetical");
   });
 
   it("labels every hypothetical case as fictional and explains it", () => {
-    const hypothetical = CASE_STUDIES.filter((study) => study.kind === "hypothetical");
-    expect(hypothetical.length).toBeGreaterThan(0);
-    for (const study of hypothetical) {
+    for (const study of CASE_STUDIES.filter((item) => item.kind === "hypothetical")) {
       expect(study.title, study.slug).toContain("فرضی");
       expect(study.note, study.slug).toBeTruthy();
+    }
+  });
+
+  it("keeps the removed case studies out of the list and redirects their URLs", () => {
+    for (const slug of ["karen-chap", "beauty-salon-hypothetical", "dastmozd-payroll", "industrial-automation"]) {
+      expect(CASE_STUDIES.some((study) => study.slug === slug), slug).toBe(false);
+      expect(legacyRedirects.some(([from, to]) => from === `/portfolio/${slug}` && to === "/portfolio"), slug).toBe(true);
     }
   });
 
@@ -168,43 +164,6 @@ describe("portfolio samples", () => {
     expect(study.stack).not.toContain("GitHub Actions");
   });
 
-  it("draws the smart factory automation on the industrial case", () => {
-    const study = CASE_STUDIES.find((item) => item.slug === "industrial-automation");
-    expect(study?.kind).toBe("sample");
-    expect(study?.visual).toBe("smart-factory");
-    expect(study?.title).toContain("اتوماسیون هوشمند");
-    expect(study?.summary).toContain("اتوماسیون هوشمند");
-    expect(study?.specs?.length).toBeGreaterThan(2);
-    expect(study?.stack).toEqual(expect.arrayContaining(["HTML", "CSS", "JavaScript", "SVG"]));
-    expect(study?.quote).toBeUndefined();
-    expect(study?.results).toBeUndefined();
-  });
-
-  it("describes the five automation layers from field to decision", () => {
-    expect(FACTORY_LAYERS).toHaveLength(5);
-    expect(FACTORY_LAYERS.map((layer) => layer.id)).toEqual([
-      "field",
-      "control",
-      "edge",
-      "erp",
-      "intelligence",
-    ]);
-    for (const layer of FACTORY_LAYERS) {
-      expect(layer.data.length, layer.id).toBeGreaterThan(2);
-      expect(layer.tech.length, layer.id).toBeGreaterThan(0);
-      expect(layer.outcome, layer.id).toBeTruthy();
-      expect(layer.scene.length, layer.id).toBeGreaterThan(0);
-    }
-    expect(FACTORY_DISCLAIMER).toContain("شبیه‌سازی");
-    expect(FACTORY_PIPELINE.map((step) => step.layer)).toEqual([0, 1, 2, 2, 3, 4]);
-    for (const step of FACTORY_PIPELINE) {
-      expect(FACTORY_LAYERS[step.layer], step.id).toBeTruthy();
-    }
-    for (const step of FACTORY_STATIONS) {
-      expect(STATION_STATUS_COPY[step.status], step.id).toBeTruthy();
-    }
-  });
-
   it("has explanatory copy for every case kind", () => {
     for (const copy of Object.values(CASE_KIND_COPY)) {
       expect(copy.challenge).toBeTruthy();
@@ -254,11 +213,4 @@ describe("removed client content", () => {
     }
   });
 
-  it("keeps the hypothetical salon free of borrowed brands and live demos", () => {
-    const salon = CASE_STUDIES.find((item) => item.slug === "beauty-salon-hypothetical");
-    expect(salon?.kind).toBe("hypothetical");
-    expect(salon?.demo).toBeUndefined();
-    expect(salon?.client).toContain("فرضی");
-    expect(salon?.note).toContain("فرضی");
-  });
 });
