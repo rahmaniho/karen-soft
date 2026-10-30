@@ -29,7 +29,6 @@ export default async function SolutionPage({ params }: { params: Promise<{ slug:
   return (
     <>
       <PageHero eyebrow="BUILT FOR YOUR INDUSTRY" title={solution.tagline} description={solution.hero}>
-        <ButtonLink href={`/demo/${solution.demoSlug}`}>مشاهده دمو</ButtonLink>
         <ButtonLink variant="outline" href={`/products/${solution.productSlug}`}>معرفی محصول</ButtonLink>
       </PageHero>
 

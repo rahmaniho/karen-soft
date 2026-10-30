@@ -80,5 +80,5 @@ export const CHAP_NAV = [
 export const CHAP_SOFTWARE_HOOK = {
   title: "چاپخانه‌ی دیجیتال، با نرم‌افزار کارن سافت",
   desc: "کارن چاپ زیرمجموعۀ کارن سافت است؛ به همین دلیل سفارش‌ها فقط در فرم ثبت نمی‌شوند، بلکه در سامانۀ مدیریت چاپ روتوگراور برنامه‌ریزی، تولید و گزارش می‌شوند.",
-  cta: { label: "دموی سامانۀ مدیریت چاپ", href: "/demo/printing-management" },
+  cta: { label: "معرفی سامانۀ مدیریت چاپ", href: "/products/printing-management" },
 } as const;

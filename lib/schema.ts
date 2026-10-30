@@ -282,7 +282,7 @@ export function softwareAppSchema(product: Product): Json {
     operatingSystem: "Web",
     description: product.description,
     url: absoluteUrl(`/products/${product.slug}`),
-    mainEntityOfPage: absoluteUrl(product.demoSlug ? `/demo/${product.demoSlug}` : `/products/${product.slug}`),
+    mainEntityOfPage: absoluteUrl(`/products/${product.slug}`),
     provider: { "@id": organizationId },
     featureList: product.features,
     inLanguage: "fa-IR",

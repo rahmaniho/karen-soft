@@ -9,8 +9,6 @@ export interface ProductModule {
 
 export interface Product {
   slug: string;
-  /** نشانی دمو برای محصولاتی که محیط تعاملی دارند. */
-  demoSlug?: string;
   name: string;
   short: string;
   description: string;
@@ -41,8 +39,6 @@ export interface ProductScreenshot {
   caption: string;
 }
 
-export type DemoProduct = Product & { demoSlug: string };
-
 export const PRODUCT_STATUS_LABEL: Record<ProductStatus, string> = {
   active: "فعال",
   beta: "تستی",
@@ -52,7 +48,6 @@ export const PRODUCT_STATUS_LABEL: Record<ProductStatus, string> = {
 export const PRODUCTS: Product[] = [
   {
     slug: "printing-management",
-    demoSlug: "printing-management",
     name: "مدیریت چاپ روتوگراور",
     short: "سامانه جامع مدیریت چاپخانه‌های روتوگراور و بسته‌بندی انعطاف‌پذیر.",
     description:
@@ -87,7 +82,6 @@ export const PRODUCTS: Product[] = [
   },
   {
     slug: "law-office",
-    demoSlug: "law-office",
     name: "مدیریت دفتر وکالت هوشمند",
     short: "مدیریت پرونده، موکل، جلسات و مالی دفتر وکالت با دستیار هوش مصنوعی.",
     description:
@@ -173,7 +167,6 @@ export const PRODUCTS: Product[] = [
   HESABYAR_PRODUCT,
   {
     slug: "taxi-management",
-    demoSlug: "taxi-management",
     name: "مدیریت آژانس تاکسی تلفنی",
     short: "دیسپچ هوشمند سفرها، مدیریت رانندگان و محاسبه کرایه.",
     description:
@@ -206,7 +199,6 @@ export const PRODUCTS: Product[] = [
   },
   {
     slug: "smart-building",
-    demoSlug: "smart-building",
     name: "مدیریت ساختمان هوشمند",
     short: "شارژ، تعمیرات، اعلان‌ها و بازدیدکنندگان مجتمع‌های مسکونی.",
     description:
@@ -238,7 +230,6 @@ export const PRODUCTS: Product[] = [
   },
   {
     slug: "real-estate",
-    demoSlug: "real-estate",
     name: "مدیریت املاک",
     short: "فایل‌های ملکی، تطبیق خریدار، بازدیدها و کمیسیون.",
     description:
@@ -270,7 +261,6 @@ export const PRODUCTS: Product[] = [
   },
   {
     slug: "restaurant",
-    demoSlug: "restaurant",
     name: "مدیریت رستوران",
     short: "سفارش‌گیری، میزها، آشپزخانه (KDS) و گزارش فروش.",
     description:
@@ -303,7 +293,6 @@ export const PRODUCTS: Product[] = [
   },
   {
     slug: "auto-parts",
-    demoSlug: "auto-parts",
     name: "مدیریت لوازم یدکی",
     short: "کاتالوگ قطعات، انبار، تأمین‌کننده و قیمت‌گذاری.",
     description:
@@ -335,7 +324,6 @@ export const PRODUCTS: Product[] = [
   },
   {
     slug: "gym",
-    demoSlug: "gym",
     name: "مدیریت باشگاه ورزشی",
     short: "اعضا، اشتراک، برنامه تمرینی و حضور و غیاب.",
     description:
@@ -368,7 +356,6 @@ export const PRODUCTS: Product[] = [
   },
   {
     slug: "online-store",
-    demoSlug: "online-store",
     name: "مدیریت فروشگاه",
     short: "محصولات، سفارش‌ها، تخفیف و تحلیل فروش.",
     description:
@@ -400,7 +387,6 @@ export const PRODUCTS: Product[] = [
   },
   {
     slug: "karen-net",
-    demoSlug: "karen-net",
     name: "کارن نت",
     short: "پلتفرم سفارش خدمات دیجیتال، پروژه و پشتیبانی.",
     description:
@@ -431,15 +417,7 @@ export const PRODUCTS: Product[] = [
   },
 ];
 
-/** کتابچهٔ قانون به‌جای دموی زنده، فهرست محتوای کتاب را نمایش می‌دهد. */
-export const DEMO_PRODUCTS: DemoProduct[] = PRODUCTS.filter(
-  (product): product is DemoProduct => Boolean(product.demoSlug),
-);
-
 export function getProduct(slug: string): Product | undefined {
   return PRODUCTS.find((p) => p.slug === slug);
 }
 
-export function getProductByDemo(slug: string): DemoProduct | undefined {
-  return DEMO_PRODUCTS.find((p) => p.demoSlug === slug);
-}

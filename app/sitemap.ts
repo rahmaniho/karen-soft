@@ -2,7 +2,7 @@ import { BLOG_POSTS } from "@/lib/blog";
 import { CASE_STUDIES } from "@/lib/portfolio";
 import type { MetadataRoute } from "next";
 import { SITE } from "@/lib/constants";
-import { DEMO_PRODUCTS, PRODUCTS } from "@/lib/products";
+import { PRODUCTS } from "@/lib/products";
 import { SOLUTIONS } from "@/lib/solutions";
 import { PRINT_SERVICES } from "@/lib/print/data/services";
 import { PRINT_PRODUCTS } from "@/lib/print/data/products";
@@ -45,9 +45,6 @@ function publicRoutes(): SitemapRouteInput[] {
     })),
     { path: "/solutions", priority: 0.84 },
     ...SOLUTIONS.map((solution) => ({ path: `/solutions/${solution.slug}`, priority: 0.78 })),
-    { path: "/demo", priority: 0.82, changeFrequency: "weekly" },
-    ...DEMO_PRODUCTS.map((product) => ({ path: `/demo/${product.demoSlug}`, priority: 0.68 })),
-    { path: "/demo/industries", priority: 0.68 },
     { path: "/portfolio", priority: 0.7 },
     ...CASE_STUDIES.map((study) => ({ path: `/portfolio/${study.slug}`, priority: 0.68 })),
     { path: "/blog", priority: 0.72, changeFrequency: "weekly", lastModified: latestPostUpdate },
@@ -66,7 +63,7 @@ function publicRoutes(): SitemapRouteInput[] {
 }
 
 /** مسیرهای noindex؛ اگر روزی اشتباهی وارد نقشه شوند، build با خطا متوقف می‌شود. */
-const NOINDEX_PATHS = ["/status", "/roadmap", "/changelog", "/about/careers", "/print/order", "/demo/law-book"];
+const NOINDEX_PATHS = ["/status", "/roadmap", "/changelog", "/about/careers", "/print/order"];
 
 /** نقشهٔ اعتبارسنجی‌شده برای استفادهٔ داخلی، تست‌ها و گزارش سئو. */
 export function sitemapEntries(): SitemapEntry[] {

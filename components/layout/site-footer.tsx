@@ -73,8 +73,7 @@ export function SiteFooter() {
           {PRODUCTS.map((product) => (
             <FooterLink key={product.slug} href={`/products/${product.slug}`}>{product.name}</FooterLink>
           ))}
-          <FooterLink href="/demo" accent>دموی زنده ⭐</FooterLink>
-          <FooterLink href="/demo/industries" accent>گالری صنایع</FooterLink>
+          <FooterLink href="/portfolio" accent>نمونه‌کارها ⭐</FooterLink>
         </FooterColumn>
 
         <FooterColumn title="کارن چاپ">

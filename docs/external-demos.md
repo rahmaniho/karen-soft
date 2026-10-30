@@ -1,6 +1,6 @@
 # نسخه‌های نمایشی خودمیزبان (`/demos/`)
 
-ده پروژهٔ نمونه‌کار، به‌صورت فایل ایستا روی **همین دامنه** میزبانی می‌شوند و از
+پروژه‌های نمونه‌کار، به‌صورت فایل ایستا روی **همین دامنه** میزبانی می‌شوند و از
 صفحهٔ «نمونه‌کارها» (`/portfolio`) داخل قاب پیش‌نمایش هم‌مبدأ اجرا می‌شوند.
 بازدیدکننده هیچ‌وقت به مخزن، نسخهٔ خارجی یا دامنهٔ دیگری فرستاده نمی‌شود و در
 رابط کاربری هیچ پیوند خروجی به این پروژه‌ها وجود ندارد.
@@ -19,11 +19,12 @@
 | musician (استودیو آوا) | `/demos/musician/` | `/portfolio/musician` | HTML/CSS/JS خالص، بدون build |
 | Academy_Hanis (آکادمی زیبایی هانیس) | `/demos/hanis/` | `/portfolio/hanis` | HTML/CSS/JS خالص + ویدیو و چند زیرپوشهٔ صفحه |
 | Digikaren (فروشگاه + پنل ادمین) | `/demos/digikaren/` | `/portfolio/digikaren` | Vite با `--mode pages` و `--base=/demos/digikaren/`؛ service worker حذف می‌شود |
+| Leyla-abkeh (دفتر وکالت لیلا آبکه) | `/demos/leyla-abkeh/` | `/portfolio/leyla-abkeh` | Vite + prerender؛ `VITE_BASE_PATH=demos/leyla-abkeh/` و `VITE_FORM_MODE=static`، سپس حذف `admin/`، `robots.txt`، `sitemap.xml` و افزودن `noindex` به همهٔ صفحات |
 
 ## بازتولید
 
 ```bash
-# کلون هر ده مخزن در /tmp/repos (نام پوشه‌ها: Demo3 afshin RedLine Demo Demo1 Gym Karenwood musician Digikaren Academy_Hanis)
+# کلون مخزن‌ها در /tmp/repos (نام پوشه‌ها: Demo3 afshin RedLine Demo Demo1 Gym Karenwood musician Digikaren Academy_Hanis)
 DEMO_SRC_DIR=/tmp/repos npm run build:demos
 ```
 

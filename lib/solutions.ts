@@ -14,7 +14,6 @@ export interface Solution {
   hero: string;
   accent: string;
   accentSoft: string;
-  demoSlug: string;
   productSlug: string;
   pains: { title: string; desc: string }[];
   features: { title: string; desc: string }[];
@@ -36,7 +35,6 @@ export const SOLUTIONS: Solution[] = [
     hero: "از ثبت سفارش تا تحویل رول، هر متر چاپ را اندازه بگیرید. ضایعات را کم کنید، بهای تمام‌شده را دقیق بدانید و ماشین‌ها را بهینه زمان‌بندی کنید.",
     accent: "#4b5563",
     accentSoft: "rgba(75,85,99,0.12)",
-    demoSlug: "printing-management",
     productSlug: "printing-management",
     pains: [
       { title: "ضایعات کنترل‌نشده", desc: "ضایعات ست‌آپ و چاپ در دفترچه ثبت می‌شود و هیچ‌وقت تحلیل نمی‌شود." },
@@ -105,7 +103,6 @@ export const SOLUTIONS: Solution[] = [
     hero: "پرونده‌ها، جلسات و مطالبات دفتر شما در یک سامانه امن؛ با دستیار هوشمند و تقویم شمسی جلسات دادگاه.",
     accent: "#c9a96e",
     accentSoft: "rgba(201,169,110,0.14)",
-    demoSlug: "law-office",
     productSlug: "law-office",
     pains: [
       { title: "فراموشی جلسات", desc: "پیگیری دستی تاریخ جلسات ریسک بالایی دارد." },
@@ -158,7 +155,6 @@ export const SOLUTIONS: Solution[] = [
     hero: "بانک فایل منظم، تطبیق هوشمند خریدار و فروشنده، تقویم بازدید و محاسبه شفاف کمیسیون مشاوران.",
     accent: "#84a98c",
     accentSoft: "rgba(132,169,140,0.16)",
-    demoSlug: "real-estate",
     productSlug: "real-estate",
     pains: [
       { title: "فایل‌های تکراری", desc: "یک ملک با چند قیمت در دفترهای مختلف ثبت می‌شود." },
@@ -211,7 +207,6 @@ export const SOLUTIONS: Solution[] = [
     hero: "سفارش‌ها بدون کاغذ به آشپزخانه می‌رسند، زمان آماده‌سازی سنجیده می‌شود و فروش لحظه‌ای گزارش می‌شود.",
     accent: "#f59e0b",
     accentSoft: "rgba(245,158,11,0.16)",
-    demoSlug: "restaurant",
     productSlug: "restaurant",
     pains: [
       { title: "سفارش گم‌شده", desc: "برگه سفارش در شلوغی آشپزخانه گم می‌شود." },
@@ -264,7 +259,6 @@ export const SOLUTIONS: Solution[] = [
     hero: "ورود سریع با QR، تمدید خودکار اشتراک و برنامه تمرینی اختصاصی؛ همه در یک پنل ساده.",
     accent: "#84cc16",
     accentSoft: "rgba(132,204,22,0.16)",
-    demoSlug: "gym",
     productSlug: "gym",
     pains: [
       { title: "ریزش اعضا", desc: "پایان اشتراک بدون یادآوری فراموش می‌شود." },
@@ -317,7 +311,6 @@ export const SOLUTIONS: Solution[] = [
     hero: "درخواست‌ها را در صف ببینید، نزدیک‌ترین راننده را تخصیص دهید و کرایه را دقیق محاسبه کنید.",
     accent: "#0ea5e9",
     accentSoft: "rgba(14,165,233,0.16)",
-    demoSlug: "taxi-management",
     productSlug: "taxi-management",
     pains: [
       { title: "تخصیص کند", desc: "پیدا کردن راننده آزاد وقت‌گیر است." },
@@ -370,7 +363,6 @@ export const SOLUTIONS: Solution[] = [
     hero: "شارژ ماهانه خودکار محاسبه می‌شود، درخواست تعمیر گردش‌کار دارد و ساکنان همیشه در جریان‌اند.",
     accent: "#64748b",
     accentSoft: "rgba(100,116,139,0.16)",
-    demoSlug: "smart-building",
     productSlug: "smart-building",
     pains: [
       { title: "وصول شارژ", desc: "پیگیری بدهی واحدها فرسایشی است." },
@@ -423,7 +415,6 @@ export const SOLUTIONS: Solution[] = [
     hero: "موجودی یکپارچه بین فروشگاه فیزیکی و آنلاین، خط لوله پردازش سفارش و تحلیل فروش لحظه‌ای.",
     accent: "#f43f5e",
     accentSoft: "rgba(244,63,94,0.14)",
-    demoSlug: "online-store",
     productSlug: "online-store",
     pains: [
       { title: "ناهماهنگی موجودی", desc: "فروش آنلاین و حضوری از یک انبار تغذیه نمی‌شوند." },
