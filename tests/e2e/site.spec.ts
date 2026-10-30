@@ -57,7 +57,7 @@ test('law firm portfolio case opens its own hosted preview',async({page})=>{
  await page.goto('/portfolio/leyla-abkeh');
  const frame=page.locator('iframe[title*="لیلا آبکه"]');
  await expect(frame).toBeVisible();
- await expect(frame).toHaveAttribute('src','/demos/leyla-abkeh/index.html');
+ await expect(frame).toHaveAttribute('src','/demos/leyla-abkeh/');
 });
 
 for(const theme of ['light','dark'])for(const path of ['/','/products','/blog','/contact','/print','/print/order/bizcard','/portfolio/leyla-abkeh']){
