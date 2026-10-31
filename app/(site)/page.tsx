@@ -11,6 +11,7 @@ import { webPageSchema } from "@/lib/schema";
 import { CountUp, ExperienceEffects, PortfolioGallery } from "@/components/sections/experience-interactive";
 import { ContactForm } from "@/components/sections/contact-form";
 import { LawBookSpotlight } from "@/components/sections/law-book-spotlight";
+import { HostingBanner } from "@/components/sections/hosting-banner";
 
 import { HesabyarDownload } from "@/components/sections/hesabyar-download";
 
@@ -89,6 +90,9 @@ export default function HomePage() {
     <section className="ks-section ks-portfolio" id="work"><div className="ks-heading-row"><Heading number="04" label="SELECTED WORK" title="از ایده تا اثر." sub="چند قاب از آنچه با فکر، جزئیات و عشق به ساختن خلق کرده‌ایم. روی هر پروژه بزنید و در همین صفحه تجربه‌اش کنید." /><Link href="/portfolio" className="ks-text-link">تمام نمونه‌کارها <ArrowUpLeft size={17} /></Link></div><PortfolioGallery cases={cases} /></section>
 
     <section className="ks-section ks-about" id="about"><div className="ks-about-copy"><Heading number="05" label="THE STORY" title="پشت هر خط کد، یک باور است." /><p>کارن سافت در سال <strong>۱۴۰۴ (2024)</strong> با یک ایده ساده شکل گرفت: فناوری باید مسائل واقعی را حل کند، نه اینکه پیچیدگی تازه بسازد.</p><p>امروز، با هدایت <strong>حسین رحمانی — بنیان‌گذار کارن سافت</strong>، از محصول نرم‌افزاری تا تجربه وب و چاپ، هر پروژه را با همان کنجکاوی روز اول می‌سازیم.</p><Link href="/about" className="ks-text-link">بیشتر درباره ما <ArrowUpLeft size={17} /></Link><Link href="/blog" className="ks-text-link">مجله و راهنماهای کارن سافت <ArrowUpLeft size={17} /></Link></div><div className="ks-about-visual"><div className="ks-about-image"><Image src="/images/Hosein-rahmani.jpg" alt="حسین رحمانی، بنیان‌گذار کارن سافت" fill sizes="(min-width: 1024px) 35vw, 100vw" className="object-cover" /></div><div className="ks-timeline"><span className="ks-time-dot" /><div><small>۱۴۰۴ / 2024</small><strong>شروع کارن سافت</strong><p>از یک چشم‌انداز تا نخستین محصول.</p></div><span className="ks-time-dot" /><div><small>امروز / TODAY</small><strong>همچنان در حال ساختن</strong><p>با همان اشتیاق روز اول، رو به آینده.</p></div></div></div></section>
+
+    {/* پیشنهاد همکاری در فروش؛ برچسب AD دارد و از محتوای تحریریه جدا است. */}
+    <HostingBanner variant="compact" />
 
     <section className="ks-contact" id="contact"><div className="ks-contact-intro"><span className="ks-section-kicker">LET&apos;S BUILD TOGETHER / 06</span><h2>پروژه بعدی<br />می‌تواند <em>مال شما</em> باشد.</h2><p>ایده‌ای دارید؟ درباره‌اش حرف بزنیم. از اولین گفت‌وگو تا آخرین خط کد، اینجا هستیم.</p><a href={`mailto:${SITE.email}`} dir="ltr" className="ks-contact-email">{SITE.email} <MoveUpLeft size={20} /></a><div className="ks-contact-ornament" aria-hidden>✳</div></div><div className="ks-contact-form"><span className="ks-form-eyebrow">/ START A CONVERSATION</span><h3>بگذارید از شما بشنویم.</h3><ContactForm /></div></section>
     <div className="ks-endnote"><span>کارن سافت © ۱۴۰۴ — امروز</span><span>با دقت ساخته شده، برای آینده.</span><a href="#main">بازگشت به بالا ↑</a></div>

@@ -5,7 +5,11 @@ import legacyArticles from "./legacy-blog.json";
 export interface BlogSection {
   heading: string;
   paragraphs: string[];
-  blocks?: { type: string; text?: string; src?: string; items?: string[] }[];
+  /**
+   * بلوک‌های داخلی مقاله. `affiliate` یعنی اینجا یک بنر همکاری در فروش (با افشاگری
+   * و rel=sponsored) نمایش داده شود؛ شناسه به `lib/affiliate.ts` اشاره می‌کند.
+   */
+  blocks?: { type: string; text?: string; src?: string; items?: string[]; offer?: string }[];
   bullets?: string[];
 }
 

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { SERVICES, PROCESS_STEPS, FAQS } from "@/lib/constants";
 import { PageHero, ContentSection, InfoGrid, Points, ContactCTA } from "@/components/site/page-parts";
 import { Accordion } from "@/components/ui/accordion";
@@ -35,6 +36,22 @@ export default function ServicesPage() {
           </div>
         </ContentSection>
       ))}
+      <ContentSection title="راهنماهای مرتبط">
+        <div className="grid gap-5 md:grid-cols-3">
+          <Link href="/blog/web-hosting-guide" className="surface-card p-6">
+            <p className="text-xs text-brand-600 dark:text-brand-300">زیرساخت وب</p>
+            <h3 className="mt-3">راهنمای انتخاب هاست برای سایت کسب‌وکار</h3>
+          </Link>
+          <Link href="/qazvin" className="surface-card p-6">
+            <p className="text-xs text-brand-600 dark:text-brand-300">محلی</p>
+            <h3 className="mt-3">طراحی سایت و نرم‌افزار در قزوین</h3>
+          </Link>
+          <Link href="/portfolio" className="surface-card p-6">
+            <p className="text-xs text-brand-600 dark:text-brand-300">نمونه‌کار</p>
+            <h3 className="mt-3">پروژه‌های اجراشده با همین تیم</h3>
+          </Link>
+        </div>
+      </ContentSection>
       <ContentSection title="مسیر همکاری"><InfoGrid items={PROCESS_STEPS} /></ContentSection>
       <ContentSection title="پرسش‌های متداول"><Accordion items={FAQS} /></ContentSection>
       <ContactCTA />
