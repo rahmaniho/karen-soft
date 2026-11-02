@@ -42,7 +42,7 @@ export function ExperienceEffects() {
     // IntersectionObserver avoids a scroll handler and only animates elements when visible.
     const home = document.querySelector(".ks-home");
     home?.classList.add("ks-js");
-    const targets = document.querySelectorAll(".ks-section-heading, .ks-service-card, .ks-product-card, .ks-portfolio-card");
+    const targets = document.querySelectorAll(".ks-section-heading, .ks-service-card, .ks-portfolio-card");
     const observer = new IntersectionObserver(entries => entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add("ks-revealed"); observer.unobserve(entry.target); } }), { threshold: 0.08 });
     targets.forEach(target => observer.observe(target));
     return () => { disposed = true; cancelAnimationFrame(frame); cancelAnimationFrame(pointerFrame); art?.removeEventListener("pointermove", onPointer); lenis?.destroy(); gsapCleanup?.(); observer.disconnect(); home?.classList.remove("ks-js"); };

@@ -2,8 +2,8 @@ import { Class1Community } from "@/components/sections/class1-community";
 import Image from "next/image";
 import Link from "next/link";
 import { pageMeta } from "@/lib/seo";
-import { ArrowDownLeft, ArrowLeft, ArrowUpLeft, Box, Code2, Layers3, MoveUpLeft, Printer, ScanLine, ShieldCheck, Sparkles } from "lucide-react";
-import { PRODUCTS } from "@/lib/products";
+import { ArrowDownLeft, ArrowUpLeft, Box, Code2, Layers3, MoveUpLeft, Printer, ScanLine, ShieldCheck, Sparkles } from "lucide-react";
+import { PortfolioMarquee } from "@/components/sections/portfolio-marquee";
 import { CASE_STUDIES } from "@/lib/portfolio";
 import { SITE } from "@/lib/constants";
 import { JsonLd } from "@/components/ui/json-ld";
@@ -21,7 +21,7 @@ export const metadata = pageMeta({
   path: "/",
 });
 
-const featured = ["law-office", "taxi-management", "printing-management", "smart-building"].map(slug => PRODUCTS.find(p => p.slug === slug)!);
+const showcase = ["qazvi-tasvir", "hanis", "karensoft-hse", "digikaren", "leyla-abkeh", "icecream-factory", "karenwood", "vokalahome"].map(slug => CASE_STUDIES.find(c => c.slug === slug)!);
 const cases = ["vokalahome", "qazvi-tasvir", "karensoft-hse"].map(slug => CASE_STUDIES.find(c => c.slug === slug)!);
 
 function Heading({ number, label, title, sub }: { number: string; label: string; title: string; sub?: string }) {
@@ -39,7 +39,7 @@ export default function HomePage() {
         <div className="ks-eyebrow"><span className="ks-eyebrow-line" /> استودیو مهندسی دیجیتال <span className="ks-eyebrow-en">/ EST. 1404</span></div>
         <h1 id="ks-hero-title">فردا را<br /><span>امروز</span> می‌سازیم<span className="ks-period">.</span><span className="ks-hero-subtitle">طراحی نرم‌افزار اختصاصی و وب‌سایت برای کسب‌وکارهای ایران، از <strong>۱۴۰۴ (2024)</strong></span></h1>
         <p className="ks-hero-desc">از یک ایده جسورانه تا محصولی که هر روز کار می‌کند. ما نرم‌افزار، تجربه دیجیتال و زیرساختی می‌سازیم که کسب‌وکار شما را یک قدم جلوتر می‌برد.</p>
-        <div className="ks-hero-actions"><Link href="/contact" className="ks-button ks-button-primary">شروع یک همکاری <ArrowUpLeft size={19} /></Link><Link href="#work" className="ks-button ks-button-outline">کشف کارهای ما <ArrowDownLeft size={18} /></Link></div>
+        <div className="ks-hero-actions"><Link href="/contact" className="ks-button ks-button-primary">شروع یک همکاری <ArrowUpLeft size={19} /></Link><Link href="#selected-work" className="ks-button ks-button-outline">کشف کارهای ما <ArrowDownLeft size={18} /></Link></div>
         <div className="ks-hero-proof"><div className="ks-proof-icons"><span><Code2 size={15} /></span><span><Layers3 size={15} /></span><span><ShieldCheck size={15} /></span></div><span>ایده‌های پیچیده. راه‌حل‌های ساده.<br /><strong>طراحی شده برای دنیای واقعی.</strong></span></div>
       </div>
       <div className="ks-hero-art" aria-label="نمای گرافیکی از زیرساخت دیجیتال کارن سافت">
@@ -70,12 +70,19 @@ export default function HomePage() {
       </div>
     </section>
 
-    <section className="ks-section ks-products" id="products"><div className="ks-heading-row"><Heading number="02" label="OUR PRODUCTS" title="ابزارهایی که کار می‌کنند." sub="برای هر صنعت، پاسخی دقیق. مجموعه‌ای از محصولات کاربردی، ساخته‌شده با درک نیاز شما." /><Link href="/products" className="ks-text-link">همه محصولات <ArrowUpLeft size={17} /></Link></div>
-      <div className="ks-product-grid">{featured.map((p, i) => <Link href={`/products/${p.slug}`} className={`ks-product-card ks-product-${i}`} key={p.slug}>
-        <div className="ks-product-top"><span>0{i + 1} / PRODUCT</span><ArrowUpLeft size={19} /></div>
-        <div className="ks-product-visual" aria-hidden="true"><span className="ks-product-visual-ring" /><span className="ks-product-symbol">{["§", "↗", "◎", "▦"][i]}</span><span className="ks-visual-grid" /></div>
-        <div className="ks-product-info"><span className="ks-product-tag">{["حقوقی و وکالت", "حمل‌ونقل", "چاپ و تولید", "مدیریت ساختمان"][i]}</span><h3>{p.name}</h3><p>{p.short}</p><span className="ks-product-explore">مشاهده محصول <ArrowLeft size={16} /></span></div>
-      </Link>)}</div>
+    <section className="ks-section ks-work-showcase" id="selected-work" aria-labelledby="ks-work-showcase-title">
+      <div className="ks-heading-row">
+        <div className="ks-section-heading">
+          <div className="ks-section-kicker"><span>02 / WORK IN MOTION</span><span className="ks-kicker-rule" /></div>
+          <h2 id="ks-work-showcase-title">ایده‌هایی که <em>جان گرفته‌اند.</em></h2>
+          <p>از وب‌سایت‌های برند تا سامانه‌های اختصاصی؛ گزیده‌ای از پروژه‌ها و نمونه‌های نمایشی ما را در حرکت ببینید.</p>
+        </div>
+        <Link href="/portfolio" className="ks-text-link">تمام نمونه‌کارها <ArrowUpLeft size={17} /></Link>
+      </div>
+      <PortfolioMarquee cases={showcase} />
+      <div className="ks-work-showcase-foot"><span><i aria-hidden="true" /> طراحی، توسعه و توجه به آخرین جزئیات.</span><Link href="/products">دنبال محصولات آماده هستید؟ <span>مشاهدهٔ محصولات</span><ArrowUpLeft size={15} aria-hidden="true" /></Link></div>
+    </section>
+    <section className="ks-section ks-product-spotlights" id="products" aria-label="محصولات آمادهٔ کارن سافت">
       <HesabyarDownload />
       <LawBookSpotlight />
     </section>
