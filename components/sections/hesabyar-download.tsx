@@ -14,6 +14,7 @@ import {
   HESABYAR_VERSION,
   HESABYAR_WEB_URL,
 } from "@/lib/hesabyar";
+import { formatNumber } from "@/lib/utils";
 
 /* سازگاری با مصرف‌کننده‌های قبلی این بخش؛ منبع اصلی داده‌ها `lib/hesabyar` است. */
 export { HESABYAR_APK_SHA256, HESABYAR_APK_URL, HESABYAR_PLANS, HESABYAR_VERSION, HESABYAR_WEB_URL };
@@ -98,7 +99,7 @@ export function HesabyarDownload() {
           {HESABYAR_PLANS.map((plan) => (
             <li key={plan.id} className={plan.featured ? "is-featured" : undefined}>
               <span className="ks-plan-title">{plan.title}{plan.featured ? <em>پیشنهاد ما</em> : null}</span>
-              <strong className="ks-plan-price"><bdi>{plan.price.toLocaleString("fa-IR")}</bdi> <small>تومان</small></strong>
+              <strong className="ks-plan-price"><bdi>{formatNumber(plan.price)}</bdi> <small>تومان</small></strong>
               <span className="ks-plan-period">{plan.period}</span>
               <p>{plan.note}</p>
             </li>

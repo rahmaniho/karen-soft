@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { formatNumber } from "@/lib/utils";
 
 export const LAWBOOK_SLIDES = [
   { src: "/images/lawbook/home.webp", width: 1050, height: 2272, title: "خانه و شروع سریع", caption: "صفحهٔ اصلی برنامه با آمار کتابخانه و میان‌برهای قوانین، جست‌وجو، آرای قضایی و آزمون اختبار." },
@@ -29,7 +30,7 @@ export function LawbookGallery() {
         }}>
         <figure className="lb-gallery-frame">
           <Image src={slide.src} alt={`${slide.title} — اسکرین‌شات واقعی کتابچه قانون`} width={slide.width} height={slide.height} sizes="(max-width: 767px) 90vw, 420px" className="lb-gallery-image" />
-          <figcaption aria-live="polite" aria-atomic="true"><strong>{slide.title}</strong><span>{slide.caption}</span><a href={slide.src} target="_blank" rel="noopener noreferrer" className="lb-gallery-full">مشاهدهٔ تصویر در اندازهٔ کامل<span className="sr-only"> (در پنجرهٔ جدید)</span></a><small>اسلاید {(active + 1).toLocaleString("fa-IR")} از {LAWBOOK_SLIDES.length.toLocaleString("fa-IR")}</small></figcaption>
+          <figcaption aria-live="polite" aria-atomic="true"><strong>{slide.title}</strong><span>{slide.caption}</span><a href={slide.src} target="_blank" rel="noopener noreferrer" className="lb-gallery-full">مشاهدهٔ تصویر در اندازهٔ کامل<span className="sr-only"> (در پنجرهٔ جدید)</span></a><small>اسلاید {formatNumber(active + 1)} از {formatNumber(LAWBOOK_SLIDES.length)}</small></figcaption>
         </figure>
         <div className="lb-gallery-controls">
           <button type="button" onClick={() => change(-1)} aria-label="اسلاید قبلی"><ChevronRight size={20} aria-hidden="true" /></button>

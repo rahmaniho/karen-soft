@@ -8,6 +8,7 @@ import { PageHero, ContentSection, ContactCTA } from "@/components/site/page-par
 import { BLOG_POSTS } from "@/lib/blog";
 import { articleSchema, breadcrumbSchema } from "@/lib/schema";
 import { pageMeta } from "@/lib/seo";
+import { formatNumber } from "@/lib/utils";
 
 export const generateStaticParams = () => BLOG_POSTS.map((post) => ({ slug: post.slug }));
 
@@ -49,7 +50,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           <time dateTime={post.date}>{publishedDate}</time>
           {post.modifiedDate ? <><span aria-hidden> · </span><span>به‌روزرسانی: <time dateTime={post.modifiedDate}>{new Date(`${post.modifiedDate}T12:00:00Z`).toLocaleDateString("fa-IR", { timeZone: "UTC" })}</time></span></> : null}
           <span aria-hidden> · </span>
-          <span>{post.readingMinutes.toLocaleString("fa-IR")} دقیقه مطالعه</span>
+          <span>{formatNumber(post.readingMinutes)} دقیقه مطالعه</span>
         </p>
       </PageHero>
 

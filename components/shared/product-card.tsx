@@ -3,6 +3,7 @@ import Image from "next/image";
 import { ArrowLeft, BookOpen, ExternalLink, PlayCircle } from "lucide-react";
 import { PRODUCT_STATUS_LABEL, type Product } from "@/lib/products";
 import { Badge } from "@/components/ui/badge";
+import { formatNumber } from "@/lib/utils";
 
 const toneByStatus = { active: "success", beta: "warning", development: "neutral" } as const;
 
@@ -49,7 +50,7 @@ export function ProductCard({ product }: { product: Product }) {
       {product.slug === "law-book" ? (
         <div className="mt-4 flex items-center justify-between gap-3 rounded-[var(--radius-sm)] bg-[var(--surface-sunken)] px-3 py-2.5">
           <span className="text-4xs font-bold text-muted">قیمت نسخۀ کامل</span>
-          <strong className="whitespace-nowrap text-xs text-[color:var(--text-primary)]">{product.pricingFrom.toLocaleString("fa-IR")} تومان</strong>
+          <strong className="whitespace-nowrap text-xs text-[color:var(--text-primary)]">{formatNumber(product.pricingFrom)} تومان</strong>
         </div>
       ) : null}
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useId, useRef, useState } from "react";
 import { Info, Maximize2, Minimize2 } from "lucide-react";
 import { Button, ButtonLink } from "@/components/ui/button";
 
@@ -35,6 +35,8 @@ function isInsideScope(url: URL, origin: string, scope: string): boolean {
  */
 export function DemoFrame({ src, scope, title, fullPageHref }: DemoFrameProps) {
   const frameRef = useRef<HTMLIFrameElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const noticeId = useId();
   const cleanupRef = useRef<(() => void) | null>(null);
   const hintTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [expanded, setExpanded] = useState(false);
@@ -111,8 +113,35 @@ export function DemoFrame({ src, scope, title, fullPageHref }: DemoFrameProps) {
 
   useEffect(() => {
     if (!expanded) return;
+    const container = containerRef.current;
+    const previouslyFocused = document.activeElement as HTMLElement | null;
+    const focusable = () =>
+      Array.from(
+        container?.querySelectorAll<HTMLElement>(
+          'button:not([disabled]), a[href], iframe, [tabindex]:not([tabindex="-1"])',
+        ) ?? [],
+      ).filter(element => element.getClientRects().length > 0);
+    // Move focus into the fullscreen dialog and keep Tab cycling inside it.
+    focusable()[0]?.focus();
     const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setExpanded(false);
+      if (event.key === "Escape") {
+        event.preventDefault();
+        setExpanded(false);
+        return;
+      }
+      if (event.key !== "Tab") return;
+      const items = focusable();
+      if (!items.length) return;
+      const first = items[0];
+      const last = items[items.length - 1];
+      const active = document.activeElement;
+      if (event.shiftKey && (active === first || !container?.contains(active))) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && (active === last || !container?.contains(active))) {
+        event.preventDefault();
+        first.focus();
+      }
     };
     document.addEventListener("keydown", onKeyDown);
     const previousOverflow = document.body.style.overflow;
@@ -120,6 +149,7 @@ export function DemoFrame({ src, scope, title, fullPageHref }: DemoFrameProps) {
     return () => {
       document.removeEventListener("keydown", onKeyDown);
       document.body.style.overflow = previousOverflow;
+      previouslyFocused?.focus?.();
     };
   }, [expanded]);
 
@@ -146,6 +176,10 @@ export function DemoFrame({ src, scope, title, fullPageHref }: DemoFrameProps) {
 
   return (
     <div
+      ref={containerRef}
+      role={expanded ? "dialog" : undefined}
+      aria-modal={expanded ? true : undefined}
+      aria-label={expanded ? `نمای تمام‌صفحهٔ ${title}` : undefined}
       className={
         expanded
           ? "fixed inset-0 z-[80] flex flex-col gap-3 bg-[var(--surface)] p-3 sm:p-5"
@@ -184,12 +218,14 @@ export function DemoFrame({ src, scope, title, fullPageHref }: DemoFrameProps) {
           title={title}
           sandbox={SANDBOX}
           loading="lazy"
+          referrerPolicy="same-origin"
+          aria-describedby={noticeId}
           onLoad={guardDocument}
           className="h-full w-full border-0"
         />
       </div>
 
-      <p className="flex items-start gap-2 text-xs leading-6 text-muted">
+      <p id={noticeId} className="flex items-start gap-2 text-xs leading-6 text-muted">
         <Info className="mt-1 size-4 shrink-0" aria-hidden />
         <span>{NOTICE}</span>
       </p>

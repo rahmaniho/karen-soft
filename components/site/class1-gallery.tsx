@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { formatNumber } from "@/lib/utils";
 
 export const CLASS1_SLIDES = [
   { src: "/images/class1/home.webp", width: 1055, height: 2138, title: "خانه و شروع یادگیری", caption: "صفحهٔ اصلی مدرسه‌ی من با شروع یادگیری، درس‌های امروز و مسیر ورود بزرگ‌ترها." },
@@ -31,7 +32,7 @@ export function Class1Gallery() {
           <strong>{slide.title}</strong>
           <span>{slide.caption}</span>
           <a href={slide.src} target="_blank" rel="noopener noreferrer" className="lb-gallery-full">مشاهدهٔ تصویر در اندازهٔ کامل<span className="sr-only"> (در پنجرهٔ جدید)</span></a>
-          <small>اسلاید {(active + 1).toLocaleString("fa-IR")} از {CLASS1_SLIDES.length.toLocaleString("fa-IR")}</small>
+          <small>اسلاید {formatNumber(active + 1)} از {formatNumber(CLASS1_SLIDES.length)}</small>
         </figcaption>
       </figure>
       <div className="lb-gallery-controls">

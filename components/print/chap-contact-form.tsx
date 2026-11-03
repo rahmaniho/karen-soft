@@ -29,6 +29,7 @@ export function ChapContactForm() {
       email: String(form.get("email") ?? ""),
       subject: `کارن چاپ — ${String(form.get("subject") ?? "پیام")}`,
       message: String(form.get("message") ?? ""),
+      website: String(form.get("website") ?? ""),
     };
 
     setStatus("loading");
@@ -55,7 +56,11 @@ export function ChapContactForm() {
   }
 
   return (
-    <form onSubmit={onSubmit} className="surface-card space-y-5 p-6 sm:p-8" noValidate>
+    <form onSubmit={onSubmit} className="surface-card space-y-5 p-6 sm:p-8" noValidate aria-busy={status === "loading"}>
+      <div className="ks-honeypot" aria-hidden="true">
+        <label htmlFor="chap-website">وب‌سایت</label>
+        <input id="chap-website" name="website" type="text" tabIndex={-1} autoComplete="off" />
+      </div>
       <div className="grid gap-5 sm:grid-cols-2">
         <div>
           <Label htmlFor="chap-name">نام و نام خانوادگی</Label>

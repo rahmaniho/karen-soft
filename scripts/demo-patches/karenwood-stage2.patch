@@ -1,0 +1,159 @@
+diff --git a/src/components/layout/KarenSoftCredit.tsx b/src/components/layout/KarenSoftCredit.tsx
+index a1c76e9..aaef5b9 100644
+--- a/src/components/layout/KarenSoftCredit.tsx
++++ b/src/components/layout/KarenSoftCredit.tsx
+@@ -1,6 +1,6 @@
+ 'use client';
+ 
+-import React from 'react';
++import React, { useEffect, useState } from 'react';
+ import { motion, useReducedMotion, type Variants } from 'framer-motion';
+ import { useTranslation } from '@/hooks/useTranslation';
+ import { withBasePath } from '@/lib/utils';
+@@ -50,7 +50,12 @@ function TextShine({ src, delay }: { src: string; delay: string }) {
+ export function KarenSoftCredit() {
+   const { t } = useTranslation();
+   const reduceMotion = useReducedMotion();
+-  const motionOn = !reduceMotion;
++  // SSR and the first client render must produce the same tree. Framer's
++  // useReducedMotion() is null on the server but resolves synchronously on
++  // the client, so conditional decorative nodes used to hydrate incorrectly.
++  const [mounted, setMounted] = useState(false);
++  useEffect(() => setMounted(true), []);
++  const motionOn = mounted && !reduceMotion;
+ 
+   const container: Variants = {
+     hidden: {},
+@@ -113,7 +118,6 @@ export function KarenSoftCredit() {
+       href={KARENSOFT_URL}
+       target="_blank"
+       rel="noopener noreferrer"
+-      aria-label={`${t.footer.designedBy} کارن سافت | KarenSoft — www.karen-soft.ir`}
+       title="کارن سافت | KarenSoft — www.karen-soft.ir"
+       initial="hidden"
+       whileInView="visible"
+diff --git a/src/components/layout/LanguageSwitcher.tsx b/src/components/layout/LanguageSwitcher.tsx
+index 93f3ec6..e7cad17 100644
+--- a/src/components/layout/LanguageSwitcher.tsx
++++ b/src/components/layout/LanguageSwitcher.tsx
+@@ -11,11 +11,11 @@ export function LanguageSwitcher() {
+     <button
+       onClick={toggleLocale}
+       type="button"
+-      aria-label={locale === 'fa' ? 'Switch language to English' : 'تغییر زبان به فارسی'}
+       className="inline-flex h-9 items-center gap-1.5 rounded-full border border-walnut/20 bg-cream/70 px-3 text-xs font-semibold text-walnut transition-all hover:border-bronze hover:bg-bronze/15 dark:border-cream/20 dark:bg-walnut-800/70 dark:text-cream"
+     >
+       <Globe className="h-3.5 w-3.5 text-bronze" />
+-      <span>{locale === 'fa' ? 'EN' : 'فا'}</span>
++      <span className="sr-only">{locale === 'fa' ? 'Switch language to English' : 'تغییر زبان به فارسی'}</span>
++      <span aria-hidden="true">{locale === 'fa' ? 'EN' : 'فا'}</span>
+     </button>
+   );
+ }
+diff --git a/src/components/sections/BlogPreviewSection.tsx b/src/components/sections/BlogPreviewSection.tsx
+index 3c6d971..04640de 100644
+--- a/src/components/sections/BlogPreviewSection.tsx
++++ b/src/components/sections/BlogPreviewSection.tsx
+@@ -20,7 +20,7 @@ export function BlogPreviewSection() {
+       <div className="container">
+         <div className="flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
+           <div className="max-w-2xl">
+-            <span className="inline-block text-xs font-bold uppercase tracking-[0.22em] text-bronze">
++            <span className="inline-block text-xs font-bold uppercase tracking-[0.22em] text-bronze-700 dark:text-bronze">
+               {t.blogSection.eyebrow}
+             </span>
+             <h2 className="mt-2 text-3xl font-bold text-walnut dark:text-cream sm:text-4xl lg:text-5xl">
+diff --git a/src/components/sections/IntroSection.tsx b/src/components/sections/IntroSection.tsx
+index ab778a8..ca9fd42 100644
+--- a/src/components/sections/IntroSection.tsx
++++ b/src/components/sections/IntroSection.tsx
+@@ -22,7 +22,7 @@ export function IntroSection() {
+             transition={{ duration: 0.65 }}
+             className="lg:col-span-5 space-y-4"
+           >
+-            <span className="inline-block text-xs font-bold uppercase tracking-[0.22em] text-bronze">
++            <span className="inline-block text-xs font-bold uppercase tracking-[0.22em] text-bronze-700 dark:text-bronze">
+               {t.intro.eyebrow}
+             </span>
+             <h2 className="text-3xl font-bold leading-snug text-walnut dark:text-cream sm:text-4xl">
+diff --git a/src/components/sections/ProcessSection.tsx b/src/components/sections/ProcessSection.tsx
+index 3b04cb8..ab5f07b 100644
+--- a/src/components/sections/ProcessSection.tsx
++++ b/src/components/sections/ProcessSection.tsx
+@@ -15,7 +15,7 @@ export function ProcessSection() {
+     <section className="relative overflow-hidden border-y border-walnut/10 bg-cream-300/35 py-24 dark:border-cream/10 dark:bg-walnut-950/60 lg:py-32">
+       <div className="container">
+         <div className="mx-auto max-w-3xl text-center">
+-          <span className="inline-block text-xs font-bold uppercase tracking-[0.22em] text-bronze">
++          <span className="inline-block text-xs font-bold uppercase tracking-[0.22em] text-bronze-700 dark:text-bronze">
+             {t.process.eyebrow}
+           </span>
+           <h2 className="mt-2 text-3xl font-bold text-walnut dark:text-cream sm:text-4xl lg:text-5xl">
+diff --git a/src/components/sections/SubsidiariesSection.tsx b/src/components/sections/SubsidiariesSection.tsx
+index 178393c..e2c890a 100644
+--- a/src/components/sections/SubsidiariesSection.tsx
++++ b/src/components/sections/SubsidiariesSection.tsx
+@@ -21,7 +21,7 @@ export function SubsidiariesSection() {
+       <div className="container">
+         {/* Section Header */}
+         <div className="mx-auto max-w-3xl text-center">
+-          <span className="inline-block text-xs font-bold uppercase tracking-[0.22em] text-bronze">
++          <span className="inline-block text-xs font-bold uppercase tracking-[0.22em] text-bronze-700 dark:text-bronze">
+             {t.subsidiariesSection.eyebrow}
+           </span>
+           <h2 className="mt-2 text-3xl font-bold text-walnut dark:text-cream sm:text-4xl lg:text-5xl">
+diff --git a/src/components/sections/TestimonialsSection.tsx b/src/components/sections/TestimonialsSection.tsx
+index a187abe..2d7bee7 100644
+--- a/src/components/sections/TestimonialsSection.tsx
++++ b/src/components/sections/TestimonialsSection.tsx
+@@ -4,7 +4,7 @@ import React, { useState } from 'react';
+ import { motion, AnimatePresence } from 'framer-motion';
+ import { Quote, ChevronRight, ChevronLeft, Star } from 'lucide-react';
+ import { useTranslation } from '@/hooks/useTranslation';
+-import { withBasePath } from '@/lib/utils';
++import { withBasePath, formatLocalizedNumber } from '@/lib/utils';
+ 
+ const avatars = [
+   '/images/team/team-1.jpg',
+@@ -110,17 +110,18 @@ export function TestimonialsSection() {
+             </AnimatePresence>
+ 
+             {/* Pagination Dots */}
+-            <div className="mt-6 flex justify-center gap-2">
++            <div className="mt-6 flex justify-center gap-2" role="group" aria-label={locale === 'fa' ? 'انتخاب دیدگاه' : 'Choose testimonial'}>
+               {items.map((_, idx) => (
+                 <button
+                   key={idx}
+                   type="button"
+                   onClick={() => setIndex(idx)}
+-                  aria-label={`Slide ${idx + 1}`}
+-                  className={`h-2 rounded-full transition-all ${
+-                    index === idx ? 'w-8 bg-bronze' : 'w-2 bg-cream/30'
+-                  }`}
+-                />
++                  aria-pressed={index === idx}
++                  aria-label={locale === 'fa' ? `نمایش دیدگاه ${formatLocalizedNumber(idx + 1, locale)}` : `Show testimonial ${idx + 1}`}
++                  className="flex items-center justify-center rounded-full" style={{ width: 24, height: 24 }}
++                >
++                  <span aria-hidden="true" className={`h-2 rounded-full transition-all ${index === idx ? 'w-8 bg-bronze' : 'w-2 bg-cream/30'}`} />
++                </button>
+               ))}
+             </div>
+           </div>
+diff --git a/src/styles/globals.css b/src/styles/globals.css
+index ac0c225..6a65fcc 100644
+--- a/src/styles/globals.css
++++ b/src/styles/globals.css
+@@ -190,3 +190,12 @@ html.dark ::-webkit-scrollbar-track {
+     background: none;
+   }
+ }
++
++/* WCAG 2.2 target size: navigation and footer links keep a 24px hit area
++   without changing the visual rhythm of the demo. */
++header a,
++footer a {
++  display: inline-flex !important;
++  align-items: center;
++  min-height: 24px !important;
++}

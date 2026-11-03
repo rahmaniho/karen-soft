@@ -1,5 +1,6 @@
 import {test,expect} from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
+import {PRODUCTS} from '../../lib/products';
 
 test('mobile menu, Escape, theme persistence and no overflow',async({page})=>{
  await page.setViewportSize({width:320,height:800});await page.goto('/');
@@ -14,7 +15,7 @@ test('mobile menu, Escape, theme persistence and no overflow',async({page})=>{
 test('catalog search has an empty state and can reset',async({page})=>{
  await page.goto('/products');await page.getByPlaceholder('جست‌وجو…').fill('هیچ محصولی با این نام نیست');
  await expect(page.getByRole('heading',{name:'نتیجه‌ای پیدا نشد'})).toBeVisible();
- await page.getByRole('button',{name:'پاک کردن فیلترها'}).click();await expect(page.locator('main article')).toHaveCount(11);
+ await page.getByRole('button',{name:'پاک کردن فیلترها'}).click();await expect(page.locator('[data-catalog="products"] article')).toHaveCount(PRODUCTS.length);
 });
 
 test('contact validation focuses first error and preserves message on provider failure',async({page})=>{
@@ -25,6 +26,21 @@ test('contact validation focuses first error and preserves message on provider f
  await page.route('**/api/contact',route=>route.fulfill({status:503,contentType:'application/json',body:JSON.stringify({error:'ارسال آنلاین فعال نیست.'})}));
  await page.getByRole('button',{name:'ارسال پیام',exact:true}).click();await expect(page.getByText('ارسال آنلاین فعال نیست.',{exact:true})).toBeVisible();
  await expect(page.getByLabel('توضیحات پروژه')).toHaveValue('درخواست طراحی وب‌سایت شرکتی');
+});
+
+test('service CTA preselects the contact subject and keeps the honeypot out of the tab order',async({page})=>{
+ await page.goto('/services');
+ await page.getByRole('link',{name:'درخواست مشاوره درباره این خدمت'}).first().click();
+ await expect(page).toHaveURL(/\/contact\?subject=website/);
+ await expect(page.locator('#subject')).toHaveValue('website');
+ await expect(page.locator('#contact-website')).toHaveAttribute('tabindex','-1');
+ await expect(page.locator('.ks-honeypot').first()).toHaveAttribute('aria-hidden','true');
+});
+
+test('homepage primary CTAs lead to consultation and products',async({page})=>{
+ await page.goto('/');
+ await expect(page.getByRole('link',{name:'درخواست مشاوره',exact:true})).toHaveAttribute('href','/contact');
+ await expect(page.getByRole('link',{name:'مشاهده محصولات',exact:true})).toHaveAttribute('href','/products');
 });
 
 test('print draft is explicitly not a confirmed order',async({page})=>{
@@ -41,8 +57,9 @@ test('law book page shows the topic catalogue instead of a live preview',async({
  await page.goto('/products/law-book');
  await expect(page.getByRole('heading',{level:2,name:'چه موضوعاتی در کتابچه قانون هست؟'})).toBeVisible();
  await expect(page.locator('.lb-topic-card')).toHaveCount(10);
- await expect(page.getByText('حقوق مدنی',{exact:true})).toBeVisible();
- await expect(page.getByText('قانون مدنی',{exact:true})).toBeVisible();
+ const civilCard = page.locator('.lb-topic-card').filter({has: page.getByRole('heading',{level:3,name:'حقوق مدنی',exact:true})});
+ await expect(civilCard).toBeVisible();
+ await expect(civilCard.getByText('قانون مدنی',{exact:true})).toBeVisible();
  await expect(page.getByRole('link',{name:/نسخهٔ زنده|پیش‌نمایش/})).toHaveCount(0);
 });
 
@@ -63,8 +80,9 @@ test('law firm portfolio case opens its own hosted preview',async({page})=>{
 for(const theme of ['light','dark'])for(const path of ['/','/products','/blog','/contact','/print','/print/order/bizcard','/portfolio/leyla-abkeh']){
  test(`accessibility ${theme} ${path}`,async({page})=>{
   await page.addInitScript(theme=>localStorage.setItem('theme',theme),theme);
-  await page.goto(path);await page.evaluate(()=>document.fonts.ready);
-  const result=await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21aa']).analyze();
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await page.goto(path);await page.evaluate(()=>document.fonts.ready);await page.waitForTimeout(300);
+  const result=await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21a','wcag21aa','wcag22aa']).analyze();
   expect(result.violations.map(v=>({id:v.id,nodes:v.nodes.map(n=>n.html)}))).toEqual([]);
  });
 }

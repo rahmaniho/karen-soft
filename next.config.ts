@@ -1,6 +1,7 @@
 import type { NextConfig } from "next";
 import { legacyRedirects } from "./lib/legacy-redirects";
 const nextConfig: NextConfig = {
+  poweredByHeader: false,
   images: { formats: ["image/avif", "image/webp"], minimumCacheTTL: 86400 },
   allowedDevOrigins: ["*.e2b.app"],
   // نسخه‌های نمایشی در public/demos پوشهٔ ایستا هستند و پیوندهایشان به شکل «پوشه/» است.
@@ -11,6 +12,10 @@ const nextConfig: NextConfig = {
       {key: "X-Content-Type-Options", value: "nosniff"},
       {key: "Referrer-Policy", value: "strict-origin-when-cross-origin"},
       {key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=()"},
+      // دموی محصولات در iframe همان‌دامنه بارگذاری می‌شود؛ framing.cross-origin بسته می‌ماند.
+      {key: "X-Frame-Options", value: "SAMEORIGIN"},
+      {key: "X-Permitted-Cross-Domain-Policies", value: "none"},
+      {key: "Strict-Transport-Security", value: "max-age=31536000; includeSubDomains"},
     ]},
     // نسخه‌های نمایشی برای فهرست‌شدن در موتور جست‌وجو نیستند.
     {source: "/demos/:path*", headers: [

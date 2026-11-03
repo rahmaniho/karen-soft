@@ -1,10 +1,12 @@
 "use client";
 
+import React from "react";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { ArrowUpLeft, X } from "lucide-react";
 import * as Dialog from "@radix-ui/react-dialog";
 import type { CaseStudy } from "@/lib/portfolio";
+import { formatNumber } from "@/lib/utils";
 
 export function ExperienceEffects() {
   useEffect(() => {
@@ -78,7 +80,7 @@ export function PortfolioGallery({ cases }: { cases: CaseStudy[] }) {
     return () => { doc.removeEventListener("click", guard, true); doc.removeEventListener("submit", guard, true); };
   }, [selected]);
   return <>
-    <div className="ks-portfolio-grid">{cases.map((item, i) => <button key={item.slug} type="button" className={`ks-portfolio-card portfolio-${i}`} onClick={() => setSelected(item)} aria-label={`نمایش پیش‌نمایش ${item.title}`}>
+    <div className="ks-portfolio-grid">{cases.map((item, i) => <button key={item.slug} type="button" className={`ks-portfolio-card portfolio-${i}`} onClick={() => setSelected(item)}>
       <div className="ks-portfolio-image"><Image src={item.cover} alt={item.title} fill sizes="(min-width: 1024px) 34vw, (min-width: 640px) 50vw, 100vw" className="object-cover" /><span className="ks-portfolio-view"><ArrowUpLeft size={23} /></span></div><div className="ks-portfolio-meta"><span>0{i + 1} / {item.category}</span><span>{item.year}</span></div><h3>{item.title}</h3><p>{item.summary}</p>
     </button>)}</div>
     <Dialog.Root open={selected !== null} onOpenChange={open => { if (!open) setSelected(null); }}>
@@ -113,5 +115,5 @@ export function CountUp({ to, pad = false }: { to: number; pad?: boolean }) {
     if (ref.current) observer.observe(ref.current);
     return () => { observer.disconnect(); cancelAnimationFrame(frame); };
   }, [to]);
-  return <span ref={ref}>{new Intl.NumberFormat("fa-IR", { useGrouping: false, minimumIntegerDigits: pad ? 2 : 1 }).format(value)}</span>;
+  return <span ref={ref}>{formatNumber(value, { useGrouping: false, minimumIntegerDigits: pad ? 2 : 1 })}</span>;
 }

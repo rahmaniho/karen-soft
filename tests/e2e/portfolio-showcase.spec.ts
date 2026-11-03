@@ -1,12 +1,22 @@
 import { test, expect, type Page } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 
-async function openShowcase(page: Page) {
+async function openShowcase(page: Page, expectRunning = false) {
   await page.goto("/");
+  // Autoplay pauses while the tab is hidden; parallel workers can leave it backgrounded.
+  await page.bringToFront();
   const viewport = page.locator(".ks-work-viewport");
   await viewport.scrollIntoViewIfNeeded();
-  await page.mouse.move(0, 0);
+  const box = await viewport.boundingBox();
+  // Park the pointer above the scroller so hover-pause cannot race the assertion.
+  await page.mouse.move((box?.x ?? 0) + 10, Math.max(0, (box?.y ?? 0) - 30));
+  await page.evaluate(() => (document.activeElement as HTMLElement | null)?.blur?.());
   await expect(page.locator(".ks-work-carousel")).toHaveAttribute("data-running", /^(true|false)$/);
+  if (expectRunning) {
+    await expect.poll(() => page.evaluate(() => document.visibilityState)).toBe("visible");
+    await expect(page.getByRole("button", { name: "توقف حرکت خودکار نمونه‌کارها" })).toBeEnabled();
+    await expect(page.locator(".ks-work-carousel")).toHaveAttribute("data-running", "true");
+  }
   return viewport;
 }
 
@@ -44,7 +54,7 @@ test.describe("continuous motion", () => {
   test.use({ reducedMotion: "no-preference" });
 
   test("scrolls continuously and can be paused, resumed and hovered", async ({ page }) => {
-    const viewport = await openShowcase(page);
+    const viewport = await openShowcase(page, true);
     const carousel = page.locator(".ks-work-carousel");
     await expect(carousel).toHaveAttribute("data-running", "true");
     await expect.poll(() => viewport.evaluate(element => element.scrollLeft)).toBeLessThan(-15);
@@ -64,7 +74,7 @@ test.describe("continuous motion", () => {
   });
 
   test("crosses the loop seam without running out of cards", async ({ page }) => {
-    const viewport = await openShowcase(page);
+    const viewport = await openShowcase(page, true);
     await page.getByRole("button", { name: "توقف حرکت خودکار نمونه‌کارها" }).click();
     const dimensions = await viewport.evaluate(element => {
       const group = element.querySelector(".ks-work-group")!;
@@ -100,10 +110,7 @@ test.describe("touch scrolling", () => {
   test.use({ viewport: { width: 390, height: 844 }, hasTouch: true, isMobile: true, reducedMotion: "no-preference" });
 
   test("a swipe moves the cards without following the project link", async ({ page, context }) => {
-    const viewport = page.locator(".ks-work-viewport");
-    await page.goto("/");
-    await viewport.scrollIntoViewIfNeeded();
-    await expect(page.locator(".ks-work-carousel")).toHaveAttribute("data-running", "true");
+    const viewport = await openShowcase(page);
     const box = (await viewport.boundingBox())!;
     const session = await context.newCDPSession(page);
     const y = box.y + 130;

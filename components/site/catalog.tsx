@@ -8,6 +8,7 @@ import { PRODUCTS, PRODUCT_STATUS_LABEL } from "@/lib/products";
 import { ProductCard } from "@/components/shared/product-card";
 import { BLOG_POSTS } from "@/lib/blog";
 import { CASE_STUDIES } from "@/lib/portfolio";
+import { formatNumber } from "@/lib/utils";
 
 interface CatalogItem {
   slug: string;
@@ -50,7 +51,10 @@ export function Catalog({ kind }: { kind: "products" | "blog" | "portfolio" }) {
           }));
 
   useEffect(() => {
-    setQuery(new URLSearchParams(window.location.search).get("q") ?? "");
+    // فقط وقتی پارامتر واقعاً وجود دارد state را بازنویسی کن؛ در غیر این صورت
+    // تایپ کاربر پیش از hydration پاک نشود.
+    const initial = new URLSearchParams(window.location.search).get("q");
+    if (initial) setQuery(initial);
   }, []);
 
   const normalize = (s: string) => s.replace(/ي/g, "ی").replace(/ك/g, "ک").toLocaleLowerCase();
@@ -61,7 +65,7 @@ export function Catalog({ kind }: { kind: "products" | "blog" | "portfolio" }) {
   );
 
   return (
-    <div>
+    <div data-catalog={kind}>
       <div className="mb-8 flex flex-wrap items-center justify-between gap-5">
         <div className="flex flex-wrap gap-2">
           {["همه", ...new Set(items.map((x) => x.category))].map((x) => (
@@ -89,7 +93,7 @@ export function Catalog({ kind }: { kind: "products" | "blog" | "portfolio" }) {
         </label>
       </div>
       <p aria-live="polite" className="mb-5 text-xs text-muted">
-        {filtered.length.toLocaleString("fa-IR")} نتیجه
+        {formatNumber(filtered.length)} نتیجه
       </p>
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {filtered.map((x) =>

@@ -93,3 +93,52 @@ DEMO_SRC_DIR=/tmp/repos npm run build:demos
   تا حس واقعی سایت حفظ شود؛ حجم کل پوشه حدود ۱۸ مگابایت است.
 - تصویر شاخص `/images/portfolio/hanis.jpg` و آیکون `/images/clients/hanis/hanis-mark.png`
   از هیرو و لوگوی خود پروژه ساخته شده‌اند.
+
+
+## کارن‌وود: پچ تکرارپذیر منبع و بازسازی
+
+خروجی ایستای کارن‌وود از مخزن بالادستی `rahmaniho/Karenwood` ساخته می‌شود. برای
+رفع پایدار hydration و دسترس‌پذیری، تغییرات به‌صورت پچ در
+`scripts/demo-patches/karenwood-stage2.patch` نگهداری می‌شوند و هنگام build روی
+سورس اعمال می‌شوند (نه روی خروجی کامپایل‌شده):
+
+```bash
+git clone https://github.com/rahmaniho/Karenwood .cache/demo-sources/Karenwood
+DEMO_SRC_DIR=/home/user/karen-soft/.cache/demo-sources \
+  node scripts/build-demos.mjs --only karenwood
+npm run patch:demos
+# سرور Next را پس از بازسازی دموها restart کنید؛ next start فهرست public/ را هنگام بالا آمدن کش می‌کند.
+```
+
+`applyDemoPatch` ابتدا معکوس‌بودن پچ را بررسی می‌کند؛ اگر قبلاً اعمال شده باشد از
+آن می‌گذرد، وگرنه با `git apply --check` اعمال می‌کند و در صورت drift خطا می‌دهد.
+
+خلاصهٔ پچ:
+
+- `KarenSoftCredit.tsx`: انیمیشن‌ها فقط پس از mount و وقتی کاربر reduced-motion
+  نخواسته فعال می‌شوند (`mounted && !reduceMotion`). پیش از آن، همان درخت SSR
+  رندر می‌شود؛ بدون `suppressHydrationWarning`. این کار خطای پایدار React #418/#423
+  را حذف کرد (۱۶/۱۶ بارگذاری، ۰ خطا).
+- `LanguageSwitcher.tsx`: نام دسترس‌پذیر با متن دیدنی هم‌تراز شد (`sr-only` +
+  `aria-hidden` روی `EN`/`فا`).
+- `TestimonialsSection.tsx`: نقطه‌های اسلایدر ۲۴×۲۴ inline با `aria-pressed` و
+  برچسب یکتا.
+- چهار section: eyebrowهای برنزی به `text-bronze-700 dark:text-bronze` برای کنتراست.
+- `globals.css`: قانون لایه‌نشستهٔ `header a, footer a` با `min-height:24px` برای
+  هدف‌های لمسی.
+
+نتیجهٔ axe داخل iframe روی `/portfolio/karenwood` در 320/1440 × روشن/تاریک:
+**۰ نقض، ۰ خطای صفحه** (تست‌های `tests/e2e/hydration.spec.ts`).
+
+## دسترس‌پذیری قاب پیش‌نمایش
+
+- `components/site/demo-frame.tsx`: حالت تمام‌صفحه اکنون `role="dialog"` و
+  `aria-modal="true"` دارد؛ فوکوس هنگام باز شدن به دکمهٔ بستن می‌رود، Tab/Shift+Tab
+  بین دکمهٔ بستن، پیوند «صفحهٔ کامل» و iframe می‌چرخد، Esc می‌بندد و فوکوس را به
+  دکمهٔ اولیه برمی‌گرداند. توضیح قاب با `aria-describedby` به dialog متصل است و
+  iframe `referrerPolicy` دارد.
+- `components/site/demo-tabs.tsx`: تب‌ها roving tabindex، جهت‌های RTL
+  (ArrowRight/ArrowLeft)، Home/End و `role="tabpanel"` با `aria-labelledby` دارند.
+- `scripts/a11y-routes.mjs`: گزینه‌های `--include-frames`، `--strict-runtime` و
+  `--settle <ms>`؛ خطاهای سند اصلی (`errors`) از خطاهای دمو (`demoErrors`) جدا
+  گزارش می‌شوند و خطاهای console مربوط به hydration React نیز ثبت می‌شوند.

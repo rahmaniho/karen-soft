@@ -5,9 +5,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight, ArrowUpLeft, MoveHorizontal, Pause, Play } from "lucide-react";
 import type { CaseStudy } from "@/lib/portfolio";
+import { formatNumber } from "@/lib/utils";
 
 const KIND_LABEL = { client: "پروژهٔ مشتری", sample: "نمونهٔ نمایشی", hypothetical: "نمونهٔ فرضی" } as const;
-const faNumber = (value: number) => value.toLocaleString("fa-IR", { minimumIntegerDigits: 2, useGrouping: false });
+const faNumber = (value: number) => formatNumber(value, { minimumIntegerDigits: 2, useGrouping: false });
 
 /** A real, touch-scrollable carousel; autoplay is only ever a progressive enhancement. */
 export function PortfolioMarquee({ cases }: { cases: CaseStudy[] }) {
@@ -184,7 +185,7 @@ export function PortfolioMarquee({ cases }: { cases: CaseStudy[] }) {
                     className="ks-work-card"
                     tabIndex={copy > 0 ? -1 : undefined}
                     draggable={false}
-                    aria-label={copy > 0 ? undefined : `مشاهدهٔ نمونه‌کار ${item.title}`}
+
                   >
                     <div className="ks-work-card-image">
                       <div className="ks-work-browser" aria-hidden="true"><i /><i /><i /><span>KAREN SOFT / SELECTED WORK</span><ArrowUpLeft size={10} /></div>

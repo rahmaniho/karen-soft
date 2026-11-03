@@ -39,12 +39,11 @@ export default function ChapServicesPage() {
                 <Link
                   href={`/print/services/${service.slug}`}
                   className="group relative block overflow-hidden rounded-[var(--radius-xl)]"
-                  aria-label={service.title}
                 >
                   <span className="relative block aspect-[16/10]">
                     <Image
                       src={service.image}
-                      alt={service.title}
+                      alt=""
                       fill
                       sizes="(min-width: 1024px) 40vw, 100vw"
                       className="object-cover transition-transform duration-[700ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.05]"
@@ -55,7 +54,7 @@ export default function ChapServicesPage() {
                     />
                     <span className="absolute bottom-3 start-3 end-3 flex items-end justify-between gap-3 text-white">
                       <span className="font-titr text-lg leading-tight">{service.title}</span>
-                      <span className="sec-index rounded-full bg-white/85 px-2 py-0.5 text-ink-900">
+                      <span className="sec-index rounded-full bg-white/85 px-2 py-0.5 text-ink-900" aria-hidden>
                         {String(index + 1).padStart(2, "0")}
                       </span>
                     </span>

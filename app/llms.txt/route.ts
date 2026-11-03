@@ -6,6 +6,7 @@ import { SOLUTIONS } from "@/lib/solutions";
 import { PRINT_PRODUCTS } from "@/lib/print/data/products";
 import { PRINT_SERVICES } from "@/lib/print/data/services";
 import { CHAP } from "@/lib/print/site";
+import { formatNumber } from "@/lib/utils";
 
 const link = (label: string, path: string) => `- [${label}](${new URL(path, `${SITE.url}/`).toString()})`;
 
@@ -43,7 +44,7 @@ export function GET() {
     link("صفحه رسمی حساب‌یار (نسخه‌ها، امکانات و قیمت لایسنس)", "/products/hesabyar"),
     `- نسخهٔ وب: ${HESABYAR_WEB_URL} — بدون نصب، قابل نصب به‌صورت PWA و آفلاین`,
     `- نسخهٔ اندروید ${HESABYAR_VERSION}: ${HESABYAR_APK_URL} — بیلد آزمایشی (test)، اندروید ۷ و بالاتر`,
-    "- قیمت لایسنس حرفه‌ای: " + HESABYAR_PLANS.map((plan) => `${plan.title} ${plan.price.toLocaleString("fa-IR")} تومان`).join(" · "),
+    "- قیمت لایسنس حرفه‌ای: " + HESABYAR_PLANS.map((plan) => `${plan.title} ${formatNumber(plan.price)} تومان`).join(" · "),
     "- نسخهٔ رایگان: ماشین‌حساب کامل، ۱ کالا و ۱۰ تراکنش؛ فعال‌سازی لایسنس آفلاین و در بخش تنظیمات برنامه انجام می‌شود.",
     ...HESABYAR_FAQS.slice(0, 3).map((item) => `- ${item.q} ${item.a}`),
     "",

@@ -88,7 +88,7 @@ const EDITORIAL_POSTS: BlogPost[] = [
     date: "2025-05-02",
     readingMinutes: 6,
     author: AUTHOR,
-    cover: "/images/blog/../logo-karensoft.png",
+    cover: "/images/logo-karensoft.png",
     legacyPath: "/blog/direct_to_cell.html",
     tags: ["ماهواره", "شبکه", "آینده‌پژوهی"],
     sections: [
@@ -431,7 +431,7 @@ const EDITORIAL_POSTS: BlogPost[] = [
     date: "2025-07-21",
     readingMinutes: 8,
     author: AUTHOR,
-    cover: "/images/blog/../karenchap.png",
+    cover: "/images/karenchap.png",
     legacyPath: "/print.html",
     tags: ["چاپ", "بهای تمام‌شده", "تولید"],
     sections: [
