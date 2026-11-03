@@ -1,0 +1,7 @@
+
+.tst__stars{display:inline-flex}
+.piano{overflow-x:auto}
+.piano__keys{justify-content:flex-start;min-width:max-content}
+.piano__key{flex:0 0 28px;min-width:28px}
+.tst-pagination .swiper-pagination-bullet{width:24px;height:24px;margin:0 4px!important;border-radius:50%}
+.tst-pagination .swiper-pagination-bullet-active{width:28px;border-radius:999px}

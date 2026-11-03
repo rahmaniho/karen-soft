@@ -6,12 +6,13 @@
  *
  * Usage: node scripts/a11y-routes.mjs [--base http://127.0.0.1:3000]
  *        [--widths 320,1440] [--themes light,dark] [--concurrency 2]
- *        [--include-frames] [--strict-runtime] [--settle 500]
+ *        [--include-frames] [--strict-runtime] [--settle 500] [--paths /a,/b] [--demo-frames]
  */
 import { chromium } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 import { mkdir, writeFile } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
+import { existsSync } from "node:fs";
 
 function option(name, fallback) {
   const index = process.argv.indexOf(name);
@@ -25,12 +26,19 @@ const output = option("--out", ".cache/audit/a11y-routes.json");
 const includeFrames = process.argv.includes("--include-frames");
 const strictRuntime = process.argv.includes("--strict-runtime");
 const settle = Math.max(0, Number(option("--settle", "500")));
+const pathFilter = option("--paths", "").split(",").map(value => value.trim()).filter(Boolean);
+const demoFrames = process.argv.includes("--demo-frames");
 const tags = ["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa"];
 
 const sitemap = await fetch(`${base}/sitemap.xml`);
 if (!sitemap.ok) throw new Error(`sitemap returned ${sitemap.status}`);
 const xml = await sitemap.text();
-const paths = [...xml.matchAll(/<loc>(.*?)<\/loc>/g)].map(match => new URL(match[1]).pathname);
+let paths = [...xml.matchAll(/<loc>(.*?)<\/loc>/g)].map(match => new URL(match[1]).pathname);
+if (pathFilter.length) paths = paths.filter(path => pathFilter.includes(path));
+if (demoFrames) paths = paths.filter(path => {
+  const match = path.match(/^\/portfolio\/([^/]+)$/);
+  return match && existsSync(resolve("public/demos", match[1], "index.html"));
+});
 if (!paths.length) throw new Error("sitemap contains no routes");
 
 const browser = await chromium.launch({
