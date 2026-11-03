@@ -12,7 +12,7 @@ import { chromium } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 import { mkdir, writeFile } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
-import { existsSync } from "node:fs";
+import { demoAuditTargets } from "./demo-audit-targets.ts";
 
 function option(name, fallback) {
   const index = process.argv.indexOf(name);
@@ -35,18 +35,18 @@ if (!sitemap.ok) throw new Error(`sitemap returned ${sitemap.status}`);
 const xml = await sitemap.text();
 let paths = [...xml.matchAll(/<loc>(.*?)<\/loc>/g)].map(match => new URL(match[1]).pathname);
 if (pathFilter.length) paths = paths.filter(path => pathFilter.includes(path));
-if (demoFrames) paths = paths.filter(path => {
-  const match = path.match(/^\/portfolio\/([^/]+)$/);
-  return match && existsSync(resolve("public/demos", match[1], "index.html"));
-});
 if (!paths.length) throw new Error("sitemap contains no routes");
+const auditTargets = demoFrames
+  ? demoAuditTargets(paths)
+  : paths.map(path => ({ path, label: "", src: "", scope: "" }));
+if (!auditTargets.length) throw new Error("no audit targets matched the requested routes");
 
 const browser = await chromium.launch({
   headless: true,
   ...(process.env.CHROMIUM_PATH ? { executablePath: process.env.CHROMIUM_PATH } : {}),
   args: ["--no-sandbox", "--disable-dev-shm-usage"],
 });
-const jobList = themes.flatMap(theme => widths.flatMap(width => paths.map(path => ({ theme, width, path }))));
+const jobList = themes.flatMap(theme => widths.flatMap(width => auditTargets.map(target => ({ theme, width, ...target }))));
 const results = [];
 let cursor = 0;
 let completed = 0;
@@ -85,12 +85,21 @@ async function worker() {
       await page.setViewportSize({ width: job.width, height: 900 });
       const response = await page.goto(base + job.path, { waitUntil: "domcontentloaded", timeout: 20_000 });
       await page.evaluate(() => document.fonts.ready);
-      // Give lazy demo frames and client hydration a bounded opportunity to settle.
+      // هر نسخهٔ نمایشی (از جمله تب ادمین دیجی‌کارن) جداگانه انتخاب و بارگذاری می‌شود.
       if (includeFrames) {
+        if (job.src) {
+          const tab = page.getByRole("tab", { name: job.label, exact: true });
+          if (await tab.count()) {
+            await tab.click();
+            await page.waitForFunction(src => document.querySelector("iframe")?.getAttribute("src") === src, job.src, { timeout: 10_000 });
+          }
+        }
         const frame = page.locator("iframe").first();
         if (await frame.count()) {
           await frame.scrollIntoViewIfNeeded().catch(() => {});
-          await frame.evaluate(element => element.contentDocument?.readyState === "complete").catch(() => {});
+          const handle = await frame.elementHandle();
+          const content = await handle?.contentFrame();
+          await content?.waitForLoadState("domcontentloaded").catch(() => {});
         }
       }
       await page.waitForTimeout(settle);
@@ -132,15 +141,16 @@ try {
 } finally {
   await browser.close();
 }
-results.sort((a, b) => a.path.localeCompare(b.path) || a.theme.localeCompare(b.theme) || a.width - b.width);
+results.sort((a, b) => a.path.localeCompare(b.path) || (a.label ?? "").localeCompare(b.label ?? "") || a.theme.localeCompare(b.theme) || a.width - b.width);
 const failed = results.filter(result => result.status !== 200 || result.overflow || result.h1 !== 1 || result.violations.length || (strictRuntime && result.errors.length));
 const runtimeFailed = results.filter(result => result.errors.length);
-const report = { base, tags, includeFrames, strictRuntime, settle, routes: paths.length, checks: results.length, failedChecks: failed.length, runtimeErrorChecks: runtimeFailed.length, results };
+const auditedRoutes = demoFrames ? new Set(auditTargets.map(target => target.path)).size : paths.length;
+const report = { base, tags, includeFrames, strictRuntime, settle, routes: auditedRoutes, demoTargets: demoFrames ? auditTargets.length : undefined, checks: results.length, failedChecks: failed.length, runtimeErrorChecks: runtimeFailed.length, results };
 const outputPath = resolve(output);
 await mkdir(dirname(outputPath), { recursive: true });
 await writeFile(outputPath, JSON.stringify(report, null, 2));
-console.log(`${paths.length} routes · ${results.length} checks · ${failed.length} failed checks · ${runtimeFailed.length} runtime-error checks · report: ${output}`);
+console.log(`${auditedRoutes} routes · ${results.length} checks · ${failed.length} failed checks · ${runtimeFailed.length} runtime-error checks · report: ${output}`);
 for (const result of failed.slice(0, 30)) {
-  console.log(result.path, result.theme, result.width, result.violations.map(v => `${v.id}(${v.nodes.length})`).join(",") || result.errors.map(error => error.message).join(";") || `status=${result.status} overflow=${result.overflow} h1=${result.h1}`);
+  console.log(result.path, result.label || "", result.theme, result.width, result.violations.map(v => `${v.id}(${v.nodes.length})`).join(",") || result.errors.map(error => error.message).join(";") || `status=${result.status} overflow=${result.overflow} h1=${result.h1}`);
 }
 process.exitCode = failed.length ? 1 : 0;

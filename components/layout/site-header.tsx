@@ -211,7 +211,7 @@ function MobileNav({ onNavigate }: { onNavigate: () => void }) {
       ) : null}
       {[
         { label: "نمونه‌کارها", href: "/portfolio" },
-        { label: "مجله", href: "/blog" },
+        { label: "مرکز دانش", href: "/blog" },
         { label: "درباره ما", href: "/about" },
         { label: "تماس با ما", href: "/contact" },
       ].map((link) => (

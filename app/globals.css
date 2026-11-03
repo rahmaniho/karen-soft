@@ -783,7 +783,7 @@ html[data-headings="sans"] {
 .ks-brand-name { display:flex; flex-direction:column; gap:1px; line-height:1.2; }
 .ks-brand-name strong { font-size:18px; font-weight:800; }
 .ks-brand-name small { font:500 9px/1.4 "JetBrains Mono",ui-monospace,monospace; color:#7f8d9e; letter-spacing:2.2px; direction:ltr; }
-.ks-side-meta { margin:35px 15px 19px; font-size:10px; color:#626d7b; white-space:nowrap; letter-spacing:.4px; }
+.ks-side-meta { margin:35px 15px 19px; font-size:10px; color:#9aa7b6; white-space:nowrap; letter-spacing:.4px; }
 .ks-side-links { display:grid; gap:4px; }
 .ks-nav-link { position:relative; isolation:isolate; display:flex; align-items:center; gap:15px; height:46px; padding:0 14px; border-radius:11px; color:#8b96a6; font-size:13px; font-weight:550; white-space:nowrap; transition:color .25s,transform .25s; }
 .ks-nav-link:hover { color:#f3f4f6; transform:translateX(-3px); background:rgba(255,255,255,.035); }
@@ -796,9 +796,16 @@ html[data-headings="sans"] {
 .ks-nav-link.print-link:hover .ks-nav-icon { color:#00e7f4; filter:drop-shadow(2px 0 #ed4aaa) drop-shadow(-2px 0 #ffc948); }
 .ks-print-dot { margin-inline-start:auto; width:6px; height:6px; background:#e656a9; box-shadow:4px 0 #ffd958,-4px 0 #00d6ee; border-radius:50%; }
 .ks-side-bottom { margin-top:auto; padding-top:28px; }
-.ks-availability { border:1px solid #263341; background:#101923; border-radius:12px; font-size:11px; padding:15px 12px; white-space:nowrap; color:#c7d2dc; }
-.ks-availability i,.ks-topline i { display:inline-block; width:7px; height:7px; border-radius:50%; background:#55e7ad; box-shadow:0 0 11px #55e7ad; margin-inline-end:7px; }
-.ks-availability span { float:left; color:#76dec9; }
+.ks-nav-secondary { margin-top:10px; border-top:1px solid #1d2530; border-radius:0 0 11px 11px; padding-top:10px; height:auto; min-height:46px; }
+.ks-nav-secondary .ks-nav-label { display:flex; flex-direction:column; gap:2px; line-height:1.3; }
+.ks-nav-secondary small { color:#8b96a6; font-size:10px; font-weight:500; }
+.ks-nav-consultation { display:flex; align-items:center; justify-content:space-between; gap:10px; min-height:44px; border:1px solid #263341; background:#101923; border-radius:12px; padding:10px 12px; color:#e6edf3; font-size:12px; font-weight:700; transition:border-color .2s,background .2s; }
+.ks-nav-consultation:hover { border-color:#3b6df6; background:#121c2e; }
+.ks-nav-consultation svg { color:#93b4ff; }
+.ks-sheet-print { display:flex; align-items:center; gap:12px; margin-top:10px; padding:14px 16px; border:1px solid #2a3442; border-radius:14px; color:#e6edf3; font-weight:700; }
+.ks-sheet-print span { display:flex; flex:1; flex-direction:column; gap:2px; }
+.ks-sheet-print small { color:#9aa7b6; font-size:11px; font-weight:500; }
+.ks-sheet-print.active { border-color:#3b6df6; }
 .ks-side-controls { margin-top:15px; display:flex; justify-content:space-between; gap:6px; }
 .ks-icon-button,.ks-collapse { width:36px; height:36px; border:1px solid #29313b; border-radius:9px; display:grid; place-items:center; color:#aab6c3; background:#121821; cursor:pointer; transition:background .2s,color .2s; }
 .ks-icon-button:hover,.ks-collapse:hover { background:#19313c; color:#00f0ff; }
@@ -1525,6 +1532,23 @@ html[data-headings="sans"] {
 
 /* خوانایی پیوندهای برند روی پوسته همیشه‌تیره سایت (خارج از لایه‌ها تا بر utilityها اولویت داشته باشد). */
 .ks-shell .text-brand-600 { color: var(--color-brand-300); }
+
+/* گزیدهٔ کاتالوگ محصول در صفحهٔ اصلی — دادهٔ واقعی، بدون قیمت/آمار ساختگی. */
+.ks-product-preview { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; margin:28px 0 36px; padding:0; list-style:none; }
+.ks-product-preview-card { display:flex; flex-direction:column; gap:12px; height:100%; min-width:0; padding:20px; border:1px solid #263341; border-radius:14px; background:#0d141d; color:#eef3f8; transition:border-color .2s,background .2s; }
+.ks-product-preview-card:hover { border-color:#3b6df6; background:#101a28; }
+.ks-product-preview-card:focus-visible { outline:2px solid #93b4ff; outline-offset:3px; }
+.ks-product-preview-top { display:flex; align-items:center; justify-content:space-between; gap:12px; }
+.ks-product-preview-mark { display:grid; place-items:center; width:48px; height:48px; border:1px solid #2a3745; border-radius:12px; background:#111a26; color:#93b4ff; }
+.ks-product-preview-logo { width:100%; height:100%; object-fit:contain; padding:4px; }
+.ks-product-preview-status { border:1px solid #334155; border-radius:999px; padding:4px 10px; color:#c7d2dc; font-size:11px; font-weight:700; white-space:nowrap; }
+.ks-product-preview-status[data-status="beta"] { color:#fcd34d; border-color:#7c5e10; }
+.ks-product-preview-status[data-status="development"] { color:#a5b4fc; border-color:#3730a3; }
+.ks-product-preview-card h3 { margin:0; font-size:16px; font-weight:800; line-height:1.6; }
+.ks-product-preview-card p { margin:0; color:#a7b4c2; font-size:12px; line-height:2; }
+.ks-product-preview-cta { display:inline-flex; align-items:center; gap:8px; margin-top:auto; color:#93b4ff; font-size:12px; font-weight:750; }
+@media (max-width:1023px) { .ks-product-preview { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+@media (max-width:639px) { .ks-product-preview { grid-template-columns:1fr; } }
 
 /* فیلد نامرئی ضداسپم: از دسترس صفحه‌کلید/AT خارج است و فضای بصری نمی‌گیرد. */
 .ks-honeypot { position:absolute; inset-inline-start:-9999px; width:1px; height:1px; overflow:hidden; }

@@ -13,3 +13,21 @@ footer button,footer span,footer p{color:#5f6672!important}
 .hero-dots{gap:8px}
 .hero-dots button{width:24px;height:24px;border-radius:50%}
 .hero-dots button.active{width:28px;border-radius:999px}
+/* پنل ادمین: کنتراست متن‌های کم‌رنگ، نشان‌ها و پیوندها (بدون تغییر دادهٔ نمونه). */
+.admin-app,.admin-access{--a-muted:#5f6f81!important}
+.admin-mode-notice p,.admin-mode-notice strong,.admin-chart-summary span,.admin-chart-labels span,.admin-chart-footnote,.admin-status-list>div>span,.admin-eyebrow,.admin-content-footer,.admin-sidebar-brand>span,.admin-sidebar-label>span,.admin-sidebar-hint small,.admin-topbar-title span,.admin-top-search,.admin-top-search kbd,.admin-search,.admin-select-wrap select,.admin-page-heading p,.admin-product-identity small,.admin-price-old,.admin-field,.admin-field small,.admin-button-light,.admin-table th,.admin-empty,.admin-settings-note,.admin-info-strip,.admin-order-warning,.admin-form-hint{color:#5f6f81!important}
+.admin-segment button{color:#5f6f81!important}
+.admin-segment button.is-active,.admin-inline-link,.admin-ref,.admin-row-link,.admin-row-actions button{color:#1d4ed8!important}
+.admin-sidebar nav button span,.admin-sidebar nav button b{color:#5f6f81!important}
+.admin-sidebar nav button b{background:#fff0e9!important;color:#9a3412!important}
+.admin-sidebar a{color:#5f6f81!important}
+.admin-status-new{color:#1d4ed8!important;background:#edf4ff!important}
+.admin-status-reviewing{color:#92400e!important;background:#fff7e8!important}
+.admin-status-reviewed{color:#166534!important;background:#eaf8f3!important}
+.admin-status-archived{color:#4b5563!important;background:#f1f4f7!important}
+.admin-stock{color:#166534!important}
+.admin-stock-low{color:#92400e!important}
+.admin-stock-out{color:#b91c1c!important}
+.admin-top-search input::placeholder,.admin-search input::placeholder,.admin-field input::placeholder,.admin-field textarea::placeholder{color:#6b7280!important}
+.admin-button-primary{background:#1d4ed8!important;color:#fff!important}
+.admin-button-danger{background:#b91c1c!important;color:#fff!important}

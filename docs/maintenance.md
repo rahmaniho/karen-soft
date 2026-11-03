@@ -65,8 +65,8 @@ node scripts/a11y-routes.mjs --include-frames --settle 700 --concurrency 1 \
 - گردش‌کار `.github/workflows/nextjs.yml` روی `main` و `arena/**` اجرا می‌شود:
   unit، build، typecheck، E2E، دسترس‌پذیری سایت و دموها، و SEO.
 - برنامه از مسیرهای سروری استفاده می‌کند؛ استقرار مناسب Vercel است، نه GitHub Pages.
-- خطای ساخت Cloudflare Workers باید جداگانه توسط مالک بررسی شود؛ دسترسی به
-  داشبورد/لاگ آن در این محیط وجود ندارد.
+- خطای ساخت Cloudflare Workers در PR #49 دیده شد و در PR #50 دوباره سبز شد؛
+  اگر تکرار شود، مالک باید داشبورد/لاگ آن را بررسی کند.
 - قبل از تغییرات پرخطر (استقرار، DNS، پایگاه داده، سرویس تولید) پشتیبان و مسیر
   rollback مشخص کنید. این مخزن تغییر مخرب تولیدی انجام نمی‌دهد.
 
@@ -76,5 +76,6 @@ node scripts/a11y-routes.mjs --include-frames --settle 700 --concurrency 1 \
   سنگین دیده می‌شود؛ در ۱۰۰ بارگذاری dev و ۶۰ بارگذاری production بازتولید نشد.
   CI فعلاً با `--strict-runtime` بسته نمی‌شود. اگر تکرار شد، ابتدا اسکریپت‌های
   پیش از hydration (`next-themes` و `READER_BOOT_SCRIPT`) و سپس بار هم‌زمان را بررسی کنید.
-- ممیزی iframe فقط اولین iframe هر صفحه را بررسی می‌کند؛ نمای ادمین دیجی‌کارن
-  (`?admin=overview`) هنوز پوشش خودکار جداگانه ندارد.
+- ممیزی iframe همهٔ نسخه‌های تعریف‌شده در `demoVariants` را پوشش می‌دهد؛ از جمله
+  نمای ادمین دیجی‌کارن (`?admin=overview`). نسخهٔ نمایشی جدید را در `lib/portfolio.ts`
+  ثبت کنید تا خودکار وارد ممیزی شود.
