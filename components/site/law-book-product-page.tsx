@@ -18,6 +18,7 @@ import { Accordion } from "@/components/ui/accordion";
 import { APP_STATS, LAW_CATEGORIES, LAWS } from "@/lib/demos/law-book.data";
 import { SITE } from "@/lib/constants";
 import type { Product } from "@/lib/products";
+import { formatNumber } from "@/lib/utils";
 
 export const LAWBOOK_FAQS = [
   {
@@ -46,7 +47,7 @@ export const LAWBOOK_FAQS = [
   },
 ];
 
-const number = (value: number) => value.toLocaleString("fa-IR");
+const number = formatNumber;
 
 function LawBookSectionTitle({ eyebrow, title, description, id }: { eyebrow: string; title: string; description?: string; id?: string }) {
   return (

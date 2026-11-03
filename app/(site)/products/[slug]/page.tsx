@@ -12,6 +12,7 @@ import { FAQS } from "@/lib/constants";
 import { JsonLd } from "@/components/ui/json-ld";
 import { LawBookProductPage, LAWBOOK_FAQS } from "@/components/site/law-book-product-page";
 import { relatedPostsForProduct } from "@/lib/related";
+import { formatNumber } from "@/lib/utils";
 
 /** محصولات با صفحهٔ اختصاصی، مسیر ایستای خودشان را دارند و این‌جا ساخته نمی‌شوند. */
 const DEDICATED_PAGES = new Set(["hesabyar"]);
@@ -76,7 +77,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
           </div>
           <div>
             <p className="text-muted">شروع قیمت پایه</p>
-            <h3>{product.pricingFrom.toLocaleString("fa-IR")} تومان</h3>
+            <h3>{formatNumber(product.pricingFrom)} تومان</h3>
             <p className="mt-2 text-xs text-muted">قیمت نهایی پس از بررسی دامنه و تأیید پیشنهاد تعیین می‌شود.</p>
           </div>
           <div>

@@ -225,9 +225,24 @@ KarenSoft باید به عنوان **مجموعه مهندسی نرم‌افزا
 | WCAG 2.2 AA | اسکریپت `audit:a11y` همه 97 مسیر sitemap را در 320/1440 و روشن/تاریک بررسی می‌کند: **388 بررسی، 0 نقض Axe در سند اصلی**. iframe دموها جداگانه با `--include-frames` قابل بررسی‌اند |
 | نام‌های دسترس‌پذیر | `aria-label`های ناسازگار با متن دیدنی در ناوبری، فوتر، کارن چاپ، گالری و نمایشگر نمونه‌کارها اصلاح شد؛ برچسب‌های تکراری دموی لیلا آبکه نیز پاک‌سازی شد |
 | کنتراست کتابچه قانون | توکن‌های متن/طلایی و رنگ‌های دسته‌بندی اصلاح شد؛ نقض‌های Axe صفحه محصول رفع شد |
-| تست‌ها | unit **92/92**، Playwright **33/33**، typecheck/build سبز، `npm audit` **0** |
-| خطاهای runtime | در بررسی گسترده، چند React #418 گذرا در صفحات اصلی و خطای پایدار hydration در دموی `/portfolio/karenwood` دیده شد؛ Axe سایت اصلی سبز است اما این خطاها باید در Stage 5/preview ریشه‌یابی شوند |
-| CI | گیت `audit:a11y` روی 97 مسیر به workflow اضافه شد |
+| تست‌ها | unit **96/96**، Playwright **44/44**، typecheck/build سبز، `npm audit` **0** |
+| خطاهای runtime | خطای پایدار کارن‌وود و انشعاب‌های قطعی nav/reveal رفع شد؛ در ممیزی کامل ۳۸۸ بررسی زیر بار، **۳ React #418 گذرا** در مسیرهای تصادفی دیده شد که در بارگذاری هدفمند و dev تکرار نشد. `--strict-runtime` به‌صورت opt-in برای پایش preview موجود است |
+| CI | گیت `audit:a11y` روی 97 مسیر + E2E/hydration به workflow اضافه شد |
+
+### Stage 1.1 — پایداری hydration، اعداد فارسی و دسترس‌پذیری دموها
+
+**وضعیت اجرا (1405/08/12):** Partially Completed — موارد زیر با تست سبز تأیید شد؛
+iframe سایر دموها و ارسال واقعی ایمیل همچنان باز است.
+
+| مورد | نتیجه |
+|---|---|
+| اعداد فارسی قطعی | `formatNumber`/`formatToman` در `lib/utils.ts` بدون `toLocaleString("fa-IR")`؛ جداکنندهٔ هزارگان `٬`، اعشار `٫`، منفی `−`. ۱۳ فراخوانی مهاجرت کرد؛ `lib/hesabyar.ts` re-export می‌کند. تست SSR شمارندهٔ متحرک مقدار نهایی را در HTML اولیه تأیید می‌کند |
+| hydration سایت اصلی | `MotionConfig reducedMotion="user"` در ریشه؛ `ExperienceNav` و `Reveal` دیگر بر اساس media query مرورگر درخت/استایل اولیه را عوض نمی‌کنند. انیمیشن فقط opacity (بدون transform) و برای reduced-motion مدت ۰؛ محتوای خارج از viewport برای reduced-motion بلافاصله مرئی است. تست‌های `hydration.spec.ts` در روشن/تاریک × reduce/no-preference سبز |
+| hydration کارن‌وود | پچ منبع `KarenSoftCredit` (گیت پس از mount)؛ ۱۶/۱۶ بارگذاری ۰ خطا؛ axe داخل iframe در ۴ ترکیب ۰ نقض |
+| قاب و تب دمو | dialog تمام‌صفحه با focus trap/restore و Esc؛ تب‌های RTL با صفحه‌کلید؛ تست E2E اختصاصی |
+| نام‌های دسترس‌پذیر | کارت‌های `/print/services` بدون `aria-label` ناسازگار؛ تصویر تزئینی `alt=""` و شمارهٔ کارت `aria-hidden` |
+| ممیزی گسترده | `audit:a11y`: **۳۸۸ بررسی، ۰ نقض Axe، ۰ failed**؛ ۳ خطای runtime گذرا زیر بار (غیرمسدودکننده، نیازمند پایش preview). `audit:routes` و `seo:audit`: ۰ خطا/۰ هشدار |
+| بازتولید دمو | `build-demos.mjs --only karenwood` + پچ منبع idempotent؛ `patch:demos` پس از هر export؛ restart سرور پس از بازسازی |
 
 ### Stage 2 — برند، IA و صفحه اصلی (P1/P2)
 **هدف:** روایت مهندسی نرم‌افزار و کاتالوگ محصول حرفه‌ای.  
@@ -278,8 +293,8 @@ KarenSoft باید به عنوان **مجموعه مهندسی نرم‌افزا
 | گزارش Performance | Partially Completed (آزمایشگاهی؛ production مسدود) |
 | گزارش Security | Partially Completed (وابستگی 0، هدرهای پایه؛ CSP/فرم واقعی/production مسدود) |
 | گزارش Responsive Testing | Partially Completed (97 مسیر؛ بدون overflow) |
-| گزارش Accessibility | Partially Completed (97 مسیر اصلی × 2 تم × 2 عرض بدون نقض Axe؛ iframe دموها و خطاهای runtime جداگانه باقی است) |
-| نتایج تست عملکردی | Completed برای E2E موجود (33/33)؛ Partially Completed برای پوشش کامل محصول |
+| گزارش Accessibility | Partially Completed (97 مسیر اصلی × 2 تم × 2 عرض بدون نقض Axe؛ کارن‌وود داخل iframe سبز؛ iframe سایر دموها و ۳ خطای runtime گذرا باقی است) |
+| نتایج تست عملکردی | Completed برای E2E موجود (44/44)؛ Partially Completed برای پوشش کامل محصول |
 | فهرست ایرادات باقی‌مانده | Completed (بخش ۵) |
 | راهنمای نگهداری و توسعه | Not Started |
 | نسخه نهایی قابل انتشار | Not Started |

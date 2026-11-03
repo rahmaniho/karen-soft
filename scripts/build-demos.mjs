@@ -10,11 +10,14 @@
  * هیچ نشانی github.com یا github.io در خروجی باقی نمی‌ماند.
  */
 import { cpSync, existsSync, mkdirSync, readFileSync, readdirSync, rmSync, statSync, writeFileSync } from "node:fs";
-import { execFileSync } from "node:child_process";
+import { execFileSync, spawnSync } from "node:child_process";
 import path from "node:path";
+import { fileURLToPath } from "node:url";
 
 const root = process.cwd();
 const srcRoot = process.env.DEMO_SRC_DIR || "/tmp/repos";
+const onlyIndex = process.argv.indexOf("--only");
+const only = onlyIndex >= 0 ? new Set(process.argv.slice(onlyIndex + 1).filter(value => !value.startsWith("--"))) : null;
 const outRoot = path.join(root, "public", "demos");
 
 /** @type {Array<{repo:string, slug:string, kind:"vite"|"next"|"static"|"vite-static"}>} */
@@ -92,12 +95,26 @@ function disableOfflineShell(dir) {
   }
 }
 
+/** Apply a reviewed source patch to an upstream clone before building it. */
+function applyDemoPatch(src, patchName) {
+  const patch = path.join(path.dirname(fileURLToPath(import.meta.url)), "demo-patches", patchName);
+  if (!existsSync(patch)) return;
+  // Already applied patches are a no-op, so rebuilds stay idempotent.
+  const applied = spawnSync("git", ["-C", src, "apply", "--reverse", "--check", patch], { encoding: "utf8" });
+  if (applied.status === 0) { console.log(`patch ${patchName} already applied`); return; }
+  run("git", ["-C", src, "apply", "--check", patch]);
+  run("git", ["-C", src, "apply", patch]);
+}
+
 for (const { repo, slug, kind } of PROJECTS) {
+  if (only && !only.has(slug)) continue;
   const src = path.join(srcRoot, repo);
   if (!existsSync(src)) { console.error(`یافت نشد: ${src} — ابتدا مخزن ${repo} را کلون کنید.`); process.exitCode = 1; continue; }
   const dest = path.join(outRoot, slug);
   rmSync(dest, { recursive: true, force: true });
   mkdirSync(dest, { recursive: true });
+
+  if (slug === "karenwood") applyDemoPatch(src, "karenwood-stage2.patch");
 
   if (kind === "vite") {
     run("npm", ["ci", "--no-audit", "--no-fund"], src);

@@ -1,10 +1,12 @@
 "use client";
 
+import React from "react";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { ArrowUpLeft, X } from "lucide-react";
 import * as Dialog from "@radix-ui/react-dialog";
 import type { CaseStudy } from "@/lib/portfolio";
+import { formatNumber } from "@/lib/utils";
 
 export function ExperienceEffects() {
   useEffect(() => {
@@ -113,5 +115,5 @@ export function CountUp({ to, pad = false }: { to: number; pad?: boolean }) {
     if (ref.current) observer.observe(ref.current);
     return () => { observer.disconnect(); cancelAnimationFrame(frame); };
   }, [to]);
-  return <span ref={ref}>{new Intl.NumberFormat("fa-IR", { useGrouping: false, minimumIntegerDigits: pad ? 2 : 1 }).format(value)}</span>;
+  return <span ref={ref}>{formatNumber(value, { useGrouping: false, minimumIntegerDigits: pad ? 2 : 1 })}</span>;
 }

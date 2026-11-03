@@ -1,4 +1,5 @@
 import type { Product } from "./products";
+import { formatToman } from "./utils";
 
 /**
  * منبع واحد اطلاعات حساب‌یار: نسخهٔ اندروید، نسخهٔ وب، امکانات، لایسنس و سؤالات متداول.
@@ -172,6 +173,4 @@ export const HESABYAR_OFFERS = HESABYAR_PLANS.map((plan) => ({
   url: `${HESABYAR_WEB_URL.replace(/\/$/, "")}/settings`,
 }));
 
-export function formatToman(value: number): string {
-  return `${value.toLocaleString("fa-IR")} تومان`;
-}
+export { formatToman };

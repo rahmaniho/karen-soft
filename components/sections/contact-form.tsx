@@ -7,6 +7,7 @@ import { z } from "zod";
 import { ArrowUpLeft, LoaderCircle } from "lucide-react";
 import { contactSchema } from "@/lib/validations";
 import { PRODUCTS } from "@/lib/products";
+import { formatNumber } from "@/lib/utils";
 
 type Input = z.input<typeof contactSchema>;
 type Output = z.output<typeof contactSchema>;
@@ -32,7 +33,7 @@ export function ContactForm() {
     setValue("subject", product.slug, { shouldValidate: true });
     setValue(
       "message",
-      `سلام، برای خرید نسخۀ کامل «${product.name}» با قیمت ${product.pricingFrom.toLocaleString("fa-IR")} تومان درخواست دارم. لطفاً برای هماهنگی با من تماس بگیرید.`,
+      `سلام، برای خرید نسخۀ کامل «${product.name}» با قیمت ${formatNumber(product.pricingFrom)} تومان درخواست دارم. لطفاً برای هماهنگی با من تماس بگیرید.`,
       { shouldValidate: true },
     );
   }, [setValue]);

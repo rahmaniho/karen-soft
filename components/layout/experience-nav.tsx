@@ -74,7 +74,7 @@ export function ExperienceNav() {
         <div className="ks-side-meta">{!collapsed ? "فناوری، با نگاه آینده" : "•••"}</div>
         <nav className="ks-side-links" aria-label="منوی اصلی">
           {items.map(({ label, href, icon: Icon }, index) => (
-            <motion.div key={href} initial={reduce ? false : { opacity: 0, y: 9 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: index * 0.04 }}>
+            <motion.div key={href} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: reduce ? 0 : 0.4, delay: reduce ? 0 : index * 0.04 }}>
               <Link href={href} onClick={() => click()} className={`ks-nav-link ${active(href) ? "active" : ""} ${href === "/print" ? "print-link" : ""}`} title={collapsed ? label : undefined} aria-current={active(href) ? "page" : undefined}>
                 {active(href) && <motion.span layoutId="ks-active" className="ks-nav-active" transition={{ type: "spring", stiffness: 100, damping: 20 }} />}
                 <Icon size={19} strokeWidth={1.8} className="ks-nav-icon" />
@@ -99,9 +99,9 @@ export function ExperienceNav() {
       <AnimatePresence>
         {open && <>
           <motion.button className="ks-sheet-backdrop" aria-label="بستن منو" type="button" onClick={toggleOpen} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} />
-          <motion.div ref={sheetRef} className="ks-sheet" role="dialog" aria-modal="true" aria-label="منوی سایت" drag={reduce ? false : "y"} dragConstraints={{ top: 0, bottom: 0 }} dragElastic={{ top: 0, bottom: 0.5 }} onDragEnd={(_, info) => { if (info.offset.y > 90 || info.velocity.y > 500) toggleOpen(); }} initial={reduce ? { opacity: 0 } : { y: "100%" }} animate={reduce ? { opacity: 1 } : { y: 0 }} exit={reduce ? { opacity: 0 } : { y: "100%" }} transition={{ type: "spring", stiffness: 100, damping: 20 }}>
+          <motion.div ref={sheetRef} className="ks-sheet" role="dialog" aria-modal="true" aria-label="منوی سایت" drag={reduce ? false : "y"} dragConstraints={{ top: 0, bottom: 0 }} dragElastic={{ top: 0, bottom: 0.5 }} onDragEnd={(_, info) => { if (info.offset.y > 90 || info.velocity.y > 500) toggleOpen(); }} initial={{ opacity: 0, y: "100%" }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: "100%" }} transition={{ type: "spring", stiffness: 100, damping: 20 }}>
             <div className="ks-sheet-handle" aria-hidden /><div className="ks-sheet-heading">مسیر خودت رو پیدا کن <span>MENU / 08</span></div>
-            <nav aria-label="منوی موبایل" className="ks-sheet-links">{items.map(({ label, href, icon: Icon }, index) => <motion.div key={href} initial={reduce ? false : { opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: index * 0.045 }}><Link className={active(href) ? "active" : ""} href={href} onClick={() => { click(); setOpen(false); }}><Icon size={19} /><span>{label}</span><ArrowUpLeft size={16} /></Link></motion.div>)}</nav>
+            <nav aria-label="منوی موبایل" className="ks-sheet-links">{items.map(({ label, href, icon: Icon }, index) => <motion.div key={href} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: reduce ? 0 : 0.4, delay: reduce ? 0 : index * 0.045 }}><Link className={active(href) ? "active" : ""} href={href} onClick={() => { click(); setOpen(false); }}><Icon size={19} /><span>{label}</span><ArrowUpLeft size={16} /></Link></motion.div>)}</nav>
             <div className="ks-sheet-footer"><button type="button" onClick={() => { setSound(!sound); if (!sound) playSound("click"); }}>{sound ? <Volume2 size={18} /> : <VolumeX size={18} />} {sound ? "صدا روشن" : "صدا خاموش"}</button><span>ساخته‌شده در قزوین ◦ ایران</span></div>
           </motion.div>
         </>}

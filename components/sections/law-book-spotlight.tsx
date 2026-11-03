@@ -5,9 +5,10 @@ import { ArrowLeft, ArrowUpLeft, BookOpen, Check, WifiOff } from "lucide-react";
 import { APP_STATS } from "@/lib/demos/law-book.data";
 import { SITE } from "@/lib/constants";
 import { getProduct } from "@/lib/products";
+import { formatNumber } from "@/lib/utils";
 
 const product = getProduct("law-book")!;
-const number = (value: number) => value.toLocaleString("fa-IR");
+const number = formatNumber;
 
 export function LawBookSpotlight() {
   return (

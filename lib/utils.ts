@@ -12,9 +12,31 @@ export function toPersianDigits(input: string | number): string {
   return String(input).replace(/\d/g, (d) => PERSIAN_DIGITS[Number(d)]);
 }
 
-/** Format a number with thousands separators then localize digits. */
-export function formatNumber(value: number): string {
-  return toPersianDigits(new Intl.NumberFormat("en-US").format(value));
+export interface PersianNumberOptions {
+  /** Group the integer part in threes (۱۲۳٬۴۵۶). */
+  useGrouping?: boolean;
+  /** Pad the integer part with Persian zeros (۰۴). */
+  minimumIntegerDigits?: number;
+}
+
+/**
+ * Locale-independent Persian number formatting.
+ *
+ * `Intl.NumberFormat("fa-IR")` can disagree between the Node ICU data used by
+ * SSG and the browser ICU data used during hydration (grouping separators and
+ * minimum digits have changed across ICU versions). That turns an otherwise
+ * identical price/year into React hydration errors #418/#423. Formatting the
+ * digits and separators ourselves keeps SSR and client output byte-identical.
+ */
+export function formatNumber(value: number, options: PersianNumberOptions = {}): string {
+  const { useGrouping = true, minimumIntegerDigits = 1 } = options;
+  if (!Number.isFinite(value)) return String(value);
+  const negative = value < 0 || Object.is(value, -0);
+  const [rawInteger = "0", rawFraction] = Math.abs(value).toString().split(".");
+  const integer = rawInteger.padStart(Math.max(1, minimumIntegerDigits), "0");
+  const grouped = useGrouping ? integer.replace(/\B(?=(\d{3})+(?!\d))/g, "٬") : integer;
+  const fraction = rawFraction ? `٫${toPersianDigits(rawFraction)}` : "";
+  return `${negative ? "−" : ""}${toPersianDigits(grouped)}${fraction}`;
 }
 
 /** Format an amount in Toman. */
