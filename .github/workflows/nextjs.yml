@@ -3,7 +3,7 @@ name: Verify Next.js
 # This application uses server routes. Deploy with Vercel, not GitHub Pages.
 on:
   push:
-    branches: [main, arena/24c76351-karen-soft, arena/f5a82a5d-karen-soft]
+    branches: [main, "arena/**"]
   pull_request:
     branches: [main]
   workflow_dispatch:
@@ -36,4 +36,5 @@ jobs:
             sleep 1
           done
           node scripts/a11y-routes.mjs --base http://127.0.0.1:3100 --widths 320,1440 --themes light,dark --concurrency 2
+          npm run audit:a11y:demos -- --base http://127.0.0.1:3100
           node scripts/seo-audit.ts --base http://127.0.0.1:3100

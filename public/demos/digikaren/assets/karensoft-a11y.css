@@ -1,0 +1,15 @@
+
+:root{--muted:#5f6672!important}
+.hero-eyebrow{color:#1d4ed8!important}
+.heading-eyebrow{color:#1d4ed8!important}
+.section-link{color:#0e7490!important}
+.super-badge{background:#2f7d4f!important;color:#fff!important}
+.category-more{color:#5f6672!important}
+.supermarket-banner>button{color:#2f7d4f!important}
+.discover-card>p{color:#5f6672!important}
+.hero-benefits small{color:#475569!important}
+.assurances p,.assurances span{color:#5f6672!important}
+footer button,footer span,footer p{color:#5f6672!important}
+.hero-dots{gap:8px}
+.hero-dots button{width:24px;height:24px;border-radius:50%}
+.hero-dots button.active{width:28px;border-radius:999px}

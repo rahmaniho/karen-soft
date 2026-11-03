@@ -16,6 +16,7 @@
     "audit:routes": "node scripts/check-routes.mjs",
     "audit:browser": "node scripts/browser-audit.mjs",
     "audit:a11y": "node scripts/a11y-routes.mjs",
+    "audit:a11y:demos": "node scripts/a11y-routes.mjs --include-frames --demo-frames --concurrency 1 --settle 800",
     "seo:audit": "node scripts/seo-audit.ts",
     "audit:seo": "node scripts/seo-audit.ts"
   },

@@ -1,0 +1,9 @@
+
+:root{--text-light:#5b6b80!important;--text-muted:#475569!important}
+.section-label,.ceo-info__role{color:#92400e!important}
+.dish-card__price small{color:#2f6f57!important;opacity:1!important}
+.top-bar__meta-item,.footer__registry-strip,.footer__bottom-bar{color:#cbd5e1!important}
+.footer__registry-strip strong,.footer__bottom-bar strong{color:#e2e8f0!important}
+a[href*="wa.me"]{color:#075e54!important}
+[style*="--amber-accent"]{color:#92400e!important}
+label[style*="--sky-blue"]{color:#0369a1!important}

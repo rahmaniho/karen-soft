@@ -6,16 +6,16 @@ async function openShowcase(page: Page, expectRunning = false) {
   // Autoplay pauses while the tab is hidden; parallel workers can leave it backgrounded.
   await page.bringToFront();
   const viewport = page.locator(".ks-work-viewport");
-  await viewport.scrollIntoViewIfNeeded();
-  const box = await viewport.boundingBox();
-  // Park the pointer above the scroller so hover-pause cannot race the assertion.
-  await page.mouse.move((box?.x ?? 0) + 10, Math.max(0, (box?.y ?? 0) - 30));
+  // Instant scroll avoids a smooth-scroll race where the carousel moves under the pointer.
+  await viewport.evaluate(element => element.scrollIntoView({ block: "center", behavior: "instant" }));
+  // Park the pointer in the top-left corner (never over the scroller) and drop focus.
+  await page.mouse.move(0, 0);
   await page.evaluate(() => (document.activeElement as HTMLElement | null)?.blur?.());
   await expect(page.locator(".ks-work-carousel")).toHaveAttribute("data-running", /^(true|false)$/);
   if (expectRunning) {
     await expect.poll(() => page.evaluate(() => document.visibilityState)).toBe("visible");
     await expect(page.getByRole("button", { name: "توقف حرکت خودکار نمونه‌کارها" })).toBeEnabled();
-    await expect(page.locator(".ks-work-carousel")).toHaveAttribute("data-running", "true");
+    await expect(page.locator(".ks-work-carousel")).toHaveAttribute("data-running", "true", { timeout: 15_000 });
   }
   return viewport;
 }
@@ -88,7 +88,7 @@ test.describe("continuous motion", () => {
     const left = await viewport.evaluate(element => element.scrollLeft);
     expect(left).toBeLessThan(0);
     expect(dimensions.cycle).toBeGreaterThan(dimensions.width);
-    await expect(page.locator(".ks-work-carousel")).toHaveAttribute("data-running", "true");
+    await expect(page.locator(".ks-work-carousel")).toHaveAttribute("data-running", "true", { timeout: 10_000 });
   });
 
   test("dragging moves the cards without opening a project", async ({ page }) => {

@@ -1,0 +1,13 @@
+
+:root{--muted:#5f6b66!important}
+.kpi-title,.kpi-foot small,.kpi-foot span,.card p,.legend span,.chart-axis span,th,.id-text,.deadline{color:#5f6b66!important}
+.change{color:#8a5a17!important;background:#fff3dc!important}
+.change.pos{color:#166b54!important;background:#e3f3ec!important}
+.deadline.urgent{color:#b23a2a!important;background:#ffe8e2!important}
+.select-small{color:#40514a!important}
+.dots{min-width:24px;min-height:24px}
+small,kbd,.muted,.eyebrow,.summary-strip,.search,.legend,.x-labels,.y-labels,.chart-total,.action-main small,.date-cell,.table-footer,.panel-heading p,.standard-list span,.compliance-note,.footer-url,.record-search,.record-date,.workspace-foot,.priority{color:#5f6b66!important}
+.status.blue{color:#2f6f8f!important}
+.status.green,.project-state.good{color:#166b54!important}
+.brand b span{color:#0f725d!important}
+.chart-total b span{color:#5f6b66!important}
