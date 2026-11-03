@@ -1,5 +1,6 @@
 import {test,expect} from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
+import {PRODUCTS} from '../../lib/products';
 
 test('mobile menu, Escape, theme persistence and no overflow',async({page})=>{
  await page.setViewportSize({width:320,height:800});await page.goto('/');
@@ -14,7 +15,7 @@ test('mobile menu, Escape, theme persistence and no overflow',async({page})=>{
 test('catalog search has an empty state and can reset',async({page})=>{
  await page.goto('/products');await page.getByPlaceholder('جست‌وجو…').fill('هیچ محصولی با این نام نیست');
  await expect(page.getByRole('heading',{name:'نتیجه‌ای پیدا نشد'})).toBeVisible();
- await page.getByRole('button',{name:'پاک کردن فیلترها'}).click();await expect(page.locator('main article')).toHaveCount(11);
+ await page.getByRole('button',{name:'پاک کردن فیلترها'}).click();await expect(page.locator('[data-catalog="products"] article')).toHaveCount(PRODUCTS.length);
 });
 
 test('contact validation focuses first error and preserves message on provider failure',async({page})=>{
@@ -41,8 +42,9 @@ test('law book page shows the topic catalogue instead of a live preview',async({
  await page.goto('/products/law-book');
  await expect(page.getByRole('heading',{level:2,name:'چه موضوعاتی در کتابچه قانون هست؟'})).toBeVisible();
  await expect(page.locator('.lb-topic-card')).toHaveCount(10);
- await expect(page.getByText('حقوق مدنی',{exact:true})).toBeVisible();
- await expect(page.getByText('قانون مدنی',{exact:true})).toBeVisible();
+ const civilCard = page.locator('.lb-topic-card').filter({has: page.getByRole('heading',{level:3,name:'حقوق مدنی',exact:true})});
+ await expect(civilCard).toBeVisible();
+ await expect(civilCard.getByText('قانون مدنی',{exact:true})).toBeVisible();
  await expect(page.getByRole('link',{name:/نسخهٔ زنده|پیش‌نمایش/})).toHaveCount(0);
 });
 

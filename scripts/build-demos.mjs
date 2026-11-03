@@ -85,9 +85,10 @@ function disableOfflineShell(dir) {
     const source = readFileSync(file, "utf8");
     const patched = source.replace(
       /navigator\.serviceWorker\.register\("[^"]*sw\.js",\{scope:"[^"]*"\}\)\.catch\([^)]*\)/,
-      'Promise.reject(new Error("offline cache disabled in showcase"))',
+      'void 0',
     );
-    if (patched !== source) writeFileSync(file, patched);
+    const healed = patched.replace(/Promise\.reject\(new Error\("offline cache disabled in showcase"\)\)/g, "void 0");
+    if (healed !== source) writeFileSync(file, healed);
   }
 }
 

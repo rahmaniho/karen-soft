@@ -7,6 +7,7 @@ import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ArrowUpLeft, BriefcaseBusiness, Code2, Contact, House, Menu, Newspaper, Printer, Sparkles, Volume2, VolumeX, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import type { ComponentType } from "react";
+import { ThemeToggle } from "@/components/layout/theme-toggle";
 
 type NavItem = { label: string; href: string; icon: ComponentType<{ size?: number; strokeWidth?: number; className?: string }> };
 const items: NavItem[] = [
@@ -87,13 +88,14 @@ export function ExperienceNav() {
           {!collapsed && <div className="ks-availability"><i /> آماده برای پروژه‌های جدید <span>↗</span></div>}
           <div className="ks-side-controls">
             <button className="ks-icon-button" aria-label={sound ? "قطع صدا" : "فعال کردن صدا"} aria-pressed={sound} onClick={() => { setSound(!sound); if (!sound) playSound("click"); }} type="button">{sound ? <Volume2 size={18} /> : <VolumeX size={18} />}</button>
+            <ThemeToggle />
             <button className="ks-collapse" type="button" aria-label={collapsed ? "باز کردن نوار کناری" : "جمع کردن نوار کناری"} aria-expanded={!collapsed} onClick={() => { click(); setCollapsed(!collapsed); }}>{collapsed ? "‹" : "›"}</button>
           </div>
           {!collapsed && <span className="ks-copyright">© 2024 — 2026 KAREN SOFT</span>}
         </div>
       </motion.aside>
 
-      <div className="ks-mobile-top"><Link href="/" className="ks-mobile-logo" aria-label="کارن سافت؛ صفحه اصلی"><Image src="/images/logo-symbol.png" alt="" width={512} height={512} className="ks-mobile-logo-image" /><span>کارن سافت<small>KAREN SOFT</small></span></Link><span className="ks-mobile-index">DIGITAL ENGINEERING / 01</span></div>
+      <div className="ks-mobile-top"><Link href="/" className="ks-mobile-logo" aria-label="کارن سافت؛ صفحه اصلی"><Image src="/images/logo-symbol.png" alt="" width={512} height={512} className="ks-mobile-logo-image" /><span>کارن سافت<small>KAREN SOFT</small></span></Link><div className="ks-mobile-actions"><span className="ks-mobile-index">DIGITAL ENGINEERING / 01</span><ThemeToggle /></div></div>
       <AnimatePresence>
         {open && <>
           <motion.button className="ks-sheet-backdrop" aria-label="بستن منو" type="button" onClick={toggleOpen} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} />

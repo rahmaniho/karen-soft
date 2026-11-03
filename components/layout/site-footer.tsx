@@ -21,7 +21,7 @@ export function SiteFooter() {
               className="size-20 object-contain brightness-0 invert"
             />
           </Link>
-          <p className="mt-5 max-w-sm text-xs leading-loose text-white/60">
+          <p className="mt-5 max-w-sm text-xs leading-loose text-white/70">
             شریک فنی رشد کسب‌وکار شما در قزوین؛ طراحی وب، نرم‌افزار اختصاصی، اتوماسیون و امنیت سایبری.
           </p>
           <ul className="mt-6 space-y-2.5 text-xs text-white/70">
@@ -82,7 +82,7 @@ export function SiteFooter() {
               {item.label}
             </FooterLink>
           ))}
-          <li className="pt-2 text-[11px] leading-relaxed text-white/60">
+          <li className="pt-2 text-[11px] leading-relaxed text-white/70">
             چاپ، مهر و صحافی در قزوین — زیرمجموعۀ کارن سافت.
           </li>
         </FooterColumn>
@@ -104,7 +104,7 @@ export function SiteFooter() {
       </div>
 
       <div className="border-t border-white/10">
-        <div className="container-page flex flex-wrap items-center justify-between gap-3 py-5 text-3xs text-white/60">
+        <div className="container-page flex flex-wrap items-center justify-between gap-3 py-5 text-3xs text-white/70">
           <span>© {SITE.name} — تمامی حقوق محفوظ است.</span>
           <span>
             ساعات کاری: شنبه تا چهارشنبه {SITE.workingHours.satWed} · پنجشنبه {SITE.workingHours.thu}
