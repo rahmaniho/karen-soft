@@ -15,11 +15,17 @@ export function ContactForm() {
   const [feedback, setFeedback] = useState("");
   const [sent, setSent] = useState(false);
   const { register, handleSubmit, reset, setError, setValue, formState: { errors, isSubmitting } } = useForm<Input, unknown, Output>({
-    resolver: zodResolver(contactSchema), mode: "onChange", defaultValues: { name: "", phone: "", email: "", subject: "", message: "" },
+    resolver: zodResolver(contactSchema), mode: "onChange", defaultValues: { name: "", phone: "", email: "", subject: "", message: "", website: "" },
   });
 
   useEffect(() => {
-    const requestedProduct = new URLSearchParams(window.location.search).get("product");
+    const params = new URLSearchParams(window.location.search);
+    const requestedSubject = params.get("subject");
+    const allowedSubjects = new Set(["website", "custom", "print", "other", ...PRODUCTS.map(p => p.slug)]);
+    if (requestedSubject && allowedSubjects.has(requestedSubject)) {
+      setValue("subject", requestedSubject, { shouldValidate: true });
+    }
+    const requestedProduct = params.get("product");
     if (requestedProduct !== "law-book") return;
     const product = PRODUCTS.find((item) => item.slug === requestedProduct);
     if (!product) return;
@@ -46,6 +52,10 @@ export function ContactForm() {
   }, () => { setFeedback("لطفاً فیلدهای مشخص‌شده را بررسی کنید."); setSent(false); });
 
   return <form onSubmit={submit} noValidate aria-busy={isSubmitting} className="ks-form">
+    <div className="ks-honeypot" aria-hidden="true">
+      <label htmlFor="contact-website">وب‌سایت</label>
+      <input id="contact-website" type="text" tabIndex={-1} autoComplete="off" {...register("website")} />
+    </div>
     <div className="ks-form-row">
       <div className={`ks-field ${errors.name ? "has-error" : ""}`}><input id="name" placeholder=" " autoComplete="name" aria-invalid={!!errors.name} aria-describedby={errors.name ? "name-error" : undefined} {...register("name")} /><label htmlFor="name">نام و نام خانوادگی *</label>{errors.name && <span role="alert" id="name-error">{errors.name.message}</span>}</div>
       <div className={`ks-field ${errors.phone ? "has-error" : ""}`}><input id="phone" placeholder=" " type="tel" inputMode="tel" dir="ltr" autoComplete="tel" aria-invalid={!!errors.phone} aria-describedby={errors.phone ? "phone-error" : undefined} {...register("phone")} /><label htmlFor="phone">شماره تماس *</label>{errors.phone && <span role="alert" id="phone-error">{errors.phone.message}</span>}</div>

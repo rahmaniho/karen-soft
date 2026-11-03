@@ -15,6 +15,7 @@
     "patch:demos": "node scripts/patch-demo-assets.mjs",
     "audit:routes": "node scripts/check-routes.mjs",
     "audit:browser": "node scripts/browser-audit.mjs",
+    "audit:a11y": "node scripts/a11y-routes.mjs",
     "seo:audit": "node scripts/seo-audit.ts",
     "audit:seo": "node scripts/seo-audit.ts"
   },

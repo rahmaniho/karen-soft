@@ -51,7 +51,7 @@ export function ChapHeader() {
       </div>
 
       <div className="container-page flex items-center gap-2 sm:gap-4 py-3">
-        <Link href={CHAP.path} className="flex shrink-0 items-center gap-3" aria-label={`${CHAP.name} — خانه`}>
+        <Link href={CHAP.path} className="flex shrink-0 items-center gap-3">
           <span className="grid size-11 place-items-center overflow-hidden rounded-[var(--radius-md)] bg-ink-950 p-1">
             <Image src={CHAP.logo} alt="" width={64} height={64} className="size-9 object-contain" priority />
           </span>

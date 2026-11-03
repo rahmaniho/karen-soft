@@ -28,6 +28,21 @@ test('contact validation focuses first error and preserves message on provider f
  await expect(page.getByLabel('توضیحات پروژه')).toHaveValue('درخواست طراحی وب‌سایت شرکتی');
 });
 
+test('service CTA preselects the contact subject and keeps the honeypot out of the tab order',async({page})=>{
+ await page.goto('/services');
+ await page.getByRole('link',{name:'درخواست مشاوره درباره این خدمت'}).first().click();
+ await expect(page).toHaveURL(/\/contact\?subject=website/);
+ await expect(page.locator('#subject')).toHaveValue('website');
+ await expect(page.locator('#contact-website')).toHaveAttribute('tabindex','-1');
+ await expect(page.locator('.ks-honeypot').first()).toHaveAttribute('aria-hidden','true');
+});
+
+test('homepage primary CTAs lead to consultation and products',async({page})=>{
+ await page.goto('/');
+ await expect(page.getByRole('link',{name:'درخواست مشاوره',exact:true})).toHaveAttribute('href','/contact');
+ await expect(page.getByRole('link',{name:'مشاهده محصولات',exact:true})).toHaveAttribute('href','/products');
+});
+
 test('print draft is explicitly not a confirmed order',async({page})=>{
  await page.goto('/print/order/bizcard');await page.getByLabel('نام و نام خانوادگی').fill('کاربر آزمایشی');await page.getByLabel('شماره تماس').fill('09123456789');
  await page.getByLabel('توضیح طرح',{exact:true}).fill('کارت ویزیت با رنگ آبی و نوشته‌های فارسی');
@@ -66,7 +81,7 @@ for(const theme of ['light','dark'])for(const path of ['/','/products','/blog','
  test(`accessibility ${theme} ${path}`,async({page})=>{
   await page.addInitScript(theme=>localStorage.setItem('theme',theme),theme);
   await page.goto(path);await page.evaluate(()=>document.fonts.ready);
-  const result=await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21aa']).analyze();
+  const result=await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21a','wcag21aa','wcag22aa']).analyze();
   expect(result.violations.map(v=>({id:v.id,nodes:v.nodes.map(n=>n.html)}))).toEqual([]);
  });
 }

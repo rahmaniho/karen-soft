@@ -1240,16 +1240,16 @@ html[data-headings="sans"] {
 .lb-overview-copy > p { margin: 0; color: rgba(255, 255, 255, .72); font-size: 11px; line-height: 2.2; }
 .lb-features { padding: clamp(62px, 8vw, 104px) 0; background: #f8f7f2; }
 .lb-section-title { max-width: 650px; }
-.lb-section-title > span { color: #9d7b3c; font-size: 9px; font-weight: 750; }
+.lb-section-title > span { color: #7a5f2c; font-size: 9px; font-weight: 750; }
 .lb-section-title h2 { margin: 11px 0 8px; color: #1d3b31; font-size: clamp(27px, 3.4vw, 43px); line-height: 1.5; }
-.lb-section-title p { margin: 0; color: #6b7b72; font-size: 11px; line-height: 2.15; }
+.lb-section-title p { margin: 0; color: #526057; font-size: 11px; line-height: 2.15; }
 .lb-feature-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 13px; margin-top: 32px; }
 .lb-feature-card { position: relative; min-height: 223px; border: 1px solid #e1e4da; border-radius: 11px; padding: 22px 18px; background: #fffefa; box-shadow: 0 15px 35px -31px rgba(18, 57, 43, .35); transition: transform .22s, border-color .22s, box-shadow .22s; }
 .lb-feature-card:hover { transform: translateY(-4px); border-color: #bdcfc1; box-shadow: 0 18px 34px -24px rgba(18, 57, 43, .28); }
 .lb-feature-index { position: absolute; inset-inline-end: 18px; top: 19px; color: #b5bdb6; font: 8px "JetBrains Mono", ui-monospace, monospace; direction: ltr; }
 .lb-feature-icon { display: grid; width: 43px; height: 43px; place-items: center; border-radius: 11px; background: #eaf1e9; color: #28674e; }
 .lb-feature-card h3 { margin: 18px 0 6px; color: #204438; font-size: 13px; }
-.lb-feature-card p { margin: 0; color: #748279; font-size: 9px; line-height: 2.1; }
+.lb-feature-card p { margin: 0; color: #5a675e; font-size: 9px; line-height: 2.1; }
 .lb-modules { padding: clamp(62px, 8vw, 100px) 0; background: #eeeee6; }
 .lb-topic-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin-top: 34px; }
 .lb-topic-card { min-width: 0; border: 1px solid #dce0d7; border-radius: 12px; padding: 22px; background: #fbfaf6; box-shadow: 0 14px 34px -30px rgba(18, 57, 43, .34); }
@@ -1259,14 +1259,14 @@ html[data-headings="sans"] {
 .lb-topic-title-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 6px 10px; }
 .lb-topic-title-row h3 { margin: 0; color: #28493b; font-size: 13px; }
 .lb-topic-count { flex: none; border: 1px solid #dce3d8; border-radius: 99px; padding: 3px 8px; color: #61766a; font-size: 9px; white-space: nowrap; }
-.lb-topic-heading-copy > p { margin: 6px 0 0; color: #78857d; font-size: 10px; line-height: 2; }
+.lb-topic-heading-copy > p { margin: 6px 0 0; color: #5c685f; font-size: 10px; line-height: 2; }
 .lb-topic-documents { margin-top: 15px; border-top: 1px solid #e1e4db; padding-top: 12px; }
 .lb-topic-documents > span { color: #879187; font-size: 9px; font-weight: 700; }
 .lb-topic-documents ul { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0 0; padding: 0; list-style: none; }
 .lb-topic-documents li { border: 1px solid #e0e4dc; border-radius: 99px; padding: 4px 8px; color: #476354; background: #fffefa; font-size: 9px; line-height: 1.8; }
 .lb-topic-note { display: flex; align-items: center; gap: 11px; margin-top: 18px; border: 1px solid rgba(23, 75, 61, .14); border-radius: 10px; padding: 15px 18px; color: #28634d; background: rgba(255, 255, 255, .47); }
 .lb-topic-note > svg { flex: none; }
-.lb-topic-note p { margin: 0; color: #64786d; font-size: 10px; line-height: 2; }
+.lb-topic-note p { margin: 0; color: #526057; font-size: 10px; line-height: 2; }
 .lb-install { padding: 0 0 clamp(62px, 8vw, 100px); background: #eeeee6; }
 .lb-install-panel { display: grid; grid-template-columns: 1fr .9fr; align-items: center; gap: 40px; border-radius: 14px; padding: clamp(25px, 4vw, 48px); background: #173f34; color: #fff; }
 .lb-install-copy { position: relative; padding-inline-start: 64px; }
@@ -1285,7 +1285,7 @@ html[data-headings="sans"] {
 .lb-pricing-kicker { color: #a17d3f; font-size: 9px; font-weight: 750; }
 .lb-pricing-copy h2 { margin: 13px 0 10px; color: #1a3e32; font-size: clamp(30px, 4vw, 48px); line-height: 1.5; }
 .lb-pricing-copy h2 em { color: #a17d3f; font-style: normal; }
-.lb-pricing-copy > p { max-width: 520px; margin: 0; color: #687970; font-size: 11px; line-height: 2.1; }
+.lb-pricing-copy > p { max-width: 520px; margin: 0; color: #526057; font-size: 11px; line-height: 2.1; }
 .lb-pricing-assurances { display: flex; flex-wrap: wrap; gap: 12px 18px; margin-top: 19px; }
 .lb-pricing-assurances > span { display: inline-flex; align-items: center; gap: 6px; color: #587264; font-size: 8px; }
 .lb-pricing-assurances svg { color: #398260; }
@@ -1294,14 +1294,15 @@ html[data-headings="sans"] {
 .lb-price-card > span { color: #718076; font-size: 9px; }
 .lb-price-card > strong { margin-top: 4px; color: #1c4b3b; font: 800 30px/1.5 "Vazirmatn", sans-serif; white-space: nowrap; }
 .lb-price-card > strong small { font-size: 12px; font-weight: 600; }
-.lb-price-card > p { margin: 4px 0 17px; color: #75837b; font-size: 8px; }
+.lb-price-card > p { margin: 4px 0 17px; color: #5a675e; font-size: 8px; }
 .lb-button-gold { width: 100%; background: #ad8b4b; color: #fff; }
 .lb-button-gold:hover { background: #907039; color: #fff; }
 .lb-faq { padding: clamp(54px, 7vw, 85px) 0; background: #eeeee6; }
+.lb-faq .text-muted { color: #526057; }
 .lb-faq-grid { display: grid; grid-template-columns: .75fr 1.25fr; align-items: start; gap: clamp(35px, 6vw, 80px); }
 .lb-faq-grid [data-orientation] { border-top: 1px solid #d5dcd2; }
 .lb-disclaimer { padding: 19px 0; background: #e6e5dc; }
-.lb-disclaimer p { margin: 0; color: #68766e; font-size: 8px; line-height: 2; }
+.lb-disclaimer p { margin: 0; color: #4f5a52; font-size: 8px; line-height: 2; }
 .lb-disclaimer strong { color: #304d40; }
 @media (max-width: 1023px) {
   .lb-hero-grid { grid-template-columns: minmax(0, 1fr) minmax(275px, .8fr); gap: 24px; }
@@ -1524,3 +1525,6 @@ html[data-headings="sans"] {
 
 /* خوانایی پیوندهای برند روی پوسته همیشه‌تیره سایت (خارج از لایه‌ها تا بر utilityها اولویت داشته باشد). */
 .ks-shell .text-brand-600 { color: var(--color-brand-300); }
+
+/* فیلد نامرئی ضداسپم: از دسترس صفحه‌کلید/AT خارج است و فضای بصری نمی‌گیرد. */
+.ks-honeypot { position:absolute; inset-inline-start:-9999px; width:1px; height:1px; overflow:hidden; }

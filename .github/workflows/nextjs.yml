@@ -35,4 +35,5 @@ jobs:
             if curl -sf http://127.0.0.1:3100/ > /dev/null; then break; fi
             sleep 1
           done
+          node scripts/a11y-routes.mjs --base http://127.0.0.1:3100 --widths 320,1440 --themes light,dark --concurrency 2
           node scripts/seo-audit.ts --base http://127.0.0.1:3100

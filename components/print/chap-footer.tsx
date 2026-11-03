@@ -16,7 +16,7 @@ export function ChapFooter() {
 
       <div className="container-page grid gap-12 py-16 lg:grid-cols-[1.5fr_1fr_1fr_1.2fr]">
         <div>
-          <Link href={CHAP.path} className="flex items-center gap-3" aria-label={`${CHAP.name} — خانه`}>
+          <Link href={CHAP.path} className="flex items-center gap-3">
             <span className="grid size-11 place-items-center rounded-[var(--radius-md)] bg-white/5 p-1">
               <Image src={CHAP.logo} alt="" width={64} height={64} className="size-9 object-contain" />
             </span>

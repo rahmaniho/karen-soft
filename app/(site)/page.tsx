@@ -39,7 +39,7 @@ export default function HomePage() {
         <div className="ks-eyebrow"><span className="ks-eyebrow-line" /> استودیو مهندسی دیجیتال <span className="ks-eyebrow-en">/ EST. 1404</span></div>
         <h1 id="ks-hero-title">فردا را<br /><span>امروز</span> می‌سازیم<span className="ks-period">.</span><span className="ks-hero-subtitle">طراحی نرم‌افزار اختصاصی و وب‌سایت برای کسب‌وکارهای ایران، از <strong>۱۴۰۴ (2024)</strong></span></h1>
         <p className="ks-hero-desc">از یک ایده جسورانه تا محصولی که هر روز کار می‌کند. ما نرم‌افزار، تجربه دیجیتال و زیرساختی می‌سازیم که کسب‌وکار شما را یک قدم جلوتر می‌برد.</p>
-        <div className="ks-hero-actions"><Link href="/contact" className="ks-button ks-button-primary">شروع یک همکاری <ArrowUpLeft size={19} /></Link><Link href="#selected-work" className="ks-button ks-button-outline">کشف کارهای ما <ArrowDownLeft size={18} /></Link></div>
+        <div className="ks-hero-actions"><Link href="/contact" className="ks-button ks-button-primary">درخواست مشاوره <ArrowUpLeft size={19} /></Link><Link href="/products" className="ks-button ks-button-outline">مشاهده محصولات <ArrowDownLeft size={18} /></Link></div>
         <div className="ks-hero-proof"><div className="ks-proof-icons"><span><Code2 size={15} /></span><span><Layers3 size={15} /></span><span><ShieldCheck size={15} /></span></div><span>ایده‌های پیچیده. راه‌حل‌های ساده.<br /><strong>طراحی شده برای دنیای واقعی.</strong></span></div>
       </div>
       <div className="ks-hero-art" aria-label="نمای گرافیکی از زیرساخت دیجیتال کارن سافت">

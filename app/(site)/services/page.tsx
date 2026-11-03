@@ -31,7 +31,7 @@ export default function ServicesPage() {
             <p className="lead">{service.desc}</p>
             <div className="surface-card p-8">
               <Points items={service.bullets} />
-              <ButtonLink className="mt-6" href="/contact" variant="soft">گفت‌وگو درباره این خدمت</ButtonLink>
+              <ButtonLink className="mt-6" href={`/contact?subject=${service.slug === "web" ? "website" : service.slug === "software" || service.slug === "automation" ? "custom" : "other"}`} variant="soft">درخواست مشاوره درباره این خدمت</ButtonLink>
             </div>
           </div>
         </ContentSection>

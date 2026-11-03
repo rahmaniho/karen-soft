@@ -1,5 +1,10 @@
 import { z } from "zod";
 
+/** فیلد نامرئی ضداسپم؛ کاربر واقعی هرگز آن را پر نمی‌کند. */
+export const honeypotSchema = z.object({
+  website: z.string().trim().max(0, "درخواست نامعتبر است.").optional(),
+});
+
 export const contactSchema = z.object({
   name: z.string().trim().max(120, "نام بیش از حد طولانی است.").min(3, "نام باید حداقل ۳ حرف باشد."),
   phone: z
@@ -9,13 +14,13 @@ export const contactSchema = z.object({
   email: z.string().trim().max(254).email("ایمیل معتبر نیست.").optional().or(z.literal("")),
   subject: z.string().trim().max(120).min(2, "موضوع را انتخاب کنید."),
   message: z.string().trim().max(10000, "توضیحات حداکثر ۱۰ هزار نویسه باشد.").min(10, "توضیحات باید حداقل ۱۰ حرف باشد."),
-});
+}).merge(honeypotSchema);
 
 export type ContactInput = z.infer<typeof contactSchema>;
 
 export const newsletterSchema = z.object({
   email: z.string().trim().max(254).email("ایمیل معتبر نیست."),
-});
+}).merge(honeypotSchema);
 
 export const demoRequestSchema = z.object({
   name: z.string().min(3, "نام را وارد کنید."),

@@ -67,7 +67,7 @@ export function ExperienceNav() {
   return (
     <>
       <motion.aside layout={!reduce} className={`ks-sidebar ${collapsed ? "is-collapsed" : ""}`} aria-label="ناوبری اصلی">
-        <Link href="/" onClick={() => click()} className="ks-brand" aria-label="کارن سافت؛ صفحه اصلی">
+        <Link href="/" onClick={() => click()} className="ks-brand" aria-label={collapsed ? "کارن سافت؛ صفحه اصلی" : undefined}>
           <Image src="/images/logo-symbol.png" alt="" width={512} height={512} className="ks-brand-logo" />
           {!collapsed && <span className="ks-brand-name"><strong>کارن سافت</strong><small>KAREN SOFT®</small></span>}
         </Link>
@@ -95,7 +95,7 @@ export function ExperienceNav() {
         </div>
       </motion.aside>
 
-      <div className="ks-mobile-top"><Link href="/" className="ks-mobile-logo" aria-label="کارن سافت؛ صفحه اصلی"><Image src="/images/logo-symbol.png" alt="" width={512} height={512} className="ks-mobile-logo-image" /><span>کارن سافت<small>KAREN SOFT</small></span></Link><div className="ks-mobile-actions"><span className="ks-mobile-index">DIGITAL ENGINEERING / 01</span><ThemeToggle /></div></div>
+      <div className="ks-mobile-top"><Link href="/" className="ks-mobile-logo"><Image src="/images/logo-symbol.png" alt="" width={512} height={512} className="ks-mobile-logo-image" /><span>کارن سافت<small>KAREN SOFT</small></span></Link><div className="ks-mobile-actions"><span className="ks-mobile-index">DIGITAL ENGINEERING / 01</span><ThemeToggle /></div></div>
       <AnimatePresence>
         {open && <>
           <motion.button className="ks-sheet-backdrop" aria-label="بستن منو" type="button" onClick={toggleOpen} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} />

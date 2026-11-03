@@ -97,7 +97,7 @@ export function WorkGallery({ works, compact = false }: { works: PrintWork[]; co
                 type="button"
                 onClick={() => setLightbox(index)}
                 className="group relative block w-full overflow-hidden rounded-[var(--radius-xl)] border border-[var(--border-subtle)] bg-[var(--surface-raised)] text-start"
-                aria-label={`بزرگ‌نمایی: ${work.caption}`}
+
               >
                 <span className="relative block aspect-[4/3] overflow-hidden">
                   <Image

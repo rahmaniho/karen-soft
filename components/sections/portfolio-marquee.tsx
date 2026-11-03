@@ -184,7 +184,7 @@ export function PortfolioMarquee({ cases }: { cases: CaseStudy[] }) {
                     className="ks-work-card"
                     tabIndex={copy > 0 ? -1 : undefined}
                     draggable={false}
-                    aria-label={copy > 0 ? undefined : `مشاهدهٔ نمونه‌کار ${item.title}`}
+
                   >
                     <div className="ks-work-card-image">
                       <div className="ks-work-browser" aria-hidden="true"><i /><i /><i /><span>KAREN SOFT / SELECTED WORK</span><ArrowUpLeft size={10} /></div>

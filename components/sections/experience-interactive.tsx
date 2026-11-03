@@ -78,7 +78,7 @@ export function PortfolioGallery({ cases }: { cases: CaseStudy[] }) {
     return () => { doc.removeEventListener("click", guard, true); doc.removeEventListener("submit", guard, true); };
   }, [selected]);
   return <>
-    <div className="ks-portfolio-grid">{cases.map((item, i) => <button key={item.slug} type="button" className={`ks-portfolio-card portfolio-${i}`} onClick={() => setSelected(item)} aria-label={`نمایش پیش‌نمایش ${item.title}`}>
+    <div className="ks-portfolio-grid">{cases.map((item, i) => <button key={item.slug} type="button" className={`ks-portfolio-card portfolio-${i}`} onClick={() => setSelected(item)}>
       <div className="ks-portfolio-image"><Image src={item.cover} alt={item.title} fill sizes="(min-width: 1024px) 34vw, (min-width: 640px) 50vw, 100vw" className="object-cover" /><span className="ks-portfolio-view"><ArrowUpLeft size={23} /></span></div><div className="ks-portfolio-meta"><span>0{i + 1} / {item.category}</span><span>{item.year}</span></div><h3>{item.title}</h3><p>{item.summary}</p>
     </button>)}</div>
     <Dialog.Root open={selected !== null} onOpenChange={open => { if (!open) setSelected(null); }}>

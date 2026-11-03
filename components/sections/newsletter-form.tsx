@@ -7,12 +7,13 @@ import { cn } from "@/lib/utils";
 
 export function NewsletterForm({ variant = "section" }: { variant?: "section" | "footer" }) {
   const [email, setEmail] = useState("");
+  const [website, setWebsite] = useState("");
   const [state, setState] = useState<"idle" | "loading" | "done" | "error">("idle");
   const [message, setMessage] = useState("");
 
   async function onSubmit(event: FormEvent) {
     event.preventDefault();
-    const parsed = newsletterSchema.safeParse({ email });
+    const parsed = newsletterSchema.safeParse({ email, website });
     if (!parsed.success) {
       setState("error");
       setMessage(parsed.error.issues[0]?.message ?? "ایمیل معتبر نیست.");
@@ -31,7 +32,11 @@ export function NewsletterForm({ variant = "section" }: { variant?: "section" | 
   const footer = variant === "footer";
 
   return (
-    <form onSubmit={onSubmit} className="w-full">
+    <form onSubmit={onSubmit} className="w-full" noValidate aria-busy={state === "loading"}>
+      <div className="ks-honeypot" aria-hidden="true">
+        <label htmlFor={`newsletter-website-${variant}`}>وب‌سایت</label>
+        <input id={`newsletter-website-${variant}`} type="text" tabIndex={-1} autoComplete="off" value={website} onChange={e => setWebsite(e.target.value)} />
+      </div>
       <div className={cn("flex gap-2", footer ? "flex-col" : "flex-col sm:flex-row")}>
         <label className="sr-only" htmlFor={`newsletter-${variant}`}>
           ایمیل شما
@@ -43,6 +48,11 @@ export function NewsletterForm({ variant = "section" }: { variant?: "section" | 
           onChange={(e) => setEmail(e.target.value)}
           placeholder="ایمیل شما"
           dir="ltr"
+          required
+          maxLength={254}
+          autoComplete="email"
+          aria-invalid={state === "error"}
+          aria-describedby={`newsletter-feedback-${variant}`}
           className={cn(
             "h-12 w-full rounded-[var(--radius-sm)] border px-4 text-sm outline-none transition-colors focus:border-brand-500 focus:ring-4 focus:ring-brand-500/12",
             footer
@@ -59,6 +69,8 @@ export function NewsletterForm({ variant = "section" }: { variant?: "section" | 
         </button>
       </div>
       <p
+        id={`newsletter-feedback-${variant}`}
+        role={state === "error" ? "alert" : "status"}
         aria-live="polite"
         className={cn(
           "mt-2 min-h-5 text-3xs font-bold",

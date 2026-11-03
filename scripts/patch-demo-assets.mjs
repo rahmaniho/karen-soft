@@ -4,7 +4,7 @@
  * این اسکریپت idempotent است و بعد از `build:demos` اجرا می‌شود تا
  * اگر خروجی دموها دوباره ساخته شد، اصلاحهای مرحله ۰ از بین نرود.
  */
-import { existsSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
+import { existsSync, readFileSync, readdirSync, statSync, writeFileSync } from "node:fs";
 import path from "node:path";
 
 const root = process.cwd();
@@ -42,5 +42,23 @@ if (existsSync(leylaAssets)) {
     patch(path.join(leylaAssets, name), "#86672f", "#755a28");
   }
 }
+
+// Leyla Abkeh: نام دسترس‌پذیر باید با متن دیدنی یکسان باشد (WCAG 2.5.3).
+const leylaRoot = path.join(root, "public/demos/leyla-abkeh");
+function patchLeylaLabels(dir) {
+  if (!existsSync(dir)) return;
+  for (const name of readdirSync(dir)) {
+    const file = path.join(dir, name);
+    if (statSync(file).isDirectory()) { patchLeylaLabels(file); continue; }
+    if (!name.endsWith(".html")) continue;
+    const source = readFileSync(file, "utf8");
+    const next = source
+      .replace(/ aria-label="تماس با دفتر وکالت — [^"]*"/g, "")
+      .replace(/ aria-label="لیلا آبکه، وکیل پایه یک دادگستری و عضو کانون وکلای دادگستری قزوین — [^"]*"/g, "")
+      .replace(/ aria-label="طراحی و توسعه توسط کارن سافت، KarenSoft \(باز شدن در پنجرۀ جدید\)"/g, "");
+    if (next !== source) { writeFileSync(file, next); changed += 1; console.log(`patched ${path.relative(root, file)}`); }
+  }
+}
+patchLeylaLabels(leylaRoot);
 
 console.log(changed ? `${changed} file(s) patched.` : "Demo assets already patched.");
