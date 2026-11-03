@@ -22,7 +22,7 @@ export function SiteFooter() {
             />
           </Link>
           <p className="mt-5 max-w-sm text-xs leading-loose text-white/70">
-            شریک فنی رشد کسب‌وکار شما در قزوین؛ طراحی وب، نرم‌افزار اختصاصی، اتوماسیون و امنیت سایبری.
+            {SITE.tagline}؛ {SITE.mission}. محصولات دیجیتال، نرم‌افزار اختصاصی و طراحی وب در قزوین.
           </p>
           <ul className="mt-6 space-y-2.5 text-xs text-white/70">
             <li className="flex items-center gap-2">
@@ -73,6 +73,7 @@ export function SiteFooter() {
           {PRODUCTS.map((product) => (
             <FooterLink key={product.slug} href={`/products/${product.slug}`}>{product.name}</FooterLink>
           ))}
+          <FooterLink href="/products#class1-community">مدرسه‌ی من | کلاس اول</FooterLink>
           <FooterLink href="/portfolio" accent>نمونه‌کارها ⭐</FooterLink>
         </FooterColumn>
 

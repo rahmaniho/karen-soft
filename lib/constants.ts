@@ -1,9 +1,10 @@
 export const SITE = {
   name: "کارن سافت",
   nameEn: "Karen Soft",
-  tagline: "فناوری پیچیده، رشد ساده.",
+  tagline: "هوشمندی در خدمت کسب‌وکار",
+  mission: "مهندسی نرم‌افزار برای حل مسائل واقعی",
   description:
-    "کارن سافت در قزوین وب‌سایت و نرم‌افزار مدیریتی اختصاصی برای کسب‌وکارها طراحی می‌کند؛ خدمات توسعه، اتوماسیون و نمونه‌کارهای زنده پیش از همکاری.",
+    "کارن سافت؛ مهندسی نرم‌افزار، محصولات دیجیتال و طراحی سایت در قزوین. از نرم‌افزار اختصاصی و اتوماسیون تا محصولات آماده و نمونه‌کارهای قابل بررسی.",
   url: "https://karen-soft.ir",
   phone: "+989152521166",
   phoneDisplay: "۰۹۱۵۲۵۲۱۱۶۶",
@@ -22,25 +23,35 @@ export const SITE = {
   },
 } as const;
 
+/** عنوان/توضیح مشترک صفحه اصلی، متادیتای ریشه و داده‌ساخت‌یافته. */
+export const HOME_SEO = {
+  title: `${SITE.name} | مهندسی نرم‌افزار و محصولات دیجیتال`,
+  description: SITE.description,
+  path: "/",
+} as const;
+
 export interface NavLink {
   label: string;
   href: string;
-  /** مگامنوی زیرمenu باز می‌شود */
+  /** نام آیکون در پوسته‌های ناوبری؛ منبع مشترک برای دسکتاپ و موبایل. */
+  icon?: string;
+  /** مگامنوی زیرمنو باز می‌شود */
   mega?: "solutions" | "products";
-  /** نقطۀ سبز «فعال بودن» */
+  /** تأکید بصری روی مسیر نمونه‌کارها */
   highlight?: boolean;
   /** برچسب کوچک کنار آیتم منو */
   badge?: string;
 }
 
+/** منوی اصلی هفت‌بخشی؛ کارن چاپ به‌عنوان زیربرند، جدا از این فهرست، در دسترس می‌ماند. */
 export const NAV_LINKS: NavLink[] = [
-  { label: "خدمات", href: "/services" },
-  { label: "راهکارها", href: "/solutions", mega: "solutions" as const },
-  { label: "محصولات", href: "/products", mega: "products" as const },
-  { label: "نمونه‌کارها", href: "/portfolio", highlight: true },
-  { label: "کارن چاپ", href: "/print", badge: "چاپخانه" as const },
-  { label: "مجله", href: "/blog" },
-  { label: "درباره ما", href: "/about" },
+  { label: "خانه", href: "/", icon: "House" },
+  { label: "محصولات", href: "/products", icon: "Code2", mega: "products" as const },
+  { label: "خدمات", href: "/services", icon: "Sparkles" },
+  { label: "نمونه‌کارها", href: "/portfolio", icon: "BriefcaseBusiness", highlight: true },
+  { label: "مرکز دانش", href: "/blog", icon: "Newspaper" },
+  { label: "درباره ما", href: "/about", icon: "Contact" },
+  { label: "تماس با ما", href: "/contact", icon: "ArrowUpLeft" },
 ];
 
 /** پیوندهای بخش کارن چاپ (زیرمجموعۀ چاپ کارن سافت) */
@@ -55,7 +66,7 @@ export const CHAP_LINKS = [
 
 export const FOOTER_RESOURCES = [
   { label: "طراحی سایت و نرم‌افزار در قزوین", href: "/qazvin" },
-  { label: "مجله کارن سافت", href: "/blog" },
+  { label: "مرکز دانش", href: "/blog" },
   { label: "مستندات", href: "/docs" },
   { label: "تغییرات محصول", href: "/changelog" },
   { label: "نقشه راه", href: "/roadmap" },

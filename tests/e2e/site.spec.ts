@@ -39,8 +39,31 @@ test('service CTA preselects the contact subject and keeps the honeypot out of t
 
 test('homepage primary CTAs lead to consultation and products',async({page})=>{
  await page.goto('/');
- await expect(page.getByRole('link',{name:'درخواست مشاوره',exact:true})).toHaveAttribute('href','/contact');
- await expect(page.getByRole('link',{name:'مشاهده محصولات',exact:true})).toHaveAttribute('href','/products');
+ const heroActions=page.locator('.ks-hero-actions');
+ await expect(heroActions.getByRole('link',{name:'درخواست مشاوره',exact:true})).toHaveAttribute('href','/contact');
+ await expect(heroActions.getByRole('link',{name:'مشاهده محصولات',exact:true})).toHaveAttribute('href','/products');
+});
+
+test('primary navigation matches the requested IA and keeps Karen Print reachable',async({page})=>{
+ await page.setViewportSize({width:1440,height:900});await page.goto('/');
+ const sidebar=page.locator('.ks-sidebar');
+ await expect(sidebar.locator('.ks-side-links a')).toHaveCount(7);
+ await expect(sidebar.locator('.ks-side-links a')).toHaveText(['خانه','محصولات','خدمات','نمونه‌کارها','مرکز دانش','درباره ما','تماس با ما']);
+ await expect(sidebar.locator('.ks-nav-secondary')).toHaveAttribute('href','/print');
+ await expect(sidebar.locator('.ks-nav-consultation')).toHaveAttribute('href','/contact');
+ await expect(page.locator('[data-product-preview] a')).toHaveCount(6);
+});
+
+test('mobile menu exposes the same seven routes, print sub-brand, and restores focus on Escape',async({page})=>{
+ await page.setViewportSize({width:320,height:800});await page.goto('/');
+ const toggle=page.getByRole('button',{name:'باز کردن منو',exact:true});await toggle.click();
+ const nav=page.getByRole('navigation',{name:'منوی موبایل',exact:true});
+ await expect(nav.locator('a')).toHaveCount(7);
+ await expect(nav).toContainText('مرکز دانش');
+ await expect(page.locator('.ks-sheet-print')).toHaveAttribute('href','/print');
+ await page.keyboard.press('Escape');
+ await expect(nav).not.toBeVisible();
+ await expect(page.getByRole('button',{name:'باز کردن منو',exact:true})).toBeFocused();
 });
 
 test('print draft is explicitly not a confirmed order',async({page})=>{
