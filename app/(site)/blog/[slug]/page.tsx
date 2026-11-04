@@ -4,6 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { JsonLd } from "@/components/ui/json-ld";
 import { ArticleBlocks } from "@/components/site/article-blocks";
+import { HesabyarAccountingArticle } from "@/components/site/hesabyar-accounting-article";
 import { PageHero, ContentSection, ContactCTA } from "@/components/site/page-parts";
 import { BLOG_POSTS } from "@/lib/blog";
 import { articleSchema, breadcrumbSchema } from "@/lib/schema";
@@ -36,6 +37,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   const post = BLOG_POSTS.find((item) => item.slug === slug);
   if (!post) notFound();
 
+  const isHesabyarArticle = post.layout === "hesabyar-accounting";
   const publishedDate = new Date(`${post.date}T12:00:00Z`).toLocaleDateString("fa-IR", {
     dateStyle: "long",
     timeZone: "UTC",
@@ -43,7 +45,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
   return (
     <>
-      <PageHero breadcrumbs={[{ name: "خانه", path: "/" }, { name: "مرکز دانش", path: "/blog" }, { name: post.title }]} eyebrow="KAREN JOURNAL" title={post.title} description={post.excerpt}>
+      <PageHero className={isHesabyarArticle ? "ks-ha-hero" : undefined} breadcrumbs={[{ name: "خانه", path: "/" }, { name: "مرکز دانش", path: "/blog" }, { name: post.title }]} eyebrow="KAREN JOURNAL" title={post.title} description={post.excerpt}>
         <p className="text-xs text-muted">
           <span>{post.author}</span>
           <span aria-hidden> · </span>
@@ -54,17 +56,17 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         </p>
       </PageHero>
 
-      <div className="container-page grid gap-12 py-12 lg:grid-cols-[240px_1fr]">
+      <div className={`container-page grid gap-12 py-12 ${isHesabyarArticle ? "ks-ha-layout lg:grid-cols-[260px_minmax(0,1fr)]" : "lg:grid-cols-[240px_1fr]"}`}>
         <aside>
-          <nav aria-label="فهرست مقاله" className="surface-card p-6 lg:sticky lg:top-28">
+          <nav aria-label="فهرست مقاله" className={`surface-card p-6 lg:sticky lg:top-28${isHesabyarArticle ? " ks-ha-toc lg:max-h-[calc(100dvh-8rem)] lg:overflow-y-auto" : ""}`}>
             <h2 className="mb-5 text-lg">در این مقاله</h2>
             {post.sections.map((section, index) => (
               <a
                 key={section.heading}
                 className="block border-b py-3 text-sm text-muted hover:text-brand-600"
-                href={`#section-${index}`}
+                href={`#${section.id ?? `section-${index}`}`}
               >
-                {section.heading}
+                {section.tocLabel ?? section.heading}
               </a>
             ))}
             <Link className="mt-6 inline-block text-brand-600 dark:text-brand-300" href="/blog">
@@ -73,7 +75,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           </nav>
         </aside>
 
-        <article className="min-w-0 max-w-3xl">
+        <article className={`min-w-0 ${isHesabyarArticle ? "ks-ha max-w-none" : "max-w-3xl"}`}>
           {post.sections.some((section) => section.blocks) ? (
             <aside className="surface-card mb-8 p-5 text-xs text-muted">
               این مقاله از آرشیو محتوایی کارن سافت بازبینی و منتشر شده است. اشاره به قیمت یا قابلیت‌ها ممکن است مربوط به زمان نگارش باشد؛
@@ -81,34 +83,40 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             </aside>
           ) : null}
 
-          <figure className="relative mb-10 aspect-video overflow-hidden rounded-2xl">
-            <Image
-              src={post.cover}
-              alt={post.title}
-              fill
-              sizes="(max-width: 767px) 100vw, 900px"
-              className="object-cover"
-              priority
-            />
-            <figcaption className="sr-only">تصویر مقاله: {post.title}</figcaption>
-          </figure>
+          {isHesabyarArticle ? (
+            <HesabyarAccountingArticle post={post} />
+          ) : (
+            <>
+              <figure className="relative mb-10 aspect-video overflow-hidden rounded-2xl">
+                <Image
+                  src={post.cover}
+                  alt={post.coverAlt ?? post.title}
+                  fill
+                  sizes="(max-width: 767px) 100vw, 900px"
+                  className="object-cover"
+                  priority
+                />
+                <figcaption className="sr-only">تصویر مقاله: {post.title}</figcaption>
+              </figure>
 
-          {post.sections.map((section, index) => (
-            <section key={section.heading} id={`section-${index}`} className="mb-12 scroll-mt-28">
-              <h2 className="mb-5 text-2xl">{section.heading}</h2>
-              {section.blocks ? <ArticleBlocks blocks={section.blocks} /> : null}
-              {section.paragraphs.map((paragraph) => (
-                <p key={paragraph} className="mb-4 text-base leading-loose text-muted">
-                  {paragraph}
-                </p>
+              {post.sections.map((section, index) => (
+                <section key={section.heading} id={section.id ?? `section-${index}`} className="mb-12 scroll-mt-28">
+                  <h2 className="mb-5 text-2xl">{section.heading}</h2>
+                  {section.blocks ? <ArticleBlocks blocks={section.blocks} /> : null}
+                  {section.paragraphs.map((paragraph) => (
+                    <p key={paragraph} className="mb-4 text-base leading-loose text-muted">
+                      {paragraph}
+                    </p>
+                  ))}
+                  {section.bullets ? (
+                    <ul className="list-disc space-y-3 ps-6 leading-loose text-muted">
+                      {section.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}
+                    </ul>
+                  ) : null}
+                </section>
               ))}
-              {section.bullets ? (
-                <ul className="list-disc space-y-3 ps-6 leading-loose text-muted">
-                  {section.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}
-                </ul>
-              ) : null}
-            </section>
-          ))}
+            </>
+          )}
 
           {post.relatedLinks?.length ? (
             <nav aria-label="راهنماها و خدمات مرتبط" className="surface-card mb-8 p-6">

@@ -7,12 +7,13 @@ import { GET } from "../app/rss.xml/route";
 import { pageMeta } from "../lib/seo";
 
 describe("new illustrated editorial guides", () => {
-  it("publishes two substantive illustrated posts for each requested topic", () => {
-    for (const category of ["کارن چاپ", "مدرسه‌ی من", "حساب‌یار"]) {
+  it("publishes substantive illustrated posts for each requested topic", () => {
+    for (const category of ["کارن چاپ", "مدرسه‌ی من"]) {
       expect(COMMUNITY_POSTS.filter(post => post.category === category)).toHaveLength(2);
     }
-    // شش راهنمای موضوعی + راهنمای میزبانی وب (مقالهٔ همراهِ پیشنهاد همکاری در فروش)
-    expect(COMMUNITY_POSTS).toHaveLength(7);
+    expect(COMMUNITY_POSTS.filter(post => post.category === "حساب‌یار")).toHaveLength(3);
+    // شش راهنمای موضوعی + راهنمای میزبانی وب + مقاله مرجع حساب‌یار
+    expect(COMMUNITY_POSTS).toHaveLength(8);
     for (const post of COMMUNITY_POSTS) {
       expect(BLOG_POSTS.find(item => item.slug === post.slug)).toEqual(post);
       expect(existsSync(`public${post.cover}`)).toBe(true);
@@ -23,8 +24,8 @@ describe("new illustrated editorial guides", () => {
         if (link.href.startsWith("/blog/")) expect(BLOG_POSTS.some(item => `/blog/${item.slug}` === link.href)).toBe(true);
       }
     }
-    expect(BLOG_POSTS[0].slug).toBe("web-hosting-guide");
-    expect(BLOG_POSTS[0].date).toBe("2026-10-30");
+    expect(BLOG_POSTS[0].slug).toBe("hesabyar-accounting-software");
+    expect(BLOG_POSTS[0].date).toBe("2026-11-04");
   });
   it("includes each post in sitemap, RSS and article social metadata", async () => {
     const urls = sitemap().map(item => item.url);

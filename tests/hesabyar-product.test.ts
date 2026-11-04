@@ -137,7 +137,7 @@ describe("Hesabyar dedicated product page", () => {
   it("keeps prices, the exact APK and the short update note consistent in llms.txt and guides", async () => {
     const home = readFileSync("components/sections/hesabyar-download.tsx", "utf8");
     expect(home).toContain("HESABYAR_PRODUCT_PATH");
-    expect(home).toContain("/products/hesabyar");
+    expect(readFileSync("lib/hesabyar.ts", "utf8")).toContain('export const HESABYAR_PRODUCT_PATH = "/products/hesabyar"');
     const llms = await getLlmsTxt().text();
     for (const text of [`${SITE.url}${PATH}`, HESABYAR_WEB_URL, "۲۷۰٬۰۰۰ تومان", HESABYAR_APK_URL,
       HESABYAR_VERSION, HESABYAR_APK_SHA256, HESABYAR_UPGRADE_INSTRUCTIONS, HESABYAR_RELEASE_URL]) {
@@ -146,10 +146,10 @@ describe("Hesabyar dedicated product page", () => {
     for (const removed of ["Android Debug", "Pre-release", "بیلد آزمایشی"]) expect(llms).not.toContain(removed);
     for (const change of HESABYAR_RELEASE_CHANGES) expect(llms).toContain(change.title);
     const hesabyarPosts = BLOG_POSTS.filter((post) => post.category === "حساب‌یار");
-    expect(hesabyarPosts).toHaveLength(2);
+    expect(hesabyarPosts).toHaveLength(3);
     for (const post of hesabyarPosts) {
       expect(post.relatedLinks?.some((link) => link.href === PATH)).toBe(true);
-      expect(post.modifiedDate).toBe(HESABYAR_RELEASE_DATE);
+      if (post.slug !== "hesabyar-accounting-software") expect(post.modifiedDate).toBe(HESABYAR_RELEASE_DATE);
     }
     const storeGuide = hesabyarPosts.find((post) => post.slug === "hesabyar-store-inventory");
     expect(storeGuide?.cover).toBe(HESABYAR_IMAGE);

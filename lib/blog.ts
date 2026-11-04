@@ -4,6 +4,10 @@ import legacyArticles from "./legacy-blog.json";
 
 export interface BlogSection {
   heading: string;
+  /** لنگر پایدار برای فهرست مطالب؛ در مقاله‌های قدیمی همان section-index باقی می‌ماند. */
+  id?: string;
+  /** عنوان کوتاه‌تر فقط برای فهرست مطالب؛ تیتر H2 تغییر نمی‌کند. */
+  tocLabel?: string;
   paragraphs: string[];
   /**
    * بلوک‌های داخلی مقاله. `affiliate` یعنی اینجا یک بنر همکاری در فروش (با افشاگری
@@ -25,6 +29,10 @@ export interface BlogPost {
   readingMinutes: number;
   author: string;
   cover: string;
+  /** متن جایگزین توصیفی تصویر شاخص؛ اگر نباشد عنوان مقاله استفاده می‌شود. */
+  coverAlt?: string;
+  /** قالب اختصاصی اختیاری؛ مسیر و سیستم مقاله همان وبلاگ موجود باقی می‌ماند. */
+  layout?: "hesabyar-accounting";
   legacyPath: string;
   tags: string[];
   sections: BlogSection[];

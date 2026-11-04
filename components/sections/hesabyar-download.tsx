@@ -14,6 +14,7 @@ import {
   HESABYAR_IMAGE_ALT,
   HESABYAR_MIN_ANDROID,
   HESABYAR_PLANS,
+  HESABYAR_PRODUCT_PATH,
   HESABYAR_UPGRADE_INSTRUCTIONS,
   HESABYAR_VERSION,
   HESABYAR_WEB_URL,
@@ -21,8 +22,7 @@ import {
 import { formatNumber } from "@/lib/utils";
 
 /* سازگاری با مصرف‌کننده‌های قبلی این بخش؛ منبع اصلی داده‌ها `lib/hesabyar` است. */
-export { HESABYAR_APK_SHA256, HESABYAR_APK_URL, HESABYAR_PLANS, HESABYAR_VERSION, HESABYAR_WEB_URL };
-export const HESABYAR_PRODUCT_PATH = "/products/hesabyar";
+export { HESABYAR_APK_SHA256, HESABYAR_APK_URL, HESABYAR_PLANS, HESABYAR_PRODUCT_PATH, HESABYAR_VERSION, HESABYAR_WEB_URL };
 
 const ICONS = {
   cart: ShoppingCart,

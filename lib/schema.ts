@@ -334,7 +334,7 @@ export function articleSchema(post: BlogPost): Json {
     "@id": `${absoluteUrl(`/blog/${post.slug}`)}#article`,
     headline: post.title,
     description: post.excerpt,
-    image: imageObject(post.cover, post.title),
+    image: imageObject(post.cover, post.coverAlt ?? post.title),
     datePublished: post.date,
     ...(post.modifiedDate ? { dateModified: post.modifiedDate } : {}),
     author: { "@type": "Person", name: post.author },

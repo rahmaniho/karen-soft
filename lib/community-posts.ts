@@ -1,5 +1,6 @@
 import type { BlogPost } from "./blog";
 import { HESABYAR_IMAGE, HESABYAR_RELEASE_DATE, HESABYAR_VERSION } from "./hesabyar";
+import { HESABYAR_ARTICLE_POST } from "./hesabyar-article";
 
 /** Editorial guides, separate from the preserved legacy archive. */
 const BASE_POSTS = [
@@ -207,5 +208,5 @@ const HOSTING_GUIDE_POST: BlogPost = {
     ],
   };
 
-export const COMMUNITY_POSTS: BlogPost[] = [...BASE_COMMUNITY_POSTS, HOSTING_GUIDE_POST];
+export const COMMUNITY_POSTS: BlogPost[] = [...BASE_COMMUNITY_POSTS, HOSTING_GUIDE_POST, HESABYAR_ARTICLE_POST];
 
