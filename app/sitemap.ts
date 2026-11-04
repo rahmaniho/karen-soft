@@ -3,6 +3,7 @@ import { CASE_STUDIES } from "@/lib/portfolio";
 import type { MetadataRoute } from "next";
 import { SITE } from "@/lib/constants";
 import { PRODUCTS } from "@/lib/products";
+import { HESABYAR_RELEASE_DATE } from "@/lib/hesabyar";
 import { SOLUTIONS } from "@/lib/solutions";
 import { PRINT_SERVICES } from "@/lib/print/data/services";
 import { PRINT_PRODUCTS } from "@/lib/print/data/products";
@@ -42,7 +43,7 @@ function publicRoutes(): SitemapRouteInput[] {
       path: `/products/${product.slug}`,
       priority: product.slug === "hesabyar" ? 0.92 : 0.86,
       changeFrequency: product.slug === "hesabyar" ? ("weekly" as const) : ("monthly" as const),
-      ...(product.slug === "hesabyar" ? { lastModified: "2026-10-28" } : {}),
+      ...(product.slug === "hesabyar" ? { lastModified: HESABYAR_RELEASE_DATE } : {}),
     })),
     { path: "/solutions", priority: 0.84 },
     ...SOLUTIONS.map((solution) => ({ path: `/solutions/${solution.slug}`, priority: 0.78 })),
