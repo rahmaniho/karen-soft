@@ -1,27 +1,28 @@
 import { describe, expect, it } from "vitest";
 import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import { HesabyarDownload } from "../components/sections/hesabyar-download";
 import {
-  HESABYAR_APK_CHANNEL,
   HESABYAR_APK_SHA256,
   HESABYAR_APK_SHA256_URL,
   HESABYAR_APK_SIZE_BYTES,
   HESABYAR_APK_SIZE_MB,
   HESABYAR_APK_URL,
+  HESABYAR_IMAGE,
+  HESABYAR_IMAGE_ALT,
   HESABYAR_PLANS,
   HESABYAR_RELEASE_DATE,
   HESABYAR_RELEASE_TAG,
   HESABYAR_SOURCE_COMMIT,
-  HESABYAR_UPGRADE_WARNING,
+  HESABYAR_UPGRADE_INSTRUCTIONS,
   HESABYAR_VERSION,
   HESABYAR_VERSION_LATIN,
   HESABYAR_WEB_URL,
 } from "../lib/hesabyar";
 
 describe("Hesabyar Android download", () => {
-  it("pins the exact requested 1.4.2 pre-release and its published asset metadata", () => {
+  it("pins the exact requested 1.4.2 APK and its published asset metadata", () => {
     expect(HESABYAR_APK_URL).toBe("https://github.com/rahmaniho/KarenYar/releases/download/android-test-v1.4.2-41813070224-1/hesabyar-1.4.2-test.apk");
     expect(HESABYAR_VERSION).toBe("۱٫۴٫۲");
     expect(HESABYAR_VERSION_LATIN).toBe("1.4.2");
@@ -32,18 +33,18 @@ describe("Hesabyar Android download", () => {
     expect(HESABYAR_APK_SHA256_URL).toBe(`${HESABYAR_APK_URL}.sha256`);
     expect(HESABYAR_APK_SIZE_BYTES).toBe(9_146_513);
     expect(HESABYAR_APK_SIZE_MB).toBe("۹٫۱");
-    expect(HESABYAR_APK_CHANNEL).toContain("Android Debug");
   });
 
-  it("renders a direct, versioned APK link and a visible backup warning before installation", () => {
+  it("renders the owner-approved update instructions without technical build labels", () => {
     const html = renderToStaticMarkup(createElement(HesabyarDownload));
     expect(html).toContain(`href="${HESABYAR_APK_URL}"`);
     expect(html.match(/data-hesabyar-apk/g)).toHaveLength(1);
     expect(html).toContain(`دانلود مستقیم اندروید ${HESABYAR_VERSION}`);
-    expect(html).toContain(HESABYAR_UPGRADE_WARNING);
-    expect(html).toContain("پیش از نصب بخوانید");
-    expect(html).toContain("حذف برنامه داده‌های محلی را پاک می‌کند");
-    expect(html).toContain("قالب ۳ در نسخهٔ قدیمیِ دارای قالب ۲ وارد نمی‌شود");
+    expect(html).toContain(HESABYAR_UPGRADE_INSTRUCTIONS);
+    expect(html).toContain("اگر برنامه به‌روزرسانی نشد، برنامه را پاک کنید و نسخهٔ جدید دانلودشده را نصب کنید");
+    for (const removed of ["Android Debug", "test/debug", "Pre-release", "بیلد آزمایشی", "پیش از نصب بخوانید"]) {
+      expect(html).not.toContain(removed);
+    }
     expect(html).toContain(`href="${HESABYAR_APK_SHA256_URL}"`);
     expect(html).toContain(HESABYAR_APK_SHA256);
     expect(html).toContain("۹٬۱۴۶٬۵۱۳");
@@ -53,10 +54,20 @@ describe("Hesabyar Android download", () => {
     for (const text of [
       "صندوق فروش", "فروشگاه و انبار", "دفتر مالی کسب‌وکار", "امور مالی شخصی",
       "حقوق و دستمزد", "محاسبات حرفه‌ای", `تازه در نسخهٔ ${HESABYAR_VERSION}`,
-      "دریافت جزئی و برگشت وجه", "چاپ و PDF فارسی", "اندروید ۷", "test/debug",
-      "۱۰ تراکنش", "نصب برنامه‌های ناشناس", "پشتیبان JSON",
+      "دریافت جزئی و برگشت وجه", "چاپ و PDF فارسی", "اندروید ۷",
+      "۱۰ تراکنش", "نصب برنامه‌های ناشناس", "پشتیبان",
       "/products/hesabyar#release-notes",
     ]) expect(html).toContain(text);
+  });
+
+  it("uses the new official-logo cover in the shared download section", () => {
+    expect(HESABYAR_IMAGE).toBe("/images/hesabyar/hesabyar-cover.jpg");
+    expect(existsSync(`public${HESABYAR_IMAGE}`)).toBe(true);
+    const html = renderToStaticMarkup(createElement(HesabyarDownload));
+    expect(html).toContain("data-hesabyar-image");
+    expect(html).toContain("hesabyar-cover.jpg");
+    expect(html).toContain(HESABYAR_IMAGE_ALT);
+    expect(html).not.toContain("نمای مفهومی ابزارهای مالی");
   });
 
   it("offers the hosted web version next to the Android download", () => {

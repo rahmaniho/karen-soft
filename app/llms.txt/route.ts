@@ -1,5 +1,5 @@
 import { LAWBOOK_INFO } from "@/lib/lawbook-info";
-import { HESABYAR_APK_CHANNEL, HESABYAR_APK_SHA256, HESABYAR_APK_URL, HESABYAR_FAQS, HESABYAR_PLANS, HESABYAR_RELEASE_CHANGES, HESABYAR_RELEASE_URL, HESABYAR_UPGRADE_WARNING, HESABYAR_VERSION, HESABYAR_WEB_URL } from "@/lib/hesabyar";
+import { HESABYAR_APK_SHA256, HESABYAR_APK_URL, HESABYAR_FAQS, HESABYAR_PLANS, HESABYAR_RELEASE_CHANGES, HESABYAR_RELEASE_URL, HESABYAR_UPGRADE_INSTRUCTIONS, HESABYAR_VERSION, HESABYAR_WEB_URL } from "@/lib/hesabyar";
 import { SITE, SERVICES } from "@/lib/constants";
 import { PRODUCTS } from "@/lib/products";
 import { SOLUTIONS } from "@/lib/solutions";
@@ -43,12 +43,11 @@ export function GET() {
     "حساب‌یار نرم‌افزار مالی فارسی کارن سافت است: صندوق فروش، انبار و فاکتور، دفتر مالی کسب‌وکار، بودجهٔ شخصی، حقوق و دستمزد و ماشین‌حساب؛ آفلاین، راست‌چین با تاریخ شمسی و دادهٔ محلی روی دستگاه.",
     link("صفحه رسمی حساب‌یار (نسخه‌ها، امکانات و قیمت لایسنس)", "/products/hesabyar"),
     `- نسخهٔ وب: ${HESABYAR_WEB_URL} — بدون نصب، قابل نصب به‌صورت PWA و آفلاین`,
-    `- نسخهٔ APK اندروید ${HESABYAR_VERSION}: ${HESABYAR_APK_URL} — ${HESABYAR_APK_CHANNEL}، پیش‌انتشار (Pre-release)، اندروید ۷ و بالاتر؛ مناسب فروشگاه‌ها نیست.`,
-    `- هشدار نصب: ${HESABYAR_UPGRADE_WARNING}`,
+    `- نسخهٔ APK اندروید ${HESABYAR_VERSION}: ${HESABYAR_APK_URL} — اندروید ۷ و بالاتر.`,
+    `- راهنمای به‌روزرسانی: ${HESABYAR_UPGRADE_INSTRUCTIONS}`,
     `- SHA-256 دارایی رسمی: ${HESABYAR_APK_SHA256}`,
     `- یادداشت انتشار و تغییرات نسبت به APK عمومی ۱٫۳٫۰: ${HESABYAR_RELEASE_URL}`,
     ...HESABYAR_RELEASE_CHANGES.map((change) => `- ${change.title}: ${change.text}`),
-    "- ساخت و بررسی امضا جای آزمون روی دستگاه واقعی را نمی‌گیرد؛ این انتشار تأیید آزمون دستگاه واقعی را شامل نمی‌شود.",
     "- قیمت لایسنس حرفه‌ای: " + HESABYAR_PLANS.map((plan) => `${plan.title} ${formatNumber(plan.price)} تومان`).join(" · "),
     "- نسخهٔ رایگان: ماشین‌حساب کامل، ۱ کالا و ۱۰ تراکنش؛ فعال‌سازی لایسنس آفلاین و در بخش تنظیمات برنامه انجام می‌شود.",
     ...HESABYAR_FAQS.slice(0, 3).map((item) => `- ${item.q} ${item.a}`),
