@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { ResourceCard } from "@/components/shared/resource-card";
 import { SOLUTIONS } from "@/lib/solutions";
 import { PageHero, ContentSection, ContactCTA } from "@/components/site/page-parts";
 import { JsonLd } from "@/components/ui/json-ld";
@@ -15,6 +15,7 @@ export default function SolutionsPage() {
   return (
     <>
       <PageHero
+        breadcrumbs={[{ name: "خانه", path: "/" }, { name: "راهکارهای صنایع" }]}
         eyebrow="INDUSTRY SOLUTIONS"
         title="هر صنعت، راهکار خودش را دارد؛ راهکارهای نرم‌افزاری تخصصی صنایع"
         description="از چاپخانه تا دفتر وکالت؛ ابزارهایی که با زبان کسب‌وکار شما صحبت می‌کنند."
@@ -22,16 +23,16 @@ export default function SolutionsPage() {
       <ContentSection title="صنعت خود را انتخاب کنید">
         <div className="grid gap-6 md:grid-cols-2">
           {SOLUTIONS.map((solution) => (
-            <Link
+            <ResourceCard
               key={solution.slug}
               href={`/solutions/${solution.slug}`}
-              className="surface-card p-8 transition-transform hover:-translate-y-1"
-            >
-              <span className="text-3xl" aria-hidden>{solution.emoji}</span>
-              <h2 className="my-4 text-2xl">{solution.name}</h2>
-              <p className="text-muted">{solution.short}</p>
-              <span className="mt-6 inline-block text-brand-600 dark:text-brand-300">کشف راهکار ←</span>
-            </Link>
+              icon={solution.emoji}
+              category="راهکار تخصصی"
+              title={solution.name}
+              description={solution.short}
+              action="کشف راهکار"
+              className="[&_h3]:text-2xl"
+            />
           ))}
         </div>
       </ContentSection>

@@ -1,134 +1,130 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
-import { Check, Loader2, Send } from "lucide-react";
+import { useRef, useState, type FormEvent } from "react";
+import { Send } from "lucide-react";
 import { PRINT_PRODUCTS } from "@/lib/print/data/products";
-import { FieldError, Input, Label, Select, Textarea } from "@/components/ui/field";
+import { contactSchema } from "@/lib/validations";
+import { FormField, Input, Select, Textarea } from "@/components/ui/field";
 import { Button } from "@/components/ui/button";
+import { SurfaceCard } from "@/components/ui/card";
+import { FormFeedback, type FeedbackTone } from "@/components/ui/form-feedback";
 
-type Errors = Partial<Record<"name" | "phone" | "email" | "subject" | "message", string>>;
-
-/** ارقام فارسی/عربی را به لاتین تبدیل می‌کند تا اعتبارسنجی سمت سرور درست کار کند */
-function toLatinDigits(value: string) {
-  return value
-    .replace(/[۰-۹]/g, (d) => String("۰۱۲۳۴۵۶۷۸۹".indexOf(d)))
-    .replace(/[٠-٩]/g, (d) => String("٠١٢٣٤٥٦٧٨٩".indexOf(d)));
-}
+type FieldName = "name" | "phone" | "email" | "subject" | "message";
+type Errors = Partial<Record<FieldName, string>>;
+const fieldNames: FieldName[] = ["name", "phone", "email", "subject", "message"];
 
 export function ChapContactForm() {
+  const formRef = useRef<HTMLFormElement>(null);
   const [errors, setErrors] = useState<Errors>({});
-  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [status, setStatus] = useState<FeedbackTone>("idle");
   const [feedback, setFeedback] = useState("");
+
+  function showErrors(next: Errors) {
+    setErrors(next);
+    setStatus("error");
+    setFeedback("لطفاً فیلدهای مشخص‌شده را بررسی کنید.");
+    requestAnimationFrame(() => {
+      const first = fieldNames.find(name => next[name]);
+      if (first) formRef.current?.querySelector<HTMLElement>(`#chap-${first}`)?.focus();
+    });
+  }
 
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const form = new FormData(event.currentTarget);
+    if (status === "loading") return;
+    const form = event.currentTarget;
+    const data = new FormData(form);
     const payload = {
-      name: String(form.get("name") ?? ""),
-      phone: toLatinDigits(String(form.get("phone") ?? "")),
-      email: String(form.get("email") ?? ""),
-      subject: `کارن چاپ — ${String(form.get("subject") ?? "پیام")}`,
-      message: String(form.get("message") ?? ""),
-      website: String(form.get("website") ?? ""),
+      name: String(data.get("name") ?? ""),
+      phone: String(data.get("phone") ?? ""),
+      email: String(data.get("email") ?? ""),
+      subject: `کارن چاپ — ${String(data.get("subject") ?? "پیام")}`,
+      message: String(data.get("message") ?? ""),
+      website: String(data.get("website") ?? ""),
     };
+    const parsed = contactSchema.safeParse(payload);
+    if (!parsed.success) {
+      const next: Errors = {};
+      for (const issue of parsed.error.issues) {
+        const key = issue.path[0];
+        if (typeof key === "string" && fieldNames.includes(key as FieldName)) next[key as FieldName] = issue.message;
+      }
+      showErrors(next);
+      return;
+    }
 
+    setErrors({});
     setStatus("loading");
-    setFeedback("");
+    setFeedback("در حال ارسال پیام…");
     try {
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: { "content-type": "application/json" },
-        body: JSON.stringify(payload),
+        body: JSON.stringify(parsed.data),
       });
-      const data = (await response.json()) as { ok: boolean; error?: string; errors?: { message: string }[] };
-      if (!response.ok || !data.ok) {
-        setErrors({ message: data.error ?? "لطفاً اطلاعات را بررسی کنید." });
-        setStatus("error");
+      const result = (await response.json()) as { ok: boolean; error?: string; errors?: { path: string; message: string }[] };
+      if (!response.ok || !result.ok) {
+        if (result.errors?.length) {
+          const next: Errors = {};
+          for (const issue of result.errors) {
+            if (fieldNames.includes(issue.path as FieldName)) next[issue.path as FieldName] = issue.message;
+          }
+          showErrors(next);
+        } else {
+          setStatus("error");
+          setFeedback(result.error ?? "ارسال پیام ممکن نشد. لطفاً دوباره تلاش کنید.");
+        }
         return;
       }
       setStatus("success");
       setFeedback("پیام شما ثبت شد؛ کارشناس کارن چاپ در ساعت کاری با شما تماس می‌گیرد.");
-      event.currentTarget.reset();
+      form.reset();
     } catch {
       setStatus("error");
       setFeedback("ارسال پیام ممکن نشد. از واتساپ یا تماس استفاده کنید.");
     }
   }
 
+  const busy = status === "loading";
   return (
-    <form onSubmit={onSubmit} className="surface-card space-y-5 p-6 sm:p-8" noValidate aria-busy={status === "loading"}>
-      <div className="ks-honeypot" aria-hidden="true">
-        <label htmlFor="chap-website">وب‌سایت</label>
-        <input id="chap-website" name="website" type="text" tabIndex={-1} autoComplete="off" />
-      </div>
-      <div className="grid gap-5 sm:grid-cols-2">
-        <div>
-          <Label htmlFor="chap-name">نام و نام خانوادگی</Label>
-          <Input id="chap-name" name="name" placeholder="مثال: علی رضایی" autoComplete="name" />
-          <FieldError>{errors.name}</FieldError>
+    <SurfaceCard>
+      <form ref={formRef} onSubmit={onSubmit} className="space-y-5 p-6 sm:p-8" noValidate aria-busy={busy}>
+        <div className="ks-honeypot" aria-hidden="true">
+          <label htmlFor="chap-website">وب‌سایت</label>
+          <input id="chap-website" name="website" type="text" tabIndex={-1} autoComplete="off" />
         </div>
-        <div>
-          <Label htmlFor="chap-phone">شماره تماس</Label>
-          <Input id="chap-phone" name="phone" inputMode="tel" placeholder="۰۹۱۲۳۴۵۶۷۸۹" autoComplete="tel" />
-          <FieldError>{errors.phone}</FieldError>
+        <div className="grid gap-5 sm:grid-cols-2">
+          <FormField id="chap-name" label="نام و نام خانوادگی" error={errors.name}>
+            {props => <Input {...props} name="name" required maxLength={120} placeholder="مثال: علی رضایی" autoComplete="name" disabled={busy} />}
+          </FormField>
+          <FormField id="chap-phone" label="شماره تماس" error={errors.phone}>
+            {props => <Input {...props} name="phone" required type="tel" inputMode="tel" placeholder="۰۹۱۲۳۴۵۶۷۸۹" autoComplete="tel" disabled={busy} />}
+          </FormField>
         </div>
-      </div>
-
-      <div className="grid gap-5 sm:grid-cols-2">
-        <div>
-          <Label htmlFor="chap-email">ایمیل (اختیاری)</Label>
-          <Input id="chap-email" name="email" type="email" placeholder="you@example.com" dir="ltr" />
-          <FieldError>{errors.email}</FieldError>
+        <div className="grid gap-5 sm:grid-cols-2">
+          <FormField id="chap-email" label="ایمیل (اختیاری)" error={errors.email}>
+            {props => <Input {...props} name="email" type="email" placeholder="you@example.com" dir="ltr" autoComplete="email" maxLength={254} disabled={busy} />}
+          </FormField>
+          <FormField id="chap-subject" label="موضوع" error={errors.subject}>
+            {props => (
+              <Select {...props} name="subject" defaultValue="" disabled={busy}>
+                <option value="">انتخاب کنید…</option>
+                {PRINT_PRODUCTS.map(product => <option key={product.slug} value={product.name}>{product.name}</option>)}
+                <option value="استعلام قیمت">استعلام قیمت</option>
+                <option value="پیگیری سفارش">پیگیری سفارش</option>
+                <option value="همکاری سازمانی">همکاری سازمانی</option>
+              </Select>
+            )}
+          </FormField>
         </div>
-        <div>
-          <Label htmlFor="chap-subject">موضوع</Label>
-          <Select id="chap-subject" name="subject" defaultValue="">
-            <option value="">انتخاب کنید…</option>
-            {PRINT_PRODUCTS.map((product) => (
-              <option key={product.slug} value={product.name}>
-                {product.name}
-              </option>
-            ))}
-            <option value="استعلام قیمت">استعلام قیمت</option>
-            <option value="پیگیری سفارش">پیگیری سفارش</option>
-            <option value="همکاری سازمانی">همکاری سازمانی</option>
-          </Select>
-          <FieldError>{errors.subject}</FieldError>
-        </div>
-      </div>
-
-      <div>
-        <Label htmlFor="chap-message">توضیح سفارش یا پرسش</Label>
-        <Textarea
-          id="chap-message"
-          name="message"
-          rows={5}
-          placeholder="ابعاد، کاغذ، تیراژ، زمان مورد نیاز و هر نکته‌ای که باید بدانیم…"
-        />
-        <FieldError>{errors.message}</FieldError>
-      </div>
-
-      <div className="flex flex-wrap items-center gap-4">
-        <Button
-          type="submit"
-          disabled={status === "loading"}
-          className="bg-ink-900 hover:bg-ink-800 dark:bg-white dark:text-ink-900"
-        >
-          {status === "loading" ? (
-            <Loader2 className="size-4 animate-spin" aria-hidden />
-          ) : (
-            <Send className="size-4" aria-hidden />
-          )}
+        <FormField id="chap-message" label="توضیح سفارش یا پرسش" hint="حداقل ۱۰ نویسه؛ ابعاد، کاغذ، تیراژ و زمان مورد نیاز را بنویسید." error={errors.message}>
+          {props => <Textarea {...props} name="message" required rows={5} maxLength={10000} placeholder="ابعاد، کاغذ، تیراژ، زمان مورد نیاز و هر نکته‌ای که باید بدانیم…" disabled={busy} />}
+        </FormField>
+        <Button type="submit" variant="dark" loading={busy} icon={<Send className="size-4" aria-hidden />}>
           ارسال پیام
         </Button>
-        {status === "success" ? (
-          <p className="flex items-center gap-2 text-2xs font-bold text-emerald-600">
-            <Check className="size-4" aria-hidden />
-            {feedback}
-          </p>
-        ) : null}
-        {status === "error" ? <p className="text-2xs font-bold text-rose-600">{feedback}</p> : null}
-      </div>
-    </form>
+        <FormFeedback id="chap-feedback" tone={status}>{feedback}</FormFeedback>
+      </form>
+    </SurfaceCard>
   );
 }

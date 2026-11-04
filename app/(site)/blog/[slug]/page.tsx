@@ -43,7 +43,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
   return (
     <>
-      <PageHero eyebrow="KAREN JOURNAL" title={post.title} description={post.excerpt}>
+      <PageHero breadcrumbs={[{ name: "خانه", path: "/" }, { name: "مرکز دانش", path: "/blog" }, { name: post.title }]} eyebrow="KAREN JOURNAL" title={post.title} description={post.excerpt}>
         <p className="text-xs text-muted">
           <span>{post.author}</span>
           <span aria-hidden> · </span>

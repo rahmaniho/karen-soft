@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ButtonLink } from "@/components/ui/button";
 import { ArrowLeft, Home, Search } from "lucide-react";
 import { CHAP } from "@/lib/print/site";
 import { PRINT_SERVICES } from "@/lib/print/data/services";
@@ -20,20 +21,14 @@ export default function ChapNotFound() {
         </p>
 
         <div className="mt-8 flex flex-wrap justify-center gap-3">
-          <Link
-            href="/print"
-            className="inline-flex h-11 items-center gap-2 rounded-[var(--radius-md)] bg-ink-900 px-5 text-2xs font-bold text-white dark:bg-white dark:text-ink-900"
-          >
+          <ButtonLink href="/print" variant="dark" size="sm">
             <Home className="size-4" aria-hidden />
             بازگشت به خانه
-          </Link>
-          <Link
-            href="/print/order"
-            className="inline-flex h-11 items-center gap-2 rounded-[var(--radius-md)] border border-[var(--border-subtle)] px-5 text-2xs font-bold transition-colors hover:border-ink-900/40"
-          >
+          </ButtonLink>
+          <ButtonLink href="/print/order" variant="outline" size="sm">
             <Search className="size-4" aria-hidden />
             ثبت سفارش
-          </Link>
+          </ButtonLink>
         </div>
 
         <ul className="mt-10 flex flex-wrap justify-center gap-2">
@@ -41,7 +36,7 @@ export default function ChapNotFound() {
             <li key={service.slug}>
               <Link
                 href={`/print/services/${service.slug}`}
-                className="rounded-full border border-[var(--border-subtle)] px-3.5 py-2 text-3xs font-bold text-muted transition-colors hover:text-[color:var(--text-primary)]"
+                className="inline-flex min-h-11 items-center rounded-full border border-[var(--border-subtle)] px-3.5 py-2 text-3xs font-bold text-muted transition-colors hover:text-[color:var(--text-primary)]"
               >
                 {service.title}
                 <ArrowLeft className="inline size-3" aria-hidden />

@@ -15,6 +15,7 @@ export default function PortfolioPage() {
   return (
     <>
       <PageHero
+        breadcrumbs={[{ name: "خانه", path: "/" }, { name: "نمونه‌کارها" }]}
         eyebrow="SELECTED WORK"
         title="از ایده تا نمونهٔ زنده؛ نمونه‌کارهای طراحی سایت و نرم‌افزار"
         description="نمونه‌های واقعی و نمایشی کارن سافت؛ هر کدام با هدف، امکانات و نسخهٔ زندهٔ داخل سایت."

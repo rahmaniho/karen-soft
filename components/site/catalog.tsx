@@ -1,14 +1,16 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import Link from "next/link";
-import Image from "next/image";
-import { Search, ArrowLeft } from "lucide-react";
+import { useEffect, useId, useRef, useState } from "react";
+import { Search } from "lucide-react";
 import { PRODUCTS, PRODUCT_STATUS_LABEL } from "@/lib/products";
 import { ProductCard } from "@/components/shared/product-card";
+import { ResourceCard } from "@/components/shared/resource-card";
 import { BLOG_POSTS } from "@/lib/blog";
 import { CASE_STUDIES } from "@/lib/portfolio";
 import { formatNumber } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/field";
+import { EmptyState } from "@/components/ui/state-panel";
 
 interface CatalogItem {
   slug: string;
@@ -16,138 +18,113 @@ interface CatalogItem {
   description: string;
   category: string;
   image?: string;
-  /** لوگوی مشتری برای نمونه‌کارهای واقعی؛ روی تصویر کارت نمایش داده می‌شود. */
   logo?: string;
 }
+
+const normalize = (value: string) => value.replace(/ي/g, "ی").replace(/ك/g, "ک").toLowerCase();
 
 export function Catalog({ kind }: { kind: "products" | "blog" | "portfolio" }) {
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState("همه");
+  const searchRef = useRef<HTMLInputElement>(null);
+  const id = useId();
+  const resultsId = `${id}-results`;
+  const countId = `${id}-count`;
 
   const items: CatalogItem[] =
     kind === "products"
-      ? PRODUCTS.map((p) => ({
-          slug: p.slug,
-          title: p.name,
-          description: p.short,
-          category: PRODUCT_STATUS_LABEL[p.status],
-          image: p.image,
-        }))
+      ? PRODUCTS.map(product => ({ slug: product.slug, title: product.name, description: product.short, category: PRODUCT_STATUS_LABEL[product.status], image: product.image }))
       : kind === "blog"
-        ? BLOG_POSTS.map((p) => ({
-            slug: p.slug,
-            title: p.title,
-            description: p.excerpt,
-            category: p.category,
-            image: p.cover,
-          }))
-        : CASE_STUDIES.map((p) => ({
-            slug: p.slug,
-            title: p.title,
-            description: p.summary,
-            category: p.category,
-            image: p.cover,
-            logo: p.logo,
-          }));
+        ? BLOG_POSTS.map(post => ({ slug: post.slug, title: post.title, description: post.excerpt, category: post.category, image: post.cover }))
+        : CASE_STUDIES.map(study => ({ slug: study.slug, title: study.title, description: study.summary, category: study.category, image: study.cover, logo: study.logo }));
 
   useEffect(() => {
-    // فقط وقتی پارامتر واقعاً وجود دارد state را بازنویسی کن؛ در غیر این صورت
-    // تایپ کاربر پیش از hydration پاک نشود.
-    const initial = new URLSearchParams(window.location.search).get("q");
-    if (initial) setQuery(initial);
+    // Never erase text typed before hydration. Only an explicit URL query wins.
+    const syncFromUrl = () => {
+      const initial = new URLSearchParams(window.location.search).get("q");
+      if (initial !== null) setQuery(initial);
+    };
+    syncFromUrl();
+    window.addEventListener("popstate", syncFromUrl);
+    return () => window.removeEventListener("popstate", syncFromUrl);
   }, []);
 
-  const normalize = (s: string) => s.replace(/ي/g, "ی").replace(/ك/g, "ک").toLocaleLowerCase();
-  const filtered = items.filter(
-    (x) =>
-      (category === "همه" || category === x.category) &&
-      normalize(x.title + " " + x.description).includes(normalize(query.trim())),
+  const filtered = items.filter(item =>
+    (category === "همه" || category === item.category) &&
+    normalize(`${item.title} ${item.description}`).includes(normalize(query.trim())),
   );
+
+  function resetFilters() {
+    setQuery("");
+    setCategory("همه");
+    const url = new URL(window.location.href);
+    if (url.searchParams.has("q")) {
+      url.searchParams.delete("q");
+      window.history.replaceState(null, "", url);
+    }
+    searchRef.current?.focus();
+  }
 
   return (
     <div data-catalog={kind}>
       <div className="mb-8 flex flex-wrap items-center justify-between gap-5">
-        <div className="flex flex-wrap gap-2">
-          {["همه", ...new Set(items.map((x) => x.category))].map((x) => (
-            <button
-              key={x}
-              onClick={() => setCategory(x)}
-              aria-pressed={category === x}
-              className={`rounded-full border px-4 py-2 text-xs transition-colors ${
-                category === x ? "bg-brand-600 text-white border-brand-600" : "hover:border-brand-500"
-              }`}
+        <div className="flex flex-wrap gap-2" role="group" aria-label="فیلتر دسته‌بندی">
+          {["همه", ...new Set(items.map(item => item.category))].map(value => (
+            <Button
+              key={value}
+              onClick={() => setCategory(value)}
+              aria-pressed={category === value}
+              aria-controls={resultsId}
+              variant={category === value ? "primary" : "outline"}
+              size="sm"
+              className="rounded-full text-2xs"
             >
-              {x}
-            </button>
+              {value}
+            </Button>
           ))}
         </div>
-        <label className="relative w-full sm:w-72">
-          <span className="sr-only">جست‌وجو</span>
-          <Search className="absolute start-3 top-3 size-5 text-muted" />
-          <input
+        <div className="relative w-full sm:w-72">
+          <label htmlFor={`${id}-search`} className="sr-only">جست‌وجو</label>
+          <Search aria-hidden className="pointer-events-none absolute start-3 top-1/2 size-5 -translate-y-1/2 text-muted" />
+          <Input
+            ref={searchRef}
+            id={`${id}-search`}
+            type="search"
             value={query}
-            onChange={(e) => setQuery(e.target.value)}
+            onChange={event => setQuery(event.target.value)}
             placeholder="جست‌وجو…"
-            className="w-full rounded-xl border bg-[var(--surface-raised)] py-3 ps-11 pe-4"
+            autoComplete="off"
+            enterKeyHint="search"
+            aria-controls={resultsId}
+            aria-describedby={countId}
+            className="mt-0 ps-11"
           />
-        </label>
+        </div>
       </div>
-      <p aria-live="polite" className="mb-5 text-xs text-muted">
+      <p id={countId} role="status" aria-live="polite" aria-atomic="true" className="mb-5 text-xs text-muted">
         {formatNumber(filtered.length)} نتیجه
       </p>
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {filtered.map((x) =>
-          kind === "products" ? (
-            <ProductCard key={x.slug} product={PRODUCTS.find((p) => p.slug === x.slug)!} />
+      {filtered.length ? (
+        <div id={resultsId} className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {filtered.map(item => kind === "products" ? (
+            <ProductCard key={item.slug} product={PRODUCTS.find(product => product.slug === item.slug)!} />
           ) : (
-            <article key={x.slug} className="surface-card overflow-hidden group">
-              {x.image && (
-                <Link href={`/${kind}/${x.slug}`} tabIndex={-1} aria-hidden>
-                  <div className="relative aspect-[16/10] overflow-hidden bg-[var(--surface-sunken)]">
-                    <Image
-                      src={x.image}
-                      alt=""
-                      fill
-                      sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw"
-                      className="object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
-                  </div>
-                </Link>
-              )}
-              <div className="p-6">
-                <div className="flex items-center gap-2.5">
-                  {x.logo ? (
-                    <span className="grid size-9 shrink-0 place-items-center rounded-lg border border-[var(--hairline)] bg-white p-1">
-                      <Image src={x.logo} alt="" width={32} height={32} className="size-full object-contain" />
-                    </span>
-                  ) : null}
-                  <span className="eyebrow">{x.category}</span>
-                </div>
-                <h3 className="mt-3">
-                  <Link href={`/${kind}/${x.slug}`}>{x.title}</Link>
-                </h3>
-                <p className="mt-3 text-muted text-sm">{x.description}</p>
-                <Link className="mt-6 inline-flex items-center gap-2 text-brand-600 dark:text-brand-300" href={`/${kind}/${x.slug}`}>
-                  مطالعه بیشتر <ArrowLeft className="size-4" />
-                </Link>
-              </div>
-            </article>
-          ),
-        )}
-      </div>
-      {!filtered.length && (
-        <div className="surface-card p-12 text-center">
-          <h3>نتیجه‌ای پیدا نشد</h3>
-          <p className="text-muted my-3">عبارت دیگری جست‌وجو کنید یا فیلترها را بردارید.</p>
-          <button
-            className="text-brand-600 dark:text-brand-300"
-            onClick={() => {
-              setQuery("");
-              setCategory("همه");
-            }}
-          >
-            پاک کردن فیلترها
-          </button>
+            <ResourceCard
+              key={item.slug}
+              href={`/${kind}/${item.slug}`}
+              title={item.title}
+              category={item.category}
+              description={item.description}
+              image={item.image}
+              logo={item.logo}
+            />
+          ))}
+        </div>
+      ) : (
+        <div id={resultsId}>
+          <EmptyState>
+            <Button variant="soft" onClick={resetFilters}>پاک کردن فیلترها</Button>
+          </EmptyState>
         </div>
       )}
     </div>

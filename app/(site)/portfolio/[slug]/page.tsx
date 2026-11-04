@@ -8,6 +8,7 @@ import { breadcrumbSchema, caseStudySchema } from "@/lib/schema";
 import { PageHero, ContentSection, Points, ContactCTA } from "@/components/site/page-parts";
 import { DemoFrame } from "@/components/site/demo-frame";
 import { DemoTabs } from "@/components/site/demo-tabs";
+import { SurfaceCard } from "@/components/ui/card";
 import { ButtonLink } from "@/components/ui/button";
 import { JsonLd } from "@/components/ui/json-ld";
 
@@ -37,7 +38,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
 
   return (
     <>
-      <PageHero eyebrow={copy.eyebrow} title={study.title} description={study.summary}>
+      <PageHero breadcrumbs={[{ name: "خانه", path: "/" }, { name: "نمونه‌کارها", path: "/portfolio" }, { name: study.title }]} eyebrow={copy.eyebrow} title={study.title} description={study.summary}>
         {study.logo ? (
           <span className="inline-flex items-center gap-3 rounded-full border border-[var(--border-subtle)] bg-[var(--surface-raised)] py-1 pe-5 ps-1">
             <span className="relative size-11 shrink-0 overflow-hidden rounded-full bg-white">
@@ -121,10 +122,10 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
         <ContentSection title="نتایج ثبت‌شده پروژه">
           <div className="grid gap-5 sm:grid-cols-3">
             {study.results.map((result) => (
-              <div className="surface-card p-8" key={result.label}>
+              <SurfaceCard className="p-8" key={result.label}>
                 <p className="text-4xl text-brand-600 dark:text-brand-300">{result.value}</p>
                 <p className="mt-3 text-muted">{result.label}</p>
-              </div>
+              </SurfaceCard>
             ))}
           </div>
         </ContentSection>

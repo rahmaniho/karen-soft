@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import { SurfaceCard } from "@/components/ui/card";
+import { ResourceCard } from "@/components/shared/resource-card";
 import { notFound } from "next/navigation";
 import { PRODUCTS, PRODUCT_STATUS_LABEL } from "@/lib/products";
 import { pageMeta } from "@/lib/seo";
@@ -65,12 +66,12 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
 
   return (
     <>
-      <PageHero eyebrow="PRODUCT / KAREN SOFT" title={product.name} description={product.description}>
+      <PageHero breadcrumbs={[{ name: "خانه", path: "/" }, { name: "محصولات", path: "/products" }, { name: product.name }]} eyebrow="PRODUCT / KAREN SOFT" title={product.name} description={product.description}>
         <ButtonLink href="/contact" variant="outline">درخواست مشاوره</ButtonLink>
       </PageHero>
 
       <ContentSection title="در یک نگاه">
-        <div className="surface-card grid gap-8 p-8 md:grid-cols-3">
+        <SurfaceCard className="grid gap-8 p-8 md:grid-cols-3">
           <div>
             <p className="text-muted">وضعیت محصول</p>
             <h3>{PRODUCT_STATUS_LABEL[product.status]}</h3>
@@ -84,7 +85,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
             <p className="text-muted">پیش از خرید</p>
             <h3>مشاورهٔ فنی و پیشنهاد دامنهٔ پروژه</h3>
           </div>
-        </div>
+        </SurfaceCard>
       </ContentSection>
 
       {product.slug === "law-office" ? (
@@ -117,11 +118,13 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
         <ContentSection title="مقالات مرتبط با این محصول">
           <div className="grid gap-5 md:grid-cols-3">
             {relatedPosts.map((post) => (
-              <Link key={post.slug} className="surface-card p-6" href={`/blog/${post.slug}`}>
-                <p className="text-xs text-brand-600 dark:text-brand-300">{post.category}</p>
-                <h3 className="mt-3">{post.title}</h3>
-                <p className="mt-3 text-sm leading-loose text-muted">{post.excerpt}</p>
-              </Link>
+              <ResourceCard
+                key={post.slug}
+                href={`/blog/${post.slug}`}
+                category={post.category}
+                title={post.title}
+                description={post.excerpt}
+              />
             ))}
           </div>
         </ContentSection>

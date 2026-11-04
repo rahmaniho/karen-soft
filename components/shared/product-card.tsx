@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { ButtonLink } from "@/components/ui/button";
+import { SurfaceCard } from "@/components/ui/card";
 import Image from "next/image";
 import { ArrowLeft, BookOpen, ExternalLink, PlayCircle } from "lucide-react";
 import { PRODUCT_STATUS_LABEL, type Product } from "@/lib/products";
@@ -11,7 +13,7 @@ export function ProductCard({ product }: { product: Product }) {
   const logo = product.logo ?? product.image;
 
   return (
-    <article className="group surface-card relative flex h-full flex-col overflow-hidden p-6 transition-all duration-[250ms] ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1 hover:shadow-[var(--shadow-lift)] focus-within:-translate-y-1">
+    <SurfaceCard as="article" interactive className="group relative flex h-full flex-col overflow-hidden p-6">
       <span
         aria-hidden
         className="pointer-events-none absolute inset-x-0 top-0 h-1 opacity-0 transition-opacity duration-[250ms] group-hover:opacity-100"
@@ -64,32 +66,21 @@ export function ProductCard({ product }: { product: Product }) {
 
       <div className="relative z-10 mt-6 flex flex-wrap gap-2 pt-1">
         {product.slug === "law-book" ? (
-          <Link
-            href={`/products/${product.slug}#book-topics`}
-            className="inline-flex h-10 items-center gap-1.5 rounded-[var(--radius-sm)] bg-brand-600 px-4 text-2xs font-extrabold text-white transition-colors hover:bg-brand-500"
-          >
+          <ButtonLink href={`/products/${product.slug}#book-topics`} size="sm" className="text-2xs">
             <BookOpen className="size-4" aria-hidden />
             فهرست موضوعات
-          </Link>
+          </ButtonLink>
         ) : product.liveUrl ? (
-          <a
-            href={product.liveUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex h-10 items-center gap-1.5 rounded-[var(--radius-sm)] bg-brand-600 px-4 text-2xs font-extrabold text-white transition-colors hover:bg-brand-500"
-          >
+          <ButtonLink href={product.liveUrl} target="_blank" rel="noopener noreferrer" size="sm" className="text-2xs">
             <ExternalLink className="size-4" aria-hidden />
             نسخۀ زنده
-          </a>
+          </ButtonLink>
         ) : null}
-        <Link
-          href={`/products/${product.slug}`}
-          className="inline-flex h-10 items-center gap-1.5 rounded-[var(--radius-sm)] border border-[var(--border-subtle)] px-4 text-2xs font-extrabold transition-colors hover:border-brand-400 hover:text-brand-600"
-        >
+        <ButtonLink href={`/products/${product.slug}`} variant="outline" size="sm" className="text-2xs">
           جزئیات
           <ArrowLeft className="size-3.5" aria-hidden />
-        </Link>
+        </ButtonLink>
       </div>
-    </article>
+    </SurfaceCard>
   );
 }

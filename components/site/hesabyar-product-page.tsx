@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 import { Accordion } from "@/components/ui/accordion";
 import { ButtonLink } from "@/components/ui/button";
+import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { ContactCTA } from "@/components/site/page-parts";
 import {
   HESABYAR_APK_SHA256,
@@ -55,13 +56,7 @@ export function HesabyarProductPage() {
         <div className="grid-backdrop pointer-events-none absolute inset-0" aria-hidden />
         <div className="container-page relative grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
           <div>
-            <nav aria-label="مسیر صفحه" className="mb-8 flex flex-wrap gap-3 text-xs text-muted">
-              <Link href="/" className="hover:text-brand-600">کارن سافت</Link>
-              <span aria-hidden>/</span>
-              <Link href="/products" className="hover:text-brand-600">محصولات</Link>
-              <span aria-hidden>/</span>
-              <span aria-current="page">حساب‌یار</span>
-            </nav>
+            <Breadcrumbs className="mb-8" items={[{ name: "خانه", path: "/" }, { name: "محصولات", path: "/products" }, { name: "حساب‌یار" }]} />
             <span className="eyebrow">PRODUCT / HESABYAR · حساب‌یار</span>
             <h1 className="display-1 mt-5 max-w-3xl">حساب‌یار؛ صندوق فروش و حساب‌وکتاب، روی اندروید و مرورگر</h1>
             <p className="lead mt-6 max-w-2xl">
