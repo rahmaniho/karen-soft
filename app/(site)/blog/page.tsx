@@ -15,6 +15,7 @@ export default function BlogIndexPage() {
   return (
     <>
       <PageHero
+        breadcrumbs={[{ name: "خانه", path: "/" }, { name: "مرکز دانش" }]}
         eyebrow="JOURNAL"
         title="مجله کارن سافت؛ مقالات نرم‌افزار، اتوماسیون و چاپ"
         description="راهنماهای کاربردی چاپ، یادگیری کلاس اول و مدیریت مالی؛ در کنار مقاله‌های فناوری و رشد کسب‌وکار."

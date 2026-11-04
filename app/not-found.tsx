@@ -1,2 +1,21 @@
-import Link from "next/link";
-export default function NotFound(){return <main dir="rtl" className="container-page py-24 min-h-[70vh] text-center"><span className="eyebrow">404 / NOT FOUND</span><h1 className="display-2 mt-6">این صفحه پیدا نشد.</h1><p className="lead mx-auto mt-5">ممکن است آدرس تغییر کرده باشد. از بخش‌های زیر ادامه دهید.</p><div className="flex flex-wrap justify-center gap-4 mt-10">{[["/","صفحه اصلی"],["/products","محصولات"],["/blog","مجله"],["/contact","تماس با ما"]].map(([href,title])=><Link key={href} className="surface-card px-6 py-3 hover:text-brand-600" href={href}>{title}</Link>)}</div></main>}
+import { FileQuestion } from "lucide-react";
+import { ButtonLink } from "@/components/ui/button";
+import { StatePanel } from "@/components/ui/state-panel";
+
+export default function NotFound() {
+  return (
+    <main dir="rtl" className="container-page min-h-[70vh] py-12">
+      <StatePanel
+        icon={<FileQuestion className="size-6" />}
+        eyebrow="404 / NOT FOUND"
+        title="این صفحه پیدا نشد."
+        description="ممکن است آدرس تغییر کرده باشد. از بخش‌های زیر ادامه دهید."
+      >
+        <ButtonLink href="/">صفحه اصلی</ButtonLink>
+        <ButtonLink href="/products" variant="outline">محصولات</ButtonLink>
+        <ButtonLink href="/blog" variant="outline">مرکز دانش</ButtonLink>
+        <ButtonLink href="/contact" variant="outline">تماس با ما</ButtonLink>
+      </StatePanel>
+    </main>
+  );
+}

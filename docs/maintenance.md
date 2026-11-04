@@ -38,6 +38,14 @@ node scripts/a11y-routes.mjs --include-frames --settle 700 --concurrency 1 \
   --paths /portfolio/gym --out .cache/audit/a11y-one.json
 ```
 
+## Design System
+
+- پیش از افزودن کارت/دکمه/فرم جدید، از `components/ui/*` و `components/shared/resource-card.tsx` استفاده کنید. قراردادها در `docs/design-system-stage3.md` آمده است.
+- کارت اطلاعاتی را `interactive` نکنید مگر واقعاً یک مقصد داشته باشد. کارت منبع باید یک لینک نام‌دار داشته باشد، نه چند لینک تودرتو.
+- فرم‌ها باید `FormFeedback` را از ابتدا mount کنند و هنگام ارسال فقط محتوا/تن آن را عوض کنند؛ دادهٔ کاربر در خطای ارسال پاک نشود.
+- `app/(site)/loading.tsx` سراسری اضافه نکنید. سایت عمدتاً static است؛ fallback سراسری می‌تواند H1 تکراری و وضعیت 200 برای مسیر ناشناخته بسازد. loading را فقط در segment واقعاً dynamic و همراه با تست routes/SEO اضافه کنید.
+- بعد از تغییر کامپوننت مشترک، علاوه بر unit/E2E، `audit:routes` و `seo:audit` را هم اجرا کنید؛ تست مرورگر به‌تنهایی HTML اولیهٔ static را کامل پوشش نمی‌دهد.
+
 ## دموهای نمونه‌کار
 
 - منبع هر دمو و روش ساخت در `docs/external-demos.md` آمده است.
@@ -74,8 +82,9 @@ node scripts/a11y-routes.mjs --include-frames --settle 700 --concurrency 1 \
 
 - در ممیزی کامل ۳۸۸ بررسی سایت، گاهی خطای گذرای React #418 (hydration) زیر بار
   سنگین دیده می‌شود؛ در ۱۰۰ بارگذاری dev و ۶۰ بارگذاری production بازتولید نشد.
-  CI فعلاً با `--strict-runtime` بسته نمی‌شود. اگر تکرار شد، ابتدا اسکریپت‌های
-  پیش از hydration (`next-themes` و `READER_BOOT_SCRIPT`) و سپس بار هم‌زمان را بررسی کنید.
+  CI فعلاً با `--strict-runtime` بسته نمی‌شود. Playwright در CI یک retry دارد و
+  گزارشگر `github` خطای آزمون را به annotation تبدیل می‌کند؛ اگر retry هم شکست خورد،
+  ابتدا اسکریپت‌های پیش از hydration (`next-themes` و `READER_BOOT_SCRIPT`) و سپس بار هم‌زمان را بررسی کنید.
 - ممیزی iframe همهٔ نسخه‌های تعریف‌شده در `demoVariants` را پوشش می‌دهد؛ از جمله
   نمای ادمین دیجی‌کارن (`?admin=overview`). نسخهٔ نمایشی جدید را در `lib/portfolio.ts`
   ثبت کنید تا خودکار وارد ممیزی شود.

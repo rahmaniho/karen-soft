@@ -1,91 +1,83 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
-import { Check, Loader2 } from "lucide-react";
+import { useId, useState, type FormEvent } from "react";
 import { newsletterSchema } from "@/lib/validations";
 import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { fieldControlClass } from "@/components/ui/field";
+import { FormFeedback, type FeedbackTone } from "@/components/ui/form-feedback";
 
 export function NewsletterForm({ variant = "section" }: { variant?: "section" | "footer" }) {
+  const id = useId();
+  const emailId = `newsletter-${id}`;
+  const feedbackId = `newsletter-feedback-${id}`;
   const [email, setEmail] = useState("");
   const [website, setWebsite] = useState("");
-  const [state, setState] = useState<"idle" | "loading" | "done" | "error">("idle");
+  const [state, setState] = useState<FeedbackTone>("idle");
   const [message, setMessage] = useState("");
+  const busy = state === "loading";
 
-  async function onSubmit(event: FormEvent) {
+  async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (busy) return;
     const parsed = newsletterSchema.safeParse({ email, website });
     if (!parsed.success) {
       setState("error");
       setMessage(parsed.error.issues[0]?.message ?? "ایمیل معتبر نیست.");
+      event.currentTarget.querySelector<HTMLInputElement>(`[id="${emailId}"]`)?.focus();
       return;
     }
     setState("loading");
+    setMessage("در حال ثبت عضویت…");
     try {
-      const response = await fetch("/api/newsletter", {method: "POST", headers: {"content-type":"application/json"}, body: JSON.stringify(parsed.data)});
+      const response = await fetch("/api/newsletter", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(parsed.data),
+      });
       const result = await response.json();
-      if (!response.ok) throw new Error(result.error ?? "ثبت عضویت ناموفق بود.");
-      setState("done"); setMessage("عضویت شما ثبت شد."); setEmail("");
-    } catch (error) {setState("error"); setMessage(error instanceof Error ? error.message : "ارسال ناموفق بود.");}
-
+      if (!response.ok || !result.ok) throw new Error(result.error ?? "ثبت عضویت ناموفق بود.");
+      setState("success");
+      setMessage("عضویت شما ثبت شد.");
+      setEmail("");
+    } catch (error) {
+      setState("error");
+      setMessage(error instanceof Error ? error.message : "ارسال ناموفق بود.");
+    }
   }
 
   const footer = variant === "footer";
-
   return (
-    <form onSubmit={onSubmit} className="w-full" noValidate aria-busy={state === "loading"}>
+    <form onSubmit={onSubmit} className="w-full" noValidate aria-busy={busy}>
       <div className="ks-honeypot" aria-hidden="true">
-        <label htmlFor={`newsletter-website-${variant}`}>وب‌سایت</label>
-        <input id={`newsletter-website-${variant}`} type="text" tabIndex={-1} autoComplete="off" value={website} onChange={e => setWebsite(e.target.value)} />
+        <label htmlFor={`${id}-website`}>وب‌سایت</label>
+        <input id={`${id}-website`} name="website" type="text" tabIndex={-1} autoComplete="off" value={website} onChange={event => setWebsite(event.target.value)} />
       </div>
       <div className={cn("flex gap-2", footer ? "flex-col" : "flex-col sm:flex-row")}>
-        <label className="sr-only" htmlFor={`newsletter-${variant}`}>
-          ایمیل شما
-        </label>
+        <label className="sr-only" htmlFor={emailId}>ایمیل شما</label>
         <input
-          id={`newsletter-${variant}`}
+          id={emailId}
+          name="email"
           type="email"
           value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={event => setEmail(event.target.value)}
           placeholder="ایمیل شما"
           dir="ltr"
           required
           maxLength={254}
           autoComplete="email"
+          disabled={busy}
           aria-invalid={state === "error"}
-          aria-describedby={`newsletter-feedback-${variant}`}
+          aria-describedby={feedbackId}
           className={cn(
-            "h-12 w-full rounded-[var(--radius-sm)] border px-4 text-sm outline-none transition-colors focus:border-brand-500 focus:ring-4 focus:ring-brand-500/12",
-            footer
-              ? "border-white/15 bg-white/5 text-white placeholder:text-white/40"
-              : "border-[var(--border-subtle)] bg-[var(--surface-sunken)]",
+            fieldControlClass,
+            "mt-0",
+            footer && "border-white/25 bg-white/5 text-white placeholder:text-white/70",
           )}
         />
-        <button
-          type="submit"
-          disabled={state === "loading"}
-          className="h-12 shrink-0 rounded-[var(--radius-sm)] bg-brand-600 px-5 text-sm font-extrabold text-white transition-colors hover:bg-brand-500 disabled:opacity-60"
-        >
-          {state === "loading" ? <Loader2 className="mx-auto size-4 animate-spin" aria-hidden /> : "عضویت"}
-        </button>
+        <Button type="submit" loading={busy} className="shrink-0">عضویت</Button>
       </div>
-      <p
-        id={`newsletter-feedback-${variant}`}
-        role={state === "error" ? "alert" : "status"}
-        aria-live="polite"
-        className={cn(
-          "mt-2 min-h-5 text-3xs font-bold",
-          state === "error" ? "text-rose-400" : footer ? "text-emerald-300" : "text-emerald-600",
-        )}
-      >
-        {state === "done" ? (
-          <span className="inline-flex items-center gap-1">
-            <Check className="size-3.5" aria-hidden />
-            {message}
-          </span>
-        ) : (
-          message
-        )}
-      </p>
+      <FormFeedback id={feedbackId} tone={state} compact className="mt-2">{message}</FormFeedback>
     </form>
   );
 }

@@ -1,7 +1,8 @@
 "use client";
 
-import { useId, useRef, useState, type KeyboardEvent } from "react";
+import React from "react";
 import { buttonVariants } from "@/components/ui/button";
+import { useTabList } from "@/components/ui/use-tab-list";
 import { cn } from "@/lib/utils";
 import { DemoFrame } from "@/components/site/demo-frame";
 
@@ -10,28 +11,10 @@ export interface DemoVariant {
   demo: { src: string; scope: string; title: string; fullPageHref?: string };
 }
 
-/**
- * چند نسخهٔ نمایشی از یک پروژه (مثلاً فروشگاه و پنل مدیریت) را در یک قاب نشان می‌دهد.
- * فقط نسخهٔ انتخاب‌شده بارگذاری می‌شود تا صفحه سنگین نشود؛ هر بار تعویض، قاب از نو ساخته می‌شود
- * تا محدودیت‌های پیوند و فرم روی سند تازه هم اعمال شوند.
- */
+/** Only the selected demo is mounted; switching recreates the frame and its safety patches. */
 export function DemoTabs({ variants }: { variants: DemoVariant[] }) {
-  const [active, setActive] = useState(0);
-  const baseId = useId();
-  const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
+  const { active, tabProps, panelProps } = useTabList({ count: variants.length, singlePanel: true, panelTabIndex: -1 });
   const current = variants[active] ?? variants[0];
-  const onTabKeyDown = (event: KeyboardEvent, index: number) => {
-    const lastIndex = variants.length - 1;
-    let next: number | null = null;
-    if (event.key === "ArrowRight") next = index === 0 ? lastIndex : index - 1; // RTL
-    if (event.key === "ArrowLeft") next = index === lastIndex ? 0 : index + 1;
-    if (event.key === "Home") next = 0;
-    if (event.key === "End") next = lastIndex;
-    if (next === null) return;
-    event.preventDefault();
-    setActive(next);
-    tabRefs.current[next]?.focus();
-  };
   if (!current) return null;
 
   return (
@@ -44,36 +27,21 @@ export function DemoTabs({ variants }: { variants: DemoVariant[] }) {
         {variants.map((variant, index) => (
           <button
             key={variant.label}
-            ref={element => { tabRefs.current[index] = element; }}
-            type="button"
-            role="tab"
-            id={`${baseId}-tab-${index}`}
-            aria-selected={index === active}
-            aria-controls={`${baseId}-panel`}
-            tabIndex={index === active ? 0 : -1}
-            onKeyDown={event => onTabKeyDown(event, index)}
-            onClick={() => setActive(index)}
-            className={cn(
-              buttonVariants({ variant: index === active ? "primary" : "ghost", size: "sm" }),
-              "rounded-full",
-            )}
+            {...tabProps(index)}
+            className={cn(buttonVariants({ variant: index === active ? "primary" : "ghost", size: "sm" }), "rounded-full")}
           >
             {variant.label}
           </button>
         ))}
       </div>
-      <div
-        role="tabpanel"
-        id={`${baseId}-panel`}
-        aria-labelledby={`${baseId}-tab-${active}`}
-      >
-      <DemoFrame
-        key={current.demo.src}
-        src={current.demo.src}
-        scope={current.demo.scope}
-        title={current.demo.title}
-        fullPageHref={current.demo.fullPageHref}
-      />
+      <div {...panelProps()}>
+        <DemoFrame
+          key={current.demo.src}
+          src={current.demo.src}
+          scope={current.demo.scope}
+          title={current.demo.title}
+          fullPageHref={current.demo.fullPageHref}
+        />
       </div>
     </div>
   );
