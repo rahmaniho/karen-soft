@@ -23,7 +23,7 @@ export const metadata = pageMeta({
   title: "حساب‌یار؛ صندوق فروش و حسابداری اندروید و وب کارن سافت",
   description: "…",
   path: "/products/hesabyar",
-  images: ["/images/hesabyar/hesabyar-android.jpg"],
+  images: ["/images/hesabyar/hesabyar-cover.jpg"],
 }, { maxTitle: 65 });
 ```
 

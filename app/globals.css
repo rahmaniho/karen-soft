@@ -1450,8 +1450,7 @@ html[data-headings="sans"] {
 .ks-hesabyar-web { display: inline-flex; justify-content: center; align-items: center; gap: 10px; padding: 15px 20px; border: 1px solid #83e9b1; border-radius: 10px; background: transparent; color: #c8f5dc; font-weight: 800; font-size: 13px; text-decoration: none; transition: background .2s, color .2s; }
 .ks-hesabyar-web:hover { background: #163a33; color: #eafff3; }
 .ks-hesabyar-intro > .ks-hesabyar-web-note { margin: 8px 0 0; color: #9fb8ae; font-size: 11px; line-height: 2; }
-.ks-hesabyar-intro > .ks-hesabyar-warning { margin: 12px 0; padding: 12px 14px; border: 1px solid #806333; border-radius: 10px; background: #292416; color: #ffedbd; font-size: 12px; line-height: 2; }
-.ks-hesabyar-warning strong { color: #ffe29a; }
+.ks-hesabyar-intro > .ks-hesabyar-update-note { margin: 12px 0; padding: 12px 14px; border: 1px solid #2f5747; border-radius: 10px; background: #10262a; color: #cfe6da; font-size: 12px; line-height: 2; }
 .ks-hesabyar a:focus-visible, .ks-hesabyar summary:focus-visible { outline: 3px solid #83e9b1; outline-offset: 5px; }
 .ks-hesabyar-intro > .ks-hesabyar-file { margin: 12px 0; font-size: 11px; }
 .ks-hesabyar-intro > .ks-hesabyar-license { font-size: 11px; color: #a6bcb2; }

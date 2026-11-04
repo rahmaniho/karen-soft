@@ -3,7 +3,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { BookOpenCheck, Calculator, Download, Globe, KeyRound, Package, ShieldCheck, ShoppingCart, Smartphone, Users, Wallet, WifiOff } from "lucide-react";
 import {
-  HESABYAR_APK_CHANNEL,
   HESABYAR_APK_SHA256,
   HESABYAR_APK_SHA256_URL,
   HESABYAR_APK_SIZE_BYTES,
@@ -12,9 +11,10 @@ import {
   HESABYAR_FEATURES,
   HESABYAR_FREE_TIER,
   HESABYAR_IMAGE,
+  HESABYAR_IMAGE_ALT,
   HESABYAR_MIN_ANDROID,
   HESABYAR_PLANS,
-  HESABYAR_UPGRADE_WARNING,
+  HESABYAR_UPGRADE_INSTRUCTIONS,
   HESABYAR_VERSION,
   HESABYAR_WEB_URL,
 } from "@/lib/hesabyar";
@@ -54,8 +54,8 @@ export function HesabyarDownload() {
             <Globe size={20} aria-hidden="true" /> ورود به نسخهٔ وب
           </a>
         </div>
-        <p className="ks-hesabyar-file">نسخهٔ <bdi>{HESABYAR_VERSION}</bdi> · {HESABYAR_APK_CHANNEL} · فایل APK · حدود {HESABYAR_APK_SIZE_MB} مگابایت · {HESABYAR_MIN_ANDROID}</p>
-        <p className="ks-hesabyar-warning"><strong>پیش از نصب بخوانید:</strong> {HESABYAR_UPGRADE_WARNING}</p>
+        <p className="ks-hesabyar-file">نسخهٔ <bdi>{HESABYAR_VERSION}</bdi> · فایل APK · حدود {HESABYAR_APK_SIZE_MB} مگابایت · {HESABYAR_MIN_ANDROID}</p>
+        <p className="ks-hesabyar-update-note">{HESABYAR_UPGRADE_INSTRUCTIONS}</p>
         <p className="ks-hesabyar-web-note">نسخهٔ وب همان برنامه در مرورگر است: بدون نصب، قابل افزودن به صفحهٔ اصلی (PWA) و آفلاین؛ داده‌ها روی همان دستگاه می‌مانند. کلید لایسنس در بخش تنظیمات برنامه فعال می‌شود.</p>
         <Link href={HESABYAR_PRODUCT_PATH} className="ks-hesabyar-product-link">صفحهٔ حساب‌یار: نسخه‌ها، امکانات و قیمت لایسنس ←</Link>
         <Link href="/blog/hesabyar-personal-budget" className="ks-hesabyar-guide">راهنمای مدیریت درآمد و هزینه با حساب‌یار ←</Link>
@@ -65,7 +65,8 @@ export function HesabyarDownload() {
       <div className="ks-hesabyar-details">
         <Image
           src={HESABYAR_IMAGE}
-          alt="تصویر معرفی حساب‌یار اندروید و وب با لوگوی اصلی برنامه و نمای مفهومی ابزارهای مالی"
+          alt={HESABYAR_IMAGE_ALT}
+          data-hesabyar-image
           width={1536}
           height={864}
           sizes="(max-width: 900px) 100vw, 50vw"
@@ -84,15 +85,14 @@ export function HesabyarDownload() {
           })}
         </div>
         <details className="ks-hesabyar-install">
-          <summary>راهنمای نصب و نکات نسخهٔ اندروید</summary>
+          <summary>راهنمای نصب و به‌روزرسانی</summary>
           <ol>
-            <li>پیش از حذف یا به‌روزرسانی نصب قبلی، از داخل برنامه پشتیبان JSON بگیرید و آن را بیرون از برنامه نگه دارید.</li>
+            <li>قبل از به‌روزرسانی حتماً از اطلاعات خود در برنامه پشتیبان تهیه کنید.</li>
             <li>با دکمهٔ دانلود مستقیم، فایل APK را دریافت و باز کنید.</li>
+            <li>اگر برنامه به‌روزرسانی نشد، برنامه را پاک کنید و نسخهٔ جدید دانلودشده را نصب کنید.</li>
             <li>اگر اندروید درخواست کرد، اجازهٔ «نصب برنامه‌های ناشناس» را فقط برای مرورگر یا فایل‌منیجر مورد استفاده فعال کنید؛ پس از نصب می‌توانید آن را غیرفعال کنید.</li>
-            <li>نصب را تأیید کنید و حساب‌یار را از فهرست برنامه‌ها باز کنید.</li>
           </ol>
-          <p>فایل ارائه‌شده بیلد آزمایشی (test/debug) است، نه نسخهٔ نهایی فروشگاهی. امضای آن ممکن است با نصب قبلی متفاوت باشد و به‌روزرسانی مستقیم ممکن نباشد؛ فقط پس از اطمینان از پشتیبان، نسخهٔ قبلی را حذف کنید. ساخت و بررسی امضا انجام شده، اما این انتشار تأیید آزمون روی دستگاه واقعی را شامل نمی‌شود. ابتدا با دادهٔ غیرحساس آزمون کنید. دانلود اولیه به اینترنت نیاز دارد؛ نرخ ارز در حالت آفلاین زنده نیست و می‌توانید آن را دستی ویرایش کنید.</p>
-          <p>پشتیبان قالب ۳ در نسخهٔ قدیمیِ دارای قالب ۲ وارد نمی‌شود. برای بازگشت به نسخهٔ قبل، پشتیبان پیش از مهاجرت را نگه دارید؛ داده‌های جدید در پشتیبان قدیمی وجود ندارند.</p>
+          <p>دانلود اولیه به اینترنت نیاز دارد؛ نرخ ارز در حالت آفلاین زنده نیست و می‌توانید آن را دستی ویرایش کنید.</p>
           <p>روش‌های پرداخت در صندوق (نقدی، کارت‌خوان، انتقال و نسیه) ثبت حسابداری‌اند؛ برنامه به بانک یا پایانهٔ پرداخت متصل نمی‌شود و درآمد فروش فقط از طریق فاکتور اصلاح یا ابطال می‌شود.</p>
           <p className="ks-hesabyar-sha">اندازهٔ دقیق فایل: {formatNumber(HESABYAR_APK_SIZE_BYTES)} بایت.<br />کد بازبینی فایل (SHA-256): <code dir="ltr">{HESABYAR_APK_SHA256}</code> · <a href={HESABYAR_APK_SHA256_URL} className="underline">دریافت فایل SHA-256</a></p>
         </details>

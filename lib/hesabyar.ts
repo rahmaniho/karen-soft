@@ -26,10 +26,9 @@ export const HESABYAR_APK_SHA256_URL = `${HESABYAR_APK_URL}.sha256`;
 export const HESABYAR_APK_SIZE_BYTES = 9_146_513;
 /** مگابایت ده‌دهی، گرد شده به یک رقم؛ اندازهٔ دقیق هم در صفحه نمایش داده می‌شود. */
 export const HESABYAR_APK_SIZE_MB = formatNumber(Math.round(HESABYAR_APK_SIZE_BYTES / 100_000) / 10, { useGrouping: false });
-export const HESABYAR_APK_CHANNEL = "آزمایشی · Android Debug";
-
-export const HESABYAR_UPGRADE_WARNING =
-  "این APK با امضای Android Debug منتشر شده و ممکن است روی نصب قبلی به‌روزرسانی نشود. پیش از حذف یا به‌روزرسانی، پشتیبان JSON بگیرید و بیرون از برنامه نگه دارید؛ حذف برنامه داده‌های محلی را پاک می‌کند.";
+/** متن مصوب مالک برای کنار دانلود؛ کوتاه و بدون برچسب فنی ساخت. */
+export const HESABYAR_UPGRADE_INSTRUCTIONS =
+  "قبل از به‌روزرسانی حتماً از اطلاعات خود در برنامه پشتیبان تهیه کنید. اگر برنامه به‌روزرسانی نشد، برنامه را پاک کنید و نسخهٔ جدید دانلودشده را نصب کنید.";
 
 /** تغییرات رسمی نسبت به APK عمومی قبلی، ۱٫۳٫۰؛ ادعای عملکرد تأییدنشده اضافه نشود. */
 export const HESABYAR_RELEASE_CHANGES: readonly { title: string; text: string }[] = [
@@ -62,7 +61,11 @@ export const HESABYAR_RELEASE_CHANGES: readonly { title: string; text: string }[
 export const HESABYAR_WEB_URL = "https://hesabyar.karen-soft.ir/";
 export const HESABYAR_MIN_ANDROID = "اندروید ۷ و بالاتر";
 export const HESABYAR_RUNTIME = "Android 7+ · Web";
-export const HESABYAR_IMAGE = "/images/hesabyar/hesabyar-android.jpg";
+/** تصویر معرفی/اشتراک‌گذاری با لوگوی رسمی ارسالی مالک؛ نسبت ۱۶:۹. */
+export const HESABYAR_IMAGE = "/images/hesabyar/hesabyar-cover.jpg";
+export const HESABYAR_IMAGE_ALT = "لوگوی رسمی حساب‌یار با نام فارسی و انگلیسی و عبارت Powered by KarenSoft";
+/** نشان مربعی بریده‌شده از همان لوگوی رسمی برای کارت کوچک محصول. */
+export const HESABYAR_LOGO = "/images/hesabyar/hesabyar-mark.png";
 
 export interface HesabyarPlan {
   id: "lifetime" | "yearly" | "half-year";
@@ -176,12 +179,8 @@ export const HESABYAR_FAQS = [
     a: "نسخهٔ رایگان ماشین‌حساب کامل، یک کالا و ۱۰ تراکنش دارد. امکانات نامحدود، خروجی PDF و پشتیبان‌گیری پس از فعال‌سازی نسخهٔ حرفه‌ای در دسترس قرار می‌گیرد.",
   },
   {
-    q: "آیا فایل فعلی اندروید نسخهٔ فروشگاهی است؟",
-    a: `نه. فایل فعلی، بیلد آزمایشی ${HESABYAR_VERSION} با امضای Android Debug است و در GitHub به‌صورت Pre-release منتشر شده؛ برای بازار یا فروشگاه‌ها نیست. ساخت و بررسی امضا انجام شده، اما این انتشار تأیید نصب و کارکرد روی دستگاه واقعی را شامل نمی‌شود. پیش از نصب، هشدار پشتیبان‌گیری را بخوانید.`,
-  },
-  {
     q: `پیش از به‌روزرسانی به حساب‌یار ${HESABYAR_VERSION} چه کارهایی انجام دهم؟`,
-    a: `${HESABYAR_UPGRADE_WARNING} ابتدا بازیابی پشتیبان را در محیط آزمایشی بررسی کنید. پشتیبان قالب ۳ در نسخهٔ قدیمیِ دارای قالب ۲ وارد نمی‌شود؛ برای بازگشت به نسخهٔ قبل، پشتیبان پیش از مهاجرت را نگه دارید. داده‌های ثبت‌شده پس از مهاجرت در پشتیبان قدیمی وجود ندارند.`,
+    a: HESABYAR_UPGRADE_INSTRUCTIONS,
   },
   {
     q: "داده‌ها کجا ذخیره می‌شوند و بین دستگاه‌ها همگام می‌شوند؟",
@@ -213,6 +212,7 @@ export const HESABYAR_PRODUCT: Product = {
   modules: HESABYAR_FEATURES.map((feature) => ({ title: feature.title, desc: feature.text })),
   pricingFrom: 70_000,
   image: HESABYAR_IMAGE,
+  logo: HESABYAR_LOGO,
   liveUrl: HESABYAR_WEB_URL,
 };
 
@@ -224,11 +224,11 @@ export const HESABYAR_OFFERS = HESABYAR_PLANS.map((plan) => ({
   url: `${HESABYAR_WEB_URL.replace(/\/$/, "")}/settings`,
 }));
 
-/** عنوان و توضیح مشترک صفحه، متادیتا و آزمون‌ها؛ نسخهٔ آزمایشی را پنهان نکنید. */
+/** عنوان و توضیح مشترک صفحه، متادیتا و آزمون‌ها. */
 export const HESABYAR_SEO = {
   title: "حساب‌یار ۱٫۴٫۲ | دانلود اندروید و نسخهٔ وب کارن سافت",
   description:
-    "دانلود مستقیم حساب‌یار ۱٫۴٫۲ برای اندروید ۷ به بالا؛ بیلد آزمایشی با فاکتور، دریافت جزئی، PDF فارسی و دسته‌بندی کالا. نسخهٔ وب و راهنمای پشتیبان‌گیری.",
+    "دانلود مستقیم حساب‌یار ۱٫۴٫۲ برای اندروید ۷ به بالا؛ فاکتور، دریافت جزئی، PDF فارسی و دسته‌بندی کالا. نسخهٔ وب و راهنمای پشتیبان‌گیری.",
   path: "/products/hesabyar",
 } as const;
 

@@ -1,7 +1,6 @@
 import React from "react";
 import Link from "next/link";
 import {
-  AlertTriangle,
   BookOpenCheck,
   Calculator,
   Calculator as CalcIcon,
@@ -9,6 +8,7 @@ import {
   Download,
   Globe,
   KeyRound,
+  Info,
   Package,
   ShieldCheck,
   ShoppingCart,
@@ -23,7 +23,6 @@ import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { ContactCTA } from "@/components/site/page-parts";
 import { HesabyarReleaseNotes } from "@/components/site/hesabyar-release";
 import {
-  HESABYAR_APK_CHANNEL,
   HESABYAR_APK_SHA256,
   HESABYAR_APK_SHA256_URL,
   HESABYAR_APK_SIZE_BYTES,
@@ -36,8 +35,9 @@ import {
   HESABYAR_MODULES,
   HESABYAR_PLANS,
   HESABYAR_RELEASE_DATE,
-  HESABYAR_UPGRADE_WARNING,
+  HESABYAR_UPGRADE_INSTRUCTIONS,
   HESABYAR_VERSION,
+  HESABYAR_VERSION_LATIN,
   HESABYAR_WEB_URL,
   formatToman,
 } from "@/lib/hesabyar";
@@ -77,15 +77,11 @@ export function HesabyarProductPage() {
               </Link>
             </div>
             <p className="mt-4 text-2xs text-muted">
-              نسخهٔ اندروید {HESABYAR_VERSION} · {HESABYAR_APK_CHANNEL} · {HESABYAR_MIN_ANDROID}
+              نسخهٔ اندروید {HESABYAR_VERSION} · {HESABYAR_MIN_ANDROID}
             </p>
-            <aside aria-label="هشدار نصب نسخهٔ آزمایشی" className="mt-5 flex max-w-2xl items-start gap-3 rounded-[var(--radius-md)] border border-amber-300 bg-amber-50 p-4 text-amber-950 dark:border-amber-700 dark:bg-amber-950/40 dark:text-amber-100">
-              <AlertTriangle className="mt-1 size-5 shrink-0" aria-hidden />
-              <div className="text-xs leading-loose">
-                <strong>پیش از نصب یا به‌روزرسانی بخوانید</strong>
-                <p className="mt-1">{HESABYAR_UPGRADE_WARNING}</p>
-                <Link href="#install" className="mt-2 inline-flex min-h-11 items-center font-bold underline underline-offset-4">راهنمای نصب و پشتیبان‌گیری ←</Link>
-              </div>
+            <aside aria-label="راهنمای به‌روزرسانی حساب‌یار" className="mt-5 flex max-w-2xl items-start gap-3 rounded-[var(--radius-md)] border border-brand-200 bg-brand-50 p-4 text-brand-900 dark:border-brand-800 dark:bg-brand-900/30 dark:text-brand-100">
+              <Info className="mt-1 size-5 shrink-0" aria-hidden />
+              <p className="text-xs leading-loose">{HESABYAR_UPGRADE_INSTRUCTIONS}</p>
             </aside>
           </div>
           <ul className="grid gap-3">
@@ -115,7 +111,7 @@ export function HesabyarProductPage() {
             <span className="flex items-center gap-2 text-2xs font-extrabold text-brand-600"><Smartphone className="size-4" aria-hidden /> نسخهٔ اندروید</span>
             <h3 className="mt-3">فایل APK نسخهٔ {HESABYAR_VERSION}</h3>
             <p className="mt-3 text-xs leading-loose text-muted">
-              بیلد آزمایشی (test) برای نصب و آزمون روی گوشی؛ {HESABYAR_MIN_ANDROID} · حدود {HESABYAR_APK_SIZE_MB} مگابایت ({formatNumber(HESABYAR_APK_SIZE_BYTES)} بایت). این فایل نسخهٔ فروشگاهی نیست؛ پیش از نصب، هشدار پشتیبان‌گیری بالا را بخوانید.
+              فایل نصب اندروید؛ {HESABYAR_MIN_ANDROID} · حدود {HESABYAR_APK_SIZE_MB} مگابایت ({formatNumber(HESABYAR_APK_SIZE_BYTES)} بایت).
             </p>
             <p className="mt-3 break-all text-2xs text-muted" dir="ltr">hesabyar-1.4.2-test.apk</p>
             <ButtonLink href={HESABYAR_APK_URL} className="mt-6 w-fit" data-hesabyar-apk>
@@ -141,11 +137,11 @@ export function HesabyarProductPage() {
       </section>
 
       <section className="container-page py-12 sm:py-16" id="release-notes" aria-labelledby="whats-new-title">
-        <span className="eyebrow mb-4">ANDROID / PRE-RELEASE · {HESABYAR_APK_CHANNEL}</span>
+        <span className="eyebrow mb-4">ANDROID / VERSION {HESABYAR_VERSION_LATIN}</span>
         <h2 id="whats-new-title" className="display-3 mb-3">تازه در نسخهٔ {HESABYAR_VERSION}</h2>
         <p className="mb-4 text-xs text-muted">انتشار APK: <time dateTime={HESABYAR_RELEASE_DATE}>{formatJalali(HESABYAR_RELEASE_DATE)}</time></p>
         <p className="mb-8 max-w-3xl text-sm leading-loose text-muted">
-          این تغییرات نسبت به APK عمومی قبلی، نسخهٔ ۱٫۳٫۰، در یادداشت رسمی همین ساخت آمده‌اند. موفقیت ساخت و بررسی امضا جای آزمون نصب و کارکرد روی دستگاه واقعی را نمی‌گیرد؛ پیش از استفاده با دادهٔ کاری، نسخه را با دادهٔ غیرحساس بررسی کنید.
+          این تغییرات نسبت به APK عمومی قبلی، نسخهٔ ۱٫۳٫۰، در یادداشت رسمی همین ساخت آمده‌اند.
         </p>
         <HesabyarReleaseNotes />
       </section>
@@ -212,8 +208,8 @@ export function HesabyarProductPage() {
           <div className="surface-card p-7">
             <h3>نصب نسخهٔ اندروید</h3>
             <ol className="mt-4 list-decimal space-y-3 ps-5 text-xs leading-loose text-muted">
-              <li>پیش از حذف یا به‌روزرسانی، از نسخهٔ فعلی پشتیبان JSON بگیرید و آن را بیرون از برنامه نگه دارید؛ امکان بازیابی را در محیط آزمایشی بررسی کنید.</li>
-              <li>فایل APK را از همین صفحه دریافت و باز کنید. اگر امضا با نصب قبلی متفاوت بود، فقط پس از اطمینان از پشتیبان، نسخهٔ قبلی را حذف و فایل جدید را نصب کنید.</li>
+              <li>قبل از به‌روزرسانی حتماً از اطلاعات خود در برنامه پشتیبان تهیه کنید.</li>
+              <li>فایل APK را از همین صفحه دریافت و باز کنید. اگر برنامه به‌روزرسانی نشد، برنامه را پاک کنید و نسخهٔ جدید دانلودشده را نصب کنید.</li>
               <li>اگر اندروید پرسید، اجازهٔ «نصب برنامه‌های ناشناس» را فقط برای مرورگر یا فایل‌منیجر فعال کنید و بعد از نصب غیرفعالش کنید.</li>
               <li>نصب را تأیید و برنامه را از فهرست برنامه‌ها باز کنید.</li>
             </ol>
@@ -221,8 +217,7 @@ export function HesabyarProductPage() {
           <div className="surface-card p-7">
             <h3>پیش از به‌روزرسانی یا حذف</h3>
             <ul className="mt-4 space-y-3 text-xs leading-loose text-muted">
-              <li>پشتیبان قالب ۳ در نسخهٔ قدیمیِ دارای قالب ۲ وارد نمی‌شود. برای بازگشت به نسخهٔ قبل، پشتیبان پیش از مهاجرت را نگه دارید؛ داده‌های ثبت‌شده بعد از مهاجرت در آن فایل نیستند.</li>
-              <li>حذف برنامه داده‌های محلی را پاک می‌کند. پس از نصب جدید نیز پشتیبان بگیرید و بازیابی آن را بررسی کنید.</li>
+              <li>پشتیبان را از داخل خود برنامه تهیه کنید و پس از نصب نسخهٔ جدید، وضعیت اطلاعات را بررسی کنید.</li>
               <li>داده‌ها بین گوشی و نسخهٔ وب خودکار همگام نمی‌شوند؛ پشتیبان، تنها راه انتقال است.</li>
               <li>روش‌های پرداخت صندوق ثبت حسابداری‌اند و به بانک یا پایانهٔ پرداخت متصل نیستند.</li>
               <li>درآمد فروش فقط از طریق اصلاح یا ابطال همان فاکتور تغییر می‌کند؛ برای سند قبلی تاریخچه نگه داشته می‌شود.</li>
