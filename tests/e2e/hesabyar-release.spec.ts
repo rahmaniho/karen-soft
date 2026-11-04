@@ -33,7 +33,7 @@ for (const path of ["/", "/products"]) {
   });
 }
 
-test("product release notes, checksum and short update FAQ are present in the initial page", async ({ page, request }) => {
+test("product release cards omit technical source links and keep the short update FAQ", async ({ page, request }) => {
   const response = await request.get("/products/hesabyar");
   expect(response.status()).toBe(200);
   const html = await response.text();
@@ -41,6 +41,8 @@ test("product release notes, checksum and short update FAQ are present in the in
   expect(html).toContain(HESABYAR_UPGRADE_INSTRUCTIONS);
   expect(html).not.toContain("Android Debug");
   expect(html).toContain('id="release-notes"');
+  expect(html).not.toContain("یادداشت انتشار رسمی در GitHub");
+  expect(html).not.toContain("منبع تغییرات همین ساخت");
   await page.goto("/products/hesabyar");
   const downloads = page.locator("[data-hesabyar-apk]");
   await expect(downloads).toHaveCount(2);
@@ -48,7 +50,11 @@ test("product release notes, checksum and short update FAQ are present in the in
   const notes = page.locator("#release-notes");
   await expect(notes.locator("article")).toHaveCount(HESABYAR_RELEASE_CHANGES.length);
   for (const change of HESABYAR_RELEASE_CHANGES) await expect(notes.getByRole("heading", { name: change.title, exact: true })).toBeVisible();
-  await expect(notes.getByRole("link", { name: "دریافت فایل SHA-256", exact: false })).toHaveAttribute("href", `${HESABYAR_APK_URL}.sha256`);
+  await expect(notes.getByRole("link")).toHaveCount(0);
+  for (const removed of ["یادداشت انتشار رسمی در GitHub", "دریافت فایل SHA-256", "منبع تغییرات همین ساخت"]) {
+    await expect(notes).not.toContainText(removed);
+  }
+  await expect(page.locator("#versions").getByRole("link", { name: "دریافت فایل SHA-256", exact: true })).toHaveAttribute("href", `${HESABYAR_APK_URL}.sha256`);
   const question = `پیش از به‌روزرسانی به حساب‌یار ${HESABYAR_VERSION} چه کارهایی انجام دهم؟`;
   const faq = page.getByRole("button", { name: question, exact: true });
   await faq.click();

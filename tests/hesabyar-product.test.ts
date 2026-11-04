@@ -20,7 +20,6 @@ import {
   HESABYAR_RELEASE_DATE,
   HESABYAR_RELEASE_URL,
   HESABYAR_SEO,
-  HESABYAR_SOURCE_COMMIT,
   HESABYAR_UPGRADE_INSTRUCTIONS,
   HESABYAR_VERSION,
   HESABYAR_WEB_URL,
@@ -108,8 +107,7 @@ describe("Hesabyar dedicated product page", () => {
     expect(html).toContain("hesabyar-1.4.2-test.apk");
     expect(html).toContain(HESABYAR_APK_SHA256);
     expect(html).toContain(`href="${HESABYAR_APK_SHA256_URL}"`);
-    expect(html).toContain(`href="${HESABYAR_RELEASE_URL}"`);
-    expect(html).toContain(`blob/${HESABYAR_SOURCE_COMMIT}/docs/releases/v1.4.2.md`);
+    expect(html.match(/دریافت فایل SHA-256/g)).toHaveLength(1);
     expect(html).not.toContain("hesabyar-1.3.0-test.apk");
     expect(HESABYAR_RELEASE_CHANGES).toHaveLength(6);
     for (const change of HESABYAR_RELEASE_CHANGES) {
@@ -119,6 +117,21 @@ describe("Hesabyar dedicated product page", () => {
     expect(html).toContain(`href="${HESABYAR_WEB_URL}"`);
     expect(HESABYAR_PLANS.map((plan) => plan.price)).toEqual([270_000, 130_000, 70_000]);
     expect(PATH).toBe(`/products/${HESABYAR_PRODUCT.slug}`);
+  });
+
+  it("omits the source and checksum link strip only from the release-notes section", () => {
+    const html = renderToStaticMarkup(createElement(HesabyarProductPage));
+    const releaseSection = html.match(/<section[^>]*id="release-notes"[^>]*>([\s\S]*?)<\/section>/)?.[1];
+    expect(releaseSection).toBeDefined();
+    for (const removed of ["یادداشت انتشار رسمی در GitHub", "دریافت فایل SHA-256", "منبع تغییرات همین ساخت"]) {
+      expect(releaseSection).not.toContain(removed);
+    }
+    expect(releaseSection).not.toContain("<a ");
+    expect(releaseSection).not.toContain("github.com/rahmaniho/KarenYar");
+    expect(releaseSection).toContain(HESABYAR_RELEASE_CHANGES[0].title);
+    // The separate Android version card is outside the requested removal scope.
+    expect(html).toContain(`href="${HESABYAR_APK_SHA256_URL}"`);
+    expect(html).toContain(HESABYAR_APK_SHA256);
   });
 
   it("keeps prices, the exact APK and the short update note consistent in llms.txt and guides", async () => {
