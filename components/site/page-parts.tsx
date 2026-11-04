@@ -10,15 +10,17 @@ export function PageHero({
   description,
   breadcrumbs,
   children,
+  className,
 }: {
   eyebrow: string;
   title: string;
   description: string;
   breadcrumbs?: readonly BreadcrumbItem[];
   children?: React.ReactNode;
+  className?: string;
 }) {
   return (
-    <section className="relative overflow-hidden border-b border-[var(--hairline)] bg-[var(--surface-sunken)] py-16 sm:py-24">
+    <section className={`relative overflow-hidden border-b border-[var(--hairline)] bg-[var(--surface-sunken)] py-16 sm:py-24${className ? ` ${className}` : ""}`}>
       <div className="grid-backdrop pointer-events-none absolute inset-0" aria-hidden />
       <div className="container-page relative">
         <Breadcrumbs items={breadcrumbs ?? [{ name: "خانه", path: "/" }, { name: title }]} />

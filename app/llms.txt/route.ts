@@ -1,5 +1,6 @@
 import { LAWBOOK_INFO } from "@/lib/lawbook-info";
 import { HESABYAR_APK_SHA256, HESABYAR_APK_URL, HESABYAR_FAQS, HESABYAR_PLANS, HESABYAR_RELEASE_CHANGES, HESABYAR_RELEASE_URL, HESABYAR_UPGRADE_INSTRUCTIONS, HESABYAR_VERSION, HESABYAR_WEB_URL } from "@/lib/hesabyar";
+import { HESABYAR_ARTICLE_PATH } from "@/lib/hesabyar-article";
 import { SITE, SERVICES } from "@/lib/constants";
 import { PRODUCTS } from "@/lib/products";
 import { SOLUTIONS } from "@/lib/solutions";
@@ -42,6 +43,7 @@ export function GET() {
     "### حساب‌یار (نرم‌افزار مالی اندروید و وب)",
     "حساب‌یار نرم‌افزار مالی فارسی کارن سافت است: صندوق فروش، انبار و فاکتور، دفتر مالی کسب‌وکار، بودجهٔ شخصی، حقوق و دستمزد و ماشین‌حساب؛ آفلاین، راست‌چین با تاریخ شمسی و دادهٔ محلی روی دستگاه.",
     link("صفحه رسمی حساب‌یار (نسخه‌ها، امکانات و قیمت لایسنس)", "/products/hesabyar"),
+    link("مقاله جامع معرفی حساب‌یار (امکانات، امنیت، قیمت و راهنمای شروع)", HESABYAR_ARTICLE_PATH),
     `- نسخهٔ وب: ${HESABYAR_WEB_URL} — بدون نصب، قابل نصب به‌صورت PWA و آفلاین`,
     `- نسخهٔ APK اندروید ${HESABYAR_VERSION}: ${HESABYAR_APK_URL} — اندروید ۷ و بالاتر.`,
     `- راهنمای به‌روزرسانی: ${HESABYAR_UPGRADE_INSTRUCTIONS}`,

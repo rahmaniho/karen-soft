@@ -59,6 +59,7 @@ export const HESABYAR_RELEASE_CHANGES: readonly { title: string; text: string }[
 ];
 /** نسخهٔ تحت وب همان برنامه؛ روی مرورگر دستگاه و قابل نصب به‌صورت PWA. */
 export const HESABYAR_WEB_URL = "https://hesabyar.karen-soft.ir/";
+export const HESABYAR_PRODUCT_PATH = "/products/hesabyar";
 export const HESABYAR_MIN_ANDROID = "اندروید ۷ و بالاتر";
 export const HESABYAR_RUNTIME = "Android 7+ · Web";
 /** تصویر معرفی/اشتراک‌گذاری با لوگوی رسمی ارسالی مالک؛ نسبت ۱۶:۹. */
