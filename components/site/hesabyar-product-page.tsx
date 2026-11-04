@@ -141,7 +141,7 @@ export function HesabyarProductPage() {
         <h2 id="whats-new-title" className="display-3 mb-3">تازه در نسخهٔ {HESABYAR_VERSION}</h2>
         <p className="mb-4 text-xs text-muted">انتشار APK: <time dateTime={HESABYAR_RELEASE_DATE}>{formatJalali(HESABYAR_RELEASE_DATE)}</time></p>
         <p className="mb-8 max-w-3xl text-sm leading-loose text-muted">
-          این تغییرات نسبت به APK عمومی قبلی، نسخهٔ ۱٫۳٫۰، در یادداشت رسمی همین ساخت آمده‌اند.
+          این تغییرات نسبت به APK عمومی قبلی، نسخهٔ ۱٫۳٫۰، هستند.
         </p>
         <HesabyarReleaseNotes />
       </section>
