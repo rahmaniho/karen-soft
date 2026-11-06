@@ -1,5 +1,5 @@
 import { LAWBOOK_INFO } from "@/lib/lawbook-info";
-import { HESABYAR_APK_SHA256, HESABYAR_APK_URL, HESABYAR_FAQS, HESABYAR_PLANS, HESABYAR_RELEASE_CHANGES, HESABYAR_RELEASE_URL, HESABYAR_UPGRADE_INSTRUCTIONS, HESABYAR_VERSION, HESABYAR_WEB_URL } from "@/lib/hesabyar";
+import { HESABYAR_FAQS, HESABYAR_PLANS, HESABYAR_WEB_URL } from "@/lib/hesabyar";
 import { HESABYAR_ARTICLE_PATH } from "@/lib/hesabyar-article";
 import { SITE, SERVICES } from "@/lib/constants";
 import { PRODUCTS } from "@/lib/products";
@@ -40,19 +40,15 @@ export function GET() {
     "### محصولات",
     ...PRODUCTS.map((product) => `${link(product.name, `/products/${product.slug}`)} — ${product.short}`),
     "",
-    "### حساب‌یار (نرم‌افزار مالی اندروید و وب)",
-    "حساب‌یار نرم‌افزار مالی فارسی کارن سافت است: صندوق فروش، انبار و فاکتور، دفتر مالی کسب‌وکار، بودجهٔ شخصی، حقوق و دستمزد و ماشین‌حساب؛ آفلاین، راست‌چین با تاریخ شمسی و دادهٔ محلی روی دستگاه.",
-    link("صفحه رسمی حساب‌یار (نسخه‌ها، امکانات و قیمت لایسنس)", "/products/hesabyar"),
-    link("مقاله جامع معرفی حساب‌یار (امکانات، امنیت، قیمت و راهنمای شروع)", HESABYAR_ARTICLE_PATH),
-    `- نسخهٔ وب: ${HESABYAR_WEB_URL} — بدون نصب، قابل نصب به‌صورت PWA و آفلاین`,
-    `- نسخهٔ APK اندروید ${HESABYAR_VERSION}: ${HESABYAR_APK_URL} — اندروید ۷ و بالاتر.`,
-    `- راهنمای به‌روزرسانی: ${HESABYAR_UPGRADE_INSTRUCTIONS}`,
-    `- SHA-256 دارایی رسمی: ${HESABYAR_APK_SHA256}`,
-    `- یادداشت انتشار و تغییرات نسبت به APK عمومی ۱٫۳٫۰: ${HESABYAR_RELEASE_URL}`,
-    ...HESABYAR_RELEASE_CHANGES.map((change) => `- ${change.title}: ${change.text}`),
-    "- قیمت لایسنس حرفه‌ای: " + HESABYAR_PLANS.map((plan) => `${plan.title} ${formatNumber(plan.price)} تومان`).join(" · "),
-    "- نسخهٔ رایگان: ماشین‌حساب کامل، ۱ کالا و ۱۰ تراکنش؛ فعال‌سازی لایسنس آفلاین و در بخش تنظیمات برنامه انجام می‌شود.",
-    ...HESABYAR_FAQS.slice(0, 3).map((item) => `- ${item.q} ${item.a}`),
+    "### کارو (نرم‌افزار حسابداری آنلاین)",
+    "کارو نام جدید حساب‌یار است. نسخه فعلی کاملاً آنلاین است؛ اطلاعات روی سرور ذخیره می‌شود و از دستگاه‌های مختلف قابل ثبت و مشاهده است.",
+    link("صفحه رسمی کارو و محاسبه تعرفه اشتراک", "/products/hesabyar"),
+    link("مقاله معرفی کارو", HESABYAR_ARTICLE_PATH),
+    `- ورود به برنامه: ${HESABYAR_WEB_URL}`,
+    ...HESABYAR_PLANS.map((plan) => `- ${plan.title}: ماهانه ${formatNumber(plan.price)} تومان، سالانه یک کاربر ${formatNumber(plan.yearly)} تومان؛ کاربر اضافه در ماه ${formatNumber(plan.extraUserMonthly)} تومان.`),
+    "- هر پلن شامل یک کاربر است. مبلغ نهایی = (هزینه ماهانه پلن + تعداد کاربران اضافه × هزینه ماهانه هر کاربر اضافه) × تعداد ماه‌ها.",
+    "- سالانه معادل ۱۲ ماه، بدون تخفیف خودکار. فعال‌سازی پس از پرداخت موفق خودکار است؛ پایان اشتراک باعث حذف اطلاعات نمی‌شود.",
+    ...HESABYAR_FAQS.map((item) => `- ${item.q} ${item.a}`),
     "",
     "### کتابچه قانون ایران",
     LAWBOOK_INFO.summary,

@@ -10,7 +10,7 @@ import { HesabyarDownload } from "@/components/sections/hesabyar-download";
 
 export const metadata = pageMeta({
   title: "نرم‌افزارهای مدیریتی کسب‌وکار | محصولات کارن سافت",
-  description: "دانلود حساب‌یار اندروید و وب برای هزینه، موجودی و فاکتور؛ نرم‌افزارهای مدیریتی کارن سافت، کتابچه قانون و مدرسه‌ی من.",
+  description: "نرم‌افزار حسابداری آنلاین کارو با ذخیره اطلاعات روی سرور؛ نرم‌افزارهای مدیریتی کارن سافت، کتابچه قانون و مدرسه‌ی من.",
   path: "/products",
 });
 
@@ -23,7 +23,7 @@ export default function ProductsPage() {
         title="نرم‌افزارهایی برای کار واقعی؛ سامانه‌های مدیریتی اختصاصی کسب‌وکار"
         description="محصول متناسب با کسب‌وکارتان را پیدا کنید؛ امکانات نرم‌افزارهای مدیریتی را ببینید، موضوعات کتابچه قانون را مرور کنید یا با مدرسه‌ی من، آموزش کلاس اول را در کنار خانواده تجربه کنید."
       />
-      <ContentSection title="حساب‌یار؛ نسخهٔ اندروید و وب"><HesabyarDownload /></ContentSection>
+      <ContentSection title="کارو؛ نرم‌افزار حسابداری آنلاین"><HesabyarDownload /></ContentSection>
       <ContentSection title="مدرسه‌ی من؛ محصول آموزشی با رویکرد اجتماعی"><Class1Community /></ContentSection>
       <ContentSection title="همه محصولات"><Catalog kind="products" /></ContentSection>
       <ContactCTA />

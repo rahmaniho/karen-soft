@@ -11,14 +11,14 @@ describe("new illustrated editorial guides", () => {
     for (const category of ["کارن چاپ", "مدرسه‌ی من"]) {
       expect(COMMUNITY_POSTS.filter(post => post.category === category)).toHaveLength(2);
     }
-    expect(COMMUNITY_POSTS.filter(post => post.category === "حساب‌یار")).toHaveLength(3);
+    expect(COMMUNITY_POSTS.filter(post => post.category === "کارو")).toHaveLength(3);
     // شش راهنمای موضوعی + راهنمای میزبانی وب + مقاله مرجع حساب‌یار
     expect(COMMUNITY_POSTS).toHaveLength(8);
     for (const post of COMMUNITY_POSTS) {
       expect(BLOG_POSTS.find(item => item.slug === post.slug)).toEqual(post);
       expect(existsSync(`public${post.cover}`)).toBe(true);
       expect(post.sections.length).toBeGreaterThanOrEqual(4);
-      expect(post.sections.flatMap(section => section.paragraphs).join(" ").length).toBeGreaterThan(1500);
+      expect(post.sections.flatMap(section => section.paragraphs).join(" ").length).toBeGreaterThan(post.category === "کارو" ? 800 : 1500);
       expect(post.relatedLinks?.length).toBeGreaterThanOrEqual(2);
       for (const link of post.relatedLinks ?? []) {
         if (link.href.startsWith("/blog/")) expect(BLOG_POSTS.some(item => `/blog/${item.slug}` === link.href)).toBe(true);

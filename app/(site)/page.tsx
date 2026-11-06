@@ -87,7 +87,7 @@ export default function HomePage() {
         <div className="ks-section-heading">
           <div className="ks-section-kicker"><span>03 / OUR PRODUCTS</span><span className="ks-kicker-rule" /></div>
           <h2 id="ks-products-title">محصولات خودمان؛ از نیاز تا ابزار.</h2>
-          <p>حساب‌یار، کتابچه قانون و مدرسه‌ی من را ببینید؛ یا از کاتالوگ نرم‌افزاری، محصول متناسب با فرایند کسب‌وکارتان را انتخاب کنید.</p>
+          <p>کارو، کتابچه قانون و مدرسه‌ی من را ببینید؛ یا از کاتالوگ نرم‌افزاری، محصول متناسب با فرایند کسب‌وکارتان را انتخاب کنید.</p>
         </div>
         <Link href="/products" className="ks-text-link">فهرست کامل محصولات <ArrowUpLeft size={17} /></Link>
       </div>

@@ -59,7 +59,7 @@ export default function HesabyarPage() {
             [
               { name: "خانه", path: "/" },
               { name: "محصولات", path: "/products" },
-              { name: "حساب‌یار", path: PATH },
+              { name: "کارو", path: PATH },
             ],
             SITE.url,
           ),

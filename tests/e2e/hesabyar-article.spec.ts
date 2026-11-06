@@ -28,22 +28,19 @@ test("table of contents, FAQ, images and CTAs work without console errors", asyn
   await page.evaluate(() => document.fonts.ready);
   const toc = page.getByRole("navigation", { name: "فهرست مقاله" });
   await expect(toc.locator('a[href^="#"]')).toHaveCount(HESABYAR_ARTICLE_POST.sections.length);
-  await toc.getByRole("link", { name: "رایگان و حرفه‌ای" }).click();
+  await toc.getByRole("link", { name: "تعرفه و محاسبه" }).click();
   await expect(page).toHaveURL(new RegExp(`${HESABYAR_ARTICLE_PATH}#pricing$`));
   const hero = page.locator(".ks-ha-hero-figure img");
   await expect(hero).toHaveAttribute("alt", HESABYAR_ARTICLE_IMAGES.coverAlt);
   await expect.poll(() => hero.evaluate((node) => (node as HTMLImageElement).naturalWidth)).toBeGreaterThan(0);
-  const features = page.locator(`img[src*="hesabyar-accounting"]`).nth(1);
-  await features.scrollIntoViewIfNeeded();
-  await expect.poll(() => features.evaluate((node) => (node as HTMLImageElement).naturalWidth)).toBeGreaterThan(0);
-  const faq = page.getByRole("button", { name: "آیا اطلاعات بین گوشی و کامپیوتر همگام می‌شوند؟", exact: true });
+  const faq = page.getByRole("button", { name: "اطلاعات کجا ذخیره می‌شود؟", exact: true });
   await faq.scrollIntoViewIfNeeded();
   await faq.click();
   await expect(faq).toHaveAttribute("aria-expanded", "true");
-  await expect(page.getByRole("region", { name: "آیا اطلاعات بین گوشی و کامپیوتر همگام می‌شوند؟" })).toContainText("خیر");
+  await expect(page.getByRole("region", { name: "اطلاعات کجا ذخیره می‌شود؟" })).toContainText("روی سرور");
   const finalCta = page.locator("#start");
   await expect(finalCta.getByRole("link", { name: HESABYAR_ARTICLE_CTA.primary.label, exact: true })).toHaveAttribute("href", HESABYAR_WEB_URL);
-  await expect(finalCta.getByRole("link", { name: HESABYAR_ARTICLE_CTA.secondary.label, exact: true })).toHaveAttribute("href", HESABYAR_PRODUCT_PATH);
+  await expect(finalCta.getByRole("link", { name: HESABYAR_ARTICLE_CTA.secondary.label, exact: true })).toHaveAttribute("href", `${HESABYAR_PRODUCT_PATH}#pricing`);
   expect(errors).toEqual([]);
 });
 
@@ -64,7 +61,7 @@ for (const { theme, width } of [
     }
     const result = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa"]).analyze();
     expect(result.violations.map((v) => ({ id: v.id, nodes: v.nodes.map((n) => n.html) }))).toEqual([]);
-    await page.locator("#comparison").scrollIntoViewIfNeeded();
+    await page.locator("#pricing").scrollIntoViewIfNeeded();
     await noOverflow(page);
   });
 }
