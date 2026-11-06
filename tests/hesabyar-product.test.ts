@@ -1,159 +1,77 @@
 import { describe, expect, it } from "vitest";
-import React, { createElement } from "react";
+import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { existsSync, readFileSync } from "node:fs";
-import { sitemapEntries } from "../app/sitemap";
-import { GET as getLlmsTxt } from "../app/llms.txt/route";
-import { BLOG_POSTS } from "../lib/blog";
-import { PRODUCTS } from "../lib/products";
 import {
-  HESABYAR_APK_SHA256,
-  HESABYAR_APK_SHA256_URL,
-  HESABYAR_APK_URL,
-  HESABYAR_FAQS,
-  HESABYAR_IMAGE,
-  HESABYAR_LOGO,
-  HESABYAR_OFFERS,
-  HESABYAR_PLANS,
   HESABYAR_PRODUCT,
-  HESABYAR_RELEASE_CHANGES,
-  HESABYAR_RELEASE_DATE,
-  HESABYAR_RELEASE_URL,
+  HESABYAR_OFFERS,
   HESABYAR_SEO,
-  HESABYAR_UPGRADE_INSTRUCTIONS,
-  HESABYAR_VERSION,
-  HESABYAR_WEB_URL,
+  HESABYAR_IMAGE,
 } from "../lib/hesabyar";
 import { HesabyarProductPage } from "../components/site/hesabyar-product-page";
-import { auditPageMeta, pageMeta } from "../lib/seo";
-import { breadcrumbNode, faqNode, jsonLdGraph, softwareApplicationNode, validateJsonLd } from "../lib/seo-kit";
-import { SITE } from "../lib/constants";
+import { GET } from "../app/llms.txt/route";
+import { sitemapEntries } from "../app/sitemap";
 
-const PATH = "/products/hesabyar";
-
-describe("Hesabyar dedicated product page", () => {
-  it("registers Hesabyar with the new official cover and square mark", () => {
-    const product = PRODUCTS.find((item) => item.slug === "hesabyar");
-    expect(product).toBeDefined();
-    expect(product).toMatchObject({ slug: "hesabyar", name: HESABYAR_PRODUCT.name, status: "active" });
-    expect(product?.features.length).toBeGreaterThan(5);
-    expect(product?.liveUrl).toBe(HESABYAR_WEB_URL);
-    expect(product?.pricingFrom).toBe(70_000);
-    expect(product?.image).toBe(HESABYAR_IMAGE);
-    expect(product?.logo).toBe(HESABYAR_LOGO);
+describe("Karo product migration", () => {
+  it("keeps existing URL and updates product metadata and offers", () => {
+    expect(HESABYAR_PRODUCT.slug).toBe("hesabyar");
+    expect(HESABYAR_PRODUCT.name).toContain("کارو");
+    expect(HESABYAR_PRODUCT.liveUrl).toBe("https://karo.karen-soft.ir/");
+    expect(HESABYAR_PRODUCT.pricingFrom).toBe(30000);
+    expect(HESABYAR_SEO.path).toBe("/products/hesabyar");
+    expect(HESABYAR_SEO.title).toContain("کارو");
+    expect(HESABYAR_OFFERS.map((offer) => offer.priceRial)).toEqual([
+      300000, 600000, 1200000,
+    ]);
+    expect(
+      sitemapEntries().filter((entry) =>
+        entry.url.endsWith("/products/hesabyar"),
+      ),
+    ).toHaveLength(1);
+  });
+  it("preserves uploaded logo bytes and serves optimized WebP", () => {
     expect(existsSync(`public${HESABYAR_IMAGE}`)).toBe(true);
-    expect(existsSync(`public${HESABYAR_LOGO}`)).toBe(true);
-    expect(existsSync("app/(site)/products/hesabyar/page.tsx")).toBe(true);
-    expect(existsSync("components/site/hesabyar-product-page.tsx")).toBe(true);
+    expect(
+      readFileSync("public/images/karo/logo-original.png")
+        .subarray(1, 4)
+        .toString(),
+    ).toBe("PNG");
+    expect(
+      readFileSync(`public${HESABYAR_IMAGE}`).subarray(8, 12).toString(),
+    ).toBe("WEBP");
   });
-
-  it("publishes one sitemap entry with the actual release update date", () => {
-    const entries = sitemapEntries().filter((item) => new URL(item.url).pathname === PATH);
-    expect(entries).toHaveLength(1);
-    expect(entries[0].url).toBe(`${SITE.url}${PATH}`);
-    expect(entries[0].priority).toBeGreaterThanOrEqual(0.9);
-    expect(entries[0].lastModified).toEqual(new Date(HESABYAR_RELEASE_DATE));
-  });
-
-  it("uses shared, version-aware metadata without technical build labels", () => {
-    const meta = pageMeta({ ...HESABYAR_SEO, images: [HESABYAR_IMAGE] });
-    expect(meta.alternates?.canonical).toBe(`${SITE.url}${PATH}`);
-    expect(meta.title).toEqual({ absolute: HESABYAR_SEO.title });
-    expect(meta.description).toBe(HESABYAR_SEO.description);
-    expect(meta.description).toContain(HESABYAR_VERSION);
-    expect(meta.description).not.toContain("آزمایشی");
-    expect(JSON.stringify(meta.openGraph)).toContain("hesabyar-cover.jpg");
-    expect(auditPageMeta(HESABYAR_SEO)).toEqual([]);
-    const route = readFileSync("app/(site)/products/hesabyar/page.tsx", "utf8");
-    expect(route).toContain("...HESABYAR_SEO");
-    expect(route).toContain("images: [HESABYAR_IMAGE]");
-    expect(route).toContain("name: HESABYAR_SEO.title");
-  });
-
-  it("emits a valid JSON-LD graph with the short update FAQ and unchanged licence offers", () => {
-    const graph = jsonLdGraph([
-      softwareApplicationNode({
-        id: `${SITE.url}${PATH}#software`, name: HESABYAR_PRODUCT.name,
-        description: HESABYAR_PRODUCT.description, url: `${SITE.url}${PATH}`,
-        baseUrl: SITE.url, operatingSystem: "Android 7+ · Web", offers: HESABYAR_OFFERS,
-        organizationId: `${SITE.url}/#organization`, image: HESABYAR_IMAGE,
-      }),
-      breadcrumbNode([{ name: "خانه", path: "/" }, { name: "محصولات", path: "/products" }, { name: "حساب‌یار", path: PATH }], SITE.url),
-      faqNode(HESABYAR_FAQS.map((item) => ({ q: item.q, a: item.a }))),
-    ]);
-    expect(validateJsonLd(graph["@graph"])).toEqual([]);
-    const software = graph["@graph"][0] as { operatingSystem: string; image: string; offers: { price: number; priceCurrency: string }[] };
-    expect(software.operatingSystem).toContain("Android");
-    expect(software.operatingSystem).toContain("Web");
-    expect(software.image).toContain("hesabyar-cover.jpg");
-    expect(software.offers.map((offer) => [offer.price, offer.priceCurrency])).toEqual([
-      [2_700_000, "IRR"], [1_300_000, "IRR"], [700_000, "IRR"],
-    ]);
-    const upgrade = HESABYAR_FAQS.find((item) => item.q.includes(HESABYAR_VERSION));
-    expect(upgrade?.a).toBe(HESABYAR_UPGRADE_INSTRUCTIONS);
-    expect(HESABYAR_FAQS.some((item) => item.q.includes("فروشگاهی"))).toBe(false);
-  });
-
-  it("renders source-backed changes and the owner-approved update note without Debug labels", () => {
+  it("renders current pricing, architecture, FAQs and old anchor compatibility", () => {
     const html = renderToStaticMarkup(createElement(HesabyarProductPage));
-    expect(html).toContain('id="release-notes"');
-    expect(html).toContain(`تازه در نسخهٔ ${HESABYAR_VERSION}`);
-    expect(html).toMatch(new RegExp(`<time datetime="${HESABYAR_RELEASE_DATE}">`, "i"));
-    expect(html).toContain(HESABYAR_UPGRADE_INSTRUCTIONS);
-    for (const removed of ["Android Debug", "test/debug", "Pre-release", "بیلد آزمایشی", "هشدار نصب نسخهٔ آزمایشی"]) {
-      expect(html).not.toContain(removed);
-    }
-    expect(html.match(/data-hesabyar-apk/g)).toHaveLength(2);
-    expect(html).toContain("hesabyar-1.4.2-test.apk");
-    expect(html).toContain(HESABYAR_APK_SHA256);
-    expect(html).toContain(`href="${HESABYAR_APK_SHA256_URL}"`);
-    expect(html.match(/دریافت فایل SHA-256/g)).toHaveLength(1);
-    expect(html).not.toContain("hesabyar-1.3.0-test.apk");
-    expect(HESABYAR_RELEASE_CHANGES).toHaveLength(6);
-    for (const change of HESABYAR_RELEASE_CHANGES) {
-      expect(html).toContain(change.title);
-      expect(html).toContain(change.text);
-    }
-    expect(html).toContain(`href="${HESABYAR_WEB_URL}"`);
-    expect(HESABYAR_PLANS.map((plan) => plan.price)).toEqual([270_000, 130_000, 70_000]);
-    expect(PATH).toBe(`/products/${HESABYAR_PRODUCT.slug}`);
+    for (const text of [
+      "کاملاً آنلاین",
+      "روی سرور",
+      "دستگاه‌های مختلف",
+      "۳۰٬۰۰۰",
+      "۶۰٬۰۰۰",
+      "۱۲۰٬۰۰۰",
+      'id="pricing"',
+      'id="release-notes"',
+      'id="versions"',
+      "اطلاعات حسابداری مشتری حذف نمی‌شود",
+    ])
+      expect(html).toContain(text);
+    for (const text of [
+      ".apk",
+      "hesabyar.karen-soft.ir",
+      "۲۷۰٬۰۰۰",
+      "۷۰٬۰۰۰",
+      "۱۳۰٬۰۰۰",
+      "یک کالا و ۱۰ تراکنش",
+      "SHA-256",
+    ])
+      expect(html).not.toContain(text);
   });
-
-  it("omits the source and checksum link strip only from the release-notes section", () => {
-    const html = renderToStaticMarkup(createElement(HesabyarProductPage));
-    const releaseSection = html.match(/<section[^>]*id="release-notes"[^>]*>([\s\S]*?)<\/section>/)?.[1];
-    expect(releaseSection).toBeDefined();
-    for (const removed of ["یادداشت انتشار رسمی در GitHub", "دریافت فایل SHA-256", "منبع تغییرات همین ساخت"]) {
-      expect(releaseSection).not.toContain(removed);
-    }
-    expect(releaseSection).not.toContain("<a ");
-    expect(releaseSection).not.toContain("github.com/rahmaniho/KarenYar");
-    expect(releaseSection).toContain(HESABYAR_RELEASE_CHANGES[0].title);
-    // The separate Android version card is outside the requested removal scope.
-    expect(html).toContain(`href="${HESABYAR_APK_SHA256_URL}"`);
-    expect(html).toContain(HESABYAR_APK_SHA256);
-  });
-
-  it("keeps prices, the exact APK and the short update note consistent in llms.txt and guides", async () => {
-    const home = readFileSync("components/sections/hesabyar-download.tsx", "utf8");
-    expect(home).toContain("HESABYAR_PRODUCT_PATH");
-    expect(readFileSync("lib/hesabyar.ts", "utf8")).toContain('export const HESABYAR_PRODUCT_PATH = "/products/hesabyar"');
-    const llms = await getLlmsTxt().text();
-    for (const text of [`${SITE.url}${PATH}`, HESABYAR_WEB_URL, "۲۷۰٬۰۰۰ تومان", HESABYAR_APK_URL,
-      HESABYAR_VERSION, HESABYAR_APK_SHA256, HESABYAR_UPGRADE_INSTRUCTIONS, HESABYAR_RELEASE_URL]) {
-      expect(llms).toContain(text);
-    }
-    for (const removed of ["Android Debug", "Pre-release", "بیلد آزمایشی"]) expect(llms).not.toContain(removed);
-    for (const change of HESABYAR_RELEASE_CHANGES) expect(llms).toContain(change.title);
-    const hesabyarPosts = BLOG_POSTS.filter((post) => post.category === "حساب‌یار");
-    expect(hesabyarPosts).toHaveLength(3);
-    for (const post of hesabyarPosts) {
-      expect(post.relatedLinks?.some((link) => link.href === PATH)).toBe(true);
-      if (post.slug !== "hesabyar-accounting-software") expect(post.modifiedDate).toBe(HESABYAR_RELEASE_DATE);
-    }
-    const storeGuide = hesabyarPosts.find((post) => post.slug === "hesabyar-store-inventory");
-    expect(storeGuide?.cover).toBe(HESABYAR_IMAGE);
-    expect(storeGuide?.relatedLinks?.some((link) => link.href === `${PATH}#release-notes`)).toBe(true);
-    expect(storeGuide?.sections.some((section) => section.heading.includes(HESABYAR_VERSION))).toBe(true);
+  it("keeps machine-readable discovery consistent", async () => {
+    const text = await GET().text();
+    expect(text).toContain("https://karo.karen-soft.ir/");
+    expect(text).toContain("کارو");
+    expect(text).not.toContain(".apk");
+    expect(text).not.toContain("hesabyar.karen-soft.ir");
+    expect(text).not.toContain("لایسنس حرفه‌ای");
   });
 });

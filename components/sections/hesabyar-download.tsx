@@ -1,119 +1,85 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { BookOpenCheck, Calculator, Download, Globe, KeyRound, Package, ShieldCheck, ShoppingCart, Smartphone, Users, Wallet, WifiOff } from "lucide-react";
 import {
-  HESABYAR_APK_SHA256,
-  HESABYAR_APK_SHA256_URL,
-  HESABYAR_APK_SIZE_BYTES,
-  HESABYAR_APK_SIZE_MB,
-  HESABYAR_APK_URL,
-  HESABYAR_FEATURES,
-  HESABYAR_FREE_TIER,
   HESABYAR_IMAGE,
   HESABYAR_IMAGE_ALT,
-  HESABYAR_MIN_ANDROID,
-  HESABYAR_PLANS,
   HESABYAR_PRODUCT_PATH,
-  HESABYAR_UPGRADE_INSTRUCTIONS,
-  HESABYAR_VERSION,
   HESABYAR_WEB_URL,
 } from "@/lib/hesabyar";
-import { formatNumber } from "@/lib/utils";
+import { KARO_PLANS } from "@/lib/karo";
+import { formatToman } from "@/lib/utils";
 
-/* سازگاری با مصرف‌کننده‌های قبلی این بخش؛ منبع اصلی داده‌ها `lib/hesabyar` است. */
-export { HESABYAR_APK_SHA256, HESABYAR_APK_URL, HESABYAR_PLANS, HESABYAR_PRODUCT_PATH, HESABYAR_VERSION, HESABYAR_WEB_URL };
-
-const ICONS = {
-  cart: ShoppingCart,
-  package: Package,
-  book: BookOpenCheck,
-  wallet: Wallet,
-  users: Users,
-  calculator: Calculator,
-} as const;
-
+/** Anchor and component name retained for old inbound links. */
 export function HesabyarDownload() {
   return (
-    <section id="hesabyar-download" className="ks-hesabyar" aria-labelledby="hesabyar-title">
+    <section
+      id="hesabyar-download"
+      className="ks-hesabyar"
+      aria-labelledby="hesabyar-title"
+    >
       <div className="ks-hesabyar-intro">
-        <span className="ks-hesabyar-eyebrow"><Smartphone size={17} aria-hidden="true" /> اپلیکیشن اندروید و وب کارن سافت</span>
-        <h2 id="hesabyar-title">حساب‌یار؛<br />حساب‌وکتاب، همیشه همراه شما.</h2>
-        <p>از دخل‌وخرج روزانه تا صندوق فروش و حقوق کارکنان؛ ابزارهای مالی فارسی در یک برنامهٔ راست‌چین با تاریخ شمسی و حالت روشن و تاریک.</p>
-        <p className="ks-hesabyar-new"><strong>تازه در نسخهٔ {HESABYAR_VERSION}:</strong> مرکز فاکتورها، پیش‌نویس و ویرایش، دریافت جزئی و برگشت وجه، چاپ و PDF فارسی و دسته‌بندی کالاها.</p>
-        <Link href={`${HESABYAR_PRODUCT_PATH}#release-notes`} className="ks-hesabyar-guide">تغییرات نسخهٔ {HESABYAR_VERSION} و راهنمای به‌روزرسانی ←</Link>
+        <span className="ks-hesabyar-eyebrow">
+          نرم‌افزار حسابداری آنلاین کارن سافت
+        </span>
+        <h2 id="hesabyar-title">کارو؛ مدیریت هوشمند امور مالی کسب‌وکار شما</h2>
+        <p>
+          کارو نام جدید حساب‌یار است؛ برنامه‌ای کاملاً آنلاین با ذخیره اطلاعات
+          روی سرور. از دستگاه‌های مختلف اطلاعات خود را ثبت و مشاهده کنید.
+        </p>
         <div className="ks-hesabyar-badges">
-          <span><WifiOff size={15} aria-hidden="true" /> قابل استفاده آفلاین</span>
-          <span><ShieldCheck size={15} aria-hidden="true" /> ذخیرهٔ داده‌ها روی دستگاه و قفل با پین</span>
+          <span>کاملاً آنلاین</span>
+          <span>ذخیره روی سرور</span>
+          <span>تعداد کاربران قابل انتخاب</span>
         </div>
         <div className="ks-hesabyar-actions">
-          <a className="ks-hesabyar-download" href={HESABYAR_APK_URL} data-hesabyar-apk>
-            <Download size={21} aria-hidden="true" /> دانلود مستقیم اندروید {HESABYAR_VERSION}
-          </a>
           <a className="ks-hesabyar-web" href={HESABYAR_WEB_URL}>
-            <Globe size={20} aria-hidden="true" /> ورود به نسخهٔ وب
+            ورود به کارو
           </a>
         </div>
-        <p className="ks-hesabyar-file">نسخهٔ <bdi>{HESABYAR_VERSION}</bdi> · فایل APK · حدود {HESABYAR_APK_SIZE_MB} مگابایت · {HESABYAR_MIN_ANDROID}</p>
-        <p className="ks-hesabyar-update-note">{HESABYAR_UPGRADE_INSTRUCTIONS}</p>
-        <p className="ks-hesabyar-web-note">نسخهٔ وب همان برنامه در مرورگر است: بدون نصب، قابل افزودن به صفحهٔ اصلی (PWA) و آفلاین؛ داده‌ها روی همان دستگاه می‌مانند. کلید لایسنس در بخش تنظیمات برنامه فعال می‌شود.</p>
-        <Link href={HESABYAR_PRODUCT_PATH} className="ks-hesabyar-product-link">صفحهٔ حساب‌یار: نسخه‌ها، امکانات و قیمت لایسنس ←</Link>
-        <Link href="/blog/hesabyar-personal-budget" className="ks-hesabyar-guide">راهنمای مدیریت درآمد و هزینه با حساب‌یار ←</Link>
-        <Link href="/blog/hesabyar-store-inventory" className="ks-hesabyar-guide">راهنمای صندوق فروش، موجودی و فاکتور ←</Link>
-        <p className="ks-hesabyar-license">شروع با {HESABYAR_FREE_TIER} امکانات نامحدود، خروجی PDF و پشتیبان‌گیری به فعال‌سازی نسخهٔ حرفه‌ای نیاز دارند.</p>
+        <Link href={HESABYAR_PRODUCT_PATH} className="ks-hesabyar-product-link">
+          معرفی کارو، تعرفه‌ها و محاسبه هزینه اشتراک ←
+        </Link>
       </div>
       <div className="ks-hesabyar-details">
         <Image
           src={HESABYAR_IMAGE}
           alt={HESABYAR_IMAGE_ALT}
           data-hesabyar-image
-          width={1536}
-          height={864}
+          width={1024}
+          height={1024}
           sizes="(max-width: 900px) 100vw, 50vw"
-          className="ks-hesabyar-image"
+          className="h-auto w-full rounded-2xl"
         />
-        <div className="ks-hesabyar-features">
-          {HESABYAR_FEATURES.map((feature) => {
-            const Icon = ICONS[feature.icon];
-            return (
-              <article key={feature.title}>
-                <Icon size={23} aria-hidden="true" />
-                <h3>{feature.title}</h3>
-                <p>{feature.text}</p>
-              </article>
-            );
-          })}
-        </div>
-        <details className="ks-hesabyar-install">
-          <summary>راهنمای نصب و به‌روزرسانی</summary>
-          <ol>
-            <li>قبل از به‌روزرسانی حتماً از اطلاعات خود در برنامه پشتیبان تهیه کنید.</li>
-            <li>با دکمهٔ دانلود مستقیم، فایل APK را دریافت و باز کنید.</li>
-            <li>اگر برنامه به‌روزرسانی نشد، برنامه را پاک کنید و نسخهٔ جدید دانلودشده را نصب کنید.</li>
-            <li>اگر اندروید درخواست کرد، اجازهٔ «نصب برنامه‌های ناشناس» را فقط برای مرورگر یا فایل‌منیجر مورد استفاده فعال کنید؛ پس از نصب می‌توانید آن را غیرفعال کنید.</li>
-          </ol>
-          <p>دانلود اولیه به اینترنت نیاز دارد؛ نرخ ارز در حالت آفلاین زنده نیست و می‌توانید آن را دستی ویرایش کنید.</p>
-          <p>روش‌های پرداخت در صندوق (نقدی، کارت‌خوان، انتقال و نسیه) ثبت حسابداری‌اند؛ برنامه به بانک یا پایانهٔ پرداخت متصل نمی‌شود و درآمد فروش فقط از طریق فاکتور اصلاح یا ابطال می‌شود.</p>
-          <p className="ks-hesabyar-sha">اندازهٔ دقیق فایل: {formatNumber(HESABYAR_APK_SIZE_BYTES)} بایت.<br />کد بازبینی فایل (SHA-256): <code dir="ltr">{HESABYAR_APK_SHA256}</code> · <a href={HESABYAR_APK_SHA256_URL} className="underline">دریافت فایل SHA-256</a></p>
-        </details>
       </div>
       <div className="ks-hesabyar-pricing">
         <div className="ks-hesabyar-pricing-head">
-          <span><KeyRound size={17} aria-hidden="true" /> لایسنس نسخهٔ حرفه‌ای</span>
-          <h3>یک‌بار بخرید، آفلاین فعال کنید.</h3>
-          <p>کلید لایسنس به‌صورت آفلاین در تنظیمات برنامه وارد می‌شود و به اینترنت وابسته نیست. دوره‌ها بدون تمدید خودکارند و قیمت‌ها به تومان است. جزئیات کامل در <Link href={HESABYAR_PRODUCT_PATH}>صفحهٔ حساب‌یار</Link> آمده است.</p>
+          <h3>تعرفه اشتراک کارو</h3>
+          <p>
+            هر پلن شامل یک کاربر است؛ تعداد کاربران و مدت اشتراک قابل انتخاب
+            است. همه قیمت‌ها به تومان است.
+          </p>
         </div>
         <ul className="ks-hesabyar-plans">
-          {HESABYAR_PLANS.map((plan) => (
-            <li key={plan.id} className={plan.featured ? "is-featured" : undefined}>
-              <span className="ks-plan-title">{plan.title}{plan.featured ? <em>پیشنهاد ما</em> : null}</span>
-              <strong className="ks-plan-price"><bdi>{formatNumber(plan.price)}</bdi> <small>تومان</small></strong>
-              <span className="ks-plan-period">{plan.period}</span>
+          {KARO_PLANS.map((plan) => (
+            <li key={plan.id}>
+              <span className="ks-plan-title">{plan.title}</span>
+              <strong className="ks-plan-price">
+                <bdi>{formatToman(plan.price)}</bdi>
+              </strong>
+              <span className="ks-plan-period">ماهانه، یک کاربر</span>
+              <p>سالانه: {formatToman(plan.yearly)}</p>
               <p>{plan.note}</p>
             </li>
           ))}
         </ul>
-        <p className="ks-hesabyar-pricing-foot">لایسنس برای هر دو نسخهٔ اندروید و وب همان برنامه معتبر است. برای خرید یا تمدید، از <Link href="/contact">صفحهٔ تماس</Link> سفارش خود را ثبت کنید.</p>
+        <p className="ks-hesabyar-pricing-foot">
+          اشتراک پس از پرداخت موفق خودکار فعال می‌شود. با پایان اشتراک، اطلاعات
+          حسابداری حذف نمی‌شود.{" "}
+          <Link href={`${HESABYAR_PRODUCT_PATH}#pricing`}>
+            محاسبه هزینه و قوانین اشتراک
+          </Link>
+        </p>
       </div>
     </section>
   );

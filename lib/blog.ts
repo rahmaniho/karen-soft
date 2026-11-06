@@ -204,7 +204,7 @@ const EDITORIAL_POSTS: BlogPost[] = [
   },
   {
     slug: "online-store",
-    relatedLinks: [{ label: "نرم‌افزار مدیریت فروشگاه", href: "/products/online-store" }, { label: "حساب‌یار؛ صندوق فروش و انبار", href: "/products/hesabyar" }],
+    relatedLinks: [{ label: "نرم‌افزار مدیریت فروشگاه", href: "/products/online-store" }, { label: "کارو؛ صندوق فروش و انبار", href: "/products/hesabyar" }],
     title: "راه‌اندازی فروشگاه اینترنتی؛ راهنمای گام‌به‌گام",
     excerpt: "از انتخاب پلتفرم تا اولین فروش؛ نقشه راه عملی برای فروشگاه‌های ایرانی، از عکاسی محصول و قیمت‌گذاری تا ارسال و بازگشت کالا.",
     category: "فروشگاه",

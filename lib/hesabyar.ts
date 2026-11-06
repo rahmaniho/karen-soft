@@ -1,236 +1,82 @@
 import type { Product } from "./products";
-import { formatNumber, formatToman } from "./utils";
-
-/**
- * منبع واحد اطلاعات حساب‌یار: نسخهٔ اندروید، نسخهٔ وب، امکانات، لایسنس و سؤالات متداول.
- * بخش دانلود صفحهٔ اصلی، صفحهٔ اختصاصی `/products/hesabyar`، داده‌ساخت‌یافته و نقشهٔ سایت
- * همه از همین فایل خوانده می‌شوند تا با هر انتشار تازه فقط یک جا به‌روزرسانی شود.
- */
-
-/**
- * APK آزمایشی ۱٫۴٫۲؛ شناسهٔ انتشار و مشخصات فایل از GitHub API تأیید شده‌اند.
- * این مشخصات فقط به APK اندروید مربوط‌اند، نه شمارهٔ استقرار مستقل نسخهٔ وب.
- * منبع: docs/releases/v1.4.2.md در commit زیر و دارایی رسمی Pre-release.
- */
-export const HESABYAR_VERSION = "۱٫۴٫۲";
-export const HESABYAR_VERSION_LATIN = "1.4.2";
-export const HESABYAR_RELEASE_TAG = "android-test-v1.4.2-41813070224-1";
-export const HESABYAR_APK_URL =
-  "https://github.com/rahmaniho/KarenYar/releases/download/android-test-v1.4.2-41813070224-1/hesabyar-1.4.2-test.apk";
-export const HESABYAR_RELEASE_URL = `https://github.com/rahmaniho/KarenYar/releases/tag/${HESABYAR_RELEASE_TAG}`;
-export const HESABYAR_SOURCE_COMMIT = "f724e847b7aa87f7facb8c04be5e27c7473d82a5";
-export const HESABYAR_RELEASE_DATE = "2026-11-04";
-/** digest و اندازهٔ دارایی در GitHub API با یادداشت انتشار مطابقت دارند. */
-export const HESABYAR_APK_SHA256 = "0474e5015531dedf4daa1c35a11848d7db1dd43412eef5bc6a275fb011ebd3fc";
-export const HESABYAR_APK_SHA256_URL = `${HESABYAR_APK_URL}.sha256`;
-export const HESABYAR_APK_SIZE_BYTES = 9_146_513;
-/** مگابایت ده‌دهی، گرد شده به یک رقم؛ اندازهٔ دقیق هم در صفحه نمایش داده می‌شود. */
-export const HESABYAR_APK_SIZE_MB = formatNumber(Math.round(HESABYAR_APK_SIZE_BYTES / 100_000) / 10, { useGrouping: false });
-/** متن مصوب مالک برای کنار دانلود؛ کوتاه و بدون برچسب فنی ساخت. */
-export const HESABYAR_UPGRADE_INSTRUCTIONS =
-  "قبل از به‌روزرسانی حتماً از اطلاعات خود در برنامه پشتیبان تهیه کنید. اگر برنامه به‌روزرسانی نشد، برنامه را پاک کنید و نسخهٔ جدید دانلودشده را نصب کنید.";
-
-/** تغییرات رسمی نسبت به APK عمومی قبلی، ۱٫۳٫۰؛ ادعای عملکرد تأییدنشده اضافه نشود. */
-export const HESABYAR_RELEASE_CHANGES: readonly { title: string; text: string }[] = [
-  {
-    title: "مرکز و داشبورد فاکتورها",
-    text: "جست‌وجو و فیلتر فاکتورها، پیش‌نویس، ویرایش و کپی سند و محاسبات دقیق پول، تخفیف و مالیات. پیش‌نویس تا زمان صدور، موجودی و درآمد را تغییر نمی‌دهد.",
-  },
-  {
-    title: "دریافت جزئی، برگشت وجه و اصلاح پرداخت",
-    text: "دریافت کامل یا بخشی از مبلغ فاکتور، برگشت وجه و اصلاح پرداخت با حفظ تاریخچه و محافظت در برابر ثبت تکراری.",
-  },
-  {
-    title: "چاپ و PDF فارسی",
-    text: "هماهنگی چاپ و PDF با فونت‌های فارسی و انگلیسی و نمایش صحیح اعداد و مبلغ‌ها در سند.",
-  },
-  {
-    title: "دسته‌بندی کالاها و ظاهر تازه",
-    text: "دسته‌بندی قابل تنظیم کالاها و فیلتر آن‌ها در فروشگاه و انبار، نوار کناری بازطراحی‌شده و لوگو، آیکون و اسپلش رسمی جدید.",
-  },
-  {
-    title: "پشتیبان‌گیری نسخهٔ ۳",
-    text: "قالب پشتیبان JSON نسخهٔ ۳ و مهاجرت افزایشی پایگاه دادهٔ محلی به نسخهٔ ۴. پشتیبان نسخهٔ ۳ را نمی‌توان در نسخهٔ قدیمی برنامه که فقط قالب ۲ را می‌شناسد وارد کرد.",
-  },
-  {
-    title: "نمایش نسخهٔ واقعی برنامه",
-    text: "نوار کناری، نسخهٔ واقعی پکیج را نشان می‌دهد؛ در این ساخت ۱٫۴٫۲، نه برچسب ثابت و قدیمی ۱٫۳٫۰.",
-  },
-];
-/** نسخهٔ تحت وب همان برنامه؛ روی مرورگر دستگاه و قابل نصب به‌صورت PWA. */
-export const HESABYAR_WEB_URL = "https://hesabyar.karen-soft.ir/";
+import { formatToman } from "./utils";
+import {
+  KARO_WEB_URL,
+  KARO_IMAGE,
+  KARO_IMAGE_ALT,
+  KARO_UPDATED,
+  KARO_PLANS,
+  KARO_FAQS,
+} from "./karo";
+/** Legacy identifiers/URL retained to preserve existing links. Current public identity: کارو. */
+export const HESABYAR_WEB_URL = KARO_WEB_URL;
 export const HESABYAR_PRODUCT_PATH = "/products/hesabyar";
-export const HESABYAR_MIN_ANDROID = "اندروید ۷ و بالاتر";
-export const HESABYAR_RUNTIME = "Android 7+ · Web";
-/** تصویر معرفی/اشتراک‌گذاری با لوگوی رسمی ارسالی مالک؛ نسبت ۱۶:۹. */
-export const HESABYAR_IMAGE = "/images/hesabyar/hesabyar-cover.jpg";
-export const HESABYAR_IMAGE_ALT = "لوگوی رسمی حساب‌یار با نام فارسی و انگلیسی و عبارت Powered by KarenSoft";
-/** نشان مربعی بریده‌شده از همان لوگوی رسمی برای کارت کوچک محصول. */
-export const HESABYAR_LOGO = "/images/hesabyar/hesabyar-mark.png";
-
-export interface HesabyarPlan {
-  id: "lifetime" | "yearly" | "half-year";
-  title: string;
-  /** مبلغ به تومان؛ نمایش با ارقام فارسی و داده‌ساخت‌یافته با تبدیل به ریال. */
-  price: number;
-  period: string;
-  note: string;
-  featured?: boolean;
-}
-
-export const HESABYAR_PLANS: readonly HesabyarPlan[] = [
-  {
-    id: "lifetime",
-    title: "مادام‌العمر",
-    price: 270_000,
-    period: "پرداخت یک‌باره",
-    note: "همهٔ امکانات نامحدود، خروجی PDF و پشتیبان‌گیری، بدون تمدید سالانه.",
-    featured: true,
-  },
-  {
-    id: "yearly",
-    title: "یک‌ساله",
-    price: 130_000,
-    period: "۱۲ ماه",
-    note: "دسترسی حرفه‌ای برای یک سال؛ مناسب استفادهٔ سالانهٔ فروشگاه.",
-  },
-  {
-    id: "half-year",
-    title: "شش‌ماهه",
-    price: 70_000,
-    period: "۶ ماه",
-    note: "کوتاه‌ترین دورهٔ حرفه‌ای برای شروع و آزمودن کامل امکانات.",
-  },
-];
-
-export const HESABYAR_FREE_TIER = "نسخهٔ رایگان: ماشین‌حساب کامل، ۱ کالا و ۱۰ تراکنش.";
-
-export interface HesabyarFeature {
-  icon: "cart" | "package" | "book" | "wallet" | "users" | "calculator";
-  title: string;
-  text: string;
-}
-
-export const HESABYAR_FEATURES: readonly HesabyarFeature[] = [
-  {
-    icon: "cart",
-    title: "صندوق فروش",
-    text: "کاتالوگ و جست‌وجوی نام یا بارکد، سبد فروش، تعداد اعشاری، قلم خدمات، تخفیف و مالیات، ثبت نقدی، کارت‌خوان، انتقال و نسیه با میان‌برهای صفحه‌کلید.",
-  },
-  {
-    icon: "package",
-    title: "فروشگاه و انبار",
-    text: "کالا و موجودی، دسته‌بندی قابل تنظیم و فیلتر کالاها، قیمت تمام‌شده و سود هر کالا، صدور فاکتور با کسر خودکار موجودی، گردش انبار و اسکن بارکد با دوربین.",
-  },
+export const HESABYAR_RELEASE_DATE = KARO_UPDATED;
+export const HESABYAR_RUNTIME = "Web";
+export const HESABYAR_IMAGE = KARO_IMAGE;
+export const HESABYAR_LOGO = KARO_IMAGE;
+export const HESABYAR_IMAGE_ALT = KARO_IMAGE_ALT;
+export const HESABYAR_PLANS = KARO_PLANS;
+export const HESABYAR_FEATURES = [
   {
     icon: "book",
-    title: "دفتر مالی کسب‌وکار",
-    text: "هر فروش تأییدشده یک درآمد خودکار ثبت می‌کند؛ دفتر مستقل کسب‌وکار و دفتر سراسری، گزارش تسویه و وصول نسیه، و ابطال فاکتور با دلیل و حفظ سند.",
+    title: "حسابداری آنلاین",
+    text: "کارو نرم‌افزار حسابداری کاملاً آنلاین کارن سافت است؛ برای استفاده به اینترنت نیاز دارید.",
   },
   {
     icon: "wallet",
-    title: "امور مالی شخصی",
-    text: "ثبت درآمد و هزینه، بودجه‌بندی ماهانه با هشدار سقف، مدیریت بدهی و اقساط، نمودارهای مالی و خروجی CSV.",
+    title: "ذخیره اطلاعات روی سرور",
+    text: "اطلاعات حسابداری به یک دستگاه محدود نیست و روی سرور نگهداری می‌شود.",
   },
   {
     icon: "users",
-    title: "حقوق و دستمزد",
-    text: "مدیریت کارکنان، محاسبه حقوق، بیمه و مالیات با تنظیمات قابل ویرایش، عیدی، سنوات و فیش حقوقی.",
+    title: "دسترسی از دستگاه‌های مختلف",
+    text: "کاربر می‌تواند از دستگاه‌های مختلف اطلاعات خود را ثبت و مشاهده کند.",
   },
   {
     icon: "calculator",
-    title: "محاسبات حرفه‌ای",
-    text: "ماشین‌حساب علمی، محاسبه وام و اقساط، تبدیل واحد و ارز، طلا و سکه با نرخ‌های قابل ویرایش.",
-  },
-];
-
-/** ماژول‌های عملیاتی برای فهرست «در یک نگاه» و داده‌ساخت‌یافته. */
-export const HESABYAR_MODULES = [
-  "صندوق فروش با کاتالوگ، سبد و میان‌بر صفحه‌کلید",
-  "کسر خودکار موجودی و گردش انبار با تاریخچهٔ قبل/بعد",
-  "ثبت خودکار درآمد فروش در دفتر مالی کسب‌وکار",
-  "مرکز و داشبورد فاکتورها با جست‌وجو، فیلتر، پیش‌نویس، ویرایش و کپی",
-  "فاکتور فروش با تخفیف، مالیات و شماره‌گذاری ترتیبی",
-  "دریافت جزئی و کامل، برگشت وجه و اصلاح پرداخت با حفظ تاریخچه",
-  "چاپ و PDF فارسی با فونت فارسی/انگلیسی و نمایش صحیح مبلغ‌ها",
-  "دسته‌بندی قابل تنظیم کالاها و فیلتر دسته در فروشگاه و انبار",
-  "دفتر مشتریان، فروش نسیه، وصول و مانده بدهی",
-  "حقوق و دستمزد طبق قانون کار با فیش قابل چاپ",
-  "بودجه‌بندی شخصی، بدهی و اقساط با هشدار سررسید",
-  "ماشین‌حساب علمی، وام، تبدیل واحد و نرخ طلا",
-  "پشتیبان‌گیری و بازیابی JSON با قالب نسخهٔ ۳",
-  "قفل برنامه با پین و حالت روشن/تاریک",
-] as const;
-
-export const HESABYAR_FAQS = [
-  {
-    q: "تفاوت نسخهٔ اندروید و نسخهٔ وب حساب‌یار چیست؟",
-    a: "هر دو یک برنامه‌اند. نسخهٔ وب در نشانی hesabyar.karen-soft.ir داخل مرورگر اجرا می‌شود و می‌توانید آن را روی صفحهٔ اصلی گوشی یا دسکتاپ نصب کنید؛ نسخهٔ اندروید همان برنامه به‌صورت فایل APK است. داده‌ها در هر دو نسخه روی همان دستگاه می‌مانند و آفلاین کار می‌کنند.",
-  },
-  {
-    q: "قیمت لایسنس حساب‌یار چقدر است؟",
-    a: "لایسنس نسخهٔ حرفه‌ای سه دوره دارد: مادام‌العمر ۲۷۰٬۰۰۰ تومان، یک‌ساله ۱۳۰٬۰۰۰ تومان و شش‌ماهه ۷۰٬۰۰۰ تومان. دوره‌ها تمدید خودکار ندارند و قیمت‌ها بدون احتساب تخفیف‌های مناسبتی است.",
-  },
-  {
-    q: "لایسنس چطور فعال می‌شود و به اینترنت نیاز دارد؟",
-    a: "کلید لایسنس به‌صورت آفلاین در بخش تنظیمات برنامه وارد می‌شود؛ برای فعال‌سازی نیازی به اتصال دائم به اینترنت نیست. خرید و تمدید از صفحهٔ تماس کارن سافت ثبت می‌شود.",
-  },
-  {
-    q: "در نسخهٔ رایگان چه چیزهایی در دسترس است؟",
-    a: "نسخهٔ رایگان ماشین‌حساب کامل، یک کالا و ۱۰ تراکنش دارد. امکانات نامحدود، خروجی PDF و پشتیبان‌گیری پس از فعال‌سازی نسخهٔ حرفه‌ای در دسترس قرار می‌گیرد.",
-  },
-  {
-    q: `پیش از به‌روزرسانی به حساب‌یار ${HESABYAR_VERSION} چه کارهایی انجام دهم؟`,
-    a: HESABYAR_UPGRADE_INSTRUCTIONS,
-  },
-  {
-    q: "داده‌ها کجا ذخیره می‌شوند و بین دستگاه‌ها همگام می‌شوند؟",
-    a: "داده‌ها محلی و روی همان دستگاه ذخیره می‌شوند و همگام‌سازی خودکار چنددستگاهی وجود ندارد. برای انتقال یا نگهداری، از پشتیبان JSON استفاده کنید و پیش از حذف برنامه یا داده‌های مرورگر، نسخهٔ پشتیبان بگیرید.",
-  },
-  {
-    q: "روش‌های پرداخت صندوق به بانک یا کارت‌خوان وصل می‌شوند؟",
-    a: "نقدی، کارت‌خوان، انتقال بانکی و نسیه فقط ثبت حسابداری‌اند؛ برنامه به بانک یا پایانهٔ پرداخت متصل نمی‌شود و درآمد فروش فقط از طریق اصلاح یا ابطال همان فاکتور تغییر می‌کند.",
+    title: "اشتراک متناسب با نیاز",
+    text: "پلن، تعداد کاربران و تعداد ماه‌ها را انتخاب کنید؛ مبلغ نهایی بر همین اساس محاسبه می‌شود.",
   },
 ] as const;
-
-const short = "حساب‌وکتاب شخصی و فروشگاهی، صندوق فروش، انبار و حقوق کارکنان در یک اپ اندروید و وب آفلاین.";
-
-/** ورودی حساب‌یار در فهرست محصولات؛ صفحهٔ اختصاصی آن در `/products/hesabyar` است. */
+export const HESABYAR_MODULES = HESABYAR_FEATURES.map(
+  (feature) => feature.title,
+);
+export const HESABYAR_FAQS = KARO_FAQS;
 export const HESABYAR_PRODUCT: Product = {
   slug: "hesabyar",
-  name: "حساب‌یار",
-  short,
+  name: "نرم‌افزار حسابداری کارو",
+  short:
+    "حسابداری کاملاً آنلاین با ذخیره اطلاعات روی سرور و دسترسی از دستگاه‌های مختلف.",
   description:
-    "حساب‌یار نرم‌افزار مالی فارسی کارن سافت است: صندوق فروش، کالا و انبار، مرکز فاکتور با پیش‌نویس و دریافت جزئی، چاپ و PDF فارسی، دفتر مالی کسب‌وکار، امور مالی شخصی، حقوق و دستمزد و ماشین‌حساب حرفه‌ای؛ آفلاین، راست‌چین با تاریخ شمسی و قابل استفاده روی اندروید و مرورگر. نسخهٔ حرفه‌ای با لایسنس آفلاین و سه دورهٔ مادام‌العمر، یک‌ساله و شش‌ماهه فعال می‌شود.",
+    "کارو، نام جدید حساب‌یار کارن سافت، نرم‌افزار حسابداری کاملاً آنلاین است. اطلاعات روی سرور ذخیره می‌شود و کاربر از دستگاه‌های مختلف آن را ثبت و مشاهده می‌کند. سه پلن پایه، حرفه‌ای و حرفه‌ای پلاس با تعداد کاربران و مدت اشتراک قابل انتخاب ارائه می‌شود.",
   emoji: "🧮",
   icon: "Calculator",
   status: "active",
   featured: true,
   accent: "#1f7a5c",
   accentVar: "--color-hesabyar-green",
-  chips: ["اندروید و وب", "آفلاین", "لایسنس آفلاین"],
+  chips: ["کاملاً آنلاین", "ذخیره روی سرور", "اشتراک چندکاربره"],
   features: [...HESABYAR_MODULES],
-  modules: HESABYAR_FEATURES.map((feature) => ({ title: feature.title, desc: feature.text })),
-  pricingFrom: 70_000,
-  image: HESABYAR_IMAGE,
-  logo: HESABYAR_LOGO,
-  liveUrl: HESABYAR_WEB_URL,
+  modules: HESABYAR_FEATURES.map((feature) => ({
+    title: feature.title,
+    desc: feature.text,
+  })),
+  pricingFrom: 30_000,
+  image: KARO_IMAGE,
+  logo: KARO_IMAGE,
+  liveUrl: KARO_WEB_URL,
 };
-
-/** گزینه‌های لایسنس با مبلغ ریالی برای داده‌ساخت‌یافته. */
-export const HESABYAR_OFFERS = HESABYAR_PLANS.map((plan) => ({
-  name: `لایسنس ${plan.title}`,
+export const HESABYAR_OFFERS = KARO_PLANS.map((plan) => ({
+  name: `اشتراک ماهانه ${plan.title}؛ یک کاربر`,
   priceRial: plan.price * 10,
   description: plan.note,
-  url: `${HESABYAR_WEB_URL.replace(/\/$/, "")}/settings`,
+  url: KARO_WEB_URL,
 }));
-
-/** عنوان و توضیح مشترک صفحه، متادیتا و آزمون‌ها. */
 export const HESABYAR_SEO = {
-  title: "حساب‌یار ۱٫۴٫۲ | دانلود اندروید و نسخهٔ وب کارن سافت",
+  title: "نرم‌افزار حسابداری کارو | حسابداری آنلاین و تعرفه اشتراک",
   description:
-    "دانلود مستقیم حساب‌یار ۱٫۴٫۲ برای اندروید ۷ به بالا؛ فاکتور، دریافت جزئی، PDF فارسی و دسته‌بندی کالا. نسخهٔ وب و راهنمای پشتیبان‌گیری.",
-  path: "/products/hesabyar",
+    "کارو، حسابداری کاملاً آنلاین کارن سافت با ذخیره اطلاعات روی سرور و دسترسی از دستگاه‌های مختلف؛ تعرفه پلن‌های پایه، حرفه‌ای و حرفه‌ای پلاس از ماهانه ۳۰٬۰۰۰ تومان.",
+  path: HESABYAR_PRODUCT_PATH,
 } as const;
-
 export { formatToman };
